@@ -12,7 +12,7 @@ echo "Deployment started ..."
 git pull origin main
 
 # Install composer dependencies
-composer install --optimize-autoloader --no-dev --no-interaction --ignore-platform-reqs
+composer install --optimize-autoloader --no-dev --no-interaction
 
 # Clearing Cache
 php artisan cache:clear
