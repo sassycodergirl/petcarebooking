@@ -3,27 +3,39 @@ set -e
 
 echo "Deployment started ..."
 
-# Turn ON Maintenance Mode (optional)
-(php artisan down) || true
+# Make sure deploy.sh itself is executable
+chmod +x "$(dirname "$0")/deploy.sh"
 
-# Pull the latest version of the app
+# Optional: Turn ON Maintenance Mode
+php artisan down || true
+
+# Pull the latest version from Git
 git pull origin main
 
-# Install composer dependencies
+# Install composer dependencies, ignoring platform requirements
+export COMPOSER_ALLOW_SUPERUSER=1
 composer install --optimize-autoloader --no-dev --no-interaction --ignore-platform-reqs
 
 # Clear and rebuild cache
 php artisan cache:clear
 php artisan config:clear
+php artisan route:clear
+php artisan view:clear
 php artisan optimize
 
-# Fix permissions for storage and bootstrap/cache
-chown -R www-data:www-data /home/coderbeans.shop/public_html/furry-and-friends/storage
-chown -R www-data:www-data /home/coderbeans.shop/public_html/furry-and-friends/bootstrap/cache
-chmod -R 775 /home/coderbeans.shop/public_html/furry-and-friends/storage
-chmod -R 775 /home/coderbeans.shop/public_html/furry-and-friends/bootstrap/cache
+# Fix permissions for Laravel writable directories
+# Make sure the web server user is correct (www-data for Ubuntu/Debian, adjust if different)
+WEBUSER=www-data
 
-# Turn OFF Maintenance mode
+chown -R $WEBUSER:$WEBUSER storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
+
+# Optional: Fix logs specifically
+touch storage/logs/laravel.log
+chown $WEBUSER:$WEBUSER storage/logs/laravel.log
+chmod 664 storage/logs/laravel.log
+
+# Optional: Turn OFF Maintenance Mode
 php artisan up
 
 echo "Deployment finished!"
