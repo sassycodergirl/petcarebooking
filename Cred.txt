@@ -1,0 +1,20 @@
+
+admin@furry.test
+Furr$Admin%CMS25
+
+sudipanaiya95@gmail.com
+pet@123*
+
+
+src="(css|js|images|fonts|icons|yourfolders)/([^"]+)"
+
+
+src="{{ asset('$1/$2') }}"
+
+
+{{ asset('admin/assets/js/kaiadmin.min.js') }}
+
+
+https://wdtsweetheart.wpengine.com/product/dog-dry-food/
+
+https://pettie.wpengine.com/rtl-demo/home-2/
