@@ -1,21 +1,19 @@
 name: Deploy
 
-# Trigger the workflow on push and
-# pull request events on the master branch
 on:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
 
-# Authenticate to the the server via ssh
-# and run our deployment script
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Deploy to Server
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -23,10 +21,12 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
           script: |
-           export COMPOSER_ALLOW_SUPERUSER=1
-           export COMPOSER_IGNORE_PLATFORM_REQS=1
-           cd /home/coderbeans.shop/public_html/furry-and-friends
-           ./.scripts/deploy.sh
+            # Navigate to project
+            cd /home/coderbeans.shop/public_html/furry-and-friends
 
+            # Export composer env to ignore PHP version warnings
+            export COMPOSER_ALLOW_SUPERUSER=1
+            export COMPOSER_IGNORE_PLATFORM_REQS=1
 
-          
+            # Run deploy script
+            ./.scripts/deploy.sh
