@@ -22,7 +22,11 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd /home/coderbeans.shop/public_html/furry-and-friends && ./.scripts/deploy.sh"
+          script: |
+           export COMPOSER_ALLOW_SUPERUSER=1
+           export COMPOSER_IGNORE_PLATFORM_REQS=1
+           cd /home/coderbeans.shop/public_html/furry-and-friends
+           ./.scripts/deploy.sh
 
 
           
