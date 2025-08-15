@@ -24,15 +24,28 @@ php artisan view:clear
 php artisan optimize
 
 
-chown -R root:nogroup storage bootstrap/cache
-chmod -R 775 storage bootstrap/cache
+# -----------------------------
+# Permissions Fix (Working Method)
+# -----------------------------
 
+cd /home/coderbeans.shop/public_html/furry-and-friends
+
+# 1️⃣ Parent directories must be traversable by web server
+chmod o+x /home
+chmod o+x /home/coderbeans.shop
+chmod o+x /home/coderbeans.shop/public_html
+
+# 2️⃣ Ensure project is owned by root
+chown -R root:root
+
+# 3️⃣ Laravel writable folders
+chmod -R 777 storage bootstrap/cache    # fully writable for all users
 touch storage/logs/laravel.log
-chown root:nogroup storage/logs/laravel.log
 chmod 664 storage/logs/laravel.log
 
-
-chmod o+x /home /home/coderbeans.shop /home/coderbeans.shop/public_html
+# -----------------------------
+# End Permissions Fix
+# -----------------------------
 
 # Optional: Turn OFF Maintenance Mode
 php artisan up
