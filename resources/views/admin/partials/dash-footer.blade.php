@@ -79,9 +79,17 @@
       });
     </script>
 
-    <script>
-      new DataTable('#basic-datatables');
-    </script>
+   <script>
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "pageLength": 10,
+            "lengthChange": true
+        });
+    });
+</script>
 
 
 
