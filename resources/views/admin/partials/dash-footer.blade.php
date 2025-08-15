@@ -85,9 +85,8 @@
 
 
 
-    <!--product variable js-->
-      <script>
-        @if(isset($colors))
+<!--product variable js-->
+@if(isset($colors))
 <script>
     let colors = @json($colors);
     let variantIndex = 0;
@@ -120,10 +119,8 @@
     }
 </script>
 @endif
+<!--product variable js-->
 
-      </script>
-
-    <!--product variable js-->
 
   </body>
 </html>
