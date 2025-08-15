@@ -12,7 +12,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+     public function index()
     {
         $categories = Category::paginate(10);
         return view('admin.categories.index', compact('categories'));
@@ -21,25 +21,29 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+     public function create()
     {
-        return view('admin.categories.create');
+        $categories = Category::all(); // all categories for parent dropdown
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+      public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:categories',
+            'slug' => 'nullable|string|max:255|unique:categories,slug',
             'description' => 'nullable|string',
+            'parent_id' => 'nullable|exists:categories,id',
         ]);
 
         Category::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'slug' => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
             'description' => $request->description,
+            'parent_id' => $request->parent_id,
         ]);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
@@ -56,25 +60,33 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+      public function edit(Category $category)
     {
-        return view('admin.categories.edit', compact('category'));
+        // Exclude current category and its direct children to avoid loops
+        $categories = Category::where('id', '!=', $category->id)
+            ->where('parent_id', '!=', $category->id)
+            ->get();
+
+        return view('admin.categories.edit', compact('category', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+      public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name,'.$category->id,
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'slug' => 'nullable|string|max:255|unique:categories,slug,' . $category->id,
             'description' => 'nullable|string',
+            'parent_id' => 'nullable|exists:categories,id',
         ]);
 
         $category->update([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'slug' => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
             'description' => $request->description,
+            'parent_id' => $request->parent_id,
         ]);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');

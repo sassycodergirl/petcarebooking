@@ -20,13 +20,45 @@
 
         <div class="mb-3">
             <label for="name" class="form-label">Category Name *</label>
-            <input type="text" name="name" value="{{ old('name', $category->name) }}" class="form-control" id="name" required>
+            <input type="text" 
+                   name="name" 
+                   value="{{ old('name', $category->name) }}" 
+                   class="form-control" 
+                   id="name" 
+                   required>
         </div>
 
         <div class="mb-3">
             <label for="slug" class="form-label">Slug (optional)</label>
-            <input type="text" name="slug" value="{{ old('slug', $category->slug) }}" class="form-control" id="slug">
+            <input type="text" 
+                   name="slug" 
+                   value="{{ old('slug', $category->slug) }}" 
+                   class="form-control" 
+                   id="slug">
             <small class="form-text text-muted">If left empty, slug will be generated automatically.</small>
+        </div>
+
+        <div class="mb-3">
+            <label for="parent_id" class="form-label">Parent Category</label>
+            <select name="parent_id" id="parent_id" class="form-select">
+                <option value="">None (Top Level)</option>
+                @foreach($categories as $cat)
+                    @if($cat->id != $category->id) {{-- prevent self-selection --}}
+                        <option value="{{ $cat->id }}" 
+                            {{ old('parent_id', $category->parent_id) == $cat->id ? 'selected' : '' }}>
+                            {{ $cat->name }}
+                        </option>
+                    @endif
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description (optional)</label>
+            <textarea name="description" 
+                      id="description" 
+                      class="form-control" 
+                      rows="3">{{ old('description', $category->description) }}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Update Category</button>

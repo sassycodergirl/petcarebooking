@@ -11,11 +11,12 @@
         <a href="{{ route('admin.categories.create') }}" class="btn btn-primary mb-3">Add Category</a>
 
         <table class="table table-bordered table-hover">
-            <thead class="table-light">
+           <thead class="table-light">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Slug</th>
+                    <th>Parent Category</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -25,6 +26,7 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->slug }}</td>
+                    <td>{{ $category->parent ? $category->parent->name : '—' }}</td>
                     <td>
                         <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-sm btn-warning">Edit</a>
                         <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this category?');">
@@ -36,7 +38,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="4" class="text-center">No categories found.</td>
+                    <td colspan="5" class="text-center">No categories found.</td>
                 </tr>
                 @endforelse
             </tbody>
