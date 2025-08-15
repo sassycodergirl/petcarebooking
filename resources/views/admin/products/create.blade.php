@@ -79,6 +79,31 @@
                 <textarea name="description" class="form-control" id="description" rows="4">{{ old('description') }}</textarea>
             </div>
 
+
+             {{-- Variants Section --}}
+            <h4 class="mt-4">Product Variants</h4>
+            <table id="variants-table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Color</th>
+                        <th>Variant Price</th>
+                        <th>Stock</th>
+                        <th>Image URL (optional)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{-- Initially empty, rows added with JS --}}
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-sm btn-secondary" onclick="addVariant()">+ Add Variant</button>
+
+            <br><br>
+
+
+
+
             <button type="submit" class="btn btn-success">Save Product</button>
             <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Cancel</a>
         </form>
@@ -86,3 +111,5 @@
 </div>
 
 @include('admin.partials.dash-footer')
+
+
