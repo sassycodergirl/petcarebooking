@@ -40,7 +40,7 @@
 
         <div class="mb-3">
             <label for="parent_id" class="form-label">Parent Category</label>
-            <select name="parent_id" id="parent_id" class="form-select">
+            <!-- <select name="parent_id" id="parent_id" class="form-select">
                 <option value="">None (Top Level)</option>
                 @foreach($categories as $cat)
                     @if($cat->id != $category->id) {{-- prevent self-selection --}}
@@ -50,7 +50,19 @@
                         </option>
                     @endif
                 @endforeach
-            </select>
+            </select> -->
+
+            <select name="parent_id" id="parent_id" class="form-select">
+                    <option value="">None (Top Level)</option>
+                    @foreach($categories as $cat)
+                        @if(!isset($category) || $cat->id != $category->id) {{-- prevent self-selection --}}
+                            <option value="{{ $cat->id }}" 
+                                @if(old('parent_id', $category->parent_id ?? '') == $cat->id) selected @endif>
+                                {{ $cat->name }}
+                            </option>
+                        @endif
+                    @endforeach
+                </select>
         </div>
 
         <div class="mb-3">
