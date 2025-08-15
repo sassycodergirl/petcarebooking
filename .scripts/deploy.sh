@@ -24,16 +24,17 @@ php artisan view:clear
 php artisan optimize
 
 # Fix permissions for Laravel writable directories
-# Make sure the web server user is correct (www-data for Ubuntu/Debian, adjust if different)
-WEBUSER=www-data
-
-chown -R $WEBUSER:$WEBUSER storage bootstrap/cache
+# Keep root as owner, allow web server (nobody) to write
+chown -R root:nogroup storage bootstrap/cache
 chmod -R 775 storage bootstrap/cache
 
-# Optional: Fix logs specifically
+# Ensure laravel.log exists and is writable
 touch storage/logs/laravel.log
-chown $WEBUSER:$WEBUSER storage/logs/laravel.log
+chown root:nogroup storage/logs/laravel.log
 chmod 664 storage/logs/laravel.log
+
+# Make parent directories traversable
+chmod o+x /home /home/coderbeans.shop /home/coderbeans.shop/public_html
 
 # Optional: Turn OFF Maintenance Mode
 php artisan up
