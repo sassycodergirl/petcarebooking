@@ -44,8 +44,11 @@ chmod 664 "$PROJECT_PATH/storage/logs/laravel.log"
 
 
 # Make them writable
-chmod -R 775 "$PROJECT_PATH/public/products"
-chmod -R 775 "$PROJECT_PATH/public/product-variants"
+mkdir -p "$PROJECT_PATH/public/products"
+mkdir -p "$PROJECT_PATH/public/product-variants"
+chmod -R 777 "$PROJECT_PATH/public/products"
+chmod -R 777 "$PROJECT_PATH/public/product-variants"
+chown -R root:nogroup "$PROJECT_PATH/public/products" "$PROJECT_PATH/public/product-variants"
 # -----------------------------
 # End Permissions Fix
 # -----------------------------
