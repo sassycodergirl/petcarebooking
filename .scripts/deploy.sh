@@ -7,7 +7,7 @@ echo "Deployment started ..."
 chmod +x "$(dirname "$0")/deploy.sh"
 
 # Optional: Turn ON Maintenance Mode
-php artisan down || true
+# php artisan down || true
 
 # Pull the latest version from Git
 git pull origin main
