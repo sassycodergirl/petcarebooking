@@ -87,7 +87,9 @@
 
     <!--product variable js-->
       <script>
-    let colors = @json($colors); // [{id:1,name:"Red"},...]
+        @if(isset($colors))
+<script>
+    let colors = @json($colors);
     let variantIndex = 0;
 
     function addVariant() {
@@ -117,6 +119,9 @@
         btn.closest('tr').remove();
     }
 </script>
+@endif
+
+      </script>
 
     <!--product variable js-->
 
