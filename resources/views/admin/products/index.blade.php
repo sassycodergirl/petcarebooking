@@ -68,7 +68,7 @@
             </table>
         </div>
 
-        {{ $products->links() }}
+        <!-- {{ $products->links() }} -->
     </div>
 </div>
 
