@@ -113,6 +113,7 @@
                 @endforeach
             </tbody>
         </table>
+         <button type="button" class="btn btn-success mb-3" onclick="addVariant()">Add Variant</button>
 
 
         
@@ -121,7 +122,7 @@
             <textarea name="description" class="form-control" rows="4">{{ old('description', $product->description) }}</textarea>
         </div>
 
-        <button type="button" class="btn btn-success mb-3" onclick="addVariant()">Add Variant</button>
+       
 
         <button type="submit" class="btn btn-primary">Update Product</button>
         <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Cancel</a>
