@@ -60,15 +60,21 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-      public function edit(Category $category)
-    {
-        // Exclude current category and its direct children to avoid loops
-        $categories = Category::where('id', '!=', $category->id)
-            ->where('parent_id', '!=', $category->id)
-            ->get();
+    //   public function edit(Category $category)
+    // {
+    //     // Exclude current category and its direct children to avoid loops
+    //     $categories = Category::where('id', '!=', $category->id)
+    //         ->where('parent_id', '!=', $category->id)
+    //         ->get();
 
-        return view('admin.categories.edit', compact('category', 'categories'));
-    }
+    //     return view('admin.categories.edit', compact('category', 'categories'));
+    // }
+
+    public function edit(Category $category)
+{
+    $categories = Category::all(); // show all categories for parent selection
+    return view('admin.categories.edit', compact('category', 'categories'));
+}
 
     /**
      * Update the specified resource in storage.

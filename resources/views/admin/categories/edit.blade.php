@@ -54,13 +54,11 @@
 
             <select name="parent_id" id="parent_id" class="form-select">
                     <option value="">None (Top Level)</option>
-                    @foreach($categories as $cat)
-                        @if(!isset($category) || $cat->id != $category->id) {{-- prevent self-selection --}}
-                            <option value="{{ $cat->id }}" 
-                                @if(old('parent_id', $category->parent_id ?? '') == $cat->id) selected @endif>
-                                {{ $cat->name }}
-                            </option>
-                        @endif
+                   @foreach($categories as $cat)
+                        <option value="{{ $cat->id }}" 
+                                {{ old('parent_id') == $cat->id ? 'selected' : '' }}>
+                            {{ $cat->name }}
+                        </option>
                     @endforeach
                 </select>
         </div>
