@@ -42,6 +42,15 @@ chmod -R 777 "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
 touch "$PROJECT_PATH/storage/logs/laravel.log"
 chmod 664 "$PROJECT_PATH/storage/logs/laravel.log"
 
+
+
+# Create folders if missing
+mkdir -p "$PROJECT_PATH/public/products"
+mkdir -p "$PROJECT_PATH/public/product-variants"
+
+# Make them writable
+chmod -R 775 "$PROJECT_PATH/public/products"
+chmod -R 775 "$PROJECT_PATH/public/product-variants"
 # -----------------------------
 # End Permissions Fix
 # -----------------------------
