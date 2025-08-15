@@ -24,24 +24,23 @@ php artisan view:clear
 php artisan optimize
 
 
+
 # -----------------------------
-# Permissions Fix (Working Method)
+# Permissions Fix (Safe)
 # -----------------------------
 
-cd /home/coderbeans.shop/public_html/furry-and-friends
+PROJECT_PATH="/home/coderbeans.shop/public_html/furry-and-friends"
 
-# 1️⃣ Parent directories must be traversable by web server
-chmod o+x /home
-chmod o+x /home/coderbeans.shop
-chmod o+x /home/coderbeans.shop/public_html
+# Make parent directories traversable
+chmod o+x /home /home/coderbeans.shop /home/coderbeans.shop/public_html
 
-# 2️⃣ Ensure project is owned by root
-chown -R root:root .
+# Laravel writable folders
+chown -R root:nogroup "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
+chmod -R 777 "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
 
-# 3️⃣ Laravel writable folders
-chmod -R 777 storage bootstrap/cache    # fully writable for all users
-touch storage/logs/laravel.log
-chmod 664 storage/logs/laravel.log
+# Ensure laravel.log exists
+touch "$PROJECT_PATH/storage/logs/laravel.log"
+chmod 664 "$PROJECT_PATH/storage/logs/laravel.log"
 
 # -----------------------------
 # End Permissions Fix
