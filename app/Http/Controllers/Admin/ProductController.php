@@ -73,12 +73,17 @@ class ProductController extends Controller
         if (isset($seen[$key])) continue; // avoid duplicate insert from form
         $seen[$key] = true;
 
+        $imagePath = null;
+        if (isset($variant['image']) && $variant['image'] instanceof \Illuminate\Http\UploadedFile) {
+            $imagePath = $variant['image']->store('product-variants', 'public');
+        }
+
         $product->variants()->create([
             'size' => $size ?: null,
             'color' => $color ?: null,
             'price' => $variant['price'] ?? null,
             'stock_quantity' => (int) ($variant['stock_quantity'] ?? 0),
-            'image' => $variant['image'] ?? null,
+            'image' => $imagePath,
         ]);
     }
 
@@ -147,12 +152,17 @@ class ProductController extends Controller
         if (isset($seen[$key])) continue;
         $seen[$key] = true;
 
+         $imagePath = null;
+        if (isset($variant['image']) && $variant['image'] instanceof \Illuminate\Http\UploadedFile) {
+            $imagePath = $variant['image']->store('product-variants', 'public');
+        }
+
         $product->variants()->create([
             'size' => $size ?: null,
             'color' => $color ?: null,
             'price' => $variant['price'] ?? null,
             'stock_quantity' => (int) ($variant['stock_quantity'] ?? 0),
-            'image' => $variant['image'] ?? null,
+            'image' => $imagePath,
         ]);
     }
 

@@ -97,7 +97,7 @@
                     <td><input type="text" name="variants[${variantIndex}][color]" class="form-control"></td>
                     <td><input type="number" step="0.01" name="variants[${variantIndex}][price]" class="form-control"></td>
                     <td><input type="number" name="variants[${variantIndex}][stock_quantity]" value="0" class="form-control"></td>
-                    <td><input type="text" name="variants[${variantIndex}][image]" class="form-control" placeholder="e.g. product-variants/path.jpg"></td>
+                    <td><input type="file" name="variants[${variantIndex}][image]" class="form-control" accept="image/*"></td>
                     <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
                 </tr>
             `);
