@@ -70,7 +70,7 @@ class ProductController extends Controller
             $data['image'] = 'products/' . $fileName;
         }
 
-        Product::create($data);
+        $product = Product::create($data);
 
         // Insert variants (skip empty rows, dedupe by size+color)
     $seen = [];
