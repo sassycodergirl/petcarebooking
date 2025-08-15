@@ -55,7 +55,7 @@ class ProductController extends Controller
             'variants.*.color_id' => 'nullable|exists:colors,id',
             'variants.*.price' => 'nullable|numeric|min:0',
             'variants.*.stock_quantity' => 'nullable|integer|min:0',
-            'variants.*.image' => 'nullable|string|max:255', // using URL/path for simplicity
+            'variants.*.image' => 'nullable|image|max:2048', // using URL/path for simplicity
         ]);
 
         $data = $request->except('variants');
