@@ -53,7 +53,7 @@
         width: 55px;
         height: 55px;
         border-radius: 50%;
-        background-color: rgb(255, 95, 95);
+        background-color: transparent;
         cursor: pointer;
         border: 2px solid rgb(255, 201, 201);
         transition-duration: 0.3s;
