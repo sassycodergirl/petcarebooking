@@ -87,27 +87,37 @@
 
     <!--product variable js-->
       <script>
-        let variantIndex = 0;
+    let colors = @json($colors); // [{id:1,name:"Red"},...]
+    let variantIndex = 0;
 
-        function addVariant() {
-            const tbody = document.querySelector('#variants-table tbody');
-            tbody.insertAdjacentHTML('beforeend', `
-                <tr>
-                    <td><input type="text" name="variants[${variantIndex}][size]" class="form-control"></td>
-                    <td><input type="text" name="variants[${variantIndex}][color]" class="form-control"></td>
-                    <td><input type="number" step="0.01" name="variants[${variantIndex}][price]" class="form-control"></td>
-                    <td><input type="number" name="variants[${variantIndex}][stock_quantity]" value="0" class="form-control"></td>
-                    <td><input type="file" name="variants[${variantIndex}][image]" class="form-control" accept="image/*"></td>
-                    <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
-                </tr>
-            `);
-            variantIndex++;
-        }
+    function addVariant() {
+        const tbody = document.querySelector('#variants-table tbody');
 
-        function removeVariant(btn) {
-            btn.closest('tr').remove();
-        }
-        </script>
+        let colorOptions = colors.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+
+        tbody.insertAdjacentHTML('beforeend', `
+            <tr>
+                <td><input type="text" name="variants[${variantIndex}][size]" class="form-control"></td>
+                <td>
+                  <select name="variants[${variantIndex}][color_id]" class="form-select">
+                      <option value="">Select Color</option>
+                      ${colorOptions}
+                  </select>
+                </td>
+                <td><input type="number" step="0.01" name="variants[${variantIndex}][price]" class="form-control"></td>
+                <td><input type="number" name="variants[${variantIndex}][stock_quantity]" value="0" class="form-control"></td>
+                <td><input type="file" name="variants[${variantIndex}][image]" class="form-control" accept="image/*"></td>
+                <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
+            </tr>
+        `);
+        variantIndex++;
+    }
+
+    function removeVariant(btn) {
+        btn.closest('tr').remove();
+    }
+</script>
+
     <!--product variable js-->
 
   </body>

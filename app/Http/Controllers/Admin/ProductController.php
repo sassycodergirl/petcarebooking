@@ -8,9 +8,12 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\ProductVariant;
+use App\Models\Color;
 
 class ProductController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      */
@@ -20,13 +23,16 @@ class ProductController extends Controller
         return view('admin.products.index', compact('products'));
     }
 
+    
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         $categories = Category::all();
-        return view('admin.products.create', compact('categories'));
+        $colors = Color::all(); 
+         return view('admin.products.create', compact('categories', 'colors'));
     }
 
     /**
@@ -45,7 +51,7 @@ class ProductController extends Controller
              // variants (optional)
             'variants' => 'array',
             'variants.*.size' => 'nullable|string|max:50',
-            'variants.*.color' => 'nullable|string|max:50',
+            'variants.*.color_id' => 'nullable|exists:colors,id',
             'variants.*.price' => 'nullable|numeric|min:0',
             'variants.*.stock_quantity' => 'nullable|integer|min:0',
             'variants.*.image' => 'nullable|string|max:255', // using URL/path for simplicity
@@ -70,7 +76,7 @@ class ProductController extends Controller
     $seen = [];
     foreach ((array) $request->input('variants', []) as $variant) {
         $size  = trim($variant['size'] ?? '');
-        $color = trim($variant['color'] ?? '');
+        $color = $variant['color_id'] ?? null;
 
         // skip rows with no size & no color
         if ($size === '' && $color === '') continue;
@@ -93,7 +99,7 @@ class ProductController extends Controller
 
         $product->variants()->create([
             'size' => $size ?: null,
-            'color' => $color ?: null,
+            'color_id' => $color ?: null,
             'price' => $variant['price'] ?? null,
             'stock_quantity' => (int) ($variant['stock_quantity'] ?? 0),
             'image' => $imagePath,
@@ -117,7 +123,8 @@ class ProductController extends Controller
    public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('admin.products.edit', compact('product', 'categories'));
+        $colors = Color::all();
+         return view('admin.products.edit', compact('product', 'categories', 'colors'));
     }
 
     /**
@@ -135,7 +142,7 @@ class ProductController extends Controller
             'image' => 'nullable|image|max:2048',
             'variants' => 'array',
             'variants.*.size' => 'nullable|string|max:50',
-            'variants.*.color' => 'nullable|string|max:50',
+            'variants.*.color_id' => 'nullable|exists:colors,id',
             'variants.*.price' => 'nullable|numeric|min:0',
             'variants.*.stock_quantity' => 'nullable|integer|min:0',
             'variants.*.image' => 'nullable|string|max:255',
@@ -174,7 +181,7 @@ class ProductController extends Controller
          $seen = [];
     foreach ((array) $request->input('variants', []) as $variant) {
         $size  = trim($variant['size'] ?? '');
-        $color = trim($variant['color'] ?? '');
+        $color = $variant['color_id'] ?? null;
         if ($size === '' && $color === '') continue;
 
         $key = mb_strtoupper($size).'|'.mb_strtoupper($color);
@@ -190,7 +197,7 @@ class ProductController extends Controller
 
         $product->variants()->create([
             'size' => $size ?: null,
-            'color' => $color ?: null,
+            'color_id' => $color ?: null,
             'price' => $variant['price'] ?? null,
             'stock_quantity' => (int) ($variant['stock_quantity'] ?? 0),
             'image' => $imagePath,
