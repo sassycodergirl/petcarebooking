@@ -14,3 +14,5 @@ now locked2 again testing testing2
 
 
 lets test
+
+auto deploy gits
