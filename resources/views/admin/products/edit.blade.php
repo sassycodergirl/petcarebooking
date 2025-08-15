@@ -55,7 +55,12 @@
                     <input type="number" min="0" name="stock_quantity" value="{{ old('stock_quantity', $product->stock_quantity) }}" class="form-control" required>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
+          
+        </div>
+
+
+        <div class="row">
+              <div class="col-12 col-md-4">
                 <div class="mb-3">
                     <label for="status" class="form-label">Status *</label>
                     <select name="status" class="form-select" required>
@@ -64,11 +69,7 @@
                     </select>
                 </div>
             </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-4">
 
                 <div class="mb-3">
                     <label>Current Image</label><br>
@@ -80,7 +81,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-4">
                  <div class="mb-3">
                     <label for="image" class="form-label">Change Product Image</label>
                     <input type="file" name="image" class="form-control" accept="image/*">
