@@ -20,55 +20,74 @@
         @method('PUT')
 
         <!-- Product Info -->
-        <div class="mb-3">
-            <label for="name" class="form-label">Product Name *</label>
-            <input type="text" name="name" value="{{ old('name', $product->name) }}" class="form-control" required>
+         <div class="row">
+            <div class="col-12 col-md-6">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Product Name *</label>
+                    <input type="text" name="name" value="{{ old('name', $product->name) }}" class="form-control" required>
+                </div>
+            </div>
+             <div class="col-12 col-md-6">
+                    <div class="mb-3">
+                        <label for="category_id" class="form-label">Category *</label>
+                        <select name="category_id" class="form-select" required>
+                            <option value="">Select category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="category_id" class="form-label">Category *</label>
-            <select name="category_id" class="form-select" required>
-                <option value="">Select category</option>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
-                @endforeach
-            </select>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                 <div class="mb-3">
+                    <label for="price" class="form-label">Price (₹) *</label>
+                    <input type="number" step="0.01" min="0" name="price" value="{{ old('price', $product->price) }}" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                  <div class="mb-3">
+                    <label for="stock_quantity" class="form-label">Stock Quantity *</label>
+                    <input type="number" min="0" name="stock_quantity" value="{{ old('stock_quantity', $product->stock_quantity) }}" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status *</label>
+                    <select name="status" class="form-select" required>
+                        <option value="1" {{ old('status', $product->status) == 1 ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ old('status', $product->status) == 0 ? 'selected' : '' }}>Inactive</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="price" class="form-label">Price (₹) *</label>
-            <input type="number" step="0.01" min="0" name="price" value="{{ old('price', $product->price) }}" class="form-control" required>
-        </div>
 
-        <div class="mb-3">
-            <label for="stock_quantity" class="form-label">Stock Quantity *</label>
-            <input type="number" min="0" name="stock_quantity" value="{{ old('stock_quantity', $product->stock_quantity) }}" class="form-control" required>
-        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
 
-        <div class="mb-3">
-            <label for="status" class="form-label">Status *</label>
-            <select name="status" class="form-select" required>
-                <option value="1" {{ old('status', $product->status) == 1 ? 'selected' : '' }}>Active</option>
-                <option value="0" {{ old('status', $product->status) == 0 ? 'selected' : '' }}>Inactive</option>
-            </select>
-        </div>
+                <div class="mb-3">
+                    <label>Current Image</label><br>
+                    @if($product->image)
+                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" width="100" class="mb-2">
+                    @else
+                        <p>No image uploaded</p>
+                    @endif
+                </div>
+            </div>
 
-        <div class="mb-3">
-            <label>Current Image</label><br>
-            @if($product->image)
-                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" width="100" class="mb-2">
-            @else
-                <p>No image uploaded</p>
-            @endif
+            <div class="col-12 col-md-6">
+                 <div class="mb-3">
+                    <label for="image" class="form-label">Change Product Image</label>
+                    <input type="file" name="image" class="form-control" accept="image/*">
+                </div>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label for="image" class="form-label">Change Product Image</label>
-            <input type="file" name="image" class="form-control" accept="image/*">
-        </div>
-
+    
 
         <!-- Variants Section -->
         <h4>Product Variants</h4>
