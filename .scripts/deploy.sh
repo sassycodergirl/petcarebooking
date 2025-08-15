@@ -23,14 +23,13 @@ php artisan route:clear
 php artisan view:clear
 php artisan optimize
 
-# Fix permissions for Laravel writable directories
-# Keep root as owner, allow web server (nobody) to write
-chown -R root:nogroup storage bootstrap/cache
+# Set root as owner, nobody as group
+chown -R root:nobody storage bootstrap/cache
 chmod -R 775 storage bootstrap/cache
 
-# Ensure laravel.log exists and is writable
+# Ensure laravel.log exists
 touch storage/logs/laravel.log
-chown root:nogroup storage/logs/laravel.log
+chown root:nobody storage/logs/laravel.log
 chmod 664 storage/logs/laravel.log
 
 # Make parent directories traversable
