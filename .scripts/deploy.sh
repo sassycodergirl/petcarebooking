@@ -23,7 +23,7 @@ php artisan route:clear
 php artisan view:clear
 php artisan optimize
 
-# Set root as owner, nobody as group
+
 chown -R root:nogroup storage bootstrap/cache
 chmod -R 775 storage bootstrap/cache
 
@@ -31,7 +31,7 @@ touch storage/logs/laravel.log
 chown root:nogroup storage/logs/laravel.log
 chmod 664 storage/logs/laravel.log
 
-# Make parent directories traversable
+
 chmod o+x /home /home/coderbeans.shop /home/coderbeans.shop/public_html
 
 # Optional: Turn OFF Maintenance Mode
