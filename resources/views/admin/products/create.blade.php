@@ -72,15 +72,9 @@
                         <input type="file" name="image" class="form-control" id="image" accept="image/*">
                     </div>
                 </div>
-            </div>     
-
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea name="description" class="form-control" id="description" rows="4">{{ old('description') }}</textarea>
-            </div>
-
-
-             {{-- Variants Section --}}
+            </div>    
+            
+              {{-- Variants Section --}}
             <h4 class="mt-4">Product Variants</h4>
             <table id="variants-table" class="table table-bordered">
                 <thead>
@@ -100,6 +94,14 @@
             <button type="button" class="btn btn-sm btn-secondary" onclick="addVariant()">+ Add Variant</button>
 
             <br><br>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" class="form-control" id="description" rows="4">{{ old('description') }}</textarea>
+            </div>
+
+
+           
 
 
 
