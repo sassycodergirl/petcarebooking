@@ -52,10 +52,10 @@
         justify-content: center;
         width: 55px;
         height: 55px;
-        border-radius: 50%;
+       
         background-color: transparent;
         cursor: pointer;
-        border: 2px solid rgb(255, 201, 201);
+       
         transition-duration: 0.3s;
         position: relative;
         overflow: hidden;
