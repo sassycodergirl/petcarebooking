@@ -69,10 +69,6 @@
             <input type="file" name="image" class="form-control" accept="image/*">
         </div>
 
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea name="description" class="form-control" rows="4">{{ old('description', $product->description) }}</textarea>
-        </div>
 
         <!-- Variants Section -->
         <h4>Product Variants</h4>
@@ -117,6 +113,13 @@
                 @endforeach
             </tbody>
         </table>
+
+
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" class="form-control" rows="4">{{ old('description', $product->description) }}</textarea>
+        </div>
 
         <button type="button" class="btn btn-success mb-3" onclick="addVariant()">Add Variant</button>
 
