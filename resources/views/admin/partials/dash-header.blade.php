@@ -44,7 +44,14 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap5.css" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/new-update.css') }}" />
 
+    <style>
+      .bin-button {
+           border: none;
+           background: transparent;
+      }
+  
 
+    </style>
      
   </head>
   <body>
