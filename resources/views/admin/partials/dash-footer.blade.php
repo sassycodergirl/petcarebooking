@@ -93,11 +93,12 @@
 
 
 
-<!--product variable js-->
 @if(isset($colors))
 <script>
     let colors = @json($colors);
-    let variantIndex = 0;
+
+    // If editing a product, start from existing variants count
+    let variantIndex = {{ isset($product) ? $product->variants->count() : 0 }};
 
     function addVariant() {
         const tbody = document.querySelector('#variants-table tbody');
@@ -119,6 +120,7 @@
                 <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
             </tr>
         `);
+
         variantIndex++;
     }
 
@@ -127,7 +129,7 @@
     }
 </script>
 @endif
-<!--product variable js-->
+
 
 
   </body>

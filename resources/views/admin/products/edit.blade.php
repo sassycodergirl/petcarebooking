@@ -92,46 +92,51 @@
         <!-- Variants Section -->
         <h4>Product Variants</h4>
         <table class="table" id="variants-table">
-            <thead>
-                <tr>
-                    <th>Size</th>
-                    <th>Color</th>
-                    <th>Price (₹)</th>
-                    <th>Stock</th>
-                    <th>Image</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php $variantIndex = 0; @endphp
-                @foreach($product->variants as $variant)
-                    <tr>
-                        <input type="hidden" name="variants[{{ $variantIndex }}][id]" value="{{ $variant->id }}">
-                        <td><input type="text" name="variants[{{ $variantIndex }}][size]" value="{{ $variant->size }}" class="form-control"></td>
-                        <td>
-                            <select name="variants[{{ $variantIndex }}][color_id]" class="form-select">
-                                <option value="">Select Color</option>
-                                @foreach($colors as $color)
-                                    <option value="{{ $color->id }}" {{ $variant->color_id == $color->id ? 'selected' : '' }}>
-                                        {{ $color->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td><input type="number" step="0.01" name="variants[{{ $variantIndex }}][price]" value="{{ $variant->price }}" class="form-control"></td>
-                        <td><input type="number" name="variants[{{ $variantIndex }}][stock_quantity]" value="{{ $variant->stock_quantity }}" class="form-control"></td>
-                        <td>
-                            @if($variant->image)
-                                <img src="{{ asset($variant->image) }}" width="50" class="mb-1"><br>
-                            @endif
-                            <input type="file" name="variants[{{ $variantIndex }}][image]" class="form-control" accept="image/*">
-                        </td>
-                        <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
-                    </tr>
-                    @php $variantIndex++; @endphp
-                @endforeach
-            </tbody>
-        </table>
+    <thead>
+        <tr>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Price (₹)</th>
+            <th>Stock</th>
+            <th>Image</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @php $variantIndex = 0; @endphp
+        @foreach($product->variants as $variant)
+        <tr>
+            <td>
+                <input type="hidden" name="variants[{{ $variantIndex }}][id]" value="{{ $variant->id }}">
+                <input type="text" name="variants[{{ $variantIndex }}][size]" value="{{ $variant->size }}" class="form-control">
+            </td>
+            <td>
+                <select name="variants[{{ $variantIndex }}][color_id]" class="form-select">
+                    <option value="">Select Color</option>
+                    @foreach($colors as $color)
+                        <option value="{{ $color->id }}" {{ $variant->color_id == $color->id ? 'selected' : '' }}>
+                            {{ $color->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </td>
+            <td><input type="number" step="0.01" name="variants[{{ $variantIndex }}][price]" value="{{ $variant->price }}" class="form-control"></td>
+            <td><input type="number" name="variants[{{ $variantIndex }}][stock_quantity]" value="{{ $variant->stock_quantity }}" class="form-control"></td>
+            <td>
+                @if($variant->image)
+                    <img src="{{ asset($variant->image) }}" width="50" class="mb-1"><br>
+                @endif
+                <input type="file" name="variants[{{ $variantIndex }}][image]" class="form-control" accept="image/*">
+            </td>
+            <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
+        </tr>
+        @php $variantIndex++; @endphp
+        @endforeach
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-sm btn-secondary" onclick="addVariant()">+ Add Variant</button>
+
          <button type="button" class="btn btn-success mb-3" onclick="addVariant()">Add Variant</button>
 
 
