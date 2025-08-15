@@ -40,15 +40,20 @@ chmod -R 777 "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
 
 # Ensure laravel.log exists
 touch "$PROJECT_PATH/storage/logs/laravel.log"
-chmod 664 "$PROJECT_PATH/storage/logs/laravel.log"
+# chmod 664 "$PROJECT_PATH/storage/logs/laravel.log"
+chmod 777 "$PROJECT_PATH/storage/logs/laravel.log"
+chown nobody:nogroup "$PROJECT_PATH/storage/logs/laravel.log"
 
 
 # Make them writable
 mkdir -p "$PROJECT_PATH/public/products"
 mkdir -p "$PROJECT_PATH/public/product-variants"
+
+
 chmod -R 777 "$PROJECT_PATH/public/products"
 chmod -R 777 "$PROJECT_PATH/public/product-variants"
-chown -R root:nogroup "$PROJECT_PATH/public/products" "$PROJECT_PATH/public/product-variants"
+chown -R nobody:nogroup "$PROJECT_PATH/public/products"
+chown -R nobody:nogroup "$PROJECT_PATH/public/product-variants"
 # -----------------------------
 # End Permissions Fix
 # -----------------------------
