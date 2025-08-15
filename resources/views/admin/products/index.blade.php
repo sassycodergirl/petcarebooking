@@ -40,7 +40,7 @@
                         </td>
                         <td>
                             @if($product->image)
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" width="50" />
+                                <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}" width="50" />
                             @else
                                 -
                             @endif
