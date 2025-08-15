@@ -26,7 +26,7 @@
                 <tbody>
                     @forelse ($products as $product)
                     <tr>
-                        <td>{{ $product->id }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->category->name ?? '-' }}</td>
                         <td>{{ number_format($product->price, 2) }}</td>
