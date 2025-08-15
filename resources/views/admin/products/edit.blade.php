@@ -135,9 +135,9 @@
     </tbody>
 </table>
 
-<button type="button" class="btn btn-sm btn-secondary" onclick="addVariant()">+ Add Variant</button>
+<button type="button" class="btn btn-success btn-secondary mb-3" onclick="addVariant()">+ Add Variant</button>
 
-      
+       
 
 
         
