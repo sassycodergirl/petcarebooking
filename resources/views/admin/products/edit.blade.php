@@ -73,7 +73,7 @@
                 <div class="mb-3">
                     <label>Current Image</label><br>
                     @if($product->image)
-                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" width="100" class="mb-2">
+                        <img src="{{ asset('public/' . $product->image) }" alt="{{ $product->name }}" width="100" class="mb-2">
                     @else
                         <p>No image uploaded</p>
                     @endif
