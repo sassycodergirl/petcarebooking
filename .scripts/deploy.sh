@@ -24,12 +24,11 @@ php artisan view:clear
 php artisan optimize
 
 # Set root as owner, nobody as group
-chown -R root:nobody storage bootstrap/cache
+chown -R root:nogroup storage bootstrap/cache
 chmod -R 775 storage bootstrap/cache
 
-# Ensure laravel.log exists
 touch storage/logs/laravel.log
-chown root:nobody storage/logs/laravel.log
+chown root:nogroup storage/logs/laravel.log
 chmod 664 storage/logs/laravel.log
 
 # Make parent directories traversable
