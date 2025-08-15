@@ -36,7 +36,7 @@ chmod o+x /home/coderbeans.shop
 chmod o+x /home/coderbeans.shop/public_html
 
 # 2️⃣ Ensure project is owned by root
-chown -R root:root
+chown -R root:root .
 
 # 3️⃣ Laravel writable folders
 chmod -R 777 storage bootstrap/cache    # fully writable for all users
