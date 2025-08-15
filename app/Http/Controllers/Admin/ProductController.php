@@ -54,8 +54,14 @@ class ProductController extends Controller
         $data = $request->except('variants');
         $data['slug'] = Str::slug($request->name);
 
+        // if ($request->hasFile('image')) {
+        //     $data['image'] = $request->file('image')->store('products', 'public');
+        // }
+        // Product image
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('products', 'public');
+            $fileName = $request->file('image')->hashName();
+            $request->file('image')->move(public_path('products'), $fileName);
+            $data['image'] = 'products/' . $fileName;
         }
 
         Product::create($data);
@@ -73,10 +79,17 @@ class ProductController extends Controller
         if (isset($seen[$key])) continue; // avoid duplicate insert from form
         $seen[$key] = true;
 
+        // $imagePath = null;
+        // if (isset($variant['image']) && $variant['image'] instanceof \Illuminate\Http\UploadedFile) {
+        //     $imagePath = $variant['image']->store('product-variants', 'public');
+        // }
+
         $imagePath = null;
-        if (isset($variant['image']) && $variant['image'] instanceof \Illuminate\Http\UploadedFile) {
-            $imagePath = $variant['image']->store('product-variants', 'public');
-        }
+            if (isset($variant['image']) && $variant['image'] instanceof \Illuminate\Http\UploadedFile) {
+                $fileName = $variant['image']->hashName();
+                $variant['image']->move(public_path('product-variants'), $fileName);
+                $imagePath = 'product-variants/' . $fileName;
+            }
 
         $product->variants()->create([
             'size' => $size ?: null,
@@ -131,16 +144,32 @@ class ProductController extends Controller
         $data = $request->except('variants');
         $data['slug'] = Str::slug($request->name);
 
+        // if ($request->hasFile('image')) {
+        //     // Delete old image if exists
+        //     if ($product->image) {
+        //         \Storage::disk('public')->delete($product->image);
+        //     }
+        //     $data['image'] = $request->file('image')->store('products', 'public');
+        // }
+
+           // Product image
         if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($product->image) {
-                \Storage::disk('public')->delete($product->image);
+            if ($product->image && file_exists(public_path($product->image))) {
+                unlink(public_path($product->image));
             }
-            $data['image'] = $request->file('image')->store('products', 'public');
+            $fileName = $request->file('image')->hashName();
+            $request->file('image')->move(public_path('products'), $fileName);
+            $data['image'] = 'products/' . $fileName;
         }
 
         $product->update($data);
-         $product->variants()->delete();
+          // Remove old variants
+        foreach ($product->variants as $oldVariant) {
+            if ($oldVariant->image && file_exists(public_path($oldVariant->image))) {
+                unlink(public_path($oldVariant->image));
+            }
+        }
+        $product->variants()->delete();
 
          $seen = [];
     foreach ((array) $request->input('variants', []) as $variant) {
@@ -153,9 +182,11 @@ class ProductController extends Controller
         $seen[$key] = true;
 
          $imagePath = null;
-        if (isset($variant['image']) && $variant['image'] instanceof \Illuminate\Http\UploadedFile) {
-            $imagePath = $variant['image']->store('product-variants', 'public');
-        }
+            if (isset($variant['image']) && $variant['image'] instanceof \Illuminate\Http\UploadedFile) {
+                $fileName = $variant['image']->hashName();
+                $variant['image']->move(public_path('product-variants'), $fileName);
+                $imagePath = 'product-variants/' . $fileName;
+            }
 
         $product->variants()->create([
             'size' => $size ?: null,
@@ -174,10 +205,15 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        // Delete image if exists
-        if ($product->image) {
-            \Storage::disk('public')->delete($product->image);
+        if ($product->image && file_exists(public_path($product->image))) {
+            unlink(public_path($product->image));
         }
+        foreach ($product->variants as $variant) {
+            if ($variant->image && file_exists(public_path($variant->image))) {
+                unlink(public_path($variant->image));
+            }
+        }
+        $product->variants()->delete();
         $product->delete();
 
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
