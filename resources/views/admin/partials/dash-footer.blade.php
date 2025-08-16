@@ -173,19 +173,25 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Live preview for both existing and dynamically added inputs
+    // ======= Live preview for newly selected files (existing & dynamically added variants) =======
     document.addEventListener('change', function(e) {
         if (!e.target.classList.contains('variant-gallery-input')) return;
 
-        let input = e.target;
+        const input = e.target;
         let previewContainer = input.closest('td').querySelector('.variant-gallery-preview');
-        if (!previewContainer) return;
 
-        // Show previews for selected files
+        // If preview div doesn't exist (new variant), create it
+        if (!previewContainer) {
+            previewContainer = document.createElement('div');
+            previewContainer.classList.add('variant-gallery-preview', 'd-flex', 'flex-wrap', 'mt-2');
+            input.closest('td').appendChild(previewContainer);
+        }
+
+        // Append previews for newly selected files
         Array.from(input.files).forEach(file => {
-            let reader = new FileReader();
+            const reader = new FileReader();
             reader.onload = function(ev) {
-                let wrapper = document.createElement('div');
+                const wrapper = document.createElement('div');
                 wrapper.style.width = '70px';
                 wrapper.style.height = '70px';
                 wrapper.style.marginRight = '5px';
@@ -193,21 +199,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 wrapper.style.position = 'relative';
                 wrapper.classList.add('new-variant-image-wrapper');
 
-                let img = document.createElement('img');
+                const img = document.createElement('img');
                 img.src = ev.target.result;
                 img.style.width = '100%';
                 img.style.height = '100%';
                 img.style.objectFit = 'cover';
                 img.classList.add('img-thumbnail');
 
-                let btn = document.createElement('button');
+                const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.classList.add('btn', 'btn-sm', 'btn-danger', 'p-1', 'position-absolute', 'top-0', 'end-0');
                 btn.innerText = '×';
-                btn.addEventListener('click', () => {
-                    wrapper.remove();
-                    // Removing from input.files is tricky; will send only remaining files on submit
-                });
+                btn.addEventListener('click', () => wrapper.remove());
 
                 wrapper.appendChild(img);
                 wrapper.appendChild(btn);
@@ -217,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Existing remove function stays intact
+    // ======= Existing remove function for already uploaded gallery images =======
     document.querySelectorAll('.remove-variant-image').forEach(btn => {
         btn.addEventListener('click', function() {
             let wrapper = this.closest('.variant-image-wrapper');
@@ -239,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
 </script>
 
 
