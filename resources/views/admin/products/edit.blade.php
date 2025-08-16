@@ -166,7 +166,7 @@
                                 <form action="{{ route('admin.variants.gallery.delete', $vimg->id) }}" method="POST" class="position-absolute top-0 end-0 m-0 p-0">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger p-1">x</button>
+                                    <button type="submit" class="position-absolute btn btn-sm btn-danger p-1">x</button>
                                 </form>
                             </div>
                             @endforeach
