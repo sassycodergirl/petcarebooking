@@ -343,7 +343,7 @@ class ProductController extends Controller
         {
              \Log::info('Request method: ' . request()->method());
             \Log::info('Request data: ', request()->all());
-            $gallery = ProductGallery::find($id);
+            $gallery = ProductImage::find($id);
             if (!$gallery) {
                 return response()->json(['success' => false, 'message' => 'Image not found'], 404);
             }
