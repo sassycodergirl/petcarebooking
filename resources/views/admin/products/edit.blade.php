@@ -157,7 +157,7 @@
                                 <!-- Remove button -->
                                <button type="button" class="position-absolute btn btn-sm btn-danger remove-main-variant-image"  style="top: -5px; right: -5px; padding: 2px 6px;">×</button>
                             </div>
-                            <br>
+                          
                         @endif
                         <input type="file" name="variants[{{ $variantIndex }}][image]" class="form-control" accept="image/*">
                     </td>
