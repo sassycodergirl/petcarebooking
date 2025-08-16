@@ -117,6 +117,10 @@
                 <td><input type="number" step="0.01" name="variants[${variantIndex}][price]" class="form-control"></td>
                 <td><input type="number" name="variants[${variantIndex}][stock_quantity]" value="0" class="form-control"></td>
                 <td><input type="file" name="variants[${variantIndex}][image]" class="form-control" accept="image/*"></td>
+                 <td>
+                    <input type="file" name="variants[${variantIndex}][gallery][]" class="form-control" accept="image/*" multiple>
+                    <small class="form-text text-muted">You can upload multiple images.</small>
+                </td>
                 <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
             </tr>
         `);
