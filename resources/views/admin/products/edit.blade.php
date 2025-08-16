@@ -161,7 +161,7 @@
                         <input type="file" name="variants[{{ $variantIndex }}][gallery][]" class="form-control mb-1" accept="image/*" multiple>
                         @if($variant->gallery->count())
                              <div class="position-relative me-2 mb-2" style="width: 70px; height: 70px;">
-                                <img src="{{ asset($vimg->image) }}" class="img-thumbnail" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="{{ asset($vimg->image) }}" class="img-thumbnail" style="width: 100%; height: 100%; object-fit: cover;" alt="img">
                                 <form action="{{ route('admin.variants.gallery.delete', $vimg->id) }}" method="POST" class="position-absolute top-0 end-0 m-0 p-0">
                                     @csrf
                                     @method('DELETE')
