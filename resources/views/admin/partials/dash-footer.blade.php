@@ -171,6 +171,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.remove-variant-image').forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            let wrapper = this.closest('.variant-image-wrapper');
+            if (!wrapper) return;
+
+            let imageId = wrapper.dataset.id;
+            if (!imageId) return;
+
+            let url = "{{ route('admin.variants.gallery.delete', ':id') }}".replace(':id', imageId);
+
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                },
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    wrapper.remove(); // remove image from DOM
+                } else {
+                    alert('Failed to delete image.');
+                }
+            })
+            .catch(err => console.error(err));
+        });
+    });
+});
+</script>
+
+
+
 
 
 
