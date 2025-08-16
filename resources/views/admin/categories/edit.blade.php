@@ -52,7 +52,7 @@
                 @endforeach
             </select> -->
 
-            <select name="parent_id" id="parent_id" class="form-select">
+            <!-- <select name="parent_id" id="parent_id" class="form-select">
                     <option value="">None (Top Level)</option>
                    @foreach($categories as $cat)
                         <option value="{{ $cat->id }}" 
@@ -60,7 +60,20 @@
                             {{ $cat->name }}
                         </option>
                     @endforeach
-                </select>
+                </select> -->
+
+                <select name="parent_id" id="parent_id" class="form-select">
+                        <option value="">None (Top Level)</option>
+                        @foreach($categories as $cat)
+                            @if($cat->id != $category->id) {{-- prevent self-selection --}}
+                                <option value="{{ $cat->id }}" 
+                                    {{ old('parent_id', $category->parent_id) == $cat->id ? 'selected' : '' }}>
+                                    {{ $cat->name }}
+                                </option>
+                            @endif
+                        @endforeach
+                    </select>
+
         </div>
 
         <div class="mb-3">
