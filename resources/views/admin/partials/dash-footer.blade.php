@@ -450,34 +450,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!--global color setting-->
 
-@section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const colorList = document.getElementById('color-list');
     const addBtn = document.getElementById('add-color');
 
-    // Add new color row
+    if (!colorList || !addBtn) return; // safety check
+
+    // ===== Add new color row =====
     addBtn.addEventListener('click', () => {
         const div = document.createElement('div');
         div.classList.add('input-group', 'mb-2', 'color-item');
+
         div.innerHTML = `
             <input type="hidden" name="ids[]" value="">
             <input type="text" name="colors[]" class="form-control" placeholder="Color Name">
             <input type="color" name="hex_codes[]" class="form-control form-control-color" value="#ffffff">
             <button type="button" class="btn btn-danger remove-color">×</button>
         `;
+
         colorList.appendChild(div);
 
-        div.querySelector('.remove-color').addEventListener('click', () => div.remove());
+        // Attach remove listener for newly added row
+        const removeBtn = div.querySelector('.remove-color');
+        removeBtn.addEventListener('click', () => div.remove());
     });
 
-    // Remove existing color row
+    // ===== Remove existing color rows =====
     document.querySelectorAll('.remove-color').forEach(btn => {
-        btn.addEventListener('click', () => btn.closest('.color-item').remove());
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.color-item');
+            if(item) item.remove();
+        });
     });
 });
 </script>
-@endsection
+
 
 
 <!--global color setting-->
