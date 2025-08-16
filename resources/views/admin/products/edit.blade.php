@@ -161,9 +161,9 @@
                         <input type="file" name="variants[{{ $variantIndex }}][gallery][]" class="form-control mb-1" accept="image/*" multiple>
                         @if($variant->gallery->count())
                             @foreach($variant->gallery as $vimg)
-                             <div class="position-relative me-2 mb-2" style="width: 70px; height: 70px;">
+                             <div class="position-relative me-2 mb-2 variant-image-wrapper" style="width: 70px; height: 70px;" data-id="{{ $vimg->id }}">
                                 <img src="{{ asset('public/' . $vimg->image) }}" class="img-thumbnail" style="width: 100%; height: 100%; object-fit: cover;" alt="img">
-                                 <button type="button" class="btn btn-sm btn-danger p-1 position-absolute top-0 end-0 remove-variant-image">x</button>
+                                <button type="button" class="btn btn-sm btn-danger p-1 position-absolute top-0 end-0 remove-variant-image">x</button>
                             </div>
                             @endforeach
                         @endif
