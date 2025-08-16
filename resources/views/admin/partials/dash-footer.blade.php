@@ -95,45 +95,109 @@
 
 @if(isset($colors))
 <script>
-    let colors = @json($colors);
+let colors = @json($colors);
 
-    // If editing a product, start from existing variants count
-    let variantIndex = {{ isset($product) ? $product->variants->count() : 0 }};
+// Start from existing variants count if editing
+let variantIndex = {{ isset($product) ? $product->variants->count() : 0 }};
 
-    function addVariant() {
-        const tbody = document.querySelector('#variants-table tbody');
+// ======= Add new variant row dynamically =======
+function addVariant() {
+    const tbody = document.querySelector('#variants-table tbody');
 
-        let colorOptions = colors.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+    let colorOptions = colors.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
 
-        tbody.insertAdjacentHTML('beforeend', `
-            <tr>
-                <td><input type="text" name="variants[${variantIndex}][size]" class="form-control"></td>
-                <td>
-                  <select name="variants[${variantIndex}][color_id]" class="form-select">
-                      <option value="">Select Color</option>
-                      ${colorOptions}
-                  </select>
-                </td>
-                <td><input type="number" step="0.01" name="variants[${variantIndex}][price]" class="form-control"></td>
-                <td><input type="number" name="variants[${variantIndex}][stock_quantity]" value="0" class="form-control"></td>
-                <td><input type="file" name="variants[${variantIndex}][image]" class="form-control" accept="image/*"></td>
-                 <td>
-                    <input type="file" name="variants[${variantIndex}][gallery][]" class="form-control" accept="image/*" multiple>
-                    <div class="variant-gallery-preview d-flex flex-wrap mt-2"></div>
-                    <small class="form-text text-muted">You can upload multiple images.</small>
-                </td>
-                <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
-            </tr>
-        `);
+    tbody.insertAdjacentHTML('beforeend', `
+        <tr>
+            <td><input type="text" name="variants[${variantIndex}][size]" class="form-control"></td>
+            <td>
+              <select name="variants[${variantIndex}][color_id]" class="form-select">
+                  <option value="">Select Color</option>
+                  ${colorOptions}
+              </select>
+            </td>
+            <td><input type="number" step="0.01" name="variants[${variantIndex}][price]" class="form-control"></td>
+            <td><input type="number" name="variants[${variantIndex}][stock_quantity]" value="0" class="form-control"></td>
+            <td><input type="file" name="variants[${variantIndex}][image]" class="form-control" accept="image/*"></td>
+            <td>
+                <input type="file" name="variants[${variantIndex}][gallery][]" class="form-control variant-gallery-input" accept="image/*" multiple>
+                <div class="variant-gallery-preview d-flex flex-wrap mt-2"></div>
+                <small class="form-text text-muted">You can upload multiple images.</small>
+            </td>
+            <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
+        </tr>
+    `);
 
-        variantIndex++;
-    }
+    variantIndex++;
+}
 
-    function removeVariant(btn) {
-        btn.closest('tr').remove();
-    }
+function removeVariant(btn) {
+    btn.closest('tr').remove();
+}
+
+// ======= Live preview for newly selected gallery images =======
+document.addEventListener('change', function(e) {
+    if (!e.target.classList.contains('variant-gallery-input')) return;
+
+    const input = e.target;
+    let previewContainer = input.closest('td').querySelector('.variant-gallery-preview');
+
+    Array.from(input.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+            const wrapper = document.createElement('div');
+            wrapper.style.width = '70px';
+            wrapper.style.height = '70px';
+            wrapper.style.marginRight = '5px';
+            wrapper.style.marginBottom = '5px';
+            wrapper.style.position = 'relative';
+            wrapper.classList.add('new-variant-image-wrapper');
+
+            const img = document.createElement('img');
+            img.src = ev.target.result;
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            img.classList.add('img-thumbnail');
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.classList.add('btn', 'btn-sm', 'btn-danger', 'p-1', 'position-absolute', 'top-0', 'end-0');
+            btn.innerText = '×';
+            btn.addEventListener('click', () => wrapper.remove());
+
+            wrapper.appendChild(img);
+            wrapper.appendChild(btn);
+            previewContainer.appendChild(wrapper);
+        }
+        reader.readAsDataURL(file);
+    });
+});
+
+// ======= Keep existing remove gallery buttons intact =======
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.remove-variant-image').forEach(btn => {
+        btn.addEventListener('click', function() {
+            let wrapper = this.closest('.variant-image-wrapper');
+            let imageId = wrapper.dataset.id;
+
+            fetch(`{{ route('admin.variants.gallery.delete', ':id') }}`.replace(':id', imageId), {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) wrapper.remove();
+            })
+            .catch(err => console.error(err));
+        });
+    });
+});
 </script>
 @endif
+
 
 
 <!-- <script>
@@ -171,80 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script> -->
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
 
-    // ======= Live preview for newly selected files (existing & dynamically added variants) =======
-    document.addEventListener('change', function(e) {
-        if (!e.target.classList.contains('variant-gallery-input')) return;
-
-        const input = e.target;
-        let previewContainer = input.closest('td').querySelector('.variant-gallery-preview');
-
-        // If preview div doesn't exist (new variant), create it
-        if (!previewContainer) {
-            previewContainer = document.createElement('div');
-            previewContainer.classList.add('variant-gallery-preview', 'd-flex', 'flex-wrap', 'mt-2');
-            input.closest('td').appendChild(previewContainer);
-        }
-
-        // Append previews for newly selected files
-        Array.from(input.files).forEach(file => {
-            const reader = new FileReader();
-            reader.onload = function(ev) {
-                const wrapper = document.createElement('div');
-                wrapper.style.width = '70px';
-                wrapper.style.height = '70px';
-                wrapper.style.marginRight = '5px';
-                wrapper.style.marginBottom = '5px';
-                wrapper.style.position = 'relative';
-                wrapper.classList.add('new-variant-image-wrapper');
-
-                const img = document.createElement('img');
-                img.src = ev.target.result;
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.objectFit = 'cover';
-                img.classList.add('img-thumbnail');
-
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.classList.add('btn', 'btn-sm', 'btn-danger', 'p-1', 'position-absolute', 'top-0', 'end-0');
-                btn.innerText = '×';
-                btn.addEventListener('click', () => wrapper.remove());
-
-                wrapper.appendChild(img);
-                wrapper.appendChild(btn);
-                previewContainer.appendChild(wrapper);
-            }
-            reader.readAsDataURL(file);
-        });
-    });
-
-    // ======= Existing remove function for already uploaded gallery images =======
-    document.querySelectorAll('.remove-variant-image').forEach(btn => {
-        btn.addEventListener('click', function() {
-            let wrapper = this.closest('.variant-image-wrapper');
-            let imageId = wrapper.dataset.id;
-
-            fetch(`{{ route('admin.variants.gallery.delete', ':id') }}`.replace(':id', imageId), {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Accept': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) wrapper.remove();
-            })
-            .catch(err => console.error(err));
-        });
-    });
-
-});
-
-</script>
 
 <!--main variant image removal-->
 <script>
