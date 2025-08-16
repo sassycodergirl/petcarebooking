@@ -10,7 +10,7 @@
 
         <a href="{{ route('admin.categories.create') }}" class="btn btn-primary mb-3">Add Category</a>
 
-        <table class="table table-bordered table-hover">
+        <table  id="basic-datatables" class="table table-bordered table-hover">
            <thead class="table-light">
                 <tr>
                     <th>ID</th>
