@@ -298,7 +298,7 @@ class ProductController extends Controller
         $variant->delete();
     });
 
-    return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+    return redirect()->route('admin.products.edit', $product->id)->with('success', 'Product updated successfully.');
 }
 
 
