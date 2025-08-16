@@ -339,9 +339,14 @@ class ProductController extends Controller
 
 
            // Delete a gallery image
-        public function deleteGalleryImage($id)
+       public function deleteGalleryImage($id)
         {
-            $gallery = ProductGallery::findOrFail($id);
+             \Log::info('Request method: ' . request()->method());
+            \Log::info('Request data: ', request()->all());
+            $gallery = ProductGallery::find($id);
+            if (!$gallery) {
+                return response()->json(['success' => false, 'message' => 'Image not found'], 404);
+            }
 
             if ($gallery->image && file_exists(public_path($gallery->image))) {
                 unlink(public_path($gallery->image));
