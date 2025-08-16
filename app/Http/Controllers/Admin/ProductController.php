@@ -278,13 +278,25 @@ class ProductController extends Controller
         }
     }
 
-    // Delete removed variants
-    $product->variants()->whereNotIn('id', $submittedIds)->each(function($variant) {
+    // Delete removed variants safely
+    $product->variants()->whereNotIn('id', $submittedIds)->get()->each(function($variant) {
+        // Delete main image
         if ($variant->image && file_exists(public_path($variant->image))) {
             unlink(public_path($variant->image));
         }
+
+        // Delete variant gallery
+        foreach ($variant->gallery as $g) {
+            if ($g->image && file_exists(public_path($g->image))) {
+                unlink(public_path($g->image));
+            }
+            $g->delete();
+        }
+
         $variant->delete();
     });
+
+
 
     return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
 }
