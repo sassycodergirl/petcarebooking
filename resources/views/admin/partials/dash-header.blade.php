@@ -178,6 +178,11 @@
                         <span class="sub-item">Product Category</span>
                       </a>
                     </li>
+                    <li>
+                      <a href="{{ route('admin.products.settings') }}">
+                        <span class="sub-item">Product Setting</span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </li>
