@@ -76,16 +76,17 @@
                         <div class="mb-3">
                             <label>Image Preview</label><br>
                             <div class="main-product-image-wrapper position-relative">
-                                @if($product->image)
-                                    <img src="{{ asset('public/' . $product->image) }}" 
-                                        alt="{{ $product->name }}" 
-                                        width="100" class="mb-2 main-product-image">
-                                    <button type="button" 
-                                            class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-main-product-image" 
-                                            style="padding: 2px 6px;">×</button>
-                                @else
-                                    <img src="" alt="Preview" width="100" class="mb-2 main-product-image" style="display:none;">
-                                @endif
+                                <img src="{{ $product->image ? asset('public/' . $product->image) : '' }}"
+                                    alt="{{ $product->name ?? 'Preview' }}"
+                                    width="100"
+                                    class="mb-2 main-product-image"
+                                    data-existing="{{ $product->image ? 'true' : 'false' }}"
+                                    style="{{ $product->image ? '' : 'display:none;' }}">
+                                <button type="button" 
+                                        class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-main-product-image"
+                                        style="padding: 2px 6px; {{ $product->image ? '' : 'display:none;' }}">
+                                    ×
+                                </button>
                             </div>
                         </div>
                     </div>

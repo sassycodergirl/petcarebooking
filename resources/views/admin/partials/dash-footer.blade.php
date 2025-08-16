@@ -366,7 +366,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<!--main product image-->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const mainInput = document.getElementById('main-product-image-input');
@@ -374,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const img = wrapper.querySelector('.main-product-image');
     const removeBtn = wrapper.querySelector('.remove-main-product-image');
 
-    // Preview new image
+    // Preview newly selected image
     mainInput.addEventListener('change', function() {
         const file = this.files[0];
         if (!file) return;
@@ -383,16 +382,18 @@ document.addEventListener('DOMContentLoaded', function() {
         reader.onload = function(e) {
             img.src = e.target.result;
             img.style.display = 'block';
-            removeBtn.style.display = 'block'; // Show remove button
+            removeBtn.style.display = 'block';
+            img.dataset.existing = 'false'; // It's a new image
         }
         reader.readAsDataURL(file);
     });
 
     // Remove image
     removeBtn.addEventListener('click', function() {
-        if(img.src && img.src.includes('public')) {
+        if(img.dataset.existing === 'true') {
             // Existing image -> delete via AJAX
-            const url = "{{ route('admin.products.main-image.delete', $product->id) }}";
+            const url = "{{ isset($product) ? route('admin.products.main-image.delete', $product->id) : '#' }}";
+            if(url === '#') return; // Safety for create page
 
             fetch(url, {
                 method: 'DELETE',
@@ -408,13 +409,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     img.style.display = 'none';
                     mainInput.value = '';
                     removeBtn.style.display = 'none';
+                    img.dataset.existing = 'false';
                 } else {
                     alert('Could not delete the image.');
                 }
             })
             .catch(err => console.error(err));
         } else {
-            // Just a newly selected image -> remove preview
+            // Newly selected image -> just remove preview
             img.src = '';
             img.style.display = 'none';
             mainInput.value = '';
@@ -422,9 +424,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-
 </script>
+
 
 
   </body>
