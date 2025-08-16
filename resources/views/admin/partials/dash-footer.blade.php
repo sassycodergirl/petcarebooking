@@ -93,8 +93,8 @@
 
 
 
-@if(isset($colors))
 <script>
+@if(isset($colors))
 let colors = @json($colors);
 
 // Start from existing variants count if editing
@@ -117,7 +117,10 @@ function addVariant() {
             </td>
             <td><input type="number" step="0.01" name="variants[${variantIndex}][price]" class="form-control"></td>
             <td><input type="number" name="variants[${variantIndex}][stock_quantity]" value="0" class="form-control"></td>
-            <td><input type="file" name="variants[${variantIndex}][image]" class="form-control" accept="image/*"></td>
+            <td>
+                <input type="file" name="variants[${variantIndex}][image]" class="form-control variant-main-image-input" accept="image/*">
+                <div class="variant-main-image-preview mt-2"></div>
+            </td>
             <td>
                 <input type="file" name="variants[${variantIndex}][gallery][]" class="form-control variant-gallery-input" accept="image/*" multiple>
                 <div class="variant-gallery-preview d-flex flex-wrap mt-2"></div>
@@ -134,7 +137,33 @@ function removeVariant(btn) {
     btn.closest('tr').remove();
 }
 
-// ======= Live preview for newly selected gallery images =======
+// ======= Live preview for main variant image =======
+document.addEventListener('change', function(e) {
+    if (e.target.classList.contains('variant-main-image-input')) {
+        const input = e.target;
+        let previewContainer = input.closest('td').querySelector('.variant-main-image-preview');
+
+        // Remove previous preview
+        previewContainer.innerHTML = '';
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const img = document.createElement('img');
+                img.src = ev.target.result;
+                img.style.width = '70px';
+                img.style.height = '70px';
+                img.style.objectFit = 'cover';
+                img.classList.add('img-thumbnail');
+
+                previewContainer.appendChild(img);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+});
+
+// ======= Live preview for gallery images =======
 document.addEventListener('change', function(e) {
     if (!e.target.classList.contains('variant-gallery-input')) return;
 
@@ -173,7 +202,7 @@ document.addEventListener('change', function(e) {
     });
 });
 
-// ======= Keep existing remove gallery buttons intact =======
+// ======= Remove existing gallery images =======
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.remove-variant-image').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -195,51 +224,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-</script>
-@endif
 
-
-
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.remove-variant-image').forEach(function(button) {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            let wrapper = this.closest('.variant-image-wrapper');
-            if (!wrapper) return;
-
-            let imageId = wrapper.dataset.id;
-            if (!imageId) return;
-
-            let url = "{{ route('admin.variants.gallery.delete', ':id') }}".replace(':id', imageId);
-
-            fetch(url, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Accept': 'application/json'
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    wrapper.remove(); // silently remove the image
-                }
-                // no else, no alerts, nothing
-            })
-            .catch(err => console.error(err));
-        });
-    });
-});
-</script> -->
-
-
-
-
-<!--main variant image removal-->
-<script>
-  document.querySelectorAll('.remove-main-variant-image').forEach(function(button) {
+// ======= Remove existing main variant image =======
+document.querySelectorAll('.remove-main-variant-image').forEach(function(button) {
     button.addEventListener('click', function(e) {
         e.preventDefault();
         let wrapper = this.closest('.variant-main-image-wrapper');
@@ -262,10 +249,18 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(err => console.error(err));
     });
 });
-
+@endif
 </script>
 
-<!--main variant image removal-->
+
+
+
+
+
+
+
+
+
 
 
 

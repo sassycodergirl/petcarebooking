@@ -160,6 +160,7 @@
                           
                         @endif
                         <input type="file" name="variants[{{ $variantIndex }}][image]" class="form-control" accept="image/*">
+                         <div class="variant-main-image-preview mt-2"></div>
                     </td>
 
                   <td>
