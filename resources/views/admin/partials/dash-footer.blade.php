@@ -297,10 +297,75 @@ document.querySelectorAll('.remove-main-variant-image').forEach(function(button)
 
 
 
+<!--simple product-->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // ===== Preview newly selected images =====
+    const input = document.getElementById('product-gallery-input');
+    const previewContainer = document.getElementById('product-gallery-preview');
+
+    input.addEventListener('change', function() {
+        // Clear previous preview if needed
+        previewContainer.innerHTML = '';
+
+        Array.from(this.files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const wrapper = document.createElement('div');
+                wrapper.style.width = '100px';
+                wrapper.style.height = '100px';
+                wrapper.style.margin = '5px';
+                wrapper.style.position = 'relative';
+
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                img.classList.add('border', 'rounded');
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.innerText = '×';
+                btn.classList.add('btn', 'btn-sm', 'btn-danger', 'position-absolute', 'top-0', 'end-0');
+                btn.addEventListener('click', () => {
+                    wrapper.remove();
+                    // Optional: remove file from input.files (advanced, requires FormData)
+                });
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(btn);
+                previewContainer.appendChild(wrapper);
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+
+    // ===== Remove existing images =====
+    document.querySelectorAll('.remove-existing-image').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const wrapper = this.closest('.existing-image-wrapper');
+            const imageId = wrapper.dataset.id;
+
+            fetch(`{{ route('admin.products.gallery.delete', ':id') }}`.replace(':id', imageId), {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) wrapper.remove();
+            })
+            .catch(err => console.error(err));
+        });
+    });
+});
+</script>
 
 
-
-
+<!--simple product-->
 
 
 

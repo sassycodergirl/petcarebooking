@@ -93,21 +93,23 @@
         </div>
 
 
-        <div class="col-12 mb-3">
-            <label for="gallery" class="form-label">Product Gallery Images</label>
-            <input type="file" name="gallery[]" class="form-control" accept="image/*" multiple>
-            <small class="form-text text-muted">You can upload multiple images at once.</small>
-        </div>
+      <div class="col-12 mb-3">
+        <label for="gallery" class="form-label">Product Gallery Images</label>
+        <input type="file" id="product-gallery-input" name="gallery[]" class="form-control" accept="image/*" multiple>
+        <small class="form-text text-muted">You can upload multiple images at once.</small>
+
+        <!-- Preview container for newly selected images -->
+        <div id="product-gallery-preview" class="d-flex flex-wrap mt-2"></div>
+    </div>
 
         @if($product->gallery->count())
         <div class="col-12 mb-3">
             <label class="form-label">Current Gallery</label>
-            <div class="d-flex flex-wrap">
+            <div class="d-flex flex-wrap" id="existing-gallery">
                 @foreach($product->gallery as $img)
-                    <div class="position-relative m-1">
-                        <img src="{{ asset('public/' . $img->image) }}" width="100" height="100" class="border rounded">
-                        <a href="{{ route('admin.products.gallery.delete', $img->id) }}" 
-                        class="btn btn-sm btn-danger position-absolute top-0 end-0">x</a>
+                    <div class="position-relative m-1 existing-image-wrapper" data-id="{{ $img->id }}" style="width: 100px; height: 100px;">
+                        <img src="{{ asset('public/' . $img->image) }}" class="border rounded w-100 h-100" style="object-fit: cover;">
+                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-existing-image">×</button>
                     </div>
                 @endforeach
             </div>
