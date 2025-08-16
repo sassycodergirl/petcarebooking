@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let wrapper = this.closest('.variant-main-image-wrapper');
         if (!wrapper) return;
 
-        let variantId = wrapper.dataset.id;
+        let variantId = wrapper.dataset.variantId;
         if (!variantId) return;
 
         let url = "{{ route('admin.variants.main-image.delete', ':id') }}".replace(':id', variantId);
