@@ -206,7 +206,7 @@ class ProductController extends Controller
 
     $product->update($data);
 
-    // Handle variants
+      // Handle variants
     $variantsInput = $request->input('variants', []);
     $variantsFiles = $request->file('variants', []);
     $submittedIds = [];
@@ -218,6 +218,7 @@ class ProductController extends Controller
 
         if ($size === '' && $color === '') continue;
 
+        // Variant main image
         $imagePath = null;
         if (isset($variantsFiles[$index]['image']) && $variantsFiles[$index]['image'] instanceof \Illuminate\Http\UploadedFile) {
             $file = $variantsFiles[$index]['image'];
@@ -241,6 +242,17 @@ class ProductController extends Controller
                     'image' => $imagePath ?? $variant->image,
                 ]);
                 $submittedIds[] = $variantId;
+
+                // Update variant gallery
+                if (isset($variantsFiles[$index]['gallery'])) {
+                    foreach ($variantsFiles[$index]['gallery'] as $vfile) {
+                        $fileName = $vfile->hashName();
+                        $vfile->move(public_path('variant-gallery'), $fileName);
+                        $variant->gallery()->create([
+                            'image' => 'variant-gallery/' . $fileName
+                        ]);
+                    }
+                }
             }
         } else {
             // Create new variant
@@ -252,6 +264,17 @@ class ProductController extends Controller
                 'image' => $imagePath,
             ]);
             $submittedIds[] = $newVariant->id;
+
+            // Variant gallery for new variant
+            if (isset($variantsFiles[$index]['gallery'])) {
+                foreach ($variantsFiles[$index]['gallery'] as $vfile) {
+                    $fileName = $vfile->hashName();
+                    $vfile->move(public_path('variant-gallery'), $fileName);
+                    $newVariant->gallery()->create([
+                        'image' => 'variant-gallery/' . $fileName
+                    ]);
+                }
+            }
         }
     }
 
