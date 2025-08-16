@@ -172,38 +172,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.remove-variant-image').forEach(function(button) {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
+document.querySelectorAll('.remove-main-variant-image').forEach(btn => {
+    btn.addEventListener('click', function() {
+        let wrapper = this.closest('.variant-main-image-wrapper');
+        let variantId = wrapper.getAttribute('data-variant-id');
 
-            let wrapper = this.closest('.variant-image-wrapper');
-            if (!wrapper) return;
+        if (!variantId) return;
 
-            let imageId = wrapper.dataset.id;
-            if (!imageId) return;
+        if (!confirm('Are you sure you want to remove this main image?')) return;
 
-            let url = "{{ route('admin.variants.gallery.delete', ':id') }}".replace(':id', imageId);
+        let url = `/admin-furry-cms/variant-gallery/${variantId}`; // DELETE route
 
-            fetch(url, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Accept': 'application/json'
-                },
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    wrapper.remove(); // remove image from DOM
-                } else {
-                    alert('Failed to delete image.');
-                }
-            })
-            .catch(err => console.error(err));
-        });
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                wrapper.remove(); // Remove the image from DOM
+            } else {
+                alert('Failed to delete image.');
+            }
+        })
+        .catch(err => console.error(err));
     });
 });
+
 </script>
 
 
