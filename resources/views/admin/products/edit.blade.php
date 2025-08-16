@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-12 col-md-3">
                         <div class="mb-3">
-                            <label>Current Image</label><br>
+                            <label>Image Preview</label><br>
                             <div class="main-product-image-wrapper position-relative">
                                 @if($product->image)
                                     <img src="{{ asset('public/' . $product->image) }}" 
