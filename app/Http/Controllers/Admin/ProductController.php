@@ -81,9 +81,9 @@ class ProductController extends Controller
         if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $file) {
                 $fileName = $file->hashName();
-                $file->move(public_path('product-gallery'), $fileName);
+                $file->move(public_path('products'), $fileName);
                 $product->gallery()->create([
-                    'image' => 'product-gallery/' . $fileName
+                    'image' => 'products/' . $fileName
                 ]);
             }
         }
@@ -197,9 +197,9 @@ class ProductController extends Controller
     if ($request->hasFile('gallery')) {
         foreach ($request->file('gallery') as $file) {
             $fileName = $file->hashName();
-            $file->move(public_path('product-gallery'), $fileName);
+            $file->move(public_path('products'), $fileName);
             $product->gallery()->create([
-                'image' => 'product-gallery/' . $fileName
+                'image' => 'products/' . $fileName
             ]);
         }
     }
