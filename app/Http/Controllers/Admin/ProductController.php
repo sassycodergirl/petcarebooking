@@ -159,7 +159,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+ public function update(Request $request, Product $product)
 {
     $request->validate([
         'name' => 'required|string|max:255',
@@ -169,7 +169,7 @@ class ProductController extends Controller
         'category_id' => 'required|exists:categories,id',
         'description' => 'nullable|string',
         'image' => 'nullable|image|max:2048',
-        'gallery.*' => 'nullable|image|max:2048', // Product gallery
+        'gallery.*' => 'nullable|image|max:2048', 
         'variants' => 'array',
         'variants.*.id' => 'nullable|exists:product_variants,id',
         'variants.*.size' => 'nullable|string|max:50',
@@ -177,7 +177,7 @@ class ProductController extends Controller
         'variants.*.price' => 'nullable|numeric|min:0',
         'variants.*.stock_quantity' => 'nullable|integer|min:0',
         'variants.*.image' => 'nullable|image|max:2048',
-         'variants.*.gallery.*' => 'nullable|image|max:2048', // Variant gallery
+        'variants.*.gallery.*' => 'nullable|image|max:2048',
     ]);
 
     // Update main product
@@ -193,7 +193,7 @@ class ProductController extends Controller
         $data['image'] = 'products/' . $fileName;
     }
 
-
+    // Product gallery
     if ($request->hasFile('gallery')) {
         foreach ($request->file('gallery') as $file) {
             $fileName = $file->hashName();
@@ -206,7 +206,7 @@ class ProductController extends Controller
 
     $product->update($data);
 
-      // Handle variants
+    // Handle variants
     $variantsInput = $request->input('variants', []);
     $variantsFiles = $request->file('variants', []);
     $submittedIds = [];
@@ -216,9 +216,10 @@ class ProductController extends Controller
         $size = trim($variantInput['size'] ?? '');
         $color = $variantInput['color_id'] ?? null;
 
+        // Skip empty variants
         if ($size === '' && $color === '') continue;
 
-        // Variant main image
+        // Handle main image
         $imagePath = null;
         if (isset($variantsFiles[$index]['image']) && $variantsFiles[$index]['image'] instanceof \Illuminate\Http\UploadedFile) {
             $file = $variantsFiles[$index]['image'];
@@ -278,7 +279,7 @@ class ProductController extends Controller
         }
     }
 
-    // Delete removed variants safely
+    // Only delete variants that are **actually removed in the edit form**
     $product->variants()->whereNotIn('id', $submittedIds)->get()->each(function($variant) {
         // Delete main image
         if ($variant->image && file_exists(public_path($variant->image))) {
@@ -293,13 +294,13 @@ class ProductController extends Controller
             $g->delete();
         }
 
+        // Delete variant
         $variant->delete();
     });
 
-
-
     return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
 }
+
 
 
     /**
