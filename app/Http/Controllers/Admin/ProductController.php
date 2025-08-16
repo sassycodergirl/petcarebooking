@@ -71,7 +71,21 @@ class ProductController extends Controller
             $data['image'] = 'products/' . $fileName;
         }
 
+
+        if ($request->hasFile('gallery')) {
+            foreach ($request->file('gallery') as $file) {
+                $fileName = $file->hashName();
+                $file->move(public_path('product-gallery'), $fileName);
+                $product->gallery()->create([
+                    'image' => 'product-gallery/' . $fileName
+                ]);
+            }
+        }
+
         $product = Product::create($data);
+
+
+        
 
     //     // Insert variants (skip empty rows, dedupe by size+color)
     // $seen = [];
@@ -194,6 +208,17 @@ class ProductController extends Controller
         $fileName = $request->file('image')->hashName();
         $request->file('image')->move(public_path('products'), $fileName);
         $data['image'] = 'products/' . $fileName;
+    }
+
+
+    if ($request->hasFile('gallery')) {
+        foreach ($request->file('gallery') as $file) {
+            $fileName = $file->hashName();
+            $file->move(public_path('product-gallery'), $fileName);
+            $product->gallery()->create([
+                'image' => 'product-gallery/' . $fileName
+            ]);
+        }
     }
 
     $product->update($data);

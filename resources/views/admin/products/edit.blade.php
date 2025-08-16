@@ -81,6 +81,16 @@
                 </div>
             </div>
 
+            @if($product->gallery->count())
+             <div class="col-12 col-md-4">
+                <div class="product-gallery mb-3">
+                    @foreach($product->gallery as $img)
+                        <img src="{{ asset($img->image) }}" width="100" class="me-2 mb-2">
+                    @endforeach
+                </div>
+             </div>
+            @endif
+
             <div class="col-12 col-md-4">
                  <div class="mb-3">
                     <label for="image" class="form-label">Change Product Image</label>

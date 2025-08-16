@@ -72,6 +72,15 @@
                         <input type="file" name="image" class="form-control" id="image" accept="image/*">
                     </div>
                 </div>
+
+                <div class="col-12 col-md-12">
+                    <div class="mb-3">
+                        <label for="gallery" class="form-label">Product Gallery</label>
+                        <input type="file" name="gallery[]" class="form-control" accept="image/*" multiple>
+                        <small class="form-text text-muted">You can upload multiple images.</small>
+                    </div>
+                </div>
+
             </div>    
             
               {{-- Variants Section --}}
