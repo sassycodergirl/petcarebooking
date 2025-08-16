@@ -60,7 +60,7 @@
 
 
         <div class="row">
-              <div class="col-12 col-md-4">
+              <div class="col-12 col-md-6">
                 <div class="mb-3">
                     <label for="status" class="form-label">Status *</label>
                     <select name="status" class="form-select" required>
@@ -69,24 +69,25 @@
                     </select>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <div class="mb-3">
+                            <label>Current Image</label><br>
+                            @if($product->image)
+                                <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}" width="100" class="mb-2">
+                            @else
+                                <p>No image uploaded</p>
+                            @endif
+                        </div>
+                    </div> 
 
-                <div class="mb-3">
-                    <label>Current Image</label><br>
-                    @if($product->image)
-                        <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}" width="100" class="mb-2">
-                    @else
-                        <p>No image uploaded</p>
-                    @endif
-                </div>
-            </div>
-
-            
-
-            <div class="col-12 col-md-4">
-                 <div class="mb-3">
-                    <label for="image" class="form-label">Change Product Image</label>
-                    <input type="file" name="image" class="form-control" accept="image/*">
+                    <div class="col-12 col-md-9">
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Change Product Image</label>
+                            <input type="file" name="image" class="form-control" accept="image/*">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
