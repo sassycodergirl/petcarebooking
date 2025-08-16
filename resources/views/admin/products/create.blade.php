@@ -92,7 +92,8 @@
                         <th>Color</th>
                         <th>Variant Price</th>
                         <th>Stock</th>
-                        <th>Image(optional)</th>
+                        <th>Image</th>
+                        <th>Image Gallery</th>
                         <th></th>
                     </tr>
                 </thead>
