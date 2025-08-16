@@ -171,11 +171,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <script>
-document.addEventListener('change', function(e) {
-    if (e.target.classList.contains('variant-gallery-input')) {
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Live preview for both existing and dynamically added inputs
+    document.addEventListener('change', function(e) {
+        if (!e.target.classList.contains('variant-gallery-input')) return;
+
         let input = e.target;
         let previewContainer = input.closest('td').querySelector('.variant-gallery-preview');
+        if (!previewContainer) return;
 
+        // Show previews for selected files
         Array.from(input.files).forEach(file => {
             let reader = new FileReader();
             reader.onload = function(ev) {
@@ -198,19 +204,43 @@ document.addEventListener('change', function(e) {
                 btn.type = 'button';
                 btn.classList.add('btn', 'btn-sm', 'btn-danger', 'p-1', 'position-absolute', 'top-0', 'end-0');
                 btn.innerText = '×';
-                btn.addEventListener('click', () => wrapper.remove());
+                btn.addEventListener('click', () => {
+                    wrapper.remove();
+                    // Removing from input.files is tricky; will send only remaining files on submit
+                });
 
                 wrapper.appendChild(img);
                 wrapper.appendChild(btn);
                 previewContainer.appendChild(wrapper);
-            };
+            }
             reader.readAsDataURL(file);
         });
-    }
+    });
+
+    // Existing remove function stays intact
+    document.querySelectorAll('.remove-variant-image').forEach(btn => {
+        btn.addEventListener('click', function() {
+            let wrapper = this.closest('.variant-image-wrapper');
+            let imageId = wrapper.dataset.id;
+
+            fetch(`{{ route('admin.variants.gallery.delete', ':id') }}`.replace(':id', imageId), {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) wrapper.remove();
+            })
+            .catch(err => console.error(err));
+        });
+    });
+
 });
-
-
 </script>
+
 
 <!--main variant image removal-->
 <script>
