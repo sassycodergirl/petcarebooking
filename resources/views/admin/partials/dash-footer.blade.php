@@ -135,7 +135,7 @@
 @endif
 
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.remove-variant-image').forEach(function(button) {
         button.addEventListener('click', function(e) {
@@ -167,8 +167,76 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-</script>
+</script> -->
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Live preview of newly selected images
+    document.querySelectorAll('.variant-gallery-input').forEach(function(input) {
+        input.addEventListener('change', function() {
+            let previewContainer = this.closest('td').querySelector('.variant-gallery-preview');
+            
+            // Keep existing previews, only show new ones
+            Array.from(this.files).forEach(file => {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let wrapper = document.createElement('div');
+                    wrapper.style.width = '70px';
+                    wrapper.style.height = '70px';
+                    wrapper.style.marginRight = '5px';
+                    wrapper.style.marginBottom = '5px';
+                    wrapper.style.position = 'relative';
+                    wrapper.classList.add('new-variant-image-wrapper');
+
+                    let img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    img.classList.add('img-thumbnail');
+
+                    let btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.classList.add('btn', 'btn-sm', 'btn-danger', 'p-1', 'position-absolute', 'top-0', 'end-0');
+                    btn.innerText = '×';
+                    btn.addEventListener('click', () => {
+                        wrapper.remove();
+                        // Also remove file from input (complex, need FormData or reset)
+                    });
+
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(btn);
+                    previewContainer.appendChild(wrapper);
+                }
+                reader.readAsDataURL(file);
+            });
+        });
+    });
+
+    // Remove existing gallery images
+    document.querySelectorAll('.remove-variant-image').forEach(btn => {
+        btn.addEventListener('click', function() {
+            let wrapper = this.closest('.variant-image-wrapper');
+            let imageId = wrapper.dataset.id;
+
+            fetch(`{{ route('admin.variants.gallery.delete', ':id') }}`.replace(':id', imageId), {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) wrapper.remove();
+            })
+            .catch(err => console.error(err));
+        });
+    });
+});
+
+</script>
 
 
 <script>
