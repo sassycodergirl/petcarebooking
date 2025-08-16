@@ -38,6 +38,12 @@ chmod o+x /home /home/coderbeans.shop /home/coderbeans.shop/public_html
 chown -R nobody:nogroup "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
 chmod -R 775 "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
 
+
+mkdir -p "$PROJECT_PATH/storage/framework/sessions"
+chmod -R 775 "$PROJECT_PATH/storage/framework/sessions"
+chown -R nobody:nogroup "$PROJECT_PATH/storage/framework/sessions"
+
+
 # Ensure laravel.log exists
 touch "$PROJECT_PATH/storage/logs/laravel.log"
 # chmod 664 "$PROJECT_PATH/storage/logs/laravel.log"
