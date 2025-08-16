@@ -48,12 +48,15 @@ chown nobody:nogroup "$PROJECT_PATH/storage/logs/laravel.log"
 # Make them writable
 mkdir -p "$PROJECT_PATH/public/products"
 mkdir -p "$PROJECT_PATH/public/product-variants"
+mkdir -p "$PROJECT_PATH/public/variant-gallery"
 
 
 chmod -R 777 "$PROJECT_PATH/public/products"
 chmod -R 777 "$PROJECT_PATH/public/product-variants"
+chmod -R 777 "$PROJECT_PATH/public/variant-gallery"
 chown -R nobody:nogroup "$PROJECT_PATH/public/products"
 chown -R nobody:nogroup "$PROJECT_PATH/public/product-variants"
+chown -R nobody:nogroup "$PROJECT_PATH/public/variant-gallery"
 # -----------------------------
 # End Permissions Fix
 # -----------------------------
