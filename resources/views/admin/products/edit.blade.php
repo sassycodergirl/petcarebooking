@@ -160,6 +160,7 @@
                     <td>
                         <input type="file" name="variants[{{ $variantIndex }}][gallery][]" class="form-control mb-1" accept="image/*" multiple>
                         @if($variant->gallery->count())
+                            @foreach($variant->gallery as $vimg)
                              <div class="position-relative me-2 mb-2" style="width: 70px; height: 70px;">
                                 <img src="{{ asset($vimg->image) }}" class="img-thumbnail" style="width: 100%; height: 100%; object-fit: cover;" alt="img">
                                 <form action="{{ route('admin.variants.gallery.delete', $vimg->id) }}" method="POST" class="position-absolute top-0 end-0 m-0 p-0">
@@ -168,6 +169,7 @@
                                     <button type="submit" class="btn btn-sm btn-danger p-1">x</button>
                                 </form>
                             </div>
+                            @endforeach
                         @endif
                     </td>
                     <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
