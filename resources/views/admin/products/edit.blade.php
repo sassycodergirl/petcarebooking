@@ -105,7 +105,7 @@
             <div class="d-flex flex-wrap">
                 @foreach($product->gallery as $img)
                     <div class="position-relative m-1">
-                        <img src="{{ asset($img->image) }}" width="100" height="100" class="border rounded">
+                        <img src="{{ asset('public/' . $img->image) }}" width="100" height="100" class="border rounded">
                         <a href="{{ route('admin.products.gallery.delete', $img->id) }}" 
                         class="btn btn-sm btn-danger position-absolute top-0 end-0">x</a>
                     </div>
@@ -162,7 +162,7 @@
                         @if($variant->gallery->count())
                             @foreach($variant->gallery as $vimg)
                              <div class="position-relative me-2 mb-2" style="width: 70px; height: 70px;">
-                                <img src="{{ asset($vimg->image) }}" class="img-thumbnail" style="width: 100%; height: 100%; object-fit: cover;" alt="img">
+                                <img src="{{ asset('public/' . $vimg->image) }}" class="img-thumbnail" style="width: 100%; height: 100%; object-fit: cover;" alt="img">
                                 <form action="{{ route('admin.variants.gallery.delete', $vimg->id) }}" method="POST" class="position-absolute top-0 end-0 m-0 p-0">
                                     @csrf
                                     @method('DELETE')
