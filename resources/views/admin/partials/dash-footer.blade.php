@@ -138,30 +138,71 @@ function removeVariant(btn) {
 }
 
 // ======= Live preview for main variant image =======
-document.addEventListener('change', function(e) {
-    if (e.target.classList.contains('variant-main-image-input')) {
-        const input = e.target;
-        let previewContainer = input.closest('td').querySelector('.variant-main-image-preview');
+// document.addEventListener('change', function(e) {
+//     if (e.target.classList.contains('variant-main-image-input')) {
+//         const input = e.target;
+//         let previewContainer = input.closest('td').querySelector('.variant-main-image-preview');
 
-        // Remove previous preview
-        previewContainer.innerHTML = '';
+//         // Remove previous preview
+//         previewContainer.innerHTML = '';
+
+//         if (input.files && input.files[0]) {
+//             const reader = new FileReader();
+//             reader.onload = function(ev) {
+//                 const img = document.createElement('img');
+//                 img.src = ev.target.result;
+//                 img.style.width = '70px';
+//                 img.style.height = '70px';
+//                 img.style.objectFit = 'cover';
+//                 img.classList.add('img-thumbnail');
+
+//                 previewContainer.appendChild(img);
+//             }
+//             reader.readAsDataURL(input.files[0]);
+//         }
+//     }
+// });
+// Main variant image live preview with remove button
+ document.addEventListener('change', function(e) {
+        if (!e.target.classList.contains('variant-main-image-input')) return;
+
+        const input = e.target;
+        const previewContainer = input.closest('td').querySelector('.variant-main-image-preview');
+        previewContainer.innerHTML = ''; // clear previous preview
 
         if (input.files && input.files[0]) {
             const reader = new FileReader();
             reader.onload = function(ev) {
+                const wrapper = document.createElement('div');
+                wrapper.style.width = '70px';
+                wrapper.style.height = '70px';
+                wrapper.style.position = 'relative';
+                wrapper.style.display = 'inline-block';
+                
                 const img = document.createElement('img');
                 img.src = ev.target.result;
-                img.style.width = '70px';
-                img.style.height = '70px';
+                img.style.width = '100%';
+                img.style.height = '100%';
                 img.style.objectFit = 'cover';
                 img.classList.add('img-thumbnail');
 
-                previewContainer.appendChild(img);
+                // Remove button for preview
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.innerText = '×';
+                btn.classList.add('btn', 'btn-sm', 'btn-danger', 'p-1', 'position-absolute', 'top-0', 'end-0');
+                btn.addEventListener('click', function() {
+                    wrapper.remove();
+                    input.value = ''; // reset input so user can re-upload
+                });
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(btn);
+                previewContainer.appendChild(wrapper);
             }
             reader.readAsDataURL(input.files[0]);
         }
-    }
-});
+    });
 
 // ======= Live preview for gallery images =======
 document.addEventListener('change', function(e) {
