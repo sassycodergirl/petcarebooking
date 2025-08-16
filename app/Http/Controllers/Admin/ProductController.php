@@ -114,7 +114,7 @@ class ProductController extends Controller
             $imagePath = 'product-variants/' . $fileName;
         }
 
-        $product->variants()->create([
+        $createdVariant = $product->variants()->create([
             'size' => $size ?: null,
             'color_id' => $color ?: null,
             'price' => $variant['price'] ?? null,
@@ -128,7 +128,9 @@ class ProductController extends Controller
             foreach ($variantsFiles[$index]['gallery'] as $vfile) {
                 $fileName = $vfile->hashName();
                 $vfile->move(public_path('variant-gallery'), $fileName);
-                $variant->gallery()->create(['image' => 'variant-gallery/' . $fileName]);
+                $createdVariant->gallery()->create([
+                    'image' => 'variant-gallery/' . $fileName
+                ]);
             }
         }
     }
