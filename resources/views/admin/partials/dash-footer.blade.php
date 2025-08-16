@@ -176,51 +176,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ======= Live preview for newly selected files (existing & dynamically added variants) =======
     document.addEventListener('change', function(e) {
-      if (!e.target.classList.contains('variant-gallery-input')) return;
+        if (!e.target.classList.contains('variant-gallery-input')) return;
 
-      const input = e.target;
-      let previewContainer = input.closest('td').querySelector('.variant-gallery-preview');
+        const input = e.target;
+        let previewContainer = input.closest('td').querySelector('.variant-gallery-preview');
 
-      if (!previewContainer) {
-          previewContainer = document.createElement('div');
-          previewContainer.classList.add('variant-gallery-preview', 'd-flex', 'flex-wrap', 'mt-2');
-          input.closest('td').appendChild(previewContainer);
-      }
+        // If preview div doesn't exist (new variant), create it
+        if (!previewContainer) {
+            previewContainer = document.createElement('div');
+            previewContainer.classList.add('variant-gallery-preview', 'd-flex', 'flex-wrap', 'mt-2');
+            input.closest('td').appendChild(previewContainer);
+        }
 
-      Array.from(previewContainer.querySelectorAll('.new-variant-image-wrapper')).forEach(w => w.remove());
+        // Append previews for newly selected files
+        Array.from(input.files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const wrapper = document.createElement('div');
+                wrapper.style.width = '70px';
+                wrapper.style.height = '70px';
+                wrapper.style.marginRight = '5px';
+                wrapper.style.marginBottom = '5px';
+                wrapper.style.position = 'relative';
+                wrapper.classList.add('new-variant-image-wrapper');
 
-      Array.from(input.files).forEach(file => {
-          const reader = new FileReader();
-          reader.onload = function(ev) {
-              const wrapper = document.createElement('div');
-              wrapper.style.width = '70px';
-              wrapper.style.height = '70px';
-              wrapper.style.marginRight = '5px';
-              wrapper.style.marginBottom = '5px';
-              wrapper.style.position = 'relative';
-              wrapper.classList.add('new-variant-image-wrapper');
+                const img = document.createElement('img');
+                img.src = ev.target.result;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                img.classList.add('img-thumbnail');
 
-              const img = document.createElement('img');
-              img.src = ev.target.result;
-              img.style.width = '100%';
-              img.style.height = '100%';
-              img.style.objectFit = 'cover';
-              img.classList.add('img-thumbnail');
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.classList.add('btn', 'btn-sm', 'btn-danger', 'p-1', 'position-absolute', 'top-0', 'end-0');
+                btn.innerText = '×';
+                btn.addEventListener('click', () => wrapper.remove());
 
-              const btn = document.createElement('button');
-              btn.type = 'button';
-              btn.classList.add('btn', 'btn-sm', 'btn-danger', 'p-1', 'position-absolute', 'top-0', 'end-0');
-              btn.innerText = '×';
-              btn.addEventListener('click', () => wrapper.remove());
-
-              wrapper.appendChild(img);
-              wrapper.appendChild(btn);
-              previewContainer.appendChild(wrapper);
-          }
-          reader.readAsDataURL(file);
-      });
+                wrapper.appendChild(img);
+                wrapper.appendChild(btn);
+                previewContainer.appendChild(wrapper);
+            }
+            reader.readAsDataURL(file);
+        });
     });
-
 
     // ======= Existing remove function for already uploaded gallery images =======
     document.querySelectorAll('.remove-variant-image').forEach(btn => {
@@ -246,7 +245,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
-
 
 <!--main variant image removal-->
 <script>
