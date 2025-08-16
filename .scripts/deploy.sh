@@ -35,8 +35,8 @@ PROJECT_PATH="/home/coderbeans.shop/public_html/furry-and-friends"
 chmod o+x /home /home/coderbeans.shop /home/coderbeans.shop/public_html
 
 # Laravel writable folders
-chown -R root:nogroup "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
-chmod -R 777 "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
+chown -R nobody:nogroup "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
+chmod -R 775 "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
 
 # Ensure laravel.log exists
 touch "$PROJECT_PATH/storage/logs/laravel.log"
@@ -51,12 +51,27 @@ mkdir -p "$PROJECT_PATH/public/product-variants"
 mkdir -p "$PROJECT_PATH/public/variant-gallery"
 
 
-chmod -R 777 "$PROJECT_PATH/public/products"
-chmod -R 777 "$PROJECT_PATH/public/product-variants"
-chmod -R 777 "$PROJECT_PATH/public/variant-gallery"
-chown -R nobody:nogroup "$PROJECT_PATH/public/products"
-chown -R nobody:nogroup "$PROJECT_PATH/public/product-variants"
-chown -R nobody:nogroup "$PROJECT_PATH/public/variant-gallery"
+# chmod -R 777 "$PROJECT_PATH/public/products"
+# chmod -R 777 "$PROJECT_PATH/public/product-variants"
+# chmod -R 777 "$PROJECT_PATH/public/variant-gallery"
+# chown -R nobody:nogroup "$PROJECT_PATH/public/products"
+# chown -R nobody:nogroup "$PROJECT_PATH/public/product-variants"
+# chown -R nobody:nogroup "$PROJECT_PATH/public/variant-gallery"
+
+# Make directories if they don't exist
+mkdir -p "$PROJECT_PATH/public/products" \
+         "$PROJECT_PATH/public/product-variants" \
+         "$PROJECT_PATH/public/variant-gallery"
+
+# Set owner to nobody (web server user)
+chown -R nobody:nogroup "$PROJECT_PATH/public/products" \
+                         "$PROJECT_PATH/public/product-variants" \
+                         "$PROJECT_PATH/public/variant-gallery"
+
+# Set safe writable permissions
+chmod -R 777 "$PROJECT_PATH/public/products" \
+              "$PROJECT_PATH/public/product-variants" \
+              "$PROJECT_PATH/public/variant-gallery"
 # -----------------------------
 # End Permissions Fix
 # -----------------------------
