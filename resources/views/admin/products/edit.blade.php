@@ -112,19 +112,22 @@
             <div id="product-gallery-preview" class="d-flex flex-wrap mt-2"></div>
         </div>
 
-        @if($product->gallery->count())
+        @if(isset($product) && $product->gallery->count())
         <div class="col-12 mb-3">
             <label class="form-label">Current Gallery</label>
             <div class="d-flex flex-wrap" id="existing-gallery">
                 @foreach($product->gallery as $img)
                     <div class="position-relative m-1 existing-image-wrapper" data-id="{{ $img->id }}" style="width: 100px; height: 100px;">
                         <img src="{{ asset('public/' . $img->image) }}" class="border rounded w-100 h-100" style="object-fit: cover;">
-                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-existing-image">×</button>
+                        <button type="button" 
+                                class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-existing-image" 
+                                style="padding:2px 6px;">×</button>
                     </div>
                 @endforeach
             </div>
         </div>
         @endif
+
 
     
 

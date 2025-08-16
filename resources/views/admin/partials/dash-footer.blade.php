@@ -304,8 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const previewContainer = document.getElementById('product-gallery-preview');
 
     input.addEventListener('change', function() {
-        // Clear previous preview if needed
-        previewContainer.innerHTML = '';
+        previewContainer.innerHTML = ''; // clear previous previews
 
         Array.from(this.files).forEach(file => {
             const reader = new FileReader();
@@ -345,7 +344,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const wrapper = this.closest('.existing-image-wrapper');
             const imageId = wrapper.dataset.id;
 
-            fetch(`{{ route('admin.products.gallery.delete', ':id') }}`.replace(':id', imageId), {
+            // Use route helper dynamically
+            const url = `{{ url('admin-furry-cms/product-gallery') }}/${imageId}`;
+
+            fetch(url, {
                 method: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -355,12 +357,14 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(res => res.json())
             .then(data => {
                 if(data.success) wrapper.remove();
+                else alert('Could not delete image.');
             })
             .catch(err => console.error(err));
         });
     });
 });
 </script>
+
 
 
 
