@@ -337,4 +337,19 @@ class ProductController extends Controller
             return response()->json(['success' => true]);
         }
 
+
+           // Delete a gallery image
+        public function deleteGalleryImage($id)
+        {
+            $gallery = ProductGallery::findOrFail($id);
+
+            if ($gallery->image && file_exists(public_path($gallery->image))) {
+                unlink(public_path($gallery->image));
+            }
+
+            $gallery->delete();
+
+            return response()->json(['success' => true]);
+        }
+
 }

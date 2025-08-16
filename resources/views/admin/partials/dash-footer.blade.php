@@ -299,12 +299,12 @@ document.querySelectorAll('.remove-main-variant-image').forEach(function(button)
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // ===== Preview newly selected images =====
     const input = document.getElementById('product-gallery-input');
     const previewContainer = document.getElementById('product-gallery-preview');
 
-    // ===== Preview newly selected images =====
     input.addEventListener('change', function() {
-        previewContainer.innerHTML = '';
+        previewContainer.innerHTML = ''; // clear previous previews
 
         Array.from(this.files).forEach(file => {
             const reader = new FileReader();
@@ -338,12 +338,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== Remove existing images via AJAX =====
     document.querySelectorAll('.remove-existing-image').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault(); // prevent form GET
+        btn.addEventListener('click', function() {
             const wrapper = this.closest('.existing-image-wrapper');
             const imageId = wrapper.dataset.id;
 
-            const url = `{{ url('admin-furry-cms/product-gallery') }}/${imageId}`;
+            const url = `/admin/products/gallery/${imageId}`;
 
             fetch(url, {
                 method: 'DELETE',
@@ -361,8 +360,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
 </script>
+
 
 
 

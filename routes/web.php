@@ -37,7 +37,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/admin-furry-cms/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     Route::delete('/admin-furry-cms/variant-gallery/{id}', [ProductVariantGalleryController::class, 'destroy'])->name('admin.variants.gallery.delete');
     Route::delete('/admin-furry-cms/variant-image/{id}', [ProductVariantGalleryController::class, 'destroyMainImage'])->name('admin.variants.main-image.delete');
-    Route::delete('/admin-furry-cms/product-gallery/{id}', [ProductGalleryController::class, 'destroy'])->name('admin.products.gallery.delete');
+    Route::delete('admin/products/gallery/{id}', [ProductController::class, 'deleteGalleryImage'])->name('admin.products.gallery.delete');
 
     Route::delete('admin/products/main-image/{id}', [ProductController::class, 'deleteMainImage'])->name('admin.products.main-image.delete');
     // Categories routes
