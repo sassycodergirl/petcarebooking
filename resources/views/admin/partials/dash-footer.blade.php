@@ -299,12 +299,12 @@ document.querySelectorAll('.remove-main-variant-image').forEach(function(button)
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // ===== Preview newly selected images =====
     const input = document.getElementById('product-gallery-input');
     const previewContainer = document.getElementById('product-gallery-preview');
 
+    // ===== Preview newly selected images =====
     input.addEventListener('change', function() {
-        previewContainer.innerHTML = ''; // clear previous previews
+        previewContainer.innerHTML = '';
 
         Array.from(this.files).forEach(file => {
             const reader = new FileReader();
@@ -326,9 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.type = 'button';
                 btn.innerText = '×';
                 btn.classList.add('btn', 'btn-sm', 'btn-danger', 'position-absolute', 'top-0', 'end-0');
-                btn.addEventListener('click', () => {
-                    wrapper.remove();
-                });
+                btn.addEventListener('click', () => wrapper.remove());
 
                 wrapper.appendChild(img);
                 wrapper.appendChild(btn);
@@ -340,11 +338,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== Remove existing images via AJAX =====
     document.querySelectorAll('.remove-existing-image').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault(); // prevent form GET
             const wrapper = this.closest('.existing-image-wrapper');
             const imageId = wrapper.dataset.id;
 
-            // Use route helper dynamically
             const url = `{{ url('admin-furry-cms/product-gallery') }}/${imageId}`;
 
             fetch(url, {
@@ -363,6 +361,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
 </script>
 
 
