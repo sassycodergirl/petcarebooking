@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductVariantGalleryController;
+use App\Http\Controllers\Admin\ProductGalleryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +37,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/admin-furry-cms/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     Route::delete('/admin-furry-cms/variant-gallery/{id}', [ProductVariantGalleryController::class, 'destroy'])->name('admin.variants.gallery.delete');
     Route::delete('/admin-furry-cms/variant-image/{id}', [ProductVariantGalleryController::class, 'destroyMainImage'])->name('admin.variants.main-image.delete');
-
+    Route::delete('/admin/products/gallery/{id}', [ProductGalleryController::class, 'destroy'])->name('admin.products.gallery.delete');
 
     // Categories routes
     Route::get('/admin-furry-cms/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
