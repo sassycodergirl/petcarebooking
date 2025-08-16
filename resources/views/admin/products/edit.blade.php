@@ -162,16 +162,25 @@
                         <input type="file" name="variants[{{ $variantIndex }}][image]" class="form-control" accept="image/*">
                     </td>
 
-                    <td>
-                        <input type="file" name="variants[{{ $variantIndex }}][gallery][]" class="form-control mb-1" accept="image/*" multiple>
-                        @if($variant->gallery->count())
-                            @foreach($variant->gallery as $vimg)
-                             <div class="position-relative me-2 mb-2 variant-image-wrapper" style="width: 70px; height: 70px;" data-id="{{ $vimg->id }}">
-                                <img src="{{ asset('public/' . $vimg->image) }}" class="img-thumbnail" style="width: 100%; height: 100%; object-fit: cover;" alt="img">
-                                <button type="button" class="btn btn-sm btn-danger p-1 position-absolute top-0 end-0 remove-variant-image">x</button>
-                            </div>
-                            @endforeach
-                        @endif
+                  <td>
+                        <input type="file" name="variants[{{ $variantIndex }}][gallery][]" 
+                            class="form-control mb-1 variant-gallery-input" 
+                            accept="image/*" multiple>
+                        
+                        <div class="variant-gallery-preview d-flex flex-wrap mt-2">
+                            @if($variant->gallery->count())
+                                @foreach($variant->gallery as $vimg)
+                                    <div class="position-relative me-2 mb-2 variant-image-wrapper" 
+                                        style="width: 70px; height: 70px;" data-id="{{ $vimg->id }}">
+                                        <img src="{{ asset('public/' . $vimg->image) }}" 
+                                            class="img-thumbnail" 
+                                            style="width: 100%; height: 100%; object-fit: cover;" alt="img">
+                                        <button type="button" 
+                                                class="btn btn-sm btn-danger p-1 position-absolute top-0 end-0 remove-variant-image">×</button>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
                     </td>
                     <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
                 </tr>
