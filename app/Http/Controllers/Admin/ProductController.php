@@ -364,12 +364,11 @@ class ProductController extends Controller
             return view('admin.products.settings', compact('colors'));
         }
 
-        public function updateColors(Request $request)
+      public function updateColors(Request $request)
         {
             // Delete removed colors
-            if($request->deleted_ids) {
-                $idsToDelete = explode(',', $request->deleted_ids);
-                Color::whereIn('id', $idsToDelete)->delete();
+            if ($request->deleted_ids && is_array($request->deleted_ids)) {
+                Color::whereIn('id', $request->deleted_ids)->delete();
             }
 
             // Validate
@@ -389,6 +388,7 @@ class ProductController extends Controller
 
             return redirect()->back()->with('success', 'Colors updated successfully!');
         }
+
 
 
            
