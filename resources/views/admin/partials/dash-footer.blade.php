@@ -135,6 +135,46 @@
 @endif
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.remove-variant-image').forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            let wrapper = this.closest('.variant-image-wrapper');
+            let imageId = wrapper.getAttribute('data-id');
+
+            if (!confirm('Are you sure you want to delete this image?')) return;
+
+            fetch(`/admin-furry-cms/variant-gallery/${imageId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    wrapper.remove(); // remove the image from UI
+                } else if (data.warning) {
+                    alert(data.warning);
+                    wrapper.remove(); // optional: still remove
+                } else {
+                    alert('Something went wrong!');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Something went wrong!');
+            });
+        });
+    });
+});
+</script>
+
+
+
 
   </body>
 </html>
