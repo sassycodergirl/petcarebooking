@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.remove-main-variant-image').forEach(function(button) {
     button.addEventListener('click', function(e) {
         e.preventDefault();
-        let wrapper = this.closest('.variant-image-wrapper');
+        let wrapper = this.closest('.variant-main-image-wrapper');
         if (!wrapper) return;
 
         let variantId = wrapper.dataset.id;
