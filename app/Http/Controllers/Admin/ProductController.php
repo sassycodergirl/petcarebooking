@@ -357,4 +357,30 @@ class ProductController extends Controller
             return response()->json(['success' => true]);
         }
 
+        //global color setting
+        public function settings()
+        {
+            $colors = Color::all(); // fetch all global colors
+            return view('admin.products.settings', compact('colors'));
+        }
+
+           // Add this method at the bottom or near other product-related methods
+    public function updateColors(Request $request)
+    {
+        $request->validate([
+            'colors' => 'required|array',
+            'colors.*' => 'string|max:50',
+            'hex_codes.*' => 'nullable|string|max:7',
+        ]);
+
+        foreach ($request->colors as $index => $name) {
+            Color::updateOrCreate(
+                ['id' => $request->ids[$index] ?? null],
+                ['name' => $name, 'hex_code' => $request->hex_codes[$index] ?? null]
+            );
+        }
+
+        return redirect()->back()->with('success', 'Colors updated successfully!');
+    }
+
 }

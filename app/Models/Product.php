@@ -26,4 +26,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class);
     }
+
+    public function colors()
+    {
+        return $this->belongsToMany(\App\Models\Color::class, 'color_product', 'product_id', 'color_id');
+    }
 }

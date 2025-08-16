@@ -46,6 +46,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin-furry-cms/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
     Route::put('/admin-furry-cms/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
     Route::delete('/admin-furry-cms/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
+
+
+    //global product setting
+     Route::get('/admin-furry-cms/products/settings', [ProductController::class, 'settings'])->name('admin.products.settings');
+     Route::post('/admin-furry-cms/products/settings/colors', [ProductController::class, 'updateColors'])->name('admin.products.settings.colors.update');
 });
 
 Route::middleware(['auth'])->group(function () {
