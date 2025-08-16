@@ -299,10 +299,10 @@ document.querySelectorAll('.remove-main-variant-image').forEach(function(button)
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // ===== Preview newly selected images =====
     const input = document.getElementById('product-gallery-input');
     const previewContainer = document.getElementById('product-gallery-preview');
 
+    // ===== Preview newly selected images =====
     input.addEventListener('change', function() {
         previewContainer.innerHTML = ''; // clear previous previews
 
@@ -342,7 +342,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const wrapper = this.closest('.existing-image-wrapper');
             const imageId = wrapper.dataset.id;
 
-            const url = `/admin/products/gallery/${imageId}`;
+            // Generate URL dynamically using Laravel's url helper
+            const url = '{{ url("admin/products/gallery") }}/' + imageId;
 
             fetch(url, {
                 method: 'DELETE',
@@ -361,6 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
 
 
 
