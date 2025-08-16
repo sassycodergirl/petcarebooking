@@ -337,31 +337,46 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===== Remove existing images via AJAX =====
-    document.querySelectorAll('.remove-existing-image').forEach(btn => {
+    const deleteButtons = document.querySelectorAll('.remove-existing-image');
+
+    deleteButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             const wrapper = this.closest('.existing-image-wrapper');
             const imageId = wrapper.dataset.id;
 
-            // Generate URL dynamically using Laravel's url helper
-            const url = '{{ url("admin/products/gallery") }}/' + imageId;
+            // Laravel route URL
+            const url = @json(url('admin/products/gallery')) + '/' + imageId;
 
             fetch(url, {
                 method: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if(data.success) {
+                    wrapper.remove();
+                } else {
+                    alert(data.message || 'Could not delete image.');
                 }
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) wrapper.remove();
-                else alert('Could not delete image.');
-            })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error('Delete error:', err);
+                alert('Something went wrong while deleting.');
+            });
         });
     });
 });
 </script>
+
 
 
 
