@@ -36,11 +36,11 @@ chmod o+x /home /home/coderbeans.shop /home/coderbeans.shop/public_html
 
 # Laravel writable folders
 chown -R nobody:nogroup "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
-chmod -R 775 "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
+chmod -R 777 "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
 
 
 mkdir -p "$PROJECT_PATH/storage/framework/sessions"
-chmod -R 775 "$PROJECT_PATH/storage/framework/sessions"
+chmod -R 777 "$PROJECT_PATH/storage/framework/sessions"
 chown -R nobody:nogroup "$PROJECT_PATH/storage/framework/sessions"
 
 
