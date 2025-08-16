@@ -151,12 +151,18 @@
                     <td><input type="number" step="0.01" name="variants[{{ $variantIndex }}][price]" value="{{ $variant->price }}" class="form-control"></td>
                     <td><input type="number" name="variants[{{ $variantIndex }}][stock_quantity]" value="{{ $variant->stock_quantity }}" class="form-control"></td>
                     <td>
-                        @if($variant->image)
-                           
-                            <img src="{{ asset('public/' .$variant->image) }}" width="50" class="mb-1" alt=""><br>
-                        @endif
-                        <input type="file" name="variants[{{ $variantIndex }}][image]" class="form-control" accept="image/*">
-                    </td>
+                            @if($variant->image)
+                                <div class="position-relative variant-image-wrapper" data-id="{{ $variant->id }}">
+                                    <img src="{{ asset('public/' . $variant->image) }}" width="50" class="mb-1" style="display:block;" alt="">
+
+                                    <!-- Remove button -->
+                                    <button type="button" class="position-absolute btn btn-sm btn-danger remove-variant-image" 
+                                            style="top: -5px; right: -5px; padding: 2px 6px;">×</button>
+                                </div>
+                                <br>
+                            @endif
+                            <input type="file" name="variants[{{ $variantIndex }}][image]" class="form-control" accept="image/*">
+                        </td>
                     <td>
                         <input type="file" name="variants[{{ $variantIndex }}][gallery][]" class="form-control mb-1" accept="image/*" multiple>
                         @if($variant->gallery->count())
