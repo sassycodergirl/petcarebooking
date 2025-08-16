@@ -147,8 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
             let imageId = wrapper.dataset.id;
             if (!imageId) return;
 
-            if (!confirm('Are you sure you want to delete this image?')) return;
-
             let url = "{{ route('admin.variants.gallery.delete', ':id') }}".replace(':id', imageId);
 
             fetch(url, {
@@ -161,19 +159,16 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    wrapper.remove();
-                } else {
-                    alert(data.message || 'Something went wrong!');
+                    wrapper.remove(); // silently remove the image
                 }
+                // no else, no alerts, nothing
             })
-            .catch(err => {
-                console.error(err);
-                alert('Something went wrong!');
-            });
+            .catch(err => console.error(err));
         });
     });
 });
 </script>
+
 
 
 
