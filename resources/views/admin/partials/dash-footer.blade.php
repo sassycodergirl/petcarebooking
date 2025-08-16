@@ -171,7 +171,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+<script>
+  document.querySelectorAll('.remove-main-variant-image').forEach(function(button) {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        let wrapper = this.closest('.variant-image-wrapper');
+        if (!wrapper) return;
 
+        let variantId = wrapper.dataset.id;
+        if (!variantId) return;
+
+        let url = "{{ route('admin.variants.main-image.delete', ':id') }}".replace(':id', variantId);
+
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            },
+        })
+        .then(res => res.json())
+        .then(data => { if(data.success) wrapper.remove(); })
+        .catch(err => console.error(err));
+    });
+});
+
+</script>
 
 
 

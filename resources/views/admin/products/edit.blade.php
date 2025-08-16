@@ -155,8 +155,7 @@
                             <div class="position-relative variant-main-image-wrapper" data-variant-id="{{ $variant->id }}">
                                 <img src="{{ asset('public/' . $variant->image) }}" width="50" class="mb-1" style="display:block;" alt="Variant Image">
                                 <!-- Remove button -->
-                                <button type="button" class="btn btn-sm btn-danger remove-main-variant-image"
-                                        style="position: absolute; top: -5px; right: -5px; padding: 2px 6px;">×</button>
+                               <button type="button" class="position-absolute btn btn-sm btn-danger remove-main-variant-image"  style="top: -5px; right: -5px; padding: 2px 6px;">×</button>
                             </div>
                             <br>
                         @endif

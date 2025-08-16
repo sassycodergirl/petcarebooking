@@ -35,6 +35,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin-furry-cms/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
     Route::delete('/admin-furry-cms/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     Route::delete('/admin-furry-cms/variant-gallery/{id}', [ProductVariantGalleryController::class, 'destroy'])->name('admin.variants.gallery.delete');
+    Route::delete('/admin-furry-cms/variant-image/{id}', [ProductVariantGalleryController::class, 'destroyMainImage'])->name('admin.variants.main-image.delete');
+
+
     // Categories routes
     Route::get('/admin-furry-cms/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
     Route::get('/admin-furry-cms/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
