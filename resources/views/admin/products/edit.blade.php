@@ -161,11 +161,11 @@
                         @if($variant->gallery->count())
                             <div class="d-flex flex-wrap mt-1">
                                 @foreach($variant->gallery as $vimg)
-                                    <div class="position-relative m-1">
-                                        <img src="{{ asset($vimg->image) }}" width="50" height="50" class="border rounded">
-                                        <a href="{{ route('admin.variants.gallery.delete', $vimg->id) }}" 
-                                        class="btn btn-sm btn-danger position-absolute top-0 end-0">x</a>
-                                    </div>
+                                    <form action="{{ route('admin.variants.gallery.delete', $vimg->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger position-absolute top-0 end-0">x</button>
+                                    </form>
                                 @endforeach
                             </div>
                         @endif
