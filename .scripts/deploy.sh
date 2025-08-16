@@ -33,15 +33,18 @@ PROJECT_PATH="/home/coderbeans.shop/public_html/furry-and-friends"
 
 # Make parent directories traversable
 chmod o+x /home /home/coderbeans.shop /home/coderbeans.shop/public_html
+chmod o+x "$PROJECT_PATH"
 
 # Laravel writable folders
 chown -R nobody:nogroup "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
 chmod -R 777 "$PROJECT_PATH/storage" "$PROJECT_PATH/bootstrap/cache"
 
 
-mkdir -p "$PROJECT_PATH/storage/framework/sessions"
-chmod -R 777 "$PROJECT_PATH/storage/framework/sessions"
-chown -R nobody:nogroup "$PROJECT_PATH/storage/framework/sessions"
+mkdir -p "$PROJECT_PATH/storage/framework/sessions" \
+         "$PROJECT_PATH/storage/framework/views" \
+         "$PROJECT_PATH/storage/framework/cache"
+chown -R nobody:nogroup "$PROJECT_PATH/storage/framework"
+chmod -R 775 "$PROJECT_PATH/storage/framework"
 
 
 # Ensure laravel.log exists
