@@ -44,7 +44,7 @@ mkdir -p "$PROJECT_PATH/storage/framework/sessions" \
          "$PROJECT_PATH/storage/framework/views" \
          "$PROJECT_PATH/storage/framework/cache"
 chown -R nobody:nogroup "$PROJECT_PATH/storage/framework"
-chmod -R 775 "$PROJECT_PATH/storage/framework"
+chmod -R 777 "$PROJECT_PATH/storage/framework"
 
 
 # Ensure laravel.log exists
