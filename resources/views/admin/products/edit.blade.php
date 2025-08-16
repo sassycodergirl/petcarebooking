@@ -102,14 +102,14 @@
         </div>
 
 
-      <div class="col-12 mb-3">
-        <label for="gallery" class="form-label">Product Gallery Images</label>
-        <input type="file" id="product-gallery-input" name="gallery[]" class="form-control" accept="image/*" multiple>
-        <small class="form-text text-muted">You can upload multiple images at once.</small>
+       <div class="col-12 mb-3">
+            <label for="gallery" class="form-label">Product Gallery Images</label>
+            <input type="file" id="product-gallery-input" name="gallery[]" class="form-control" accept="image/*" multiple>
+            <small class="form-text text-muted">You can upload multiple images at once.</small>
 
-        <!-- Preview container for newly selected images -->
-        <div id="product-gallery-preview" class="d-flex flex-wrap mt-2"></div>
-    </div>
+            <!-- Preview container for newly selected images -->
+            <div id="product-gallery-preview" class="d-flex flex-wrap mt-2"></div>
+        </div>
 
         @if($product->gallery->count())
         <div class="col-12 mb-3">

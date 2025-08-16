@@ -300,10 +300,11 @@ document.querySelectorAll('.remove-main-variant-image').forEach(function(button)
 <!--simple product-->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // ===== Preview newly selected images =====
     const input = document.getElementById('product-gallery-input');
     const previewContainer = document.getElementById('product-gallery-preview');
+    const existingGallery = document.getElementById('existing-gallery');
 
+    // ===== Preview newly selected images =====
     input.addEventListener('change', function() {
         // Clear previous preview if needed
         previewContainer.innerHTML = '';
@@ -316,6 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 wrapper.style.height = '100px';
                 wrapper.style.margin = '5px';
                 wrapper.style.position = 'relative';
+                wrapper.classList.add('new-preview-wrapper');
 
                 const img = document.createElement('img');
                 img.src = e.target.result;
@@ -328,10 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 btn.type = 'button';
                 btn.innerText = '×';
                 btn.classList.add('btn', 'btn-sm', 'btn-danger', 'position-absolute', 'top-0', 'end-0');
-                btn.addEventListener('click', () => {
-                    wrapper.remove();
-                    // Optional: remove file from input.files (advanced, requires FormData)
-                });
+                btn.addEventListener('click', () => wrapper.remove());
 
                 wrapper.appendChild(img);
                 wrapper.appendChild(btn);
@@ -341,10 +340,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ===== Remove existing images =====
-    document.querySelectorAll('.remove-existing-image').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const wrapper = this.closest('.existing-image-wrapper');
+    // ===== Remove images (existing or new) =====
+    document.addEventListener('click', function(e) {
+        // Remove existing image via AJAX
+        if (e.target.classList.contains('remove-existing-image')) {
+            const wrapper = e.target.closest('.existing-image-wrapper');
             const imageId = wrapper.dataset.id;
 
             fetch(`{{ route('admin.products.gallery.delete', ':id') }}`.replace(':id', imageId), {
@@ -356,16 +356,20 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(res => res.json())
             .then(data => {
-                if(data.success) wrapper.remove();
+                if (data.success) wrapper.remove();
             })
             .catch(err => console.error(err));
-        });
+        }
+
+        // Remove newly previewed image
+        if (e.target.closest('.new-preview-wrapper') && e.target.innerText === '×') {
+            e.target.closest('.new-preview-wrapper').remove();
+        }
     });
 });
 </script>
-
-
 <!--simple product-->
+
 
 
 
