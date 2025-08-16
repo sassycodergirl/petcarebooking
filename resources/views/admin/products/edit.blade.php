@@ -81,26 +81,7 @@
                 </div>
             </div>
 
-            <div class="col-12 mb-3">
-                <label for="gallery" class="form-label">Product Gallery Images</label>
-                <input type="file" name="gallery[]" class="form-control" accept="image/*" multiple>
-                <small class="form-text text-muted">You can upload multiple images at once.</small>
-            </div>
-
-            @if($product->gallery->count())
-            <div class="col-12 mb-3">
-                <label class="form-label">Current Gallery</label>
-                <div class="d-flex flex-wrap">
-                    @foreach($product->gallery as $img)
-                        <div class="position-relative m-1">
-                            <img src="{{ asset('public/' .$img->image) }}" width="100" height="100" class="border rounded">
-                            <a href="{{ route('admin.products.gallery.delete', $img->id) }}" 
-                            class="btn btn-sm btn-danger position-absolute top-0 end-0">x</a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-            @endif
+            
 
             <div class="col-12 col-md-4">
                  <div class="mb-3">
@@ -109,6 +90,29 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="col-12 mb-3">
+            <label for="gallery" class="form-label">Product Gallery Images</label>
+            <input type="file" name="gallery[]" class="form-control" accept="image/*" multiple>
+            <small class="form-text text-muted">You can upload multiple images at once.</small>
+        </div>
+
+        @if($product->gallery->count())
+        <div class="col-12 mb-3">
+            <label class="form-label">Current Gallery</label>
+            <div class="d-flex flex-wrap">
+                @foreach($product->gallery as $img)
+                    <div class="position-relative m-1">
+                        <img src="{{ asset($img->image) }}" width="100" height="100" class="border rounded">
+                        <a href="{{ route('admin.products.gallery.delete', $img->id) }}" 
+                        class="btn btn-sm btn-danger position-absolute top-0 end-0">x</a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
+
     
 
         <!-- Variants Section -->
