@@ -375,7 +375,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainInput = document.getElementById('main-product-image-input');
     const wrapper = document.querySelector('.main-product-image-wrapper');
     const img = wrapper.querySelector('.main-product-image');
+    const removeBtn = wrapper.querySelector('.remove-main-product-image');
 
+    // Preview new image
     mainInput.addEventListener('change', function() {
         const file = this.files[0];
         if (!file) return;
@@ -383,20 +385,47 @@ document.addEventListener('DOMContentLoaded', function() {
         const reader = new FileReader();
         reader.onload = function(e) {
             img.src = e.target.result;
-            img.style.display = 'block'; // Show image if it was hidden
+            img.style.display = 'block';
+            removeBtn.style.display = 'block'; // Show remove button
         }
         reader.readAsDataURL(file);
     });
 
-    // Optional: remove existing main image
-    wrapper.querySelectorAll('.remove-main-product-image').forEach(btn => {
-        btn.addEventListener('click', function() {
+    // Remove image
+    removeBtn.addEventListener('click', function() {
+        if(img.src && img.src.includes('public')) {
+            // Existing image -> delete via AJAX
+            const url = "{{ route('admin.products.main-image.delete', $product->id) }}";
+
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    img.src = '';
+                    img.style.display = 'none';
+                    mainInput.value = '';
+                    removeBtn.style.display = 'none';
+                } else {
+                    alert('Could not delete the image.');
+                }
+            })
+            .catch(err => console.error(err));
+        } else {
+            // Just a newly selected image -> remove preview
             img.src = '';
             img.style.display = 'none';
-            mainInput.value = ''; // Clear input if needed
-        });
+            mainInput.value = '';
+            removeBtn.style.display = 'none';
+        }
     });
 });
+
 
 </script>
 

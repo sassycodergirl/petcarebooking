@@ -73,18 +73,22 @@
             <div class="col-12 col-md-6">
                 <div class="row">
                     <div class="col-12 col-md-3">
-                            <div class="mb-3">
-                                <label>Current Image</label><br>
-                                <div class="main-product-image-wrapper position-relative">
-                                    @if($product->image)
-                                        <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}" width="100" class="mb-2 main-product-image">
-                                        <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-main-product-image" style="padding: 2px 6px;">×</button>
-                                    @else
-                                        <img src="" alt="Preview" width="100" class="mb-2 main-product-image" style="display:none;">
-                                    @endif
-                                </div>
+                        <div class="mb-3">
+                            <label>Current Image</label><br>
+                            <div class="main-product-image-wrapper position-relative">
+                                @if($product->image)
+                                    <img src="{{ asset('public/' . $product->image) }}" 
+                                        alt="{{ $product->name }}" 
+                                        width="100" class="mb-2 main-product-image">
+                                    <button type="button" 
+                                            class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-main-product-image" 
+                                            style="padding: 2px 6px;">×</button>
+                                @else
+                                    <img src="" alt="Preview" width="100" class="mb-2 main-product-image" style="display:none;">
+                                @endif
                             </div>
                         </div>
+                    </div>
 
                     <div class="col-12 col-md-9">
                         <div class="mb-3">
