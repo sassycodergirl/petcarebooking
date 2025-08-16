@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const wrapper = this.closest('.existing-image-wrapper');
             const imageId = wrapper.dataset.id;
 
-            fetch(`{{ route('admin.products.gallery.delete', ':id') }}`.replace(':id', imageId), {
+            fetch(`/admin/products/gallery/${imageId}`, {
                 method: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
