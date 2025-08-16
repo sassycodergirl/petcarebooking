@@ -90,48 +90,47 @@ class ProductController extends Controller
 
         
 
-     // Handle variants
-    $variantsInput = $request->input('variants', []);
-    $variantsFiles = $request->file('variants', []);
+    // Handle variants
+        $variantsInput = $request->input('variants', []);
+        $variantsFiles = $request->file('variants', []);
 
-    $seen = [];
-    foreach ($variantsInput as $index => $variant) {
-        $size  = trim($variant['size'] ?? '');
-        $color = $variant['color_id'] ?? null;
+        $seen = [];
+        foreach ($variantsInput as $index => $variantData) {
+            $size  = trim($variantData['size'] ?? '');
+            $color = $variantData['color_id'] ?? null;
 
-        if ($size === '' && $color === '') continue;
+            if ($size === '' && $color === '') continue;
 
-        $key = mb_strtoupper($size).'|'.mb_strtoupper($color);
-        if (isset($seen[$key])) continue;
-        $seen[$key] = true;
+            $key = mb_strtoupper($size).'|'.mb_strtoupper($color);
+            if (isset($seen[$key])) continue;
+            $seen[$key] = true;
 
-        // Handle image
-        $imagePath = null;
-        if (isset($variantsFiles[$index]['image']) && $variantsFiles[$index]['image'] instanceof \Illuminate\Http\UploadedFile) {
-            $file = $variantsFiles[$index]['image'];
-            $fileName = $file->hashName();
-            $file->move(public_path('product-variants'), $fileName);
-            $imagePath = 'product-variants/' . $fileName;
-        }
+            $imagePath = null;
+            if (isset($variantsFiles[$index]['image']) && $variantsFiles[$index]['image'] instanceof \Illuminate\Http\UploadedFile) {
+                $file = $variantsFiles[$index]['image'];
+                $fileName = $file->hashName();
+                $file->move(public_path('product-variants'), $fileName);
+                $imagePath = 'product-variants/' . $fileName;
+            }
 
-        $product->variants()->create([
-            'size' => $size ?: null,
-            'color_id' => $color ?: null,
-            'price' => $variant['price'] ?? null,
-            'stock_quantity' => (int) ($variant['stock_quantity'] ?? 0),
-            'image' => $imagePath,
-        ]);
+            $variant = $product->variants()->create([
+                'size' => $size ?: null,
+                'color_id' => $color ?: null,
+                'price' => $variantData['price'] ?? null,
+                'stock_quantity' => (int) ($variantData['stock_quantity'] ?? 0),
+                'image' => $imagePath,
+            ]);
 
-
-        // Variant gallery
-        if (isset($variantsFiles[$index]['gallery'])) {
-            foreach ($variantsFiles[$index]['gallery'] as $vfile) {
-                $fileName = $vfile->hashName();
-                $vfile->move(public_path('variant-gallery'), $fileName);
-                $variant->gallery()->create(['image' => 'variant-gallery/' . $fileName]);
+            // Variant gallery
+            if (isset($variantsFiles[$index]['gallery'])) {
+                foreach ($variantsFiles[$index]['gallery'] as $vfile) {
+                    $fileName = $vfile->hashName();
+                    $vfile->move(public_path('variant-gallery'), $fileName);
+                    $variant->gallery()->create(['image' => 'variant-gallery/' . $fileName]);
+                }
             }
         }
-    }
+
 
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
@@ -222,56 +221,42 @@ class ProductController extends Controller
     $submittedIds = [];
 
     foreach ($variantsInput as $index => $variantInput) {
-        $variantId = $variantInput['id'] ?? null;
-        $size = trim($variantInput['size'] ?? '');
-        $color = $variantInput['color_id'] ?? null;
-
-        if ($size === '' && $color === '') continue;
-
-        $imagePath = null;
-        if (isset($variantsFiles[$index]['image']) && $variantsFiles[$index]['image'] instanceof \Illuminate\Http\UploadedFile) {
-            $file = $variantsFiles[$index]['image'];
-            $fileName = $file->hashName();
-            $file->move(public_path('product-variants'), $fileName);
-            $imagePath = 'product-variants/' . $fileName;
-        }
-
-        if ($variantId) {
-            // Update existing variant
-            $variant = $product->variants()->find($variantId);
-            if ($variant) {
-                if ($imagePath && $variant->image && file_exists(public_path($variant->image))) {
-                    unlink(public_path($variant->image));
+       // inside foreach($variantsInput as $index => $variantInput)
+            if ($variantId) {
+                $variant = $product->variants()->find($variantId);
+                if ($variant) {
+                    if ($imagePath && $variant->image && file_exists(public_path($variant->image))) {
+                        unlink(public_path($variant->image));
+                    }
+                    $variant->update([
+                        'size' => $size ?: null,
+                        'color_id' => $color ?: null,
+                        'price' => $variantInput['price'] ?? null,
+                        'stock_quantity' => (int) ($variantInput['stock_quantity'] ?? 0),
+                        'image' => $imagePath ?? $variant->image,
+                    ]);
+                    $submittedIds[] = $variantId;
                 }
-                $variant->update([
+            } else {
+                $variant = $product->variants()->create([
                     'size' => $size ?: null,
                     'color_id' => $color ?: null,
                     'price' => $variantInput['price'] ?? null,
                     'stock_quantity' => (int) ($variantInput['stock_quantity'] ?? 0),
-                    'image' => $imagePath ?? $variant->image,
+                    'image' => $imagePath,
                 ]);
-                $submittedIds[] = $variantId;
+                $submittedIds[] = $variant->id;
             }
-        } else {
-            // Create new variant
-            $newVariant = $product->variants()->create([
-                'size' => $size ?: null,
-                'color_id' => $color ?: null,
-                'price' => $variantInput['price'] ?? null,
-                'stock_quantity' => (int) ($variantInput['stock_quantity'] ?? 0),
-                'image' => $imagePath,
-            ]);
-            $submittedIds[] = $newVariant->id;
-        }
 
-        // Variant gallery
-        if (isset($variantsFiles[$index]['gallery'])) {
-            foreach ($variantsFiles[$index]['gallery'] as $vfile) {
-                $fileName = $vfile->hashName();
-                $vfile->move(public_path('variant-gallery'), $fileName);
-                $variant->gallery()->create(['image' => 'variant-gallery/' . $fileName]);
+            // Variant gallery
+            if (isset($variantsFiles[$index]['gallery'])) {
+                foreach ($variantsFiles[$index]['gallery'] as $vfile) {
+                    $fileName = $vfile->hashName();
+                    $vfile->move(public_path('variant-gallery'), $fileName);
+                    $variant->gallery()->create(['image' => 'variant-gallery/' . $fileName]);
+                }
             }
-        }
+
     }
 
     // Delete removed variants
