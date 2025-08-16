@@ -152,7 +152,7 @@
                     <td><input type="number" name="variants[{{ $variantIndex }}][stock_quantity]" value="{{ $variant->stock_quantity }}" class="form-control"></td>
                     <td>
                         @if($variant->image)
-                            <span>Image exists</span>
+                           
                             <img src="{{ asset($variant->image) }}" width="50" class="mb-1" alt=""><br>
                         @endif
                         <input type="file" name="variants[{{ $variantIndex }}][image]" class="form-control" accept="image/*">
@@ -160,14 +160,13 @@
                     <td>
                         <input type="file" name="variants[{{ $variantIndex }}][gallery][]" class="form-control mb-1" accept="image/*" multiple>
                         @if($variant->gallery->count())
-                            <div class="d-flex flex-wrap mt-1">
-                                @foreach($variant->gallery as $vimg)
-                                    <form action="{{ route('admin.variants.gallery.delete', $vimg->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger position-absolute top-0 end-0">x</button>
-                                    </form>
-                                @endforeach
+                             <div class="position-relative me-2 mb-2" style="width: 70px; height: 70px;">
+                                <img src="{{ asset($vimg->image) }}" class="img-thumbnail" style="width: 100%; height: 100%; object-fit: cover;">
+                                <form action="{{ route('admin.variants.gallery.delete', $vimg->id) }}" method="POST" class="position-absolute top-0 end-0 m-0 p-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger p-1">x</button>
+                                </form>
                             </div>
                         @endif
                     </td>
