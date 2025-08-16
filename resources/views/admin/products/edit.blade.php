@@ -153,7 +153,7 @@
                     <td>
                         @if($variant->image)
                            
-                            <img src="{{ asset($variant->image) }}" width="50" class="mb-1" alt=""><br>
+                            <img src="{{ asset('public/' .$variant->image) }}" width="50" class="mb-1" alt=""><br>
                         @endif
                         <input type="file" name="variants[{{ $variantIndex }}][image]" class="form-control" accept="image/*">
                     </td>
