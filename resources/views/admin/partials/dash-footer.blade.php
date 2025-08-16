@@ -369,6 +369,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+<!--main product image-->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mainInput = document.getElementById('main-product-image-input');
+    const wrapper = document.querySelector('.main-product-image-wrapper');
+    const img = wrapper.querySelector('.main-product-image');
+
+    mainInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            img.src = e.target.result;
+            img.style.display = 'block'; // Show image if it was hidden
+        }
+        reader.readAsDataURL(file);
+    });
+
+    // Optional: remove existing main image
+    wrapper.querySelectorAll('.remove-main-product-image').forEach(btn => {
+        btn.addEventListener('click', function() {
+            img.src = '';
+            img.style.display = 'none';
+            mainInput.value = ''; // Clear input if needed
+        });
+    });
+});
+
+</script>
+
 
   </body>
 </html>
