@@ -181,15 +181,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const input = e.target;
         let previewContainer = input.closest('td').querySelector('.variant-gallery-preview');
 
-        // Create preview container if it doesn't exist (for new variants)
+        // If preview div doesn't exist (new variant), create it
         if (!previewContainer) {
             previewContainer = document.createElement('div');
             previewContainer.classList.add('variant-gallery-preview', 'd-flex', 'flex-wrap', 'mt-2');
             input.closest('td').appendChild(previewContainer);
         }
-
-        // Remove previously added new previews (optional if you want to reset on reselect)
-        Array.from(previewContainer.querySelectorAll('.new-variant-image-wrapper')).forEach(w => w.remove());
 
         // Append previews for newly selected files
         Array.from(input.files).forEach(file => {
@@ -225,29 +222,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ======= Existing remove function for already uploaded gallery images =======
-    document.addEventListener('click', function(e) {
-        if (!e.target.classList.contains('remove-variant-image')) return;
+    document.querySelectorAll('.remove-variant-image').forEach(btn => {
+        btn.addEventListener('click', function() {
+            let wrapper = this.closest('.variant-image-wrapper');
+            let imageId = wrapper.dataset.id;
 
-        const btn = e.target;
-        let wrapper = btn.closest('.variant-image-wrapper');
-        let imageId = wrapper.dataset.id;
-
-        fetch(`{{ route('admin.variants.gallery.delete', ':id') }}`.replace(':id', imageId), {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Accept': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success) wrapper.remove();
-        })
-        .catch(err => console.error(err));
+            fetch(`{{ route('admin.variants.gallery.delete', ':id') }}`.replace(':id', imageId), {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) wrapper.remove();
+            })
+            .catch(err => console.error(err));
+        });
     });
 
 });
-
 
 </script>
 
