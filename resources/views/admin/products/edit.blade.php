@@ -152,7 +152,7 @@
                     <td><input type="number" name="variants[{{ $variantIndex }}][stock_quantity]" value="{{ $variant->stock_quantity }}" class="form-control"></td>
                     <td>
                         @if($variant->image)
-                            <img src="{{ asset('public/' . $variant->image) }}" width="50" class="mb-1"><br>
+                            <img src="{{ asset($variant->image) }}" width="50" class="mb-1"><br>
                         @endif
                         <input type="file" name="variants[{{ $variantIndex }}][image]" class="form-control" accept="image/*">
                     </td>
