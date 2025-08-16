@@ -119,6 +119,7 @@
                 <td><input type="file" name="variants[${variantIndex}][image]" class="form-control" accept="image/*"></td>
                  <td>
                     <input type="file" name="variants[${variantIndex}][gallery][]" class="form-control" accept="image/*" multiple>
+                    <div class="variant-gallery-preview d-flex flex-wrap mt-2"></div>
                     <small class="form-text text-muted">You can upload multiple images.</small>
                 </td>
                 <td><button type="button" class="btn btn-sm btn-danger" onclick="removeVariant(this)">Remove</button></td>
