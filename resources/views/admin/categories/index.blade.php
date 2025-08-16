@@ -44,7 +44,7 @@
             </tbody>
         </table>
 
-        {{ $categories->links() }}
+      
     </div>
 </div>
 @include('admin.partials.dash-footer')
