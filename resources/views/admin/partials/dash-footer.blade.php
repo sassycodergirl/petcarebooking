@@ -450,12 +450,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!--global color setting-->
 
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const colorList = document.getElementById('color-list');
     const addBtn = document.getElementById('add-color');
+    const deletedIdsInput = document.getElementById('deleted-ids');
 
-    if (!colorList || !addBtn) return; // safety check
+    if (!colorList || !addBtn || !deletedIdsInput) return;
 
     // ===== Add new color row =====
     addBtn.addEventListener('click', () => {
@@ -480,7 +482,20 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.remove-color').forEach(btn => {
         btn.addEventListener('click', () => {
             const item = btn.closest('.color-item');
-            if(item) item.remove();
+            const colorId = item.dataset.id;
+
+            if(colorId) {
+                // Track deleted IDs
+                const deleted = deletedIdsInput.value ? deletedIdsInput.value.split(',') : [];
+                deleted.push(colorId);
+                deletedIdsInput.value = deleted.join(',');
+
+                // Optionally, remove immediately from DOM
+                item.remove();
+            } else {
+                // New color – just remove from DOM
+                item.remove();
+            }
         });
     });
 });

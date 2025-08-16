@@ -364,23 +364,33 @@ class ProductController extends Controller
             return view('admin.products.settings', compact('colors'));
         }
 
-           // Add this method at the bottom or near other product-related methods
-    public function updateColors(Request $request)
-    {
-        $request->validate([
-            'colors' => 'required|array',
-            'colors.*' => 'string|max:50',
-            'hex_codes.*' => 'nullable|string|max:7',
-        ]);
+        public function updateColors(Request $request)
+        {
+            // Delete removed colors
+            if($request->deleted_ids) {
+                $idsToDelete = explode(',', $request->deleted_ids);
+                Color::whereIn('id', $idsToDelete)->delete();
+            }
 
-        foreach ($request->colors as $index => $name) {
-            Color::updateOrCreate(
-                ['id' => $request->ids[$index] ?? null],
-                ['name' => $name, 'hex_code' => $request->hex_codes[$index] ?? null]
-            );
+            // Validate
+            $request->validate([
+                'colors' => 'required|array',
+                'colors.*' => 'string|max:50',
+                'hex_codes.*' => 'nullable|string|max:7',
+            ]);
+
+            // Update or create colors
+            foreach ($request->colors as $index => $name) {
+                Color::updateOrCreate(
+                    ['id' => $request->ids[$index] ?? null],
+                    ['name' => $name, 'hex_code' => $request->hex_codes[$index] ?? null]
+                );
+            }
+
+            return redirect()->back()->with('success', 'Colors updated successfully!');
         }
 
-        return redirect()->back()->with('success', 'Colors updated successfully!');
-    }
+
+           
 
 }
