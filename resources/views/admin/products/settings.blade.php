@@ -36,7 +36,7 @@
             </div>
 
             <button type="button" class="btn btn-primary mb-3" id="add-color">Add Color</button>
-            <br>
+            
             <button type="submit" class="btn btn-success">Save Colors</button>
         </form>
     </div>
