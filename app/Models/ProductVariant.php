@@ -20,4 +20,9 @@ class ProductVariant extends Model
     {
         return $this->price ?? $this->product?->price;
     }
+
+    public function gallery()
+    {
+        return $this->hasMany(ProductVariantImage::class);
+    }
 }
