@@ -36,20 +36,19 @@
 
                                 <!-- {{-- Colors --}} -->
 
-                                @if($product->colors->count())
-                                    <div class="mb-2">
-                                        <label class="form-label">Color:</label>
-                                        <div class="selectgroup">
-                                            @foreach($product->colors as $color)
-                                                <label class="selectgroup-item" title="{{ $color->name }}">
-                                                    <input type="radio" name="variant_color" value="{{ $color->id }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
-                                                    <span class="selectgroup-button" style="background-color: {{ $color->hex_code ?? '#ccc' }};">
-                                                        {{ $color->name }}
-                                                    </span>
-                                                </label>
-                                            @endforeach
+                                <!-- Variant Colors -->
+                                    @if($product->variants->pluck('color')->filter()->count())
+                                        <div class="mb-2">
+                                            <label class="form-label">Colors:</label>
+                                            <div class="selectgroup">
+                                                @foreach($product->variants->pluck('color')->filter()->unique('id') as $color)
+                                                    <label class="selectgroup-item">
+                                                        <input type="radio" name="variant_color" value="{{ $color->id }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
+                                                        <span class="selectgroup-button" style="background-color: {{ $color->hex_code ?? '#ccc' }}; color: #fff;">{{ $color->name }}</span>
+                                                    </label>
+                                                @endforeach
+                                            </div>
                                         </div>
-                                    </div>
                                     @endif
 
 
