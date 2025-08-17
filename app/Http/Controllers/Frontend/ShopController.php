@@ -9,41 +9,41 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    /**
-     * Shop page → Show only parent categories
-     */
+    // Shop main page → Show only parent categories
     public function index()
     {
-        $categories = Category::with('children') // eager load children
-            ->whereNull('parent_id') // only parent categories
+        $categories = Category::whereNull('parent_id')
             ->orderBy('name')
             ->get();
 
         return view('frontend.shop.index', compact('categories'));
     }
 
-    /**
-     * Category page → Show child categories or products
-     */
-    public function category(string $slug)
+    // Parent category page → Show its subcategories
+    public function parentCategory(string $slug)
     {
         $category = Category::where('slug', $slug)
-            ->with('children') // eager load children for check
+            ->whereNull('parent_id') // must be a parent
             ->firstOrFail();
 
-        if ($category->children->isNotEmpty()) {
-            // Parent category → show its child categories
-            return view('frontend.shop.category', [
-                'category' => $category,
-                'subcategories' => $category->children
-            ]);
-        }
+        $subcategories = $category->children()->orderBy('name')->get();
 
-        // Child category → show products
-        $products = Product::where('category_id', $category->id)
+        return view('frontend.shop.category', compact('category', 'subcategories'));
+    }
+
+    // Subcategory page → Show its products
+    public function subcategory(string $parentSlug, string $slug)
+    {
+        $subcategory = Category::where('slug', $slug)
+            ->whereHas('parent', function ($q) use ($parentSlug) {
+                $q->where('slug', $parentSlug);
+            })
+            ->firstOrFail();
+
+        $products = Product::where('category_id', $subcategory->id)
             ->latest()
             ->paginate(12);
 
-        return view('frontend.shop.products', compact('category', 'products'));
+        return view('frontend.shop.products', compact('subcategory', 'products'));
     }
 }
