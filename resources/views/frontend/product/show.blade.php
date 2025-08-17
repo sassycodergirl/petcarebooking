@@ -47,7 +47,7 @@
 
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="product-information content-sec">
+                    <div class="product-information content-sec p-3 p-md-5">
                         <h1 class="product-title">{{ $product->name }}</h1>
                         <p class="h4">₹{{ $product->price }}</p>
 
@@ -116,7 +116,7 @@
 
                        
                     </div>
-                    <div class="product-meta mt-5 content-sec">
+                    <div class="product-meta mt-5 content-sec p-3 p-md-5">
                         <div class="accordion" id="productAccordion">
 
                             <!-- Description -->
