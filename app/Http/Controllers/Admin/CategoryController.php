@@ -37,7 +37,7 @@ class CategoryController extends Controller
             'slug' => 'nullable|string|max:255|unique:categories,slug',
             'description' => 'nullable|string',
             'parent_id' => 'nullable|exists:categories,id',
-            'is_food' => 'sometimes|boolean', // new validation
+            'is_food' => 'sometimes', // new validation
         ]);
 
         Category::create([
@@ -88,7 +88,7 @@ class CategoryController extends Controller
             'slug' => 'nullable|string|max:255|unique:categories,slug,' . $category->id,
             'description' => 'nullable|string',
             'parent_id' => 'nullable|exists:categories,id',
-            'is_food' => 'sometimes|boolean', // new validation
+            'is_food' => 'sometimes', // new validation
         ]);
 
         $category->update([
