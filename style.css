@@ -5515,7 +5515,7 @@ blockquote {
 	}
 
 	.prdct-list a {
-		font-size: 10px;
+		font-size: 12px;
 		text-align: center;
 	}
 
@@ -6209,5 +6209,19 @@ blockquote {
 
 .tablist .nav-pills .nav-link.active{
 	 background-color: var(--bg-orange) !important;
+}
+
+.product-title{
+	color: #151515;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 124.9%;
+}
+@media screen and (max-width: 767px) {
+    .product-title {
+        font-size: 14px;
+        font-weight: 400;
+    }
 }
 /*added by sudipa*/
