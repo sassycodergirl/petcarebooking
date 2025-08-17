@@ -83,7 +83,7 @@
                                             <div class="selectgroup selectgroup-pills color-pills">
                                                 @foreach($product->variants->pluck('color')->filter()->unique('id') as $color)
                                                     <label class="selectgroup-item">
-                                                        <input type="checkbox" name="variant_color" value="{{ $color->id }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
+                                                        <input type="checkbox" name="variant_color" value="{{ $color->id }}" data-variant-id="{{ $variant->id }}" class="selectgroup-input variant-select" {{ $loop->first ? 'checked' : '' }}>
                                                         <span class="selectgroup-button" style="background-color: {{ $color->hex_code ?? '#ccc' }}; color: #fff;"></span>
                                                     </label>
                                                 @endforeach
