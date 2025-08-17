@@ -6178,6 +6178,7 @@ blockquote {
 /* WebKit browsers (Chrome, Edge, Safari) */
 .sticky-product-cat::-webkit-scrollbar {
     width: 10px; /* scrollbar width */
+	height: 50px;
 }
 
 .sticky-product-cat::-webkit-scrollbar-track {
