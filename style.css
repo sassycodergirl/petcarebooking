@@ -6146,4 +6146,8 @@ blockquote {
     font-weight: 700;
     color: #151515;
 }
+.remove-item{
+	background: none;
+    border: none;
+}
 /*added by sudipa*/
