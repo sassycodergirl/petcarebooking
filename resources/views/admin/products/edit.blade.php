@@ -238,7 +238,7 @@
         </div>
 
        <div class="form-group" id="ingredients-group" style="display: none;">
-            <label for="ingredients">Ingredients</label>
+            <h4>Product Ingredients</h4>
             <textarea name="ingredients" id="ingredients" class="form-control" rows="4">{{ old('ingredients', $product->ingredients ?? '') }}</textarea>
         </div>
 
