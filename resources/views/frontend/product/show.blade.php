@@ -98,19 +98,19 @@
                         @endif
 
                     
-                         <div class="d-flex gap-3">
-                             <div class="pd-add-to-cart-wrap mb-3">
+                         <div class="d-flex gap-3 align-items-center">
+                             <div class="pd-add-to-cart-wrap">
                                 <button class="qty-minus" data-id="{{ $product->id }}">-</button>
                                 <input type="text" value="1" id="product-qty" readonly>
                                 <button class="qty-plus" data-id="{{ $product->id }}">+</button>
                             </div>
 
-                            <button class="add-to-bag cd-button" 
+                            <button class="add-to-bag cd-button product-page-btn" 
                                     data-id="{{ $product->id }}" 
                                     data-name="{{ $product->name }}" 
                                     data-price="{{ $product->price }}" 
                                     data-image="{{ asset('public/' . $product->image) }}">
-                                <img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart
+                                 Add to Cart
                             </button>
                          </div>   
 
