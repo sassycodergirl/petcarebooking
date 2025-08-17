@@ -22,7 +22,25 @@ class ShopController extends Controller
     
 
       // Category page (works for both parent & subcategory)
-    public function category(string $slug)
+    // public function category(string $slug)
+    // {
+    //     $category = Category::where('slug', $slug)->firstOrFail();
+
+    //     // If it has children → show subcategories
+    //     if ($category->children()->count() > 0) {
+    //         $subcategories = $category->children()->orderBy('name')->get();
+    //         return view('frontend.shop.category', compact('category', 'subcategories'));
+    //     }
+
+    //     // If no children → show products
+    //     $products = Product::where('category_id', $category->id)
+    //         ->latest()
+    //         ->paginate(12);
+
+    //     return view('frontend.shop.products', compact('category', 'products'));
+    // }
+
+    public function category(Request $request, string $slug)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
 
@@ -32,11 +50,27 @@ class ShopController extends Controller
             return view('frontend.shop.category', compact('category', 'subcategories'));
         }
 
-        // If no children → show products
-        $products = Product::where('category_id', $category->id)
-            ->latest()
-            ->paginate(12);
+        // Base query
+        $query = Product::where('category_id', $category->id)->latest();
 
+        // If AJAX filter request
+        if ($request->ajax() && $request->has('attributes')) {
+            $attributes = explode(',', $request->attributes);
+
+            if (!empty($attributes)) {
+                $query->whereHas('attributes', function($q) use ($attributes) {
+                    $q->whereIn('attributes.id', $attributes);
+                });
+            }
+
+            $products = $query->get();
+
+            return view('frontend.shop.partials.products-grid', compact('products'));
+        }
+
+        // Normal page load
+        $products = $query->paginate(12);
         return view('frontend.shop.products', compact('category', 'products'));
     }
+
 }

@@ -1,4 +1,5 @@
 @include('partials.header')
+
 <section class="banner inner-banner">
     <div class="js-product-banner">
         <div class="product-banner-col">
@@ -15,6 +16,20 @@
 </section>
 
 <div class="container py-5">
+
+    <!-- Filter Pills -->
+    <div class="mb-4">
+        <h5>Filter by:</h5>
+        <div class="btn-group" role="group" aria-label="Attributes">
+            @foreach(\App\Models\Attribute::all() as $attribute)
+                <input type="checkbox" class="filter-attribute" value="{{ $attribute->id }}" id="attr-{{ $attribute->id }}">
+                <label for="attr-{{ $attribute->id }}" class="btn btn-outline-primary">
+                    {{ $attribute->name }}
+                </label>
+            @endforeach
+        </div>
+    </div>
+
     <div class="row">
         <!-- Sidebar with siblings (other subcategories of parent) -->
         <div class="col-md-3">
@@ -36,29 +51,9 @@
         <div class="col-md-9">
             <h2 class="mb-4">{{ $category->name }}</h2>
 
-            @if($products->count())
-                <div class="row">
-                    @foreach($products as $product)
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100 shadow-sm">
-                                @if($product->image)
-                                    <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
-                                @endif
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">{{ $product->name }}</h5>
-                                    <p class="card-text">₹{{ $product->price }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                <div class="mt-3">
-                    {{ $products->links() }}
-                </div>
-            @else
-                <p>No products available in this category.</p>
-            @endif
+            <div id="productsGrid">
+                @include('frontend.shop.partials.products-grid', ['products' => $products])
+            </div>
         </div>
     </div>
 </div>
