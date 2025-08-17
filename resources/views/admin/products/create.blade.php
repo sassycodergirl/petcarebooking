@@ -107,32 +107,10 @@
 
             <br><br>
 
-                <!-- <div class="col-12 col-md-4">
-                    <div class="mb-3">
-                        <label for="stock_quantity" class="form-label">Product Specification</label>
-                         <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="attributeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Select Specification
-                            </button>
-                            <ul class="dropdown-menu p-2" aria-labelledby="attributeDropdown" style="max-height: 200px; overflow-y: auto;">
-                                @foreach(\App\Models\Attribute::all() as $attribute)
-                                    <li class="form-check">
-                                        <input class="form-check-input" type="checkbox" 
-                                            name="attributes[]" 
-                                            value="{{ $attribute->id }}" 
-                                            id="attr-{{ $attribute->id }}">
-                                        <label class="form-check-label" for="attr-{{ $attribute->id }}">
-                                            {{ $attribute->name }}
-                                        </label>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div> -->
+             
 
                 <div class="form-group">
-                    <label class="form-label">Product Attributes</label>
+                    <h4>Product Attributes</h4>
                     <div class="selectgroup selectgroup-pills">
                         @foreach(\App\Models\Attribute::all() as $attribute)
                             <label class="selectgroup-item">
