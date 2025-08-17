@@ -135,7 +135,7 @@
                         <input type="text" value="1" class="qty" />
                         <button class="qty-plus"><i class="fa-solid fa-plus"></i></button>
                     </div>
-                    <a href="#" class="add-to-bag-sm"><span><img src="{{asset('images/bag-icon.svg')}}" alt=""></span>Add to Bag</a>
+                    <a href="#" class="add-to-bag-sm"><span><img src="{{asset('images/bag-icon.svg')}}" alt=""></span>Checkout</a>
                 </div>
             </div>
         </div>
@@ -149,7 +149,40 @@
     <script src="{{asset('js/common.js')}}"></script>
 
 
+<script>
+    document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const productId = this.dataset.id;
+        const quantity = 1; // default 1, you can update if you have quantity input
 
+        fetch('{{ route("cart.add") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                quantity: quantity
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success) {
+                // Update cart drawer count or contents
+                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+                // Optional: open cart drawer automatically
+                document.querySelector('.popup-overlay').classList.add('active');
+            } else {
+                alert('Something went wrong');
+            }
+        })
+        .catch(err => console.log(err));
+    });
+});
+
+</script>
 
 
 </body>

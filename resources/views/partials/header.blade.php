@@ -51,7 +51,7 @@
                         <ul>
                             <li><a class="btn-opens" href="javascript:void(0)"><img src="{{asset('images/search.svg')}}" alt=""></a>
                                 <span class="btn-closes"><i class="fa-solid fa-xmark"></i></span></li>
-                            <li><a href="#" class="cd-button"><img src="{{asset('images/card-icon.svg')}}" alt=""></a></li>
+                            <li><a href="#" class="cd-button"><img src="{{asset('images/card-icon.svg')}}" alt=""><span class="cd-button-cart-count">{{ session('cart') ? array_sum(array_column(session('cart'), 'quantity')) : 0 }}</span></a></li>
                             <li><a href="{{ route('login') }}"><img src="{{asset('images/user.svg')}}" alt=""></a></li>
                         </ul>
                     </div>

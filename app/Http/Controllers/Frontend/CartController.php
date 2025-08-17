@@ -1,70 +1,77 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CartController extends Controller
 {
+    // Show cart page (optional)
     public function index()
     {
-        $cart = session('cart', []);
-        $totals = $this->totals($cart);
-        return view('frontend.cart.index', compact('cart', 'totals'));
+        $cart = session()->get('cart', []);
+        return view('frontend.cart.index', compact('cart'));
     }
 
-    public function add(Request $request, int $id)
+    // Add product to cart
+    public function add(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        $qty = max(1, (int)$request->input('qty', 1));
 
-        $cart = session('cart', []);
+        $cart = session()->get('cart', []);
 
-        if (isset($cart[$id])) {
-            $cart[$id]['qty'] += $qty;
+        $quantity = $request->quantity ?? 1;
+
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity'] += $quantity;
         } else {
             $cart[$id] = [
-                'id'    => $product->id,
-                'name'  => $product->name,
-                'price' => (float)$product->price,
-                'qty'   => $qty,
-                'image' => $product->image, // store relative path
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'image' => $product->image,
+                'quantity' => $quantity
             ];
         }
 
-        session(['cart' => $cart]);
-        return redirect()->route('cart.index')->with('success', 'Added to cart');
+        session()->put('cart', $cart);
+
+        return response()->json([
+            'success' => true,
+            'cart_count' => array_sum(array_column($cart, 'quantity')),
+        ]);
     }
 
-    public function update(Request $request, int $id)
+    // Update cart quantity
+    public function update(Request $request, $id)
     {
-        $qty = max(1, (int)$request->input('qty', 1));
-        $cart = session('cart', []);
-        if (isset($cart[$id])) {
-            $cart[$id]['qty'] = $qty;
-            session(['cart' => $cart]);
+        $cart = session()->get('cart', []);
+
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity'] = $request->quantity;
+            session()->put('cart', $cart);
         }
-        return back();
+
+        return response()->json([
+            'success' => true,
+            'cart_count' => array_sum(array_column($cart, 'quantity')),
+        ]);
     }
 
-    public function remove(int $id)
+    // Remove product from cart
+    public function remove($id)
     {
-        $cart = session('cart', []);
-        unset($cart[$id]);
-        session(['cart' => $cart]);
-        return back();
-    }
+        $cart = session()->get('cart', []);
 
-    private function totals(array $cart): array
-    {
-        $subtotal = 0;
-        foreach ($cart as $line) {
-            $subtotal += $line['price'] * $line['qty'];
+        if(isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
         }
-        $shipping = 0; // customize later
-        $total    = $subtotal + $shipping;
-        return compact('subtotal', 'shipping', 'total');
+
+        return response()->json([
+            'success' => true,
+            'cart_count' => array_sum(array_column($cart, 'quantity')),
+        ]);
     }
 }
