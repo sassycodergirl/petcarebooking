@@ -33,7 +33,7 @@
                         <select name="category_id" class="form-select" required>
                             <option value="">Select category</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" data-is-food="{{ $category->is_food ? '1' : '0' }} {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                                   <option value="{{ $category->id }}"  data-is-food="{{ $category->is_food ? '1' : '0' }}" {{ old('category_id')==$category->id ? 'selected':'' }}>
                                     {{ $category->name }}
                                 </option>
                             @endforeach
