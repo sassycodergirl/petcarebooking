@@ -5776,9 +5776,11 @@ blockquote {
 	.trial-col-left .why-subtitle,
 	.team-col-cont,
 	.community-rgt-col,
-	.daycare-card-cont,
-	.prdct-col-menu-wrap h1 {
+	.daycare-card-cont {
 		text-align: center;
+	}
+	.prdct-col-menu-wrap h1 {
+		text-align: start;
 	}
 
 	.prd-list {
