@@ -39,20 +39,30 @@
 
 <div class="container py-5">
 
-    <!-- Filter Pills -->
-    @if($category->is_food)
-        <div class="mb-4">
-            <h5>Filter by:</h5>
-            <div class="btn-group" role="group" aria-label="Attributes">
-                @foreach(\App\Models\Attribute::all() as $attribute)
-                    <input type="checkbox" class="filter-attribute" value="{{ $attribute->id }}" id="attr-{{ $attribute->id }}">
-                    <label for="attr-{{ $attribute->id }}" class="btn btn-outline-primary">
-                        {{ $attribute->name }}
-                    </label>
-                @endforeach
-            </div>
+<div class="row">
+        <div class="col-md-3">
+              <h5 class="mb-4">Explore {{ $category->name }}</h5>
+       
         </div>
-    @endif
+        <div class="col-md-9">
+              <!-- Filter Pills -->
+                @if($category->is_food)
+                    <div class="mb-4">
+                        <h5>Filter by:</h5>
+                        <div class="btn-group" role="group" aria-label="Attributes">
+                            @foreach(\App\Models\Attribute::all() as $attribute)
+                                <input type="checkbox" class="filter-attribute" value="{{ $attribute->id }}" id="attr-{{ $attribute->id }}">
+                                <label for="attr-{{ $attribute->id }}" class="btn btn-outline-primary">
+                                    {{ $attribute->name }}
+                                </label>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+        </div>
+    </div>
+
+  
 
     <div class="row">
         <!-- Sidebar with parent & subcategories -->
@@ -78,7 +88,7 @@
 
         <!-- Products list -->
         <div class="col-md-9">
-            <h2 class="mb-4">Explore {{ $category->name }}</h2>
+           
 
             <div id="productsGrid">
                 @if($products->count())
