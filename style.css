@@ -2401,6 +2401,7 @@ textarea::placeholder {
 	margin-left: auto;
 	padding-right: 10px;
 	background-color: var(--bg-white);
+	position: relative;
 }
 
 .popup-header {
