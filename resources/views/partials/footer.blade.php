@@ -149,32 +149,7 @@
     <script src="{{asset('js/common.js')}}"></script>
 
 
- <script>
-document.querySelectorAll('.filter-attribute').forEach(el => {
-    el.addEventListener('change', function() {
-        let selectedAttributes = Array.from(document.querySelectorAll('.filter-attribute:checked'))
-                                    .map(el => el.value);
 
-        let categorySlug = "{{ $category->slug }}";
-
-        // If no attribute is selected, just return all products
-        let query = '';
-        if(selectedAttributes.length > 0) {
-            query = '?attributes=' + selectedAttributes.join(',');
-        }
-
-        let url = "{{ url('/collections') }}/" + categorySlug + "?attributes=" + selectedAttributes.join(',');
-        fetch(url, {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
-        })
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById('productsGrid').innerHTML = html;
-        });
-    });
-});
-
-</script>
 
 
 </body>
