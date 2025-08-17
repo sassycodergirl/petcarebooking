@@ -74,7 +74,7 @@
       <!-- Sidebar with categories -->
         <div class="col-md-3">
             <!-- <h4 class="mb-3">{{ $category->parent ? $category->parent->name : $category->name }}</h4> -->
-            <ul class="list-group">
+            <ul class="list-group prdct-list">
                 {{-- Always show parent category as first item --}}
                 @if($category->parent)
                     <li class="list-group-item {{ request()->url() == route('shop.category', $category->parent->slug) ? 'active' : '' }}">
