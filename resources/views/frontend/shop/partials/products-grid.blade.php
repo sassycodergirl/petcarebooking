@@ -7,7 +7,7 @@
                                     <a href="#" class="product-card-img">
                                     <div class="product-img">
 
-                                        <img src="{{ asset('public/' . $product->image) }}" class="img-fluid " alt="{{ $product->name }}">
+                                        <img src="{{ $product->image }}" class="img-fluid " alt="{{ $product->name }}">
                                     </div>
                                     </a>
                                     @endif
