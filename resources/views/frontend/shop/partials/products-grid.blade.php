@@ -21,5 +21,5 @@
         </div>
     @endif
 @else
-    <p>No products available in this category.</p>
+    <p>No products found for selected attributes.</p>
 @endif

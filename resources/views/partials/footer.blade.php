@@ -149,24 +149,25 @@
     <script src="{{asset('js/common.js')}}"></script>
 
 
-   <script>
-    document.querySelectorAll('.filter-attribute').forEach(el => {
-        el.addEventListener('change', function() {
-            let selectedAttributes = Array.from(document.querySelectorAll('.filter-attribute:checked'))
-                                        .map(el => el.value);
+ <script>
+document.querySelectorAll('.filter-attribute').forEach(el => {
+    el.addEventListener('change', function() {
+        let selectedAttributes = Array.from(document.querySelectorAll('.filter-attribute:checked'))
+                                    .map(el => el.value);
 
-            let categorySlug = "{{ $category->slug }}";
+        let categorySlug = "{{ $category->slug }}";
 
-            fetch(`/collections/${categorySlug}?attributes=` + selectedAttributes.join(','), {
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-            })
-            .then(res => res.text())
-            .then(html => {
-                document.getElementById('productsGrid').innerHTML = html;
-            });
+        fetch(`/collections/${categorySlug}?attributes=${selectedAttributes.join(',')}`, {
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('productsGrid').innerHTML = html;
         });
     });
-    </script>
+});
+</script>
+
 
 </body>
 
