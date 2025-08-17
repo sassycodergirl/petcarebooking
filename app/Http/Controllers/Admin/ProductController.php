@@ -53,6 +53,7 @@ class ProductController extends Controller
             'status' => 'required|boolean',
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|string',
+            'ingredients' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
             'gallery.*' => 'nullable|image|max:2048', // Product gallery
              // variants (optional)
@@ -67,6 +68,7 @@ class ProductController extends Controller
 
         $data = $request->except('variants');
         $data['slug'] = Str::slug($request->name);
+        $data['ingredients'] = $request->input('ingredients'); 
 
         // if ($request->hasFile('image')) {
         //     $data['image'] = $request->file('image')->store('products', 'public');
@@ -180,6 +182,7 @@ class ProductController extends Controller
         'attributes.*' => 'exists:attributes,id',
         'category_id' => 'required|exists:categories,id',
         'description' => 'nullable|string',
+        'ingredients' => 'nullable|string',
         'image' => 'nullable|image|max:2048',
         'gallery.*' => 'nullable|image|max:2048', 
         'variants' => 'array',
@@ -195,6 +198,7 @@ class ProductController extends Controller
     // Update main product
     $data = $request->except('variants');
     $data['slug'] = Str::slug($request->name);
+    $data['ingredients'] = $request->input('ingredients'); 
 
     if ($request->hasFile('image')) {
         if ($product->image && file_exists(public_path($product->image))) {

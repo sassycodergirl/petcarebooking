@@ -31,7 +31,7 @@
                             <select name="category_id" class="form-select" id="category_id" required>
                                 <option value="">Select category</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" {{ old('category_id')==$category->id ? 'selected':'' }}>
+                                    <option value="{{ $category->id }}"  data-is-food="{{ $category->is_food ? '1' : '0' }}" {{ old('category_id')==$category->id ? 'selected':'' }}>
                                         {{ $category->name }}
                                     </option>
                                 @endforeach
@@ -131,6 +131,12 @@
                 <textarea name="description" class="form-control" id="description" rows="4">{{ old('description') }}</textarea>
             </div>
 
+            <div class="form-group" id="ingredients-group" style="display: none;">
+                <label for="ingredients">Ingredients</label>
+                <textarea name="ingredients" id="ingredients" class="form-control" rows="4">{{ old('ingredients', $product->ingredients ?? '') }}</textarea>
+            </div>
+
+
 
            
 
@@ -146,3 +152,20 @@
 @include('admin.partials.dash-footer')
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const categorySelect = document.getElementById('category_id');
+    const ingredientsGroup = document.getElementById('ingredients-group');
+
+    function toggleIngredients() {
+        const selectedOption = categorySelect.selectedOptions[0];
+        const isFood = selectedOption.dataset.isFood === '1';
+        ingredientsGroup.style.display = isFood ? 'block' : 'none';
+    }
+
+    categorySelect.addEventListener('change', toggleIngredients);
+
+    // Run on page load
+    toggleIngredients();
+});
+</script>

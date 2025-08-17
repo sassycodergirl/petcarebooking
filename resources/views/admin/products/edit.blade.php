@@ -33,7 +33,7 @@
                         <select name="category_id" class="form-select" required>
                             <option value="">Select category</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                                <option value="{{ $category->id }}" data-is-food="{{ $category->is_food ? '1' : '0' }} {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
                                     {{ $category->name }}
                                 </option>
                             @endforeach
@@ -234,6 +234,12 @@
             <h4>Product Description</h4>
             <textarea name="description" class="form-control" rows="4">{{ old('description', $product->description) }}</textarea>
         </div>
+
+       <div class="form-group" id="ingredients-group" style="display: none;">
+            <label for="ingredients">Ingredients</label>
+            <textarea name="ingredients" id="ingredients" class="form-control" rows="4">{{ old('ingredients', $product->ingredients ?? '') }}</textarea>
+        </div>
+
 
        
 
