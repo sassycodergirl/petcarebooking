@@ -1,6 +1,6 @@
 @include('partials.header')
 
-<section class="banner inner-banner">
+<section class="banner inner-banner container px-2 px-md-5">
     <div class="js-product-banner">
         <div class="product-banner-col">
             <div class="product-banner-image">
@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
             <!-- LEFT SIDEBAR - PARENT CATEGORIES AS TABS -->
-            <div class="col-lg-3 prdct-col-menu">
+            <div class="col-3 col-md-3 col-lg-3 prdct-col-menu">
                 <div class="prdct-col-menu-wrap">
                     <h1>Product Categories</h1>
                     <div class="prdct-list">
@@ -42,7 +42,7 @@
             </div>
 
             <!-- RIGHT CONTENT - TAB PANES -->
-            <div class="col-lg-9 prdct-col-list">
+            <div class="col-9 col-md-9 col-lg-9 prdct-col-list">
                 <div class="tab-content" id="categoryTabsContent">
 
                     {{-- ALL TAB (shows all subcategories from all parents) --}}
@@ -50,7 +50,7 @@
                         <div class="row">
                             @foreach($categories as $parent)
                                 @foreach($parent->children as $subcategory)
-                                    <div class="col-lg-4 col-sm-6">
+                                    <div class="col-6 col-md-4 col-lg-4 col-sm-6">
                                         <div class="product-card-col">
                                             <a href="{{ route('shop.category', $subcategory->slug) }}" class="product-card-img">
                                                 @if($subcategory->image)
@@ -76,7 +76,7 @@
                         <div class="tab-pane fade" id="cat-{{ $parent->id }}" role="tabpanel">
                             <div class="row">
                                 @forelse($parent->children as $subcategory)
-                                    <div class="col-lg-4 col-sm-6">
+                                    <div class="col-6 col-md-4 col-lg-4 col-sm-6">
                                         <div class="product-card-col">
                                             <a href="{{ route('shop.category', $subcategory->slug) }}" class="product-card-img">
                                                 @if($subcategory->image)

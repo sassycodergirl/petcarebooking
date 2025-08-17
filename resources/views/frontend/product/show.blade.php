@@ -10,6 +10,12 @@
             <p class="h4">₹{{ $product->price }}</p>
             <p>{{ $product->description ?? 'No description available.' }}</p>
 
+            <div class="pd-add-to-cart-wrap mb-3">
+                <button class="qty-minus" data-id="{{ $product->id }}">-</button>
+                <input type="text" value="1" id="product-qty" readonly>
+                <button class="qty-plus" data-id="{{ $product->id }}">+</button>
+            </div>
+
             <button class="add-to-bag cd-button" 
                     data-id="{{ $product->id }}" 
                     data-name="{{ $product->name }}" 
