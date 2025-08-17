@@ -1,6 +1,6 @@
 @include('partials.header')
 
-<section class="banner inner-banner container px-2 px-md-5">
+<section class="banner inner-banner container px-4 px-md-5">
     <div class="js-product-banner">
         <div class="product-banner-col">
             <div class="product-banner-image">
