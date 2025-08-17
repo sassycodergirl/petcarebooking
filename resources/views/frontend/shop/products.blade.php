@@ -50,7 +50,7 @@
             <!-- Filter Pills -->
              @if($category->isFoodCategory())
             <div class="mb-4">
-                <!-- <h5>Filter by:</h5> -->
+                <h5>Filter by:</h5>
                 <div class="btn-group" role="group" aria-label="Attributes">
                     @foreach(\App\Models\Attribute::all() as $attribute)
                         <input type="checkbox" class="filter-attribute" value="{{ $attribute->id }}" id="attr-{{ $attribute->id }}">
