@@ -24,21 +24,21 @@
                             }
                         @endphp
 
-                        <div class="product-gallery d-flex">
+                        <div class="product-gallery row">
                             <!-- Thumbnails (Left) -->
-                            <div class="gallery-thumbs">
+                            <div class="gallery-thumbs col-md-4">
                                 @foreach($galleryImages as $image)
                                     <div class="thumb-slide">
-                                        <img src="{{ asset('public/' . $image->image) }}" alt="{{ $product->name }}">
+                                        <img class="img-fluid" src="{{ asset('public/' . $image->image) }}" alt="{{ $product->name }}">
                                     </div>
                                 @endforeach
                             </div>
 
                             <!-- Main Slider (Right) -->
-                            <div class="gallery-main">
+                            <div class="gallery-main col-md-8">
                                 @foreach($galleryImages as $image)
                                     <div class="main-slide">
-                                        <img src="{{ asset('public/' . $image->image) }}" alt="{{ $product->name }}">
+                                        <img class="img-fluid" src="{{ asset('public/' . $image->image) }}" alt="{{ $product->name }}">
                                     </div>
                                 @endforeach
                             </div>

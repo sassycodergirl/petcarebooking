@@ -6301,9 +6301,9 @@ blockquote {
 .gallery-thumbs .slick-current img {
     border-color: #000; /* highlight selected thumbnail */
 }
-.gallery-main {
+/* .gallery-main {
     flex: 1;
-}
+} */
 .gallery-main .main-slide img {
     width: 100%;
 }
