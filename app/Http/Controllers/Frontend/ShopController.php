@@ -19,57 +19,48 @@ class ShopController extends Controller
         return view('frontend.shop.index', compact('categories'));
     }
 
-    
+    public function category(Request $request, string $slug)
+    {
+        $category = Category::where('slug', $slug)->firstOrFail();
 
+        // Get subcategories if any
+        $subcategories = $category->children()->orderBy('name')->get();
 
-       
-
-
-        public function category(Request $request, string $slug)
-        {
-            $category = Category::where('slug', $slug)->firstOrFail();
-
-            // Get subcategories if any
-            $subcategories = $category->children()->orderBy('name')->get();
-
-            // Determine base query
-            if ($subcategories->count() > 0) {
-                // If parent, get all products under child categories
-                $query = Product::whereIn('category_id', $subcategories->pluck('id'))->latest();
-            } else {
-                // If no children, get products in this category
-                $query = Product::where('category_id', $category->id)->latest();
-            }
-
-            // AJAX filter request
-            if ($request->ajax()) {
-                $attributes = $request->input('attributes'); // get the input safely
-
-                if (!empty($attributes)) {
-                    $attributes = is_array($attributes) ? $attributes : explode(',', $attributes);
-
-                    $query->whereHas('attributes', function($q) use ($attributes) {
-                        $q->whereIn('attributes.id', $attributes);
-                    });
-                }
-
-                $products = $query->get();
-                return view('frontend.shop.partials.products-grid', compact('products'));
-            }
-
-            // Normal page load
-            // $products = $query->paginate(12);
-            $products = $query->get();
-            // Ensure each product has an image
-            foreach ($products as $product) {
-                $product->image = $product->image ? asset('public/' . $product->image) : asset('images/pd1.png');
-            }
-
-            return view('frontend.shop.category', compact('category', 'subcategories', 'products'));
+        // Determine base query
+        if ($subcategories->count() > 0) {
+            // If parent, get all products under child categories
+            $query = Product::whereIn('category_id', $subcategories->pluck('id'))->latest();
+        } else {
+            // If no children, get products in this category
+            $query = Product::where('category_id', $category->id)->latest();
         }
 
+        // AJAX filter request
+        if ($request->ajax()) {
+            $attributes = $request->input('attributes'); // get the input safely
 
+            if (!empty($attributes)) {
+                $attributes = is_array($attributes) ? $attributes : explode(',', $attributes);
 
+                $query->whereHas('attributes', function($q) use ($attributes) {
+                    $q->whereIn('attributes.id', $attributes);
+                });
+            }
+
+            $products = $query->get();
+            return view('frontend.shop.partials.products-grid', compact('products'));
+        }
+
+        // Normal page load
+        // $products = $query->paginate(12);
+        $products = $query->get();
+        // Ensure each product has an image
+        foreach ($products as $product) {
+            $product->image = $product->image ? asset('public/' . $product->image) : asset('images/pd1.png');
+        }
+
+        return view('frontend.shop.category', compact('category', 'subcategories', 'products'));
+    }
 
 
 }
