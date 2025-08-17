@@ -10,6 +10,47 @@
                     <div class="product-information">
                         <h1 class="product-title">{{ $product->name }}</h1>
                         <p class="h4">₹{{ $product->price }}</p>
+
+                        @if($product->variants->count())
+                            <div class="product-variants mb-3">
+
+                                @php
+                                    $sizes = $product->variants->pluck('size')->filter()->unique();
+                                    $colors = $product->variants->pluck('color.name')->filter()->unique();
+                                @endphp
+
+                                <!-- {{-- Sizes --}} -->
+                                @if($sizes->count())
+                                    <div class="mb-2">
+                                        <label class="form-label">Size:</label>
+                                        <div class="selectgroup">
+                                            @foreach($sizes as $size)
+                                                <label class="selectgroup-item">
+                                                    <input type="radio" name="variant_size" value="{{ $size }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
+                                                    <span class="selectgroup-button">{{ $size }}</span>
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+
+                                <!-- {{-- Colors --}} -->
+                                @if($colors->count())
+                                    <div class="mb-2">
+                                        <label class="form-label">Color:</label>
+                                        <div class="selectgroup">
+                                            @foreach($colors as $color)
+                                                <label class="selectgroup-item">
+                                                    <input type="radio" name="variant_color" value="{{ $color }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
+                                                    <span class="selectgroup-button">{{ $color }}</span>
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
+
                     
                          <div class="d-flex gap-3">
                              <div class="pd-add-to-cart-wrap mb-3">
