@@ -5,6 +5,10 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductVariantGalleryController;
 use App\Http\Controllers\Admin\ProductGalleryController;
+use App\Http\Controllers\Frontend\ShopController as FrontShopController;
+use App\Http\Controllers\Frontend\ProductController as FrontProductController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,11 +64,32 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/about-us', function () { return view('about');})->name('about');
-Route::get('/shop', function () { return view('shop');})->name('shop');
+// Route::get('/shop', function () { return view('shop');})->name('shop');
 Route::get('/community', function () { return view('community');})->name('community');
 Route::get('/events', function () { return view('events');})->name('events');
 Route::get('/contact-us', function () { return view('contact');})->name('contact');
 Route::get('/blog', function () { return view('blog');})->name('blog');
 Route::get('/booking-portal', function () { return view('booking');})->name('booking');
 
+
+// PUBLIC SHOP
+Route::get('/shop', [FrontShopController::class, 'index'])->name('shop.index');
+Route::get('/category/{slug}', [FrontShopController::class, 'category'])->name('shop.category');
+Route::get('/product/{slug}', [FrontProductController::class, 'show'])->name('product.show');
+
+// CART (guest + auth)
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+
+// CHECKOUT (auth only)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout/place-order', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/order/success/{id}', function ($id) {
+        return view('frontend.checkout.success', ['orderId' => $id]);
+    })->name('order.success');
+});
 

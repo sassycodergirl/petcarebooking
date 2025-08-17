@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Category;
+
+class ShopController extends Controller
+{
+    public function index()
+    {
+        $categories = Category::orderBy('name')->get();
+        $products   = Product::latest()->paginate(12);
+
+        return view('frontend.shop.index', compact('categories', 'products'));
+    }
+
+    public function category(string $slug)
+    {
+        $categories = Category::orderBy('name')->get();
+        $category   = Category::where('slug', $slug)->firstOrFail();
+        $products   = Product::where('category_id', $category->id)->latest()->paginate(12);
+
+        return view('frontend.shop.index', compact('categories', 'products', 'category'));
+    }
+}
