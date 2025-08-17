@@ -3,10 +3,10 @@
     <div class="py-5 product-container">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-7">
                     <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-5">
                     <div class="product-information">
                         <h1 class="product-title">{{ $product->name }}</h1>
                         <p class="h4">₹{{ $product->price }}</p>
