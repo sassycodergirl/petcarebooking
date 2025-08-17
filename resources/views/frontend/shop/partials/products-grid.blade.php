@@ -15,7 +15,7 @@
                                         <h3><a href="#">{{ $product->name }}</a></h3>
                                        
                                         <p class="card-text">₹{{ $product->price }}</p>
-                                        <button class="add-to-bag cd-button"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
+                                        <button class="add-to-bag cd-button"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
