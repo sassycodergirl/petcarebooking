@@ -85,11 +85,19 @@ Route::get('/collections/{slug}', [ShopController::class, 'category'])->name('sh
 // Route::get('/collections/{parent}/{slug}', [FrontShopController::class, 'subcategory'])->name('shop.subcategory');
 
 // CART (guest + auth)
+// Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+// Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+// Route::get('/cart/items', [CartController::class, 'getItems'])->name('cart.items');
+// Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+// Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+// CART (guest + auth)
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart/items', [CartController::class, 'getItems'])->name('cart.items');
 Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart/items', [CartController::class, 'items'])->name('cart.items');
+
 
 
 
