@@ -7,7 +7,7 @@
                     <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="product-info">
+                    <div class="product-information">
                         <h1 class="product-title">{{ $product->name }}</h1>
                         <p class="h4">₹{{ $product->price }}</p>
                     
