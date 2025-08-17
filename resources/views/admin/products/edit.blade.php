@@ -59,14 +59,25 @@
              <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <label for="stock_quantity" class="form-label">Product Attributes</label>
-                        <select name="attributes[]" multiple class="form-select">
-                            @foreach(\App\Models\Attribute::all() as $attribute)
-                                <option value="{{ $attribute->id }}"
-                                    {{ $product->attributes->contains($attribute->id) ? 'selected' : '' }}>
-                                    {{ $attribute->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="attributeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Select Attributes
+                            </button>
+                            <ul class="dropdown-menu p-2" aria-labelledby="attributeDropdown" style="max-height: 200px; overflow-y: auto;">
+                                @foreach(\App\Models\Attribute::all() as $attribute)
+                                    <li class="form-check">
+                                        <input class="form-check-input" type="checkbox" 
+                                            name="attributes[]" 
+                                            value="{{ $attribute->id }}" 
+                                            id="attr-{{ $attribute->id }}"
+                                            {{ isset($product) && $product->attributes->contains($attribute->id) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="attr-{{ $attribute->id }}">
+                                            {{ $attribute->name }}
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
           
