@@ -1,6 +1,6 @@
 @include('partials.header')
 <section class="banner inner-banner">
-    <div class="container py-5">
+    <div class="container py-5 product-container">
         <div class="row">
             <div class="col-md-6">
                 <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">

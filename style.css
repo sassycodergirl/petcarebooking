@@ -6207,7 +6207,7 @@ blockquote {
     scrollbar-color: var(--bg-orange) #e0e0e0; /* thumb color | track color */
 }
 
-.tablist .nav-pills .nav-link.active{
+.prdct-col-menu-wrap .nav-pills .nav-link.active{
 	 background-color: var(--bg-orange) !important;
 }
 
@@ -6217,6 +6217,9 @@ blockquote {
     font-style: normal;
     font-weight: 600;
     line-height: 124.9%;
+}
+.product-container{
+	    background: #FFF1EB;
 }
 @media screen and (max-width: 767px) {
     .product-title {
