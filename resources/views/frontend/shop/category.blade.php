@@ -115,9 +115,9 @@
                         @endforeach
                     </div>
 
-                    <div class="mt-3">
+                    <!-- <div class="mt-3">
                         {{ $products->links() }}
-                    </div>
+                    </div> -->
                 @else
                     <p>No products available in this category.</p>
                 @endif

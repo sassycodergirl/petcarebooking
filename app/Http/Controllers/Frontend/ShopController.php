@@ -94,7 +94,8 @@ class ShopController extends Controller
             }
 
             // Normal page load
-            $products = $query->paginate(12);
+            // $products = $query->paginate(12);
+            $products = $query->get();
 
             return view('frontend.shop.category', compact('category', 'subcategories', 'products'));
         }
