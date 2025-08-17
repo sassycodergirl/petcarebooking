@@ -2314,7 +2314,11 @@ textarea::placeholder {
 	font-size: 16px;
 	text-transform: uppercase;
 }
-
+@media (max-width: 575px) {
+	.prdct-list a {
+		justify-content: center;
+	}
+}
 .prdct-list a:hover,
 .prdct-list li.active a {
 	background-color: #FEB65B;
@@ -5511,7 +5515,7 @@ blockquote {
 	}
 
 	.prdct-list a {
-		font-size: 11px;
+		font-size: 10px;
 		text-align: center;
 	}
 
