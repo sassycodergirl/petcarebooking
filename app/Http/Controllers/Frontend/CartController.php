@@ -33,7 +33,7 @@ class CartController extends Controller
                 'id' => $product->id,
                 'name' => $product->name,
                 'price' => $product->price,
-                'image' => $product->image ? asset('products/' . $product->image) : asset('images/pd1.png'),
+                'image' => $product->image ? asset($product->image) : asset('images/pd1.png'),
                 'quantity' => $quantity
             ];
         }
