@@ -34,7 +34,7 @@
                     </button>
                     <ul class="navbar-nav ms-auto">
                         <li class="current-menu-item"><a href="{{ route('index') }}">Home</a></li>
-                        <li><a href="{{ route('shop') }}">Products</a></li>
+                        <li><a href="{{ route('shop.index') }}">Products</a></li>
                         <li><a href="{{ route('about') }}">About</a></li>
                         <li><a href="{{ route('community') }}">Community</a></li>
                         <li><a href="{{ route('events') }}">Events</a></li>
