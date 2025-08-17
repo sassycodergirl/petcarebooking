@@ -56,10 +56,10 @@
 
                 <div class="col-12 col-md-4">
                     <div class="mb-3">
-                        <label for="stock_quantity" class="form-label">Product Attributes</label>
+                        <label for="stock_quantity" class="form-label">Product Specification</label>
                          <div class="dropdown">
                             <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="attributeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Select Attributes
+                                Select Specification
                             </button>
                             <ul class="dropdown-menu p-2" aria-labelledby="attributeDropdown" style="max-height: 200px; overflow-y: auto;">
                                 @foreach(\App\Models\Attribute::all() as $attribute)
