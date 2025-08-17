@@ -100,7 +100,7 @@
                     <div class="row">
                         @foreach($products as $product)
                             <div class="col-md-4 mb-4 new-product">
-                                <div class="product-card h-100 shadow-sm">
+                                <div class="product-card-col h-100 shadow-sm">
                                     @if($product->image)
                                     <a href="#" class="product-card-img">
                                     <div class="product-img">
