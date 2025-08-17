@@ -27,4 +27,10 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
+
+    public function isFoodCategory()
+    {
+        // If this category is food, or its parent is food
+        return $this->is_food || ($this->parent && $this->parent->is_food);
+    }
 }

@@ -48,6 +48,7 @@
         </div>
         <div class="col-md-9">
             <!-- Filter Pills -->
+             @if($category->isFoodCategory())
             <div class="mb-4">
                 <!-- <h5>Filter by:</h5> -->
                 <div class="btn-group" role="group" aria-label="Attributes">
@@ -59,6 +60,7 @@
                     @endforeach
                 </div>
             </div>
+            @endif
         </div>
     </div>
 
