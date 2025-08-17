@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -18,18 +19,23 @@ class CartController extends Controller
     {
         $cart = session()->get('cart', []);
 
+        $product = Product::find($id);
+        if(!$product){
+            return response()->json(['success' => false, 'message' => 'Product not found']);
+        }
+
+        $quantity = $request->quantity ?? 1;
+
         if(isset($cart[$id])){
-            $cart[$id]['quantity'] += $request->quantity ?? 1;
+            $cart[$id]['quantity'] += $quantity;
         } else {
-            // Replace this with your actual product fetching logic
-            $product = [
-                'id' => $id,
-                'name' => "Product #$id",
-                'price' => 100, // Example price
-                'image' => asset('images/pd1.png'),
-                'quantity' => $request->quantity ?? 1
+            $cart[$id] = [
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'image' => $product->image ? asset('products/' . $product->image) : asset('images/pd1.png'),
+                'quantity' => $quantity
             ];
-            $cart[$id] = $product;
         }
 
         session(['cart' => $cart]);
@@ -82,10 +88,11 @@ class CartController extends Controller
         ]);
     }
 
-    // Get current cart items (for cart icon click)
+    // Get current cart items (for cart icon / drawer)
     public function items()
     {
         $cart = session()->get('cart', []);
+
         return response()->json([
             'success' => true,
             'cart_count' => array_sum(array_column($cart, 'quantity')),

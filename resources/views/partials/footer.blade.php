@@ -113,130 +113,130 @@
 
 <script>
     // Render cart drawer
-function renderCartDrawer(cartItems) {
-    const container = document.querySelector('.popup-overlay .cart-items');
-    const totalEl = document.querySelector('.cart-total');
-    container.innerHTML = ''; // clear old items
+    function renderCartDrawer(cartItems) {
+        const container = document.querySelector('.popup-overlay .cart-items');
+        const totalEl = document.querySelector('.cart-total');
+        container.innerHTML = ''; // clear old items
 
-    if(!cartItems || cartItems.length === 0){
-        container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
-        totalEl.innerText = '0';
-        return;
-    }
+        if(!cartItems || cartItems.length === 0){
+            container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
+            totalEl.innerText = '0';
+            return;
+        }
 
-    let total = 0;
+        let total = 0;
 
-    cartItems.forEach(item => {
-        total += item.price * item.quantity;
+        cartItems.forEach(item => {
+            total += item.price * item.quantity;
 
-        const html = `
-            <div class="product-infos mb-4">
-                <div class="product-info mb-0">
-                    <a href="#" class="product-img-pop">
-                        <img src="${item.image}" alt="${item.name}">
-                    </a>
-                    <div class="product-details-pop">
-                        <h4>${item.name}</h4>
-                        <p><strong>₹${item.price}</strong></p>
-                        <div class="pd-add-to-cart-wrap">
-                            <button class="qty-minus" data-id="${item.id}">-</button>
-                            <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
-                            <button class="qty-plus" data-id="${item.id}">+</button>
-                            
+            const html = `
+                <div class="product-infos mb-4">
+                    <div class="product-info mb-0">
+                        <a href="#" class="product-img-pop">
+                            <img src="${item.image}" alt="${item.name}">
+                        </a>
+                        <div class="product-details-pop">
+                            <h4>${item.name}</h4>
+                            <p><strong>₹${item.price}</strong></p>
+                            <div class="pd-add-to-cart-wrap">
+                                <button class="qty-minus" data-id="${item.id}">-</button>
+                                <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
+                                <button class="qty-plus" data-id="${item.id}">+</button>
+                                
+                            </div>
                         </div>
                     </div>
+                    <div class="remove-icon">
+                                <button class="remove-item" data-id="${item.id}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M9.774 5L3.758 3.94l.174-.986a.5.5 0 0 1 .58-.405L18.411 5h.088h-.087l1.855.327a.5.5 0 0 1 .406.58l-.174.984l-2.09-.368l-.8 13.594A2 2 0 0 1 15.615 22H8.386a2 2 0 0 1-1.997-1.883L5.59 6.5h12.69zH5.5zM9 9l.5 9H11l-.4-9zm4.5 0l-.5 9h1.5l.5-9zm-2.646-7.871l3.94.694a.5.5 0 0 1 .405.58l-.174.984l-4.924-.868l.174-.985a.5.5 0 0 1 .58-.405z"/></svg></button>
+                    </div>
                 </div>
-                <div class="remove-icon">
-                            <button class="remove-item" data-id="${item.id}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M9.774 5L3.758 3.94l.174-.986a.5.5 0 0 1 .58-.405L18.411 5h.088h-.087l1.855.327a.5.5 0 0 1 .406.58l-.174.984l-2.09-.368l-.8 13.594A2 2 0 0 1 15.615 22H8.386a2 2 0 0 1-1.997-1.883L5.59 6.5h12.69zH5.5zM9 9l.5 9H11l-.4-9zm4.5 0l-.5 9h1.5l.5-9zm-2.646-7.871l3.94.694a.5.5 0 0 1 .405.58l-.174.984l-4.924-.868l.174-.985a.5.5 0 0 1 .58-.405z"/></svg></button>
-                </div>
-            </div>
-        `;
-        container.insertAdjacentHTML('beforeend', html);
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        });
+
+        totalEl.innerText = total.toFixed(2);
+    }
+
+    // Add to cart click
+    document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const productId = this.dataset.id;
+            const quantity = 1;
+
+            fetch(`{{ url('/cart/add') }}/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ quantity })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+                    renderCartDrawer(data.cart);
+                    document.querySelector('.popup-overlay').classList.add('active');
+                } else alert('Something went wrong');
+            })
+            .catch(err => console.log(err));
+        });
     });
 
-    totalEl.innerText = total.toFixed(2);
-}
-
-// Add to cart click
-document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
-    button.addEventListener('click', function(e) {
+    // Cart icon click
+    document.querySelector('.cart-btn').addEventListener('click', function(e){
         e.preventDefault();
-        const productId = this.dataset.id;
-        const quantity = 1;
 
-        fetch(`{{ url('/cart/add') }}/${productId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ quantity })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success) {
-                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                renderCartDrawer(data.cart);
-                document.querySelector('.popup-overlay').classList.add('active');
-            } else alert('Something went wrong');
-        })
-        .catch(err => console.log(err));
-    });
-});
-
-// Cart icon click
-document.querySelector('.cart-btn').addEventListener('click', function(e){
-    e.preventDefault();
-
-    fetch('{{ route("cart.items") }}')
-    .then(res => res.json())
-    .then(data => {
-        if(data.success){
-            document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-            renderCartDrawer(data.cart);
-            document.querySelector('.popup-overlay').classList.add('active');
-        }
-    })
-    .catch(err => console.error(err));
-});
-
-// Drawer quantity change & remove
-document.addEventListener('click', function(e){
-    const target = e.target;
-
-    if(target.classList.contains('qty-plus') || target.classList.contains('qty-minus') || target.classList.contains('remove-item')){
-        const id = target.dataset.id;
-        let action = 'update';
-        let qtyChange = 0;
-
-        if(target.classList.contains('qty-plus')) qtyChange = 1;
-        if(target.classList.contains('qty-minus')) qtyChange = -1;
-        if(target.classList.contains('remove-item')) action = 'remove';
-
-        const url = action === 'remove' ? `{{ url('/cart/remove') }}/${id}` : `{{ url('/cart/update') }}/${id}`;
-
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ quantity: qtyChange })
-        })
+        fetch('{{ route("cart.items") }}')
         .then(res => res.json())
         .then(data => {
             if(data.success){
                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
                 renderCartDrawer(data.cart);
+                document.querySelector('.popup-overlay').classList.add('active');
             }
-        });
-    }
-});
+        })
+        .catch(err => console.error(err));
+    });
 
-// Close popup
-document.querySelector('.popup-close').addEventListener('click', function(){
-    document.querySelector('.popup-overlay').classList.remove('active');
-});
+    // Drawer quantity change & remove
+    document.addEventListener('click', function(e){
+        const target = e.target;
+
+        if(target.classList.contains('qty-plus') || target.classList.contains('qty-minus') || target.classList.contains('remove-item')){
+            const id = target.dataset.id;
+            let action = 'update';
+            let qtyChange = 0;
+
+            if(target.classList.contains('qty-plus')) qtyChange = 1;
+            if(target.classList.contains('qty-minus')) qtyChange = -1;
+            if(target.classList.contains('remove-item')) action = 'remove';
+
+            const url = action === 'remove' ? `{{ url('/cart/remove') }}/${id}` : `{{ url('/cart/update') }}/${id}`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ quantity: qtyChange })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success){
+                    document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+                    renderCartDrawer(data.cart);
+                }
+            });
+        }
+    });
+
+    // Close popup
+    document.querySelector('.popup-close').addEventListener('click', function(){
+        document.querySelector('.popup-overlay').classList.remove('active');
+    });
 
 </script>
 
