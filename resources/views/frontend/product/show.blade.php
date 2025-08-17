@@ -228,6 +228,7 @@ $(document).ready(function(){
         const colorId = $('input[name="variant_color"]:checked').data('color-id') || null;
 
         return variantsData.find(v => v.size === size && v.color_id == colorId) || null;
+         const appUrl = "{{ url('') }}";
     }
 
     function loadGallery(images){
@@ -240,8 +241,8 @@ $(document).ready(function(){
         $('.gallery-thumbs').empty();
 
         images.forEach(img => {
-            $('.gallery-main').append(`<div class="main-slide"><img src="/public/${img}" alt="Product"></div>`);
-            $('.gallery-thumbs').append(`<div class="thumb-slide"><img src="/public/${img}" alt="Thumb"></div>`);
+            $('.gallery-main').append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
+            $('.gallery-thumbs').append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
         });
 
         $('.gallery-thumbs').slick({
