@@ -518,7 +518,7 @@ textarea::placeholder {
 	transition: all 0.3s ease-in-out;
 	position: relative;
 }
-.cd-button{
+.cart-btn{
     background: #f2f4f8;
     height: 40px !important;
     border-radius: 100%;
