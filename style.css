@@ -6316,6 +6316,10 @@ blockquote {
 }
 .content-sec{
 	background-color: #fff;
-    border-radius: 0px 0px 18px 18px
+    border-radius: 20px;
+}
+
+.accordion-item:last-of-type>.accordion-header .accordion-button.collapsed{
+	    border-top: none;
 }
 /*added by sudipa*/
