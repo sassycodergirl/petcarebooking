@@ -53,13 +53,16 @@ class ShopController extends Controller
             // Base query
             $query = Product::where('category_id', $category->id)->latest();
 
-            // If AJAX filter request
-            if ($request->ajax() && $request->has('attributes')) {
-                // Get attributes as comma-separated string or array
-                $attributesParam = $request->input('attributes');
-                $attributes = is_array($attributesParam) ? $attributesParam : explode(',', $attributesParam);
+            // AJAX filter request
+            if ($request->ajax()) {
+                $attributes = $request->input('attributes'); // get the input safely
+
+                $query = Product::where('category_id', $category->id)->latest();
 
                 if (!empty($attributes)) {
+                    // If attributes exist, filter by them
+                    $attributes = is_array($attributes) ? $attributes : explode(',', $attributes);
+
                     $query->whereHas('attributes', function($q) use ($attributes) {
                         $q->whereIn('attributes.id', $attributes);
                     });
