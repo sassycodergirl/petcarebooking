@@ -41,42 +41,20 @@
             </div>
 
             <div class="row">
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <label for="price" class="form-label">Price (₹) *</label>
                         <input type="number" step="0.01" min="0" name="price" value="{{ old('price') }}" class="form-control" id="price" required>
                     </div>
                 </div>
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <label for="stock_quantity" class="form-label">Stock Quantity *</label>
                         <input type="number" min="0" name="stock_quantity" value="{{ old('stock_quantity', 0) }}" class="form-control" id="stock_quantity" required>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-4">
-                    <div class="mb-3">
-                        <label for="stock_quantity" class="form-label">Product Specification</label>
-                         <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="attributeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Select Specification
-                            </button>
-                            <ul class="dropdown-menu p-2" aria-labelledby="attributeDropdown" style="max-height: 200px; overflow-y: auto;">
-                                @foreach(\App\Models\Attribute::all() as $attribute)
-                                    <li class="form-check">
-                                        <input class="form-check-input" type="checkbox" 
-                                            name="attributes[]" 
-                                            value="{{ $attribute->id }}" 
-                                            id="attr-{{ $attribute->id }}">
-                                        <label class="form-check-label" for="attr-{{ $attribute->id }}">
-                                            {{ $attribute->name }}
-                                        </label>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+              
             </div>
 
             <div class="row">
@@ -128,6 +106,30 @@
             <button type="button" class="btn btn-sm btn-secondary" onclick="addVariant()">+ Add Variant</button>
 
             <br><br>
+
+                <div class="col-12 col-md-4">
+                    <div class="mb-3">
+                        <label for="stock_quantity" class="form-label">Product Specification</label>
+                         <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="attributeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Select Specification
+                            </button>
+                            <ul class="dropdown-menu p-2" aria-labelledby="attributeDropdown" style="max-height: 200px; overflow-y: auto;">
+                                @foreach(\App\Models\Attribute::all() as $attribute)
+                                    <li class="form-check">
+                                        <input class="form-check-input" type="checkbox" 
+                                            name="attributes[]" 
+                                            value="{{ $attribute->id }}" 
+                                            id="attr-{{ $attribute->id }}">
+                                        <label class="form-check-label" for="attr-{{ $attribute->id }}">
+                                            {{ $attribute->name }}
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
