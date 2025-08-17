@@ -19,31 +19,24 @@ class ShopController extends Controller
         return view('frontend.shop.index', compact('categories'));
     }
 
-    // Parent category page → Show its subcategories
-    public function parentCategory(string $slug)
+    
+
+      // Category page (works for both parent & subcategory)
+    public function category(string $slug)
     {
-        $category = Category::where('slug', $slug)
-            ->whereNull('parent_id') // must be a parent
-            ->firstOrFail();
+        $category = Category::where('slug', $slug)->firstOrFail();
 
-        $subcategories = $category->children()->orderBy('name')->get();
+        // If it has children → show subcategories
+        if ($category->children()->count() > 0) {
+            $subcategories = $category->children()->orderBy('name')->get();
+            return view('frontend.shop.category', compact('category', 'subcategories'));
+        }
 
-        return view('frontend.shop.category', compact('category', 'subcategories'));
-    }
-
-    // Subcategory page → Show its products
-    public function subcategory(string $parentSlug, string $slug)
-    {
-        $subcategory = Category::where('slug', $slug)
-            ->whereHas('parent', function ($q) use ($parentSlug) {
-                $q->where('slug', $parentSlug);
-            })
-            ->firstOrFail();
-
-        $products = Product::where('category_id', $subcategory->id)
+        // If no children → show products
+        $products = Product::where('category_id', $category->id)
             ->latest()
             ->paginate(12);
 
-        return view('frontend.shop.products', compact('subcategory', 'products'));
+        return view('frontend.shop.products', compact('category', 'products'));
     }
 }
