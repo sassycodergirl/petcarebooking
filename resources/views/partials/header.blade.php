@@ -50,7 +50,7 @@
         margin-top: -4px;
         inset: 0;
         background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23259425' d='M20 4v16H4V4zm2-2H2v20h20zM12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6s-2.69-6-6-6'/%3E%3C/svg%3E") no-repeat center center;
-        background-size: 50%; /* adjust size of icon */
+        background-size: 100%; /* adjust size of icon */
         box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         
