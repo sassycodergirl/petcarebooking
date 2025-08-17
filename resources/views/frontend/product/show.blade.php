@@ -203,16 +203,21 @@ $(document).ready(function(){
 </script>
 
 
+@php
+$variantsData = $product->variants->map(function($variant){
+    return [
+        'id' => $variant->id,
+        'size' => $variant->size,
+        'color_id' => $variant->color_id,
+        'gallery' => $variant->gallery->pluck('image'),
+    ];
+});
+@endphp
+
 <script>
-    const variantsData = @json($product->variants->map(function($variant){
-        return [
-            'id' => $variant->id,
-            'size' => $variant->size,
-            'color_id' => $variant->color_id,
-            'gallery' => $variant->gallery->pluck('image')
-        ];
-    }));
+    const variantsData = @json($variantsData);
 </script>
+
 
 
 <script>
