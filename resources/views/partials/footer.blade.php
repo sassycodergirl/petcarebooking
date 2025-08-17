@@ -131,7 +131,7 @@ function renderCartDrawer(cartItems) {
 
         const html = `
             <div class="product-info">
-                <div>
+                <div class="product-info mb-0">
                     <a href="#" class="product-img-pop">
                         <img src="${item.image}" alt="${item.name}">
                     </a>
