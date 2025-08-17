@@ -76,7 +76,7 @@
 
                        
                     </div>
-                    <div class="product-meta">
+                    <div class="product-meta mt-5">
                         <div class="accordion" id="productAccordion">
 
                             <!-- Description -->
