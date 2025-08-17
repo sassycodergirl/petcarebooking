@@ -80,11 +80,12 @@ class ProductController extends Controller
 
         $product = Product::create($data);
 
-        if ($request->has('attributes')) {
-            $product->attributes()->sync($request->attributes);
-        } else {
-            $product->attributes()->sync([]); // remove all if none selected
-        }
+        $attributeIds = $request->input('attributes', []);
+
+        // Keep only numeric IDs
+        $attributeIds = array_filter($attributeIds, fn($id) => is_numeric($id));
+
+        $product->attributes()->sync($attributeIds);
 
         // Product gallery
         if ($request->hasFile('gallery')) {
@@ -217,11 +218,12 @@ class ProductController extends Controller
 
     $product->update($data);
 
-    if ($request->has('attributes')) {
-        $product->attributes()->sync($request->attributes);
-    } else {
-        $product->attributes()->sync([]); // remove all if none selected
-    }
+    $attributeIds = $request->input('attributes', []);
+
+    // Keep only numeric IDs
+    $attributeIds = array_filter($attributeIds, fn($id) => is_numeric($id));
+
+    $product->attributes()->sync($attributeIds);
 
     // Handle variants
     $variantsInput = $request->input('variants', []);
