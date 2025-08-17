@@ -157,7 +157,8 @@ document.querySelectorAll('.filter-attribute').forEach(el => {
 
         let categorySlug = "{{ $category->slug }}";
 
-        fetch(`/collections/${categorySlug}?attributes=${selectedAttributes.join(',')}`, {
+        let url = "{{ url('/collections') }}/" + categorySlug + "?attributes=" + selectedAttributes.join(',');
+        fetch(url, {
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })
         .then(res => res.text())
