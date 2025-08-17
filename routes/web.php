@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductVariantGalleryController;
 use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Frontend\ShopController;
-use App\Http\Controllers\Frontend\ProductController as FrontProductController;
+use App\Http\Controllers\Frontend\ShopProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 /*
@@ -76,20 +76,11 @@ Route::get('/booking-portal', function () { return view('booking');})->name('boo
 // Shop main page (only parent categories)
 Route::get('/collections', [ShopController::class, 'index'])->name('shop.index');
 
-// Parent category page (show subcategories)
-// Route::get('/collections/{slug}', [FrontShopController::class, 'parentCategory'])->name('shop.parent');
+
 // Unified route for both parent & child categories
 Route::get('/collections/{slug}', [ShopController::class, 'category'])->name('shop.category');
 
-// Subcategory page (show products)
-// Route::get('/collections/{parent}/{slug}', [FrontShopController::class, 'subcategory'])->name('shop.subcategory');
 
-// CART (guest + auth)
-// Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-// Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
-// Route::get('/cart/items', [CartController::class, 'getItems'])->name('cart.items');
-// Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-// Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
 // CART (guest + auth)
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -98,7 +89,7 @@ Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart/items', [CartController::class, 'items'])->name('cart.items');
 
-
+Route::get('/products/{slug}', [ShopProductController::class, 'show'])->name('product.show');
 
 
 // CHECKOUT (auth only)
