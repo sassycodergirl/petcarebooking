@@ -40,11 +40,11 @@
                                     @if($product->variants->pluck('color')->filter()->count())
                                         <div class="mb-2">
                                             <label class="form-label">Colors:</label>
-                                            <div class="selectgroup">
+                                            <div class="selectgroup selectgroup-pills color-pills">
                                                 @foreach($product->variants->pluck('color')->filter()->unique('id') as $color)
                                                     <label class="selectgroup-item">
-                                                        <input type="radio" name="variant_color" value="{{ $color->id }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
-                                                        <span class="selectgroup-button" style="background-color: {{ $color->hex_code ?? '#ccc' }}; color: #fff;">{{ $color->name }}</span>
+                                                        <input type="checkbox" name="variant_color" value="{{ $color->id }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
+                                                        <span class="selectgroup-button" style="background-color: {{ $color->hex_code ?? '#ccc' }}; color: #fff;"></span>
                                                     </label>
                                                 @endforeach
                                             </div>

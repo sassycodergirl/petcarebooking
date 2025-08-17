@@ -6277,4 +6277,10 @@ blockquote {
     line-height: 1.5rem;
     min-width: 2.375rem;
 }
+
+.color-pills .electgroup-button{
+width: 2em;
+height: 2em;
+border-radius: 50%;
+}
 /*added by sudipa*/
