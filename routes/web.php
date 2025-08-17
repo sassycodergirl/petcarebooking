@@ -74,13 +74,13 @@ Route::get('/booking-portal', function () { return view('booking');})->name('boo
 
 // PUBLIC SHOP
 // Shop main page (only parent categories)
-Route::get('/collections', [ShopController::class, 'index'])->name('shop.index');
+Route::get('/collections', [FrontShopController::class, 'index'])->name('shop.index');
 
 // Parent category page (show subcategories)
-Route::get('/collections/{slug}', [ShopController::class, 'parentCategory'])->name('shop.parent');
+Route::get('/collections/{slug}', [FrontShopController::class, 'parentCategory'])->name('shop.parent');
 
 // Subcategory page (show products)
-Route::get('/collections/{parent}/{slug}', [ShopController::class, 'subcategory'])->name('shop.subcategory');
+Route::get('/collections/{parent}/{slug}', [FrontShopController::class, 'subcategory'])->name('shop.subcategory');
 
 // CART (guest + auth)
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
