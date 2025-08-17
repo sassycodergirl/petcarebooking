@@ -4,13 +4,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-7">
-                    <!-- <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid"> -->
-                     <!-- Product Gallery Slider -->
+                    <!-- Product Gallery Slider -->
                         @php
                             $galleryImages = $product->gallery; // default: product gallery
 
                             if ($galleryImages->isEmpty() && $product->variants->count()) {
-                                
+                               
                                 foreach ($product->variants as $variant) {
                                     if ($variant->gallery->count()) {
                                         $galleryImages = $variant->gallery;
@@ -19,18 +18,30 @@
                                 }
                             }
 
-                            
+                           
                             if ($galleryImages->isEmpty()) {
                                 $galleryImages = collect([(object)['image' => $product->image]]);
                             }
                         @endphp
 
-                        <div class="product-gallery-slider">
-                            @foreach($galleryImages as $image)
-                                <div class="slide">
-                                    <img src="{{ asset('public/' . $image->image) }}" alt="{{ $product->name }}">
-                                </div>
-                            @endforeach
+                        <div class="product-gallery d-flex">
+                            <!-- Thumbnails (Left) -->
+                            <div class="gallery-thumbs">
+                                @foreach($galleryImages as $image)
+                                    <div class="thumb-slide">
+                                        <img src="{{ asset('public/' . $image->image) }}" alt="{{ $product->name }}">
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Main Slider (Right) -->
+                            <div class="gallery-main">
+                                @foreach($galleryImages as $image)
+                                    <div class="main-slide">
+                                        <img src="{{ asset('public/' . $image->image) }}" alt="{{ $product->name }}">
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
 
                 </div>
@@ -161,3 +172,31 @@ document.querySelector('.qty-minus').addEventListener('click', () => {
 });
 
 </script>  
+
+<script>
+$(document).ready(function(){
+
+    // Initialize thumbnail slider
+    $('.gallery-thumbs').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        asNavFor: '.gallery-main',
+        focusOnSelect: true,
+        vertical: true,
+        verticalSwiping: true,
+        arrows: true,
+        infinite: false
+    });
+
+    // Initialize main slider
+    $('.gallery-main').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        asNavFor: '.gallery-thumbs',
+        arrows: true,
+        fade: true,
+        infinite: false
+    });
+
+});
+</script>

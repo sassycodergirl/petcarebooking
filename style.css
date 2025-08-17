@@ -6284,4 +6284,27 @@ blockquote {
     border-radius: 50%;
 
 }
+
+
+.product-gallery {
+    gap: 15px;
+}
+.gallery-thumbs {
+    width: 80px;
+}
+.gallery-thumbs .thumb-slide img {
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+}
+.gallery-thumbs .slick-current img {
+    border-color: #000; /* highlight selected thumbnail */
+}
+.gallery-main {
+    flex: 1;
+}
+.gallery-main .main-slide img {
+    width: 100%;
+}
 /*added by sudipa*/
