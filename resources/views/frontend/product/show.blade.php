@@ -11,20 +11,23 @@
                         <h1 class="product-title">{{ $product->name }}</h1>
                         <p class="h4">₹{{ $product->price }}</p>
                     
+                         <div class="d-flex gap-3">
+                             <div class="pd-add-to-cart-wrap mb-3">
+                                <button class="qty-minus" data-id="{{ $product->id }}">-</button>
+                                <input type="text" value="1" id="product-qty" readonly>
+                                <button class="qty-plus" data-id="{{ $product->id }}">+</button>
+                            </div>
 
-                        <div class="pd-add-to-cart-wrap mb-3">
-                            <button class="qty-minus" data-id="{{ $product->id }}">-</button>
-                            <input type="text" value="1" id="product-qty" readonly>
-                            <button class="qty-plus" data-id="{{ $product->id }}">+</button>
-                        </div>
+                            <button class="add-to-bag cd-button" 
+                                    data-id="{{ $product->id }}" 
+                                    data-name="{{ $product->name }}" 
+                                    data-price="{{ $product->price }}" 
+                                    data-image="{{ asset('public/' . $product->image) }}">
+                                <img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart
+                            </button>
+                         </div>   
 
-                        <button class="add-to-bag cd-button" 
-                                data-id="{{ $product->id }}" 
-                                data-name="{{ $product->name }}" 
-                                data-price="{{ $product->price }}" 
-                                data-image="{{ asset('public/' . $product->image) }}">
-                            <img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart
-                        </button>
+                       
                     </div>
                     <div class="product-meta">
                         <div class="accordion" id="productAccordion">
