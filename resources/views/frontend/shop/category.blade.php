@@ -85,8 +85,8 @@
                 @endif
 
                 @if($category->parent)
-                    {{-- If this is a child category, show all siblings --}}
-                    @foreach($category->parent->children as $sibling)
+                    {{-- If this is a child category, show all siblings sorted by name --}}
+                    @foreach($category->parent->children->sortBy('name') as $sibling)
                         <li class="list-group-item {{ $sibling->id === $category->id ? 'active' : '' }}">
                             <a href="{{ route('shop.category', $sibling->slug) }}" class="{{ $sibling->id === $category->id ? 'text-white' : '' }}">
                                 {{ $sibling->name }}
@@ -94,13 +94,13 @@
                         </li>
                     @endforeach
                 @elseif($subcategories->count())
-                    {{-- If this is a parent category, show "All" + subcategories --}}
+                    {{-- If this is a parent category, show "All" + subcategories sorted by name --}}
                     <li class="list-group-item {{ request()->url() == route('shop.category', $category->slug) ? 'active' : '' }}">
                         <a href="{{ route('shop.category', $category->slug) }}" class="{{ request()->url() == route('shop.category', $category->slug) ? 'text-white' : '' }}">
                             All {{ $category->name }}
                         </a>
                     </li>
-                    @foreach($subcategories as $subcategory)
+                    @foreach($subcategories->sortBy('name') as $subcategory)
                         <li class="list-group-item {{ request()->url() == route('shop.category', $subcategory->slug) ? 'active' : '' }}">
                             <a href="{{ route('shop.category', $subcategory->slug) }}" class="{{ request()->url() == route('shop.category', $subcategory->slug) ? 'text-white' : '' }}">
                                 {{ $subcategory->name }}
@@ -109,6 +109,7 @@
                     @endforeach
                 @endif
             </ul>
+
 
         </div>
 
