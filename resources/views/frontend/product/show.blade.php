@@ -39,7 +39,7 @@
                                         Product Description
                                     </button>
                                 </h2>
-                                <div id="collapseDescription" class="accordion-collapse collapse show" aria-labelledby="headingDescription" data-bs-parent="#productAccordion">
+                                <div id="collapseDescription" class="accordion-collapse collapse" aria-labelledby="headingDescription" data-bs-parent="#productAccordion">
                                     <div class="accordion-body">
                                         {!! $product->description ?? 'No description available.' !!}
                                     </div>
