@@ -195,17 +195,19 @@ function renderCartDrawer(cartItems) {
 
         const html = `
             <div class="product-info">
-                <a href="#" class="product-img-pop">
-                    <img src="${item.image}" alt="${item.name}">
-                </a>
-                <div class="product-details-pop">
-                    <h4>${item.name}</h4>
-                    <p><strong>₹${item.price}</strong></p>
-                    <div class="pd-add-to-cart-wrap">
-                        <button class="qty-minus" data-id="${item.id}">-</button>
-                        <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
-                        <button class="qty-plus" data-id="${item.id}">+</button>
-                        
+                <div>
+                    <a href="#" class="product-img-pop">
+                        <img src="${item.image}" alt="${item.name}">
+                    </a>
+                    <div class="product-details-pop">
+                        <h4>${item.name}</h4>
+                        <p><strong>₹${item.price}</strong></p>
+                        <div class="pd-add-to-cart-wrap">
+                            <button class="qty-minus" data-id="${item.id}">-</button>
+                            <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
+                            <button class="qty-plus" data-id="${item.id}">+</button>
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="remove-icon">
