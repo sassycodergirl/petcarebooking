@@ -18,8 +18,8 @@
         font-size: 17px;
         position: relative;
         display: inline-block;
-        width: 3.5em;
-        height: 2em;
+        width: 4.5em;
+        height: 1.3em;
         }
 
         /* Hide default HTML checkbox */
@@ -55,7 +55,7 @@
         }
 
         .switch input:checked + .slider {
-        background: #0974f1;
+        background: #259425;
         }
 
         .switch input:focus + .slider {
@@ -63,7 +63,7 @@
         }
 
         .switch input:checked + .slider:before {
-        transform: translateX(1.6em);
+        transform: translateX(2.6em);
         }
     </style>
 </head>
