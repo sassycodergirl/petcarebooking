@@ -6096,14 +6096,14 @@ blockquote {
     background: #da1e28;
     border-radius: 100%;
     color: #fff;
-    font-size: 8px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1;
     padding: 4px;
     top: 0;
     right: 0;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
