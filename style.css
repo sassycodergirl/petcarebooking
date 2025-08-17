@@ -2448,10 +2448,15 @@ textarea::placeholder {
 	object-fit: contain;
 }
 
-.product-info {
+.product-info,.product-infos {
 	display: flex;
 	align-items: flex-start;
 	justify-content:space-between;
+}
+.product-infos{
+	border: 1px solid #D5A37A;
+    border-radius: 14px;
+	padding: 10px;
 }
 
 .product-details-pop {
