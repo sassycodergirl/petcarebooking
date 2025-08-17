@@ -37,6 +37,7 @@ class CategoryController extends Controller
             'slug' => 'nullable|string|max:255|unique:categories,slug',
             'description' => 'nullable|string',
             'parent_id' => 'nullable|exists:categories,id',
+            'is_food' => 'nullable|boolean', // new validation
         ]);
 
         Category::create([
@@ -44,6 +45,7 @@ class CategoryController extends Controller
             'slug' => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
             'description' => $request->description,
             'parent_id' => $request->parent_id,
+            'is_food' => $request->has('is_food') ? true : false, // store checkbox value
         ]);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
@@ -86,6 +88,7 @@ class CategoryController extends Controller
             'slug' => 'nullable|string|max:255|unique:categories,slug,' . $category->id,
             'description' => 'nullable|string',
             'parent_id' => 'nullable|exists:categories,id',
+            'is_food' => 'nullable|boolean', // new validation
         ]);
 
         $category->update([
@@ -93,6 +96,7 @@ class CategoryController extends Controller
             'slug' => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
             'description' => $request->description,
             'parent_id' => $request->parent_id,
+            'is_food' => $request->has('is_food') ? true : false, // update checkbox
         ]);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
