@@ -11,6 +11,7 @@ use App\Models\ProductVariant;
 use App\Models\Color;
 use App\Models\ProductImage;
 use App\Models\ProductVariantImage;
+use App\Models\Attribute;
 
 class ProductController extends Controller
 {
@@ -47,6 +48,8 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'stock_quantity' => 'required|integer|min:0',
+            'attributes' => 'nullable|array',
+            'attributes.*' => 'exists:attributes,id',
             'status' => 'required|boolean',
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|string',
@@ -76,6 +79,12 @@ class ProductController extends Controller
         }
 
         $product = Product::create($data);
+
+        if ($request->has('attributes')) {
+            $product->attributes()->sync($request->attributes);
+        } else {
+            $product->attributes()->sync([]); // remove all if none selected
+        }
 
         // Product gallery
         if ($request->hasFile('gallery')) {
@@ -166,6 +175,8 @@ class ProductController extends Controller
         'price' => 'required|numeric|min:0',
         'stock_quantity' => 'required|integer|min:0',
         'status' => 'required|boolean',
+        'attributes' => 'nullable|array',
+        'attributes.*' => 'exists:attributes,id',
         'category_id' => 'required|exists:categories,id',
         'description' => 'nullable|string',
         'image' => 'nullable|image|max:2048',
@@ -205,6 +216,12 @@ class ProductController extends Controller
     }
 
     $product->update($data);
+
+    if ($request->has('attributes')) {
+        $product->attributes()->sync($request->attributes);
+    } else {
+        $product->attributes()->sync([]); // remove all if none selected
+    }
 
     // Handle variants
     $variantsInput = $request->input('variants', []);
