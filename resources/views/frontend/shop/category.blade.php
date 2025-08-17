@@ -77,7 +77,7 @@
             <ul class="list-group prdct-list">
                 {{-- Always show parent category as first item --}}
                 @if($category->parent)
-                    <li class="list-group-item {{ request()->url() == route('shop.category', $category->parent->slug) ? 'active' : '' }}">
+                    <li class=" {{ request()->url() == route('shop.category', $category->parent->slug) ? 'active' : '' }}">
                         <a href="{{ route('shop.category', $category->parent->slug) }}" class="{{ request()->url() == route('shop.category', $category->parent->slug) ? 'text-white' : '' }}">
                             All {{ $category->parent->name }}
                         </a>
@@ -87,7 +87,7 @@
                 @if($category->parent)
                     {{-- If this is a child category, show all siblings sorted by name --}}
                     @foreach($category->parent->children->sortBy('name') as $sibling)
-                        <li class="list-group-item {{ $sibling->id === $category->id ? 'active' : '' }}">
+                        <li class=" {{ $sibling->id === $category->id ? 'active' : '' }}">
                             <a href="{{ route('shop.category', $sibling->slug) }}" class="{{ $sibling->id === $category->id ? 'text-white' : '' }}">
                                 {{ $sibling->name }}
                             </a>
@@ -95,13 +95,13 @@
                     @endforeach
                 @elseif($subcategories->count())
                     {{-- If this is a parent category, show "All" + subcategories sorted by name --}}
-                    <li class="list-group-item {{ request()->url() == route('shop.category', $category->slug) ? 'active' : '' }}">
+                    <li class=" {{ request()->url() == route('shop.category', $category->slug) ? 'active' : '' }}">
                         <a href="{{ route('shop.category', $category->slug) }}" class="{{ request()->url() == route('shop.category', $category->slug) ? 'text-white' : '' }}">
                             All {{ $category->name }}
                         </a>
                     </li>
                     @foreach($subcategories->sortBy('name') as $subcategory)
-                        <li class="list-group-item {{ request()->url() == route('shop.category', $subcategory->slug) ? 'active' : '' }}">
+                        <li class="{{ request()->url() == route('shop.category', $subcategory->slug) ? 'active' : '' }}">
                             <a href="{{ route('shop.category', $subcategory->slug) }}" class="{{ request()->url() == route('shop.category', $subcategory->slug) ? 'text-white' : '' }}">
                                 {{ $subcategory->name }}
                             </a>
