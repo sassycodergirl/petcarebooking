@@ -181,6 +181,8 @@ function renderCartDrawer(cartItems) {
     const container = document.querySelector('.popup-overlay .popup-content');
     container.innerHTML = ''; // clear old items
 
+    cartItems = Array.isArray(cartItems) ? cartItems : [];
+
     if(cartItems.length === 0){
         container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
         return;
@@ -188,7 +190,7 @@ function renderCartDrawer(cartItems) {
 
     cartItems.forEach(item => {
         const html = `
-            <div class="product-info">
+            <div class="product-info" data-id="${item.id}">
                 <a href="#" class="product-img-pop">
                     <img src="${item.image}" alt="${item.name}">
                 </a>
@@ -205,6 +207,48 @@ function renderCartDrawer(cartItems) {
         `;
         container.insertAdjacentHTML('beforeend', html);
     });
+
+    // Quantity buttons inside drawer
+    container.querySelectorAll('.qty-minus').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const id = this.dataset.id;
+            updateCartItem(id, -1);
+        });
+    });
+
+    container.querySelectorAll('.qty-plus').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const id = this.dataset.id;
+            updateCartItem(id, 1);
+        });
+    });
+}
+
+// Function to update quantity in cart
+function updateCartItem(productId, change) {
+    const input = document.querySelector(`.qty[data-id="${productId}"]`);
+    let newQty = parseInt(input.value) + change;
+    if(newQty < 1) newQty = 1;
+
+    fetch(`{{ url('/cart/update') }}/${productId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ quantity: newQty })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            input.value = newQty;
+            document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+            renderCartDrawer(data.cart); // refresh drawer items
+        } else {
+            alert('Could not update cart');
+        }
+    })
+    .catch(err => console.error(err));
 }
 
 // Add to cart button click
@@ -225,23 +269,18 @@ document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
         .then(res => res.json())
         .then(data => {
             if(data.success) {
-                // Update cart count
                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-
-                // Render all items in drawer
                 renderCartDrawer(data.cart);
-
-                // Open drawer
                 document.querySelector('.popup-overlay').classList.add('active');
             } else {
                 alert('Something went wrong');
             }
         })
-        .catch(err => console.log(err));
+        .catch(err => console.error(err));
     });
 });
 
-// Cart icon click
+// Cart icon click to view drawer
 document.querySelector('.cart-btn').addEventListener('click', function(e){
     e.preventDefault();
 
@@ -249,24 +288,20 @@ document.querySelector('.cart-btn').addEventListener('click', function(e){
     .then(res => res.json())
     .then(data => {
         if(data.success){
-            // Update cart count
             document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-
-            // Render cart drawer
             renderCartDrawer(data.cart);
-
-            // Open drawer
             document.querySelector('.popup-overlay').classList.add('active');
         }
     })
     .catch(err => console.error(err));
 });
 
-// Close popup
+// Close popup drawer
 document.querySelector('.popup-close').addEventListener('click', function(){
     document.querySelector('.popup-overlay').classList.remove('active');
 });
 </script>
+
 
 </body>
 
