@@ -2316,7 +2316,7 @@ textarea::placeholder {
 .prdct-list a:hover,
 .prdct-list li.active a {
 	background-color: #FEB65B;
-	background-image: url(images/arrow-act.svg);
+	/* background-image: url(images/arrow-act.svg); */
 }
 
 .prdct-list a span {
@@ -6160,5 +6160,14 @@ blockquote {
 .remove-item{
 	background: none;
     border: none;
+}
+
+.sticky-product-cat{
+	width: calc(25% - 15px);
+    position: sticky;
+    top: 0;
+    height: calc(100vh);
+    overflow-y: auto;
+    border-right: 1px solid #DFDFDF;
 }
 /*added by sudipa*/

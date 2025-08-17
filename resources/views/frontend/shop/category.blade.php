@@ -72,7 +72,7 @@
     <div class="row">
         <!-- Sidebar with parent & subcategories -->
       <!-- Sidebar with categories -->
-        <div class="col-3 col-md-3">
+        <div class="col-3 col-md-3 sticky-product-cat">
             <!-- <h4 class="mb-3">{{ $category->parent ? $category->parent->name : $category->name }}</h4> -->
             <ul class="list-group prdct-list">
                 {{-- Always show parent category as first item --}}
