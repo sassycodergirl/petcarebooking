@@ -15,7 +15,7 @@ class ShopProductController extends Controller
         //         ->with(['colors', 'variants', 'gallery', 'category'])
         //         ->firstOrFail();
 
-        $product = Product::with(['variants.color'])->findOrFail($id);
+        $product = Product::with(['variants.color', 'gallery', 'category'])->findOrFail();
 
         // If product has no variants, we can still use the main product price/image etc.
         $variants = $product->variants ?? collect(); // empty collection if no variants
