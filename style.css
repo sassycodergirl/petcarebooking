@@ -508,13 +508,6 @@ textarea::placeholder {
 }
 
 .hdr-rgt-icons ul li a {
-	display: inline-flex;
-    background: #f2f4f8;
-    height: 40px;
-    border-radius: 100%;
-    width: 40px;
-    align-items: center;
-    justify-content: center;
 	display: flex;
 	width: 35px;
 	height: 35px;
@@ -524,6 +517,15 @@ textarea::placeholder {
 	border: 1px solid transparent;
 	transition: all 0.3s ease-in-out;
 	position: relative;
+}
+.cd-button{
+	    display: inline-flex;
+    background: #f2f4f8;
+    height: 40px;
+    border-radius: 100%;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
 }
 
 .hdr-rgt-icons ul li a img {
