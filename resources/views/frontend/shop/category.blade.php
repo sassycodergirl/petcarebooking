@@ -100,15 +100,20 @@
                     <div class="row">
                         @foreach($products as $product)
                             <div class="col-md-4 mb-4">
-                                <div class="card h-100 shadow-sm">
+                                <div class="product-card h-100 shadow-sm">
                                     @if($product->image)
+                                    <a href="#" class="product-card-img">
                                     <div class="product-img">
-                                        <img src="{{ asset('public/' . $product->image) }}" class="img-fluid" alt="{{ $product->name }}">
+
+                                        <img src="{{ asset('public/' . $product->image) }}" class="img-fluid " alt="{{ $product->name }}">
                                     </div>
+                                    </a>
                                     @endif
                                     <div class="card-body text-center">
-                                        <h5 class="card-title">{{ $product->name }}</h5>
+                                        <h3><a href="#">{{ $product->name }}</a></h3>
+                                       
                                         <p class="card-text">₹{{ $product->price }}</p>
+                                        <button class="add-to-bag cd-button"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
                                     </div>
                                 </div>
                             </div>
