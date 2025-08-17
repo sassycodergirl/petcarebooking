@@ -16,7 +16,7 @@
 </section>
 
 <section class="product-section">
-    <div class="container container-fluid px-4 px-md-5">
+    <div class="container-fluid px-4 px-md-5">
         <div class="row">
             <!-- LEFT SIDEBAR - PARENT CATEGORIES AS TABS -->
             <div class="col-4 col-md-3 col-lg-3 prdct-col-menu sticky-product-cat">
