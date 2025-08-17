@@ -1,6 +1,19 @@
 @include('partials.header')
+<section class="banner inner-banner">
+    <div class="js-product-banner">
+        <div class="product-banner-col">
+            <div class="product-banner-image">
+                <img src="{{ asset('images/product-banner.jpg') }}" alt="">
+            </div>
+        </div>
+        <div class="product-banner-col">
+            <div class="product-banner-image">
+                <img src="{{ asset('images/product-banner.jpg') }}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
 
-@section('content')
 <div class="container py-5">
     <div class="row">
         <!-- Sidebar with siblings (other subcategories of parent) -->
@@ -49,7 +62,7 @@
         </div>
     </div>
 </div>
-@endsection
+
 
 
 @include('partials.footer')
