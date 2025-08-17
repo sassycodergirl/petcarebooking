@@ -6109,5 +6109,22 @@ blockquote {
     justify-content: center;
 }
 
-
+.popup-footer{
+	box-sizing: border-box;
+    border-top: 1px solid #ebf0ff;
+    z-index: 3;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    right: 0;
+    margin: 0;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+}
 /*added by sudipa*/
