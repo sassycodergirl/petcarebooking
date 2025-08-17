@@ -23,10 +23,10 @@
                                 @if($sizes->count())
                                     <div class="mb-2">
                                         <label class="form-label">Size:</label>
-                                        <div class="selectgroup">
+                                        <div class="selectgroup selectgroup-pills">
                                             @foreach($sizes as $size)
                                                 <label class="selectgroup-item">
-                                                    <input type="radio" name="variant_size" value="{{ $size }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
+                                                    <input type="checkbox" name="variant_size" value="{{ $size }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
                                                     <span class="selectgroup-button">{{ $size }}</span>
                                                 </label>
                                             @endforeach
