@@ -148,8 +148,8 @@
 @include('partials.footer')
 
 <!-- Pass all variant data to JS -->
-<script>
-const variantsData = @json($product->variants->map(function($variant){
+@php
+$variantsData = $product->variants->map(function($variant) {
     return [
         'id' => $variant->id,
         'size' => $variant->size,
@@ -163,8 +163,13 @@ const variantsData = @json($product->variants->map(function($variant){
         'price' => $variant->price,
         'image' => $variant->image,
     ];
-})->toArray());
+})->toArray();
+@endphp
+
+<script>
+    const variantsData = @json($variantsData);
 </script>
+
 
 <script>
 let productQty = 1;
