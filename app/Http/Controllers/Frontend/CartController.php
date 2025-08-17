@@ -15,33 +15,37 @@ class CartController extends Controller
     }
 
     // Add product to cart
-    public function add(Request $request, $id)
-    {
-        $product = Product::findOrFail($id);
-
+    public function add(Request $request, $id) {
+    try {
+        $quantity = $request->input('quantity', 1);
         $cart = session()->get('cart', []);
-
-        $quantity = $request->quantity ?? 1;
-
+        
         if(isset($cart[$id])) {
             $cart[$id]['quantity'] += $quantity;
         } else {
+            $product = Product::findOrFail($id);
             $cart[$id] = [
-                'id' => $product->id,
-                'name' => $product->name,
-                'price' => $product->price,
-                'image' => $product->image,
-                'quantity' => $quantity
+                "name" => $product->name,
+                "price" => $product->price,
+                "quantity" => $quantity,
+                "image" => $product->image
             ];
         }
-
+        
         session()->put('cart', $cart);
 
         return response()->json([
             'success' => true,
-            'cart_count' => array_sum(array_column($cart, 'quantity')),
+            'cart_count' => array_sum(array_column($cart, 'quantity'))
         ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage()
+        ], 500);
     }
+}
+
 
     // Update cart quantity
     public function update(Request $request, $id)
