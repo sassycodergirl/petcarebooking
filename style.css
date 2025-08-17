@@ -2623,7 +2623,7 @@ textarea::placeholder {
 	border: none;
 	outline: none;
 	font-size: 18px;
-	width: 48px;
+	width: 35px;
 	color: var(--bg-text-color);
 	transition: all 0.3s ease-in-out;
 	background-color: var(--bg-white);
@@ -2635,13 +2635,13 @@ textarea::placeholder {
 }
 
 .pd-add-to-cart-wrap input {
-	width: 74px;
-	background-color: var(--bg-orange);
-	border: none;
-	height: 100%;
-	min-height: 47px;
-	border-radius: 0;
-	text-align: center;
+	width: 50px;
+    background-color: var(--bg-orange);
+    border: none;
+    height: 100%;
+    min-height: 29px;
+    border-radius: 0;
+    text-align: center;
 }
 
 .pd-add-to-cart {
