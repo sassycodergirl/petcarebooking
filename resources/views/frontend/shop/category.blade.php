@@ -102,7 +102,9 @@
                             <div class="col-md-4 mb-4">
                                 <div class="card h-100 shadow-sm">
                                     @if($product->image)
-                                        <img src="{{ asset('public/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                                    <div class="product-img">
+                                        <img src="{{ asset('public/' . $product->image) }}" class="img-fluid" alt="{{ $product->name }}">
+                                    </div>
                                     @endif
                                     <div class="card-body text-center">
                                         <h5 class="card-title">{{ $product->name }}</h5>
