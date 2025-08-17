@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductVariantGalleryController;
 use App\Http\Controllers\Admin\ProductGalleryController;
-use App\Http\Controllers\Frontend\ShopController as FrontShopController;
+use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\ProductController as FrontProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -74,7 +74,7 @@ Route::get('/booking-portal', function () { return view('booking');})->name('boo
 
 // PUBLIC SHOP
 // Shop main page (only parent categories)
-Route::get('/collections', [FrontShopController::class, 'index'])->name('shop.index');
+Route::get('/collections', [ShopController::class, 'index'])->name('shop.index');
 
 // Parent category page (show subcategories)
 // Route::get('/collections/{slug}', [FrontShopController::class, 'parentCategory'])->name('shop.parent');
