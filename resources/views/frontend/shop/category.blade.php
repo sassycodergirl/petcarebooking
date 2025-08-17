@@ -8,7 +8,7 @@
     }
     $breadcrumbs = array_reverse($breadcrumbs);
 @endphp
-<section class="banner inner-banner container">
+<section class="banner inner-banner container-fluid px-md-5">
       <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Home</a></li>
