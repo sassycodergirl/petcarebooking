@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 
-class ProductController extends Controller
+class ShopProductController extends Controller
 {
     public function show($slug)
     {
