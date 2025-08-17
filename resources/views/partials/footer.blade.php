@@ -150,30 +150,28 @@
 
 
 <script>
-    document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
+document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
         const productId = this.dataset.id;
-        const quantity = 1; // default 1, you can update if you have quantity input
+        const quantity = 1; // default 1, or get from input
 
-        fetch('{{ route("cart.add") }}', {
+        // Generate URL dynamically from Blade
+        const url = '{{ route("cart.add", ":id") }}'.replace(':id', productId);
+
+        fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            body: JSON.stringify({
-                product_id: productId,
-                quantity: quantity
-            })
+            body: JSON.stringify({ quantity: quantity })
         })
         .then(res => res.json())
         .then(data => {
             if(data.success) {
-                // Update cart drawer count or contents
                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                // Optional: open cart drawer automatically
-                document.querySelector('.popup-overlay').classList.add('active');
+                document.querySelector('.popup-overlay').classList.add('active'); // open drawer
             } else {
                 alert('Something went wrong');
             }
@@ -181,8 +179,8 @@
         .catch(err => console.log(err));
     });
 });
-
 </script>
+
 
 
 </body>
