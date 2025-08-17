@@ -1,6 +1,24 @@
 @include('partials.header')
 
-<section class="banner inner-banner">
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Shop</a></li>
+
+        @if($category->parent)
+            <li class="breadcrumb-item">
+                <a href="{{ route('shop.category', $category->parent->slug) }}">
+                    {{ $category->parent->name }}
+                </a>
+            </li>
+        @endif
+
+        <li class="breadcrumb-item active" aria-current="page">{{ $category->name }}</li>
+    </ol>
+</nav>
+
+
+<section class="banner inner-banner container">
     <div class="js-product-banner">
         <div class="product-banner-col">
             <div class="product-banner-image">
@@ -24,7 +42,7 @@
         <div class="col-md-9">
             <!-- Filter Pills -->
             <div class="mb-4">
-                <h5>Filter by:</h5>
+                <!-- <h5>Filter by:</h5> -->
                 <div class="btn-group" role="group" aria-label="Attributes">
                     @foreach(\App\Models\Attribute::all() as $attribute)
                         <input type="checkbox" class="filter-attribute" value="{{ $attribute->id }}" id="attr-{{ $attribute->id }}">
