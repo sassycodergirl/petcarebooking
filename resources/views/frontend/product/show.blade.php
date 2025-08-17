@@ -25,6 +25,7 @@
                         @endphp
 
                         <div class="product-gallery row">
+                            <div>
                             <!-- Thumbnails (Left) -->
                             <div class="gallery-thumbs col-md-5">
                                 @foreach($galleryImages as $image)
@@ -183,7 +184,7 @@ $(document).ready(function(){
         asNavFor: '.gallery-main',
         focusOnSelect: true,
         vertical: true,
-        verticalSwiping: true,
+        // verticalSwiping: true,
         arrows: true,
         infinite: false
     });
