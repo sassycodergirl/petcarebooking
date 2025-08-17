@@ -29,7 +29,7 @@
                         <div class="gallery-thumbs col-md-5">
                             @foreach($galleryImages as $image)
                                 <div class="thumb-slide">
-                                    <img class="img-fluid" src="{{ asset($image->image) }}" alt="{{ $product->name }}">
+                                    <img class="img-fluid" src="{{ asset('public/'. $image->image) }}" alt="{{ $product->name }}">
                                 </div>
                             @endforeach
                         </div>
@@ -38,7 +38,7 @@
                         <div class="gallery-main col-md-7">
                             @foreach($galleryImages as $image)
                                 <div class="main-slide">
-                                    <img class="img-fluid" src="{{ asset($image->image) }}" alt="{{ $product->name }}">
+                                    <img class="img-fluid" src="{{ asset('public/'.$image->image) }}" alt="{{ $product->name }}">
                                 </div>
                             @endforeach
                         </div>
@@ -208,8 +208,8 @@ $(document).ready(function(){
         galleryThumbs.html('');
 
         variant.gallery.forEach(img => {
-            galleryMain.append(`<div class="main-slide"><img src="${appUrl}/${img}" alt="Product"></div>`);
-            galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/${img}" alt="Thumb"></div>`);
+            galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
+            galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
         });
 
         // Re-init slick
