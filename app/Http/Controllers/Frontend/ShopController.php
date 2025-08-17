@@ -11,8 +11,9 @@ class ShopController extends Controller
 {
     public function index()
     {
-        // Only parent categories (no parent_id)
+        // Load only parent categories with their subcategories
         $categories = Category::whereNull('parent_id')
+            ->with('children')
             ->orderBy('name')
             ->get();
 
@@ -23,8 +24,8 @@ class ShopController extends Controller
 
     public function category(string $slug)
     {
-        // Only parent categories
         $categories = Category::whereNull('parent_id')
+            ->with('children')
             ->orderBy('name')
             ->get();
 
