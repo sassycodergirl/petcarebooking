@@ -163,7 +163,8 @@
             e.preventDefault();
             const productId = this.dataset.id;
             // const quantity = 1;
-            const quantity = parseInt(document.getElementById('product-qty').value) || 1; 
+            const quantityEl = document.getElementById('product-qty');
+            const quantity = quantityEl && parseInt(quantityEl.value) > 0 ? parseInt(quantityEl.value) : 1;
 
             fetch(`{{ url('/cart/add') }}/${productId}`, {
                 method: 'POST',
