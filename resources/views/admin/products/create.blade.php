@@ -107,7 +107,7 @@
 
             <br><br>
 
-                <div class="col-12 col-md-4">
+                <!-- <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <label for="stock_quantity" class="form-label">Product Specification</label>
                          <div class="dropdown">
@@ -129,7 +129,24 @@
                             </ul>
                         </div>
                     </div>
+                </div> -->
+
+                <div class="form-group">
+                    <label class="form-label">Product Attributes</label>
+                    <div class="selectgroup selectgroup-pills">
+                        @foreach(\App\Models\Attribute::all() as $attribute)
+                            <label class="selectgroup-item">
+                                <input type="checkbox" 
+                                    name="attributes[]" 
+                                    value="{{ $attribute->id }}" 
+                                    class="selectgroup-input"
+                                    {{ isset($product) && $product->attributes->contains($attribute->id) ? 'checked' : '' }}>
+                                <span class="selectgroup-button">{{ $attribute->name }}</span>
+                            </label>
+                        @endforeach
+                    </div>
                 </div>
+
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
