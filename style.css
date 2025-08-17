@@ -2458,7 +2458,7 @@ textarea::placeholder {
 
 .product-details-pop h4 {
 	font-weight: 500;
-	font-size: 22px;
+	font-size: 15px;
 	margin-bottom: 12px;
 }
 
@@ -2466,7 +2466,7 @@ textarea::placeholder {
 	font-family: var(--default-heading-font);
 	font-weight: 600;
 	color: #E26749;
-	font-size: 22px;
+	font-size: 15px;
 	margin-bottom: 5px;
 }
 
