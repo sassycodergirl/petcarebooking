@@ -126,9 +126,9 @@
                                 <div class="product-card-col h-100 shadow-sm p-4">
                                     @if($product->image)
                                     <a href="#" class="product-card-img">
-                                    <div class="product-img">
+                                    <div class="product-img h-100">
 
-                                        <img src="{{ asset('public/' . $product->image) }}" class="img-fluid " alt="{{ $product->name }}">
+                                        <img src="{{ asset('public/' . $product->image) }}" class="img-fluid h-100" alt="{{ $product->name }}">
                                     </div>
                                     </a>
                                     @endif
