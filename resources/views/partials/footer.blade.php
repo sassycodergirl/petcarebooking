@@ -130,7 +130,7 @@ function renderCartDrawer(cartItems) {
         total += item.price * item.quantity;
 
         const html = `
-            <div class="product-infos">
+            <div class="product-infos mb-4">
                 <div class="product-info mb-0">
                     <a href="#" class="product-img-pop">
                         <img src="${item.image}" alt="${item.name}">
