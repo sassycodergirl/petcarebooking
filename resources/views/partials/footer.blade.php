@@ -152,7 +152,7 @@
             <!-- Cart items will be injected here dynamically -->
         </div>
         <div class="popup-footer">
-            <p class="m-0">Total: <strong>₹<span class="cart-total">0</span></strong></p>
+            <p class="m-0 cart-total">₹<span class="cart-total">0</span></p>
             <a href="{{ route('checkout.index') }}" class="btn-checkout">Checkout</a>
         </div>
     </div>

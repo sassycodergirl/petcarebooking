@@ -6140,4 +6140,10 @@ blockquote {
     color: #fff;
     text-transform: uppercase;
 }
+
+.cart-total{
+	font-size: 16px;
+    font-weight: 700;
+    color: #151515;
+}
 /*added by sudipa*/
