@@ -74,8 +74,8 @@ Route::get('/booking-portal', function () { return view('booking');})->name('boo
 
 // PUBLIC SHOP
 Route::get('/shop', [FrontShopController::class, 'index'])->name('shop.index');
-Route::get('/category/{slug}', [FrontShopController::class, 'category'])->name('shop.category');
-Route::get('/product/{slug}', [FrontProductController::class, 'show'])->name('product.show');
+Route::get('/collections/{slug}', [FrontShopController::class, 'category'])->name('shop.category');
+Route::get('/products/{slug}', [FrontProductController::class, 'show'])->name('product.show');
 
 // CART (guest + auth)
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
