@@ -136,7 +136,7 @@
                                         <h3><a href="#">{{ $product->name }}</a></h3>
                                        
                                         <p class="card-text">₹{{ $product->price }}</p>
-                                        <button class="add-to-bag cd-button" data-id="{{ $product->id }}"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart</button>
+                                        <button class="add-to-bag cd-button" data-id="{{ $product->id }}"  data-name="{{ $product->name }}"  data-price="{{ $product->price }}" data-image="{{ asset('public/' . $product->image) }}"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart</button>
                                     </div>
                                 </div>
                             </div>

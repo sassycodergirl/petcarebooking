@@ -76,7 +76,7 @@
     <button id="backToTopBtn" class="scroll-btn"><img src="{{asset('images/back-to-top.svg')}}" alt=""></button>
 
     <!-- cd-popup -->
-    <div class="popup-overlay">
+    <!-- <div class="popup-overlay">
         <div class="popup-box">
             <div class="popup-header">
                 <h3>Choose options</h3>
@@ -139,57 +139,31 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>   -->
 
 
-    <script>
-        document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
+    <div class="popup-overlay">
+    <div class="popup-box">
+        <div class="popup-header">
+            <h3>My Cart</h3>
+            <button type="button" class="popup-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="popup-content">
+            <div class="cart-items">
+                {{-- Cart items will be dynamically injected here --}}
+            </div>
+            <div class="pd-add-to-cart">
+                <a href="{{ route('checkout.index') }}" class="add-to-bag-sm">
+                    <span><img src="{{asset('images/bag-icon.svg')}}" alt=""></span>Checkout
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
-                const productId = this.dataset.id;
-                const productName = this.dataset.name;
-                const productPrice = this.dataset.price;
-                const productImage = this.dataset.image;
-                const quantity = 1; // default quantity
 
-                // 1️⃣ Add to cart via AJAX
-                fetch(`{{ url('/cart/add') }}/${productId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({ quantity })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if(data.success) {
-                        // 2️⃣ Update cart icon count
-                        document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
 
-                        // 3️⃣ Populate popup drawer dynamically
-                        const popup = document.querySelector('.popup-overlay');
-                        popup.querySelector('.product-img-pop img').src = productImage;
-                        popup.querySelector('.product-details-pop h4').innerText = productName;
-                        popup.querySelector('.product-details-pop strong').innerText = '₹' + productPrice;
-                        popup.querySelector('.qty').value = quantity;
-
-                        // Open drawer
-                        popup.classList.add('active');
-                    } else {
-                        alert('Something went wrong');
-                    }
-                })
-                .catch(err => console.log(err));
-            });
-        });
-
-        // Close popup
-        document.querySelector('.popup-close').addEventListener('click', function(){
-            document.querySelector('.popup-overlay').classList.remove('active');
-        });
-</script>
+   
 
 
     <!-- Jquery-->
@@ -200,7 +174,7 @@
     <script src="{{asset('js/common.js')}}"></script>
 
 
-<script>
+<!-- <script>
 document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
@@ -229,6 +203,73 @@ document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
         })
         .catch(err => console.log(err));
     });
+});
+</script> -->
+
+
+
+<script>
+function renderCartDrawer(cartItems) {
+    const container = document.querySelector('.cart-items');
+    container.innerHTML = ''; // clear old items
+
+    cartItems.forEach(item => {
+        const html = `
+            <div class="product-info">
+                <a href="#" class="product-img-pop">
+                    <img src="${item.image}" alt="${item.name}">
+                </a>
+                <div class="product-details-pop">
+                    <h4>${item.name}</h4>
+                    <p><strong>₹${item.price}</strong></p>
+                    <div class="pd-add-to-cart-wrap">
+                        <button class="qty-minus" data-id="${item.id}"><i class="fa-solid fa-minus"></i></button>
+                        <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
+                        <button class="qty-plus" data-id="${item.id}"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', html);
+    });
+}
+
+// Add to cart button
+document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const productId = this.dataset.id;
+        const quantity = 1;
+
+        fetch(`{{ url('/cart/add') }}/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ quantity })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success) {
+                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+
+                // Render all items in drawer
+                renderCartDrawer(data.cart);
+
+                // Open drawer
+                document.querySelector('.popup-overlay').classList.add('active');
+            } else {
+                alert('Something went wrong');
+            }
+        })
+        .catch(err => console.log(err));
+    });
+});
+
+// Close popup
+document.querySelector('.popup-close').addEventListener('click', function(){
+    document.querySelector('.popup-overlay').classList.remove('active');
 });
 </script>
 

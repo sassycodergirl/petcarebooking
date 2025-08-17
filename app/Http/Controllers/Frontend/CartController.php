@@ -16,33 +16,60 @@ class CartController extends Controller
     }
 
     // Add product to cart
+    // public function add(Request $request, $id)
+    // {
+    //     $product = Product::findOrFail($id);
+
+    //     $cart = session()->get('cart', []);
+
+    //     if(isset($cart[$id])) {
+    //         $cart[$id]['quantity'] += $request->quantity ?? 1;
+    //     } else {
+    //         $cart[$id] = [
+    //             'id' => $product->id,
+    //             'name' => $product->name,
+    //             'price' => $product->price,
+    //             'image' => $product->image,
+    //             'quantity' => $request->quantity ?? 1,
+    //         ];
+    //     }
+
+    //     session()->put('cart', $cart);
+
+    //     // Return JSON for AJAX
+    //     return response()->json([
+    //         'success' => true,
+    //         'cart_count' => array_sum(array_column($cart, 'quantity')),
+    //         'cart' => $cart
+    //     ]);
+    // }
+
     public function add(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-
         $cart = session()->get('cart', []);
 
         if(isset($cart[$id])) {
-            $cart[$id]['quantity'] += $request->quantity ?? 1;
+            $cart[$id]['quantity'] += $request->quantity;
         } else {
             $cart[$id] = [
                 'id' => $product->id,
                 'name' => $product->name,
                 'price' => $product->price,
-                'image' => $product->image,
-                'quantity' => $request->quantity ?? 1,
+                'quantity' => $request->quantity,
+                'image' => asset('public/' . $product->image),
             ];
         }
 
         session()->put('cart', $cart);
 
-        // Return JSON for AJAX
         return response()->json([
             'success' => true,
             'cart_count' => array_sum(array_column($cart, 'quantity')),
-            'cart' => $cart
+            'cart' => array_values($cart), // send cart items as array
         ]);
     }
+
 
     // Update quantity
     public function update(Request $request, $id)
