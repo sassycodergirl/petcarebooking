@@ -1,24 +1,25 @@
 @include('partials.header')
 
-<nav aria-label="breadcrumb" class="mb-4">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Shop</a></li>
 
-        @if($category->parent)
-            <li class="breadcrumb-item">
-                <a href="{{ route('shop.category', $category->parent->slug) }}">
-                    {{ $category->parent->name }}
-                </a>
-            </li>
-        @endif
-
-        <li class="breadcrumb-item active" aria-current="page">{{ $category->name }}</li>
-    </ol>
-</nav>
 
 
 <section class="banner inner-banner container">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Shop</a></li>
+
+            @if($category->parent)
+                <li class="breadcrumb-item">
+                    <a href="{{ route('shop.category', $category->parent->slug) }}">
+                        {{ $category->parent->name }}
+                    </a>
+                </li>
+            @endif
+
+            <li class="breadcrumb-item active" aria-current="page">{{ $category->name }}</li>
+        </ol>
+    </nav>
     <div class="js-product-banner">
         <div class="product-banner-col">
             <div class="product-banner-image">
