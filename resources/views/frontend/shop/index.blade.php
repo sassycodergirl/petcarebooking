@@ -72,7 +72,7 @@
 
                 {{-- Pagination --}}
                 <div class="pagination">
-                    {{ $products->links('vendor.pagination.bootstrap-4') }}
+                   {{ $products->links() }}
                 </div>
             </div>
         </div>
