@@ -25,15 +25,21 @@
                     <h1>Product Categories</h1>
                     <div class="prdct-list">
                         <ul>
-                            <li class="{{ !isset($category) ? 'active' : '' }}">
-                                <a href="{{ route('shop.index') }}">All</a>
-                            </li>
-                            @foreach($categories as $cat)
-                                <li class="{{ isset($category) && $category->id === $cat->id ? 'active' : '' }}">
-                                    <a href="{{ route('shop.category', $cat->slug) }}">{{ $cat->name }}</a>
+                            @foreach($categories as $category)
+                                <li>
+                                    {{ $category->name }}
+
+                                    @if($category->children->count())
+                                        <ul>
+                                            @foreach($category->children as $child)
+                                                <li>{{ $child->name }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
                                 </li>
                             @endforeach
                         </ul>
+
                     </div>
                 </div>
             </div>
