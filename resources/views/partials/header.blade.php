@@ -51,7 +51,7 @@
                         <ul>
                             <li><a class="btn-opens" href="javascript:void(0)"><img src="{{asset('images/search.svg')}}" alt=""></a>
                                 <span class="btn-closes"><i class="fa-solid fa-xmark"></i></span></li>
-                            <li><a href="#" class="cd-button"><img src="{{asset('images/card-icon.svg')}}" alt=""><span class="cd-button-cart-count">{{ session('cart') ? array_sum(array_column(session('cart'), 'quantity')) : 0 }}</span></a></li>
+                            <li><a href="#" class="cd-button"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M160 288h249.44a8 8 0 0 0 7.85-6.43l28.8-144a8 8 0 0 0-7.85-9.57H128"/></svg><span class="cd-button-cart-count">{{ session('cart') ? array_sum(array_column(session('cart'), 'quantity')) : 0 }}</span></a></li>
                             <li><a href="{{ route('login') }}"><img src="{{asset('images/user.svg')}}" alt=""></a></li>
                         </ul>
                     </div>

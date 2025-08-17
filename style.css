@@ -6082,6 +6082,32 @@ blockquote {
         }
 
 
+.cd-button-cart-count{
+	display: inline-flex;
+    background: #f2f4f8;
+    height: 40px;
+    border-radius: 100%;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
+
+
+	position: absolute;
+    background: #da1e28;
+    border-radius: 100%;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 4px;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 /*added by sudipa*/
