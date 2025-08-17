@@ -70,17 +70,27 @@ class CartController extends Controller
         ]);
     }
 
-    public function getItems()
-    {
-        $cart = session('cart', []);
-        $cartCount = array_sum(array_column($cart, 'quantity'));
+    public function items()
+        {
+            $cart = session('cart', []); // get cart from session, default empty array
 
-        return response()->json([
-            'success' => true,
-            'cart' => $cart,
-            'cart_count' => $cartCount,
-        ]);
-    }
+            // Transform cart for frontend
+            $cartData = array_map(function($item) {
+                return [
+                    'id' => $item['id'],
+                    'name' => $item['name'],
+                    'price' => $item['price'],
+                    'image' => asset($item['image']),
+                    'quantity' => $item['quantity'],
+                ];
+            }, $cart);
+
+            return response()->json([
+                'success' => true,
+                'cart' => $cartData
+            ]);
+        }
+
 
 
     // Update quantity

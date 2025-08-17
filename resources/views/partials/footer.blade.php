@@ -208,7 +208,7 @@ document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
 
 
 
-<script>
+<!-- <script>
 function renderCartDrawer(cartItems) {
     const container = document.querySelector('.cart-items');
     container.innerHTML = ''; // clear old items
@@ -317,7 +317,100 @@ document.querySelector('.popup-close').addEventListener('click', function(){
 });
 
 
+</script> -->
+
+
+<script>
+// Function to populate the drawer with cart items
+function populateCartDrawer(cart) {
+    const popup = document.querySelector('.popup-overlay');
+    const popupContent = popup.querySelector('.popup-content');
+
+    // Clear current content
+    popupContent.innerHTML = '';
+
+    if(cart.length === 0){
+        popupContent.innerHTML = '<p class="text-center">Your cart is empty.</p>';
+        return;
+    }
+
+    // Populate cart items
+    cart.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add('product-info');
+        div.innerHTML = `
+            <a href="#" class="product-img-pop">
+                <img src="${item.image}" alt="${item.name}">
+            </a>
+            <div class="product-details-pop">
+                <h4>${item.name}</h4>
+                <p><strong>₹${item.price}</strong></p>
+                <span>Quantity: ${item.quantity}</span>
+            </div>
+        `;
+        popupContent.appendChild(div);
+    });
+
+    popup.classList.add('active');
+}
+
+// Fetch current cart items and show drawer
+function fetchCartItems() {
+    fetch('{{ route("cart.items") }}')
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            populateCartDrawer(data.cart);
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+// Add to cart button click
+document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
+    button.addEventListener('click', function(e){
+        e.preventDefault();
+        const productId = this.dataset.id;
+        const quantity = 1; // default quantity
+
+        const url = '{{ route("cart.add", ":id") }}'.replace(':id', productId);
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ quantity: quantity })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                // Update cart count
+                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+
+                // Populate drawer
+                populateCartDrawer(data.cart);
+            } else {
+                alert('Something went wrong');
+            }
+        })
+        .catch(err => console.error(err));
+    });
+});
+
+// Cart icon click
+document.querySelector('.cart-btn').addEventListener('click', function(e){
+    e.preventDefault();
+    fetchCartItems();
+});
+
+// Close popup
+document.querySelector('.popup-close').addEventListener('click', function(){
+    document.querySelector('.popup-overlay').classList.remove('active');
+});
 </script>
+
 
 </body>
 
