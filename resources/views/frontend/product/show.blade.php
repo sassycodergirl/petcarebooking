@@ -3,7 +3,7 @@
     <div class="py-5 product-container">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-6">
                     <!-- Product Gallery Slider -->
                         @php
                             $galleryImages = $product->gallery; // default: product gallery
@@ -26,7 +26,7 @@
 
                         <div class="product-gallery row">
                             <!-- Thumbnails (Left) -->
-                            <div class="gallery-thumbs col-md-4">
+                            <div class="gallery-thumbs col-md-5">
                                 @foreach($galleryImages as $image)
                                     <div class="thumb-slide">
                                         <img class="img-fluid" src="{{ asset('public/' . $image->image) }}" alt="{{ $product->name }}">
@@ -35,7 +35,7 @@
                             </div>
 
                             <!-- Main Slider (Right) -->
-                            <div class="gallery-main col-md-8">
+                            <div class="gallery-main col-md-7">
                                 @foreach($galleryImages as $image)
                                     <div class="main-slide">
                                         <img class="img-fluid" src="{{ asset('public/' . $image->image) }}" alt="{{ $product->name }}">
@@ -45,7 +45,7 @@
                         </div>
 
                 </div>
-                <div class="col-12 col-md-5">
+                <div class="col-12 col-md-6">
                     <div class="product-information">
                         <h1 class="product-title">{{ $product->name }}</h1>
                         <p class="h4">₹{{ $product->price }}</p>
