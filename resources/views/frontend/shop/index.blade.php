@@ -19,10 +19,10 @@
     <div class="container">
         <div class="row">
             <!-- LEFT SIDEBAR - PARENT CATEGORIES AS TABS -->
-            <div class="col-3 col-md-3 col-lg-3 prdct-col-menu">
+            <div class="col-4 col-md-3 col-lg-3 prdct-col-menu sticky-product-cat">
                 <div class="prdct-col-menu-wrap">
-                    <h1>Product Categories</h1>
-                    <div class="prdct-list">
+                    <h1>Collection List</h1>
+                    <div class="prdct-list ">
                         <ul class="nav flex-column nav-pills" id="categoryTabs" role="tablist">
                             <li>
                                 <a class="nav-link active" data-bs-toggle="pill" href="#all" role="tab">
@@ -42,7 +42,7 @@
             </div>
 
             <!-- RIGHT CONTENT - TAB PANES -->
-            <div class="col-9 col-md-9 col-lg-9 prdct-col-list">
+            <div class="col-8 col-md-9 col-lg-9 prdct-col-list">
                 <div class="tab-content" id="categoryTabsContent">
 
                     {{-- ALL TAB (shows all subcategories from all parents) --}}

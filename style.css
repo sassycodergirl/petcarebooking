@@ -6204,4 +6204,8 @@ blockquote {
     scrollbar-width: thin; /* options: auto, thin */
     scrollbar-color: var(--bg-orange) #e0e0e0; /* thumb color | track color */
 }
+
+.tablist .nav-pills .nav-link.active{
+	 background-color: var(--bg-orange) !important;
+}
 /*added by sudipa*/
