@@ -508,6 +508,13 @@ textarea::placeholder {
 }
 
 .hdr-rgt-icons ul li a {
+	display: inline-flex;
+    background: #f2f4f8;
+    height: 40px;
+    border-radius: 100%;
+    width: 40px;
+    align-items: center;
+    justify-content: center;
 	display: flex;
 	width: 35px;
 	height: 35px;
@@ -6083,15 +6090,7 @@ blockquote {
 
 
 .cd-button-cart-count{
-	display: inline-flex;
-    background: #f2f4f8;
-    height: 40px;
-    border-radius: 100%;
-    width: 40px;
-    align-items: center;
-    justify-content: center;
-
-
+	
 	position: absolute;
     background: #da1e28;
     border-radius: 100%;
