@@ -4,7 +4,35 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-7">
-                    <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
+                    <!-- <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid"> -->
+                     <!-- Product Gallery Slider -->
+                        @php
+                            $galleryImages = $product->gallery; // default: product gallery
+
+                            if ($galleryImages->isEmpty() && $product->variants->count()) {
+                                
+                                foreach ($product->variants as $variant) {
+                                    if ($variant->gallery->count()) {
+                                        $galleryImages = $variant->gallery;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            
+                            if ($galleryImages->isEmpty()) {
+                                $galleryImages = collect([(object)['image' => $product->image]]);
+                            }
+                        @endphp
+
+                        <div class="product-gallery-slider">
+                            @foreach($galleryImages as $image)
+                                <div class="slide">
+                                    <img src="{{ asset('public/' . $image->image) }}" alt="{{ $product->name }}">
+                                </div>
+                            @endforeach
+                        </div>
+
                 </div>
                 <div class="col-12 col-md-5">
                     <div class="product-information">
