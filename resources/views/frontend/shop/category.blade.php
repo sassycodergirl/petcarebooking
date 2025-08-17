@@ -37,7 +37,7 @@
     </div>
 </section>
 
-<div class="container py-5">
+<div class="container-fluid py-5 px-md-5">
 
 <div class="row">
         <div class="col-md-3">

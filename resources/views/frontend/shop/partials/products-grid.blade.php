@@ -1,7 +1,7 @@
 @if($products->count())
     <div class="row">
         @foreach($products as $product)
-               <div class="col-md-4 mb-4 new-product pb-0">
+               <div class="col-md-3 mb-4 new-product pb-0">
                                 <div class="product-card-col h-100 shadow-sm p-4">
                                     @if($product->image)
                                     <a href="#" class="product-card-img p-0">
@@ -11,7 +11,7 @@
                                     </div>
                                     </a>
                                     @endif
-                                    <div class="card-body text-center px-4">
+                                    <div class="card-body text-center">
                                         <h3><a href="#">{{ $product->name }}</a></h3>
                                         <div class="">
                                             <p class="card-text">₹{{ $product->price }}</p>
