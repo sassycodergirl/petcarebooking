@@ -40,11 +40,11 @@
 <div class="container-fluid py-5 px-md-5">
 
 <div class="row">
-        <div class="col-md-3">
+        <div class="col-3 col-md-3">
               <h5 class="mb-4">Explore {{ $category->name }}</h5>
        
         </div>
-        <div class="col-md-9">
+        <div class="col-9 col-md-9">
               <!-- Filter Pills -->
                 @if($category->is_food)
                     <div class="mb-4">
@@ -72,7 +72,7 @@
     <div class="row">
         <!-- Sidebar with parent & subcategories -->
       <!-- Sidebar with categories -->
-        <div class="col-md-3">
+        <div class="col-3 col-md-3">
             <!-- <h4 class="mb-3">{{ $category->parent ? $category->parent->name : $category->name }}</h4> -->
             <ul class="list-group prdct-list">
                 {{-- Always show parent category as first item --}}
@@ -115,14 +115,14 @@
 
 
         <!-- Products list -->
-        <div class="col-md-9">
+        <div class="col-9 col-md-9">
            
 
             <div id="productsGrid">
                 @if($products->count())
                     <div class="row">
                         @foreach($products as $product)
-                            <div class="col-md-3 mb-4 new-product pb-0">
+                            <div class="col-6 col-md-3 mb-4 new-product pb-0">
                                 <div class="product-card-col h-100 shadow-sm p-4">
                                     @if($product->image)
                                     <a href="{{ route('product.show', $product->slug) }}" class="product-card-img p-0">
