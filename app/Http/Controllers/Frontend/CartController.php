@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
 class CartController extends Controller
 {
-    // Show cart page (optional)
+    // Show cart page
     public function index()
     {
         $cart = session()->get('cart', []);
@@ -15,39 +16,35 @@ class CartController extends Controller
     }
 
     // Add product to cart
-    public function add(Request $request, $id) {
-    try {
-        $quantity = $request->input('quantity', 1);
+    public function add(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
         $cart = session()->get('cart', []);
-        
+
         if(isset($cart[$id])) {
-            $cart[$id]['quantity'] += $quantity;
+            $cart[$id]['quantity'] += $request->quantity ?? 1;
         } else {
-            $product = Product::findOrFail($id);
             $cart[$id] = [
-                "name" => $product->name,
-                "price" => $product->price,
-                "quantity" => $quantity,
-                "image" => $product->image
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'image' => $product->image,
+                'quantity' => $request->quantity ?? 1,
             ];
         }
-        
+
         session()->put('cart', $cart);
 
+        // Return JSON for AJAX
         return response()->json([
             'success' => true,
-            'cart_count' => array_sum(array_column($cart, 'quantity'))
+            'cart_count' => array_sum(array_column($cart, 'quantity')),
+            'cart' => $cart
         ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'success' => false,
-            'message' => $e->getMessage()
-        ], 500);
     }
-}
 
-
-    // Update cart quantity
+    // Update quantity
     public function update(Request $request, $id)
     {
         $cart = session()->get('cart', []);
@@ -63,7 +60,7 @@ class CartController extends Controller
         ]);
     }
 
-    // Remove product from cart
+    // Remove product
     public function remove($id)
     {
         $cart = session()->get('cart', []);
