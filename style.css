@@ -2312,6 +2312,7 @@ textarea::placeholder {
 	background-repeat: no-repeat;
 	background-position: calc(100% - 14px);
 	font-size: 16px;
+	text-transform: uppercase;
 }
 
 .prdct-list a:hover,
