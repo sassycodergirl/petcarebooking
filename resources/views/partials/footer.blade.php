@@ -141,6 +141,57 @@
         </div>
     </div>  
 
+
+    <script>
+        document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const productId = this.dataset.id;
+                const productName = this.dataset.name;
+                const productPrice = this.dataset.price;
+                const productImage = this.dataset.image;
+                const quantity = 1; // default quantity
+
+                // 1️⃣ Add to cart via AJAX
+                fetch(`{{ url('/cart/add') }}/${productId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ quantity })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success) {
+                        // 2️⃣ Update cart icon count
+                        document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+
+                        // 3️⃣ Populate popup drawer dynamically
+                        const popup = document.querySelector('.popup-overlay');
+                        popup.querySelector('.product-img-pop img').src = productImage;
+                        popup.querySelector('.product-details-pop h4').innerText = productName;
+                        popup.querySelector('.product-details-pop strong').innerText = '₹' + productPrice;
+                        popup.querySelector('.qty').value = quantity;
+
+                        // Open drawer
+                        popup.classList.add('active');
+                    } else {
+                        alert('Something went wrong');
+                    }
+                })
+                .catch(err => console.log(err));
+            });
+        });
+
+        // Close popup
+        document.querySelector('.popup-close').addEventListener('click', function(){
+            document.querySelector('.popup-overlay').classList.remove('active');
+        });
+</script>
+
+
     <!-- Jquery-->
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
