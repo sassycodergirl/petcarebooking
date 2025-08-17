@@ -2613,7 +2613,7 @@ textarea::placeholder {
 }
 
 .pd-add-to-cart-wrap {
-	/* width: 170px; */
+	width: 120px;
 	display: flex;
 	border: 1px solid var(--bg-orange);
 	/* border-radius: 4px; */
