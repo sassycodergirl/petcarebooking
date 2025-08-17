@@ -48,6 +48,9 @@ class ShopController extends Controller
             }
 
             $products = $query->get();
+            foreach ($products as $product) {
+                $product->image = $product->image ? asset('public/' . $product->image) : asset('images/pd1.png');
+             }
             return view('frontend.shop.partials.products-grid', compact('products'));
         }
 
