@@ -16,7 +16,7 @@
 
                                 @php
                                     $sizes = $product->variants->pluck('size')->filter()->unique();
-                                    $colors = $product->variants->pluck('color.name')->filter()->unique();
+                                    <!-- $colors = $product->variants->pluck('color.name')->filter()->unique(); -->
                                 @endphp
 
                                 <!-- {{-- Sizes --}} -->
@@ -35,19 +35,26 @@
                                 @endif
 
                                 <!-- {{-- Colors --}} -->
-                                @if($colors->count())
+
+                                @if($product->colors->count())
                                     <div class="mb-2">
                                         <label class="form-label">Color:</label>
                                         <div class="selectgroup">
-                                            @foreach($colors as $color)
-                                                <label class="selectgroup-item">
-                                                    <input type="radio" name="variant_color" value="{{ $color }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
-                                                    <span class="selectgroup-button">{{ $color }}</span>
+                                            @foreach($product->colors as $color)
+                                                <label class="selectgroup-item" title="{{ $color->name }}">
+                                                    <input type="radio" name="variant_color" value="{{ $color->id }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
+                                                    <span class="selectgroup-button" style="background-color: {{ $color->hex_code ?? '#ccc' }};">
+                                                        {{ $color->name }}
+                                                    </span>
                                                 </label>
                                             @endforeach
                                         </div>
                                     </div>
-                                @endif
+                                    @endif
+
+
+
+                                
                             </div>
                         @endif
 

@@ -6258,9 +6258,7 @@ blockquote {
     background: rgba(21, 114, 232, .15);
 }
 
-.selectgroup-pills .selectgroup-button {
-    border-radius: 50px !important;
-}
+
 
 .selectgroup-button {
     display: block;
