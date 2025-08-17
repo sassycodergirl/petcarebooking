@@ -6319,7 +6319,7 @@ blockquote {
     border-radius: 20px;
 }
 
-.accordion-item:last-of-type>.accordion-header .accordion-button.collapsed{
+.accordion-item:last-of-type>.accordion-header .accordion-button.collapsed,.accordion-item:first-of-type {
 	    border-top: none;
 }
 /*added by sudipa*/
