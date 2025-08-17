@@ -6325,7 +6325,7 @@ blockquote {
 .product-meta .accordion-item:last-of-type>.accordion-header .accordion-button.collapsed {
     border-bottom: none;
 }
-.product-meta{
+.product-meta .accordion-item{
 	 border-bottom: 1px solid gray;
 }
 /*added by sudipa*/
