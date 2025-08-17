@@ -43,13 +43,13 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6">
                  <div class="mb-3">
                     <label for="price" class="form-label">Price (₹) *</label>
                     <input type="number" step="0.01" min="0" name="price" value="{{ old('price', $product->price) }}" class="form-control" required>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6">
                   <div class="mb-3">
                     <label for="stock_quantity" class="form-label">Stock Quantity *</label>
                     <input type="number" min="0" name="stock_quantity" value="{{ old('stock_quantity', $product->stock_quantity) }}" class="form-control" required>
