@@ -186,7 +186,7 @@ $(document).ready(function(){
         vertical: true,
         verticalSwiping: true,
         arrows: true,
-        infinite: false
+        infinite: true
     });
 
     // Initialize main slider
