@@ -9,29 +9,41 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+    /**
+     * Shop page → Show only parent categories
+     */
     public function index()
     {
-        // Load only parent categories with their subcategories
-        $categories = Category::whereNull('parent_id')
-            ->with('children')
+        $categories = Category::with('children') // eager load children
+            ->whereNull('parent_id') // only parent categories
             ->orderBy('name')
             ->get();
 
-        $products = Product::latest()->paginate(12);
-
-        return view('frontend.shop.index', compact('categories', 'products'));
+        return view('frontend.shop.index', compact('categories'));
     }
 
+    /**
+     * Category page → Show child categories or products
+     */
     public function category(string $slug)
     {
-        $categories = Category::whereNull('parent_id')
-            ->with('children')
-            ->orderBy('name')
-            ->get();
+        $category = Category::where('slug', $slug)
+            ->with('children') // eager load children for check
+            ->firstOrFail();
 
-        $category   = Category::where('slug', $slug)->firstOrFail();
-        $products   = Product::where('category_id', $category->id)->latest()->paginate(12);
+        if ($category->children->isNotEmpty()) {
+            // Parent category → show its child categories
+            return view('frontend.shop.category', [
+                'category' => $category,
+                'subcategories' => $category->children
+            ]);
+        }
 
-        return view('frontend.shop.index', compact('categories', 'products', 'category'));
+        // Child category → show products
+        $products = Product::where('category_id', $category->id)
+            ->latest()
+            ->paginate(12);
+
+        return view('frontend.shop.products', compact('category', 'products'));
     }
 }
