@@ -157,8 +157,13 @@ document.querySelectorAll('.filter-attribute').forEach(el => {
 
         let categorySlug = "{{ $category->slug }}";
 
-        let url = "{{ url('/collections') }}/" + categorySlug + "?attributes=" + selectedAttributes.join(',');
-        fetch(url, {
+        // If no attribute is selected, just return all products
+        let query = '';
+        if(selectedAttributes.length > 0) {
+            query = '?attributes=' + selectedAttributes.join(',');
+        }
+
+        fetch(`/collections/${categorySlug}${query}`, {
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })
         .then(res => res.text())
@@ -167,6 +172,7 @@ document.querySelectorAll('.filter-attribute').forEach(el => {
         });
     });
 });
+
 </script>
 
 
