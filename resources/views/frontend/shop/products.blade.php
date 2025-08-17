@@ -1,25 +1,31 @@
 @include('partials.header')
 
-
+@php
+    $breadcrumbs = [];
+    $current = $category;
+    while($current) {
+        $breadcrumbs[] = $current;
+        $current = $current->parent;
+    }
+    $breadcrumbs = array_reverse($breadcrumbs);
+@endphp
 
 
 <section class="banner inner-banner container">
     <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Shop</a></li>
-
-            @if($category->parent)
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Home</a></li>
+        @foreach($breadcrumbs as $crumb)
+            @if($loop->last)
+                <li class="breadcrumb-item active" aria-current="page">{{ $crumb->name }}</li>
+            @else
                 <li class="breadcrumb-item">
-                    <a href="{{ route('shop.category', $category->parent->slug) }}">
-                        {{ $category->parent->name }}
-                    </a>
+                    <a href="{{ route('shop.category', $crumb->slug) }}">{{ $crumb->name }}</a>
                 </li>
             @endif
-
-            <li class="breadcrumb-item active" aria-current="page">{{ $category->name }}</li>
-        </ol>
-    </nav>
+        @endforeach
+    </ol>
+</nav>
     <div class="js-product-banner">
         <div class="product-banner-col">
             <div class="product-banner-image">
