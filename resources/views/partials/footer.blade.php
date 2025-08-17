@@ -201,37 +201,83 @@
     });
 
     // Drawer quantity change & remove
+    // document.addEventListener('click', function(e){
+    //     const target = e.target;
+
+    //     if(target.classList.contains('qty-plus') || target.classList.contains('qty-minus') || target.classList.contains('remove-item')){
+    //         const id = target.dataset.id;
+    //         let action = 'update';
+    //         let qtyChange = 0;
+
+    //         if(target.classList.contains('qty-plus')) qtyChange = 1;
+    //         if(target.classList.contains('qty-minus')) qtyChange = -1;
+    //         if(target.classList.contains('remove-item')) action = 'remove';
+
+    //         const url = action === 'remove' ? `{{ url('/cart/remove') }}/${id}` : `{{ url('/cart/update') }}/${id}`;
+
+    //         fetch(url, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    //             },
+    //             body: JSON.stringify({ quantity: qtyChange })
+    //         })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             if(data.success){
+    //                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+    //                 renderCartDrawer(data.cart);
+    //             }
+    //         });
+    //     }
+    // });
+
     document.addEventListener('click', function(e){
-        const target = e.target;
+    // Handle plus/minus buttons normally
+    if(e.target.classList.contains('qty-plus') || e.target.classList.contains('qty-minus')){
+        const id = e.target.dataset.id;
+        const qtyChange = e.target.classList.contains('qty-plus') ? 1 : -1;
 
-        if(target.classList.contains('qty-plus') || target.classList.contains('qty-minus') || target.classList.contains('remove-item')){
-            const id = target.dataset.id;
-            let action = 'update';
-            let qtyChange = 0;
+        fetch(`{{ url('/cart/update') }}/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ quantity: qtyChange })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+                renderCartDrawer(data.cart);
+            }
+        });
+    }
 
-            if(target.classList.contains('qty-plus')) qtyChange = 1;
-            if(target.classList.contains('qty-minus')) qtyChange = -1;
-            if(target.classList.contains('remove-item')) action = 'remove';
+    // Handle remove button using closest(), so clicks on SVG work
+    const removeBtn = e.target.closest('.remove-item');
+    if(removeBtn){
+        const id = removeBtn.dataset.id;
 
-            const url = action === 'remove' ? `{{ url('/cart/remove') }}/${id}` : `{{ url('/cart/update') }}/${id}`;
+        fetch(`{{ url('/cart/remove') }}/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+                renderCartDrawer(data.cart);
+            }
+        });
+    }
+});
 
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ quantity: qtyChange })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success){
-                    document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                    renderCartDrawer(data.cart);
-                }
-            });
-        }
-    });
 
     // Close popup
     document.querySelector('.popup-close').addEventListener('click', function(){
