@@ -9,7 +9,7 @@
     }
     $breadcrumbs = array_reverse($breadcrumbs);
 @endphp
-ppp
+
 
 <section class="banner inner-banner container">
     <nav aria-label="breadcrumb" class="mb-4">
@@ -41,7 +41,7 @@ ppp
 </section>
 
 <div class="container py-5">
-
+ppp
     <div class="row">
         <div class="col-md-3">
               <h5 class="mb-4">{{ $category->name }}</h5>
