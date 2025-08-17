@@ -6140,6 +6140,10 @@ blockquote {
     color: #fff;
     text-transform: uppercase;
 }
+.btn-checkout:hover{
+	color: #fff;
+	background: #000;
+}
 
 .cart-total{
 	font-size: 16px;
