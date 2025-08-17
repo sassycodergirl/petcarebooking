@@ -6127,4 +6127,10 @@ blockquote {
     align-items: center;
     padding: 12px;
 }
+.btn-checkout{
+	background-color: #FF6D1F;
+    font-size: 18px;
+    height: 60px;
+    font-weight: 500;
+}
 /*added by sudipa*/
