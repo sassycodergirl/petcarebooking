@@ -44,52 +44,42 @@ class CartController extends Controller
     //     ]);
     // }
 
-    public function add(Request $request, $id)
+    public function add($id, Request $request)
     {
-        $product = Product::findOrFail($id);
-        $cart = session()->get('cart', []);
+        $cart = session('cart', []);
+        $quantity = $request->quantity ?? 1;
 
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity'] += $request->quantity;
+        if(isset($cart[$id])){
+            $cart[$id]['quantity'] += $quantity;
         } else {
+            $product = Product::findOrFail($id);
             $cart[$id] = [
-                'id' => $product->id,
+                'id' => $id,
                 'name' => $product->name,
                 'price' => $product->price,
-                'quantity' => $request->quantity,
-                'image' => asset('public/' . $product->image),
+                'image' => $product->image, // or URL
+                'quantity' => $quantity
             ];
         }
 
-        session()->put('cart', $cart);
+        session(['cart' => $cart]);
 
         return response()->json([
             'success' => true,
             'cart_count' => array_sum(array_column($cart, 'quantity')),
-            'cart' => array_values($cart), // send cart items as array
+            'cart' => array_values($cart)
         ]);
     }
 
-    public function items()
-        {
-            $cart = session('cart', []); // get cart from session, default empty array
-
-            // Transform cart for frontend
-            $cartData = array_map(function($item) {
-                return [
-                    'id' => $item['id'],
-                    'name' => $item['name'],
-                    'price' => $item['price'],
-                    'image' => asset($item['image']),
-                    'quantity' => $item['quantity'],
-                ];
-            }, $cart);
-
-            return response()->json([
-                'success' => true,
-                'cart' => $cartData
-            ]);
-        }
+    public function getItems()
+    {
+        $cart = session('cart', []);
+        return response()->json([
+            'success' => true,
+            'cart_count' => array_sum(array_column($cart, 'quantity')),
+            'cart' => array_values($cart)
+        ]);
+    }
 
 
 
