@@ -35,7 +35,7 @@
                             <!-- Description -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingDescription">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription" aria-expanded="true" aria-controls="collapseDescription">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription" aria-expanded="true" aria-controls="collapseDescription">
                                         Product Description
                                     </button>
                                 </h2>
