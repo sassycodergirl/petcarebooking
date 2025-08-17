@@ -273,7 +273,51 @@ document.querySelector('.popup-close').addEventListener('click', function(){
 });
 </script>
 
+<script>
+// When user clicks on the cart icon
+document.querySelector('.cart-btn').addEventListener('click', function(e){
+    e.preventDefault();
 
+    fetch('{{ route("cart.items") }}')
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            const popup = document.querySelector('.popup-overlay');
+            const popupContent = popup.querySelector('.popup-content');
+
+            // Clear current content
+            popupContent.innerHTML = '';
+
+            // Populate cart items
+            data.cart.forEach(item => {
+                const div = document.createElement('div');
+                div.classList.add('product-info');
+                div.innerHTML = `
+                    <a href="#" class="product-img-pop">
+                        <img src="${item.image}" alt="${item.name}">
+                    </a>
+                    <div class="product-details-pop">
+                        <h4>${item.name}</h4>
+                        <p><strong>₹${item.price}</strong></p>
+                        <span>Quantity: ${item.quantity}</span>
+                    </div>
+                `;
+                popupContent.appendChild(div);
+            });
+
+            // Show drawer
+            popup.classList.add('active');
+        }
+    });
+});
+
+// Close popup
+document.querySelector('.popup-close').addEventListener('click', function(){
+    document.querySelector('.popup-overlay').classList.remove('active');
+});
+
+
+</script>
 
 </body>
 

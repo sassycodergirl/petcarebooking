@@ -70,6 +70,18 @@ class CartController extends Controller
         ]);
     }
 
+    public function getItems()
+    {
+        $cart = session('cart', []);
+        $cartCount = array_sum(array_column($cart, 'quantity'));
+
+        return response()->json([
+            'success' => true,
+            'cart' => $cart,
+            'cart_count' => $cartCount,
+        ]);
+    }
+
 
     // Update quantity
     public function update(Request $request, $id)
