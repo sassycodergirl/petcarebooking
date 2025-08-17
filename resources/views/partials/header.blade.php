@@ -45,8 +45,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 2em;
-        width: 2em;
+        width: 29px;
+        height: 29px;
+        margin-top: -4px;
         inset: 0;
         background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23259425' d='M20 4v16H4V4zm2-2H2v20h20zM12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6s-2.69-6-6-6'/%3E%3C/svg%3E") no-repeat center center;
         background-size: 50%; /* adjust size of icon */
@@ -64,7 +65,7 @@
         }
 
         .switch input:checked + .slider:before {
-        transform: translateX(2.6em);
+        transform: translateX(2.9em);
         }
     </style>
 </head>
