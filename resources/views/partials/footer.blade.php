@@ -132,7 +132,7 @@
             const html = `
                 <div class="product-infos mb-4">
                     <div class="product-info mb-0">
-                        <a href="#" class="product-img-pop">
+                        <a href="{{ route('product.show', $product->slug) }}" class="product-img-pop">
                             <img src="${item.image}" alt="${item.name}">
                         </a>
                         <div class="product-details-pop">
