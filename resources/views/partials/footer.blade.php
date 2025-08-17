@@ -75,71 +75,7 @@
     </footer>
     <button id="backToTopBtn" class="scroll-btn"><img src="{{asset('images/back-to-top.svg')}}" alt=""></button>
 
-    <!-- cd-popup -->
-    <!-- <div class="popup-overlay">
-        <div class="popup-box">
-            <div class="popup-header">
-                <h3>Choose options</h3>
-                <button type="button" class="popup-close"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="popup-content">
-                <div class="product-info">
-                    <a href="#" class="product-img-pop">
-                        <img src="{{asset('images/pd1.png')}}" alt="Dry Food">
-                    </a>
-                    <div class="product-details-pop">
-                        <h4>Dry Food For Adult Cat</h4>
-                        <p><del>₹180</del> <strong>₹120</strong></p>
-                        <span>Select Pack Size</span>
-                        <div class="pack-size-group">
-                            <input type="radio" id="size-100" name="pack-size" value="100g" checked>
-                            <label for="size-100">100g</label>
-                            <input type="radio" id="size-250" name="pack-size" value="250g">
-                            <label for="size-250">250g</label>
-                            <input type="radio" id="size-500" name="pack-size" value="500g">
-                            <label for="size-500">500g</label>
-                            <input type="radio" id="size-1kg" name="pack-size" value="1kg">
-                            <label for="size-1kg">1kg</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="pd-accod-wrap">
-                    <div class="pd-accod">
-                        <button class="pd-accod-btn">Product Description</button>
-                        <div class="pd-accod-cont">
-                            <p>Give your adult cat the balanced diet they need with our premium dry food, specially formulated to support overall health, energy, and coat shine...more</p>
-                        </div>
-                    </div>
-                    <div class="pd-accod">
-                        <button class="pd-accod-btn">Ingredients</button>
-                        <div class="pd-accod-cont">
-                            <div class="pd-accod-cont-indg">
-                                <span>Mutton</span><span>Mutton Organs</span><span>Pumpkin</span>
-                        <span>Carrot</span><span>Sweet Potato</span><span>Turmeric</span>
-                        <span>Egg Shells Powder</span><span>Bone Broth</span><span>Green Peas</span>
-                        <span>Coconut Oil</span><span>Chicken Bone</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pd-section">
-                    <h5>Available Offers</h5>
-                    <ul>
-                        <li>Flat 10% OFF on orders above ₹995</li>
-                        <li>FREE GIFT on orders above ₹995</li>
-                    </ul>
-                </div>
-                <div class="pd-add-to-cart">
-                    <div class="pd-add-to-cart-wrap">
-                        <button class="qty-minus"><i class="fa-solid fa-minus"></i></button>
-                        <input type="text" value="1" class="qty" />
-                        <button class="qty-plus"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                    <a href="#" class="add-to-bag-sm"><span><img src="{{asset('images/bag-icon.svg')}}" alt=""></span>Checkout</a>
-                </div>
-            </div>
-        </div>
-    </div>   -->
+ 
 
 
 <div class="popup-overlay">
