@@ -22,43 +22,7 @@ class ShopController extends Controller
     
 
 
-        // public function category(Request $request, string $slug)
-        // {
-        //     $category = Category::where('slug', $slug)->firstOrFail();
-
-        //     // If it has children → show subcategories
-        //     if ($category->children()->count() > 0) {
-        //         $subcategories = $category->children()->orderBy('name')->get();
-        //         return view('frontend.shop.category', compact('category', 'subcategories'));
-        //     }
-
-        //     // Base query
-        //     $query = Product::where('category_id', $category->id)->latest();
-
-        //     // AJAX filter request
-        //     if ($request->ajax()) {
-        //         $attributes = $request->input('attributes'); // get the input safely
-
-        //         $query = Product::where('category_id', $category->id)->latest();
-
-        //         if (!empty($attributes)) {
-        //             // If attributes exist, filter by them
-        //             $attributes = is_array($attributes) ? $attributes : explode(',', $attributes);
-
-        //             $query->whereHas('attributes', function($q) use ($attributes) {
-        //                 $q->whereIn('attributes.id', $attributes);
-        //             });
-        //         }
-
-        //         $products = $query->get();
-
-        //         return view('frontend.shop.partials.products-grid', compact('products'));
-        //     }
-
-        //     // Normal page load
-        //     $products = $query->paginate(12);
-        //     return view('frontend.shop.products', compact('category', 'products'));
-        // }
+       
 
 
         public function category(Request $request, string $slug)
@@ -96,6 +60,10 @@ class ShopController extends Controller
             // Normal page load
             // $products = $query->paginate(12);
             $products = $query->get();
+            // Ensure each product has an image
+            foreach ($products as $product) {
+                $product->image = $product->image ? asset('public/' . $product->image) : asset('images/pd1.png');
+            }
 
             return view('frontend.shop.category', compact('category', 'subcategories', 'products'));
         }
