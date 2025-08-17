@@ -1,41 +1,73 @@
 @include('partials.header')
 
-{{-- Banner Section --}}
 <section class="banner inner-banner">
     <div class="js-product-banner">
-        @for($i = 0; $i < 5; $i++)
-            <div class="product-banner-col">
-                <div class="product-banner-image">
-                    <img src="{{ asset('images/product-banner.jpg') }}" alt="Product Banner">
-                </div>
+        <div class="product-banner-col">
+            <div class="product-banner-image">
+                <img src="{{ asset('images/product-banner.jpg') }}" alt="">
             </div>
-        @endfor
+        </div>
+        <div class="product-banner-col">
+            <div class="product-banner-image">
+                <img src="{{ asset('images/product-banner.jpg') }}" alt="">
+            </div>
+        </div>
     </div>
 </section>
 
-
-@section('content')
-<div class="container">
-    <h1 class="mb-4">Shop by Category</h1>
-
-    <div class="row">
-        @foreach($categories as $category)
-            <div class="col-md-3 mb-4">
-                <a href="{{ route('shop.parent', $category->slug) }}" class="card h-100 text-decoration-none">
-                    @if($category->image)
-                        <img src="{{ asset('storage/' . $category->image) }}" class="card-img-top" alt="{{ $category->name }}">
-                    @endif
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ $category->name }}</h5>
+<section class="product-section">
+    <div class="container">
+        <div class="row">
+            {{-- LEFT SIDEBAR - PARENT CATEGORIES --}}
+            <div class="col-lg-3 prdct-col-menu">
+                <div class="prdct-col-menu-wrap">
+                    <h1>Product Categories</h1>
+                    <div class="prdct-list">
+                        <ul>
+                            <li class="active">
+                                <a href="{{ route('shop.index') }}">All</a>
+                            </li>
+                            @foreach($categories as $parent)
+                                <li>
+                                    <a href="{{ route('shop.parent', $parent->slug) }}">
+                                        {{ $parent->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
-                </a>
+                </div>
             </div>
-        @endforeach
-    </div>
-</div>
-@endsection
 
-{{-- Extra CTA Section --}}
+            {{-- RIGHT CONTENT - CHILD CATEGORIES OF ALL PARENTS --}}
+            <div class="col-lg-9 prdct-col-list">
+                <div class="row">
+                    @foreach($categories as $parent)
+                        @foreach($parent->children as $subcategory)
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="product-card-col">
+                                    <a href="{{ route('shop.subcategory', [$parent->slug, $subcategory->slug]) }}" class="product-card-img">
+                                        @if($subcategory->image)
+                                            <img src="{{ asset('storage/' . $subcategory->image) }}" alt="{{ $subcategory->name }}">
+                                        @else
+                                            <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
+                                        @endif
+                                    </a>
+                                    <h3>
+                                        <a href="{{ route('shop.subcategory', [$parent->slug, $subcategory->slug]) }}">
+                                            {{ $subcategory->name }}
+                                        </a>
+                                    </h3>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="daycare-card">
     <div class="container">
         <div class="daycare-card-wrap">
@@ -43,10 +75,13 @@
                 <div class="col-lg-7 col-md-6">
                     <div class="daycare-card-cont">
                         <h2>Book Our Daycare - A Safe, Loving Space for Your Pet</h2>
-                        <p>Leave your furry friend in trusted hands. Our daycare offers comfort, play, and personalized care while you're away—because they deserve the best, even when you're busy.</p>
+                        <p>Leave your furry friend in trusted hands. Our daycare offers comfort, play, and
+                            personalized care while you're away—because they deserve the best, even when you're
+                            busy.</p>
                         <div class="banner-cont-button">
-                            <a href="#" class="cmn-btn"><span>Book Day Care</span></a>
-                            <a href="#" class="cmn-btn-border"><span>Join The Community</span></a>
+                            <a href="#" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                            <a href="#" class="cmn-btn-border" data-content="Join The Community"><span>Join The
+                                    Community</span></a>
                         </div>
                     </div>
                 </div>
