@@ -128,7 +128,7 @@
                                     <a href="#" class="product-card-img p-0">
                                     <div class="product-img h-100">
 
-                                        <img src="{{ asset('public/' . $product->image) }}" class="img-fluid h-100" alt="{{ $product->name }}">
+                                        <img src="{{ $product->image }}" class="img-fluid h-100" alt="{{ $product->name }}">
                                     </div>
                                     </a>
                                     @endif
