@@ -1,6 +1,6 @@
 @include('partials.header')
 
-<section class="banner inner-banner container px-4 px-md-5">
+<section class="banner inner-banner container-fluid px-4 px-md-5">
     <div class="js-product-banner">
         <div class="product-banner-col">
             <div class="product-banner-image">
@@ -16,7 +16,7 @@
 </section>
 
 <section class="product-section">
-    <div class="container">
+    <div class="container container-fluid px-4 px-md-5">
         <div class="row">
             <!-- LEFT SIDEBAR - PARENT CATEGORIES AS TABS -->
             <div class="col-4 col-md-3 col-lg-3 prdct-col-menu sticky-product-cat">
