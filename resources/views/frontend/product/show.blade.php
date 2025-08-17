@@ -16,7 +16,7 @@
 
                                 @php
                                     $sizes = $product->variants->pluck('size')->filter()->unique();
-                                    <!-- $colors = $product->variants->pluck('color.name')->filter()->unique(); -->
+                                  
                                 @endphp
 
                                 <!-- {{-- Sizes --}} -->
