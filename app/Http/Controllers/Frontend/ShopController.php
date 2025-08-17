@@ -11,15 +11,23 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('name')->get();
-        $products   = Product::latest()->paginate(12);
+        // Only parent categories (no parent_id)
+        $categories = Category::whereNull('parent_id')
+            ->orderBy('name')
+            ->get();
+
+        $products = Product::latest()->paginate(12);
 
         return view('frontend.shop.index', compact('categories', 'products'));
     }
 
     public function category(string $slug)
     {
-        $categories = Category::orderBy('name')->get();
+        // Only parent categories
+        $categories = Category::whereNull('parent_id')
+            ->orderBy('name')
+            ->get();
+
         $category   = Category::where('slug', $slug)->firstOrFail();
         $products   = Product::where('category_id', $category->id)->latest()->paginate(12);
 
