@@ -1,19 +1,24 @@
 @if($products->count())
     <div class="row">
         @foreach($products as $product)
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    @if($product->image)
-                    <div class="product-img">
-                        <img src="{{ asset('public/' . $product->image) }}" class="img-fluid" alt="{{ $product->name }}">
-                    </div>
-                    @endif
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                        <p class="card-text">₹{{ $product->price }}</p>
-                    </div>
-                </div>
-            </div>
+              <div class="col-md-4 mb-4 new-product pb-0">
+                                <div class="product-card-col h-100 shadow-sm p-4">
+                                    @if($product->image)
+                                    <a href="#" class="product-card-img">
+                                    <div class="product-img">
+
+                                        <img src="{{ asset('public/' . $product->image) }}" class="img-fluid " alt="{{ $product->name }}">
+                                    </div>
+                                    </a>
+                                    @endif
+                                    <div class="card-body text-center">
+                                        <h3><a href="#">{{ $product->name }}</a></h3>
+                                       
+                                        <p class="card-text">₹{{ $product->price }}</p>
+                                        <button class="add-to-bag cd-button"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
+                                    </div>
+                                </div>
+                            </div>
         @endforeach
     </div>
 
