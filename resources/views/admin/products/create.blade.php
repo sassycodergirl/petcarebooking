@@ -57,10 +57,9 @@
                 <div class="col-12 col-md-4">
                     <div class="mb-3">
                         <label for="stock_quantity" class="form-label">Product Attributes</label>
-                        <select name="attributes[]" multiple class="form-select">
+                         <select name="attributes[]" multiple class="form-select">
                             @foreach(\App\Models\Attribute::all() as $attribute)
-                                <option value="{{ $attribute->id }}"
-                                    {{ $product->attributes->contains($attribute->id) ? 'selected' : '' }}>
+                                <option value="{{ $attribute->id }}">
                                     {{ $attribute->name }}
                                 </option>
                             @endforeach
