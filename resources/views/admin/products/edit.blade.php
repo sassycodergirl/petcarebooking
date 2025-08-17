@@ -252,3 +252,21 @@
 </div>
 
 @include('admin.partials.dash-footer')
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const categorySelect = document.getElementById('category_id');
+    const ingredientsGroup = document.getElementById('ingredients-group');
+
+    function toggleIngredients() {
+        const selectedOption = categorySelect.selectedOptions[0];
+        const isFood = selectedOption.dataset.isFood === '1';
+        ingredientsGroup.style.display = isFood ? 'block' : 'none';
+    }
+
+    categorySelect.addEventListener('change', toggleIngredients);
+
+    // Run on page load
+    toggleIngredients();
+});
+</script>
