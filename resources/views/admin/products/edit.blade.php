@@ -30,10 +30,12 @@
              <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <label for="category_id" class="form-label">Category *</label>
-                        <select name="category_id" class="form-select" required>
+                      <select name="category_id" class="form-select" required>
                             <option value="">Select category</option>
                             @foreach ($categories as $category)
-                                   <option value="{{ $category->id }}"  data-is-food="{{ $category->is_food ? '1' : '0' }}" {{ old('category_id')==$category->id ? 'selected':'' }}>
+                                <option value="{{ $category->id }}"  
+                                    data-is-food="{{ $category->is_food ? '1' : '0' }}" 
+                                    {{ (old('category_id', $product->category_id ?? '') == $category->id) ? 'selected' : '' }}>
                                     {{ $category->name }}
                                 </option>
                             @endforeach
