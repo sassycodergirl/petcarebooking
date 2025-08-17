@@ -162,7 +162,8 @@
         button.addEventListener('click', function(e) {
             e.preventDefault();
             const productId = this.dataset.id;
-            const quantity = 1;
+            // const quantity = 1;
+            const quantity = parseInt(document.getElementById('product-qty').value); 
 
             fetch(`{{ url('/cart/add') }}/${productId}`, {
                 method: 'POST',
