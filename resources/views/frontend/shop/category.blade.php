@@ -123,9 +123,9 @@
                     <div class="row">
                         @foreach($products as $product)
                             <div class="col-md-4 mb-4 new-product pb-0">
-                                <div class="product-card-col h-100 shadow-sm p-0">
+                                <div class="product-card-col h-100 shadow-sm p-4">
                                     @if($product->image)
-                                    <a href="#" class="product-card-img">
+                                    <a href="#" class="product-card-img p-0">
                                     <div class="product-img h-100">
 
                                         <img src="{{ asset('public/' . $product->image) }}" class="img-fluid h-100" alt="{{ $product->name }}">
