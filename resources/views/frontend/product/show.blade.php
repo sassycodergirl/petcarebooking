@@ -194,53 +194,59 @@ $(document).ready(function(){
     let selectedColorId = variantsData.find(v => v.size === selectedSize)?.color_id || null;
 
     function updateGallery(selectedSize, selectedColorId){
-        const variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
-                    || variantsData.find(v => v.size === selectedSize);
+    const variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
+                 || variantsData.find(v => v.size === selectedSize);
 
-        if(!variant) return;
+    if(!variant) return;
 
-        const galleryMain = $('.gallery-main');
-        const galleryThumbs = $('.gallery-thumbs');
+    const galleryMain = $('.gallery-main');
+    const galleryThumbs = $('.gallery-thumbs');
 
-        // Destroy Slick if initialized
-        if(galleryMain.hasClass('slick-initialized')) galleryMain.slick('unslick');
-        if(galleryThumbs.hasClass('slick-initialized')) galleryThumbs.slick('unslick');
+    // Destroy slick if initialized
+    if(galleryMain.hasClass('slick-initialized')) galleryMain.slick('unslick');
+    if(galleryThumbs.hasClass('slick-initialized')) galleryThumbs.slick('unslick');
 
-        // Clear previous slides
-        galleryMain.empty();
-        galleryThumbs.empty();
+    // Remove all children (including Slick clones)
+    galleryMain.children().remove();
+    galleryThumbs.children().remove();
 
-        // Append new slides
-        variant.gallery.forEach(img => {
-            galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
-            galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
-        });
+    // Append new slides
+    variant.gallery.forEach(img => {
+        galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
+        galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
+    });
 
-        // Reset thumbnail container scroll (prevents abnormal positioning)
-        galleryThumbs.scrollTop(0);
+    // Force browser reflow before initializing slick (prevents clone issues)
+    galleryMain[0].offsetHeight;
+    galleryThumbs[0].offsetHeight;
 
-        // Re-init Slick
-        galleryThumbs.slick({
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            asNavFor: '.gallery-main',
-            focusOnSelect: true,
-            vertical: true,
-            verticalSwiping: false,
-            swipe: false,
-            arrows: true,
-            infinite: true
-        });
+    // Re-init slick
+    galleryThumbs.slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        asNavFor: '.gallery-main',
+        focusOnSelect: true,
+        vertical: true,
+        verticalSwiping: false,
+        swipe: false,
+        arrows: true,
+        infinite: false
+    });
 
-        galleryMain.slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            asNavFor: '.gallery-thumbs',
-            arrows: true,
-            fade: true,
-            infinite: false
-        });
+    galleryMain.slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        asNavFor: '.gallery-thumbs',
+        arrows: true,
+        fade: true,
+        infinite: false
+    });
+
+    // Always set first slide as active
+    galleryMain.slick('slickGoTo', 0, true);
+        galleryThumbs.slick('slickGoTo', 0, true);
     }
+
 
 
 
