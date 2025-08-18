@@ -128,12 +128,12 @@
 
         cartItems.forEach(item => {
             total += item.price * item.quantity;
-             const productUrl = productUrlTemplate.replace(':slug', item.slug);
+            //  const productUrl = productUrlTemplate.replace(':slug', item.slug);
 
             const html = `
                 <div class="product-infos mb-4">
                     <div class="product-info mb-0">
-                        <a href="${productUrl}" class="product-img-pop">
+                        <a href="#" class="product-img-pop">
                             <img src="${item.image}" alt="${item.name}">
                         </a>
                         <div class="product-details-pop">
