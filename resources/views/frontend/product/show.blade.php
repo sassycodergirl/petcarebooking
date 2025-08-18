@@ -171,7 +171,7 @@ $variantsData = $product->variants->map(function($variant) {
 </script>
 
 
-<script>
+<!-- <script>
 let productQty = 1;
 
 document.querySelector('.qty-plus').addEventListener('click', () => {
@@ -183,103 +183,7 @@ document.querySelector('.qty-minus').addEventListener('click', () => {
     if(productQty > 1) productQty--;
     document.getElementById('product-qty').value = productQty;
 });
-</script>
-
-<script>
-$(document).ready(function(){
-    const appUrl = "{{ url('') }}"; // Base URL
-
-    // Default selection
-    let selectedSize = variantsData[0]?.size || null;
-    let selectedColorId = variantsData.find(v => v.size === selectedSize)?.color_id || null;
-
-    function updateGallery(selectedSize, selectedColorId){
-    const variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
-                 || variantsData.find(v => v.size === selectedSize);
-
-    if(!variant) return;
-
-    const galleryMain = $('.gallery-main');
-    const galleryThumbs = $('.gallery-thumbs');
-
-    // Destroy slick if initialized
-    if(galleryMain.hasClass('slick-initialized')) galleryMain.slick('unslick');
-    if(galleryThumbs.hasClass('slick-initialized')) galleryThumbs.slick('unslick');
-
-    // Remove all children (including Slick clones)
-    galleryMain.children().remove();
-    galleryThumbs.children().remove();
-
-    // Append new slides
-    variant.gallery.forEach(img => {
-        galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
-        galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
-    });
-
-    // Force browser reflow before initializing slick (prevents clone issues)
-    galleryMain[0].offsetHeight;
-    galleryThumbs[0].offsetHeight;
-
-    // Re-init slick
-    galleryThumbs.slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        asNavFor: '.gallery-main',
-        focusOnSelect: true,
-        vertical: true,
-        verticalSwiping: false,
-        swipe: false,
-        arrows: true,
-        infinite: false
-    });
-
-    galleryMain.slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        asNavFor: '.gallery-thumbs',
-        arrows: true,
-        fade: true,
-        infinite: false
-    });
-
-    // Always set first slide as active
-    galleryMain.slick('slickGoTo', 0, true);
-        galleryThumbs.slick('slickGoTo', 0, true);
-    }
+</script> -->
 
 
 
-
-    // Size selection
-    $('input[name="variant_size"]').on('change', function(){
-        selectedSize = $(this).val();
-
-        const availableColors = variantsData.filter(v => v.size === selectedSize).map(v => v.color_id);
-
-        $('.variant-select').each(function(){
-            const colorId = parseInt($(this).val());
-            if(availableColors.includes(colorId)){
-                $(this).prop('disabled', false).closest('.selectgroup-item').css('opacity',1);
-            }else{
-                $(this).prop('disabled', true).closest('.selectgroup-item').css('opacity',0.3);
-            }
-        });
-
-        const firstColor = availableColors[0];
-        selectedColorId = firstColor;
-        $('input[name="variant_color"][value="'+firstColor+'"]').prop('checked', true);
-
-        updateGallery(selectedSize, selectedColorId);
-    });
-
-    // Color selection
-    $('input[name="variant_color"]').on('change', function(){
-        if($(this).prop('disabled')) return;
-        selectedColorId = parseInt($(this).val());
-        updateGallery(selectedSize, selectedColorId);
-    });
-
-    // Initialize gallery on load
-    updateGallery(selectedSize, selectedColorId);
-});
-</script>
