@@ -322,10 +322,11 @@ $(document).ready(function(){
                 </p>`;
             }
         }
-
+     
         const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
 
         const html = `
+        99999999999999999999999999999
             <div class="product-infos mb-4">
                 <div class="product-info mb-0">
                     <a href="#" class="product-img-pop">
