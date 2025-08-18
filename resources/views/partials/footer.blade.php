@@ -129,8 +129,6 @@
         cartItems.forEach(item => {
             total += item.price * item.quantity;
             //  const productUrl = productUrlTemplate.replace(':slug', item.slug);
-            const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
-            const colorHtml = item.color ? `<p>Color: ${item.color}</p>` : '';
 
             const html = `
                 <div class="product-infos mb-4">
@@ -140,8 +138,6 @@
                         </a>
                         <div class="product-details-pop">
                             <h4>${item.name}</h4>
-                             ${sizeHtml}
-                            ${colorHtml}
                             <p><strong>₹${item.price}</strong></p>
                             <div class="pd-add-to-cart-wrap">
                                 <button class="qty-minus" data-id="${item.id}">-</button>
@@ -290,7 +286,7 @@
 
 
 
-//product page add to cart
+
 
 
     // Close popup
