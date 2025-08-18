@@ -346,55 +346,55 @@ $(document).ready(function(){
     });
 
     // --- Quantity change & remove item ---
-    $(document).on('click', '.qty-plus, .qty-minus', function(){
-        const id = $(this).data('id');
-        const qtyChange = $(this).hasClass('qty-plus') ? 1 : -1;
-        console.log('Updating quantity:', {id, qtyChange});
+    // $(document).on('click', '.qty-plus, .qty-minus', function(){
+    //     const id = $(this).data('id');
+    //     const qtyChange = $(this).hasClass('qty-plus') ? 1 : -1;
+    //     console.log('Updating quantity:', {id, qtyChange});
 
-        fetch(`${appUrl}/cart/update/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({quantity: qtyChange})
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log('Cart update response:', data);
-            if(data.success){
-                $('.cd-button-cart-count').text(data.cart_count);
-                renderCartDrawerProductPage(data.cart);
-            }
-        });
-    });
+    //     fetch(`${appUrl}/cart/update/${id}`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    //         },
+    //         body: JSON.stringify({quantity: qtyChange})
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log('Cart update response:', data);
+    //         if(data.success){
+    //             $('.cd-button-cart-count').text(data.cart_count);
+    //             renderCartDrawerProductPage(data.cart);
+    //         }
+    //     });
+    // });
 
-    $(document).on('click', '.remove-item', function(){
-        const id = $(this).data('id');
-        console.log('Removing item:', id);
+    // $(document).on('click', '.remove-item', function(){
+    //     const id = $(this).data('id');
+    //     console.log('Removing item:', id);
 
-        fetch(`${appUrl}/cart/remove/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log('Cart remove response:', data);
-            if(data.success){
-                $('.cd-button-cart-count').text(data.cart_count);
-                renderCartDrawerProductPage(data.cart);
-            }
-        });
-    });
+    //     fetch(`${appUrl}/cart/remove/${id}`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log('Cart remove response:', data);
+    //         if(data.success){
+    //             $('.cd-button-cart-count').text(data.cart_count);
+    //             renderCartDrawerProductPage(data.cart);
+    //         }
+    //     });
+    // });
 
-    // --- Close popup ---
-    $('.popup-close').on('click', function(){
-        $('.popup-overlay').removeClass('active');
-        console.log('Cart popup closed');
-    });
+    // // --- Close popup ---
+    // $('.popup-close').on('click', function(){
+    //     $('.popup-overlay').removeClass('active');
+    //     console.log('Cart popup closed');
+    // });
 
 });
 </script>
