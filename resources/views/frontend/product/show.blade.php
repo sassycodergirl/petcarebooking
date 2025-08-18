@@ -26,7 +26,7 @@
 
                     <div class="product-gallery row">
                         <!-- Thumbnails (Left) -->
-                        <div class="gallery-thumbs col-md-5">
+                        <div class="gallery-thumbs col-5 col-md-5">
                             @foreach($galleryImages as $image)
                                 <div class="thumb-slide">
                                     <img class="img-fluid" src="{{ asset('public/'. $image->image) }}" alt="{{ $product->name }}">
@@ -35,7 +35,7 @@
                         </div>
 
                         <!-- Main Slider (Right) -->
-                        <div class="gallery-main col-md-7">
+                        <div class="gallery-main col-7 col-md-7">
                             @foreach($galleryImages as $image)
                                 <div class="main-slide">
                                     <img class="img-fluid" src="{{ asset('public/'.$image->image) }}" alt="{{ $product->name }}">
