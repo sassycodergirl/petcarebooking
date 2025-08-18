@@ -194,45 +194,48 @@ $(document).ready(function(){
     let selectedColorId = variantsData.find(v => v.size === selectedSize)?.color_id || null;
 
     function updateGallery(selectedSize, selectedColorId){
-        const variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
-                     || variantsData.find(v => v.size === selectedSize);
+    const variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
+                 || variantsData.find(v => v.size === selectedSize);
 
-        if(!variant) return;
+    if(!variant) return;
 
-        const galleryMain = $('.gallery-main');
-        const galleryThumbs = $('.gallery-thumbs');
+    const galleryMain = $('.gallery-main');
+    const galleryThumbs = $('.gallery-thumbs');
 
-        galleryMain.slick('unslick');
-        galleryThumbs.slick('unslick');
-        galleryMain.html('');
-        galleryThumbs.html('');
+    // Only unslick if already initialized
+    if(galleryMain.hasClass('slick-initialized')) galleryMain.slick('unslick');
+    if(galleryThumbs.hasClass('slick-initialized')) galleryThumbs.slick('unslick');
 
-        variant.gallery.forEach(img => {
-            galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
-            galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
-        });
+    galleryMain.html('');
+    galleryThumbs.html('');
 
-        // Re-init slick
-        galleryThumbs.slick({
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            asNavFor: '.gallery-main',
-            focusOnSelect: true,
-            vertical: true,
-            verticalSwiping: true,
-            arrows: true,
-            infinite: true
-        });
+    variant.gallery.forEach(img => {
+        galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
+        galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
+    });
 
-        galleryMain.slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            asNavFor: '.gallery-thumbs',
-            arrows: true,
-            fade: true,
-            infinite: false
-        });
-    }
+    // Re-init slick
+    galleryThumbs.slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        asNavFor: '.gallery-main',
+        focusOnSelect: true,
+        vertical: true,
+        verticalSwiping: true,
+        arrows: true,
+        infinite: true
+    });
+
+    galleryMain.slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        asNavFor: '.gallery-thumbs',
+        arrows: true,
+        fade: true,
+        infinite: false
+    });
+}
+
 
     // Size selection
     $('input[name="variant_size"]').on('change', function(){
