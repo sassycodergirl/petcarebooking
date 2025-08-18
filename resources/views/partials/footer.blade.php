@@ -316,10 +316,12 @@
     //     }
     // });
 
-    document.addEventListener('click', function(e){
-    // Handle plus/minus buttons normally
+document.addEventListener('click', function(e){
+
+    // Handle plus/minus buttons
     if(e.target.classList.contains('qty-plus') || e.target.classList.contains('qty-minus')){
         const id = e.target.dataset.id;
+        const variantId = e.target.dataset.variant || '0';
         const qtyChange = e.target.classList.contains('qty-plus') ? 1 : -1;
 
         fetch(`{{ url('/cart/update') }}/${id}`, {
@@ -328,7 +330,7 @@
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            body: JSON.stringify({ quantity: qtyChange })
+            body: JSON.stringify({ quantity: qtyChange, variant_id: variantId })
         })
         .then(res => res.json())
         .then(data => {
@@ -339,17 +341,19 @@
         });
     }
 
-    // Handle remove button using closest(), so clicks on SVG work
+    // Handle remove button
     const removeBtn = e.target.closest('.remove-item');
     if(removeBtn){
         const id = removeBtn.dataset.id;
+        const variantId = removeBtn.dataset.variant || '0';
 
         fetch(`{{ url('/cart/remove') }}/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
+            },
+            body: JSON.stringify({ variant_id: variantId })
         })
         .then(res => res.json())
         .then(data => {
@@ -359,7 +363,9 @@
             }
         });
     }
+
 });
+
 
 
 
