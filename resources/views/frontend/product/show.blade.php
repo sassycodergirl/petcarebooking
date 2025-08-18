@@ -405,7 +405,7 @@ $(document).ready(function(){
             console.log('Cart add response:', data);
             if(data.success){
                 $('.cd-button-cart-count').text(data.cart_count);
-                renderCartDrawerProductPage(data.cart);
+                renderCartDrawer(data.cart, variantsData);
                 $('.popup-overlay').addClass('active');
             } else {
                 alert('Something went wrong: ' + (data.message || ''));

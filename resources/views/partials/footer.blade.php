@@ -130,6 +130,26 @@
             total += item.price * item.quantity;
             //  const productUrl = productUrlTemplate.replace(':slug', item.slug);
 
+            // --- Size HTML ---
+        const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
+
+        // --- Color HTML ---
+        let colorHtml = '';
+        if (item.color_id) {
+            let colorHex = '#ccc';
+            if (variantsData.length > 0) {
+                const variant = variantsData.find(v => v.id === item.variant_id);
+                if (variant) colorHex = variant.color_hex ?? '#ccc';
+            }
+            colorHtml = `<p>Color: 
+                            <span class="selectgroup-button" 
+                                  style="background-color: ${colorHex}; 
+                                         display:inline-block; width:16px; height:16px; 
+                                         border-radius:50%; margin-left:5px;">
+                            </span>
+                        </p>`;
+        }
+
        
 
             const html = `
@@ -140,7 +160,10 @@
                         </a>
                         <div class="product-details-pop">
                             <h4>${item.name}</h4>
-                        
+                            <div class="variant-data d-flex">
+                                ${sizeHtml}
+                                ${colorHtml}
+                            </div>
                             <p><strong>₹${item.price}</strong></p>
                             <div class="pd-add-to-cart-wrap">
                                 <button class="qty-minus" data-id="${item.id}">-</button>
@@ -156,6 +179,7 @@
                 </div>
             `;
             container.insertAdjacentHTML('beforeend', html);
+            console.log('Cart drawer updated:', cartItems);
         });
 
         totalEl.innerText = total.toFixed(2);
