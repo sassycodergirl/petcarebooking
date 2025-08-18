@@ -272,16 +272,14 @@
                         </div>
                         <p><strong>₹${item.price}</strong></p>
                         <div class="pd-add-to-cart-wrap">
-                            <button class="qty-minus" data-id="${item.id}" data-variant="${variantId}">-</button>
-                            <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" data-variant="${variantId}" readonly />
-                            <button class="qty-plus" data-id="${item.id}" data-variant="${variantId}">+</button>
+                            <button class="qty-minus" data-id="${item.id}" data-variant="${variantId}" data-size="${item.size}" data-color="${item.color_id}">-</button>
+                            <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" data-variant="${variantId}" data-size="${item.size}" data-color="${item.color_id}" readonly />
+                            <button class="qty-plus" data-id="${item.id}" data-variant="${variantId}" data-size="${item.size}" data-color="${item.color_id}">+</button>
                         </div>
                     </div>
                 </div>
                 <div class="remove-icon">
-                    <button class="remove-item" data-id="${item.id}" data-variant="${variantId}">
-                        Remove
-                    </button>
+                    <button class="remove-item" data-id="${item.id}" data-variant="${variantId}" data-size="${item.size}" data-color="${item.color_id}">Remove</button>
                 </div>
             </div>
         `;
@@ -296,74 +294,35 @@
 
 
     // Add to cart click
-    // document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
-    //     button.addEventListener('click', function(e) {
-    //         e.preventDefault();
-    //         const productId = this.dataset.id;
-    //         // const quantity = 1;
-    //         const quantityEl = document.getElementById('product-qty');
-    //         const quantity = quantityEl && parseInt(quantityEl.value) > 0 ? parseInt(quantityEl.value) : 1;
-
-    //         fetch(`{{ url('/cart/add') }}/${productId}`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
-    //             },
-    //             body: JSON.stringify({ quantity })
-    //         })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             if(data.success) {
-    //                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-    //                 renderCartDrawer(data.cart);
-    //                 document.querySelector('.popup-overlay').classList.add('active');
-    //             } else alert('Something went wrong');
-    //         })
-    //         .catch(err => console.log(err));
-    //     });
-    // });
-
     document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
-        const productId = this.dataset.id;
-        const quantityEl = document.getElementById('product-qty');
-        const quantity = quantityEl && parseInt(quantityEl.value) > 0 ? parseInt(quantityEl.value) : 1;
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const productId = this.dataset.id;
+            // const quantity = 1;
+            const quantityEl = document.getElementById('product-qty');
+            const quantity = quantityEl && parseInt(quantityEl.value) > 0 ? parseInt(quantityEl.value) : 1;
 
-        // Get selected variant info
-        const selectedVariant = {
-            variantId: window.selectedVariantId ?? null,
-            size: window.selectedSize ?? null,
-            colorId: window.selectedColorId ?? null,
-            colorHex: window.selectedColorHex ?? '#ccc'
-        };
-
-        fetch(`{{ url('/cart/add') }}/${productId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json',
-                'X-CSRF-TOKEN':'{{ csrf_token() }}'
-            },
-            body: JSON.stringify({
-                quantity,
-                variant_id: selectedVariant.variantId,
-                size: selectedVariant.size,
-                color_id: selectedVariant.colorId,
-                color_hex: selectedVariant.colorHex
+            fetch(`{{ url('/cart/add') }}/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ quantity })
             })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success) {
-                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                renderCartDrawer(data.cart, variantsData);
-                document.querySelector('.popup-overlay').classList.add('active');
-            } else alert('Something went wrong');
-        })
-        .catch(err => console.error(err));
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+                    renderCartDrawer(data.cart);
+                    document.querySelector('.popup-overlay').classList.add('active');
+                } else alert('Something went wrong');
+            })
+            .catch(err => console.log(err));
+        });
     });
-});
+
+
 
 
     // Cart icon click
@@ -416,20 +375,25 @@
     // });
 
  
-    document.addEventListener('click', function(e) {
+document.addEventListener('click', function(e) {
     const target = e.target;
     const removeBtn = target.closest('.remove-item');
 
-    // --- Quantity change ---
+    // --- Quantity change (+/-) ---
     if(target.classList.contains('qty-plus') || target.classList.contains('qty-minus')) {
         const id = target.dataset.id;
         const variantId = target.dataset.variant;
+        const size = target.dataset.size;
+        const colorId = target.dataset.color;
         const qtyChange = target.classList.contains('qty-plus') ? 1 : -1;
 
         fetch(`{{ url('/cart/update') }}/${id}`, {
             method:'POST',
-            headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
-            body: JSON.stringify({ quantity: qtyChange, variant_id: variantId })
+            headers:{
+                'Content-Type':'application/json',
+                'X-CSRF-TOKEN':'{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ quantity: qtyChange, variant_id: variantId, size, color_id: colorId })
         })
         .then(res => res.json())
         .then(data => {
@@ -443,12 +407,14 @@
     // --- Remove item ---
     if(removeBtn) {
         const id = removeBtn.dataset.id;
-        const variantId = removeBtn.dataset.variant ?? '0';
+        const variantId = removeBtn.dataset.variant;
+        const size = removeBtn.dataset.size;
+        const colorId = removeBtn.dataset.color;
 
         fetch(`{{ url('/cart/remove') }}/${id}`, {
             method:'POST',
             headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
-            body: JSON.stringify({ variant_id: variantId })
+            body: JSON.stringify({ variant_id: variantId, size, color_id: colorId })
         })
         .then(res => res.json())
         .then(data => {
@@ -459,6 +425,7 @@
         });
     }
 });
+
 
 
 

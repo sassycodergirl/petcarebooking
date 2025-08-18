@@ -62,67 +62,22 @@ class CartController extends Controller
 
     // Update quantity (+/-)
    public function update(Request $request, $id)
-    {
-        $cart = session()->get('cart', []);
-        $variantId = $request->variant_id ?? '0';
-        $key = $id . '-' . $variantId;
-
-        if (isset($cart[$key])) {
-            $newQty = ($cart[$key]['quantity'] ?? 0) + ($request->quantity ?? 0);
-            if ($newQty > 0) {
-                $cart[$key]['quantity'] = $newQty;
-            } else {
-                unset($cart[$key]);
-            }
-        } else {
-            // For old items without variant_id
-            foreach ($cart as $k => $item) {
-                if ($item['id'] == $id) {
-                    $newQty = ($item['quantity'] ?? 0) + ($request->quantity ?? 0);
-                    if ($newQty > 0) {
-                        $cart[$k]['quantity'] = $newQty;
-                    } else {
-                        unset($cart[$k]);
-                    }
-                    break;
-                }
-            }
-        }
-
-        session(['cart' => $cart]);
-
-        return response()->json([
-            'success' => true,
-            'cart_count' => array_sum(array_column($cart, 'quantity')),
-            'cart' => array_values($cart)
-        ]);
-    }
-
-
-    // Remove product from cart
-   public function remove(Request $request, $id)
 {
     $cart = session()->get('cart', []);
+    $key = $id
+        . '-' . ($request->variant_id ?? '0')
+        . '-' . ($request->size ?? '0')
+        . '-' . ($request->color_id ?? '0');
 
-    // Get the variant id from request; null if not sent
-    $variantId = $request->variant_id ?? null;
-
-    // Build the key like in session
-    $key = $id . '-' . ($variantId ?? '');
-
-    // If key exists, remove it
     if (isset($cart[$key])) {
-        unset($cart[$key]);
-    } else {
-        // If not, try removing by product id only (for old items)
-        foreach ($cart as $k => $item) {
-            if ($item['id'] == $id) {
-                unset($cart[$k]);
-            }
+        $newQty = ($cart[$key]['quantity'] ?? 0) + ($request->quantity ?? 0);
+        if ($newQty > 0) {
+            $cart[$key]['quantity'] = $newQty;
+        } else {
+            unset($cart[$key]);
         }
     }
 
-    // Save updated cart
     session(['cart' => $cart]);
 
     return response()->json([
@@ -131,6 +86,31 @@ class CartController extends Controller
         'cart' => array_values($cart)
     ]);
 }
+
+
+
+    // Remove product from cart
+public function remove(Request $request, $id)
+{
+    $cart = session()->get('cart', []);
+    $key = $id
+        . '-' . ($request->variant_id ?? '0')
+        . '-' . ($request->size ?? '0')
+        . '-' . ($request->color_id ?? '0');
+
+    if (isset($cart[$key])) {
+        unset($cart[$key]);
+    }
+
+    session(['cart' => $cart]);
+
+    return response()->json([
+        'success' => true,
+        'cart_count' => array_sum(array_column($cart, 'quantity')),
+        'cart' => array_values($cart)
+    ]);
+}
+
 
 
     // Get current cart items (for cart icon / drawer)
