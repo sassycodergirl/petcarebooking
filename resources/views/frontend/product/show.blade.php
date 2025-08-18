@@ -147,30 +147,9 @@
 
 @include('partials.footer')
 
-<!-- Pass all variant data to JS -->
-@php
-$variantsData = $product->variants->map(function($variant) {
-    return [
-        'id' => $variant->id,
-        'size' => $variant->size,
-        'color_id' => $variant->color_id,
-        'color' => $variant->color ? [
-            'id' => $variant->color->id,
-            'hex_code' => $variant->color->hex_code ?? '#ccc',
-            'name' => $variant->color->name ?? '',
-        ] : null,
-        'gallery' => $variant->gallery->pluck('image')->toArray(),
-        'price' => $variant->price,
-        'image' => $variant->image,
-    ];
-})->toArray();
-@endphp
 
-<script>
-    const variantsData = @json($variantsData);
-</script>
 
-<script>
+<!-- <script>
 $(document).ready(function(){
     const appUrl = "{{ url('') }}"; // Base URL
 
@@ -287,65 +266,302 @@ $(document).ready(function(){
     updateColors(selectedSize);
     updateGallery(selectedSize, selectedColorId);
 });
-</script>
+</script> -->
 
+
+
+
+
+<!-- Pass all variant data to JS -->
+@php
+$variantsData = $product->variants->map(function($variant) {
+    return [
+        'id' => $variant->id,
+        'size' => $variant->size,
+        'color_id' => $variant->color_id,
+        'color' => $variant->color ? [
+            'id' => $variant->color->id,
+            'hex_code' => $variant->color->hex_code ?? '#ccc',
+            'name' => $variant->color->name ?? '',
+        ] : null,
+        'gallery' => $variant->gallery->pluck('image')->toArray(),
+        'price' => $variant->price,
+        'image' => $variant->image,
+    ];
+})->toArray();
+@endphp
 
 <script>
-//product page add to cart
-$(document).on('click', '.add-to-bag', function(e){
-    e.preventDefault();
+const variantsData = @json($variantsData);
+const appUrl = "{{ url('') }}"; // Base URL
 
-    let variant = null;
-    const quantity = parseInt($('#product-qty').val()) || 1;
+$(document).ready(function(){
 
-    if(variantsData.length > 0){
-        // Product has variants
-        variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
-                 || variantsData.find(v => v.size === selectedSize);
+    // --- Initialize quantity ---
+    let productQty = 1;
+    $('#product-qty').val(productQty);
+    $('.qty-plus').on('click', () => {
+        productQty++;
+        $('#product-qty').val(productQty);
+    });
+    $('.qty-minus').on('click', () => {
+        if(productQty > 1) productQty--;
+        $('#product-qty').val(productQty);
+    });
 
-        if(!variant){
-            alert('Please select a valid variant.');
-            return;
+    // --- Default variant selections ---
+    let selectedSize = variantsData[0]?.size || null;
+    let selectedColorId = variantsData.find(v => v.size === selectedSize)?.color_id || null;
+
+    // --- Update gallery for selected variant ---
+    function updateGallery(size, colorId){
+        let variant = null;
+
+        if(variantsData.length > 0){
+            variant = variantsData.find(v => v.size === size && v.color_id === colorId)
+                   || variantsData.find(v => v.size === size);
+            if(!variant) return;
+        } else {
+            // No variants
+            variant = {
+                gallery: [$('.add-to-bag').data('image')],
+                image: $('.add-to-bag').data('image')
+            };
         }
-    } else {
-        // Product has no variants
-        variant = {
-            id: $(this).data('id'),
-            size: null,
-            color_id: null,
-            color: null,
-            gallery: [$(this).data('image')],
-            price: $(this).data('price')
-        };
+
+        const galleryMain = $('.gallery-main');
+        const galleryThumbs = $('.gallery-thumbs');
+
+        if(galleryMain.hasClass('slick-initialized')) galleryMain.slick('unslick');
+        if(galleryThumbs.hasClass('slick-initialized')) galleryThumbs.slick('unslick');
+
+        galleryMain.children().remove();
+        galleryThumbs.children().remove();
+
+        variant.gallery.forEach(img => {
+            galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
+            galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
+        });
+
+        galleryThumbs.slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            asNavFor: '.gallery-main',
+            focusOnSelect: true,
+            vertical: true,
+            verticalSwiping: false,
+            swipe: false,
+            arrows: true,
+            infinite: false
+        });
+
+        galleryMain.slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            asNavFor: '.gallery-thumbs',
+            arrows: true,
+            fade: true,
+            infinite: false
+        });
+
+        galleryMain.slick('slickGoTo', 0, true);
+        galleryThumbs.slick('slickGoTo', 0, true);
     }
 
-    fetch(`{{ url('/cart/add') }}/${variant.id}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        body: JSON.stringify({
-            quantity: quantity,
-            variant_id: variant.id,
-            size: variant.size,
-            color_id: variant.color_id,
-            color_name: variant.color?.name || '-',
-            image: variant.gallery[0] ? variant.gallery[0] : $(this).data('image')
+    // --- Update color options based on selected size ---
+    function updateColors(size){
+        if(variantsData.length === 0) return;
+
+        const availableColors = variantsData.filter(v => v.size === size).map(v => v.color_id);
+
+        $('input[name="variant_color"]').each(function(){
+            const colorId = parseInt($(this).val());
+            if(availableColors.includes(colorId)){
+                $(this).prop('disabled', false).closest('.selectgroup-item').css('opacity',1);
+            } else {
+                $(this).prop('disabled', true).closest('.selectgroup-item').css('opacity',0.3);
+            }
+        });
+
+        const firstColor = availableColors[0];
+        selectedColorId = firstColor;
+        $('input[name="variant_color"][value="'+firstColor+'"]').prop('checked', true);
+    }
+
+    // --- Size change ---
+    $('input[name="variant_size"]').on('change', function(){
+        selectedSize = $(this).val();
+        updateColors(selectedSize);
+        updateGallery(selectedSize, selectedColorId);
+    });
+
+    // --- Color change ---
+    $('input[name="variant_color"]').on('change', function(){
+        if($(this).prop('disabled')) return;
+        selectedColorId = parseInt($(this).val());
+        updateGallery(selectedSize, selectedColorId);
+    });
+
+    // --- Initialize on page load ---
+    updateColors(selectedSize);
+    updateGallery(selectedSize, selectedColorId);
+
+    // --- Render cart drawer ---
+    function renderCartDrawer(cartItems){
+        const container = $('.popup-overlay .cart-items');
+        const totalEl = $('.cart-total');
+        container.html('');
+
+        if(!cartItems || cartItems.length === 0){
+            container.html('<p class="text-center">Your cart is empty.</p>');
+            totalEl.text('0');
+            return;
+        }
+
+        let total = 0;
+        cartItems.forEach(item => {
+            total += item.price * item.quantity;
+
+            container.append(`
+                <div class="product-infos mb-4">
+                    <div class="product-info mb-0">
+                        <a href="${appUrl}/products/${item.slug}" class="product-img-pop">
+                            <img src="${item.image}" alt="${item.name}">
+                        </a>
+                        <div class="product-details-pop">
+                            <h4>${item.name}</h4>
+                            ${item.size ? `<p>Size: ${item.size}</p>` : ''}
+                            ${item.color ? `<p>Color: ${item.color.name}</p>` : ''}
+                            <p><strong>₹${item.price}</strong></p>
+                            <div class="pd-add-to-cart-wrap">
+                                <button class="qty-minus" data-id="${item.id}">-</button>
+                                <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
+                                <button class="qty-plus" data-id="${item.id}">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="remove-icon">
+                        <button class="remove-item" data-id="${item.id}">Remove</button>
+                    </div>
+                </div>
+            `);
+        });
+
+        totalEl.text(total.toFixed(2));
+    }
+
+    // --- Add to cart click ---
+    $('.add-to-bag').on('click', function(e){
+        e.preventDefault();
+
+        const quantity = parseInt($('#product-qty').val()) || 1;
+
+        let variant = null;
+
+        if(variantsData.length > 0){
+            const size = typeof selectedSize !== 'undefined' ? selectedSize : variantsData[0].size;
+            const colorId = typeof selectedColorId !== 'undefined' ? selectedColorId : variantsData[0].color_id;
+
+            variant = variantsData.find(v => v.size === size && v.color_id === colorId)
+                     || variantsData.find(v => v.size === size);
+
+            if(!variant){
+                alert('Please select a valid variant.');
+                return;
+            }
+        } else {
+            // No variant
+            variant = {
+                id: $(this).data('id'),
+                size: null,
+                color_id: null,
+                color: null,
+                gallery: [$(this).data('image')],
+                price: $(this).data('price')
+            };
+        }
+
+        // Add to cart via AJAX
+        fetch(`${appUrl}/cart/add/${variant.id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ quantity })
         })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.success){
-            $('.cd-button-cart-count').text(data.cart_count);
-            renderCartDrawer(data.cart); // existing drawer function
-            $('.popup-overlay').addClass('active');
-        } else alert('Something went wrong.');
-    })
-    .catch(err => console.error(err));
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                $('.cd-button-cart-count').text(data.cart_count);
+                renderCartDrawer(data.cart);
+                $('.popup-overlay').addClass('active');
+            } else alert('Something went wrong');
+        })
+        .catch(err => console.error(err));
+    });
+
+    // --- Cart icon click ---
+    $('.cart-btn').on('click', function(e){
+        e.preventDefault();
+
+        fetch('{{ route("cart.items") }}')
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                $('.cd-button-cart-count').text(data.cart_count);
+                renderCartDrawer(data.cart);
+                $('.popup-overlay').addClass('active');
+            }
+        })
+        .catch(err => console.error(err));
+    });
+
+    // --- Cart quantity & remove buttons ---
+    $(document).on('click', '.qty-plus, .qty-minus', function(){
+        const id = $(this).data('id');
+        const qtyChange = $(this).hasClass('qty-plus') ? 1 : -1;
+
+        fetch(`${appUrl}/cart/update/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ quantity: qtyChange })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                $('.cd-button-cart-count').text(data.cart_count);
+                renderCartDrawer(data.cart);
+            }
+        });
+    });
+
+    $(document).on('click', '.remove-item', function(){
+        const id = $(this).data('id');
+
+        fetch(`${appUrl}/cart/remove/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                $('.cd-button-cart-count').text(data.cart_count);
+                renderCartDrawer(data.cart);
+            }
+        });
+    });
+
+    // --- Close cart popup ---
+    $('.popup-close').on('click', function(){
+        $('.popup-overlay').removeClass('active');
+    });
+
 });
-
-
 </script>
-
-
