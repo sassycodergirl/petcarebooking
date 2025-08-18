@@ -307,13 +307,14 @@ function renderCartDrawer(cartItems = []) {
     //     }
     // });
 
-        document.addEventListener('click', function(e){
-        const target = e.target;
+ 
+    document.addEventListener('click', function(e){
+    const target = e.target;
 
     // --- Quantity change ---
     if(target.classList.contains('qty-plus') || target.classList.contains('qty-minus')){
         const id = target.dataset.id;
-        const variantId = target.dataset.variant;
+        const variantId = target.dataset.variant || '0';
         const qtyChange = target.classList.contains('qty-plus') ? 1 : -1;
 
         fetch(`{{ url('/cart/update') }}/${id}`, {
@@ -324,8 +325,8 @@ function renderCartDrawer(cartItems = []) {
             },
             body: JSON.stringify({ quantity: qtyChange, variant_id: variantId })
         })
-        .then(res=>res.json())
-        .then(data=>{
+        .then(res => res.json())
+        .then(data => {
             if(data.success){
                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
                 renderCartDrawer(data.cart);
@@ -335,34 +336,28 @@ function renderCartDrawer(cartItems = []) {
 
     // --- Remove item ---
     const removeBtn = target.closest('.remove-item');
-    public function remove(Request $request, $id)
-{
-    $cart = session()->get('cart', []);
-    $variantId = $request->variant_id ?? '0';
-    $key = $id . '-' . $variantId;
+    if(removeBtn){
+        const id = removeBtn.dataset.id;
+        const variantId = removeBtn.dataset.variant || '0';
 
-    // If key doesn't exist, try removing by just product id (for old items)
-    if (!isset($cart[$key])) {
-        foreach ($cart as $k => $item) {
-            if ($item['id'] == $id) {
-                unset($cart[$k]);
+        fetch(`{{ url('/cart/remove') }}/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json',
+                'X-CSRF-TOKEN':'{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ variant_id: variantId })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+                renderCartDrawer(data.cart);
             }
-        }
-    } else {
-        unset($cart[$key]);
+        });
     }
-
-    session(['cart' => $cart]);
-
-    return response()->json([
-        'success' => true,
-        'cart_count' => array_sum(array_column($cart, 'quantity')),
-        'cart' => array_values($cart)
-    ]);
-}
-
-
 });
+
 
 
 
