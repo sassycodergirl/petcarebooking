@@ -188,6 +188,7 @@ function renderCartDrawer(cartItems = [],variantsData = []) {
 
     cartItems.forEach(item => {
         total += item.price * item.quantity;
+        const variantId = item.variant_id ?? '0';
 
         const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
         const colorHtml = item.color_hex ? `
