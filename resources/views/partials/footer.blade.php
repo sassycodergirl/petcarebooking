@@ -173,7 +173,7 @@
     //     totalEl.innerText = total.toFixed(2);
     // }
 
-function renderCartDrawer(cartItems = []) {
+function renderCartDrawer(cartItems = [],variantsData = []) {
     const container = document.querySelector('.popup-overlay .cart-items');
     const totalEl = document.querySelector('.cart-total');
     container.innerHTML = '';
