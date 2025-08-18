@@ -96,7 +96,7 @@
                                 <button class="qty-plus" data-id="{{ $product->id }}">+</button>
                             </div>
 
-                            <button class="add-to-bag cd-button product-page-btn"
+                            <button class="add-to-bag cd-button product-page-cart"
                                     data-id="{{ $product->id }}"
                                     data-name="{{ $product->name }}"
                                     data-price="{{ $product->price }}"
@@ -287,6 +287,65 @@ $(document).ready(function(){
     updateColors(selectedSize);
     updateGallery(selectedSize, selectedColorId);
 });
+</script>
+
+
+<script>
+//product page add to cart
+$(document).on('click', '.add-to-bag', function(e){
+    e.preventDefault();
+
+    let variant = null;
+    const quantity = parseInt($('#product-qty').val()) || 1;
+
+    if(variantsData.length > 0){
+        // Product has variants
+        variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
+                 || variantsData.find(v => v.size === selectedSize);
+
+        if(!variant){
+            alert('Please select a valid variant.');
+            return;
+        }
+    } else {
+        // Product has no variants
+        variant = {
+            id: $(this).data('id'),
+            size: null,
+            color_id: null,
+            color: null,
+            gallery: [$(this).data('image')],
+            price: $(this).data('price')
+        };
+    }
+
+    fetch(`{{ url('/cart/add') }}/${variant.id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({
+            quantity: quantity,
+            variant_id: variant.id,
+            size: variant.size,
+            color_id: variant.color_id,
+            color_name: variant.color?.name || '-',
+            image: variant.gallery[0] ? variant.gallery[0] : $(this).data('image')
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            $('.cd-button-cart-count').text(data.cart_count);
+            renderCartDrawer(data.cart); // existing drawer function
+            $('.popup-overlay').addClass('active');
+        } else alert('Something went wrong.');
+    })
+    .catch(err => console.error(err));
+});
+
+
 </script>
 
 

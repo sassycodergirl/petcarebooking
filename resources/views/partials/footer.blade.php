@@ -282,6 +282,13 @@
 });
 
 
+
+
+
+
+//product page add to cart
+
+
     // Close popup
     document.querySelector('.popup-close').addEventListener('click', function(){
         document.querySelector('.popup-overlay').classList.remove('active');
