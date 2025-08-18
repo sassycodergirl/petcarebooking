@@ -90,7 +90,7 @@
                         @endif
 
                         <div class="d-flex gap-3 align-items-center">
-                            <div class="pd-add-to-cart-wrap">
+                            <div class="pd-add-to-cart-wrap product-page">
                                 <button class="qty-minus" data-id="{{ $product->id }}">-</button>
                                 <input type="text" value="1" id="product-qty" readonly>
                                 <button class="qty-plus" data-id="{{ $product->id }}">+</button>

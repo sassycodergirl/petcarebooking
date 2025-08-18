@@ -6328,4 +6328,12 @@ blockquote {
 .product-meta .accordion-item{
 	 border-bottom: 1px solid gray;
 }
+
+.pd-add-to-cart-wrap.product-page{
+	    width: 170px;
+}
+.pd-add-to-cart-wrap.product-page input{
+    min-height: 40px;
+}
+
 /*added by sudipa*/
