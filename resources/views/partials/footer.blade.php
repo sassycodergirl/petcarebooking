@@ -130,6 +130,22 @@
             total += item.price * item.quantity;
             //  const productUrl = productUrlTemplate.replace(':slug', item.slug);
 
+             let colorHtml = '';
+        if (item.color_id) {
+            const variant = variantsData.find(v => v.id === item.variant_id);
+            if (variant) {
+                colorHtml = `<p>Color: 
+                    <span class="selectgroup-button" 
+                          style="background-color: ${variant.color_hex ?? '#ccc'}; 
+                                 display:inline-block; width:16px; height:16px; 
+                                 border-radius:50%; margin-left:5px;">
+                    </span>
+                </p>`;
+            }
+        }
+
+        const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
+
             const html = `
                 <div class="product-infos mb-4">
                     <div class="product-info mb-0">
@@ -138,6 +154,10 @@
                         </a>
                         <div class="product-details-pop">
                             <h4>${item.name}</h4>
+                            <div class="variant-data d-flex">
+                         ${sizeHtml}
+                        ${colorHtml}
+                        </div>
                             <p><strong>₹${item.price}</strong></p>
                             <div class="pd-add-to-cart-wrap">
                                 <button class="qty-minus" data-id="${item.id}">-</button>

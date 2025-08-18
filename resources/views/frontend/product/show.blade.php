@@ -333,8 +333,11 @@ $(document).ready(function(){
                     </a>
                     <div class="product-details-pop">
                         <h4>${item.name}</h4>
-                        ${sizeHtml}
+                        <div class="variant-data d-flex">
+                         ${sizeHtml}
                         ${colorHtml}
+                        </div>
+                       
                         <p><strong>₹${item.price}</strong></p>
                         <div class="pd-add-to-cart-wrap">
                             <button class="qty-minus" data-id="${item.id}">-</button>
