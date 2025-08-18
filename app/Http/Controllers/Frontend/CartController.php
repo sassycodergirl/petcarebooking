@@ -15,6 +15,38 @@ class CartController extends Controller
     }
 
     // Add product to cart
+    // public function add(Request $request, $id)
+    // {
+    //     $cart = session()->get('cart', []);
+
+    //     $product = Product::find($id);
+    //     if(!$product){
+    //         return response()->json(['success' => false, 'message' => 'Product not found']);
+    //     }
+
+    //     $quantity = $request->quantity ?? 1;
+
+    //     if(isset($cart[$id])){
+    //         $cart[$id]['quantity'] += $quantity;
+    //     } else {
+    //         $cart[$id] = [
+    //             'id' => $product->id,
+    //             'name' => $product->name,
+    //             'price' => $product->price,
+    //             'image' => $product->image ? asset('public/' . $product->image) : asset('images/pd1.png'),
+    //             'quantity' => $quantity
+    //         ];
+    //     }
+
+    //     session(['cart' => $cart]);
+
+    //     return response()->json([
+    //         'success' => true,
+    //         'cart_count' => array_sum(array_column($cart, 'quantity')),
+    //         'cart' => array_values($cart)
+    //     ]);
+    // }
+
     public function add(Request $request, $id)
     {
         $cart = session()->get('cart', []);
@@ -25,12 +57,22 @@ class CartController extends Controller
         }
 
         $quantity = $request->quantity ?? 1;
+        $variantId = $request->variant_id ?? null;
+        $size = $request->size ?? null;
+        $colorId = $request->color_id ?? null;
 
         if(isset($cart[$id])){
             $cart[$id]['quantity'] += $quantity;
+            // update variant info as well
+            $cart[$id]['variant_id'] = $variantId;
+            $cart[$id]['size'] = $size;
+            $cart[$id]['color_id'] = $colorId;
         } else {
             $cart[$id] = [
                 'id' => $product->id,
+                'variant_id' => $variantId,
+                'size' => $size,
+                'color_id' => $colorId,
                 'name' => $product->name,
                 'price' => $product->price,
                 'image' => $product->image ? asset('public/' . $product->image) : asset('images/pd1.png'),
@@ -46,6 +88,8 @@ class CartController extends Controller
             'cart' => array_values($cart)
         ]);
     }
+
+
 
     // Update quantity (+/-)
     public function update(Request $request, $id)
