@@ -290,56 +290,7 @@ $(document).ready(function(){
         updateGallery(selectedSize, selectedColorId);
     });
 
-    // --- Product page dedicated render function ---
-    function renderCartDrawerProductPage(cartItems){
-        const container = document.querySelector('.popup-overlay .cart-items');
-        const totalEl = document.querySelector('.cart-total');
-        container.innerHTML = '';
-
-        if(!cartItems || cartItems.length === 0){
-            container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
-            totalEl.innerText = '0';
-            console.log('Cart is empty');
-            return;
-        }
-
-        let total = 0;
-
-        cartItems.forEach(item => {
-            total += item.price * item.quantity;
-            const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
-            const colorHtml = item.color ? `<p>Color: ${item.color}</p>` : '';
-
-            const html = `
-                <div class="product-infos mb-4">
-                    <div class="product-info mb-0">
-                        <a href="#" class="product-img-pop">
-                            <img src="${item.image}" alt="${item.name}">
-                        </a>
-                        <div class="product-details-pop">
-                            <h4>${item.name}</h4>
-                            ${sizeHtml}
-                            ${colorHtml}
-                            <p><strong>₹${item.price}</strong></p>
-                            <div class="pd-add-to-cart-wrap">
-                                <button class="qty-minus" data-id="${item.id}">-</button>
-                                <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
-                                <button class="qty-plus" data-id="${item.id}">+</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="remove-icon">
-                        <button class="remove-item" data-id="${item.id}">Remove</button>
-                    </div>
-                </div>
-            `;
-
-            container.insertAdjacentHTML('beforeend', html);
-        });
-
-        totalEl.innerText = total.toFixed(2);
-        console.log('Cart drawer updated:', cartItems);
-    }
+  
 
     // --- Product page add to cart click ---
     $('.product-page-cart').on('click', function(e){
@@ -381,7 +332,7 @@ $(document).ready(function(){
             console.log('Cart add response:', data);
             if(data.success){
                 $('.cd-button-cart-count').text(data.cart_count);
-                renderCartDrawerProductPage(data.cart);
+                renderCartDrawer(data.cart);
                 $('.popup-overlay').addClass('active');
             } else {
                 alert('Something went wrong: ' + (data.message || ''));
@@ -391,55 +342,51 @@ $(document).ready(function(){
     });
 
     // --- Quantity change & remove item ---
-    $(document).on('click', '.qty-plus, .qty-minus', function(){
-        const id = $(this).data('id');
-        const qtyChange = $(this).hasClass('qty-plus') ? 1 : -1;
-        console.log('Updating quantity:', {id, qtyChange});
+    // $(document).on('click', '.qty-plus, .qty-minus', function(){
+    //     const id = $(this).data('id');
+    //     const qtyChange = $(this).hasClass('qty-plus') ? 1 : -1;
+    //     console.log('Updating quantity:', {id, qtyChange});
 
-        fetch(`${appUrl}/cart/update/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({quantity: qtyChange})
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log('Cart update response:', data);
-            if(data.success){
-                $('.cd-button-cart-count').text(data.cart_count);
-                renderCartDrawerProductPage(data.cart);
-            }
-        });
-    });
+    //     fetch(`${appUrl}/cart/update/${id}`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    //         },
+    //         body: JSON.stringify({quantity: qtyChange})
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log('Cart update response:', data);
+    //         if(data.success){
+    //             $('.cd-button-cart-count').text(data.cart_count);
+    //             renderCartDrawerProductPage(data.cart);
+    //         }
+    //     });
+    // });
 
-    $(document).on('click', '.remove-item', function(){
-        const id = $(this).data('id');
-        console.log('Removing item:', id);
+    // $(document).on('click', '.remove-item', function(){
+    //     const id = $(this).data('id');
+    //     console.log('Removing item:', id);
 
-        fetch(`${appUrl}/cart/remove/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log('Cart remove response:', data);
-            if(data.success){
-                $('.cd-button-cart-count').text(data.cart_count);
-                renderCartDrawerProductPage(data.cart);
-            }
-        });
-    });
+    //     fetch(`${appUrl}/cart/remove/${id}`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log('Cart remove response:', data);
+    //         if(data.success){
+    //             $('.cd-button-cart-count').text(data.cart_count);
+    //             renderCartDrawerProductPage(data.cart);
+    //         }
+    //     });
+    // });
 
-    // --- Close popup ---
-    $('.popup-close').on('click', function(){
-        $('.popup-overlay').removeClass('active');
-        console.log('Cart popup closed');
-    });
+ 
 
 });
 </script>
