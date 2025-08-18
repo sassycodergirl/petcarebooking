@@ -216,7 +216,7 @@ $(document).ready(function(){
 
     // Re-init slick
     galleryThumbs.slick({
-    slidesToShow:3,
+    slidesToShow:4,
     slidesToScroll: 1,
     asNavFor: '.gallery-main',
     focusOnSelect: true,
