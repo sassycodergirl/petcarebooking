@@ -173,12 +173,67 @@
     //     totalEl.innerText = total.toFixed(2);
     // }
 
-function renderCartDrawer(cartItems = [],variantsData = []) {
+// function renderCartDrawer(cartItems = [],variantsData = []) {
+//     const container = document.querySelector('.popup-overlay .cart-items');
+//     const totalEl = document.querySelector('.cart-total');
+//     container.innerHTML = '';
+
+//     if(!cartItems || cartItems.length === 0){
+//         container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
+//         totalEl.innerText = '0';
+//         return;
+//     }
+
+//     let total = 0;
+
+//     cartItems.forEach(item => {
+//         total += item.price * item.quantity;
+//         const variantId = item.variant_id ?? '0';
+
+//         const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
+//         const colorHtml = item.color_hex ? `
+//             <p style="display:flex;align-items:center;">Color:
+//                 <span style="display:inline-block;width:16px;height:16px;border-radius:50%;margin-left:5px;background-color:${item.color_hex};"></span>
+//             </p>` : '';
+
+//         const html = `
+//             <div class="product-infos mb-4">
+//                 <div class="product-info mb-0">
+//                     <a href="#" class="product-img-pop">
+//                         <img src="${item.image}" alt="${item.name}">
+//                     </a>
+//                     <div class="product-details-pop">
+//                         <h4>${item.name}</h4>
+//                         <div class="variant-data d-flex align-items-center">
+//                             ${sizeHtml}${colorHtml}
+//                         </div>
+//                         <p><strong>₹${item.price}</strong></p>
+//                         <div class="pd-add-to-cart-wrap">
+//                             <button class="qty-minus" data-id="${item.id}" data-variant="${item.variant_id}">-</button>
+//                             <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" data-variant="${item.variant_id}" readonly />
+//                             <button class="qty-plus" data-id="${item.id}" data-variant="${item.variant_id}">+</button>
+//                         </div>
+//                     </div>
+//                 </div>
+//                 <div class="remove-icon">
+//                     <button class="remove-item" data-id="${item.id}" data-variant="${item.variant_id}">
+//                         Remove
+//                     </button>
+//                 </div>
+//             </div>
+//         `;
+//         container.insertAdjacentHTML('beforeend', html);
+//     });
+
+//     totalEl.innerText = total.toFixed(2);
+// }
+
+       function renderCartDrawer(cartItems = [], variantsData = []) {
     const container = document.querySelector('.popup-overlay .cart-items');
     const totalEl = document.querySelector('.cart-total');
     container.innerHTML = '';
 
-    if(!cartItems || cartItems.length === 0){
+    if (!cartItems || cartItems.length === 0) {
         container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
         totalEl.innerText = '0';
         return;
@@ -188,13 +243,21 @@ function renderCartDrawer(cartItems = [],variantsData = []) {
 
     cartItems.forEach(item => {
         total += item.price * item.quantity;
-        const variantId = item.variant_id ?? '0';
 
-        const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
-        const colorHtml = item.color_hex ? `
-            <p style="display:flex;align-items:center;">Color:
-                <span style="display:inline-block;width:16px;height:16px;border-radius:50%;margin-left:5px;background-color:${item.color_hex};"></span>
-            </p>` : '';
+        // Look up variant details from variantsData if item.variant_id exists
+        let variant = variantsData.find(v => v.id == item.variant_id);
+        let sizeHtml = '';
+        let colorHtml = '';
+
+        if (variant) {
+            sizeHtml = variant.size ? `<p>Size: ${variant.size}</p>` : '';
+            colorHtml = variant.color_hex ? `
+                <p style="display:flex;align-items:center;">Color:
+                    <span style="display:inline-block;width:16px;height:16px;border-radius:50%;margin-left:5px;background-color:${variant.color_hex};"></span>
+                </p>` : '';
+        }
+
+        const variantId = item.variant_id ?? '0';
 
         const html = `
             <div class="product-infos mb-4">
@@ -209,14 +272,14 @@ function renderCartDrawer(cartItems = [],variantsData = []) {
                         </div>
                         <p><strong>₹${item.price}</strong></p>
                         <div class="pd-add-to-cart-wrap">
-                            <button class="qty-minus" data-id="${item.id}" data-variant="${item.variant_id}">-</button>
-                            <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" data-variant="${item.variant_id}" readonly />
-                            <button class="qty-plus" data-id="${item.id}" data-variant="${item.variant_id}">+</button>
+                            <button class="qty-minus" data-id="${item.id}" data-variant="${variantId}">-</button>
+                            <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" data-variant="${variantId}" readonly />
+                            <button class="qty-plus" data-id="${item.id}" data-variant="${variantId}">+</button>
                         </div>
                     </div>
                 </div>
                 <div class="remove-icon">
-                    <button class="remove-item" data-id="${item.id}" data-variant="${item.variant_id}">
+                    <button class="remove-item" data-id="${item.id}" data-variant="${variantId}">
                         Remove
                     </button>
                 </div>
@@ -230,34 +293,78 @@ function renderCartDrawer(cartItems = [],variantsData = []) {
 
 
 
-    // Add to cart click
-    document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const productId = this.dataset.id;
-            // const quantity = 1;
-            const quantityEl = document.getElementById('product-qty');
-            const quantity = quantityEl && parseInt(quantityEl.value) > 0 ? parseInt(quantityEl.value) : 1;
 
-            fetch(`{{ url('/cart/add') }}/${productId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ quantity })
+
+    // Add to cart click
+    // document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
+    //     button.addEventListener('click', function(e) {
+    //         e.preventDefault();
+    //         const productId = this.dataset.id;
+    //         // const quantity = 1;
+    //         const quantityEl = document.getElementById('product-qty');
+    //         const quantity = quantityEl && parseInt(quantityEl.value) > 0 ? parseInt(quantityEl.value) : 1;
+
+    //         fetch(`{{ url('/cart/add') }}/${productId}`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    //             },
+    //             body: JSON.stringify({ quantity })
+    //         })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             if(data.success) {
+    //                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+    //                 renderCartDrawer(data.cart);
+    //                 document.querySelector('.popup-overlay').classList.add('active');
+    //             } else alert('Something went wrong');
+    //         })
+    //         .catch(err => console.log(err));
+    //     });
+    // });
+
+    document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const productId = this.dataset.id;
+        const quantityEl = document.getElementById('product-qty');
+        const quantity = quantityEl && parseInt(quantityEl.value) > 0 ? parseInt(quantityEl.value) : 1;
+
+        // Get selected variant info
+        const selectedVariant = {
+            variantId: window.selectedVariantId ?? null,
+            size: window.selectedSize ?? null,
+            colorId: window.selectedColorId ?? null,
+            colorHex: window.selectedColorHex ?? '#ccc'
+        };
+
+        fetch(`{{ url('/cart/add') }}/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json',
+                'X-CSRF-TOKEN':'{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                quantity,
+                variant_id: selectedVariant.variantId,
+                size: selectedVariant.size,
+                color_id: selectedVariant.colorId,
+                color_hex: selectedVariant.colorHex
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) {
-                    document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                    renderCartDrawer(data.cart);
-                    document.querySelector('.popup-overlay').classList.add('active');
-                } else alert('Something went wrong');
-            })
-            .catch(err => console.log(err));
-        });
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success) {
+                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
+                renderCartDrawer(data.cart, variantsData);
+                document.querySelector('.popup-overlay').classList.add('active');
+            } else alert('Something went wrong');
+        })
+        .catch(err => console.error(err));
     });
+});
+
 
     // Cart icon click
     document.querySelector('.cart-btn').addEventListener('click', function(e){
@@ -309,66 +416,49 @@ function renderCartDrawer(cartItems = [],variantsData = []) {
     // });
 
  
-    document.addEventListener('click', function(e){
+    document.addEventListener('click', function(e) {
     const target = e.target;
+    const removeBtn = target.closest('.remove-item');
 
     // --- Quantity change ---
-    if(target.classList.contains('qty-plus') || target.classList.contains('qty-minus')){
+    if(target.classList.contains('qty-plus') || target.classList.contains('qty-minus')) {
         const id = target.dataset.id;
-        const variantId = target.dataset.variant || '0';
+        const variantId = target.dataset.variant;
         const qtyChange = target.classList.contains('qty-plus') ? 1 : -1;
 
         fetch(`{{ url('/cart/update') }}/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json',
-                'X-CSRF-TOKEN':'{{ csrf_token() }}'
-            },
+            method:'POST',
+            headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
             body: JSON.stringify({ quantity: qtyChange, variant_id: variantId })
         })
         .then(res => res.json())
         .then(data => {
-            if(data.success){
+            if(data.success) {
                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                renderCartDrawer(data.cart);
+                renderCartDrawer(data.cart, variantsData);
             }
         });
     }
 
     // --- Remove item ---
-    const removeBtn = target.closest('.remove-item');
-    if (removeBtn) {
+    if(removeBtn) {
         const id = removeBtn.dataset.id;
-        const variantId = removeBtn.dataset.variant ? removeBtn.dataset.variant : null; // send null for old items
+        const variantId = removeBtn.dataset.variant ?? '0';
 
         fetch(`{{ url('/cart/remove') }}/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json',
-                'X-CSRF-TOKEN':'{{ csrf_token() }}'
-            },
+            method:'POST',
+            headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
             body: JSON.stringify({ variant_id: variantId })
         })
         .then(res => res.json())
         .then(data => {
-            if(data.success){
+            if(data.success) {
                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                renderCartDrawer(data.cart);
+                renderCartDrawer(data.cart, variantsData);
             }
-        })
-        .catch(err => console.error('Cart remove error:', err));
+        });
     }
-
 });
-
-
-
-
-
-
-
-
-
 
 
 

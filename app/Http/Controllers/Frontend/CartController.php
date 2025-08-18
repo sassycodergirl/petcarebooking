@@ -30,13 +30,14 @@ class CartController extends Controller
         $colorId = $request->color_id ?? null;
         $colorHex = $request->color_hex ?? '#ccc';
 
-        // Use unique key for product variant
-        $key = $id . '-' . ($variantId ?? '0');
+        $key = $id
+       . '-' . ($variantId ?? '0')
+       . '-' . ($size ?? '0')
+       . '-' . ($colorId ?? '0');
 
-        if (isset($cart[$key])) {
-            // If already in cart, just increase quantity
+        if(isset($cart[$key])){
             $cart[$key]['quantity'] += $quantity;
-        } else {
+        }else{
             $cart[$key] = [
                 'id' => $product->id,
                 'variant_id' => $variantId,
