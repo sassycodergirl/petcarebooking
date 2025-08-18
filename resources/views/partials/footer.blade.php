@@ -194,9 +194,9 @@
 
         // --- Color HTML ---
         const colorHtml = item.color_hex ? `
-            <p>Color: 
+            <p class="display: flex;align-items: center;">Color: 
                 <span class="color-swatch" 
-                      style="display:inline-block;width:16px;height:16px;border-radius:50%;background-color:${item.color_hex};margin-left:5px;">
+                      style="display:inline-block;width:16px;height:16px;border-radius:50%; margin-bottom: 0;background-color:${item.color_hex};margin-left:5px;">
                 </span>
             </p>` : '';
 

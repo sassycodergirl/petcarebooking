@@ -155,15 +155,13 @@
 <!-- Pass all variant data to JS -->
 @php
 $variantsData = $product->variants->map(function($variant) {
+    $color = $variant->color;
     return [
         'id' => $variant->id,
         'size' => $variant->size,
         'color_id' => $variant->color_id,
-        'color' => $variant->color ? [
-            'id' => $variant->color->id,
-            'hex_code' => $variant->color->hex_code ?? '#ccc',
-            'name' => $variant->color->name ?? '',
-        ] : null,
+        'color_hex' => $color->hex_code ?? '#ccc', // direct access for JS
+        'color_name' => $color->name ?? '',
         'gallery' => $variant->gallery->pluck('image')->toArray(),
         'price' => $variant->price,
         'image' => $variant->image,
