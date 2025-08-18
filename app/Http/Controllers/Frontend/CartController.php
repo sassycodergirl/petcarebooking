@@ -60,6 +60,7 @@ class CartController extends Controller
         $variantId = $request->variant_id ?? null;
         $size = $request->size ?? null;
         $colorId = $request->color_id ?? null;
+        $colorHex = $request->color_hex ?? '#ccc'; 
 
         if(isset($cart[$id])){
             $cart[$id]['quantity'] += $quantity;
@@ -67,12 +68,14 @@ class CartController extends Controller
             $cart[$id]['variant_id'] = $variantId;
             $cart[$id]['size'] = $size;
             $cart[$id]['color_id'] = $colorId;
+            $cart[$id]['color_hex'] = $colorHex;
         } else {
             $cart[$id] = [
                 'id' => $product->id,
                 'variant_id' => $variantId,
                 'size' => $size,
                 'color_id' => $colorId,
+                'color_hex' => $colorHex,
                 'name' => $product->name,
                 'price' => $product->price,
                 'image' => $product->image ? asset('public/' . $product->image) : asset('images/pd1.png'),

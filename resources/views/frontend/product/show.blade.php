@@ -291,78 +291,78 @@ $(document).ready(function(){
     });
 
     // --- Product page dedicated render function ---
-    function renderCartDrawerProductPage(cartItems) {
-    const container = document.querySelector('.popup-overlay .cart-items');
-    const totalEl = document.querySelector('.cart-total');
-    container.innerHTML = '';
+//     function renderCartDrawerProductPage(cartItems) {
+//     const container = document.querySelector('.popup-overlay .cart-items');
+//     const totalEl = document.querySelector('.cart-total');
+//     container.innerHTML = '';
 
-    if (!cartItems || cartItems.length === 0) {
-        container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
-        totalEl.innerText = '0';
-        console.log('Cart is empty');
-        return;
-    }
+//     if (!cartItems || cartItems.length === 0) {
+//         container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
+//         totalEl.innerText = '0';
+//         console.log('Cart is empty');
+//         return;
+//     }
 
-    let total = 0;
+//     let total = 0;
 
-    cartItems.forEach(item => {
-        total += item.price * item.quantity;
+//     cartItems.forEach(item => {
+//         total += item.price * item.quantity;
 
-        // Get variant info to show color swatch
-        let colorHtml = '';
-        if (item.color_id) {
-            const variant = variantsData.find(v => v.id === item.variant_id);
-            if (variant) {
-                colorHtml = `<p>Color: 
-                    <span class="selectgroup-button" 
-                          style="background-color: ${variant.color_hex ?? '#ccc'}; 
-                                 display:inline-block; width:16px; height:16px; 
-                                 border-radius:50%; margin-left:5px;">
-                    </span>
-                </p>`;
-            }
-        }
+//         // Get variant info to show color swatch
+//         let colorHtml = '';
+//         if (item.color_id) {
+//             const variant = variantsData.find(v => v.id === item.variant_id);
+//             if (variant) {
+//                 colorHtml = `<p>Color: 
+//                     <span class="selectgroup-button" 
+//                           style="background-color: ${variant.color_hex ?? '#ccc'}; 
+//                                  display:inline-block; width:16px; height:16px; 
+//                                  border-radius:50%; margin-left:5px;">
+//                     </span>
+//                 </p>`;
+//             }
+//         }
      
-        const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
+//         const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
 
-        const html = `
-        99999999999999999999999999999
-            <div class="product-infos mb-4">
-                <div class="product-info mb-0">
-                    <a href="#" class="product-img-pop">
-                        <img src="${item.image}" alt="${item.name}">
-                    </a>
-                    <div class="product-details-pop">
-                        <h4>${item.name}</h4>
-                        <div class="variant-data d-flex">
-                         ${sizeHtml}
-                        ${colorHtml}
-                        </div>
+//         const html = `
+//         99999999999999999999999999999
+//             <div class="product-infos mb-4">
+//                 <div class="product-info mb-0">
+//                     <a href="#" class="product-img-pop">
+//                         <img src="${item.image}" alt="${item.name}">
+//                     </a>
+//                     <div class="product-details-pop">
+//                         <h4>${item.name}</h4>
+//                         <div class="variant-data d-flex">
+//                          ${sizeHtml}
+//                         ${colorHtml}
+//                         </div>
                        
-                        <p><strong>₹${item.price}</strong></p>
-                        <div class="pd-add-to-cart-wrap">
-                            <button class="qty-minus" data-id="${item.id}">-</button>
-                            <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
-                            <button class="qty-plus" data-id="${item.id}">+</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="remove-icon">
-                    <button class="remove-item" data-id="${item.id}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path fill="currentColor" fill-rule="evenodd" d="M9.774 5L3.758 3.94l.174-.986a.5.5 0 0 1 .58-.405L18.411 5h.088h-.087l1.855.327a.5.5 0 0 1 .406.58l-.174.984l-2.09-.368l-.8 13.594A2 2 0 0 1 15.615 22H8.386a2 2 0 0 1-1.997-1.883L5.59 6.5h12.69zH5.5zM9 9l.5 9H11l-.4-9zm4.5 0l-.5 9h1.5l.5-9zm-2.646-7.871l3.94.694a.5.5 0 0 1 .405.58l-.174.984l-4.924-.868l.174-.985a.5.5 0 0 1 .58-.405z"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        `;
+//                         <p><strong>₹${item.price}</strong></p>
+//                         <div class="pd-add-to-cart-wrap">
+//                             <button class="qty-minus" data-id="${item.id}">-</button>
+//                             <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
+//                             <button class="qty-plus" data-id="${item.id}">+</button>
+//                         </div>
+//                     </div>
+//                 </div>
+//                 <div class="remove-icon">
+//                     <button class="remove-item" data-id="${item.id}">
+//                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+//                             <path fill="currentColor" fill-rule="evenodd" d="M9.774 5L3.758 3.94l.174-.986a.5.5 0 0 1 .58-.405L18.411 5h.088h-.087l1.855.327a.5.5 0 0 1 .406.58l-.174.984l-2.09-.368l-.8 13.594A2 2 0 0 1 15.615 22H8.386a2 2 0 0 1-1.997-1.883L5.59 6.5h12.69zH5.5zM9 9l.5 9H11l-.4-9zm4.5 0l-.5 9h1.5l.5-9zm-2.646-7.871l3.94.694a.5.5 0 0 1 .405.58l-.174.984l-4.924-.868l.174-.985a.5.5 0 0 1 .58-.405z"/>
+//                         </svg>
+//                     </button>
+//                 </div>
+//             </div>
+//         `;
 
-        container.insertAdjacentHTML('beforeend', html);
-    });
+//         container.insertAdjacentHTML('beforeend', html);
+//     });
 
-    totalEl.innerText = total.toFixed(2);
-    console.log('Cart drawer updated:', cartItems);
-}
+//     totalEl.innerText = total.toFixed(2);
+//     console.log('Cart drawer updated:', cartItems);
+// }
 
 
     // --- Product page add to cart click ---

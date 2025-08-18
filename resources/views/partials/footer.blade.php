@@ -136,16 +136,10 @@
         // --- Color HTML ---
         let colorHtml = '';
         if (item.color_id) {
-            let colorHex = '#ccc';
-            if (variantsData.length > 0) {
-                const variant = variantsData.find(v => v.id === item.variant_id);
-                if (variant) colorHex = variant.color_hex ?? '#ccc';
-            }
-            colorHtml = `<p>Color: 
-                            <span class="selectgroup-button" 
-                                  style="background-color: ${colorHex}; 
-                                         display:inline-block; width:16px; height:16px; 
-                                         border-radius:50%; margin-left:5px;">
+            const colorHex = item.color_hex ?? '#ccc';
+            colorHtml = `<p class="color-var">Color: 
+                            <span class="color-swatch" 
+                                style="background-color: ${colorHex};">
                             </span>
                         </p>`;
         }
