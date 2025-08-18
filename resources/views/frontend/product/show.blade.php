@@ -152,9 +152,6 @@
 
 
 
-
-
-
 <!-- Pass all variant data to JS -->
 @php
 $variantsData = $product->variants->map(function($variant) {
@@ -175,37 +172,81 @@ $variantsData = $product->variants->map(function($variant) {
 @endphp
 
 <script>
-const variantsData = @json($variantsData);
-const appUrl = "{{ url('') }}"; // Base URL
+const ProductPage = {
+    variantsData: @json($variantsData),
+    appUrl: "{{ url('') }}",
+    selectedSize: null,
+    selectedColorId: null,
+    
+    init: function() {
+        this.selectedSize = this.variantsData[0]?.size || null;
+        this.selectedColorId = this.variantsData.find(v => v.size === this.selectedSize)?.color_id || null;
 
-$(document).ready(function(){
+        this.initQuantity();
+        this.initSizeColorChange();
+        this.updateColors(this.selectedSize);
+        this.updateGallery(this.selectedSize, this.selectedColorId);
+        this.addToCartListener();
+    },
 
-    // --- Initialize quantity ---
-    let productQty = 1;
-    $('#product-qty').val(productQty);
-    $('.qty-plus').on('click', () => {
-        productQty++;
+    initQuantity: function() {
+        let productQty = 1;
         $('#product-qty').val(productQty);
-    });
-    $('.qty-minus').on('click', () => {
-        if(productQty > 1) productQty--;
-        $('#product-qty').val(productQty);
-    });
 
-    // --- Default variant selections ---
-    let selectedSize = variantsData[0]?.size || null;
-    let selectedColorId = variantsData.find(v => v.size === selectedSize)?.color_id || null;
+        $('.qty-plus').on('click', () => {
+            productQty++;
+            $('#product-qty').val(productQty);
+        });
+        $('.qty-minus').on('click', () => {
+            if(productQty > 1) productQty--;
+            $('#product-qty').val(productQty);
+        });
+    },
 
-    // --- Update gallery for selected variant ---
-    function updateGallery(size, colorId){
+    initSizeColorChange: function() {
+        const self = this;
+
+        $('input[name="variant_size"]').on('change', function(){
+            self.selectedSize = $(this).val();
+            self.updateColors(self.selectedSize);
+            self.updateGallery(self.selectedSize, self.selectedColorId);
+        });
+
+        $('input[name="variant_color"]').on('change', function(){
+            if($(this).prop('disabled')) return;
+            self.selectedColorId = parseInt($(this).val());
+            self.updateGallery(self.selectedSize, self.selectedColorId);
+        });
+    },
+
+    updateColors: function(size){
+        if(this.variantsData.length === 0) return;
+
+        const availableColors = this.variantsData
+            .filter(v => v.size === size)
+            .map(v => v.color_id);
+
+        $('input[name="variant_color"]').each(function(){
+            const colorId = parseInt($(this).val());
+            if(availableColors.includes(colorId)){
+                $(this).prop('disabled', false).closest('.selectgroup-item').css('opacity',1);
+            } else {
+                $(this).prop('disabled', true).closest('.selectgroup-item').css('opacity',0.3);
+            }
+        });
+
+        const firstColor = availableColors[0];
+        this.selectedColorId = firstColor;
+        $('input[name="variant_color"][value="'+firstColor+'"]').prop('checked', true);
+    },
+
+    updateGallery: function(size, colorId){
         let variant = null;
-
-        if(variantsData.length > 0){
-            variant = variantsData.find(v => v.size === size && v.color_id === colorId)
-                   || variantsData.find(v => v.size === size);
+        if(this.variantsData.length > 0){
+            variant = this.variantsData.find(v => v.size === size && v.color_id === colorId)
+                   || this.variantsData.find(v => v.size === size);
             if(!variant) return;
         } else {
-            // No variants
             variant = {
                 gallery: [$('.add-to-bag').data('image')],
                 image: $('.add-to-bag').data('image')
@@ -218,12 +259,12 @@ $(document).ready(function(){
         if(galleryMain.hasClass('slick-initialized')) galleryMain.slick('unslick');
         if(galleryThumbs.hasClass('slick-initialized')) galleryThumbs.slick('unslick');
 
-        galleryMain.children().remove();
-        galleryThumbs.children().remove();
+        galleryMain.empty();
+        galleryThumbs.empty();
 
         variant.gallery.forEach(img => {
-            galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
-            galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
+            galleryMain.append(`<div class="main-slide"><img src="${this.appUrl}/public/${img}" alt="Product"></div>`);
+            galleryThumbs.append(`<div class="thumb-slide"><img src="${this.appUrl}/public/${img}" alt="Thumb"></div>`);
         });
 
         galleryThumbs.slick({
@@ -249,202 +290,65 @@ $(document).ready(function(){
 
         galleryMain.slick('slickGoTo', 0, true);
         galleryThumbs.slick('slickGoTo', 0, true);
+    },
+
+    addToCartListener: function() {
+        const self = this;
+        $('.product-page-cart').on('click', function(e){
+            e.preventDefault();
+
+            const productId = $(this).data('id');
+            const quantity = parseInt($('#product-qty').val()) || 1;
+            let variantId = null;
+            let size = null;
+            let colorId = null;
+
+            if(self.variantsData.length > 0){
+                size = self.selectedSize;
+                colorId = self.selectedColorId;
+
+                const variant = self.variantsData.find(v => v.size === size && v.color_id === colorId)
+                             || self.variantsData.find(v => v.size === size);
+
+                if(!variant){
+                    alert('Please select a valid variant.');
+                    return;
+                }
+                variantId = variant.id;
+            }
+
+            fetch(`{{ url('/cart/add') }}/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    quantity: quantity,
+                    variant_id: variantId,
+                    size: size,
+                    color_id: colorId
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success){
+                    $('.cd-button-cart-count').text(data.cart_count);
+                    // ✅ call the old function
+                    renderCartDrawer(data.cart);
+                    $('.popup-overlay').addClass('active');
+                } else {
+                    alert('Something went wrong: ' + (data.message || ''));
+                }
+            })
+            .catch(err => console.error(err));
+        });
     }
+};
 
-    // --- Update color options based on selected size ---
-    function updateColors(size){
-        if(variantsData.length === 0) return;
-
-        const availableColors = variantsData.filter(v => v.size === size).map(v => v.color_id);
-
-        $('input[name="variant_color"]').each(function(){
-            const colorId = parseInt($(this).val());
-            if(availableColors.includes(colorId)){
-                $(this).prop('disabled', false).closest('.selectgroup-item').css('opacity',1);
-            } else {
-                $(this).prop('disabled', true).closest('.selectgroup-item').css('opacity',0.3);
-            }
-        });
-
-        const firstColor = availableColors[0];
-        selectedColorId = firstColor;
-        $('input[name="variant_color"][value="'+firstColor+'"]').prop('checked', true);
-    }
-
-    // --- Size change ---
-    $('input[name="variant_size"]').on('change', function(){
-        selectedSize = $(this).val();
-        updateColors(selectedSize);
-        updateGallery(selectedSize, selectedColorId);
-    });
-
-    // --- Color change ---
-    $('input[name="variant_color"]').on('change', function(){
-        if($(this).prop('disabled')) return;
-        selectedColorId = parseInt($(this).val());
-        updateGallery(selectedSize, selectedColorId);
-    });
-
-    // --- Initialize on page load ---
-    updateColors(selectedSize);
-    updateGallery(selectedSize, selectedColorId);
-
-    // --- Render cart drawer ---
-    function renderCartDrawer(cartItems){
-        const container = $('.popup-overlay .cart-items');
-        const totalEl = $('.cart-total');
-        container.html('');
-
-        if(!cartItems || cartItems.length === 0){
-            container.html('<p class="text-center">Your cart is empty.</p>');
-            totalEl.text('0');
-            return;
-        }
-
-        let total = 0;
-        cartItems.forEach(item => {
-            total += item.price * item.quantity;
-
-            container.append(`
-                <div class="product-infos mb-4">
-                    <div class="product-info mb-0">
-                        <a href="${appUrl}/products/${item.slug}" class="product-img-pop">
-                            <img src="${item.image}" alt="${item.name}">
-                        </a>
-                        <div class="product-details-pop">
-                            <h4>${item.name}</h4>
-                            ${item.size ? `<p>Size: ${item.size}</p>` : ''}
-                            ${item.color ? `<p>Color: ${item.color.name}</p>` : ''}
-                            <p><strong>₹${item.price}</strong></p>
-                            <div class="pd-add-to-cart-wrap">
-                                <button class="qty-minus" data-id="${item.id}">-</button>
-                                <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
-                                <button class="qty-plus" data-id="${item.id}">+</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="remove-icon">
-                        <button class="remove-item" data-id="${item.id}">Remove</button>
-                    </div>
-                </div>
-            `);
-        });
-
-        totalEl.text(total.toFixed(2));
-    }
-
-    // --- Add to cart click ---
-    $('.add-to-bag').on('click', function(e){
-        e.preventDefault();
-
-        const quantity = parseInt($('#product-qty').val()) || 1;
-
-        let variant = null;
-
-        if(variantsData.length > 0){
-            const size = typeof selectedSize !== 'undefined' ? selectedSize : variantsData[0].size;
-            const colorId = typeof selectedColorId !== 'undefined' ? selectedColorId : variantsData[0].color_id;
-
-            variant = variantsData.find(v => v.size === size && v.color_id === colorId)
-                     || variantsData.find(v => v.size === size);
-
-            if(!variant){
-                alert('Please select a valid variant.');
-                return;
-            }
-        } else {
-            // No variant
-            variant = {
-                id: $(this).data('id'),
-                size: null,
-                color_id: null,
-                color: null,
-                gallery: [$(this).data('image')],
-                price: $(this).data('price')
-            };
-        }
-
-        // Add to cart via AJAX
-        fetch(`${appUrl}/cart/add/${variant.id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ quantity })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success){
-                $('.cd-button-cart-count').text(data.cart_count);
-                renderCartDrawer(data.cart);
-                $('.popup-overlay').addClass('active');
-            } else alert('Something went wrong');
-        })
-        .catch(err => console.error(err));
-    });
-
-    // --- Cart icon click ---
-    $('.cart-btn').on('click', function(e){
-        e.preventDefault();
-
-        fetch('{{ route("cart.items") }}')
-        .then(res => res.json())
-        .then(data => {
-            if(data.success){
-                $('.cd-button-cart-count').text(data.cart_count);
-                renderCartDrawer(data.cart);
-                $('.popup-overlay').addClass('active');
-            }
-        })
-        .catch(err => console.error(err));
-    });
-
-    // --- Cart quantity & remove buttons ---
-    $(document).on('click', '.qty-plus, .qty-minus', function(){
-        const id = $(this).data('id');
-        const qtyChange = $(this).hasClass('qty-plus') ? 1 : -1;
-
-        fetch(`${appUrl}/cart/update/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ quantity: qtyChange })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success){
-                $('.cd-button-cart-count').text(data.cart_count);
-                renderCartDrawer(data.cart);
-            }
-        });
-    });
-
-    $(document).on('click', '.remove-item', function(){
-        const id = $(this).data('id');
-
-        fetch(`${appUrl}/cart/remove/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success){
-                $('.cd-button-cart-count').text(data.cart_count);
-                renderCartDrawer(data.cart);
-            }
-        });
-    });
-
-    // --- Close cart popup ---
-    $('.popup-close').on('click', function(){
-        $('.popup-overlay').removeClass('active');
-    });
-
-});
+$(document).ready(() => ProductPage.init());
 </script>
+
+
+
+
