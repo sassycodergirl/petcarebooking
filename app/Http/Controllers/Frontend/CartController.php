@@ -60,7 +60,7 @@ class CartController extends Controller
     }
 
     // Update quantity (+/-)
-    public function update(Request $request, $id)
+   public function update(Request $request, $id)
     {
         $cart = session()->get('cart', []);
         $variantId = $request->variant_id ?? '0';
@@ -73,6 +73,19 @@ class CartController extends Controller
             } else {
                 unset($cart[$key]);
             }
+        } else {
+            // For old items without variant_id
+            foreach ($cart as $k => $item) {
+                if ($item['id'] == $id) {
+                    $newQty = ($item['quantity'] ?? 0) + ($request->quantity ?? 0);
+                    if ($newQty > 0) {
+                        $cart[$k]['quantity'] = $newQty;
+                    } else {
+                        unset($cart[$k]);
+                    }
+                    break;
+                }
+            }
         }
 
         session(['cart' => $cart]);
@@ -83,6 +96,7 @@ class CartController extends Controller
             'cart' => array_values($cart)
         ]);
     }
+
 
     // Remove product from cart
    public function remove(Request $request, $id)
