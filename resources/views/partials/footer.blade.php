@@ -173,12 +173,12 @@
     //     totalEl.innerText = total.toFixed(2);
     // }
 
-    function renderCartDrawer(cartItems,variantsData = []) {
+function renderCartDrawer(cartItems = []) {
     const container = document.querySelector('.popup-overlay .cart-items');
     const totalEl = document.querySelector('.cart-total');
-    container.innerHTML = ''; // clear old items
+    container.innerHTML = '';
 
-    if (!cartItems || cartItems.length === 0) {
+    if(!cartItems || cartItems.length === 0){
         container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
         totalEl.innerText = '0';
         return;
@@ -189,18 +189,12 @@
     cartItems.forEach(item => {
         total += item.price * item.quantity;
 
-        // --- Size HTML ---
         const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
-
-        // --- Color HTML ---
         const colorHtml = item.color_hex ? `
-            <p class="display: flex;align-items: center;">Color: 
-                <span class="color-swatch" 
-                      style="display:inline-block;width:16px;height:16px;border-radius:50%; margin-bottom: 0;background-color:${item.color_hex};margin-left:5px;">
-                </span>
+            <p style="display:flex;align-items:center;">Color:
+                <span style="display:inline-block;width:16px;height:16px;border-radius:50%;margin-left:5px;background-color:${item.color_hex};"></span>
             </p>` : '';
 
-        // --- Cart item HTML ---
         const html = `
             <div class="product-infos mb-4">
                 <div class="product-info mb-0">
@@ -210,8 +204,7 @@
                     <div class="product-details-pop">
                         <h4>${item.name}</h4>
                         <div class="variant-data d-flex align-items-center">
-                            ${sizeHtml}
-                            ${colorHtml}
+                            ${sizeHtml}${colorHtml}
                         </div>
                         <p><strong>₹${item.price}</strong></p>
                         <div class="pd-add-to-cart-wrap">
@@ -223,19 +216,17 @@
                 </div>
                 <div class="remove-icon">
                     <button class="remove-item" data-id="${item.id}" data-variant="${item.variant_id}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path fill="currentColor" fill-rule="evenodd" d="M9.774 5L3.758 3.94l.174-.986a.5.5 0 0 1 .58-.405L18.411 5h.088h-.087l1.855.327a.5.5 0 0 1 .406.58l-.174.984l-2.09-.368l-.8 13.594A2 2 0 0 1 15.615 22H8.386a2 2 0 0 1-1.997-1.883L5.59 6.5h12.69zH5.5zM9 9l.5 9H11l-.4-9zm4.5 0l-.5 9h1.5l.5-9zm-2.646-7.871l3.94.694a.5.5 0 0 1 .405.58l-.174.984l-4.924-.868l.174-.985a.5.5 0 0 1 .58-.405z"/>
-                        </svg>
+                        Remove
                     </button>
                 </div>
             </div>
         `;
-
         container.insertAdjacentHTML('beforeend', html);
     });
 
     totalEl.innerText = total.toFixed(2);
 }
+
 
 
     // Add to cart click
@@ -316,24 +307,25 @@
     //     }
     // });
 
-document.addEventListener('click', function(e){
+        document.addEventListener('click', function(e){
+        const target = e.target;
 
-    // Handle plus/minus buttons
-    if(e.target.classList.contains('qty-plus') || e.target.classList.contains('qty-minus')){
-        const id = e.target.dataset.id;
-        const variantId = e.target.dataset.variant || '0';
-        const qtyChange = e.target.classList.contains('qty-plus') ? 1 : -1;
+    // --- Quantity change ---
+    if(target.classList.contains('qty-plus') || target.classList.contains('qty-minus')){
+        const id = target.dataset.id;
+        const variantId = target.dataset.variant;
+        const qtyChange = target.classList.contains('qty-plus') ? 1 : -1;
 
         fetch(`{{ url('/cart/update') }}/${id}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                'Content-Type':'application/json',
+                'X-CSRF-TOKEN':'{{ csrf_token() }}'
             },
             body: JSON.stringify({ quantity: qtyChange, variant_id: variantId })
         })
-        .then(res => res.json())
-        .then(data => {
+        .then(res=>res.json())
+        .then(data=>{
             if(data.success){
                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
                 renderCartDrawer(data.cart);
@@ -341,30 +333,30 @@ document.addEventListener('click', function(e){
         });
     }
 
-    // Handle remove button
-    const removeBtn = e.target.closest('.remove-item');
+    // --- Remove item ---
+    const removeBtn = target.closest('.remove-item');
     if(removeBtn){
         const id = removeBtn.dataset.id;
-        const variantId = removeBtn.dataset.variant || '0';
+        const variantId = removeBtn.dataset.variant;
 
         fetch(`{{ url('/cart/remove') }}/${id}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                'Content-Type':'application/json',
+                'X-CSRF-TOKEN':'{{ csrf_token() }}'
             },
             body: JSON.stringify({ variant_id: variantId })
         })
-        .then(res => res.json())
-        .then(data => {
+        .then(res=>res.json())
+        .then(data=>{
             if(data.success){
                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
                 renderCartDrawer(data.cart);
             }
         });
     }
-
 });
+
 
 
 
