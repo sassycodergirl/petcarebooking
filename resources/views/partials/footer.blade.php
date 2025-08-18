@@ -138,6 +138,8 @@
                         </a>
                         <div class="product-details-pop">
                             <h4>${item.name}</h4>
+                            ${item.size ? `<p>Size: ${item.size}</p>` : ''}
+                             ${item.color ? `<p>Color: ${item.color}</p>` : ''}
                             <p><strong>₹${item.price}</strong></p>
                             <div class="pd-add-to-cart-wrap">
                                 <button class="qty-minus" data-id="${item.id}">-</button>
