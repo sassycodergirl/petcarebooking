@@ -228,6 +228,7 @@ $(document).ready(function(){
         if(variantsData.length > 0){
             variant = variantsData.find(v => v.size === size && v.color_id === colorId)
                    || variantsData.find(v => v.size === size);
+            
             if(!variant) return;
         } else {
             variant = {
@@ -381,6 +382,7 @@ $(document).ready(function(){
 
             const variant = variantsData.find(v => v.size === size && v.color_id === colorId)
                          || variantsData.find(v => v.size === size);
+            const colorHex = variant?.color_hex ?? '#ccc';
 
             if(!variant){
                 alert('Please select a valid variant.');
@@ -390,7 +392,7 @@ $(document).ready(function(){
             variantId = variant.id;
         }
 
-        console.log('Adding to cart:', {productId, quantity, variantId, size, colorId});
+        console.log('Adding to cart:', {productId, quantity, variantId, size, colorId,colorHex});
 
         fetch(`{{ url('/cart/add') }}/${productId}`, {
             method: 'POST',
@@ -398,7 +400,7 @@ $(document).ready(function(){
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            body: JSON.stringify({quantity, variant_id: variantId, size, color_id: colorId})
+            body: JSON.stringify({quantity, variant_id: variantId, size, color_id: colorId,colorHex})
         })
         .then(res => res.json())
         .then(data => {

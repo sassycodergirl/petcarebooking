@@ -134,15 +134,9 @@
         const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
 
         // --- Color HTML ---
-        let colorHtml = '';
-        if (item.color_id) {
-            const colorHex = item.color_hex ?? '#ccc';
-            colorHtml = `<p class="color-var">Color: 
-                            <span class="color-swatch" 
-                                style="background-color: ${colorHex};">
-                            </span>
-                        </p>`;
-        }
+        const colorHtml = item.color_hex ? `<p>Color: 
+            <span class="color-swatch" style="background-color: ${item.color_hex};"></span>
+        </p>` : '';
 
        
 
