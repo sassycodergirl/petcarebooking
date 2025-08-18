@@ -147,28 +147,7 @@
 
 @include('partials.footer')
 
-<!-- Pass all variant data to JS -->
-@php
-$variantsData = $product->variants->map(function($variant) {
-    return [
-        'id' => $variant->id,
-        'size' => $variant->size,
-        'color_id' => $variant->color_id,
-        'color' => $variant->color ? [
-            'id' => $variant->color->id,
-            'hex_code' => $variant->color->hex_code ?? '#ccc',
-            'name' => $variant->color->name ?? '',
-        ] : null,
-        'gallery' => $variant->gallery->pluck('image')->toArray(),
-        'price' => $variant->price,
-        'image' => $variant->image,
-    ];
-})->toArray();
-@endphp
 
-<script>
-    const variantsData = @json($variantsData);
-</script>
 
 
 <!-- <script>
