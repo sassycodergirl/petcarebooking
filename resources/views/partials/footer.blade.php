@@ -113,7 +113,7 @@
 
 <script>
     // Render cart drawer
-    function renderCartDrawer(cartItems) {
+    function renderCartDrawer(cartItems,variantsData = []) {
         const container = document.querySelector('.popup-overlay .cart-items');
         const totalEl = document.querySelector('.cart-total');
         container.innerHTML = ''; // clear old items
