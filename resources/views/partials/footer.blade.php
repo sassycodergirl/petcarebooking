@@ -335,26 +335,33 @@ function renderCartDrawer(cartItems = []) {
 
     // --- Remove item ---
     const removeBtn = target.closest('.remove-item');
-    if(removeBtn){
-        const id = removeBtn.dataset.id;
-        const variantId = removeBtn.dataset.variant;
+    public function remove(Request $request, $id)
+{
+    $cart = session()->get('cart', []);
+    $variantId = $request->variant_id ?? '0';
+    $key = $id . '-' . $variantId;
 
-        fetch(`{{ url('/cart/remove') }}/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json',
-                'X-CSRF-TOKEN':'{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ variant_id: variantId })
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.success){
-                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                renderCartDrawer(data.cart);
+    // If key doesn't exist, try removing by just product id (for old items)
+    if (!isset($cart[$key])) {
+        foreach ($cart as $k => $item) {
+            if ($item['id'] == $id) {
+                unset($cart[$k]);
             }
-        });
+        }
+    } else {
+        unset($cart[$key]);
     }
+
+    session(['cart' => $cart]);
+
+    return response()->json([
+        'success' => true,
+        'cart_count' => array_sum(array_column($cart, 'quantity')),
+        'cart' => array_values($cart)
+    ]);
+}
+
+
 });
 
 
