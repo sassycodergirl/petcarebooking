@@ -85,24 +85,38 @@ class CartController extends Controller
     }
 
     // Remove product from cart
-    public function remove(Request $request, $id)
-    {
-        $cart = session()->get('cart', []);
-        $variantId = $request->variant_id ?? '0';
-        $key = $id . '-' . $variantId;
+   public function remove(Request $request, $id)
+{
+    $cart = session()->get('cart', []);
 
-        if (isset($cart[$key])) {
-            unset($cart[$key]);
+    // Get the variant id from request; null if not sent
+    $variantId = $request->variant_id ?? null;
+
+    // Build the key like in session
+    $key = $id . '-' . ($variantId ?? '');
+
+    // If key exists, remove it
+    if (isset($cart[$key])) {
+        unset($cart[$key]);
+    } else {
+        // If not, try removing by product id only (for old items)
+        foreach ($cart as $k => $item) {
+            if ($item['id'] == $id) {
+                unset($cart[$k]);
+            }
         }
-
-        session(['cart' => $cart]);
-
-        return response()->json([
-            'success' => true,
-            'cart_count' => array_sum(array_column($cart, 'quantity')),
-            'cart' => array_values($cart)
-        ]);
     }
+
+    // Save updated cart
+    session(['cart' => $cart]);
+
+    return response()->json([
+        'success' => true,
+        'cart_count' => array_sum(array_column($cart, 'quantity')),
+        'cart' => array_values($cart)
+    ]);
+}
+
 
     // Get current cart items (for cart icon / drawer)
     public function items()

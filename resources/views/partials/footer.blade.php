@@ -336,9 +336,9 @@ function renderCartDrawer(cartItems = []) {
 
     // --- Remove item ---
     const removeBtn = target.closest('.remove-item');
-    if(removeBtn){
+    if (removeBtn) {
         const id = removeBtn.dataset.id;
-        const variantId = removeBtn.dataset.variant || '0';
+        const variantId = removeBtn.dataset.variant ? removeBtn.dataset.variant : null; // send null for old items
 
         fetch(`{{ url('/cart/remove') }}/${id}`, {
             method: 'POST',
@@ -354,8 +354,10 @@ function renderCartDrawer(cartItems = []) {
                 document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
                 renderCartDrawer(data.cart);
             }
-        });
+        })
+        .catch(err => console.error('Cart remove error:', err));
     }
+
 });
 
 
