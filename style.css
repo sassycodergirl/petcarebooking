@@ -6334,6 +6334,8 @@ blockquote {
 }
 .pd-add-to-cart-wrap.product-page input{
     min-height: 40px;
+	background-color:#fff;
+	border: 1px solid #3b2519;
 }
 
 /*added by sudipa*/
