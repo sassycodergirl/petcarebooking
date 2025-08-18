@@ -113,65 +113,130 @@
 
 <script>
     // Render cart drawer
-    function renderCartDrawer(cartItems,variantsData = []) {
-        const container = document.querySelector('.popup-overlay .cart-items');
-        const totalEl = document.querySelector('.cart-total');
-        container.innerHTML = ''; // clear old items
+    // function renderCartDrawer(cartItems,variantsData = []) {
+    //     const container = document.querySelector('.popup-overlay .cart-items');
+    //     const totalEl = document.querySelector('.cart-total');
+    //     container.innerHTML = ''; // clear old items
 
-        if(!cartItems || cartItems.length === 0){
-            container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
-            totalEl.innerText = '0';
-            return;
-        }
+    //     if(!cartItems || cartItems.length === 0){
+    //         container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
+    //         totalEl.innerText = '0';
+    //         return;
+    //     }
 
-        let total = 0;
+    //     let total = 0;
 
-        cartItems.forEach(item => {
-            total += item.price * item.quantity;
-            //  const productUrl = productUrlTemplate.replace(':slug', item.slug);
+    //     cartItems.forEach(item => {
+    //         total += item.price * item.quantity;
+    //         //  const productUrl = productUrlTemplate.replace(':slug', item.slug);
 
-            // --- Size HTML ---
-        const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
+    //         // --- Size HTML ---
+    //     const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
 
-        // --- Color HTML ---
-        const colorHtml = item.color_hex ? `<p>Color: 
-            <span class="color-swatch" style="background-color: ${item.color_hex};"></span>
-        </p>` : '';
+    //     // --- Color HTML ---
+    //     const colorHtml = item.color_hex ? `<p>Color: 
+    //         <span class="color-swatch" style="background-color: ${item.color_hex};"></span>
+    //     </p>` : '';
 
        
 
-            const html = `
-                <div class="product-infos mb-4">
-                    <div class="product-info mb-0">
-                        <a href="#" class="product-img-pop">
-                            <img src="${item.image}" alt="${item.name}">
-                        </a>
-                        <div class="product-details-pop">
-                            <h4>${item.name}</h4>
-                            <div class="variant-data d-flex">
-                                ${sizeHtml}
-                                ${colorHtml}
-                            </div>
-                            <p><strong>₹${item.price}</strong></p>
-                            <div class="pd-add-to-cart-wrap">
-                                <button class="qty-minus" data-id="${item.id}">-</button>
-                                <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
-                                <button class="qty-plus" data-id="${item.id}">+</button>
+    //         const html = `
+    //             <div class="product-infos mb-4">
+    //                 <div class="product-info mb-0">
+    //                     <a href="#" class="product-img-pop">
+    //                         <img src="${item.image}" alt="${item.name}">
+    //                     </a>
+    //                     <div class="product-details-pop">
+    //                         <h4>${item.name}</h4>
+    //                         <div class="variant-data d-flex">
+    //                             ${sizeHtml}
+    //                             ${colorHtml}
+    //                         </div>
+    //                         <p><strong>₹${item.price}</strong></p>
+    //                         <div class="pd-add-to-cart-wrap">
+    //                             <button class="qty-minus" data-id="${item.id}">-</button>
+    //                             <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" readonly />
+    //                             <button class="qty-plus" data-id="${item.id}">+</button>
                                 
-                            </div>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //                 <div class="remove-icon">
+    //                             <button class="remove-item" data-id="${item.id}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M9.774 5L3.758 3.94l.174-.986a.5.5 0 0 1 .58-.405L18.411 5h.088h-.087l1.855.327a.5.5 0 0 1 .406.58l-.174.984l-2.09-.368l-.8 13.594A2 2 0 0 1 15.615 22H8.386a2 2 0 0 1-1.997-1.883L5.59 6.5h12.69zH5.5zM9 9l.5 9H11l-.4-9zm4.5 0l-.5 9h1.5l.5-9zm-2.646-7.871l3.94.694a.5.5 0 0 1 .405.58l-.174.984l-4.924-.868l.174-.985a.5.5 0 0 1 .58-.405z"/></svg></button>
+    //                 </div>
+    //             </div>
+    //         `;
+    //         container.insertAdjacentHTML('beforeend', html);
+    //         console.log('Cart drawer updated:', cartItems);
+    //     });
+
+    //     totalEl.innerText = total.toFixed(2);
+    // }
+
+    function renderCartDrawer(cartItems) {
+    const container = document.querySelector('.popup-overlay .cart-items');
+    const totalEl = document.querySelector('.cart-total');
+    container.innerHTML = ''; // clear old items
+
+    if (!cartItems || cartItems.length === 0) {
+        container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
+        totalEl.innerText = '0';
+        return;
+    }
+
+    let total = 0;
+
+    cartItems.forEach(item => {
+        total += item.price * item.quantity;
+
+        // --- Size HTML ---
+        const sizeHtml = item.size ? `<p>Size: ${item.size}</p>` : '';
+
+        // --- Color HTML ---
+        const colorHtml = item.color_hex ? `
+            <p>Color: 
+                <span class="color-swatch" 
+                      style="display:inline-block;width:16px;height:16px;border-radius:50%;background-color:${item.color_hex};margin-left:5px;">
+                </span>
+            </p>` : '';
+
+        // --- Cart item HTML ---
+        const html = `
+            <div class="product-infos mb-4">
+                <div class="product-info mb-0">
+                    <a href="#" class="product-img-pop">
+                        <img src="${item.image}" alt="${item.name}">
+                    </a>
+                    <div class="product-details-pop">
+                        <h4>${item.name}</h4>
+                        <div class="variant-data d-flex align-items-center">
+                            ${sizeHtml}
+                            ${colorHtml}
+                        </div>
+                        <p><strong>₹${item.price}</strong></p>
+                        <div class="pd-add-to-cart-wrap">
+                            <button class="qty-minus" data-id="${item.id}" data-variant="${item.variant_id}">-</button>
+                            <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" data-variant="${item.variant_id}" readonly />
+                            <button class="qty-plus" data-id="${item.id}" data-variant="${item.variant_id}">+</button>
                         </div>
                     </div>
-                    <div class="remove-icon">
-                                <button class="remove-item" data-id="${item.id}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M9.774 5L3.758 3.94l.174-.986a.5.5 0 0 1 .58-.405L18.411 5h.088h-.087l1.855.327a.5.5 0 0 1 .406.58l-.174.984l-2.09-.368l-.8 13.594A2 2 0 0 1 15.615 22H8.386a2 2 0 0 1-1.997-1.883L5.59 6.5h12.69zH5.5zM9 9l.5 9H11l-.4-9zm4.5 0l-.5 9h1.5l.5-9zm-2.646-7.871l3.94.694a.5.5 0 0 1 .405.58l-.174.984l-4.924-.868l.174-.985a.5.5 0 0 1 .58-.405z"/></svg></button>
-                    </div>
                 </div>
-            `;
-            container.insertAdjacentHTML('beforeend', html);
-            console.log('Cart drawer updated:', cartItems);
-        });
+                <div class="remove-icon">
+                    <button class="remove-item" data-id="${item.id}" data-variant="${item.variant_id}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor" fill-rule="evenodd" d="M9.774 5L3.758 3.94l.174-.986a.5.5 0 0 1 .58-.405L18.411 5h.088h-.087l1.855.327a.5.5 0 0 1 .406.58l-.174.984l-2.09-.368l-.8 13.594A2 2 0 0 1 15.615 22H8.386a2 2 0 0 1-1.997-1.883L5.59 6.5h12.69zH5.5zM9 9l.5 9H11l-.4-9zm4.5 0l-.5 9h1.5l.5-9zm-2.646-7.871l3.94.694a.5.5 0 0 1 .405.58l-.174.984l-4.924-.868l.174-.985a.5.5 0 0 1 .58-.405z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        `;
 
-        totalEl.innerText = total.toFixed(2);
-    }
+        container.insertAdjacentHTML('beforeend', html);
+    });
+
+    totalEl.innerText = total.toFixed(2);
+}
+
 
     // Add to cart click
     document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {

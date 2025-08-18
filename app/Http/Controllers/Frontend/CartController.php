@@ -8,51 +8,19 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
-    // Show cart page (optional)
+    // Show cart page
     public function index()
     {
         return view('frontend.cart');
     }
 
     // Add product to cart
-    // public function add(Request $request, $id)
-    // {
-    //     $cart = session()->get('cart', []);
-
-    //     $product = Product::find($id);
-    //     if(!$product){
-    //         return response()->json(['success' => false, 'message' => 'Product not found']);
-    //     }
-
-    //     $quantity = $request->quantity ?? 1;
-
-    //     if(isset($cart[$id])){
-    //         $cart[$id]['quantity'] += $quantity;
-    //     } else {
-    //         $cart[$id] = [
-    //             'id' => $product->id,
-    //             'name' => $product->name,
-    //             'price' => $product->price,
-    //             'image' => $product->image ? asset('public/' . $product->image) : asset('images/pd1.png'),
-    //             'quantity' => $quantity
-    //         ];
-    //     }
-
-    //     session(['cart' => $cart]);
-
-    //     return response()->json([
-    //         'success' => true,
-    //         'cart_count' => array_sum(array_column($cart, 'quantity')),
-    //         'cart' => array_values($cart)
-    //     ]);
-    // }
-
     public function add(Request $request, $id)
     {
         $cart = session()->get('cart', []);
 
         $product = Product::find($id);
-        if(!$product){
+        if (!$product) {
             return response()->json(['success' => false, 'message' => 'Product not found']);
         }
 
@@ -60,17 +28,16 @@ class CartController extends Controller
         $variantId = $request->variant_id ?? null;
         $size = $request->size ?? null;
         $colorId = $request->color_id ?? null;
-        $colorHex = $request->color_hex ?? '#ccc'; 
+        $colorHex = $request->color_hex ?? '#ccc';
 
-        if(isset($cart[$id])){
-            $cart[$id]['quantity'] += $quantity;
-            // update variant info as well
-            $cart[$id]['variant_id'] = $variantId;
-            $cart[$id]['size'] = $size;
-            $cart[$id]['color_id'] = $colorId;
-            $cart[$id]['color_hex'] = $colorHex;
+        // Use unique key for product variant
+        $key = $id . '-' . ($variantId ?? '0');
+
+        if (isset($cart[$key])) {
+            // If already in cart, just increase quantity
+            $cart[$key]['quantity'] += $quantity;
         } else {
-            $cart[$id] = [
+            $cart[$key] = [
                 'id' => $product->id,
                 'variant_id' => $variantId,
                 'size' => $size,
@@ -92,19 +59,19 @@ class CartController extends Controller
         ]);
     }
 
-
-
     // Update quantity (+/-)
     public function update(Request $request, $id)
     {
         $cart = session()->get('cart', []);
+        $variantId = $request->variant_id ?? '0';
+        $key = $id . '-' . $variantId;
 
-        if(isset($cart[$id])){
-            $newQty = ($cart[$id]['quantity'] ?? 0) + ($request->quantity ?? 0);
-            if($newQty > 0){
-                $cart[$id]['quantity'] = $newQty;
+        if (isset($cart[$key])) {
+            $newQty = ($cart[$key]['quantity'] ?? 0) + ($request->quantity ?? 0);
+            if ($newQty > 0) {
+                $cart[$key]['quantity'] = $newQty;
             } else {
-                unset($cart[$id]);
+                unset($cart[$key]);
             }
         }
 
@@ -121,9 +88,11 @@ class CartController extends Controller
     public function remove(Request $request, $id)
     {
         $cart = session()->get('cart', []);
+        $variantId = $request->variant_id ?? '0';
+        $key = $id . '-' . $variantId;
 
-        if(isset($cart[$id])){
-            unset($cart[$id]);
+        if (isset($cart[$key])) {
+            unset($cart[$key]);
         }
 
         session(['cart' => $cart]);
