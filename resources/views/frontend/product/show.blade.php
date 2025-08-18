@@ -216,15 +216,16 @@ $(document).ready(function(){
 
     // Re-init slick
     galleryThumbs.slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        asNavFor: '.gallery-main',
-        focusOnSelect: true,
-        vertical: true,
-        verticalSwiping: true,
-        arrows: true,
-        infinite: true
-    });
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    asNavFor: '.gallery-main',
+    focusOnSelect: true,
+    vertical: true,        // keep vertical layout
+    verticalSwiping: false, // disable vertical swipe
+    swipe: false,           // disable all swipe/drag
+    arrows: true,
+    infinite: true
+});
 
     galleryMain.slick({
         slidesToShow: 1,
