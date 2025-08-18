@@ -194,48 +194,54 @@ $(document).ready(function(){
     let selectedColorId = variantsData.find(v => v.size === selectedSize)?.color_id || null;
 
     function updateGallery(selectedSize, selectedColorId){
-    const variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
-                 || variantsData.find(v => v.size === selectedSize);
+        const variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
+                    || variantsData.find(v => v.size === selectedSize);
 
-    if(!variant) return;
+        if(!variant) return;
 
-    const galleryMain = $('.gallery-main');
-    const galleryThumbs = $('.gallery-thumbs');
+        const galleryMain = $('.gallery-main');
+        const galleryThumbs = $('.gallery-thumbs');
 
-    // Only unslick if already initialized
-    if(galleryMain.hasClass('slick-initialized')) galleryMain.slick('unslick');
-    if(galleryThumbs.hasClass('slick-initialized')) galleryThumbs.slick('unslick');
+        // Destroy Slick if initialized
+        if(galleryMain.hasClass('slick-initialized')) galleryMain.slick('unslick');
+        if(galleryThumbs.hasClass('slick-initialized')) galleryThumbs.slick('unslick');
 
-    galleryMain.html('');
-    galleryThumbs.html('');
+        // Clear previous slides
+        galleryMain.empty();
+        galleryThumbs.empty();
 
-    variant.gallery.forEach(img => {
-        galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
-        galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
-    });
+        // Append new slides
+        variant.gallery.forEach(img => {
+            galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
+            galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
+        });
 
-    // Re-init slick
-    galleryThumbs.slick({
-    slidesToShow:4,
-    slidesToScroll: 1,
-    asNavFor: '.gallery-main',
-    focusOnSelect: true,
-    vertical: true,        // keep vertical layout
-    verticalSwiping: false, // disable vertical swipe
-    swipe: false,           // disable all swipe/drag
-    arrows: true,
-    infinite: true
-});
+        // Reset thumbnail container scroll (prevents abnormal positioning)
+        galleryThumbs.scrollTop(0);
 
-    galleryMain.slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        asNavFor: '.gallery-thumbs',
-        arrows: true,
-        fade: true,
-        infinite: false
-    });
-}
+        // Re-init Slick
+        galleryThumbs.slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            asNavFor: '.gallery-main',
+            focusOnSelect: true,
+            vertical: true,
+            verticalSwiping: false,
+            swipe: false,
+            arrows: true,
+            infinite: true
+        });
+
+        galleryMain.slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            asNavFor: '.gallery-thumbs',
+            arrows: true,
+            fade: true,
+            infinite: false
+        });
+    }
+
 
 
     // Size selection
