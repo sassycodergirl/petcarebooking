@@ -16,7 +16,7 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type' => 'required|in:Home,Office,Other',
+            'type' => 'required|in:Home,Work,Other',
             'name' => 'required|string|max:50',
             'phone'  => 'nullable|string|max:20',
             'address_line1' => 'required|string|max:255',
