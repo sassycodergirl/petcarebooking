@@ -13,7 +13,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $addresses = $user->addresses; // fetch all addresses
-        return view('profile.edit', compact('user', 'addresses'));
+        return view('customer.profile.edit', compact('user', 'addresses'));
     }
 
     public function update(Request $request)
