@@ -20,6 +20,10 @@
 <script src="{{ asset('customer/plugins/feather.min.js') }}"></script>
 <!-- Custom scripts -->
 <script src="{{ asset('customer/js/script.js') }}"></script>
+
+<script src="{{asset('js/jquery-min.js')}}"></script>
+
+<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 </body>
 
 </html>
