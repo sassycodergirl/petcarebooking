@@ -61,5 +61,17 @@
         });
 </script>
 
+
+<script>
+    function toggleEdit(id) {
+        const display = document.getElementById(`display-${id}`);
+        const editForm = document.getElementById(`edit-${id}`);
+        
+        display.classList.toggle('d-none');
+        editForm.classList.toggle('d-none');
+    }
+</script>
+
+
   </body>
 </html>
