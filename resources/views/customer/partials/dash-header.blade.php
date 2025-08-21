@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('customer/assets/css/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('customer/assets/images/logo.png') }}" />
+
   </head>
   <body>
     <div class="container-scroller">

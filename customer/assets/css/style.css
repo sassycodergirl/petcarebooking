@@ -25693,7 +25693,7 @@ table.dataTable tbody td.select-checkbox:after {
   }
 }
 
-navbar .navbar-brand-wrapper .navbar-brand img {
-      height: 50px;
+.navbar .navbar-brand-wrapper .navbar-brand img {
+      height: 50px !important;
 }
 /*# sourceMappingURL=maps/style.css.map */
