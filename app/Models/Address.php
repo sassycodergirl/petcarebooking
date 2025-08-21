@@ -23,6 +23,7 @@ class Address extends Model
      */
     protected $fillable = [
         'user_id',            // linked user
+        'type',
         'name',               
         'phone',
         'address_line1',

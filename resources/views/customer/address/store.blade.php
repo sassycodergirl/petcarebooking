@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Type of Address</label>
-                           <select name="name" class="form-control" required>
+                           <select name="type" class="form-control" required>
                                 <option value="Home" {{ old('name') == 'Home' ? 'selected' : '' }}>Home</option>
                                 <option value="Office" {{ old('name') == 'Office' ? 'selected' : '' }}>Office</option>
                                 <option value="Other" {{ old('name') == 'Other' ? 'selected' : '' }}>Other</option>

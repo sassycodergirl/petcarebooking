@@ -10,6 +10,7 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'type' => 'required|in:Home,Office,Other',
             'name' => 'required|string|max:50',
             'phone'  => 'nullable|string|max:20',
             'address_line1' => 'required|string|max:255',
@@ -20,7 +21,10 @@ class AddressController extends Controller
            
         ]);
 
-        Auth::user()->addresses()->create($request->all());
+            $address = $request->all();
+            $address['user_id'] = auth()->id();
+
+            \App\Models\Address::create($address);
         return back()->with('success', 'Address added successfully!');
     }
 
