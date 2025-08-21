@@ -57,10 +57,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
      Route::post('/admin-furry-cms/products/settings/colors', [ProductController::class, 'updateColors'])->name('admin.products.settings.colors.update');
 });
 
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::get('/about-us', function () { return view('about');})->name('about');
