@@ -38,9 +38,9 @@
 
                             <!-- Image preview / message -->
                             <div class="mt-3 position-relative" style="display:inline-block;">
-                                @if($user->photo)
+                                @if($user->profile_photo)
                                     <img id="photoPreview" 
-                                        src="{{ asset($user->photo) }}" 
+                                        src="{{ asset($user->profile_photo) }}" 
                                         alt="Profile Photo" 
                                         class="img-thumbnail" 
                                         width="150">

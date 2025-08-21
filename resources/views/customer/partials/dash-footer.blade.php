@@ -31,7 +31,7 @@
     <!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
 
-     <script>
+     <!-- <script>
           const photoInput   = document.getElementById('photo');
           const photoPreview = document.getElementById('photoPreview');
           const removeBtn    = document.getElementById('removePhotoBtn');
@@ -63,7 +63,35 @@
                   removeBtn.classList.add('d-none');
               });
           }
-      </script>
+      </script> -->
+     <script>
+        const photoInput   = document.getElementById('photo');
+        const photoPreview = document.getElementById('photoPreview');
+        const removeBtn    = document.getElementById('removePhotoBtn');
+        const removePhoto  = document.getElementById('removePhoto');
+
+        // Preview selected image
+        photoInput.addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                photoPreview.src = URL.createObjectURL(file);
+                photoPreview.classList.remove('d-none');
+                removeBtn.classList.remove('d-none');
+                removePhoto.value = 0; // user uploaded new photo, not removing
+                document.getElementById('noImageText').style.display = 'none';
+            }
+        });
+
+        // Remove image (reset)
+        removeBtn.addEventListener('click', function () {
+            photoPreview.src = '';
+            photoPreview.classList.add('d-none');
+            photoInput.value = "";
+            removePhoto.value = 1; // flag for backend to remove
+            removeBtn.classList.add('d-none');
+            document.getElementById('noImageText').style.display = 'block';
+        });
+</script>
 
   </body>
 </html>

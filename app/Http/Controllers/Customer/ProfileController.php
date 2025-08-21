@@ -48,20 +48,19 @@ class ProfileController extends Controller
             $user->profile_photo = null;
         }
 
+        
         // Handle new photo upload
         if ($request->hasFile('profile_photo')) {
             $file = $request->file('profile_photo');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('user'), $fileName);
 
-            $imagePath = 'user/' . $fileName;
-
             // delete old photo if exists
             if ($user->profile_photo && file_exists(public_path($user->profile_photo))) {
                 unlink(public_path($user->profile_photo));
             }
 
-            $user->profile_photo = $imagePath;
+            $user->profile_photo = 'user/' . $fileName;
         }
 
         $user->save();
