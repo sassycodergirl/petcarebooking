@@ -15,7 +15,7 @@
                    
                   <div class="card-body">
                       <h4 class="mb-3">Basic Information</h4>
-                    <form class="forms-sample" action="{{ route('customer.profile.update') }}" method="POST">
+                    <form class="forms-sample" action="{{ route('customer.profile.update') }}" method="POST" enctype="multipart/form-data">
                      @csrf
 
                         
