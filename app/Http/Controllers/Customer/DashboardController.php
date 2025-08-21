@@ -13,13 +13,13 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         // Example data
-        $recentBookings = Booking::where('user_id', $user->id)
-            ->latest()->take(5)->get();
+        // $recentBookings = Booking::where('user_id', $user->id)
+        //     ->latest()->take(5)->get();
 
-        $recentOrders = Order::where('user_id', $user->id)
-            ->latest()->take(5)->get();
+        // $recentOrders = Order::where('user_id', $user->id)
+        //     ->latest()->take(5)->get();
 
-        return view('customer.dashboard', compact('user', 'recentBookings', 'recentOrders'));
+        // return view('customer.dashboard', compact('user', 'recentBookings', 'recentOrders'));
     }
 }
 
