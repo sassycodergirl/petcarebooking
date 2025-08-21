@@ -25700,7 +25700,10 @@ table.dataTable tbody td.select-checkbox:after {
   width: unset;
   height: unset;
 }
-select.form-control,.form-control{
+select.form-control{
   padding: 0.9rem 1.375rem;
+}
+.form-control{
+padding: 0.8rem 1.375rem;
 }
 /*# sourceMappingURL=maps/style.css.map */
