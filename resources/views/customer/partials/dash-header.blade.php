@@ -200,5 +200,17 @@
                 <span class="menu-title">Support</span>
               </a>
             </li>
+
+            <li class="nav-item">
+               <a class="nav-link" href="#">
+                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                        @csrf
+              
+                        <button type="submit" class="btn p-0"><i class="ti-power-off text-primary"></i>Logout</button>
+                </form>
+              </a>
+            </li>
+
+
           </ul>
         </nav>
