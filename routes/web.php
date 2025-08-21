@@ -65,19 +65,34 @@ Route::middleware(['auth', 'admin'])->group(function () {
 //         return view('dashboard');
 //     })->name('dashboard');
 // });
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('customer.dashboard');
-});
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('customer.dashboard');
+// });
+
+// Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(function () {
+//     // Profile
+//     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+//     Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
+
+//     // Pet Details
+//     Route::get('profile/pets', [PetController::class, 'index'])->name('pets');
+//     Route::post('profile/pets', [PetController::class, 'store'])->name('pets.store');
+//     Route::post('profile/pets/{id}/delete', [PetController::class, 'destroy'])->name('pets.destroy');
+// });
+
 
 Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(function () {
+    Route::get('dashboard', [\App\Http\Controllers\Customer\DashboardController::class, 'index'])
+        ->name('customer.dashboard');
+
     // Profile
-    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // Pet Details
-    Route::get('profile/pets', [PetController::class, 'index'])->name('pets');
-    Route::post('profile/pets', [PetController::class, 'store'])->name('pets.store');
-    Route::post('profile/pets/{id}/delete', [PetController::class, 'destroy'])->name('pets.destroy');
+    Route::get('pets', [PetController::class, 'index'])->name('pets.index');
+    Route::get('pets/create', [PetController::class, 'create'])->name('pets.create');
+    Route::post('pets', [PetController::class, 'store'])->name('pets.store');
 });
 
 Route::get('/about-us', function () { return view('about');})->name('about');
