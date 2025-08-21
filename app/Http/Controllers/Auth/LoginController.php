@@ -18,7 +18,7 @@ protected function authenticated($request, $user)
         return redirect()->route('admin.dashboard');
     }
 
-    return redirect()->route('dashboard');
+    return redirect()->route('customer.dashboard');
 }
 
     public function __construct()

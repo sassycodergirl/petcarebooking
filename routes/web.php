@@ -64,7 +64,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 //     })->name('dashboard');
 // });
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('customer.dashboard');
 });
 
 Route::get('/about-us', function () { return view('about');})->name('about');
