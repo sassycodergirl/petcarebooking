@@ -32,7 +32,7 @@
     <!-- End custom js for this page-->
 
 
-     <script>
+     <!-- <script>
         const photoInput   = document.getElementById('photo');
         const photoPreview = document.getElementById('photoPreview');
         const removeBtn    = document.getElementById('removePhotoBtn');
@@ -59,7 +59,7 @@
             removeBtn.classList.add('d-none');
             document.getElementById('noImageText').style.display = 'block';
         });
-</script>
+</script> -->
 
   </body>
 </html>
