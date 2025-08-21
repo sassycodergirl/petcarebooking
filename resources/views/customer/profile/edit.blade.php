@@ -120,6 +120,14 @@
                             <label>Phone</label>
                             <input type="tel" name="phone" class="form-control" placeholder="Phone">
                         </div>
+                        <div class="col-md-12">
+                            <label>Address Line 1</label>
+                            <input type="text" name="address_line1" class="form-control" placeholder="Address Line1">
+                        </div>
+                        <div class="col-md-12">
+                            <label>Address Line 2</label>
+                            <input type="text" name="address_line2" class="form-control" placeholder="Address Line1">
+                        </div>
                         <div class="col-md-6">
                             <label>City</label>
                             <input type="text" name="city" class="form-control" placeholder="City">

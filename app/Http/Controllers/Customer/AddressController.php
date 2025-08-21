@@ -11,11 +11,13 @@ class AddressController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:50',
-            'address' => 'required|string|max:255',
+            'phone'  => 'nullable|string|max:20',
+            'address_line1' => 'required|string|max:255',
+            'address_line2' => 'nullable|string|max:255',
             'city' => 'required|string|max:50',
             'state' => 'required|string|max:50',
             'pincode' => 'required|string|max:10',
-            'phone'  => 'nullable|string|max:20', // or required
+           
         ]);
 
         Auth::user()->addresses()->create($request->all());

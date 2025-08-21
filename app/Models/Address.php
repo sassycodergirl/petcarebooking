@@ -23,8 +23,10 @@ class Address extends Model
      */
     protected $fillable = [
         'user_id',            // linked user
-        'name',               // Address label (Home/Office/Other)
+        'name',               
         'phone',
+        'address_line1',
+        'address_line2',
         'city',
         'state',
         'pincode',
