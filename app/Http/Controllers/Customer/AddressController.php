@@ -15,6 +15,7 @@ class AddressController extends Controller
             'city' => 'required|string|max:50',
             'state' => 'required|string|max:50',
             'pincode' => 'required|string|max:10',
+            'phone'  => 'nullable|string|max:20', // or required
         ]);
 
         Auth::user()->addresses()->create($request->all());
@@ -30,6 +31,8 @@ class AddressController extends Controller
             'city' => 'required|string|max:50',
             'state' => 'required|string|max:50',
             'pincode' => 'required|string|max:10',
+            'phone'  => 'nullable|string|max:20', // or required
+            
         ]);
 
         $address->update($request->all());
