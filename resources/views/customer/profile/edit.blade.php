@@ -72,7 +72,7 @@
                             <label for="exampleInputEmail1">Notification Preference</label>
                             <select name="notification_preference" class="form-control">
                                 <option value="email" {{ $user->notification_preference == 'email' ? 'selected' : '' }}>Email</option>
-                                <option value="sms" {{ $user->notification_preference == 'sms' ? 'selected' : '' }}>SMS</option>
+                                <option value="sms" {{ $user->notification_preference == 'whatsapp' ? 'selected' : '' }}>Whatsapp</option>
                                 <option value="both" {{ $user->notification_preference == 'both' ? 'selected' : '' }}>Both</option>
                                 <option value="none" {{ $user->notification_preference == 'none' ? 'selected' : '' }}>None</option>
                             </select>
