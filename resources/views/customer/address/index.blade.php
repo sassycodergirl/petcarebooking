@@ -62,44 +62,33 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Saved Addresses</h4>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Address</th>
-                                    <th>City</th>
-                                    <th>State</th>
-                                    <th>Pincode</th>
-                                    <th>Type</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach(Auth::user()->addresses as $address)
-                                    <tr>
-                                        <td>{{ $address->name }}</td>
-                                        <td>{{ $address->phone }}</td>
-                                        <td>{{ $address->address_line1 }} {{ $address->address_line2 }}</td>
-                                        <td>{{ $address->city }}</td>
-                                        <td>{{ $address->state }}</td>
-                                        <td>{{ $address->pincode }}</td>
-                                        <td>{{ $address->type }}</td>
-                                        <td>
-                                            <a href="{{ route('customer.address.delete', $address->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                @if(Auth::user()->addresses->isEmpty())
-                                    <tr>
-                                        <td colspan="8" class="text-center">No addresses found.</td>
-                                    </tr>
+                        
+                        @foreach(Auth::user()->addresses as $address)
+                            <div class="address-card mb-3 p-3 border rounded">
+                                <p>
+                                    {{ $address->address_line1 }}
+                                    @if($address->address_line2) , {{ $address->address_line2 }} @endif,
+                                    {{ $address->city }}, {{ $address->state }} - {{ $address->pincode }}
+                                </p>
+                                @if($address->phone)
+                                    <p>Phone: {{ $address->phone }}</p>
                                 @endif
-                            </tbody>
-                        </table>
+                                <p>Type of Address: {{ $address->type }}</p>
+                                
+                                <div class="mt-2">
+                                    <a href="{{ route('customer.address.edit', $address->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="{{ route('customer.address.delete', $address->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        @if(Auth::user()->addresses->isEmpty())
+                            <p class="text-center">No addresses found.</p>
+                        @endif
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>
