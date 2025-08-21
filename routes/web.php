@@ -80,10 +80,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 //     Route::post('profile/pets/{id}/delete', [PetController::class, 'destroy'])->name('pets.destroy');
 // });
 
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('customer.dashboard');
+});
 Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(function () {
-    Route::get('dashboard', [\App\Http\Controllers\Customer\DashboardController::class, 'index'])
-        ->name('customer.dashboard');
 
     // Profile
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
