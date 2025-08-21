@@ -72,7 +72,8 @@ Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(functi
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
   
-    Route::post('address', [AddressController::class, 'store'])->name('address.index');
+    Route::get('address', [AddressController::class, 'store'])->name('address.index');
+    Route::post('address/store', [AddressController::class, 'store'])->name('address.store');
     Route::put('address/update/{id}', [AddressController::class, 'update'])->name('address.update');
     Route::get('address/delete/{id}', [AddressController::class, 'destroy'])->name('address.delete');
 
