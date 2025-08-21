@@ -95,7 +95,7 @@
             <li class="nav-item nav-profile dropdown">
               @php
                   $user = Auth::user();
-                  $profilePhoto = $user->profile_photo ? asset('public' . $user->profile_photo) : asset('customer/assets/images/faces/face28.jpg');
+                  $profilePhoto = $user->profile_photo ? asset('public/' . $user->profile_photo) : asset('customer/assets/images/faces/face28.jpg');
               @endphp
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                 <img src="{{ $profilePhoto }}" alt="profile" />
