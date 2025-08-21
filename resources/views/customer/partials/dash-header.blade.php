@@ -44,7 +44,7 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="posts.html">Edit Profile</a>
+                            <a href="{{ route('customer.profile.edit') }}">Edit Profile</a>
                         </li>
                         <li>
                             <a href="new-post.html">Pet Details</a>

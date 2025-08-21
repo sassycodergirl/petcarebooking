@@ -4,24 +4,26 @@
 <div class="container">
     <h2>Edit Profile</h2>
 
-    <form method="POST" action="{{ route('customer.profile.update') }}">
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    <form action="{{ route('customer.profile.update') }}" method="POST">
         @csrf
-        <div>
-            <label>Name:</label>
-            <input type="text" name="name" value="{{ old('name', $user->name) }}">
+
+        <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control"
+                   value="{{ old('name', $user->name) }}">
         </div>
 
-        <div>
-            <label>Phone:</label>
-            <input type="text" name="phone" value="{{ old('phone', $user->phone) }}">
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control"
+                   value="{{ old('email', $user->email) }}">
         </div>
 
-        <div>
-            <label>Address:</label>
-            <input type="text" name="address" value="{{ old('address', $user->address) }}">
-        </div>
-
-        <button type="submit">Update Profile</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
 
