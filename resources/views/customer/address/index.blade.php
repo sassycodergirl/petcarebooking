@@ -46,9 +46,9 @@
                             <div class="form-group">
                                 <label>Address Type</label>
                                 <select name="type" class="form-control" required>
-                                    <option value="Home">Home</option>
-                                    <option value="Office">Office</option>
-                                    <option value="Other">Other</option>
+                                    <option value="home">Home</option>
+                                    <option value="work">Office</option>
+                                    <option value="other">Other</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">Add Address</button>
