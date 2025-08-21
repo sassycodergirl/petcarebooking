@@ -34,7 +34,7 @@
 
                         <div class="form-group">
                             <label for="photo" class="form-label">Profile Photo</label>
-                            <input type="file" name="photo" id="photo" class="form-control" accept="image/*">
+                            <input type="file" name="profile_photo" id="photo" class="form-control" accept="image/*">
 
                             <!-- Image preview / message -->
                             <div class="mt-3 position-relative" style="display:inline-block;">
