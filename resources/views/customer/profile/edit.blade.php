@@ -40,7 +40,7 @@
                             <div class="mt-3 position-relative" style="display:inline-block;">
                                 @if($user->profile_photo)
                                     <img id="photoPreview" 
-                                        src="{{ asset($user->profile_photo) }}" 
+                                        src="{{ asset('public/' .$user->profile_photo) }}" 
                                         alt="Profile Photo" 
                                         class="img-thumbnail" 
                                         width="150">
