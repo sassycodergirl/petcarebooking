@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -17,13 +18,23 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name'   => 'required|string|max:100',
-            'phone'  => 'required|string|max:15',
-            'address'=> 'nullable|string|max:255',
+            'name'     => 'required|string|max:100',
+            'email'    => 'required|email|max:100|unique:users,email,' . Auth::id(),
+            'password' => 'nullable|string|min:8|confirmed',
         ]);
 
         $user = Auth::user();
-        $user->update($request->only(['name', 'phone', 'address']));
+
+        // Update name and email
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        // Update password only if provided
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
 
         return back()->with('success', 'Profile updated successfully!');
     }
