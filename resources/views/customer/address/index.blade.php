@@ -15,41 +15,43 @@
                         <h4 class="card-title">Add New Address</h4>
                         <form action="{{ route('customer.address.store') }}" method="POST">
                             @csrf
-                            <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" name="name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="tel" name="phone" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Address Line 1</label>
-                                <input type="text" name="address_line1" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Address Line 2</label>
-                                <input type="text" name="address_line2" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>City</label>
-                                <input type="text" name="city" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>State</label>
-                                <input type="text" name="state" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Pincode</label>
-                                <input type="text" name="pincode" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Address Type</label>
-                                <select name="type" class="form-control" required>
-                                    <option value="Home">Home</option>
-                                    <option value="Work">Office</option>
-                                    <option value="Other">Other</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-12 col-md-6 form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" name="name" class="form-control" required>
+                                </div>
+                                <div class="col-12 col-md-6 form-group">
+                                    <label>Phone</label>
+                                    <input type="tel" name="phone" class="form-control">
+                                </div>
+                                <div class="col-12 col-md-12 form-group">
+                                    <label>Address Line 1</label>
+                                    <input type="text" name="address_line1" class="form-control" required>
+                                </div>
+                                <div class="col-12 col-md-12 form-group">
+                                    <label>Address Line 2</label>
+                                    <input type="text" name="address_line2" class="form-control">
+                                </div>
+                                <div class="col-12 col-md-6 form-group">
+                                    <label>City</label>
+                                    <input type="text" name="city" class="form-control" required>
+                                </div>
+                                <div class="col-12 col-md-6 form-group">
+                                    <label>State</label>
+                                    <input type="text" name="state" class="form-control" required>
+                                </div>
+                                <div class="col-12 col-md-6 form-group">
+                                    <label>Pincode</label>
+                                    <input type="text" name="pincode" class="form-control" required>
+                                </div>
+                                <div class="col-12 col-md-6 form-group">
+                                    <label>Address Type</label>
+                                    <select name="type" class="form-control" required>
+                                        <option value="Home">Home</option>
+                                        <option value="Work">Office</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">Add Address</button>
                         </form>
