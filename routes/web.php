@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\ShopProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Customer\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
