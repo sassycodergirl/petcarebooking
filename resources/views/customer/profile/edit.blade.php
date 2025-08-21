@@ -2,13 +2,12 @@
    @include('customer.partials.dash-header')
 
 <div class="container">
-    <h2>Edit Profile</h2>
-
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
      <div class="content-wrapper">
+        <h2>Edit Profile</h2>
 
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
      
             <div class="row">
               <div class="col-md-6 grid-margin stretch-card">
