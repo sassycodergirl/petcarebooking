@@ -12,8 +12,9 @@
             <div class="row">
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
-                    <p>Basic Information</p>
+                   
                   <div class="card-body">
+                      <p class="mb-3">Basic Information</p>
                     <form class="forms-sample" action="{{ route('customer.profile.update') }}" method="POST">
                      @csrf
 

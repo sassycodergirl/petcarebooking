@@ -25699,4 +25699,7 @@ table.dataTable tbody td.select-checkbox:after {
 .navbar .navbar-brand-wrapper .brand-logo-mini img {
   width: unset;
 }
+select.form-control{
+  padding: 1.125rem 1.375rem;
+}
 /*# sourceMappingURL=maps/style.css.map */
