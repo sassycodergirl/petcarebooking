@@ -20,6 +20,7 @@ class DashboardController extends Controller
         //     ->latest()->take(5)->get();
 
         // return view('customer.dashboard', compact('user', 'recentBookings', 'recentOrders'));
+        return view('customer.dashboard', compact('user'));
     }
 }
 
