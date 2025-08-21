@@ -32,12 +32,7 @@
                         <label for="exampleInputConfirmPassword1">Confirm Password</label>
                         <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
                       </div>
-                      <div class="form-check">
-                        <label class="form-check-label text-muted">
-                          <input type="checkbox" class="form-check-input" required>
-                          <a href="#">Remember me</a>
-                          <i class="input-helper"></i></label>
-                      </div>
+                      
                       <button type="submit" class="btn btn-primary">Update</button>
                       <button class="btn btn-light">Cancel</button>
                     </form>
