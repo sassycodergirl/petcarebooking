@@ -155,7 +155,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link"  href="{{ route('customer.pets.index') }}">
+                <a class="nav-link"  href="{{ route('customer.address.store') }}">
                   <i class="icon-paper menu-icon"></i>
                   <span class="menu-title">Saved Addresses</span>
                 </a>
