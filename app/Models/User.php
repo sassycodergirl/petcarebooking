@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'photo',                  // profile photo path
+        'notification_preference' // email / whatsapp / both / none
     ];
 
     /**
