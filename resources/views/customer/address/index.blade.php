@@ -107,7 +107,7 @@
                                     <p>
                                         <select name="type" class="form-control mb-1" required>
                                             <option value="Home" {{ $address->type=='Home' ? 'selected' : '' }}>Home</option>
-                                            <option value="Office" {{ $address->type=='Office' ? 'selected' : '' }}>Office</option>
+                                            <option value="Office" {{ $address->type=='Work' ? 'selected' : '' }}>Work</option>
                                             <option value="Other" {{ $address->type=='Other' ? 'selected' : '' }}>Other</option>
                                         </select>
                                     </p>
