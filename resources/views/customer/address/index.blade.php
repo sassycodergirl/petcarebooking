@@ -62,6 +62,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Saved Addresses</h4>
+                        <p>Name: {{ $address->name }}</p>
                         
                         @foreach(Auth::user()->addresses as $address)
                             <div class="address-card mb-3 p-3 border rounded">
