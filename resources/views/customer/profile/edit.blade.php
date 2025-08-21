@@ -15,25 +15,25 @@
                   <div class="card-body">
                     <form class="forms-sample" action="{{ route('customer.profile.update') }}" method="POST">
                      @csrf
-                    <div class="form-group">
-                        <label for="exampleInputUsername1">Name</label>
-                        <input type="text" name="name" class="form-control" id="exampleInputUsername1" placeholder="name" value="{{ old('name', $user->name) }}">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email" value="{{ old('email', $user->email) }}">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                        <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
-                      </div>
-                      
-                      <button type="submit" class="btn btn-primary">Update</button>
-                      <button class="btn btn-light">Cancel</button>
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Name</label>
+                            <input type="text" name="name" class="form-control" id="exampleInputUsername1" placeholder="name" value="{{ old('name', $user->name) }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email" value="{{ old('email', $user->email) }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputConfirmPassword1">Confirm Password</label>
+                            <input type="password" name="password_confirmation"  class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button class="btn btn-light">Cancel</button>
                     </form>
                   </div>
                 </div>

@@ -17,21 +17,17 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
-            'name'     => 'required|string|max:100',
-            'email'    => 'nullable|string|max:15',
-            // 'address'  => 'nullable|string|max:255',
-            'password' => 'nullable|string|min:8|confirmed', // Add confirmed if using password_confirmation field
-        ]);
-
         $user = Auth::user();
 
-        // Always update name/phone/address
-        $user->name = $request->name;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
+        $request->validate([
+            'name'     => 'required|string|max:100',
+            'email'    => 'required|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
 
-        // Only update password if user entered a new one
+        $user->name  = $request->name;
+        $user->email = $request->email;
+
         if ($request->filled('password')) {
             $user->password = bcrypt($request->password);
         }
@@ -40,6 +36,7 @@ class ProfileController extends Controller
 
         return back()->with('success', 'Profile updated successfully!');
     }
+
 
 }
 ?>
