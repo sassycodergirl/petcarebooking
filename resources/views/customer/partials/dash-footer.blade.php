@@ -31,39 +31,7 @@
     <!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
 
-     <!-- <script>
-          const photoInput   = document.getElementById('photo');
-          const photoPreview = document.getElementById('photoPreview');
-          const removeBtn    = document.getElementById('removePhotoBtn');
-          const removePhoto  = document.getElementById('removePhoto');
-          const noImageText  = document.getElementById('noImageText');
 
-          // Preview selected image
-          if(photoInput){
-              photoInput.addEventListener('change', function (event) {
-                  const [file] = event.target.files;
-                  if (file) {
-                      photoPreview.src = URL.createObjectURL(file);
-                      photoPreview.classList.remove('d-none');
-                      removeBtn.classList.remove('d-none');
-                      if (noImageText) noImageText.style.display = "none";
-                      removePhoto.value = 0; // user uploaded new photo
-                  }
-              });
-          }
-
-          // Remove image (reset to "No image available")
-          if(removeBtn){
-              removeBtn.addEventListener('click', function () {
-                  photoPreview.src = "";
-                  photoPreview.classList.add('d-none');
-                  photoInput.value = ""; // clear file input
-                  removePhoto.value = 1; // flag for backend to remove
-                  if (noImageText) noImageText.style.display = "block";
-                  removeBtn.classList.add('d-none');
-              });
-          }
-      </script> -->
      <script>
         const photoInput   = document.getElementById('photo');
         const photoPreview = document.getElementById('photoPreview');
