@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function edit()
     {
         $user = Auth::user();
-        return view('customer.profile.index', compact('user'));
+        return view('customer.profile.edit', compact('user'));
     }
 
     public function update(Request $request)
