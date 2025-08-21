@@ -106,12 +106,15 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item">
-                  <i class="ti-settings text-primary"></i> Settings </a>
-                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                  <i class="ti-settings text-primary"></i> Settings 
+                </a>
+                <a class="dropdown-item">
+                  <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                     @csrf
            
                     <button type="submit" class="btn p-0"><i class="ti-power-off text-primary"></i>Logout</button>
                 </form>
+                </a>
               </div>
             </li>
             <li class="nav-item nav-settings d-none d-lg-flex">
