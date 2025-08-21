@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Customer Dashboard</h1>
+    <h1>Customer Dashboard new</h1>
     <p>Welcome, {{ auth()->user()->name }}!</p>
 </div>
 @endsection
