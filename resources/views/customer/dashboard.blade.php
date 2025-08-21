@@ -105,7 +105,7 @@
     <div class="sidebar-footer">
         <a href="##" class="sidebar-user">
             <span class="sidebar-user-img">
-                <picture><source srcset="./img/avatar/avatar-illustrated-01.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-01.png" alt="User name"></picture>
+                <picture><source srcset="{{ asset('customer/img/avatar/avatar-illustrated-01.webp') }}" type="image/webp"><img src="./img/avatar/avatar-illustrated-01.png" alt="User name"></picture>
             </span>
             <div class="sidebar-user-info">
                 <span class="sidebar-user__title">Nafisa Sh.</span>
@@ -185,7 +185,7 @@
         <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button">
           <span class="sr-only">My profile</span>
           <span class="nav-user-img">
-            <picture><source srcset="{{ asset('customer/img/avatar/avatar-face-03.webp') }}" type="image/webp"><img src="./img/avatar/avatar-illustrated-02.png" alt="User name"></picture>
+            <picture><source srcset="./img/avatar/avatar-illustrated-02.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-02.png" alt="User name"></picture>
           </span>
         </button>
         <ul class="users-item-dropdown nav-user-dropdown dropdown">
