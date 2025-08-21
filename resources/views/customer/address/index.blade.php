@@ -58,37 +58,7 @@
             </div>
 
             <!-- List of Saved Addresses -->
-            <!-- <div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Saved Addresses</h4>
-                        <p>Name: {{ $address->name }}</p>
-                        
-                        @foreach(Auth::user()->addresses as $address)
-                            <div class="address-card mb-3 p-3 border rounded">
-                                <p>
-                                    {{ $address->address_line1 }}
-                                    @if($address->address_line2) , {{ $address->address_line2 }} @endif,
-                                    {{ $address->city }}, {{ $address->state }} - {{ $address->pincode }}
-                                </p>
-                                @if($address->phone)
-                                    <p>Phone: {{ $address->phone }}</p>
-                                @endif
-                                <p>Type of Address: {{ $address->type }}</p>
-                                
-                                <div class="mt-2">
-                                    <a href="{{ route('customer.address.edit', $address->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="{{ route('customer.address.delete', $address->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
-                                </div>
-                            </div>
-                        @endforeach
-
-                        @if(Auth::user()->addresses->isEmpty())
-                            <p class="text-center">No addresses found.</p>
-                        @endif
-                    </div>
-                </div>
-            </div> -->
+    
 
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
