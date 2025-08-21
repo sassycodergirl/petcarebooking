@@ -21,7 +21,7 @@
   <aside class="sidebar">
     <div class="sidebar-start">
         <div class="sidebar-head">
-            <a href="{{ route('customer.dashboard') }}" class="logo-wrapper" title="Home">
+            <a href="{{ route('home') }}" class="logo-wrapper" title="Home">
                <img src="{{ asset('customer/img/logo.png') }}" alt="logo">
             </a>
             <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
@@ -32,7 +32,7 @@
         <div class="sidebar-body">
             <ul class="sidebar-body-menu">
                 <li>
-                    <a class="active" href="/"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
+                    <a class="active" href="{{ route('customer.dashboard') }}"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
                 </li>
                 <li>
                     <a class="show-cat-btn" href="##">
