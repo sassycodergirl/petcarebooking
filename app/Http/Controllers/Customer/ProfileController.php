@@ -49,8 +49,8 @@ class ProfileController extends Controller
         }
 
         // Handle new photo upload
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
+        if ($request->hasFile('profile_photo')) {
+            $file = $request->file('profile_photo');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('user'), $fileName);
 
