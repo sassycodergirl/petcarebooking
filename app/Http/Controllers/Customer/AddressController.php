@@ -34,6 +34,12 @@ class AddressController extends Controller
         return back()->with('success', 'Address added successfully!');
     }
 
+    public function edit($id)
+    {
+        $address = Address::findOrFail($id);
+        return view('customer.address.edit', compact('address'));
+    }
+
     public function update(Request $request, $id)
     {
         $address = Address::findOrFail($id);
