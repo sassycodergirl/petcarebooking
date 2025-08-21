@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+        $addresses = $user->addresses()->latest()->get();
+        return view('customer.address.index', compact('addresses'));
+    }
     public function store(Request $request)
     {
         $request->validate([
