@@ -86,13 +86,13 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(function () {
 
     // Profile
-    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('profile', [ProfileController::class, 'edit'])->name('customer.profile.edit');
+    Route::post('profile', [ProfileController::class, 'update'])->name('customer.profile.update');
 
     // Pet Details
-    Route::get('pets', [PetController::class, 'index'])->name('pets.index');
-    Route::get('pets/create', [PetController::class, 'create'])->name('pets.create');
-    Route::post('pets', [PetController::class, 'store'])->name('pets.store');
+    Route::get('pets', [PetController::class, 'index'])->name('customer.pets.index');
+    Route::get('pets/create', [PetController::class, 'create'])->name('customer.pets.create');
+    Route::post('pets', [PetController::class, 'store'])->name('customer.pets.store');
 });
 
 Route::get('/about-us', function () { return view('about');})->name('about');
