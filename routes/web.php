@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Customer\DashboardController;
 use App\Http\Controllers\Customer\ProfileController;
 use App\Http\Controllers\Customer\PetController;
+use App\Http\Controllers\Customer\AddressController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,6 +71,10 @@ Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(functi
     // Profile
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::post('address/store', [AddressController::class, 'store'])->name('customer.address.store');
+    Route::put('address/update/{id}', [AddressController::class, 'update'])->name('customer.address.update');
+    Route::get('address/delete/{id}', [AddressController::class, 'destroy'])->name('customer.address.delete');
 
     // Pet Details
     Route::get('pets', [PetController::class, 'index'])->name('pets.index');
