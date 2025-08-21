@@ -19,31 +19,27 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name'     => 'required|string|max:100',
-            'email'    => 'required|email|max:150|unique:users,email,' . Auth::id(),
-            'password' => 'nullable|confirmed|min:6',
+            'phone'    => 'nullable|string|max:15',
+            'address'  => 'nullable|string|max:255',
+            'password' => 'nullable|string|min:8|confirmed', // Add confirmed if using password_confirmation field
         ]);
 
         $user = Auth::user();
-        $user->name  = $request->name;
-        $user->email = $request->email;
 
+        // Always update name/phone/address
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+
+        // Only update password if user entered a new one
         if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
-            $user->save();
-
-            // Logout from all devices, including current one
-            Auth::logoutOtherDevices($request->password);
-            Auth::logout();
-
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-
-            return redirect()->route('login')->with('success', 'Password updated. Please log in again.');
+            $user->password = bcrypt($request->password);
         }
 
         $user->save();
 
         return back()->with('success', 'Profile updated successfully!');
     }
+
 }
 ?>
