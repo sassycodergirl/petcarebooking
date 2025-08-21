@@ -93,8 +93,12 @@
               </div>
             </li>
             <li class="nav-item nav-profile dropdown">
+              @php
+                  $user = Auth::user();
+                  $profilePhoto = $user->profile_photo ? asset('public' . $user->profile_photo) : asset('customer/assets/images/faces/face28.jpg');
+              @endphp
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                <img src="{{ asset('customer/assets/images/faces/face28.jpg') }}" alt="profile" />
+                <img src="{{ $profilePhoto }}" alt="profile" />
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item" href="{{ route('customer.profile.edit') }}">
@@ -104,15 +108,11 @@
                   <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                     @csrf
            
-                    <button type="submit" class="btn btn-link p-0"><i class="ti-power-off text-primary"></i>Logout</button>
+                    <button type="submit" class="btn p-0"><i class="ti-power-off text-primary"></i>Logout</button>
                 </form>
               </div>
             </li>
-            <li class="nav-item nav-settings d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                <i class="icon-ellipsis"></i>
-              </a>
-            </li>
+          
           </ul>
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="icon-menu"></span>
