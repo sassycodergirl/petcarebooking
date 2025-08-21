@@ -21,7 +21,7 @@
   <aside class="sidebar">
     <div class="sidebar-start">
         <div class="sidebar-head">
-            <a href="{{ route('home') }}" class="logo-wrapper" title="Home">
+            <a href="{{ route('index') }}" class="logo-wrapper" title="Home">
                <img src="{{ asset('customer/img/logo.png') }}" alt="logo">
             </a>
             <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
