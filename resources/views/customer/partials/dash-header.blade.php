@@ -102,9 +102,9 @@
                 <a class="dropdown-item">
                   
                   <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                    @csrf
-                    <i class="ti-power-off text-primary"></i> Logout </a>
-                </form>
+                  @csrf
+                  <button type="submit" class="btn btn-link p-0 m-0 align-baseline">Logout</button>
+              </form>
               </div>
             </li>
             <li class="nav-item nav-settings d-none d-lg-flex">

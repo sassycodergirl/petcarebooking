@@ -60,25 +60,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
      Route::post('/admin-furry-cms/products/settings/colors', [ProductController::class, 'updateColors'])->name('admin.products.settings.colors.update');
 });
 
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('customer.dashboard');
-// });
 
-// Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(function () {
-//     // Profile
-//     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
-//     Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
-
-//     // Pet Details
-//     Route::get('profile/pets', [PetController::class, 'index'])->name('pets');
-//     Route::post('profile/pets', [PetController::class, 'store'])->name('pets.store');
-//     Route::post('profile/pets/{id}/delete', [PetController::class, 'destroy'])->name('pets.destroy');
-// });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('customer.dashboard');
