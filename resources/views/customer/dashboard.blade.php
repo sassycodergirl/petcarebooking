@@ -1,406 +1,395 @@
 
     @include('customer.partials.dash-header')
-    <!-- ! Main -->
-    <main class="main users chart-page" id="skip-target">
-      <div class="container">
-        <h2 class="main-title">Dashboard</h2>
-        <div class="row stat-cards">
-          <div class="col-md-6 col-xl-3">
-            <article class="stat-cards-item">
-              <div class="stat-cards-icon primary">
-                <i data-feather="bar-chart-2" aria-hidden="true"></i>
+         <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="row">
+                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold">Welcome John</h3>
+                    <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                  </div>
+                  <div class="col-12 col-xl-4">
+                    <div class="justify-content-end d-flex">
+                      <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                        <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                          <a class="dropdown-item" href="#">January - March</a>
+                          <a class="dropdown-item" href="#">March - June</a>
+                          <a class="dropdown-item" href="#">June - August</a>
+                          <a class="dropdown-item" href="#">August - November</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit success">
-                    <i data-feather="trending-up" aria-hidden="true"></i>4.07%
-                  </span>
-                  Last month
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="stat-cards-item">
-              <div class="stat-cards-icon warning">
-                <i data-feather="file" aria-hidden="true"></i>
-              </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit success">
-                    <i data-feather="trending-up" aria-hidden="true"></i>0.24%
-                  </span>
-                  Last month
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="stat-cards-item">
-              <div class="stat-cards-icon purple">
-                <i data-feather="file" aria-hidden="true"></i>
-              </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit danger">
-                    <i data-feather="trending-down" aria-hidden="true"></i>1.64%
-                  </span>
-                  Last month
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="stat-cards-item">
-              <div class="stat-cards-icon success">
-                <i data-feather="feather" aria-hidden="true"></i>
-              </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit warning">
-                    <i data-feather="trending-up" aria-hidden="true"></i>0.00%
-                  </span>
-                  Last month
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-9">
-            <div class="chart">
-              <canvas id="myChart" aria-label="Site statistics" role="img"></canvas>
             </div>
-            <div class="users-table table-wrapper">
-              <table class="posts-table">
-                <thead>
-                  <tr class="users-table-info">
-                    <th>
-                      <label class="users-table__checkbox ms-20">
-                        <input type="checkbox" class="check-all">Thumbnail
-                      </label>
-                    </th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <label class="users-table__checkbox">
-                        <input type="checkbox" class="check">
-                        <div class="categories-table-img">
-                          <picture><source srcset="./img/categories/01.webp" type="image/webp"><img src="./img/categories/01.jpg" alt="category"></picture>
+            <div class="row">
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card tale-bg">
+                  <div class="card-people mt-auto">
+                    <img src="{{ asset('assets/images/dashboard/people.svg') }}" alt="people">
+                    <div class="weather-info">
+                      <div class="d-flex">
+                        <div>
+                          <h2 class="mb-0 font-weight-normal"><i class="icon-sun me-2"></i>31<sup>C</sup></h2>
                         </div>
-                      </label>
-                    </td>
-                    <td>
-                      Starting your traveling blog with Vasco
-                    </td>
-                    <td>
-                      <div class="pages-table-img">
-                        <picture><source srcset="./img/avatar/avatar-face-04.webp" type="image/webp"><img src="./img/avatar/avatar-face-04.png" alt="User Name"></picture>
-                        Jenny Wilson
-                      </div>
-                    </td>
-                    <td><span class="badge-pending">Pending</span></td>
-                    <td>17.04.2021</td>
-                    <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="users-table__checkbox">
-                        <input type="checkbox" class="check">
-                        <div class="categories-table-img">
-                          <picture><source srcset="./img/categories/02.webp" type="image/webp"><img src="./img/categories/02.jpg" alt="category"></picture>
+                        <div class="ms-2">
+                          <h4 class="location font-weight-normal">Chicago</h4>
+                          <h6 class="font-weight-normal">Illinois</h6>
                         </div>
-                      </label>
-                    </td>
-                    <td>
-                      Start a blog to reach your creative peak
-                    </td>
-                    <td>
-                      <div class="pages-table-img">
-                        <picture><source srcset="./img/avatar/avatar-face-03.webp" type="image/webp"><img src="./img/avatar/avatar-face-03.png" alt="User Name"></picture>
-                        Annette Black
                       </div>
-                    </td>
-                    <td><span class="badge-pending">Pending</span></td>
-                    <td>23.04.2021</td>
-                    <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="users-table__checkbox">
-                        <input type="checkbox" class="check">
-                        <div class="categories-table-img">
-                          <picture><source srcset="./img/categories/03.webp" type="image/webp"><img src="./img/categories/03.jpg" alt="category"></picture>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin transparent">
+                <div class="row">
+                  <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="card card-tale">
+                      <div class="card-body">
+                        <p class="mb-4">Today’s Bookings</p>
+                        <p class="fs-30 mb-2">4006</p>
+                        <p>10.00% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="card card-dark-blue">
+                      <div class="card-body">
+                        <p class="mb-4">Total Bookings</p>
+                        <p class="fs-30 mb-2">61344</p>
+                        <p>22.00% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                    <div class="card card-light-blue">
+                      <div class="card-body">
+                        <p class="mb-4">Number of Meetings</p>
+                        <p class="fs-30 mb-2">34040</p>
+                        <p>2.00% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 stretch-card transparent">
+                    <div class="card card-light-danger">
+                      <div class="card-body">
+                        <p class="mb-4">Number of Clients</p>
+                        <p class="fs-30 mb-2">47033</p>
+                        <p>0.22% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <p class="card-title">Sales Report</p>
+                      <a href="#" class="text-info">View all</a>
+                    </div>
+                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                    <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
+                    <canvas id="sales-chart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 grid-margin stretch-card">
+                <div class="card position-relative">
+                  <div class="card-body">
+                    <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-bs-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <div class="row">
+                            <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
+                              <div class="ml-xl-4 mt-3">
+                                <p class="card-title">Detailed Reports</p>
+                                <h1 class="text-primary">$34040</h1>
+                                <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
+                                <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                              </div>
+                            </div>
+                            <div class="col-md-12 col-xl-9">
+                              <div class="row">
+                                <div class="col-md-6 border-right">
+                                  <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                    <table class="table table-borderless report-table">
+                                      <tr>
+                                        <td class="text-muted">Illinois</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">713</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Washington</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">583</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Mississippi</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">924</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">California</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">664</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Maryland</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">560</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Alaska</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">793</h5>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                  <div class="daoughnutchart-wrapper">
+                                    <canvas id="north-america-chart"></canvas>
+                                  </div>
+                                  <div id="north-america-chart-legend">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </label>
-                    </td>
-                    <td>
-                      Helping a local business reinvent itself
-                    </td>
-                    <td>
-                      <div class="pages-table-img">
-                        <picture><source srcset="./img/avatar/avatar-face-02.webp" type="image/webp"><img src="./img/avatar/avatar-face-02.png" alt="User Name"></picture>
-                        Kathryn Murphy
-                      </div>
-                    </td>
-                    <td><span class="badge-active">Active</span></td>
-                    <td>17.04.2021</td>
-                    <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="users-table__checkbox">
-                        <input type="checkbox" class="check">
-                        <div class="categories-table-img">
-                          <picture><source srcset="./img/categories/04.webp" type="image/webp"><img src="./img/categories/04.jpg" alt="category"></picture>
+                        <div class="carousel-item">
+                          <div class="row">
+                            <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
+                              <div class="ml-xl-4 mt-3">
+                                <p class="card-title">Detailed Reports</p>
+                                <h1 class="text-primary">$34040</h1>
+                                <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
+                                <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                              </div>
+                            </div>
+                            <div class="col-md-12 col-xl-9">
+                              <div class="row">
+                                <div class="col-md-6 border-right">
+                                  <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                    <table class="table table-borderless report-table">
+                                      <tr>
+                                        <td class="text-muted">Illinois</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">713</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Washington</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">583</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Mississippi</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">924</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">California</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">664</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Maryland</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">560</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Alaska</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">793</h5>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                  <div class="daoughnutchart-wrapper">
+                                    <canvas id="south-america-chart"></canvas>
+                                  </div>
+                                  <div id="south-america-chart-legend"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </label>
-                    </td>
-                    <td>
-                      Caring is the new marketing
-                    </td>
-                    <td>
-                      <div class="pages-table-img">
-                        <picture><source srcset="./img/avatar/avatar-face-05.webp" type="image/webp"><img src="./img/avatar/avatar-face-05.png" alt="User Name"></picture>
-                        Guy Hawkins
                       </div>
-                    </td>
-                    <td><span class="badge-active">Active</span></td>
-                    <td>17.04.2021</td>
-                    <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="users-table__checkbox">
-                        <input type="checkbox" class="check">
-                        <div class="categories-table-img">
-                          <picture><source srcset="./img/categories/01.webp" type="image/webp"><img src="./img/categories/01.jpg" alt="category"></picture>
-                        </div>
-                      </label>
-                    </td>
-                    <td>
-                      How to build a loyal community online and offline
-                    </td>
-                    <td>
-                      <div class="pages-table-img">
-                        <picture><source srcset="./img/avatar/avatar-face-03.webp" type="image/webp"><img src="./img/avatar/avatar-face-03.png" alt="User Name"></picture>
-                        Robert Fox
-                      </div>
-                    </td>
-                    <td><span class="badge-active">Active</span></td>
-                    <td>17.04.2021</td>
-                    <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="users-table__checkbox">
-                        <input type="checkbox" class="check">
-                        <div class="categories-table-img">
-                          <picture><source srcset="./img/categories/03.webp" type="image/webp"><img src="./img/categories/03.jpg" alt="category"></picture>
-                        </div>
-                      </label>
-                    </td>
-                    <td>
-                      How to build a loyal community online and offline
-                    </td>
-                    <td>
-                      <div class="pages-table-img">
-                        <picture><source srcset="{{ asset('customer/img/avatar/avatar-face-03.webp') }}" type="image/webp"><img src="./img/avatar/avatar-face-03.png" alt="User Name"></picture>
-                        Robert Fox
-                      </div>
-                    </td>
-                    <td><span class="badge-active">Active</span></td>
-                    <td>17.04.2021</td>
-                    <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      <a class="carousel-control-prev" href="#detailedReports" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      </a>
+                      <a class="carousel-control-next" href="#detailedReports" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-title mb-0">Top Products</p>
+                    <div class="table-responsive">
+                      <table class="table table-striped table-borderless">
+                        <thead>
+                          <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Search Engine Marketing</td>
+                            <td class="font-weight-bold">$362</td>
+                            <td>21 Sep 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-success">Completed</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Search Engine Optimization</td>
+                            <td class="font-weight-bold">$116</td>
+                            <td>13 Jun 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-success">Completed</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Display Advertising</td>
+                            <td class="font-weight-bold">$551</td>
+                            <td>28 Sep 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-warning">Pending</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Pay Per Click Advertising</td>
+                            <td class="font-weight-bold">$523</td>
+                            <td>30 Jun 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-warning">Pending</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>E-Mail Marketing</td>
+                            <td class="font-weight-bold">$781</td>
+                            <td>01 Nov 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-danger">Cancelled</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Referral Marketing</td>
+                            <td class="font-weight-bold">$283</td>
+                            <td>20 Mar 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-warning">Pending</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Social media marketing</td>
+                            <td class="font-weight-bold">$897</td>
+                            <td>26 Oct 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-success">Completed</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-lg-3">
-            <article class="customers-wrapper">
-              <canvas id="customersChart" aria-label="Customers statistics" role="img"></canvas>
-              <!--              <p class="customers__title">New Customers <span>+958</span></p>
-              <p class="customers__date">28 Daily Avg.</p>
-              <picture><source srcset="./img/svg/customers.svg" type="image/webp"><img src="./img/svg/customers.svg" alt=""></picture> -->
-            </article>
-            <article class="white-block">
-              <div class="top-cat-title">
-                <h3>Top categories</h3>
-                <p>28 Categories, 1400 Posts</p>
-              </div>
-              <ul class="top-cat-list">
-                <li>
-                  <a href="##">
-                    <div class="top-cat-list__title">
-                      Lifestyle <span>8.2k</span>
-                    </div>
-                    <div class="top-cat-list__subtitle">
-                      Dailiy lifestyle articles <span class="purple">+472</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="##">
-                    <div class="top-cat-list__title">
-                      Tutorials <span>8.2k</span>
-                    </div>
-                    <div class="top-cat-list__subtitle">
-                      Coding tutorials <span class="blue">+472</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="##">
-                    <div class="top-cat-list__title">
-                      Technology <span>8.2k</span>
-                    </div>
-                    <div class="top-cat-list__subtitle">
-                      Dailiy technology articles <span class="danger">+472</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="##">
-                    <div class="top-cat-list__title">
-                      UX design <span>8.2k</span>
-                    </div>
-                    <div class="top-cat-list__subtitle">
-                      UX design tips <span class="success">+472</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="##">
-                    <div class="top-cat-list__title">
-                      Interaction tips <span>8.2k</span>
-                    </div>
-                    <div class="top-cat-list__subtitle">
-                      Interaction articles <span class="warning">+472</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="##">
-                    <div class="top-cat-list__title">
-                      App development <span>8.2k</span>
-                    </div>
-                    <div class="top-cat-list__subtitle">
-                      Mobile development articles <span class="warning">+472</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="##">
-                    <div class="top-cat-list__title">
-                      Nature <span>8.2k</span>
-                    </div>
-                    <div class="top-cat-list__subtitle">
-                      Wildlife animal articles <span class="warning">+472</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="##">
-                    <div class="top-cat-list__title">
-                      Geography <span>8.2k</span>
-                    </div>
-                    <div class="top-cat-list__subtitle">
-                      Geography articles <span class="primary">+472</span>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </div>
-    </main>
+          <!-- content-wrapper ends -->
    @include('customer.partials.dash-footer')
