@@ -19,8 +19,8 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name'     => 'required|string|max:100',
-            'phone'    => 'nullable|string|max:15',
-            'address'  => 'nullable|string|max:255',
+            'email'    => 'nullable|string|max:15',
+            // 'address'  => 'nullable|string|max:255',
             'password' => 'nullable|string|min:8|confirmed', // Add confirmed if using password_confirmation field
         ]);
 
