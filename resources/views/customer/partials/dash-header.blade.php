@@ -117,7 +117,7 @@
                 </a>
               </div>
             </li>
-            <li class="nav-item nav-settings d-none d-lg-flex">
+            <li class="nav-item nav-settings d-none">
               <a class="nav-link" href="#">
                 <i class="icon-ellipsis"></i>
               </a>
