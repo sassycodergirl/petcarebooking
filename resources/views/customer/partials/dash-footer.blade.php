@@ -1,4 +1,4 @@
-
+</div>
 
 
        <!-- partial:partials/_footer.html -->

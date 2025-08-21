@@ -400,5 +400,5 @@
 
         </div>
       <!-- page-body-wrapper ends -->
-    </div>
+    
    @include('customer.partials.dash-footer')
