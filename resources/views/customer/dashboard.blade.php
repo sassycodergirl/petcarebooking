@@ -392,4 +392,13 @@
             </div>
           </div>
           <!-- content-wrapper ends -->
+
+          
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+
+        </div>
+      <!-- page-body-wrapper ends -->
+    </div>
    @include('customer.partials.dash-footer')
