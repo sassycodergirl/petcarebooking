@@ -60,7 +60,7 @@
                                 <input type="hidden" name="remove_photo" id="removePhoto" value="0">
                             </div>
 
-                        </div>
+                        
                         <div class="form-group">
                             <label for="exampleInputEmail1">Notification Preference</label>
                             <select name="notification_preference" class="form-control">
