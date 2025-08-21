@@ -25696,4 +25696,7 @@ table.dataTable tbody td.select-checkbox:after {
 .navbar .navbar-brand-wrapper .navbar-brand img {
       height: 50px;
 }
+.navbar .navbar-brand-wrapper .brand-logo-mini img {
+  width: unset;
+}
 /*# sourceMappingURL=maps/style.css.map */
