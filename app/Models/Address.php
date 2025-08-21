@@ -2,22 +2,36 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
+    use HasFactory;
+
+    /**
+     * The table associated with the model (optional if it follows convention)
+     *
+     * @var string
+     */
+    protected $table = 'addresses';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
-        'user_id',
-        'type',          // shipping / billing
-        'address_line1',
-        'address_line2',
+        'user_id',            // linked user
+        'name',               // Address label (Home/Office/Other)
         'city',
         'state',
         'pincode',
-        'country',
     ];
 
-    // 👇 Relationship: an address belongs to one user
+    /**
+     * Get the user that owns the address.
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
