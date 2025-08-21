@@ -10,6 +10,8 @@ use App\Http\Controllers\Frontend\ShopProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Customer\DashboardController;
+use App\Http\Controllers\Customer\ProfileController;
+use App\Http\Controllers\Customer\PetController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,6 +67,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
 // });
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('customer.dashboard');
+});
+
+Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(function () {
+    // Profile
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    // Pet Details
+    Route::get('profile/pets', [PetController::class, 'index'])->name('pets');
+    Route::post('profile/pets', [PetController::class, 'store'])->name('pets.store');
+    Route::post('profile/pets/{id}/delete', [PetController::class, 'destroy'])->name('pets.destroy');
 });
 
 Route::get('/about-us', function () { return view('about');})->name('about');
