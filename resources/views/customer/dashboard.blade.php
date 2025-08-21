@@ -694,7 +694,7 @@
 <!-- Chart library -->
 <script src="{{ asset('customer/plugins/chart.min.js') }}"></script>
 <!-- Icons library -->
-<script src="{{ asset('plugins/feather.min.js') }}"></script>
+<script src="{{ asset('customer/plugins/feather.min.js') }}"></script>
 <!-- Custom scripts -->
 <script src="{{ asset('customer/js/script.js') }}"></script>
 </body>
