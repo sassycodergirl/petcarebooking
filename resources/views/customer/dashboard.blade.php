@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Furry & Friends | Dashboard</title>
   <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ asset('customer/img/svg/logo.svg') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('customer/img/logo.png') }}" type="image/x-icon">
   <!-- Custom styles -->
   <link rel="stylesheet" href="{{ asset('customer/css/style.min.css') }}">
 </head>
@@ -22,13 +22,7 @@
     <div class="sidebar-start">
         <div class="sidebar-head">
             <a href="/" class="logo-wrapper" title="Home">
-                <span class="sr-only">Home</span>
-                <span class="icon logo" aria-hidden="true"></span>
-                <div class="logo-text">
-                    <span class="logo-title">Elegant</span>
-                    <span class="logo-subtitle">Dashboard</span>
-                </div>
-
+               <img src="{{ asset('customer/img/logo.png') }}" alt="logo">
             </a>
             <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
                 <span class="sr-only">Toggle menu</span>
