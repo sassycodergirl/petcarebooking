@@ -117,7 +117,7 @@
                             <input type="text" name="name" class="form-control" placeholder="Full Name">
                         </div>
                         <div class="col-md-6">
-                            <label>Address</label>
+                            <label>Phone</label>
                             <input type="tel" name="phone" class="form-control" placeholder="Phone">
                         </div>
                         <div class="col-md-6">
