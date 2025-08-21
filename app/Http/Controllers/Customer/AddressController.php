@@ -10,7 +10,7 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'label' => 'required|string|max:50',
+            'name' => 'required|string|max:50',
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:50',
             'state' => 'required|string|max:50',
@@ -25,7 +25,7 @@ class AddressController extends Controller
     {
         $address = Address::findOrFail($id);
         $request->validate([
-            'label' => 'required|string|max:50',
+            'name' => 'required|string|max:50',
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:50',
             'state' => 'required|string|max:50',
