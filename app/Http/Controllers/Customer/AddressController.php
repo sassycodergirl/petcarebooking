@@ -11,7 +11,7 @@ class AddressController extends Controller
     {
         $user = Auth::user();
         $addresses = $user->addresses()->latest()->get();
-        return view('customer.address.index', compact('addresses'));
+        return view('customer.address.index', compact('addresses')); 
     }
     public function store(Request $request)
     {
