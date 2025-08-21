@@ -10,7 +10,6 @@
   <link rel="shortcut icon" href="{{ asset('customer/img/logo.png') }}" type="image/x-icon">
   <!-- Custom styles -->
   <link rel="stylesheet" href="{{ asset('customer/css/style.min.css') }}">
-  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 </head>
 
 <body>
