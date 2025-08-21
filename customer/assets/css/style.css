@@ -25692,4 +25692,8 @@ table.dataTable tbody td.select-checkbox:after {
     display: none;
   }
 }
+
+navbar .navbar-brand-wrapper .navbar-brand img {
+      height: 50px;
+}
 /*# sourceMappingURL=maps/style.css.map */
