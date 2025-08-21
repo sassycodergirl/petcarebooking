@@ -103,11 +103,8 @@
              <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                    <h4 class="card-title">Your Addresses</h4>
-                    <p class="card-description">Manage your saved addresses</p>
-
-                 
-
+                    <h4 class="card-title">Manage your saved addresses</h4>
+                
                     <hr>
                     <h5>Add New Address</h5>
                     <form action="{{ route('customer.address.store') }}" method="POST">
