@@ -87,7 +87,7 @@ Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(functi
 
     // Profile
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('profile', [ProfileController::class, 'update'])->name('rofile.update');
+    Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // Pet Details
     Route::get('pets', [PetController::class, 'index'])->name('pets.index');
