@@ -157,6 +157,13 @@
             <li class="nav-item">
                 <a class="nav-link"  href="{{ route('customer.pets.index') }}">
                   <i class="icon-paper menu-icon"></i>
+                  <span class="menu-title">Saved Addresses</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link"  href="{{ route('customer.pets.index') }}">
+                  <i class="icon-paper menu-icon"></i>
                   <span class="menu-title">Pet Details</span>
                 </a>
             </li>
