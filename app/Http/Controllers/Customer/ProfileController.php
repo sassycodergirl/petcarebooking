@@ -25,7 +25,7 @@ class ProfileController extends Controller
             'email'      => 'required|email|max:255|unique:users,email,' . $user->id,
             'phone'      => 'nullable|string|max:20',
             'password'   => 'nullable|string|min:8|confirmed',
-            'photo'      => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'notification_preference' => 'nullable|in:email,whatsapp,both,none',
             'remove_photo' => 'nullable|boolean',
         ]);

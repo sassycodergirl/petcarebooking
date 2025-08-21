@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'photo',                  // profile photo path
+        'profile_photo',                  // profile photo path
         'notification_preference' // email / whatsapp / both / none
     ];
 
