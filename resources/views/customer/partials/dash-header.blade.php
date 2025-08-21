@@ -104,7 +104,7 @@
                   <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                     @csrf
            
-                    <button type="submit" class="btn btn-link"><i class="ti-power-off text-primary"></i>Logout</button>
+                    <button type="submit" class="btn btn-link p-0"><i class="ti-power-off text-primary"></i>Logout</button>
                 </form>
               </div>
             </li>
