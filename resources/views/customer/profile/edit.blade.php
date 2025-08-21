@@ -30,35 +30,42 @@
                             <label for="exampleInputEmail1">Phone</label>
                             <input type="tel" name="phone" placeholder="Phone" value="{{ old('phone', $user->phone) }}" class="form-control">
                         </div>
+
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Profile Photo</label>
-                          
-                                <label for="photo" class="form-label">Profile Photo</label>
-                                <input type="file" name="photo" id="photo" class="form-control" accept="image/*">
+                            <label for="photo" class="form-label">Profile Photo</label>
+                            <input type="file" name="photo" id="photo" class="form-control" accept="image/*">
 
-                                <!-- Image preview -->
-                               <div class="mt-3 position-relative" style="display:inline-block;">
-                                  @if($user->photo)
-                                      <img id="photoPreview" 
-                                          src="{{ asset($user->photo) }}" 
-                                          alt="Profile Photo" 
-                                          class="img-thumbnail" 
-                                          width="150">
+                            <!-- Image preview / message -->
+                            <div class="mt-3 position-relative" style="display:inline-block;">
+                                @if($user->photo)
+                                    <img id="photoPreview" 
+                                        src="{{ asset($user->photo) }}" 
+                                        alt="Profile Photo" 
+                                        class="img-thumbnail" 
+                                        width="150">
 
-                                      <!-- Remove button -->
-                                      <button type="button" id="removePhotoBtn" 
-                                              class="btn btn-sm btn-danger position-absolute top-0 start-100 translate-middle">
-                                          ×
-                                      </button>
-                                  @else
-                                      <p class="text-muted">No image available</p>
-                                  @endif
-                              </div>
-
-
-                                <!-- Hidden input to flag removal -->
-                                <input type="hidden" name="remove_photo" id="removePhoto" value="0">
+                                    <!-- Remove button -->
+                                    <button type="button" id="removePhotoBtn" 
+                                            class="btn btn-sm btn-danger position-absolute top-0 start-100 translate-middle">
+                                        ×
+                                    </button>
+                                @else
+                                    <p id="noImageText" class="text-muted">No image available</p>
+                                    <img id="photoPreview" 
+                                        src="" 
+                                        alt="Profile Photo" 
+                                        class="img-thumbnail d-none" 
+                                        width="150">
+                                    <button type="button" id="removePhotoBtn" 
+                                            class="btn btn-sm btn-danger position-absolute top-0 start-100 translate-middle d-none">
+                                        ×
+                                    </button>
+                                @endif
                             </div>
+
+                            <!-- Hidden input to flag removal -->
+                            <input type="hidden" name="remove_photo" id="removePhoto" value="0">
+                        </div>
 
                         
                         <div class="form-group">
