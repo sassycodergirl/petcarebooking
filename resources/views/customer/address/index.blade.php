@@ -70,6 +70,7 @@
                                 
                                 <!-- Display Mode -->
                                 <div class="address-display" id="display-{{ $address->id }}">
+                                    <p><strong>Name:</strong> {{ $address->name }}</p>
                                     <p>
                                         {{ $address->address_line1 }}
                                         @if($address->address_line2), {{ $address->address_line2 }}@endif,
@@ -91,6 +92,7 @@
                                     @method('PUT')
 
                                     <p>
+                                        <input type="text" name="name" value="{{ $address->name }}" class="form-control mb-1" placeholder="Full Name" required>
                                         <input type="text" name="address_line1" value="{{ $address->address_line1 }}" class="form-control mb-1" required>
                                         <input type="text" name="address_line2" value="{{ $address->address_line2 }}" class="form-control mb-1">
                                         <input type="text" name="city" value="{{ $address->city }}" class="form-control mb-1" required>
