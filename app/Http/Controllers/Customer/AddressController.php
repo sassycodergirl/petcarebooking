@@ -30,8 +30,12 @@ class AddressController extends Controller
             $address = $request->all();
             $address['user_id'] = auth()->id();
 
+            // Trim to avoid accidental spaces
+            $address['type'] = trim($request->type);
+
             \App\Models\Address::create($address);
-        return back()->with('success', 'Address added successfully!');
+
+            return back()->with('success', 'Address added successfully!');
     }
 
     public function edit($id)
