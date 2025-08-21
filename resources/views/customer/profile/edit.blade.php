@@ -3,7 +3,7 @@
 
 <div class="container">
      <div class="content-wrapper">
-        <h2>Edit Profile</h2>
+        <h3>Edit Profile</h3>
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -14,7 +14,7 @@
                 <div class="card">
                    
                   <div class="card-body">
-                      <p class="mb-3">Basic Information</p>
+                      <h4 class="mb-3">Basic Information</h4>
                     <form class="forms-sample" action="{{ route('customer.profile.update') }}" method="POST">
                      @csrf
 
@@ -87,11 +87,7 @@
                             <input type="password" name="password_confirmation"  class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
                         </div>
 
-                        <div class="form-group">
-                            <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                            <input type="password" name="password_confirmation"  class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
-                        </div>
-
+                       
 
                         
                         <button type="submit" class="btn btn-primary">Update</button>
