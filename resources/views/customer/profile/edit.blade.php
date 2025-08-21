@@ -37,19 +37,24 @@
                                 <input type="file" name="photo" id="photo" class="form-control" accept="image/*">
 
                                 <!-- Image preview -->
-                                <div class="mt-3 position-relative" style="display:inline-block;">
-                                    <img id="photoPreview" 
-                                        src="{{ $user->photo ? asset($user->photo) : 'https://via.placeholder.com/150' }}" 
-                                        alt="Profile Photo" 
-                                        class="img-thumbnail" 
-                                        width="150">
+                               <div class="mt-3 position-relative" style="display:inline-block;">
+                                  @if($user->photo)
+                                      <img id="photoPreview" 
+                                          src="{{ asset($user->photo) }}" 
+                                          alt="Profile Photo" 
+                                          class="img-thumbnail" 
+                                          width="150">
 
-                                    <!-- Remove button -->
-                                    <button type="button" id="removePhotoBtn" 
-                                            class="btn btn-sm btn-danger position-absolute top-0 start-100 translate-middle">
-                                        ×
-                                    </button>
-                                </div>
+                                      <!-- Remove button -->
+                                      <button type="button" id="removePhotoBtn" 
+                                              class="btn btn-sm btn-danger position-absolute top-0 start-100 translate-middle">
+                                          ×
+                                      </button>
+                                  @else
+                                      <p class="text-muted">No image available</p>
+                                  @endif
+                              </div>
+
 
                                 <!-- Hidden input to flag removal -->
                                 <input type="hidden" name="remove_photo" id="removePhoto" value="0">
