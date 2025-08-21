@@ -30,5 +30,29 @@
     <script src="{{ asset('customer/assets/js/dashboard.js') }}"></script>
     <!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
+
+      <script>
+          const photoInput   = document.getElementById('photo');
+          const photoPreview = document.getElementById('photoPreview');
+          const removeBtn    = document.getElementById('removePhotoBtn');
+          const removePhoto  = document.getElementById('removePhoto');
+
+          // Preview selected image
+          photoInput.addEventListener('change', function (event) {
+              const [file] = event.target.files;
+              if (file) {
+                  photoPreview.src = URL.createObjectURL(file);
+                  removePhoto.value = 0; // user uploaded new photo, not removing
+              }
+          });
+
+          // Remove image (reset to placeholder)
+          removeBtn.addEventListener('click', function () {
+              photoPreview.src = 'placeholder-user';
+              photoInput.value = ""; // clear file input
+              removePhoto.value = 1; // flag for backend to remove
+          });
+      </script>
+
   </body>
 </html>

@@ -62,17 +62,20 @@ chown nobody:nogroup "$PROJECT_PATH/storage/logs/laravel.log"
 # Make directories if they don't exist
 mkdir -p "$PROJECT_PATH/public/products" \
          "$PROJECT_PATH/public/product-variants" \
-         "$PROJECT_PATH/public/variant-gallery"
+         "$PROJECT_PATH/public/variant-gallery" \
+         "$PROJECT_PATH/public/user"
 
 # Set owner to nobody (web server user)
 chown -R nobody:nogroup "$PROJECT_PATH/public/products" \
                          "$PROJECT_PATH/public/product-variants" \
-                         "$PROJECT_PATH/public/variant-gallery"
+                         "$PROJECT_PATH/public/variant-gallery" \
+                         "$PROJECT_PATH/public/user"
 
 # Set safe writable permissions
 chmod -R 777 "$PROJECT_PATH/public/products" \
               "$PROJECT_PATH/public/product-variants" \
-              "$PROJECT_PATH/public/variant-gallery"
+              "$PROJECT_PATH/public/variant-gallery" \
+              "$PROJECT_PATH/public/user"
 # -----------------------------
 # End Permissions Fix
 # -----------------------------
