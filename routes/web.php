@@ -13,6 +13,8 @@ use App\Http\Controllers\Customer\DashboardController;
 use App\Http\Controllers\Customer\ProfileController;
 use App\Http\Controllers\Customer\PetController;
 use App\Http\Controllers\Customer\AddressController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +25,22 @@ use App\Http\Controllers\Customer\AddressController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect()->route('customer.dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 
 Route::get('/', function () {
     return view('index');
@@ -63,10 +81,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('customer.dashboard');
 });
-Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(function () {
+Route::middleware(['auth','verified'])->prefix('customer')->name('customer.')->group(function () {
 
     // Profile
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
