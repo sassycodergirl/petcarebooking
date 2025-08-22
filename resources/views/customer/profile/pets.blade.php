@@ -15,12 +15,18 @@
                     <input type="text" class="form-control" name="name" placeholder="Pet Name" required>
                 </div>
                 <div class="col-12 col-md-4 form-group">
-                    <label>Pet Type(Dog/Cat):</label>
-                    <input type="text" class="form-control" name="type" placeholder="Pet Type" required>
+                    <label>Pet Type:</label>
+                    <select name="type" id="pet-type" class="form-control" required>
+                        <option value="">Select Type</option>
+                        <option value="Dog">Dog</option>
+                        <option value="Cat">Cat</option>
+                    </select>
                 </div>
                 <div class="col-12 col-md-4 form-group">
                     <label>Pet Breed:</label>
-                    <input type="text" class="form-control" name="breed" placeholder="Breed">
+                    <select name="breed" id="pet-breed" class="form-control">
+                        <option value="">Select Breed</option>
+                    </select>
                 </div>
                 <div class="col-12 col-md-4 form-group">
                     <label>Pet Age:</label>

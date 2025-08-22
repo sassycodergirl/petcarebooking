@@ -109,6 +109,29 @@
     });
 </script>
 
+<script>
+    const breedSelect = document.getElementById('pet-breed');
+    const typeSelect = document.getElementById('pet-type');
+
+    const breeds = {
+        Dog: ["Labrador", "German Shepherd", "Beagle", "Bulldog", "Poodle"],
+        Cat: ["Persian", "Siamese", "Maine Coon", "Ragdoll", "Sphynx"]
+    };
+
+    typeSelect.addEventListener('change', function() {
+        const selectedType = this.value;
+        breedSelect.innerHTML = '<option value="">Select Breed</option>'; // reset options
+
+        if (breeds[selectedType]) {
+            breeds[selectedType].forEach(function(breed) {
+                const option = document.createElement('option');
+                option.value = breed;
+                option.text = breed;
+                breedSelect.appendChild(option);
+            });
+        }
+    });
+</script>
 
 
 
