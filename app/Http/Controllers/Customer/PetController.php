@@ -17,32 +17,36 @@ class PetController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'name'   => 'required|string|max:100',
-        'type'   => 'required|string|max:50',
-        'breed'  => 'nullable|string|max:100',
-        'age'    => 'nullable|integer',
-        'gender' => 'nullable|in:Male,Female',
-        'weight' => 'nullable|numeric',
-        'notes'  => 'nullable|string',
-        'image'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // max 2MB
-    ]);
+            'name'   => 'required|string|max:100',
+            'type'   => 'required|string|max:50',
+            'breed'  => 'nullable|string|max:100',
+            'age'    => 'nullable|integer',
+            'gender' => 'nullable|in:Male,Female',
+            'weight' => 'nullable|numeric',
+            'notes'  => 'nullable|string',
+            'image'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-        $data = $request->all();
+        // Only get validated fields
+        $data = $request->only(['name','type','breed','age','gender','weight','notes']);
 
-        if($request->hasFile('image')) {
+        // Handle image upload
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('user'), $filename); 
             $data['image'] = 'user/'.$filename; 
         }
 
-                // ensure user_id is set
+        // Ensure user_id is set
         $data['user_id'] = Auth::id();
 
-        Pet::create($data); // or Auth::user()->pets()->create($data);
+        // Create pet
+        Pet::create($data);
 
         return back()->with('success', 'Pet added successfully!');
     }
+
 
 
     public function edit($id)
@@ -53,8 +57,10 @@ class PetController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Get the pet for the authenticated user
         $pet = Auth::user()->pets()->findOrFail($id);
 
+        // Validate the request
         $request->validate([
             'name'   => 'required|string|max:100',
             'type'   => 'required|string|max:50',
@@ -66,22 +72,28 @@ class PetController extends Controller
             'image'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->all();
+        // Only take validated fields
+        $data = $request->only(['name','type','breed','age','gender','weight','notes']);
 
-        if($request->hasFile('image')){
-            if($pet->image && file_exists(public_path($pet->image))){
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($pet->image && file_exists(public_path($pet->image))) {
                 unlink(public_path($pet->image));
             }
+
             $file = $request->file('image');
             $filename = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('user'), $filename); 
             $data['image'] = 'user/'.$filename; 
         }
 
+        // Update the pet
         $pet->update($data);
 
         return redirect()->route('pets.index')->with('success', 'Pet updated successfully!');
     }
+
 
 
     public function destroy($id)
