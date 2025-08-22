@@ -51,6 +51,7 @@
                     <img id="image-preview" src="#" alt="Preview" style="display:none; max-width:150px; margin-top:10px;">
                 </div>
             <button type="submit" class="btn btn-primary">Add Pet</button>
+            </div>
         </form>
     </div>
 
