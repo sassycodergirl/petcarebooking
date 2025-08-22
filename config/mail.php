@@ -13,8 +13,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
-
+    'default' => env('MAIL_MAILER', 'sendgrid'),
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
@@ -45,6 +44,9 @@ return [
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
+        'sendgrid' => [
+                'transport' => 'sendgrid',
+            ],
 
         'ses' => [
             'transport' => 'ses',
