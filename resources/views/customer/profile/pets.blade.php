@@ -33,8 +33,8 @@
                     <td>{{ $pet->weight }}</td>
                     <td>{{ $pet->notes }}</td>
                     <td>
-                        <a href="{{ route('pets.edit', $pet->id) }}">Edit</a>
-                        <form action="{{ route('pets.destroy', $pet->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+                        <a href="{{ route('customer.pets.edit', $pet->id) }}">Edit</a>
+                        <form action="{{ route('customer.pets.destroy', $pet->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>
@@ -51,7 +51,7 @@
 
         <!-- ADD PET FORM -->
         <h3>Add New Pet</h3>
-        <form action="{{ route('pets.store') }}" method="POST">
+        <form action="{{ route('customer.pets.store') }}" method="POST">
             @csrf
             <input type="text" name="name" placeholder="Pet Name" required>
             <input type="text" name="type" placeholder="Pet Type" required>
