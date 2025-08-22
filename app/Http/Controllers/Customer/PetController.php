@@ -96,7 +96,7 @@ class PetController extends Controller
         // Update the pet
         $pet->update($data);
 
-        return redirect()->route('cutomer.pets.index')->with('success', 'Pet updated successfully!');
+        return redirect()->route('customer.pets.index')->with('success', 'Pet updated successfully!');
     }
 
 
