@@ -1,8 +1,8 @@
 
 @include('customer.partials.dash-header')
 
-<div class="container-fluid">
-     <div class="content-wrapper">
+<div class="container-fluid content-wrapper">
+     <div class="">
 
      <button id="toggle-pet-form" style="margin-bottom: 10px;">Add New Pet</button>
 
