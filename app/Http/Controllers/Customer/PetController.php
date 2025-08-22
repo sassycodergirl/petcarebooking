@@ -36,7 +36,10 @@ class PetController extends Controller
             $data['image'] = 'user/'.$filename; 
         }
 
-        Auth::user()->pets()->create($data);
+                // ensure user_id is set
+        $data['user_id'] = Auth::id();
+
+        Pet::create($data); // or Auth::user()->pets()->create($data);
 
         return back()->with('success', 'Pet added successfully!');
     }
