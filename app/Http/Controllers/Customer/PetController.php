@@ -10,23 +10,76 @@ class PetController extends Controller
 {
     public function index()
     {
-        $pets = Auth::user()->pets; // relationship from User model
+        $pets = Auth::user()->pets; // existing pets
         return view('customer.profile.pets', compact('pets'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name'  => 'required|string|max:100',
-            'type'  => 'required|string|max:50', // dog, cat, etc.
-            'breed' => 'nullable|string|max:100',
-            'age'   => 'nullable|integer',
-        ]);
+        'name'   => 'required|string|max:100',
+        'type'   => 'required|string|max:50',
+        'breed'  => 'nullable|string|max:100',
+        'age'    => 'nullable|integer',
+        'gender' => 'nullable|in:Male,Female',
+        'weight' => 'nullable|numeric',
+        'notes'  => 'nullable|string',
+        'image'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // max 2MB
+    ]);
 
-        Auth::user()->pets()->create($request->all());
+        $data = $request->all();
+
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('user'), $filename); 
+            $data['image'] = 'uploads/pets/'.$filename;
+        }
+
+        Auth::user()->pets()->create($data);
 
         return back()->with('success', 'Pet added successfully!');
     }
+
+
+    public function edit($id)
+    {
+        $pet = Auth::user()->pets()->findOrFail($id);
+        return view('customer.profile.edit_pet', compact('pet'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $pet = Auth::user()->pets()->findOrFail($id);
+
+        $request->validate([
+            'name'   => 'required|string|max:100',
+            'type'   => 'required|string|max:50',
+            'breed'  => 'nullable|string|max:100',
+            'age'    => 'nullable|integer',
+            'gender' => 'nullable|in:Male,Female',
+            'weight' => 'nullable|numeric',
+            'notes'  => 'nullable|string',
+            'image'  => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $request->all();
+
+        if($request->hasFile('image')){
+            if($pet->image && file_exists(public_path($pet->image))){
+                unlink(public_path($pet->image));
+            }
+            $file = $request->file('image');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path('user'), $filename); 
+            $data['image'] = 'uploads/pets/'.$filename;
+        }
+
+        $pet->update($data);
+
+        return redirect()->route('pets.index')->with('success', 'Pet updated successfully!');
+    }
+
 
     public function destroy($id)
     {
