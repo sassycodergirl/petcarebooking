@@ -60,7 +60,7 @@
                     <img id="image-preview" src="#" alt="Preview" style="display:none; max-width:150px; margin-top:10px;">
                 </div>
                 <div class="col-12 col-md-6">
-                    <button type="submit" class="btn btn-primary w-100">Add Pet</button>
+                    <button type="submit" class="btn btn-primary w-100">Add Pet Details</button>
                 </div>
             </div>
         </form>

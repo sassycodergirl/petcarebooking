@@ -133,6 +133,103 @@
     });
 </script>
 
+<form action="{{ route('customer.pets.update', $pet->id) }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-md-4 form-group">
+            <label>Pet Name:</label>
+            <input type="text" name="name" value="{{ $pet->name }}" class="form-control" required>
+        </div>
+
+        <div class="col-12 col-md-4 form-group">
+            <label>Pet Type:</label>
+            <select name="type" id="edit-pet-type" class="form-control" required>
+                <option value="">Select Type</option>
+                <option value="Dog" {{ $pet->type == 'Dog' ? 'selected' : '' }}>Dog</option>
+                <option value="Cat" {{ $pet->type == 'Cat' ? 'selected' : '' }}>Cat</option>
+            </select>
+        </div>
+
+        <div class="col-12 col-md-4 form-group">
+            <label>Pet Breed:</label>
+            <select name="breed" id="edit-pet-breed" class="form-control">
+                <option value="">Select Breed</option>
+            </select>
+        </div>
+
+        <div class="col-12 col-md-4 form-group">
+            <label>Pet Age:</label>
+            <input type="number" name="age" value="{{ $pet->age }}" class="form-control">
+        </div>
+
+        <div class="col-12 col-md-4 form-group">
+            <label>Pet Gender:</label>
+            <select name="gender" class="form-control">
+                <option value="">Select Gender</option>
+                <option value="Male" {{ $pet->gender == 'Male' ? 'selected' : '' }}>Male</option>
+                <option value="Female" {{ $pet->gender == 'Female' ? 'selected' : '' }}>Female</option>
+            </select>
+        </div>
+
+        <div class="col-12 col-md-4 form-group">
+            <label>Pet Weight (kg):</label>
+            <input type="number" step="0.1" name="weight" value="{{ $pet->weight }}" class="form-control">
+        </div>
+
+        <div class="col-12 col-md-4 form-group">
+            <label>Notes:</label>
+            <textarea name="notes" class="form-control">{{ $pet->notes }}</textarea>
+        </div>
+
+        <div class="col-12 col-md-4 form-group">
+            <label>Pet Image:</label>
+            <input type="file" name="image" class="form-control">
+            @if($pet->image)
+                <img src="{{ asset($pet->image) }}" alt="{{ $pet->name }}" width="80" style="margin-top:10px;">
+            @endif
+        </div>
+
+        <div class="col-12 col-md-6">
+            <button type="submit" class="btn btn-primary w-100">Update Pet Details</button>
+        </div>
+
+    </div>
+</form>
+
+<script>
+const editBreedSelect = document.getElementById('edit-pet-breed');
+const editTypeSelect = document.getElementById('edit-pet-type');
+
+const breeds = {
+    Dog: ["Labrador", "German Shepherd", "Beagle", "Bulldog", "Poodle"],
+    Cat: ["Persian", "Siamese", "Maine Coon", "Ragdoll", "Sphynx"]
+};
+
+function populateEditBreed(selectedType, selectedBreed = '') {
+    editBreedSelect.innerHTML = '<option value="">Select Breed</option>';
+    if (breeds[selectedType]) {
+        breeds[selectedType].forEach(function(breed) {
+            const option = document.createElement('option');
+            option.value = breed;
+            option.text = breed;
+            if (breed === selectedBreed) {
+                option.selected = true;
+            }
+            editBreedSelect.appendChild(option);
+        });
+    }
+}
+
+// Initial load: pre-select existing breed
+populateEditBreed(editTypeSelect.value, "{{ $pet->breed }}");
+
+// Update breed options when type changes
+editTypeSelect.addEventListener('change', function() {
+    populateEditBreed(this.value);
+});
+</script>
 
 
   </body>
