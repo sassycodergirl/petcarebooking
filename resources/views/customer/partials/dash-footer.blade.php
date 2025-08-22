@@ -144,6 +144,9 @@ const breeds = {
     Cat: ["Persian", "Siamese", "Maine Coon", "Ragdoll", "Sphynx"]
 };
 
+// Get the existing breed safely from Blade
+const currentBreed = @json($pet->breed);
+
 function populateEditBreed(selectedType, selectedBreed = '') {
     editBreedSelect.innerHTML = '<option value="">Select Breed</option>';
     if (breeds[selectedType]) {
@@ -160,13 +163,14 @@ function populateEditBreed(selectedType, selectedBreed = '') {
 }
 
 // Initial load: pre-select existing breed
-populateEditBreed(editTypeSelect.value, "{{ $pet->breed }}");
+populateEditBreed(editTypeSelect.value, currentBreed);
 
 // Update breed options when type changes
 editTypeSelect.addEventListener('change', function() {
     populateEditBreed(this.value);
 });
 </script>
+
 
 
   </body>
