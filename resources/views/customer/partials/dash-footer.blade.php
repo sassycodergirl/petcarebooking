@@ -178,6 +178,22 @@ editTypeSelect.addEventListener('change', function() {
 
 
 
+<script>
+    const editImageInput = document.getElementById('edit-image');
+    const editImagePreview = document.getElementById('edit-image-preview');
+
+    editImageInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                editImagePreview.src = e.target.result;
+                editImagePreview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
   </body>
 </html>

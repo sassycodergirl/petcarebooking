@@ -57,9 +57,11 @@
 
                     <div class="col-12 col-md-6 form-group">
                         <label>Pet Image:</label>
-                        <input type="file" name="image" class="form-control">
+                        <input type="file" name="image" id="edit-image" class="form-control" accept="image/*">
                         @if($pet->image)
-                            <img src="{{ asset('public/'. $pet->image) }}" alt="{{ $pet->name }}" width="80" style="margin-top:10px;">
+                            <img id="edit-image-preview" src="{{ asset('public/' . $pet->image) }}" alt="{{ $pet->name }}" width="80" style="margin-top:10px;">
+                        @else
+                            <img id="edit-image-preview" src="#" alt="Preview" style="display:none; max-width:150px; margin-top:10px;">
                         @endif
                     </div>
 
