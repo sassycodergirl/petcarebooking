@@ -9,8 +9,8 @@
      <div id="pet-form" class="p-md-5 bg-white" style="display: none;">
         <form action="{{ route('customer.pets.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="row">
-                <div class="col-12 col-md-6 form-group">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-4 form-group">
                     <label>Pet Name:</label>
                     <input type="text" class="form-control" name="name" placeholder="Pet Name" required>
                 </div>
@@ -50,7 +50,9 @@
                     <label>Pet Image Preview:</label>
                     <img id="image-preview" src="#" alt="Preview" style="display:none; max-width:150px; margin-top:10px;">
                 </div>
-            <button type="submit" class="btn btn-primary">Add Pet</button>
+                <div class="col-12 col-md-6">
+                    <button type="submit" class="btn btn-primary w-100">Add Pet</button>
+                </div>
             </div>
         </form>
     </div>
