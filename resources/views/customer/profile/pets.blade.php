@@ -3,55 +3,11 @@
 
 <div class="container-fluid">
      <div class="content-wrapper">
-        <h2>My Pets</h2>
-        @if(session('success'))
-            <div style="color:green">{{ session('success') }}</div>
-        @endif
 
-        <!-- PET LIST -->
-        <table border="1" cellpadding="8" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Breed</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Weight</th>
-                    <th>Notes</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($pets as $pet)
-                <tr>
-                    <td>{{ $pet->name }}</td>
-                    <td>{{ $pet->type }}</td>
-                    <td>{{ $pet->breed }}</td>
-                    <td>{{ $pet->age }}</td>
-                    <td>{{ $pet->gender }}</td>
-                    <td>{{ $pet->weight }}</td>
-                    <td>{{ $pet->notes }}</td>
-                    <td>
-                        <a href="{{ route('customer.pets.edit', $pet->id) }}">Edit</a>
-                        <form action="{{ route('customer.pets.destroy', $pet->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @empty
-                <tr><td colspan="8">No pets added yet.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+     <button id="toggle-pet-form" style="margin-bottom: 10px;">Add New Pet</button>
 
-        <hr>
-
-        <!-- ADD PET FORM -->
-        <h3>Add New Pet</h3>
-        <form action="{{ route('customer.pets.store') }}" method="POST">
+     <div id="pet-form" style="display: none;">
+        <form action="{{ route('customer.pets.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="text" name="name" placeholder="Pet Name" required>
             <input type="text" name="type" placeholder="Pet Type" required>
@@ -64,8 +20,62 @@
             </select>
             <input type="number" step="0.1" name="weight" placeholder="Weight (kg)">
             <textarea name="notes" placeholder="Notes"></textarea>
+            <input type="file" name="image" accept="image/*">
             <button type="submit">Add Pet</button>
         </form>
+    </div>
+
+
+
+        <h2>My Pets</h2>
+        @if(session('success'))
+            <div style="color:green">{{ session('success') }}</div>
+        @endif
+
+        <!-- PET LIST -->
+         <div class="table-responsive">
+            <table class="table table-striped table-borderless">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Breed</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Weight</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($pets as $pet)
+                    <tr>
+                        <td>{{ $pet->name }}</td>
+                        <td>{{ $pet->type }}</td>
+                        <td>{{ $pet->breed }}</td>
+                        <td>{{ $pet->age }}</td>
+                        <td>{{ $pet->gender }}</td>
+                        <td>{{ $pet->weight }}</td>
+                        <td>{{ $pet->notes }}</td>
+                        <td>
+                            <a href="{{ route('customer.pets.edit', $pet->id) }}">Edit</a>
+                            <form action="{{ route('customer.pets.destroy', $pet->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr><td colspan="8">No pets added yet.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+ 
+
+      
      </div>
 </div>
 

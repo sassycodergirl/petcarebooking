@@ -73,5 +73,20 @@
 </script>
 
 
+<script>
+    document.getElementById('toggle-pet-form').addEventListener('click', function() {
+        var form = document.getElementById('pet-form');
+        if(form.style.display === 'none') {
+            form.style.display = 'block';
+            this.textContent = 'Hide Form';
+        } else {
+            form.style.display = 'none';
+            this.textContent = 'Add New Pet';
+        }
+    });
+</script>
+
+
+
   </body>
 </html>
