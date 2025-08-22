@@ -144,17 +144,23 @@ const breeds = {
     Cat: ["Persian", "Siamese", "Maine Coon", "Ragdoll", "Sphynx"]
 };
 
-// Get the existing breed safely from Blade
+// Pass existing breed safely from Blade
 const currentBreed = @json($pet->breed);
 
+console.log('Current pet breed from Blade:', currentBreed);
+console.log('Current pet type from Blade:', editTypeSelect.value);
+
 function populateEditBreed(selectedType, selectedBreed = '') {
+    console.log('Populating breeds for type:', selectedType, 'with selected breed:', selectedBreed);
     editBreedSelect.innerHTML = '<option value="">Select Breed</option>';
     if (breeds[selectedType]) {
         breeds[selectedType].forEach(function(breed) {
+            console.log('Adding breed option:', breed);
             const option = document.createElement('option');
             option.value = breed;
             option.text = breed;
             if (breed === selectedBreed) {
+                console.log('Setting this breed as selected:', breed);
                 option.selected = true;
             }
             editBreedSelect.appendChild(option);
@@ -167,9 +173,11 @@ populateEditBreed(editTypeSelect.value, currentBreed);
 
 // Update breed options when type changes
 editTypeSelect.addEventListener('change', function() {
+    console.log('Type changed to:', this.value);
     populateEditBreed(this.value);
 });
 </script>
+
 
 
 
