@@ -9,18 +9,47 @@
      <div id="pet-form" style="display: none;">
         <form action="{{ route('customer.pets.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="text" class="form-control" name="name" placeholder="Pet Name" required>
-            <input type="text" class="form-control" name="type" placeholder="Pet Type" required>
-            <input type="text" class="form-control" name="breed" placeholder="Breed">
-            <input type="number" class="form-control" name="age" placeholder="Age">
-            <select name="gender" class="form-control">
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-            <input type="number" class="form-control" step="0.1" name="weight" placeholder="Weight (kg)">
-            <textarea name="notes" class="form-control" placeholder="Notes"></textarea>
-            <input type="file"  class="form-control" name="image" accept="image/*">
+            <div class="row">
+                <div class="col-12 col-md-6 form-group">
+                    <label>Pet Name:</label>
+                    <input type="text" class="form-control" name="name" placeholder="Pet Name" required>
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <label>Pet Type(Dog/Cat):</label>
+                    <input type="text" class="form-control" name="type" placeholder="Pet Type" required>
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <label>Pet Breed:</label>
+                    <input type="text" class="form-control" name="breed" placeholder="Breed">
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <label>Pet Age:</label>
+                    <input type="number" class="form-control" name="age" placeholder="Age">
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <label>Pet Gender:</label>
+                    <select name="gender" class="form-control">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 form-group">    
+                    <label>Pet Weight (kg):</label>
+                    <input type="number" class="form-control" step="0.1" name="weight" placeholder="Weight (kg)">
+                </div>
+                <div class="col-12 col-md-6 form-group">    
+                    <label>Notes:</label>
+                    <textarea name="notes" class="form-control" placeholder="Notes"></textarea>
+                </div>
+                <div class="col-12 col-md-6 form-group">      
+                    <label>Upload Pet Image:</label>
+                    <input type="file"  class="form-control" name="image" accept="image/*">
+                </div>
+                <div class="col-12 col-md-6 form-group">
+                    <label>Pet Image Preview:</label>
+                    <img id="image-preview" src="#" alt="Preview" style="display:none; max-width:150px; margin-top:10px;">
+                </div>
             <button type="submit" class="btn btn-primary">Add Pet</button>
         </form>
     </div>

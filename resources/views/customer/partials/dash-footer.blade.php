@@ -87,6 +87,30 @@
 </script>
 
 
+<script>
+    const imageInput = document.querySelector('input[name="image"]');
+    const preview = document.getElementById('image-preview');
+
+    imageInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function() {
+                preview.setAttribute("src", this.result);
+                preview.style.display = "block";
+            });
+
+            reader.readAsDataURL(file);
+        } else {
+            preview.setAttribute("src", "#");
+            preview.style.display = "none";
+        }
+    });
+</script>
+
+
+
 
   </body>
 </html>
