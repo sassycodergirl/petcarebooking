@@ -6,11 +6,11 @@
 
      <button id="toggle-pet-form" class="btn btn-primary mt-4" style="margin-bottom: 10px;">Add New Pet</button>
 
-     <div id="pet-form p-md-5 bg-white" style="display: none;">
+     <div id="pet-form" class="p-md-5 bg-white" style="display: none;">
         <form action="{{ route('customer.pets.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-6 form-group">
                     <label>Pet Name:</label>
                     <input type="text" class="form-control" name="name" placeholder="Pet Name" required>
                 </div>
