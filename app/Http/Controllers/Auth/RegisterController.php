@@ -71,12 +71,9 @@ class RegisterController extends Controller
         ]);
     }
 
-    protected function registered(Request $request, $user)
+        protected function registered(Request $request, $user)
     {
         $user->sendEmailVerificationNotification();
-
-        // logout until verified
-        $this->guard()->logout();
 
         return redirect()->route('verification.notice')
             ->with('message', 'Please check your email to verify your account.');
