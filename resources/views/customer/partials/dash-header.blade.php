@@ -97,7 +97,7 @@
               </a> -->
                  @php
                   $user = Auth::user();
-                  $profilePhoto = $user->profile_photo ? asset('public/' . $user->profile_photo) : asset('customer/assets/images/faces/face28.jpg');
+                  $profilePhoto = $user->profile_photo ? asset('public/' . $user->profile_photo) : asset('customer/assets/images/faces/profile.png');
               @endphp
 
 
