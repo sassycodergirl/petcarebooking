@@ -33,7 +33,7 @@ class PetController extends Controller
             $file = $request->file('image');
             $filename = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('user'), $filename); 
-            $data['image'] = 'uploads/pets/'.$filename;
+            $data['image'] = 'user/'.$filename; 
         }
 
         Auth::user()->pets()->create($data);
@@ -72,7 +72,7 @@ class PetController extends Controller
             $file = $request->file('image');
             $filename = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('user'), $filename); 
-            $data['image'] = 'uploads/pets/'.$filename;
+            $data['image'] = 'user/'.$filename; 
         }
 
         $pet->update($data);
