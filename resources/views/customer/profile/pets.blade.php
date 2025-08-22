@@ -4,24 +4,24 @@
 <div class="container-fluid content-wrapper">
      <div class="">
 
-     <button id="toggle-pet-form" style="margin-bottom: 10px;">Add New Pet</button>
+     <button id="toggle-pet-form" class="btn btn-primary" style="margin-bottom: 10px;">Add New Pet</button>
 
      <div id="pet-form" style="display: none;">
         <form action="{{ route('customer.pets.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="text" name="name" placeholder="Pet Name" required>
-            <input type="text" name="type" placeholder="Pet Type" required>
-            <input type="text" name="breed" placeholder="Breed">
-            <input type="number" name="age" placeholder="Age">
-            <select name="gender">
+            <input type="text" class="form-control" name="name" placeholder="Pet Name" required>
+            <input type="text" class="form-control" name="type" placeholder="Pet Type" required>
+            <input type="text" class="form-control" name="breed" placeholder="Breed">
+            <input type="number" class="form-control" name="age" placeholder="Age">
+            <select name="gender" class="form-control">
                 <option value="">Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
-            <input type="number" step="0.1" name="weight" placeholder="Weight (kg)">
-            <textarea name="notes" placeholder="Notes"></textarea>
-            <input type="file" name="image" accept="image/*">
-            <button type="submit">Add Pet</button>
+            <input type="number" class="form-control" step="0.1" name="weight" placeholder="Weight (kg)">
+            <textarea name="notes" class="form-control" placeholder="Notes"></textarea>
+            <input type="file"  class="form-control" name="image" accept="image/*">
+            <button type="submit" class="btn btn-primary">Add Pet</button>
         </form>
     </div>
 
