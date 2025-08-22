@@ -139,7 +139,7 @@
 const editBreedSelect = document.getElementById('edit-pet-breed');
 const editTypeSelect = document.getElementById('edit-pet-type');
 
-const breeds = {
+const editBreeds = {
     Dog: ["Labrador", "German Shepherd", "Beagle", "Bulldog", "Poodle"],
     Cat: ["Persian", "Siamese", "Maine Coon", "Ragdoll", "Sphynx"]
 };
@@ -151,22 +151,20 @@ console.log('Current pet breed from Blade:', currentBreed);
 console.log('Current pet type from Blade:', editTypeSelect.value);
 
 function populateEditBreed(selectedType, selectedBreed = '') {
-    console.log('Populating breeds for type:', selectedType, 'with selected breed:', selectedBreed);
     editBreedSelect.innerHTML = '<option value="">Select Breed</option>';
-    if (breeds[selectedType]) {
-        breeds[selectedType].forEach(function(breed) {
-            console.log('Adding breed option:', breed);
+    if (editBreeds[selectedType]) {
+        editBreeds[selectedType].forEach(function(breed) {
             const option = document.createElement('option');
             option.value = breed;
             option.text = breed;
             if (breed === selectedBreed) {
-                console.log('Setting this breed as selected:', breed);
                 option.selected = true;
             }
             editBreedSelect.appendChild(option);
         });
     }
 }
+
 
 // Initial load: pre-select existing breed
 populateEditBreed(editTypeSelect.value, currentBreed);
