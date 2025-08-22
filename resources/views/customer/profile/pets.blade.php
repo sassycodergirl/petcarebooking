@@ -78,6 +78,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Type</th>
+                        <th>Image</th>
                         <th>Breed</th>
                         <th>Age</th>
                         <th>Gender</th>
@@ -91,6 +92,7 @@
                     <tr>
                         <td>{{ $pet->name }}</td>
                         <td>{{ $pet->type }}</td>
+                        <td><img src="{{ asset('public/'. $pet->image) }}" alt="{{ $pet->name }}" width="80"></td>
                         <td>{{ $pet->breed }}</td>
                         <td>{{ $pet->age }}</td>
                         <td>{{ $pet->gender }}</td>

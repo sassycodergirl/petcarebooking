@@ -59,7 +59,7 @@
                         <label>Pet Image:</label>
                         <input type="file" name="image" class="form-control">
                         @if($pet->image)
-                            <img src="{{ asset($pet->image) }}" alt="{{ $pet->name }}" width="80" style="margin-top:10px;">
+                            <img src="{{ asset('public/'. $pet->image) }}" alt="{{ $pet->name }}" width="80" style="margin-top:10px;">
                         @endif
                     </div>
 
