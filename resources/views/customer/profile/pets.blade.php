@@ -99,11 +99,11 @@
                         <td>{{ $pet->weight }}</td>
                         <td>{{ $pet->notes }}</td>
                         <td>
-                            <a href="{{ route('customer.pets.edit', $pet->id) }}">Edit</a>
+                            <a href="{{ route('customer.pets.edit', $pet->id) }}" class="btn btn-success text-white" style="text-decoration:none">Edit</a>
                             <form action="{{ route('customer.pets.destroy', $pet->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">Delete</button>
+                                <button type="submit" class="btn btn-danger text-white">Delete</button>
                             </form>
                         </td>
                     </tr>

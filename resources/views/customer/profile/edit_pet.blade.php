@@ -50,12 +50,12 @@
                         <input type="number" step="0.1" name="weight" value="{{ $pet->weight }}" class="form-control">
                     </div>
 
-                    <div class="col-12 col-md-4 form-group">
+                    <div class="col-12 col-md-6 form-group">
                         <label>Notes:</label>
                         <textarea name="notes" class="form-control">{{ $pet->notes }}</textarea>
                     </div>
 
-                    <div class="col-12 col-md-4 form-group">
+                    <div class="col-12 col-md-6 form-group">
                         <label>Pet Image:</label>
                         <input type="file" name="image" class="form-control">
                         @if($pet->image)
