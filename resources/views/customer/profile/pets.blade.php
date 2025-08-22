@@ -4,7 +4,7 @@
 <div class="container-fluid content-wrapper">
      <div class="">
 
-     <button id="toggle-pet-form" class="btn btn-primary mt-4" style="margin-bottom: 10px;">Add New Pet</button>
+     <button id="toggle-pet-form" class="btn btn-primary" style="margin-bottom: 10px;">Add New Pet</button>
 
      <div id="pet-form" class="p-md-5 bg-white" style="display: none;">
         <form action="{{ route('customer.pets.store') }}" method="POST" enctype="multipart/form-data">
@@ -57,7 +57,7 @@
 
 
 
-        <h2>My Pets</h2>
+        <h2  class="mt-5">My Pets</h2>
         @if(session('success'))
             <div style="color:green">{{ session('success') }}</div>
         @endif
