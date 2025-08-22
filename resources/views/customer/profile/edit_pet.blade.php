@@ -5,7 +5,7 @@
      <div class="content-wrapper">
             <h2>Edit Pet</h2>
 
-            <form action="{{ route('pets.update', $pet->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('customer.pets.update', $pet->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <input type="text" name="name" value="{{ $pet->name }}" required>
