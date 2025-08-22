@@ -117,6 +117,8 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+
+
 @-moz-keyframes flash {
   0% {
     opacity: 1;
@@ -20561,29 +20563,29 @@ input:focus {
 
 @font-face {
   font-family: "Nunito";
-  src: url("../fonts/Nunito/Nunito-Light.eot");
-  src: url("../fonts/Nunito/Nunito-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Nunito/Nunito-Light.woff2") format("woff2"), url("../fonts/Nunito/Nunito-Light.woff") format("woff"), url("../fonts/Nunito/Nunito-Light.ttf") format("truetype");
+  src: url("../fonts/Manrope/Manrope-Light.eot");
+  src: url("../fonts/Manrope/Manrope-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Manrope/Manrope-Light.woff2") format("woff2"), url("../fonts/Manrope/Manrope-Light.woff") format("woff"), url("../fonts/Manrope/Manrope-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Nunito";
-  src: url("../fonts/Nunito/Nunito-Bold.eot");
-  src: url("../fonts/Nunito/Nunito-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Nunito/Nunito-Bold.woff2") format("woff2"), url("../fonts/Nunito/Nunito-Bold.woff") format("woff"), url("../fonts/Nunito/Nunito-Bold.ttf") format("truetype");
+  src: url("../fonts/Manrope/Manrope-Bold.eot");
+  src: url("../fonts/Manrope/Manrope-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Manrope/Manrope-Bold.woff2") format("woff2"), url("../fonts/Manrope/Manrope-Bold.woff") format("woff"), url("../fonts/Manrope/Manrope-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "Nunito";
-  src: url("../fonts/Nunito/Nunito-SemiBold.eot");
-  src: url("../fonts/Nunito/Nunito-SemiBold.eot?#iefix") format("embedded-opentype"), url("../fonts/Nunito/Nunito-SemiBold.woff2") format("woff2"), url("../fonts/Nunito/Nunito-SemiBold.woff") format("woff"), url("../fonts/Nunito/Nunito-SemiBold.ttf") format("truetype");
+  src: url("../fonts/Manrope/Manrope-Medium.eot");
+  src: url("../fonts/Manrope/Manrope-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/Manrope/Manrope-Medium.woff2") format("woff2"), url("../fonts/Manrope/Manrope-Medium.woff") format("woff"), url("../fonts/Manrope/Manrope-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: "Nunito";
-  src: url("../fonts/Nunito/Nunito-Regular.eot");
-  src: url("../fonts/Nunito/Nunito-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Nunito/Nunito-Regular.woff2") format("woff2"), url("../fonts/Nunito/Nunito-Regular.woff") format("woff"), url("../fonts/Nunito/Nunito-Regular.ttf") format("truetype");
+  src: url("../fonts/Manrope/Manrope-Regular.eot");
+  src: url("../fonts/Manrope/Manrope-Regular?#iefix") format("embedded-opentype"), url("../fonts/Manrope/Manrope-Regular.woff2") format("woff2"), url("../fonts/Manrope/Manrope-Regular.woff") format("woff"), url("../fonts/Manrope/Manrope-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
