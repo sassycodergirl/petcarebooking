@@ -1,5 +1,5 @@
    @include('customer.partials.dash-header')
-<div class="container">
+<div class="containers">
     <div class="content-wrapper">
         <h3>Manage Addresses</h3>
 
