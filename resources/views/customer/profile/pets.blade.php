@@ -3,6 +3,9 @@
 
 <div class="container-fluid content-wrapper">
      <div class="">
+             @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+             @endif
 
      <button id="toggle-pet-form" class="btn btn-primary" style="margin-bottom: 10px;">Add New Pet</button>
 
@@ -66,9 +69,7 @@
 
 
         <h2  class="mt-5">My Pets</h2>
-        @if(session('success'))
-            <div style="color:green">{{ session('success') }}</div>
-        @endif
+      
 
         <!-- PET LIST -->
          <div class="table-responsive">

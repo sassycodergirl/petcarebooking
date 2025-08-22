@@ -32,6 +32,11 @@ class PetController extends Controller
 
         // Handle image upload
         if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($pet->image && file_exists(public_path($pet->image))) {
+                unlink(public_path($pet->image));
+            }
+           
             $file = $request->file('image');
             $filename = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('user'), $filename); 
