@@ -40,9 +40,9 @@
                         <div class="stepform-hd-top">
                             <h4>Select a Booking Slot</h4>
                         </div>
-                        <div class="stepform-body">
+                        <div class="stepform-body step-1-wrapper">
                             <div class="">
-                                <div class="step-1-wrapper p-2 p-md-5">
+                                <div class="p-2 p-md-5">
                                     <div class="row">
                                     <!-- Calendar -->
                                     <div class="col-12 col-md-8">
