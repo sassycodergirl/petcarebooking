@@ -11,9 +11,41 @@
     <link rel="stylesheet" href="{{asset('css/fancybox.css')}}">
     <link rel="stylesheet" href="{{asset('css/slick.min.css')}}">
     <link rel="stylesheet" href="{{asset('style.css')}}">
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <style>
-     
-    </style>
+  .step-1-wrapper{
+        background: ghostwhite;
+  }
+  #calendar { max-width: 100%; margin: 20px auto; }
+  .fc-daygrid-day.fc-day-disabled { background-color:#f300168c !important; cursor: not-allowed !important; }
+  .fc-day-selected { background-color: #007bff !important; color: white !important; }
+  .summary-box { background: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
+  .penalty-text { color: red; font-weight: bold; margin-bottom: 10px; }
+
+  /* Smooth hide/show animation */
+  .hidden-field { opacity: 0; max-height: 0; overflow: hidden; transition: opacity 0.5s ease, max-height 0.5s ease; }
+  .hidden-field.show { opacity: 1; max-height: 200px; }
+  .fc .fc-daygrid-day-frame {
+        display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .fc .fc-daygrid-day-number {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .fc .fc-col-header-cell-cushion {
+    text-decoration: none;
+    color: saddlebrown;
+  }
+  .fc-scrollgrid-sync-inner{
+    padding: 10px 0;
+   }
+</style>
 </head>
 
 <body>

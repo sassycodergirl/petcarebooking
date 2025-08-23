@@ -41,7 +41,7 @@
                             <h2>Select a Booking Slot</h2>
                         </div>
                         <div class="stepform-body">
-                            <div class="row stepform-body-row">
+                            <!-- <div class="row stepform-body-row">
                                 <div class="col-md-6">
                                     <div class="stepform-body-col">
                                         <label>Location</label>
@@ -68,6 +68,105 @@
                                                 Boarding
                                             </label>
                                         </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="p-2 p-md-5">
+                                <div class="step-1-wrapper p-2 p-md-5">
+                                    <div class="row">
+                                    <!-- Calendar -->
+                                    <div class="col-12 col-md-8">
+                                        <div class="bg-white p-2 p-md-5">
+                                        <h4>Booking Calender</h4>
+                                        <div id="calendar"></div>
+                                        <div id="slotInfo" class="mt-3 alert alert-info">Please select a date to see availability.</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Booking Form & Summary -->
+                                    <div class="col-12 col-md-4">
+                                        <div class="bg-white p-2 p-md-5">
+                                        <h4>Book Your Slot</h4>
+                                        <form id="bookingForm">
+                                        <div class="mb-3">
+                                            <label class="form-label">Location</label>
+                                            <select class="form-select" name="location" required>
+                                            <option value="">Select Location</option>
+                                            <option value="Kharghar" selected="">Kharghar</option>
+                                            
+                                            </select>
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                        <label class="form-label">Booking Type</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="bookingType" id="daycare4" value="Daycare4">
+                                            <label class="form-check-label" for="daycare4">Daycare (4 Hours)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="bookingType" id="daycare12" value="Daycare12">
+                                            <label class="form-check-label" for="daycare12">Daycare (12 Hours)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="bookingType" id="boarding" value="Boarding">
+                                            <label class="form-check-label" for="boarding">Boarding</label>
+                                        </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-6 col-md-6 mb-3">
+                                            <label class="form-label">Dogs</label>
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numDogs', -1)">-</button>
+                                                <input type="text" id="numDogs" class="form-control text-center" value="0" readonly>
+                                                <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numDogs', 1)">+</button>
+                                            </div>
+                                            </div>
+
+                                            <div class="col-6 col-md-6 mb-3">
+                                            <label class="form-label">Cats</label>
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numCats', -1)">-</button>
+                                                <input type="text" id="numCats" class="form-control text-center" value="0" readonly>
+                                                <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numCats', 1)">+</button>
+                                            </div>
+                                            </div>
+                                        </div>
+
+
+                                    
+
+                                        <!-- Check-in / Check-out hidden initially -->
+                                        <div class="mb-3 hidden-field" id="checkInField">
+                                            <label class="form-label">Check-in</label>
+                                            <input type="text" id="checkIn" class="form-control">
+                                        </div>
+
+                                        <div class="mb-3 hidden-field" id="checkOutField">
+                                            <label class="form-label">Check-out</label>
+                                            <input type="text" id="checkOut" class="form-control">
+                                        </div>
+
+                                        <div id="penaltyMessage" class="penalty-text d-none"></div>
+
+                                        <div class="summary-box mt-3 d-none" id="summaryBox">
+                                            <h5>Booking Summary</h5>
+                                            <p>Total Pets: <span id="totalPets">0</span></p>
+                                            <p><strong>Duration:</strong> <span id="durationText">0</span> hours</p>
+                                            <p><strong>Base Price:</strong> ₹<span id="basePrice">0</span></p>
+                                            <p><strong>Additional charges:</strong> ₹<span id="penaltyPrice">0</span></p>
+                                            <p><strong>Total:</strong> ₹<span id="totalPrice">0</span></p>
+                                        </div>
+
+                                        <div class="text-end mt-3">
+                                            <button type="button" class="btn btn-primary">Next Step →</button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -312,3 +411,358 @@
     </section>
 
 @include('partials.footer')
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    const checkInField = document.getElementById('checkInField');
+    const checkOutField = document.getElementById('checkOutField');
+    const checkIn = document.getElementById('checkIn');
+    const checkOut = document.getElementById('checkOut');
+    const bookingRadios = document.querySelectorAll('input[name="bookingType"]');
+    const slotInfo = document.getElementById('slotInfo');
+    const penaltyMessage = document.getElementById('penaltyMessage');
+    const basePriceEl = document.getElementById('basePrice');
+    const penaltyPriceEl = document.getElementById('penaltyPrice');
+    const totalPriceEl = document.getElementById('totalPrice');
+    const durationText = document.getElementById('durationText');
+    const summaryBox = document.getElementById('summaryBox');
+    const totalPetsEl = document.getElementById('totalPets');
+
+    // document.querySelector('select[name="location"]').value = "Kharghar";
+
+    checkIn.disabled = true;
+    checkOut.disabled = true;
+
+    const fullyBookedDates = ["2025-08-28", "2025-08-30"];
+    let selectedDateEl = null;
+
+    let calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        dateClick: function(info){
+            if (fullyBookedDates.includes(info.dateStr)) return;
+            if(selectedDateEl) selectedDateEl.classList.remove("fc-day-selected");
+            info.dayEl.classList.add("fc-day-selected");
+            selectedDateEl = info.dayEl;
+            checkInPicker.setDate(info.dateStr + " 08:00", true);
+            updateSlotInfo();
+        },
+        dayCellDidMount: function(arg){
+            const localDate = `${arg.date.getFullYear()}-${String(arg.date.getMonth()+1).padStart(2,"0")}-${String(arg.date.getDate()).padStart(2,"0")}`;
+            if(fullyBookedDates.includes(localDate)){
+                arg.el.classList.add("fc-day-disabled");
+                arg.el.style.backgroundColor="red";
+                arg.el.style.color="white";
+            }
+        }
+    });
+    calendar.render();
+
+    const prices = { 
+        "Daycare4": 499, 
+        "Daycare12": 799, 
+        "Boarding": {
+            1: 1350, 4: 5400, 7: 9450, 10: 13500, 15: 20250, 30: 41850, daily: 1350
+        }
+    };
+
+    let checkInPicker = flatpickr("#checkIn", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        minDate: "today",
+        disable: fullyBookedDates,
+        onChange: function(selectedDates) {
+            if(selectedDates.length > 0) {
+                let minCheckout = new Date(selectedDates[0].getTime() + 30*60*1000);
+                checkOutPicker.set('minDate', minCheckout);
+                checkOutPicker.set('disable', fullyBookedDates);
+            }
+            highlightBookingRange();
+            calculateSummary();
+            toggleSummaryVisibility();
+            updateSlotInfo();
+        }
+    });
+
+    let checkOutPicker = flatpickr("#checkOut", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        minDate: "today",
+        disable: fullyBookedDates,
+        onChange: function() {
+            highlightBookingRange();
+            calculateSummary();
+            toggleSummaryVisibility();
+            updateSlotInfo();
+        }
+    });
+
+    let selectedRangeEls = [];
+
+    function highlightBookingRange() {
+        selectedRangeEls.forEach(el => el.classList.remove('fc-day-selected'));
+        selectedRangeEls = [];
+
+        const inTime = checkInPicker.selectedDates[0];
+        let outTime = checkOutPicker.selectedDates[0];
+        if (!inTime) return;
+
+        let booking = getSelectedBooking();
+        const dates = [];
+        let startDate = new Date(inTime);
+        let endDate = outTime ? new Date(outTime) : new Date(inTime);
+
+        if (booking === "Boarding" && outTime) {
+            const startCycle = new Date(inTime); startCycle.setHours(8,0,0,0);
+            const endCycle = new Date(startCycle.getTime() + 24*60*60*1000);
+            if(inTime < startCycle) startDate = new Date(startCycle);
+            if(outTime <= endCycle) endDate = new Date(startCycle.getTime() + 1 - 1);
+            else endDate = outTime;
+        }
+
+        let currentDate = new Date(startDate);
+        while (currentDate <= endDate) {
+            const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
+            if (!fullyBookedDates.includes(dateStr)) dates.push(new Date(currentDate));
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        const allDays = document.querySelectorAll('.fc-daygrid-day');
+        allDays.forEach(day => {
+            const dayDate = day.getAttribute('data-date');
+            if (fullyBookedDates.includes(dayDate)) {
+                day.classList.add('fc-day-disabled');
+                day.style.backgroundColor = "red";
+                day.style.color = "white";
+                return;
+            }
+            dates.forEach(d => {
+                const dateStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+                if(dayDate === dateStr){
+                    day.classList.add('fc-day-selected');
+                    selectedRangeEls.push(day);
+                }
+            });
+        });
+    }
+
+  
+
+    function updateSlotInfo() {
+    const inTime = checkInPicker.selectedDates[0];
+    const outTime = checkOutPicker.selectedDates[0];
+
+    let startStr = "";
+    let endStr = "";
+
+    if (inTime && outTime) {
+        // Full range selected
+        startStr = `${inTime.getFullYear()}-${String(inTime.getMonth()+1).padStart(2,'0')}-${String(inTime.getDate()).padStart(2,'0')}`;
+        endStr = `${outTime.getFullYear()}-${String(outTime.getMonth()+1).padStart(2,'0')}-${String(outTime.getDate()).padStart(2,'0')}`;
+    } else if (selectedDateEl) {
+        // Only single date clicked
+        const date = selectedDateEl.getAttribute('data-date');
+        startStr = date;
+        endStr = date;
+    } else {
+        slotInfo.innerHTML = "Please select a date to see availability.";
+        return;
+    }
+
+    // TODO: Replace with dynamic availability if needed
+    const totalSlots = 7;
+    const availableDaycare = 5;
+    const availableBoarding = 2;
+
+    slotInfo.innerHTML = `<b>Slots for ${startStr}${startStr !== endStr ? " to " + endStr : ""}</b><br>
+                          Total Slots: ${totalSlots}<br>
+                          Available Daycare: ${availableDaycare}<br>
+                          Available Boarding: ${availableBoarding}<br>`;
+}
+
+
+    function toggleCheckFields() {
+        const selectedBooking = getSelectedBooking();
+        if (selectedBooking) {
+            checkInField.classList.add('show');
+            checkOutField.classList.add('show');
+            checkIn.disabled = false;
+            checkOut.disabled = false;
+        } else {
+            checkInField.classList.remove('show');
+            checkOutField.classList.remove('show');
+            checkIn.disabled = true;
+            checkOut.disabled = true;
+        }
+    }
+
+    function getSelectedBooking() {
+        const selected = Array.from(bookingRadios).find(r => r.checked);
+        return selected ? selected.value : null;
+    }
+
+    function resetBooking() {
+        checkInPicker.clear();
+        checkOutPicker.clear();
+        penaltyMessage.classList.add("d-none");
+        penaltyMessage.textContent = "";
+        basePriceEl.textContent = 0;
+        penaltyPriceEl.textContent = 0;
+        totalPriceEl.textContent = 0;
+        durationText.textContent = "";
+        totalPetsEl.textContent = 0;
+        selectedRangeEls.forEach(el => el.classList.remove('fc-day-selected'));
+        selectedRangeEls = [];
+        slotInfo.innerHTML = "Please select a date to see availability.";
+    }
+
+    bookingRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            resetBooking();
+            toggleCheckFields();
+            calculateSummary();
+            toggleSummaryVisibility();
+        });
+    });
+
+
+
+
+function calculateSummary() {
+    const inTime = checkInPicker.selectedDates[0];
+    const outTime = checkOutPicker.selectedDates[0];
+    let booking = getSelectedBooking();
+    if (!inTime || !outTime || !booking) return;
+
+    const dogs = parseInt(document.getElementById('numDogs').value) || 0;
+    const cats = parseInt(document.getElementById('numCats').value) || 0;
+    const totalPets = dogs + cats;
+    totalPetsEl.textContent = totalPets;
+
+    penaltyMessage.classList.add("d-none");
+    penaltyMessage.textContent = "";
+
+    if(totalPets === 0){
+        basePriceEl.textContent = 0;
+        penaltyPriceEl.textContent = 0;
+        totalPriceEl.textContent = 0;
+        return;
+    }
+
+    // Check fully booked days for Boarding
+    if(booking === "Boarding"){
+        let currentDate = new Date(inTime);
+        let blocked = false;
+        while(currentDate <= outTime){
+            const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
+            if(fullyBookedDates.includes(dateStr)){ blocked = true; break; }
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+        if(blocked){
+            penaltyMessage.classList.remove("d-none");
+            penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
+            basePriceEl.textContent = 0;
+            penaltyPriceEl.textContent = 0;
+            totalPriceEl.textContent = 0;
+            return;
+        }
+    }
+
+    let duration = (outTime - inTime) / (1000*60*60);
+    if(duration <= 0) return;
+    durationText.textContent = duration.toFixed(1);
+
+    let basePrice = 0, penalty = 0, earlyCheckinCharge = 0;
+
+    // Early check-in before 8 AM
+    if(inTime.getHours() < 8){
+        earlyCheckinCharge = 499;
+        penaltyMessage.classList.remove("d-none");
+        penaltyMessage.textContent = `Early check-in before 8:00 AM! Extra ₹${earlyCheckinCharge}`;
+    }
+
+    // Daycare pricing
+    if(booking === "Daycare4") basePrice = prices.Daycare4;
+    if(booking === "Daycare12") basePrice = prices.Daycare12;
+
+    if(booking.startsWith("Daycare")){
+        const allowedHours = booking === "Daycare4" ? 4 : 12;
+        if(outTime.getDate() === inTime.getDate() && outTime.getHours() < 22){
+            if(duration > allowedHours){
+                penalty = 499;
+                penaltyMessage.classList.remove("d-none");
+                penaltyMessage.textContent = `Exceeded allowed hours! Extra ₹${penalty}`;
+            }
+        } else {
+            document.querySelector('input[name="bookingType"][value="Boarding"]').checked = true;
+            booking = "Boarding";
+            toggleCheckFields();
+            basePrice = prices.Boarding.daily;
+            penaltyMessage.classList.remove("d-none");
+            penaltyMessage.textContent = `Exceeded allowed hours or next day → converted to Boarding. Charged ₹${basePrice} per pet.`;
+        }
+    }
+
+    // Updated Boarding pricing logic
+    if(booking === "Boarding"){
+        const basePricePerDay = prices.Boarding.daily; // 1350 per day
+        let baseDays = 1; // first 24h = base
+        let extraCharge = 0;
+
+        // First 24h end
+        const first24End = new Date(inTime.getTime() + 24*60*60*1000);
+
+        // Next cycle starts at 8 AM next day after check-in
+        let nextCycle = new Date(inTime);
+        nextCycle.setDate(nextCycle.getDate() + 1);
+        nextCycle.setHours(8,0,0,0);
+
+        // Count extra full days needed
+        while(outTime > nextCycle){
+            extraCharge += basePricePerDay;
+            nextCycle.setDate(nextCycle.getDate() + 1);
+        }
+
+        basePrice = basePricePerDay; // first 24h
+        penalty = extraCharge;        // extra day charges
+    }
+
+    basePriceEl.textContent = basePrice * totalPets;
+    penaltyPriceEl.textContent = (penalty + earlyCheckinCharge) * totalPets;
+    totalPriceEl.textContent = (basePrice + penalty + earlyCheckinCharge) * totalPets;
+}
+
+
+
+    function toggleSummaryVisibility() {
+        const location = document.querySelector('select[name="location"]').value;
+        const booking = getSelectedBooking();
+        const inTime = checkInPicker.selectedDates[0];
+        const outTime = checkOutPicker.selectedDates[0];
+        const dogs = parseInt(document.getElementById('numDogs').value) || 0;
+        const cats = parseInt(document.getElementById('numCats').value) || 0;
+        const totalPets = dogs + cats;
+
+        if(location && booking && inTime && outTime && totalPets>0){
+            summaryBox.classList.remove('d-none');
+        } else {
+            summaryBox.classList.add('d-none');
+        }
+    }
+
+    window.changeCount = function(id, delta){
+        const input = document.getElementById(id);
+        let value = parseInt(input.value) || 0;
+        value += delta;
+        if(value<0) value=0;
+        input.value = value;
+        calculateSummary();
+        toggleSummaryVisibility();
+        updateSlotInfo();
+    }
+});
+</script>
