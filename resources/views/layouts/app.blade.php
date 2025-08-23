@@ -51,7 +51,7 @@
                 border-radius: 25px;
                 border: 2px solid #000;
                 height: 50px;
-                font-size: 18px;
+                font-size: 15px;
                 padding-left:20px;
         }
         .form-control::placeholder{
