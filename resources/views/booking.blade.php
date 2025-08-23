@@ -72,8 +72,8 @@
                                 </div>
                             </div> -->
 
-                            <div class="p-2 p-md-5">
-                                <div class="step-1-wrapper p-2 p-md-5">
+                            <div class="">
+                                <div class="step-1-wrapper">
                                     <div class="row">
                                     <!-- Calendar -->
                                     <div class="col-12 col-md-8">
@@ -99,7 +99,7 @@
                                         </div>
 
 
-                                        <div class="mb-3">
+                                        <div class="mb-3 booking-type">
                                         <label class="form-label">Booking Type</label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="bookingType" id="daycare4" value="Daycare4">
