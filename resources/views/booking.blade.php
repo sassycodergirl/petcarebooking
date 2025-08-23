@@ -55,7 +55,7 @@
 
                                     <!-- Booking Form & Summary -->
                                     <div class="col-12 col-md-4">
-                                        <div class="bg-white p-2 p-md-5">
+                                        <div class="bg-white p-2 px-md-4 py-md-5">
                                         <h4>Book Your Slot</h4>
                                         <div id="bookingForm">
                                             <div class="mb-3">
