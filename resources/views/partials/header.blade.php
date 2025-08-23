@@ -48,6 +48,13 @@
    .step-1-wrapper .input-group {
          flex-wrap: unset;
    }
+    .step-1-wrapper .input-group .btn{
+            background: saddlebrown;
+             color: #fff;
+    }
+    .fc-scrollgrid-sync-table td{
+        cursor: pointer;
+    }
 </style>
 </head>
 
