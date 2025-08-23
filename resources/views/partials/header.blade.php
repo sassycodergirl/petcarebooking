@@ -49,8 +49,10 @@
          flex-wrap: unset;
    }
     .step-1-wrapper .input-group .btn{
-            background: saddlebrown;
-             color: #fff;
+        background: antiquewhite;
+        color: #000;
+        font-size: 21px;
+        font-weight: bold;
     }
     .fc-scrollgrid-sync-table td{
         cursor: pointer;

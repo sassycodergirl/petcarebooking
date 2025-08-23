@@ -41,37 +41,6 @@
                             <h2>Select a Booking Slot</h2>
                         </div>
                         <div class="stepform-body">
-                            <!-- <div class="row stepform-body-row">
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Location</label>
-                                        <div class="stepform-inp-wrap">
-                                            <input type="text" name="location" placeholder="Kharghar (Nearest Location)">
-                                            <img src="images/point.svg" class="point-img" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Location</label>
-                                        <div class="booking-type">
-                                            <label>
-                                                <input type="radio" name="booking" value="4hours">
-                                                Daycare (4 Hours)
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="booking" value="12hours" checked>
-                                                Daycare (12 Hours)
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="booking" value="boarding">
-                                                Boarding
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
                             <div class="">
                                 <div class="step-1-wrapper">
                                     <div class="row">
@@ -88,53 +57,53 @@
                                     <div class="col-12 col-md-4">
                                         <div class="bg-white p-2 p-md-5">
                                         <h4>Book Your Slot</h4>
-                                        <form id="bookingForm">
-                                        <div class="mb-3">
-                                            <label class="form-label">Location</label>
-                                            <select class="form-select" name="location" required>
-                                            <option value="">Select Location</option>
-                                            <option value="Kharghar" selected="">Kharghar</option>
-                                            
-                                            </select>
-                                        </div>
-
-
-                                        <div class="mb-3">
-                                        <label class="form-label">Booking Type</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="bookingType" id="daycare4" value="Daycare4">
-                                            <label class="form-check-label" for="daycare4">Daycare (4 Hours)</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="bookingType" id="daycare12" value="Daycare12">
-                                            <label class="form-check-label" for="daycare12">Daycare (12 Hours)</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="bookingType" id="boarding" value="Boarding">
-                                            <label class="form-check-label" for="boarding">Boarding</label>
-                                        </div>
-                                        </div>
-
-
-                                        <div class="row">
-                                            <div class="col-6 col-md-6 mb-3">
-                                            <label class="form-label">Dogs</label>
-                                            <div class="input-group">
-                                                <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numDogs', -1)">-</button>
-                                                <input type="text" id="numDogs" class="form-control text-center" value="0" readonly>
-                                                <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numDogs', 1)">+</button>
-                                            </div>
+                                        <div id="bookingForm">
+                                            <div class="mb-3">
+                                                <label class="form-label">Location</label>
+                                                <select class="form-select" name="location" required>
+                                                <option value="">Select Location</option>
+                                                <option value="Kharghar" selected="">Kharghar</option>
+                                                
+                                                </select>
                                             </div>
 
-                                            <div class="col-6 col-md-6 mb-3">
-                                            <label class="form-label">Cats</label>
-                                            <div class="input-group">
-                                                <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numCats', -1)">-</button>
-                                                <input type="text" id="numCats" class="form-control text-center" value="0" readonly>
-                                                <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numCats', 1)">+</button>
+
+                                            <div class="mb-3">
+                                            <label class="form-label">Booking Type</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="bookingType" id="daycare4" value="Daycare4">
+                                                    <label class="form-check-label" for="daycare4">Daycare (4 Hours)</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="bookingType" id="daycare12" value="Daycare12">
+                                                    <label class="form-check-label" for="daycare12">Daycare (12 Hours)</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="bookingType" id="boarding" value="Boarding">
+                                                    <label class="form-check-label" for="boarding">Boarding</label>
+                                                </div>
                                             </div>
+
+
+                                            <div class="row">
+                                                <div class="col-6 col-md-6 mb-3">
+                                                <label class="form-label">Dogs</label>
+                                                <div class="input-group">
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numDogs', -1)">-</button>
+                                                    <input type="text" id="numDogs" class="form-control text-center" value="0" readonly>
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numDogs', 1)">+</button>
+                                                </div>
+                                                </div>
+
+                                                <div class="col-6 col-md-6 mb-3">
+                                                <label class="form-label">Cats</label>
+                                                <div class="input-group">
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numCats', -1)">-</button>
+                                                    <input type="text" id="numCats" class="form-control text-center" value="0" readonly>
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numCats', 1)">+</button>
+                                                </div>
+                                                </div>
                                             </div>
-                                        </div>
 
 
                                     
@@ -161,10 +130,8 @@
                                             <p><strong>Total:</strong> ₹<span id="totalPrice">0</span></p>
                                         </div>
 
-                                        <div class="text-end mt-3">
-                                            <button type="button" class="btn btn-primary">Next Step →</button>
-                                        </div>
-                                        </form>
+                                     
+                                            </div>
                                     </div>
                                     </div>
                                     </div>
