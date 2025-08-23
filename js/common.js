@@ -259,56 +259,121 @@ $(document).ready(function(){
         }
     });
 });
+
+//step form
+// $(document).ready(function () {
+//   let currentStep = 0;
+//   const totalSteps = $(".form-step").length;
+
+//   function updateSteps() {
+//     $(".form-step").removeClass("active").eq(currentStep).addClass("active");
+
+//     $(".step").each(function (index) {
+//       if (index <= currentStep) {
+//         $(this).addClass("active");
+//       } else {
+//         $(this).removeClass("active");
+//       }
+//     });
+
+//     $("#prevBtn").prop("disabled", currentStep === 0);
+//     $("#nextBtn").text(currentStep === totalSteps - 1 ? "Submit" : "Continue");
+//   }
+
+//   function validateStep() {
+//     let isValid = true;
+//     $(".form-step").eq(currentStep).find("input[required]").each(function () {
+//       if (!this.checkValidity()) {
+//         this.reportValidity(); // shows browser's validation popup
+//         isValid = false;
+//         return false; // break loop
+//       }
+//     });
+//     return isValid;
+//   }
+
+//   $("#nextBtn").click(function () {
+//     if (currentStep < totalSteps - 1) {
+//       if (validateStep()) {
+//         currentStep++;
+//         updateSteps();
+//       }
+//     } else {
+//   if (validateStep()) {
+//     $("#stepForm").submit(); // Normal form submit
+//   }
+// }
+//   });
+
+//   $("#prevBtn").click(function () {
+//     if (currentStep > 0) {
+//       currentStep--;
+//       updateSteps();
+//     }
+//   });
+
+//   updateSteps();
+// });
 $(document).ready(function () {
-  let currentStep = 0;
-  const totalSteps = $(".form-step").length;
+    let currentStep = 0;
+    const totalSteps = $(".form-step").length;
 
-  function updateSteps() {
-    $(".form-step").removeClass("active").eq(currentStep).addClass("active");
+    function updateSteps() {
+        $(".form-step").removeClass("active").eq(currentStep).addClass("active");
 
-    $(".step").each(function (index) {
-      if (index <= currentStep) {
-        $(this).addClass("active");
-      } else {
-        $(this).removeClass("active");
-      }
-    });
+        $(".step").each(function (index) {
+            $(this).toggleClass("active", index <= currentStep);
+        });
 
-    $("#prevBtn").prop("disabled", currentStep === 0);
-    $("#nextBtn").text(currentStep === totalSteps - 1 ? "Submit" : "Continue");
-  }
-
-  function validateStep() {
-    let isValid = true;
-    $(".form-step").eq(currentStep).find("input[required]").each(function () {
-      if (!this.checkValidity()) {
-        this.reportValidity(); // shows browser's validation popup
-        isValid = false;
-        return false; // break loop
-      }
-    });
-    return isValid;
-  }
-
-  $("#nextBtn").click(function () {
-    if (currentStep < totalSteps - 1) {
-      if (validateStep()) {
-        currentStep++;
-        updateSteps();
-      }
-    } else {
-  if (validateStep()) {
-    $("#stepForm").submit(); // Normal form submit
-  }
-}
-  });
-
-  $("#prevBtn").click(function () {
-    if (currentStep > 0) {
-      currentStep--;
-      updateSteps();
+        $("#prevBtn").prop("disabled", currentStep === 0);
+        $("#nextBtn").text(currentStep === totalSteps - 1 ? "Submit" : "Continue");
     }
-  });
 
-  updateSteps();
+    function validateStep() {
+        let isValid = true;
+
+        // Required input check
+        $(".form-step").eq(currentStep).find("input[required]").each(function () {
+            if (!this.checkValidity()) {
+                this.reportValidity();
+                isValid = false;
+                return false;
+            }
+        });
+
+        // Step 1 extra check: booking type & location
+        if (currentStep === 0) {
+            const bookingType = $("input[name='bookingType']:checked").val();
+            const location = $("select[name='location']").val();
+
+            if (!bookingType || !location) {
+                alert("Please select location and booking type.");
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+
+    $("#nextBtn").click(function () {
+        if (currentStep < totalSteps - 1) {
+            if (validateStep()) {
+                currentStep++;
+                updateSteps();
+            }
+        } else {
+            if (validateStep()) {
+                $("#stepForm").submit(); // final submit
+            }
+        }
+    });
+
+    $("#prevBtn").click(function () {
+        if (currentStep > 0) {
+            currentStep--;
+            updateSteps();
+        }
+    });
+
+    updateSteps();
 });

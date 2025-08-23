@@ -337,10 +337,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="buttons-wrap">
+                    <!-- <div class="buttons-wrap">
                         <button type="button" class="btn-step-prv" id="prevBtn"><i class="fa-solid fa-arrow-left"></i> Prviously</button>
                         <button type="button" class="btn-step-next" id="nextBtn">Continue</button>
+                    </div> -->
+                    <div class="buttons-wrap">
+                        @if(Auth::check())
+                            <button type="button" class="btn-step-prv" id="prevBtn"><i class="fa-solid fa-arrow-left"></i> Previously</button>
+                            <button type="button" class="btn-step-next" id="nextBtn">Continue</button>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                            <a href="{{ route('register') }}" class="btn btn-secondary">Register</a>
+                        @endif
                     </div>
+
                 </form>
             </div>
         </div>
