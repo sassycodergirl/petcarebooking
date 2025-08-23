@@ -75,3 +75,63 @@
 </div>
 
  @include('customer.partials.dash-footer')
+
+
+ <script>
+const editBreedSelect = document.getElementById('edit-pet-breed');
+const editTypeSelect = document.getElementById('edit-pet-type');
+
+const editBreeds = {
+    Dog: ["Labrador", "German Shepherd", "Beagle", "Bulldog", "Poodle"],
+    Cat: ["Persian", "Siamese", "Maine Coon", "Ragdoll", "Sphynx"]
+};
+
+// Pass existing breed safely from Blade
+const currentBreed = @json($pet->breed);
+
+console.log('Current pet breed from Blade:', currentBreed);
+console.log('Current pet type from Blade:', editTypeSelect.value);
+
+function populateEditBreed(selectedType, selectedBreed = '') {
+    editBreedSelect.innerHTML = '<option value="">Select Breed</option>';
+    if (editBreeds[selectedType]) {
+        editBreeds[selectedType].forEach(function(breed) {
+            const option = document.createElement('option');
+            option.value = breed;
+            option.text = breed;
+            if (breed === selectedBreed) {
+                option.selected = true;
+            }
+            editBreedSelect.appendChild(option);
+        });
+    }
+}
+
+
+// Initial load: pre-select existing breed
+populateEditBreed(editTypeSelect.value, currentBreed);
+
+// Update breed options when type changes
+editTypeSelect.addEventListener('change', function() {
+    console.log('Type changed to:', this.value);
+    populateEditBreed(this.value);
+});
+</script>
+
+
+<script>
+    const editImageInput = document.getElementById('edit-image');
+    const editImagePreview = document.getElementById('edit-image-preview');
+
+    editImageInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                editImagePreview.src = e.target.result;
+                editImagePreview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
