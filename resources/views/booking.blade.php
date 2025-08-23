@@ -38,11 +38,11 @@
                 <form id="stepForm">
                     <div class="form-step active">
                         <div class="stepform-hd-top">
-                            <h4>Select a Booking Slot</h4>
+                            <h3>Select a Booking Slot</h3>
                         </div>
                         <div class="stepform-body step-1-wrapper">
                             <div class="">
-                                <div class="p-2 p-md-5">
+                                <div class="p-2 p-md-3">
                                     <div class="row">
                                     <!-- Calendar -->
                                     <div class="col-12 col-md-8">
