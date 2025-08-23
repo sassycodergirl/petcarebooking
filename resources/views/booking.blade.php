@@ -99,7 +99,7 @@
                                         </div>
 
 
-                                        <div class="mb-3 booking-type">
+                                        <div class="mb-3">
                                         <label class="form-label">Booking Type</label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="bookingType" id="daycare4" value="Daycare4">
