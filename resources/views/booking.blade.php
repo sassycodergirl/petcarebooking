@@ -38,7 +38,7 @@
                 <form id="stepForm">
                     <div class="form-step active">
                         <div class="stepform-hd-top">
-                            <h2>Select a Booking Slot</h2>
+                            <h4>Select a Booking Slot</h4>
                         </div>
                         <div class="stepform-body">
                             <div class="">
@@ -47,7 +47,7 @@
                                     <!-- Calendar -->
                                     <div class="col-12 col-md-8">
                                         <div class="bg-white p-2 p-md-5">
-                                        <h4>Booking Calender</h4>
+                                        
                                         <div id="calendar"></div>
                                         <div id="slotInfo" class="mt-3 alert alert-info">Please select a date to see availability.</div>
                                         </div>

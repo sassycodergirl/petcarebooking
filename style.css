@@ -3762,7 +3762,7 @@ blockquote {
 .form-step label {
 	font-weight: 400;
 	color: var(--bg-text-color);
-	font-size: 14px;
+	font-size: 17px;
 	font-family: var(--default-body-font);
 	margin-bottom: 8px;
 }
@@ -3776,7 +3776,7 @@ blockquote {
 .form-step select {
 	height: 46px;
 	border: 1px solid #C4C4C4;
-	font-size: 14px;
+	font-size: 17px;
 	color: var(--bg-text-color);
 	width: 100%;
 	    border-radius: 6px;
