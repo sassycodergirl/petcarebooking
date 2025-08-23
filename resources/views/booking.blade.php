@@ -42,7 +42,7 @@
                         </div>
                         <div class="stepform-body">
                             <div class="">
-                                <div class="step-1-wrapper">
+                                <div class="step-1-wrapper p-2 p-md-5">
                                     <div class="row">
                                     <!-- Calendar -->
                                     <div class="col-12 col-md-8">
