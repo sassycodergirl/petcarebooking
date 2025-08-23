@@ -45,6 +45,9 @@
   .fc-scrollgrid-sync-inner{
     padding: 10px 0;
    }
+   .step-1-wrapper .input-group {
+         flex-wrap: unset;
+   }
 </style>
 </head>
 
