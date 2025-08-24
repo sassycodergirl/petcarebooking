@@ -3866,10 +3866,11 @@ blockquote {
 }
 
 .buttons-wrap {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	padding: 0 30px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    padding: 0 30px 30px;
+    gap: 20px;
 }
 
 .btn-step-prv {

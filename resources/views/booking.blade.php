@@ -60,7 +60,7 @@
                                         <div id="bookingForm">
                                             <div class="mb-3">
                                                 <label class="form-label">Location</label>
-                                                <select class="form-select" name="location" required>
+                                                <select class="form-select location"  name="location" required>
                                                 <option value="">Select Location</option>
                                                 <option value="Kharghar" selected="">Kharghar</option>
                                                 
@@ -71,7 +71,7 @@
                                             <div class="mb-3">
                                             <label class="form-label">Booking Type</label>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="bookingType" id="daycare4" value="Daycare4">
+                                                    <input class="form-check-input bookingType"  type="radio" name="bookingType" id="daycare4" value="Daycare4">
                                                     <label class="form-check-label" for="daycare4">Daycare (4 Hours)</label>
                                                 </div>
                                                 <div class="form-check">
@@ -90,7 +90,7 @@
                                                 <label class="form-label">Dogs</label>
                                                 <div class="input-group">
                                                     <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numDogs', -1)">-</button>
-                                                    <input type="text" id="numDogs" class="form-control text-center" value="0" readonly>
+                                                    <input type="text" name="dogcount" id="numDogs" class="form-control text-center numDogs" value="0" readonly>
                                                     <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numDogs', 1)">+</button>
                                                 </div>
                                                 </div>
@@ -99,7 +99,7 @@
                                                 <label class="form-label">Cats</label>
                                                 <div class="input-group">
                                                     <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numCats', -1)">-</button>
-                                                    <input type="text" id="numCats" class="form-control text-center" value="0" readonly>
+                                                    <input type="text" name="catcount" id="numCats" class="form-control text-center numCats" value="0" readonly>
                                                     <button type="button" class="btn btn-outline-secondary" onclick="changeCount('numCats', 1)">+</button>
                                                 </div>
                                                 </div>
@@ -111,12 +111,12 @@
                                         <!-- Check-in / Check-out hidden initially -->
                                         <div class="mb-3 hidden-field" id="checkInField">
                                             <label class="form-label">Check-in</label>
-                                            <input type="text" id="checkIn" class="form-control" placeholder="Enter Check-in Date & Time">
+                                            <input type="text" name="checkin" id="checkIn" class="form-control checkIn" placeholder="Enter Check-in Date & Time">
                                         </div>
 
                                         <div class="mb-3 hidden-field" id="checkOutField">
                                             <label class="form-label">Check-out</label>
-                                            <input type="text" id="checkOut" class="form-control" placeholder="Enter Check-Out Date & Time">
+                                            <input type="text" name="checkout" id="checkOut" class="form-control checkOut" placeholder="Enter Check-Out Date & Time">
                                         </div>
 
                                         <div id="penaltyMessage" class="penalty-text d-none"></div>
@@ -924,3 +924,91 @@ registerModal.addEventListener('hidden.bs.modal', function () {
     location.reload();
 });
 </script>
+
+
+<!--sessionStorage-->
+<script>
+// Save form data into localStorage
+function saveBookingForm() {
+    let data = {};
+
+    // Location (select)
+    let location = document.querySelector(".location");
+    if (location) data.location = location.value;
+
+    // Booking Type (radio)
+    let bookingType = document.querySelector('input[name="bookingType"]:checked');
+    if (bookingType) data.bookingType = bookingType.value;
+
+    // Dogs / Cats
+    let numDogs = document.querySelector(".numDogs");
+    if (numDogs) data.numDogs = numDogs.value;
+
+    let numCats = document.querySelector(".numCats");
+    if (numCats) data.numCats = numCats.value;
+
+    // Check-in / Check-out
+    let checkIn = document.querySelector(".checkIn");
+    if (checkIn) data.checkIn = checkIn.value;
+
+    let checkOut = document.querySelector(".checkOut");
+    if (checkOut) data.checkOut = checkOut.value;
+
+    // Save to localStorage
+    localStorage.setItem("bookingFormData", JSON.stringify(data));
+}
+
+// Restore saved data
+function restoreBookingForm() {
+    let savedData = localStorage.getItem("bookingFormData");
+    if (!savedData) return;
+
+    savedData = JSON.parse(savedData);
+
+    // Restore location
+    if (savedData.location) {
+        let location = document.querySelector(".location");
+        if (location) location.value = savedData.location;
+    }
+
+    // Restore bookingType
+    if (savedData.bookingType) {
+        let bookingInput = document.querySelector(`input[name="bookingType"][value="${savedData.bookingType}"]`);
+        if (bookingInput) bookingInput.checked = true;
+    }
+
+    // Restore dogs/cats
+    if (savedData.numDogs) {
+        let numDogs = document.querySelector(".numDogs");
+        if (numDogs) numDogs.value = savedData.numDogs;
+    }
+
+    if (savedData.numCats) {
+        let numCats = document.querySelector(".numCats");
+        if (numCats) numCats.value = savedData.numCats;
+    }
+
+    // Restore check-in / check-out
+    if (savedData.checkIn) {
+        let checkIn = document.querySelector(".checkIn");
+        if (checkIn) checkIn.value = savedData.checkIn;
+    }
+
+    if (savedData.checkOut) {
+        let checkOut = document.querySelector(".checkOut");
+        if (checkOut) checkOut.value = savedData.checkOut;
+    }
+}
+
+// Run restore on page load
+document.addEventListener("DOMContentLoaded", restoreBookingForm);
+
+// Save whenever user changes something
+document.querySelectorAll("#bookingForm input, #bookingForm select").forEach(el => {
+    el.addEventListener("change", saveBookingForm);
+    el.addEventListener("input", saveBookingForm);
+});
+</script>
+
+
+<!--sessionStorage-->
