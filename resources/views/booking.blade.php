@@ -46,7 +46,7 @@
                                     <div class="row">
                                     <!-- Calendar -->
                                     <div class="col-12 col-md-8">
-                                        <div class="bg-white p-2 p-md-5">
+                                        <div class="calender-box p-2 p-md-5">
                                         
                                         <div id="calendar"></div>
                                         <div id="slotInfo" class="mt-3 alert alert-info">Please select a date to see availability.</div>
@@ -55,7 +55,7 @@
 
                                     <!-- Booking Form & Summary -->
                                     <div class="col-12 col-md-4">
-                                        <div class="bg-white p-2 px-md-4 py-md-5">
+                                        <div class="calender-box p-2 px-md-4 py-md-5">
                                         <h4>Book Your Slot</h4>
                                         <div id="bookingForm">
                                             <div class="mb-3">
