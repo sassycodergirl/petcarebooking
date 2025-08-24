@@ -348,7 +348,7 @@
                             <button type="button" class="btn-step-next" id="nextBtn">Continue</button>
                         </div>
                         @else
-                        <div class="buttons-wrap d-block justify-content-end">
+                        <div class="buttons-wrap d-block text-end">
                             <a href="{{ route('login') }}" class="btn-step-next">Login to Continue</a>
                             <p class="register-link mt-4">Not a member? <a href="{{ route('register') }}">Register Now</a></p>
                             <!-- <a href="{{ route('register') }}" class="btn btn-secondary">Register</a> -->
