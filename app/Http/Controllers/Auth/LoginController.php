@@ -32,6 +32,11 @@ class LoginController extends Controller
         if ($user->is_admin == 1) {
             return redirect()->route('admin.dashboard');
         }
+        // Customer redirect logic
+        $redirectUrl = $request->query('redirect'); // get ?redirect= from URL
+        if ($redirectUrl) {
+            return redirect($redirectUrl); // back to booking page
+        }
 
         return redirect()->route('customer.dashboard');
     }
