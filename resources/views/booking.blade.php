@@ -341,15 +341,20 @@
                         <button type="button" class="btn-step-prv" id="prevBtn"><i class="fa-solid fa-arrow-left"></i> Prviously</button>
                         <button type="button" class="btn-step-next" id="nextBtn">Continue</button>
                     </div> -->
-                    <div class="buttons-wrap">
+                   
                         @if(Auth::check())
+                        <div class="buttons-wrap">
                             <button type="button" class="btn-step-prv" id="prevBtn"><i class="fa-solid fa-arrow-left"></i> Previously</button>
                             <button type="button" class="btn-step-next" id="nextBtn">Continue</button>
+                        </div>
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
-                            <a href="{{ route('register') }}" class="btn btn-secondary">Register</a>
+                        <div class="buttons-wrap justify-content-end">
+                            <a href="{{ route('login') }}" class="btn-step-next">Login to Continue</a>
+                            <p class="register-link">Not a member? <a href="{{ route('register') }}">Register Now</a></p>
+                            <!-- <a href="{{ route('register') }}" class="btn btn-secondary">Register</a> -->
+                        </div>
                         @endif
-                    </div>
+                   
 
                 </form>
             </div>
