@@ -40,7 +40,7 @@
                         <div class="stepform-hd-top">
                             <h3>Select a Booking Slot</h3>
                         </div>
-                        <div class="stepform-body step-1-wrapper">
+                        <div class="stepform-body">
                             <div class="">
                                 <div class="p-2 p-md-3">
                                     <div class="row">
@@ -348,9 +348,9 @@
                             <button type="button" class="btn-step-next" id="nextBtn">Continue</button>
                         </div>
                         @else
-                        <div class="buttons-wrap justify-content-end">
+                        <div class="buttons-wrap d-block justify-content-end">
                             <a href="{{ route('login') }}" class="btn-step-next">Login to Continue</a>
-                            <p class="register-link">Not a member? <a href="{{ route('register') }}">Register Now</a></p>
+                            <p class="register-link mt-4">Not a member? <a href="{{ route('register') }}">Register Now</a></p>
                             <!-- <a href="{{ route('register') }}" class="btn btn-secondary">Register</a> -->
                         </div>
                         @endif
