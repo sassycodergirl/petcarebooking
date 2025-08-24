@@ -25,18 +25,25 @@ class LoginController extends Controller
         if (!$user->hasVerifiedEmail()) {
             auth()->logout();
 
+            //ajax login
+            if($request->ajax()) {
+                return response()->json(['error' => 'Please verify your email before logging in.'], 422);
+            }
+            //ajax login
+
             return redirect()->route('verification.notice')
                 ->with('message', 'Please verify your email before logging in.');
+        }
+
+        
+        if($request->ajax()) {
+            return response()->json(['success' => true]);
         }
 
         if ($user->is_admin == 1) {
             return redirect()->route('admin.dashboard');
         }
-        // Customer redirect logic
-        $redirectUrl = $request->query('redirect'); // get ?redirect= from URL
-        if ($redirectUrl) {
-            return redirect($redirectUrl); // back to booking page
-        }
+        
 
         return redirect()->route('customer.dashboard');
     }

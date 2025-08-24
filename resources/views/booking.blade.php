@@ -349,12 +349,13 @@
                         </div>
                         @else
                         <div class="buttons-wrap d-block text-end">
-                            @php
-                                $redirectUrl = url()->current(); 
-                            @endphp
-                            <a href="{{ route('login', ['redirect' => $redirectUrl]) }}" class="btn-step-next">Login to Continue</a>
-                            <p class="register-link mt-4">Not a member? <a href="{{ route('register', ['redirect' => $redirectUrl]) }}">Register Now</a></p>
-                            <!-- <a href="{{ route('register') }}" class="btn btn-secondary">Register</a> -->
+                            <button type="button" class="btn-step-next" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Login to Continue
+                            </button>
+                            <p class="register-link mt-4">
+                                Not a member? 
+                                <a href="{{ route('register', ['redirect' => url()->current()]) }}">Register Now</a>
+                            </p>
                         </div>
                         @endif
                    
@@ -394,6 +395,34 @@
             </div>
         </div>
     </section>
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form id="ajaxLoginForm">
+        @csrf
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Login to Continue Booking</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" required>
+          </div>
+          <div id="loginError" class="text-danger"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 @include('partials.footer')
 
@@ -750,4 +779,35 @@ function calculateSummary() {
         updateSlotInfo();
     }
 });
+</script>
+
+
+<script>
+    $('#ajaxLoginForm').submit(function(e) {
+    e.preventDefault();
+    let form = $(this);
+    let url = "{{ route('login') }}"; // Laravel login route
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: form.serialize(),
+        success: function(response) {
+            // Close modal
+            $('#loginModal').modal('hide');
+
+            // Reload the page to update Auth::check() and continue booking
+            location.reload();
+        },
+        error: function(xhr) {
+            let errors = xhr.responseJSON.errors;
+            if(errors) {
+                $('#loginError').text(errors.email ? errors.email[0] : errors.password ? errors.password[0] : 'Login failed');
+            } else {
+                $('#loginError').text('Login failed. Please try again.');
+            }
+        }
+    });
+});
+
 </script>
