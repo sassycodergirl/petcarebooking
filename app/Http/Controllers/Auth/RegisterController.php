@@ -71,18 +71,46 @@ class RegisterController extends Controller
         ]);
     }
 
+   
+
+
+
+    //old latest
     //     protected function registered(Request $request, $user)
     // {
-    //     $user->sendEmailVerificationNotification();
+    //     // $this->guard()->logout(); // optional: log out until verified
 
     //     return redirect()->route('verification.notice')
     //         ->with('message', 'Please check your email to verify your account.');
     // }
-        protected function registered(Request $request, $user)
+
+    //old latest
+
+    protected function registered(Request $request, $user)
     {
-        // $this->guard()->logout(); // optional: log out until verified
+        if ($request->ajax()) {
+            if ($request->has('redirect')) {
+                session(['booking_redirect' => $request->input('redirect')]);
+            }
+            $user->sendEmailVerificationNotification();
+
+            return response()->json([
+                'message' => 'Verification email sent!',
+                'redirect_url' => $request->input('redirect', route('customer.dashboard')),
+            ]);
+        }
+
+        // normal flow for non-AJAX requests
+        if ($request->has('redirect')) {
+            session(['booking_redirect' => $request->input('redirect')]);
+        }
+        $user->sendEmailVerificationNotification();
 
         return redirect()->route('verification.notice')
             ->with('message', 'Please check your email to verify your account.');
     }
+
+
+
+
 }

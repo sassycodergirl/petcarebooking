@@ -32,8 +32,28 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 
 // Email verification link (no auth required)
-Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
+// Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
 
+//     $user = User::findOrFail($id);
+
+//     if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+//         abort(403, 'Invalid verification link.');
+//     }
+
+//     if (!$user->hasVerifiedEmail()) {
+//         $user->markEmailAsVerified();
+//     }
+
+//     // Log in user after verification
+//     Auth::login($user);
+
+//     return redirect()->route('customer.dashboard')
+//         ->with('message', 'Your email has been verified!');
+// })->name('verification.verify');
+
+
+// verification route
+Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
     $user = User::findOrFail($id);
 
     if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
@@ -44,12 +64,16 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
         $user->markEmailAsVerified();
     }
 
-    // Log in user after verification
     Auth::login($user);
 
-    return redirect()->route('customer.dashboard')
-        ->with('message', 'Your email has been verified!');
+    $redirectUrl = session('booking_redirect', route('customer.dashboard'));
+    session()->forget('booking_redirect');
+
+    return redirect($redirectUrl)->with('message', 'Your email has been verified!');
 })->name('verification.verify');
+
+
+
 
 // Resend verification email
 Route::post('/email/verification-notification', function (Request $request) {

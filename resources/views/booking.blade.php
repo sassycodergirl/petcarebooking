@@ -354,7 +354,7 @@
                             </button>
                             <p class="register-link mt-4">
                                 Not a member? 
-                                <a href="{{ route('register', ['redirect' => url()->current()]) }}">Register Now</a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register Now</a>
                             </p>
                         </div>
                         @endif
@@ -423,6 +423,45 @@
     </div>
   </div>
 </div>
+<!-- Login Modal -->
+
+<!-- Registration Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Register to Continue</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="registerForm">
+          @csrf
+          <div class="mb-3">
+            <label for="registerName" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" id="registerName" required>
+          </div>
+          <div class="mb-3">
+            <label for="registerEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" id="registerEmail" required>
+          </div>
+          <div class="mb-3">
+            <label for="registerPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="registerPassword" required>
+          </div>
+          <div class="mb-3">
+            <label for="registerPasswordConfirm" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" name="password_confirmation" id="registerPasswordConfirm" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Register</button>
+        </form>
+        <div class="mt-2 text-center">
+          Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Registration Modal -->
 
 @include('partials.footer')
 
@@ -810,4 +849,29 @@ function calculateSummary() {
     });
 });
 
+</script>
+
+<script>
+$('#registerForm').submit(function(e) {
+    e.preventDefault();
+    var formData = $(this).serialize();
+
+    $.ajax({
+        url: "{{ route('register') }}",
+        type: "POST",
+        data: formData,
+        success: function(response) {
+            $('#registerModal').modal('hide');
+            alert('Verification email sent! Please check your email.');
+        },
+        error: function(xhr) {
+            let errors = xhr.responseJSON.errors;
+            let message = '';
+            for (let key in errors) {
+                message += errors[key][0] + '\n';
+            }
+            alert(message);
+        }
+    });
+});
 </script>
