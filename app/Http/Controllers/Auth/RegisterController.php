@@ -94,7 +94,7 @@ class RegisterController extends Controller
         }
 
         // Send verification email
-        $user->sendEmailVerificationNotification();
+        // $user->sendEmailVerificationNotification();
 
         // Respond with JSON for AJAX
         if ($request->ajax()) {

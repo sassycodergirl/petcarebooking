@@ -426,7 +426,7 @@
 <!-- Login Modal -->
 
 <!-- Registration Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+<!-- <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -460,7 +460,56 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<!-- Registration Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Register to Continue</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Loader GIF -->
+        <div id="registerLoader" class="text-center d-none mb-3">
+          <img src="{{ asset('images/loader.gif') }}" alt="Loading..." width="60">
+        </div>
+
+        <!-- Registration Form -->
+        <form id="registerForm">
+          @csrf
+          <div class="mb-3">
+            <label for="registerName" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" id="registerName" required>
+          </div>
+          <div class="mb-3">
+            <label for="registerEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" id="registerEmail" required>
+          </div>
+          <div class="mb-3">
+            <label for="registerPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="registerPassword" required>
+          </div>
+          <div class="mb-3">
+            <label for="registerPasswordConfirm" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" name="password_confirmation" id="registerPasswordConfirm" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Register</button>
+        </form>
+
+        <!-- Message Display -->
+        <div id="registerMessage" class="text-center d-none mt-3"></div>
+
+        <div class="mt-2 text-center">
+          Already have an account? 
+          <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login here</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 <!-- Registration Modal -->
 
 @include('partials.footer')
@@ -852,22 +901,71 @@ function calculateSummary() {
 </script>
 
 <script>
+// $('#registerForm').submit(function(e){
+//     e.preventDefault(); // prevent normal form submit
+
+//     let redirectUrl = window.location.href; // current page
+//     let formData = $(this).serialize() + '&redirect=' + encodeURIComponent(redirectUrl);
+
+//     $.ajax({
+//         url: "{{ route('register') }}",
+//         method: 'POST',
+//         data: formData,
+//         success: function(res){
+//             alert(res.message);
+//             $('#registerModal').modal('hide');
+//         },
+//         error: function(err){
+//             console.log(err);
+//         }
+//     });
+// });
 $('#registerForm').submit(function(e){
     e.preventDefault(); // prevent normal form submit
 
     let redirectUrl = window.location.href; // current page
     let formData = $(this).serialize() + '&redirect=' + encodeURIComponent(redirectUrl);
 
+    // Show loader
+    $('#registerLoader').removeClass('d-none');
+    $('#registerForm button[type="submit"]').prop('disabled', true);
+    $('#registerMessage').addClass('d-none').html('');
+
     $.ajax({
         url: "{{ route('register') }}",
         method: 'POST',
         data: formData,
         success: function(res){
-            alert(res.message);
-            $('#registerModal').modal('hide');
+            // Hide loader
+            $('#registerLoader').addClass('d-none');
+
+            // Hide form
+            $('#registerForm').hide();
+
+            // Show message inside modal
+            $('#registerMessage').removeClass('d-none').html(`
+                <div class="alert alert-success">
+                    ${res.message}
+                </div>
+                <button type="button" class="btn btn-success mt-3" data-bs-dismiss="modal">Close</button>
+            `);
         },
         error: function(err){
-            console.log(err);
+            // Hide loader, enable button
+            $('#registerLoader').addClass('d-none');
+            $('#registerForm button[type="submit"]').prop('disabled', false);
+
+            if (err.responseJSON && err.responseJSON.errors) {
+                let errors = err.responseJSON.errors;
+                let html = '<div class="alert alert-danger"><ul>';
+                $.each(errors, function(key, value){
+                    html += '<li>' + value[0] + '</li>';
+                });
+                html += '</ul></div>';
+                $('#registerMessage').removeClass('d-none').html(html);
+            } else {
+                console.log(err);
+            }
         }
     });
 });
