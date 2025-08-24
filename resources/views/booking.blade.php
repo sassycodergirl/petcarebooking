@@ -852,26 +852,24 @@ function calculateSummary() {
 </script>
 
 <script>
-$('#registerForm').submit(function(e) {
-    e.preventDefault();
-    var formData = $(this).serialize();
+$('#registerForm').submit(function(e){
+    e.preventDefault(); // prevent normal form submit
+
+    let redirectUrl = window.location.href; // current page
+    let formData = $(this).serialize() + '&redirect=' + encodeURIComponent(redirectUrl);
 
     $.ajax({
         url: "{{ route('register') }}",
-        type: "POST",
+        method: 'POST',
         data: formData,
-        success: function(response) {
+        success: function(res){
+            alert(res.message);
             $('#registerModal').modal('hide');
-            alert('Verification email sent! Please check your email.');
         },
-        error: function(xhr) {
-            let errors = xhr.responseJSON.errors;
-            let message = '';
-            for (let key in errors) {
-                message += errors[key][0] + '\n';
-            }
-            alert(message);
+        error: function(err){
+            console.log(err);
         }
     });
 });
+
 </script>

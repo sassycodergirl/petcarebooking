@@ -53,26 +53,45 @@ Route::get('/email/verify', function () {
 
 
 // verification route
-Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
-    $user = User::findOrFail($id);
+// Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
+//     $user = User::findOrFail($id);
 
-    if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
-        abort(403, 'Invalid verification link.');
-    }
+//     if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+//         abort(403, 'Invalid verification link.');
+//     }
 
-    if (!$user->hasVerifiedEmail()) {
-        $user->markEmailAsVerified();
-    }
+//     if (!$user->hasVerifiedEmail()) {
+//         $user->markEmailAsVerified();
+//     }
 
-    Auth::login($user);
+//     Auth::login($user);
 
-    $redirectUrl = session('booking_redirect', route('customer.dashboard'));
-    session()->forget('booking_redirect');
+//     $redirectUrl = session('booking_redirect', route('customer.dashboard'));
+//     session()->forget('booking_redirect');
 
-    return redirect($redirectUrl)->with('message', 'Your email has been verified!');
-})->name('verification.verify');
+//     return redirect($redirectUrl)->with('message', 'Your email has been verified!');
+// })->name('verification.verify');
 
 
+    Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
+
+        $user = User::findOrFail($id);
+
+        if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+            abort(403, 'Invalid verification link.');
+        }
+
+        if (!$user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+        }
+
+        Auth::login($user); // auto login
+
+        // Use redirect from query string or fallback to dashboard
+        $redirectUrl = request('redirect', route('customer.dashboard'));
+
+        return redirect($redirectUrl)->with('message', 'Your email has been verified!');
+    })->name('verification.verify');
 
 
 // Resend verification email

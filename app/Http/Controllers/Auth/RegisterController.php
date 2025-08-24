@@ -88,27 +88,26 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
-        if ($request->ajax()) {
-            if ($request->has('redirect')) {
-                session(['booking_redirect' => $request->input('redirect')]);
-            }
-            $user->sendEmailVerificationNotification();
-
-            return response()->json([
-                'message' => 'Verification email sent!',
-                'redirect_url' => $request->input('redirect', route('customer.dashboard')),
-            ]);
-        }
-
-        // normal flow for non-AJAX requests
+        // Save redirect URL in session
         if ($request->has('redirect')) {
             session(['booking_redirect' => $request->input('redirect')]);
         }
+
+        // Send verification email
         $user->sendEmailVerificationNotification();
+
+        // Respond with JSON for AJAX
+        if ($request->ajax()) {
+            return response()->json([
+                'message' => 'Verification email sent! Please check your inbox.',
+                'redirect_url' => $request->input('redirect', route('customer.dashboard'))
+            ]);
+        }
 
         return redirect()->route('verification.notice')
             ->with('message', 'Please check your email to verify your account.');
     }
+
 
 
 
