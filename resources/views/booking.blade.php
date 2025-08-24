@@ -901,25 +901,7 @@ function calculateSummary() {
 </script>
 
 <script>
-// $('#registerForm').submit(function(e){
-//     e.preventDefault(); // prevent normal form submit
 
-//     let redirectUrl = window.location.href; // current page
-//     let formData = $(this).serialize() + '&redirect=' + encodeURIComponent(redirectUrl);
-
-//     $.ajax({
-//         url: "{{ route('register') }}",
-//         method: 'POST',
-//         data: formData,
-//         success: function(res){
-//             alert(res.message);
-//             $('#registerModal').modal('hide');
-//         },
-//         error: function(err){
-//             console.log(err);
-//         }
-//     });
-// });
 $('#registerForm').submit(function(e){
     e.preventDefault(); // prevent normal form submit
 
@@ -970,4 +952,9 @@ $('#registerForm').submit(function(e){
     });
 });
 
+// Reload page when modal closes (any way it closes)
+var registerModal = document.getElementById('registerModal');
+registerModal.addEventListener('hidden.bs.modal', function () {
+    location.reload();
+});
 </script>
