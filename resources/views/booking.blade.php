@@ -111,12 +111,12 @@
                                         <!-- Check-in / Check-out hidden initially -->
                                         <div class="mb-3 hidden-field" id="checkInField">
                                             <label class="form-label">Check-in</label>
-                                            <input type="text" id="checkIn" class="form-control">
+                                            <input type="text" id="checkIn" class="form-control" placeholder="Enter Check-in Date & Time">
                                         </div>
 
                                         <div class="mb-3 hidden-field" id="checkOutField">
                                             <label class="form-label">Check-out</label>
-                                            <input type="text" id="checkOut" class="form-control">
+                                            <input type="text" id="checkOut" class="form-control" placeholder="Enter Check-Out Date & Time">
                                         </div>
 
                                         <div id="penaltyMessage" class="penalty-text d-none"></div>
@@ -425,42 +425,8 @@
 </div>
 <!-- Login Modal -->
 
-<!-- Registration Modal -->
-<!-- <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Register to Continue</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <form id="registerForm">
-          @csrf
-          <div class="mb-3">
-            <label for="registerName" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" id="registerName" required>
-          </div>
-          <div class="mb-3">
-            <label for="registerEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" name="email" id="registerEmail" required>
-          </div>
-          <div class="mb-3">
-            <label for="registerPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" name="password" id="registerPassword" required>
-          </div>
-          <div class="mb-3">
-            <label for="registerPasswordConfirm" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" name="password_confirmation" id="registerPasswordConfirm" required>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Register</button>
-        </form>
-        <div class="mt-2 text-center">
-          Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login here</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
+
+
 
 <!-- Registration Modal -->
 <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">

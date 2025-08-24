@@ -314,6 +314,71 @@ $(document).ready(function(){
 
 //   updateSteps();
 // });
+// $(document).ready(function () {
+//     let currentStep = 0;
+//     const totalSteps = $(".form-step").length;
+
+//     function updateSteps() {
+//         $(".form-step").removeClass("active").eq(currentStep).addClass("active");
+
+//         $(".step").each(function (index) {
+//             $(this).toggleClass("active", index <= currentStep);
+//         });
+
+//         $("#prevBtn").prop("disabled", currentStep === 0);
+//         $("#nextBtn").text(currentStep === totalSteps - 1 ? "Submit" : "Continue");
+//     }
+
+//     function validateStep() {
+//         let isValid = true;
+
+//         // Required input check
+//         $(".form-step").eq(currentStep).find("input[required]").each(function () {
+//             if (!this.checkValidity()) {
+//                 this.reportValidity();
+//                 isValid = false;
+//                 return false;
+//             }
+//         });
+
+//         // Step 1 extra check: booking type & location
+//         if (currentStep === 0) {
+//             const bookingType = $("input[name='bookingType']:checked").val();
+//             const location = $("select[name='location']").val();
+
+//             if (!bookingType || !location) {
+//                 alert("Please select location and booking type.");
+//                 isValid = false;
+//             }
+//         }
+
+//         return isValid;
+//     }
+
+//     $("#nextBtn").click(function () {
+//         if (currentStep < totalSteps - 1) {
+//             if (validateStep()) {
+//                 currentStep++;
+//                 updateSteps();
+//             }
+//         } else {
+//             if (validateStep()) {
+//                 $("#stepForm").submit(); // final submit
+//             }
+//         }
+//     });
+
+//     $("#prevBtn").click(function () {
+//         if (currentStep > 0) {
+//             currentStep--;
+//             updateSteps();
+//         }
+//     });
+
+//     updateSteps();
+// });
+
+
 $(document).ready(function () {
     let currentStep = 0;
     const totalSteps = $(".form-step").length;
@@ -321,11 +386,13 @@ $(document).ready(function () {
     function updateSteps() {
         $(".form-step").removeClass("active").eq(currentStep).addClass("active");
 
-        $(".step").each(function (index) {
-            $(this).toggleClass("active", index <= currentStep);
-        });
+        // Hide previous button on first step
+        if (currentStep === 0) {
+            $("#prevBtn").hide();
+        } else {
+            $("#prevBtn").show();
+        }
 
-        $("#prevBtn").prop("disabled", currentStep === 0);
         $("#nextBtn").text(currentStep === totalSteps - 1 ? "Submit" : "Continue");
     }
 
@@ -341,13 +408,23 @@ $(document).ready(function () {
             }
         });
 
-        // Step 1 extra check: booking type & location
+        // Step 1 extra check: booking type, location, pets, check-in/out
         if (currentStep === 0) {
             const bookingType = $("input[name='bookingType']:checked").val();
             const location = $("select[name='location']").val();
+            const numDogs = parseInt($("#numDogs").val());
+            const numCats = parseInt($("#numCats").val());
+            const checkIn = $("#checkIn").val();
+            const checkOut = $("#checkOut").val();
 
             if (!bookingType || !location) {
                 alert("Please select location and booking type.");
+                isValid = false;
+            } else if (numDogs + numCats < 1) {
+                alert("Please select at least 1 dog or cat.");
+                isValid = false;
+            } else if (!checkIn || !checkOut) {
+                alert("Please select both check-in and check-out dates.");
                 isValid = false;
             }
         }
@@ -377,3 +454,4 @@ $(document).ready(function () {
 
     updateSteps();
 });
+
