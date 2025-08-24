@@ -15,9 +15,7 @@
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <style>
-  .step-1-wrapper{
-        background: ghostwhite;
-  }
+
   #calendar { max-width: 100%; margin: 20px auto; }
   .fc-daygrid-day.fc-day-disabled { background-color:#f300168c !important; cursor: not-allowed !important; }
   .fc-day-selected { background-color: #007bff !important; color: white !important; }

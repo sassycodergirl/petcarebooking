@@ -41,7 +41,7 @@
                             <h3>Select a Booking Slot</h3>
                         </div>
                         <div class="stepform-body">
-                            <div class="">
+                            <div class="step-1-wrapper">
                                 <div class="p-2 p-md-3">
                                     <div class="row">
                                     <!-- Calendar -->
