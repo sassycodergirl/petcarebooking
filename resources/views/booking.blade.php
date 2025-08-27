@@ -700,6 +700,110 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// function calculateSummary() {
+//     const inTime = checkInPicker.selectedDates[0];
+//     const outTime = checkOutPicker.selectedDates[0];
+//     let booking = getSelectedBooking();
+//     if (!inTime || !outTime || !booking) return;
+
+//     const dogs = parseInt(document.getElementById('numDogs').value) || 0;
+//     const cats = parseInt(document.getElementById('numCats').value) || 0;
+//     const totalPets = dogs + cats;
+//     totalPetsEl.textContent = totalPets;
+
+//     penaltyMessage.classList.add("d-none");
+//     penaltyMessage.textContent = "";
+
+//     if(totalPets === 0){
+//         basePriceEl.textContent = 0;
+//         penaltyPriceEl.textContent = 0;
+//         totalPriceEl.textContent = 0;
+//         return;
+//     }
+
+//     // Check fully booked days for Boarding
+//     if(booking === "Boarding"){
+//         let currentDate = new Date(inTime);
+//         let blocked = false;
+//         while(currentDate <= outTime){
+//             const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
+//             if(fullyBookedDates.includes(dateStr)){ blocked = true; break; }
+//             currentDate.setDate(currentDate.getDate() + 1);
+//         }
+//         if(blocked){
+//             penaltyMessage.classList.remove("d-none");
+//             penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
+//             basePriceEl.textContent = 0;
+//             penaltyPriceEl.textContent = 0;
+//             totalPriceEl.textContent = 0;
+//             return;
+//         }
+//     }
+
+//     let duration = (outTime - inTime) / (1000*60*60);
+//     if(duration <= 0) return;
+//     durationText.textContent = duration.toFixed(1);
+
+//     let basePrice = 0, penalty = 0, earlyCheckinCharge = 0;
+
+//     // Early check-in before 8 AM
+//     if(inTime.getHours() < 8){
+//         earlyCheckinCharge = 499;
+//         penaltyMessage.classList.remove("d-none");
+//         penaltyMessage.textContent = `Early check-in before 8:00 AM! Extra ₹${earlyCheckinCharge}`;
+//     }
+
+//     // Daycare pricing
+//     if(booking === "Daycare4") basePrice = prices.Daycare4;
+//     if(booking === "Daycare12") basePrice = prices.Daycare12;
+
+//     if(booking.startsWith("Daycare")){
+//         const allowedHours = booking === "Daycare4" ? 4 : 12;
+//         if(outTime.getDate() === inTime.getDate() && outTime.getHours() < 22){
+//             if(duration > allowedHours){
+//                 penalty = 499;
+//                 penaltyMessage.classList.remove("d-none");
+//                 penaltyMessage.textContent = `Exceeded allowed hours! Extra ₹${penalty}`;
+//             }
+//         } else {
+//             document.querySelector('input[name="bookingType"][value="Boarding"]').checked = true;
+//             booking = "Boarding";
+//             toggleCheckFields();
+//             basePrice = prices.Boarding.daily;
+//             penaltyMessage.classList.remove("d-none");
+//             penaltyMessage.textContent = `Exceeded allowed hours or next day → converted to Boarding. Charged ₹${basePrice} per pet.`;
+//         }
+//     }
+
+//     // Updated Boarding pricing logic
+//     if(booking === "Boarding"){
+//         const basePricePerDay = prices.Boarding.daily; // 1350 per day
+//         let baseDays = 1; // first 24h = base
+//         let extraCharge = 0;
+
+//         // First 24h end
+//         const first24End = new Date(inTime.getTime() + 24*60*60*1000);
+
+//         // Next cycle starts at 8 AM next day after check-in
+//         let nextCycle = new Date(inTime);
+//         nextCycle.setDate(nextCycle.getDate() + 1);
+//         nextCycle.setHours(8,0,0,0);
+
+//         // Count extra full days needed
+//         while(outTime > nextCycle){
+//             extraCharge += basePricePerDay;
+//             nextCycle.setDate(nextCycle.getDate() + 1);
+//         }
+
+//         basePrice = basePricePerDay; // first 24h
+//         penalty = extraCharge;        // extra day charges
+//     }
+
+//     basePriceEl.textContent = basePrice * totalPets;
+//     penaltyPriceEl.textContent = (penalty + earlyCheckinCharge) * totalPets;
+//     totalPriceEl.textContent = (basePrice + penalty + earlyCheckinCharge) * totalPets;
+// }
+
 function calculateSummary() {
     const inTime = checkInPicker.selectedDates[0];
     const outTime = checkOutPicker.selectedDates[0];
@@ -721,88 +825,85 @@ function calculateSummary() {
         return;
     }
 
-    // Check fully booked days for Boarding
-    if(booking === "Boarding"){
-        let currentDate = new Date(inTime);
-        let blocked = false;
-        while(currentDate <= outTime){
-            const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
-            if(fullyBookedDates.includes(dateStr)){ blocked = true; break; }
-            currentDate.setDate(currentDate.getDate() + 1);
-        }
-        if(blocked){
-            penaltyMessage.classList.remove("d-none");
-            penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
-            basePriceEl.textContent = 0;
-            penaltyPriceEl.textContent = 0;
-            totalPriceEl.textContent = 0;
-            return;
-        }
-    }
-
     let duration = (outTime - inTime) / (1000*60*60);
     if(duration <= 0) return;
     durationText.textContent = duration.toFixed(1);
 
-    let basePrice = 0, penalty = 0, earlyCheckinCharge = 0;
+    let basePrice = 0, extraCharge = 0, earlyCharge = 0;
 
-    // Early check-in before 8 AM
+    // Early check-in
     if(inTime.getHours() < 8){
-        earlyCheckinCharge = 499;
-        penaltyMessage.classList.remove("d-none");
-        penaltyMessage.textContent = `Early check-in before 8:00 AM! Extra ₹${earlyCheckinCharge}`;
+        earlyCharge = 499;
     }
 
-    // Daycare pricing
-    if(booking === "Daycare4") basePrice = prices.Daycare4;
-    if(booking === "Daycare12") basePrice = prices.Daycare12;
+    // Daycare 4H selected
+    if(booking === "Daycare4"){
+        basePrice = prices.Daycare4;
 
-    if(booking.startsWith("Daycare")){
-        const allowedHours = booking === "Daycare4" ? 4 : 12;
-        if(outTime.getDate() === inTime.getDate() && outTime.getHours() < 22){
-            if(duration > allowedHours){
-                penalty = 499;
-                penaltyMessage.classList.remove("d-none");
-                penaltyMessage.textContent = `Exceeded allowed hours! Extra ₹${penalty}`;
-            }
-        } else {
-            document.querySelector('input[name="bookingType"][value="Boarding"]').checked = true;
-            booking = "Boarding";
-            toggleCheckFields();
-            basePrice = prices.Boarding.daily;
-            penaltyMessage.classList.remove("d-none");
-            penaltyMessage.textContent = `Exceeded allowed hours or next day → converted to Boarding. Charged ₹${basePrice} per pet.`;
+        if(duration > 4 && outTime.getHours() < 22 && inTime.toDateString() === outTime.toDateString()){
+            // upgrade to Daycare12
+            booking = "Daycare12";
+            basePrice = prices.Daycare12;
+            extraCharge = 0;
+        }
+        else if(duration <= 4 && outTime.getHours() >= 22){
+            // convert to Boarding 24h
+            basePrice = 499;
+            extraCharge = 851;
+        }
+        else if(duration > 4 && outTime.getHours() >= 22){
+            // also convert to Boarding
+            basePrice = 499;
+            extraCharge = 851;
         }
     }
 
-    // Updated Boarding pricing logic
+    // Hidden Daycare 12H (auto applied)
+    if(booking === "Daycare12"){
+        basePrice = prices.Daycare12;
+
+        if(duration > 12 && outTime.getHours() < 22 && inTime.toDateString() === outTime.toDateString()){
+            // convert to Boarding
+            basePrice = 1350;
+            extraCharge = 0;
+        }
+        else if(duration <= 12 && outTime.getHours() >= 22){
+            basePrice = 799;
+            extraCharge = 551;
+        }
+        else if(duration > 12 && outTime.getHours() >= 22){
+            basePrice = 799;
+            extraCharge = 551;
+        }
+    }
+
+    // Boarding Logic
     if(booking === "Boarding"){
-        const basePricePerDay = prices.Boarding.daily; // 1350 per day
-        let baseDays = 1; // first 24h = base
-        let extraCharge = 0;
+        const basePerDay = prices.Boarding.daily;
+        let days = 1;
 
-        // First 24h end
-        const first24End = new Date(inTime.getTime() + 24*60*60*1000);
+        let cycleStart = new Date(inTime);
+        cycleStart.setHours(8,0,0,0);
+        let cycleEnd = new Date(cycleStart.getTime() + 24*60*60*1000);
 
-        // Next cycle starts at 8 AM next day after check-in
-        let nextCycle = new Date(inTime);
-        nextCycle.setDate(nextCycle.getDate() + 1);
-        nextCycle.setHours(8,0,0,0);
+        // if check-in not at cycle start, adjust
+        if(inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
 
-        // Count extra full days needed
-        while(outTime > nextCycle){
-            extraCharge += basePricePerDay;
-            nextCycle.setDate(nextCycle.getDate() + 1);
+        while(outTime > cycleEnd){
+            days++;
+            cycleStart.setDate(cycleStart.getDate() + 1);
+            cycleEnd = new Date(cycleStart.getTime() + 24*60*60*1000);
         }
 
-        basePrice = basePricePerDay; // first 24h
-        penalty = extraCharge;        // extra day charges
+        basePrice = basePerDay * days;
+        extraCharge = 0;
     }
 
     basePriceEl.textContent = basePrice * totalPets;
-    penaltyPriceEl.textContent = (penalty + earlyCheckinCharge) * totalPets;
-    totalPriceEl.textContent = (basePrice + penalty + earlyCheckinCharge) * totalPets;
+    penaltyPriceEl.textContent = (extraCharge + earlyCharge) * totalPets;
+    totalPriceEl.textContent = (basePrice + extraCharge + earlyCharge) * totalPets;
 }
+
 
 
 
