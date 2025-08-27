@@ -816,48 +816,92 @@ function calculateSummary() {
     //     extraCharge = 0;
     // }
      // Boarding Logic
+    // if (booking === "Boarding") {
+    //     // --- Block days check ---
+    //     let currentDate = new Date(inTime);
+    //     let blocked = false;
+    //     while (currentDate <= outTime) {
+    //         const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
+    //         if (fullyBookedDates.includes(dateStr)) {
+    //             blocked = true;
+    //             break;
+    //         }
+    //         currentDate.setDate(currentDate.getDate() + 1);
+    //     }
+
+    //     if (blocked) {
+    //         penaltyMessage.classList.remove("d-none");
+    //         penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
+    //         basePriceEl.textContent = 0;
+    //         penaltyPriceEl.textContent = 0;
+    //         totalPriceEl.textContent = 0;
+    //         return; // stop here
+    //     }
+
+    //     // --- Price calculation ---
+    //     const basePerDay = prices.Boarding.daily;
+    //     let days = 1;
+
+    //     let cycleStart = new Date(inTime);
+    //     cycleStart.setHours(8, 0, 0, 0);
+    //     let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
+
+    //     // if check-in not at cycle start, adjust
+    //     if (inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
+
+    //     while (outTime > cycleEnd) {
+    //         days++;
+    //         cycleStart.setDate(cycleStart.getDate() + 1);
+    //         cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
+    //     }
+
+    //     basePrice = basePerDay * days;
+    //     extraCharge = 0;
+    // }
+
     if (booking === "Boarding") {
-        // --- Block days check ---
-        let currentDate = new Date(inTime);
-        let blocked = false;
-        while (currentDate <= outTime) {
-            const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
-            if (fullyBookedDates.includes(dateStr)) {
-                blocked = true;
-                break;
-            }
-            currentDate.setDate(currentDate.getDate() + 1);
+    // --- Block days check ---
+    let currentDate = new Date(inTime);
+    let blocked = false;
+    while (currentDate <= outTime) {
+        const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
+        if (fullyBookedDates.includes(dateStr)) {
+            blocked = true;
+            break;
         }
-
-        if (blocked) {
-            penaltyMessage.classList.remove("d-none");
-            penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
-            basePriceEl.textContent = 0;
-            penaltyPriceEl.textContent = 0;
-            totalPriceEl.textContent = 0;
-            return; // stop here
-        }
-
-        // --- Price calculation ---
-        const basePerDay = prices.Boarding.daily;
-        let days = 1;
-
-        let cycleStart = new Date(inTime);
-        cycleStart.setHours(8, 0, 0, 0);
-        let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-
-        // if check-in not at cycle start, adjust
-        if (inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
-
-        while (outTime > cycleEnd) {
-            days++;
-            cycleStart.setDate(cycleStart.getDate() + 1);
-            cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-        }
-
-        basePrice = basePerDay * days;
-        extraCharge = 0;
+        currentDate.setDate(currentDate.getDate() + 1);
     }
+
+    if (blocked) {
+        penaltyMessage.classList.remove("d-none");
+        penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
+        basePriceEl.textContent = 0;
+        penaltyPriceEl.textContent = 0;
+        totalPriceEl.textContent = 0;
+        return; // stop here
+    }
+
+    // --- Price calculation ---
+    const basePerDay = prices.Boarding.daily;
+    let days = 1;
+
+    let cycleStart = new Date(inTime);
+    cycleStart.setHours(8, 0, 0, 0);
+    let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
+
+    if (inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
+
+    while (outTime > cycleEnd) {
+        days++;
+        cycleStart.setDate(cycleStart.getDate() + 1);
+        cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
+    }
+
+    // 👇 First cycle goes into base price, remaining into extraCharge
+    basePrice = basePerDay;  
+    extraCharge = (days - 1) * basePerDay;  
+    earlyCharge = 0;
+}
 
     basePriceEl.textContent = basePrice * totalPets;
     penaltyPriceEl.textContent = (extraCharge + earlyCharge) * totalPets;
