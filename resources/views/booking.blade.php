@@ -1274,7 +1274,24 @@ function restoreBookingForm() {
     if (savedData.bookingType) {
         let bookingInput = document.querySelector(`input[name="bookingType"][value="${savedData.bookingType}"]`);
         if (bookingInput) bookingInput.checked = true;
-         toggleCheckFields();
+
+        //test
+        bookingInput.dispatchEvent(new Event('change', { bubbles: true }));
+
+            // Fallback: manually show fields if still hidden
+            const checkInField = document.getElementById('checkInField');
+            const checkOutField = document.getElementById('checkOutField');
+            const checkIn = document.getElementById('checkIn');
+            const checkOut = document.getElementById('checkOut');
+
+            if (checkInField && checkOutField) {
+                checkInField.classList.add('show');
+                checkOutField.classList.add('show');
+            }
+            if (checkIn) checkIn.disabled = false;
+            if (checkOut) checkOut.disabled = false;
+        //test
+         
     }
 
     // Restore dogs/cats
