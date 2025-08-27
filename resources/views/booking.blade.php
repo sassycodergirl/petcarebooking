@@ -981,11 +981,14 @@ if (booking === "Boarding") {
     if (blocked) {
         penaltyMessage.classList.remove("d-none");
         penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
-        
+        document.querySelector(".buttons-wrap").classList.add("d-none");
         basePriceEl.textContent = 0;
         penaltyPriceEl.textContent = 0;
         totalPriceEl.textContent = 0;
         return; // stop here
+    }
+    else{
+         document.querySelector(".buttons-wrap").classList.remove("d-none");
     }
     
 
