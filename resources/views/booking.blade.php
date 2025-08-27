@@ -986,12 +986,16 @@ if (booking === "Boarding") {
         cycleEnd.setDate(cycleEnd.getDate() + 1);
     }
 
-    // ✅ FIX: charge for all full days
-    basePrice = basePerDay * days; 
-    extraCharge = basePerDay; 
+    // ✅ Base price = all complete boarding days
+    basePrice = basePerDay * days;
+    extraCharge = 0;
 
-    if (outTime <= cycleEnd) {
-        extraCharge = 0;
+    // ✅ If checkout is after 8:00 AM (not aligned with cycleEnd) → add penalty
+    let cutoff = new Date(outTime);
+    cutoff.setHours(8, 0, 0, 0);
+
+    if (outTime > cutoff) {
+        extraCharge = basePerDay;
     }
 
     // Messages
@@ -1002,6 +1006,7 @@ if (booking === "Boarding") {
         penaltyMessage.classList.add("d-none");
     }
 }
+
 
 
 
