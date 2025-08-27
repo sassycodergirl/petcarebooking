@@ -1274,6 +1274,7 @@ function restoreBookingForm() {
     if (savedData.bookingType) {
         let bookingInput = document.querySelector(`input[name="bookingType"][value="${savedData.bookingType}"]`);
         if (bookingInput) bookingInput.checked = true;
+         toggleCheckFields();
     }
 
     // Restore dogs/cats
@@ -1297,7 +1298,7 @@ function restoreBookingForm() {
         let checkOut = document.querySelector(".checkOut");
         if (checkOut) checkOut.value = savedData.checkOut;
     }
-    toggleCheckFields();
+
 }
 
 // Run restore on page load
