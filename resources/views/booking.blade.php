@@ -804,6 +804,106 @@ document.addEventListener('DOMContentLoaded', function () {
 //     totalPriceEl.textContent = (basePrice + penalty + earlyCheckinCharge) * totalPets;
 // }
 
+// function calculateSummary() {
+//     const inTime = checkInPicker.selectedDates[0];
+//     const outTime = checkOutPicker.selectedDates[0];
+//     let booking = getSelectedBooking();
+//     if (!inTime || !outTime || !booking) return;
+
+//     const dogs = parseInt(document.getElementById('numDogs').value) || 0;
+//     const cats = parseInt(document.getElementById('numCats').value) || 0;
+//     const totalPets = dogs + cats;
+//     totalPetsEl.textContent = totalPets;
+
+//     penaltyMessage.classList.add("d-none");
+//     penaltyMessage.textContent = "";
+
+//     if(totalPets === 0){
+//         basePriceEl.textContent = 0;
+//         penaltyPriceEl.textContent = 0;
+//         totalPriceEl.textContent = 0;
+//         return;
+//     }
+
+//     let duration = (outTime - inTime) / (1000*60*60);
+//     if(duration <= 0) return;
+//     durationText.textContent = duration.toFixed(1);
+
+//     let basePrice = 0, extraCharge = 0, earlyCharge = 0;
+
+//     // Early check-in
+//     if(inTime.getHours() < 8){
+//         earlyCharge = 499;
+//     }
+
+//     // Daycare 4H selected
+//     if(booking === "Daycare4"){
+//         basePrice = prices.Daycare4;
+
+//         if(duration > 4 && outTime.getHours() < 22 && inTime.toDateString() === outTime.toDateString()){
+//             // upgrade to Daycare12
+//             booking = "Daycare12";
+//             basePrice = prices.Daycare12;
+//             extraCharge = 0;
+//         }
+//         else if(duration <= 4 && outTime.getHours() >= 22){
+//             // convert to Boarding 24h
+//             basePrice = 499;
+//             extraCharge = 851;
+//         }
+//         else if(duration > 4 && outTime.getHours() >= 22){
+//             // also convert to Boarding
+//             basePrice = 499;
+//             extraCharge = 851;
+//         }
+//     }
+
+//     // Hidden Daycare 12H (auto applied)
+//     if(booking === "Daycare12"){
+//         basePrice = prices.Daycare12;
+
+//         if(duration > 12 && outTime.getHours() < 22 && inTime.toDateString() === outTime.toDateString()){
+//             // convert to Boarding
+//             basePrice = 1350;
+//             extraCharge = 0;
+//         }
+//         else if(duration <= 12 && outTime.getHours() >= 22){
+//             basePrice = 799;
+//             extraCharge = 551;
+//         }
+//         else if(duration > 12 && outTime.getHours() >= 22){
+//             basePrice = 799;
+//             extraCharge = 551;
+//         }
+//     }
+
+//     // Boarding Logic
+//     if(booking === "Boarding"){
+//         const basePerDay = prices.Boarding.daily;
+//         let days = 1;
+
+//         let cycleStart = new Date(inTime);
+//         cycleStart.setHours(8,0,0,0);
+//         let cycleEnd = new Date(cycleStart.getTime() + 24*60*60*1000);
+
+//         // if check-in not at cycle start, adjust
+//         if(inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
+
+//         while(outTime > cycleEnd){
+//             days++;
+//             cycleStart.setDate(cycleStart.getDate() + 1);
+//             cycleEnd = new Date(cycleStart.getTime() + 24*60*60*1000);
+//         }
+
+//         basePrice = basePerDay * days;
+//         extraCharge = 0;
+//     }
+
+//     basePriceEl.textContent = basePrice * totalPets;
+//     penaltyPriceEl.textContent = (extraCharge + earlyCharge) * totalPets;
+//     totalPriceEl.textContent = (basePrice + extraCharge + earlyCharge) * totalPets;
+// }
+
 function calculateSummary() {
     const inTime = checkInPicker.selectedDates[0];
     const outTime = checkOutPicker.selectedDates[0];
@@ -818,40 +918,44 @@ function calculateSummary() {
     penaltyMessage.classList.add("d-none");
     penaltyMessage.textContent = "";
 
-    if(totalPets === 0){
+    if (totalPets === 0) {
         basePriceEl.textContent = 0;
         penaltyPriceEl.textContent = 0;
         totalPriceEl.textContent = 0;
         return;
     }
 
-    let duration = (outTime - inTime) / (1000*60*60);
-    if(duration <= 0) return;
+    let duration = (outTime - inTime) / (1000 * 60 * 60);
+    if (duration <= 0) return;
     durationText.textContent = duration.toFixed(1);
 
     let basePrice = 0, extraCharge = 0, earlyCharge = 0;
 
     // Early check-in
-    if(inTime.getHours() < 8){
+    if (inTime.getHours() < 8) {
         earlyCharge = 499;
     }
 
+    // --- create cutoff 10:00 PM for same day ---
+    let cutoff = new Date(inTime);
+    cutoff.setHours(22, 0, 0, 0);
+
     // Daycare 4H selected
-    if(booking === "Daycare4"){
+    if (booking === "Daycare4") {
         basePrice = prices.Daycare4;
 
-        if(duration > 4 && outTime.getHours() < 22 && inTime.toDateString() === outTime.toDateString()){
+        if (duration > 4 && outTime <= cutoff && inTime.toDateString() === outTime.toDateString()) {
             // upgrade to Daycare12
             booking = "Daycare12";
             basePrice = prices.Daycare12;
             extraCharge = 0;
         }
-        else if(duration <= 4 && outTime.getHours() >= 22){
+        else if (duration <= 4 && outTime > cutoff) {
             // convert to Boarding 24h
             basePrice = 499;
             extraCharge = 851;
         }
-        else if(duration > 4 && outTime.getHours() >= 22){
+        else if (duration > 4 && outTime > cutoff) {
             // also convert to Boarding
             basePrice = 499;
             extraCharge = 851;
@@ -859,40 +963,40 @@ function calculateSummary() {
     }
 
     // Hidden Daycare 12H (auto applied)
-    if(booking === "Daycare12"){
+    if (booking === "Daycare12") {
         basePrice = prices.Daycare12;
 
-        if(duration > 12 && outTime.getHours() < 22 && inTime.toDateString() === outTime.toDateString()){
+        if (duration > 12 && outTime <= cutoff && inTime.toDateString() === outTime.toDateString()) {
             // convert to Boarding
             basePrice = 1350;
             extraCharge = 0;
         }
-        else if(duration <= 12 && outTime.getHours() >= 22){
+        else if (duration <= 12 && outTime > cutoff) {
             basePrice = 799;
             extraCharge = 551;
         }
-        else if(duration > 12 && outTime.getHours() >= 22){
+        else if (duration > 12 && outTime > cutoff) {
             basePrice = 799;
             extraCharge = 551;
         }
     }
 
     // Boarding Logic
-    if(booking === "Boarding"){
+    if (booking === "Boarding") {
         const basePerDay = prices.Boarding.daily;
         let days = 1;
 
         let cycleStart = new Date(inTime);
-        cycleStart.setHours(8,0,0,0);
-        let cycleEnd = new Date(cycleStart.getTime() + 24*60*60*1000);
+        cycleStart.setHours(8, 0, 0, 0);
+        let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
 
         // if check-in not at cycle start, adjust
-        if(inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
+        if (inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
 
-        while(outTime > cycleEnd){
+        while (outTime > cycleEnd) {
             days++;
             cycleStart.setDate(cycleStart.getDate() + 1);
-            cycleEnd = new Date(cycleStart.getTime() + 24*60*60*1000);
+            cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
         }
 
         basePrice = basePerDay * days;
@@ -903,7 +1007,6 @@ function calculateSummary() {
     penaltyPriceEl.textContent = (extraCharge + earlyCharge) * totalPets;
     totalPriceEl.textContent = (basePrice + extraCharge + earlyCharge) * totalPets;
 }
-
 
 
 
