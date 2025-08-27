@@ -973,7 +973,6 @@ if (booking === "Boarding") {
     let cycleStart = new Date(inTime);
     cycleStart.setHours(8, 0, 0, 0);
 
-    // If user checks in after today's 8:00 AM → cycle starts from next 8:00 AM
     if (inTime > cycleStart) {
         cycleStart.setDate(cycleStart.getDate() + 1);
     }
@@ -987,10 +986,10 @@ if (booking === "Boarding") {
         cycleEnd.setDate(cycleEnd.getDate() + 1);
     }
 
-    basePrice = basePerDay * (days - 1); // only full cycles go in base price
-    extraCharge = basePerDay; // assume late checkout
+    // ✅ FIX: charge for all full days
+    basePrice = basePerDay * days; 
+    extraCharge = basePerDay; 
 
-    // If checkout is exactly at cycle end → no extra charge
     if (outTime <= cycleEnd) {
         extraCharge = 0;
     }
@@ -1003,6 +1002,7 @@ if (booking === "Boarding") {
         penaltyMessage.classList.add("d-none");
     }
 }
+
 
 
 
