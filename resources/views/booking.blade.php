@@ -966,6 +966,28 @@ function calculateSummary() {
 
 
 if (booking === "Boarding") {
+       // --- Block days check ---
+    let currentDate = new Date(inTime);
+    let blocked = false;
+    while (currentDate <= outTime) {
+        const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
+        if (fullyBookedDates.includes(dateStr)) {
+            blocked = true;
+            break;
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    if (blocked) {
+        penaltyMessage.classList.remove("d-none");
+        penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
+        basePriceEl.textContent = 0;
+        penaltyPriceEl.textContent = 0;
+        totalPriceEl.textContent = 0;
+        return; // stop here
+    }
+
+    
     const basePerDay = prices.Boarding.daily; // e.g., 1350
     let days = 1;
 
