@@ -6356,4 +6356,10 @@ blockquote {
 .fc-today-button{
 	display: none !important;
 }
+
+@media (min-width: 990px) {
+    .modal-dialog {
+        max-width: 900px;
+
+	}
 /*added by sudipa*/
