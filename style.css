@@ -6353,4 +6353,7 @@ blockquote {
     height: 25px;
     margin-left: 5px;
 }
+.fc-today-button{
+	display: none;
+}
 /*added by sudipa*/
