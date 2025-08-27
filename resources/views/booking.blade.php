@@ -402,12 +402,16 @@
       <form id="ajaxLoginForm">
         @csrf
         <div class="modal-header">
-          <h5 class="modal-title" id="loginModalLabel">Login to Continue Booking</h5>
+          <!-- <h5 class="modal-title" id="loginModalLabel">Login to Continue Booking</h5> -->
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="row">
-                <div class="col-md-7"></div>
+                <div class="col-md-7">
+                    <div class="text-center">
+                             <a class="navbar-brand" href="/"><img src="{{asset('images/logo.png')}}" alt></a>
+                     </div>
+                </div>
                 <div class="col-md-5">
                        <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
