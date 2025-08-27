@@ -413,9 +413,10 @@
                      </div>
                 </div>
                 <div class="col-md-5">
-                     <div>
-                        <div><h4>Login / Signup</h4></div>
-                        <div class="mb-3">
+                    <div class="login-signup-form bg-white p-md-4">
+                        <div>
+                            <h4 class="text-center">Login / Signup</h4>
+                            <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" name="email" placeholder="Email" required>
                             </div>
@@ -430,6 +431,7 @@
                             <p>I accept that I have read & understood Furry & Friends <a href="#">Privacy Policy</a> and <a href="#">T&Cs.</a></p>
                             <a href="{{ route('login') }}">Other Ways to Login</a>
                         </div>
+                    </div>
                 </div>
             </div>
        

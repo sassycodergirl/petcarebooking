@@ -6358,6 +6358,7 @@ blockquote {
 }
 #loginModal .modal-body{
 	background: tan;
+	border-radius: 15px;
 }
 .login-signup-form{
 	border-radius: 15px;
