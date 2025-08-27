@@ -6356,7 +6356,7 @@ blockquote {
 .fc-today-button{
 	display: none !important;
 }
-#loginModal .modal-body{
+#loginModal .modal-content{
 	background: tan;
 	border-radius: 15px;
 }
