@@ -6373,7 +6373,7 @@ blockquote {
 }
 @media (min-width: 990px) {
     .modal-dialog {
-        max-width: 940px;
+        max-width: 990px;
 
 	}
 }
