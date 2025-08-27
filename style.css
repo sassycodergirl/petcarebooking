@@ -6356,6 +6356,12 @@ blockquote {
 .fc-today-button{
 	display: none !important;
 }
+#loginModal .modal-body{
+	background: tan;
+}
+.login-signup-form{
+	border-radius: 15px;
+}
 .btn-close {
 	position: absolute;
     right: -4%;
