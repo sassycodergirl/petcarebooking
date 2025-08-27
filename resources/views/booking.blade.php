@@ -981,13 +981,18 @@ if (booking === "Boarding") {
     if (blocked) {
         penaltyMessage.classList.remove("d-none");
         penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
-        basePriceEl.textContent = 0;
-        penaltyPriceEl.textContent = 0;
-        totalPriceEl.textContent = 0;
+        document.querySelector(".summary-box").classList.add("d-none");
+        // basePriceEl.textContent = 0;
+        // penaltyPriceEl.textContent = 0;
+        // totalPriceEl.textContent = 0;
         return; // stop here
     }
+    else{
+        penaltyMessage.classList.add("d-none");
+        document.querySelector(".summary-box").classList.remove("d-none");
+    }
 
-    
+
     const basePerDay = prices.Boarding.daily; // e.g., 1350
     let days = 1;
 
