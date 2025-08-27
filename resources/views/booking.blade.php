@@ -401,10 +401,10 @@
     <div class="modal-content">
       <form id="ajaxLoginForm">
         @csrf
-        <div class="modal-header">
+        <!-- <div class="modal-header"> -->
           <!-- <h5 class="modal-title" id="loginModalLabel">Login to Continue Booking</h5> -->
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+        <!-- </div> -->
         <div class="modal-body">
             <div class="row">
                 <div class="col-md-7">
