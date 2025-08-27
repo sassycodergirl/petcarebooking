@@ -72,12 +72,12 @@
                                             <label class="form-label">Booking Type</label>
                                                 <div class="form-check">
                                                     <input class="form-check-input bookingType"  type="radio" name="bookingType" id="daycare4" value="Daycare4">
-                                                    <label class="form-check-label" for="daycare4">Daycare (4 Hours)</label>
+                                                    <label class="form-check-label" for="daycare4">Daycare </label>
                                                 </div>
-                                                <div class="form-check">
+                                                <!-- <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="bookingType" id="daycare12" value="Daycare12">
                                                     <label class="form-check-label" for="daycare12">Daycare (12 Hours)</label>
-                                                </div>
+                                                </div> -->
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="bookingType" id="boarding" value="Boarding">
                                                     <label class="form-check-label" for="boarding">Boarding</label>
