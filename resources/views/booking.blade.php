@@ -411,9 +411,9 @@
                     <div class="text-center">
                              <a class="navbar-brand" href="/"><img src="{{asset('images/logo.png')}}" alt></a>
                      </div>
-                     <div class="text-center text-white">
-                        <h3>Welcome to Furry & Friends </h3>
-                        <h4>Register to avail the best deals!</h4>
+                     <div class="text-center">
+                        <h3 class="text-white">Welcome to Furry & Friends </h3>
+                        <h4 class="text-white">Register to avail the best deals!</h4>
                      </div>
                      <div class="row">
                         <div class="col-md-4">
