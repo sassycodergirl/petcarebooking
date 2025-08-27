@@ -734,7 +734,7 @@ function calculateSummary() {
     if (inTime.getHours() < 8) {
         earlyCharge = 499;
         penaltyMessage.classList.remove("d-none");
-        penaltyMessage.textContent = `Early check-in before 8:00 AM! Extra ₹${earlyCharge}`;
+        penaltyMessage.textContent = `Early check-in before 8:00 AM! Additional Charge ₹${earlyCharge}`;
     }
 
     // --- create cutoff 10:00 PM for same day ---
@@ -755,11 +755,15 @@ function calculateSummary() {
             // convert to Boarding 24h
             basePrice = 499;
             extraCharge = 851;
+            penaltyMessage.classList.remove("d-none");
+            penaltyMessage.textContent = `Exceeded allowed hours! Charged ₹${extraCharge} per pet.`;
         }
         else if (duration > 4 && outTime > cutoff) {
             // also convert to Boarding
             basePrice = 799;
             extraCharge = 551;
+            penaltyMessage.classList.remove("d-none");
+            penaltyMessage.textContent = `Exceeded allowed hours! Charged ₹${extraCharge} per pet.`;
         }
     }
 
@@ -779,10 +783,14 @@ function calculateSummary() {
         else if (duration <= 12 && outTime > cutoff) {
             basePrice = 799;
             extraCharge = 551;
+            penaltyMessage.classList.remove("d-none");
+            penaltyMessage.textContent = `Exceeded allowed hours! Charged ₹${extraCharge} per pet.`;
         }
         else if (duration > 12 && outTime > cutoff) {
             basePrice = 799;
             extraCharge = 551;
+            penaltyMessage.classList.remove("d-none");
+            penaltyMessage.textContent = `Exceeded allowed hours! Charged ₹${extraCharge} per pet.`;
         }
     }
 
