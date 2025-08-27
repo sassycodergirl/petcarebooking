@@ -413,16 +413,23 @@
                      </div>
                 </div>
                 <div class="col-md-5">
-                       <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="Email" required>
-                        </div>
+                     <div>
+                        <div><h4>Login / Signup</h4></div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                            </div>
+                            <div id="loginError" class="text-danger"></div>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
-                        <div id="loginError" class="text-danger"></div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <div class="text-center">
+                            <p>I accept that I have read & understood Furry & Friends <a href="#">Privacy Policy</a> and <a href="#">T&Cs.</a></p>
+                            <a href="{{ route('login') }}">Other Ways to Login</a>
+                        </div>
                 </div>
             </div>
        
