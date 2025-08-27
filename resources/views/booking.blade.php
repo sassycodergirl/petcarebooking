@@ -406,19 +406,26 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" name="email" required>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" name="password" required>
-          </div>
-          <div id="loginError" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-7"></div>
+                <div class="col-md-5">
+                       <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        <div id="loginError" class="text-danger"></div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+       
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Login</button>
-        </div>
+       
+          
+       
       </form>
     </div>
   </div>
