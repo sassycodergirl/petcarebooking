@@ -981,16 +981,13 @@ if (booking === "Boarding") {
     if (blocked) {
         penaltyMessage.classList.remove("d-none");
         penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
-        document.querySelector(".summary-box").classList.add("d-none");
-        // basePriceEl.textContent = 0;
-        // penaltyPriceEl.textContent = 0;
-        // totalPriceEl.textContent = 0;
+        
+        basePriceEl.textContent = 0;
+        penaltyPriceEl.textContent = 0;
+        totalPriceEl.textContent = 0;
         return; // stop here
     }
-    else{
-        penaltyMessage.classList.add("d-none");
-        document.querySelector(".summary-box").classList.remove("d-none");
-    }
+    
 
 
     const basePerDay = prices.Boarding.daily; // e.g., 1350
@@ -1046,21 +1043,60 @@ if (booking === "Boarding") {
 
 
 
-    function toggleSummaryVisibility() {
-        const location = document.querySelector('select[name="location"]').value;
-        const booking = getSelectedBooking();
-        const inTime = checkInPicker.selectedDates[0];
-        const outTime = checkOutPicker.selectedDates[0];
-        const dogs = parseInt(document.getElementById('numDogs').value) || 0;
-        const cats = parseInt(document.getElementById('numCats').value) || 0;
-        const totalPets = dogs + cats;
+    // function toggleSummaryVisibility() {
+    //     const location = document.querySelector('select[name="location"]').value;
+    //     const booking = getSelectedBooking();
+    //     const inTime = checkInPicker.selectedDates[0];
+    //     const outTime = checkOutPicker.selectedDates[0];
+    //     const dogs = parseInt(document.getElementById('numDogs').value) || 0;
+    //     const cats = parseInt(document.getElementById('numCats').value) || 0;
+    //     const totalPets = dogs + cats;
 
-        if(location && booking && inTime && outTime && totalPets>0){
-            summaryBox.classList.remove('d-none');
-        } else {
-            summaryBox.classList.add('d-none');
+    //     if(location && booking && inTime && outTime && totalPets>0){
+    //         summaryBox.classList.remove('d-none');
+    //     } else {
+    //         summaryBox.classList.add('d-none');
+    //     }
+    // }
+
+    function toggleSummaryVisibility() {
+    const location = document.querySelector('select[name="location"]').value;
+    const booking = getSelectedBooking();
+    const inTime = checkInPicker.selectedDates[0];
+    const outTime = checkOutPicker.selectedDates[0];
+    const dogs = parseInt(document.getElementById('numDogs').value) || 0;
+    const cats = parseInt(document.getElementById('numCats').value) || 0;
+    const totalPets = dogs + cats;
+
+    let blocked = false;
+    if (inTime && outTime) {
+        let currentDate = new Date(inTime);
+        while (currentDate <= outTime) {
+            const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
+            if (fullyBookedDates.includes(dateStr)) {
+                blocked = true;
+                break;
+            }
+            currentDate.setDate(currentDate.getDate() + 1);
         }
     }
+
+    if (blocked) {
+        penaltyMessage.classList.remove("d-none");
+        penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
+        summaryBox.classList.add("d-none"); // ❌ Hide summary
+        return;
+    } else {
+        penaltyMessage.classList.add("d-none");
+    }
+
+    if (location && booking && inTime && outTime && totalPets > 0) {
+        summaryBox.classList.remove('d-none');
+    } else {
+        summaryBox.classList.add('d-none');
+    }
+}
+
 
     window.changeCount = function(id, delta){
         const input = document.getElementById(id);
