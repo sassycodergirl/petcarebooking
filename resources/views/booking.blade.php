@@ -859,7 +859,50 @@ function calculateSummary() {
     //     extraCharge = 0;
     // }
 
-    if (booking === "Boarding") {
+//     if (booking === "Boarding") {
+//     // --- Block days check ---
+//     let currentDate = new Date(inTime);
+//     let blocked = false;
+//     while (currentDate <= outTime) {
+//         const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
+//         if (fullyBookedDates.includes(dateStr)) {
+//             blocked = true;
+//             break;
+//         }
+//         currentDate.setDate(currentDate.getDate() + 1);
+//     }
+
+//     if (blocked) {
+//         penaltyMessage.classList.remove("d-none");
+//         penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
+//         basePriceEl.textContent = 0;
+//         penaltyPriceEl.textContent = 0;
+//         totalPriceEl.textContent = 0;
+//         return; // stop here
+//     }
+
+//     // --- Price calculation ---
+//     const basePerDay = prices.Boarding.daily;
+//     let days = 1;
+
+//     let cycleStart = new Date(inTime);
+//     cycleStart.setHours(8, 0, 0, 0);
+//     let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
+
+//     if (inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
+
+//     while (outTime > cycleEnd) {
+//         days++;
+//         cycleStart.setDate(cycleStart.getDate() + 1);
+//         cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
+//     }
+
+//     // 👇 First cycle goes into base price, remaining into extraCharge
+//     basePrice = basePerDay;  
+//     extraCharge = (days - 1) * basePerDay;  
+//     earlyCharge = 0;
+// }
+if (booking === "Boarding") {
     // --- Block days check ---
     let currentDate = new Date(inTime);
     let blocked = false;
@@ -883,25 +926,44 @@ function calculateSummary() {
 
     // --- Price calculation ---
     const basePerDay = prices.Boarding.daily;
-    let days = 1;
 
+    // Align first cycle start (8:00 AM of check-in date)
     let cycleStart = new Date(inTime);
     cycleStart.setHours(8, 0, 0, 0);
     let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
 
-    if (inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
+    // If they check-in AFTER 8 AM → still counts for today
+    if (inTime > cycleStart) {
+        // cycleEnd remains next day's 8 AM
+    } else {
+        // If they check-in BEFORE 8 AM → penalty
+        penaltyMessage.classList.remove("d-none");
+        penaltyMessage.textContent = "Early check-in before 8:00 AM incurs additional charges.";
+    }
 
+    // Count days by full cycles (8 AM → 8 AM)
+    let days = 1;
     while (outTime > cycleEnd) {
         days++;
         cycleStart.setDate(cycleStart.getDate() + 1);
         cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
     }
 
-    // 👇 First cycle goes into base price, remaining into extraCharge
-    basePrice = basePerDay;  
-    extraCharge = (days - 1) * basePerDay;  
-    earlyCharge = 0;
+    // Now check for penalty at checkout
+    if (outTime.getHours() > 8 || 
+        (outTime.getHours() === 8 && (outTime.getMinutes() > 0 || outTime.getSeconds() > 0))) {
+        penaltyMessage.classList.remove("d-none");
+        penaltyMessage.textContent = "Late check-out after 8:00 AM incurs additional charges.";
+        extraCharge = basePerDay; // one extra day
+    } else {
+        extraCharge = 0; // no additional if exactly at 8 AM
+    }
+
+    // Pricing assignment
+    basePrice = days * basePerDay;
+    earlyCharge = 0; // handled in penalty if needed
 }
+
 
     basePriceEl.textContent = basePrice * totalPets;
     penaltyPriceEl.textContent = (extraCharge + earlyCharge) * totalPets;
