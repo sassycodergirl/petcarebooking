@@ -963,28 +963,30 @@ function calculateSummary() {
     // }
 
     // Daycare 4H selected
-if (booking === "Daycare4") {
+    if (booking === "Daycare4") {
     basePrice = prices.Daycare4;
 
     if (duration > 4 && outTime <= cutoff && inTime.toDateString() === outTime.toDateString()) {
-        // upgrade to Daycare12
+        // Upgrade to Daycare12
         booking = "Daycare12";
         basePrice = prices.Daycare12;
         extraCharge = 0;
     }
     else if (duration > 4 && outTime > cutoff) {
-        // 👇 now check duration to decide Boarding variant
         if (duration > 12) {
             // Boarding via Daycare12
-            basePrice = prices.Daycare12;
-            extraCharge = prices.Boarding12Extra;
+            booking = "Boarding";
+            basePrice = prices.Daycare12;          // ₹799
+            extraCharge = prices.Boarding12Extra; // ₹551
         } else {
             // Boarding via Daycare4
-            basePrice = prices.Daycare4;
-            extraCharge = prices.BoardingExtra;
+            booking = "Boarding";
+            basePrice = prices.Daycare4;          // ₹499
+            extraCharge = prices.BoardingExtra;   // ₹851
         }
     }
 }
+
 
 
     // Hidden Daycare 12H (auto applied)
