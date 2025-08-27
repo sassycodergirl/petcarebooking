@@ -966,61 +966,44 @@ function calculateSummary() {
 
 
 if (booking === "Boarding") {
-    // --- Block days check ---
-    let currentDate = new Date(inTime);
-    let blocked = false;
-    while (currentDate <= outTime) {
-        const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
-        if (fullyBookedDates.includes(dateStr)) {
-            blocked = true;
-            break;
-        }
-        currentDate.setDate(currentDate.getDate() + 1);
-    }
+    const basePerDay = prices.Boarding.daily; // e.g., 1350
+    let days = 1;
 
-    if (blocked) {
-        penaltyMessage.classList.remove("d-none");
-        penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
-        basePriceEl.textContent = 0;
-        penaltyPriceEl.textContent = 0;
-        totalPriceEl.textContent = 0;
-        return; // stop here
-    }
-
-    // --- Price calculation ---
-    const basePerDay = prices.Boarding.daily;
-
-    // Always start at 8:00am cycle
+    // Start cycle at check-in 8:00 AM anchor
     let cycleStart = new Date(inTime);
     cycleStart.setHours(8, 0, 0, 0);
 
-    if (inTime < cycleStart) {
-        // if they check-in before 8:00am, start cycle from that day 8am
-        cycleStart.setDate(cycleStart.getDate() - 1);
+    // If user checks in after today's 8:00 AM → cycle starts from next 8:00 AM
+    if (inTime > cycleStart) {
+        cycleStart.setDate(cycleStart.getDate() + 1);
     }
 
-    let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-    let days = 1;
+    let cycleEnd = new Date(cycleStart);
+    cycleEnd.setDate(cycleEnd.getDate() + 1); // +24 hrs
 
     while (outTime >= cycleEnd) {
         days++;
-        cycleStart.setDate(cycleStart.getDate() + 1);
-        cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
+        cycleStart = new Date(cycleEnd);
+        cycleEnd.setDate(cycleEnd.getDate() + 1);
     }
 
-    // Now days is counting full 8am–8am cycles
-    basePrice = days * basePerDay;
-    extraCharge = 0;
+    basePrice = basePerDay * (days - 1); // only full cycles go in base price
+    extraCharge = basePerDay; // assume late checkout
 
-    // --- Late checkout penalty ---
-    if (outTime.getHours() > 8 || (outTime.getHours() === 8 && outTime.getMinutes() > 0)) {
-        extraCharge = basePerDay;
+    // If checkout is exactly at cycle end → no extra charge
+    if (outTime <= cycleEnd) {
+        extraCharge = 0;
+    }
+
+    // Messages
+    if (extraCharge > 0) {
         penaltyMessage.classList.remove("d-none");
         penaltyMessage.textContent = "Late check-out after 8:00 AM incurs additional charges.";
     } else {
         penaltyMessage.classList.add("d-none");
     }
 }
+
 
 
 
