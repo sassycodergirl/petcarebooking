@@ -6357,7 +6357,7 @@ blockquote {
 	display: none !important;
 }
 #loginModal .modal-content{
-	background: tan;
+	background:#0e4ead;
 	border-radius: 15px;
 }
 .login-signup-form{

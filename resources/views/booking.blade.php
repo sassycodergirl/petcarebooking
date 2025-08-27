@@ -411,6 +411,18 @@
                     <div class="text-center">
                              <a class="navbar-brand" href="/"><img src="{{asset('images/logo.png')}}" alt></a>
                      </div>
+                     <div>
+                        <h3>Welcome to Furry & Friends </h3>
+                        <h4>Register to avail the best deals!</h4>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="login-signup-form bg-white p-md-4">
