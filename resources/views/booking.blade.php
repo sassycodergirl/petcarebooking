@@ -941,26 +941,51 @@ function calculateSummary() {
     cutoff.setHours(22, 0, 0, 0);
 
     // Daycare 4H selected
-    if (booking === "Daycare4") {
-        basePrice = prices.Daycare4;
+    // if (booking === "Daycare4") {
+    //     basePrice = prices.Daycare4;
 
-        if (duration > 4 && outTime <= cutoff && inTime.toDateString() === outTime.toDateString()) {
-            // upgrade to Daycare12
-            booking = "Daycare12";
+    //     if (duration > 4 && outTime <= cutoff && inTime.toDateString() === outTime.toDateString()) {
+    //         // upgrade to Daycare12
+    //         booking = "Daycare12";
+    //         basePrice = prices.Daycare12;
+    //         extraCharge = 0;
+    //     }
+    //     else if (duration <= 4 && outTime > cutoff) {
+    //         // convert to Boarding 24h
+    //         basePrice = 499;
+    //         extraCharge = 851;
+    //     }
+    //     else if (duration > 4 && outTime > cutoff) {
+    //         // also convert to Boarding
+    //         basePrice = 499;
+    //         extraCharge = 851;
+    //     }
+    // }
+
+    // Daycare 4H selected
+if (booking === "Daycare4") {
+    basePrice = prices.Daycare4;
+
+    if (duration > 4 && outTime <= cutoff && inTime.toDateString() === outTime.toDateString()) {
+        // upgrade to Daycare12
+        booking = "Daycare12";
+        basePrice = prices.Daycare12;
+        extraCharge = 0;
+    }
+    else if (duration > 4 && outTime > cutoff) {
+        // 👇 now check duration to decide Boarding variant
+        if (duration > 12) {
+            // Boarding via Daycare12
             basePrice = prices.Daycare12;
-            extraCharge = 0;
-        }
-        else if (duration <= 4 && outTime > cutoff) {
-            // convert to Boarding 24h
-            basePrice = 499;
-            extraCharge = 851;
-        }
-        else if (duration > 4 && outTime > cutoff) {
-            // also convert to Boarding
-            basePrice = 499;
-            extraCharge = 851;
+            extraCharge = prices.Boarding12Extra;
+        } else {
+            // Boarding via Daycare4
+            basePrice = prices.Daycare4;
+            extraCharge = prices.BoardingExtra;
         }
     }
+}
+
 
     // Hidden Daycare 12H (auto applied)
     if (booking === "Daycare12") {
