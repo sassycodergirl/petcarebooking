@@ -1297,6 +1297,7 @@ function restoreBookingForm() {
         let checkOut = document.querySelector(".checkOut");
         if (checkOut) checkOut.value = savedData.checkOut;
     }
+    toggleCheckFields();
 }
 
 // Run restore on page load
