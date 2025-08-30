@@ -405,6 +405,7 @@
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content p-4">
+         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         <div class="row">
           <div class="col-md-7">
                     <div class="text-center">
