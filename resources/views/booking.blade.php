@@ -1183,7 +1183,7 @@ $(document).ready(function () {
                 </div>
                 <div class="col-md-6">
                     <label>Age</label>
-                    <input type="number" min=0 name="pets[${index}][age]" placeholder="Enter Age">
+                    <input type="number" min="1" name="pets[${index}][age]" placeholder="Enter Age">
                 </div>
                 <div class="col-md-6">
                     <label>Gender</label>
