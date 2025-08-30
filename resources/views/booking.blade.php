@@ -36,7 +36,7 @@
 
                 <!-- Form steps -->
                 <form id="stepForm">
-                    <div class="form-step active">
+                    <div class="form-step step-slot active">
                         <div class="stepform-hd-top">
                             <h3>Select a Booking Slot</h3>
                         </div>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-step pet-details">
+                    <div class="form-step step-pet-details">
                         <div class="stepform-hd-top">
                             <h2>Pet Details</h2>
                         </div>
@@ -148,7 +148,7 @@
                             
                         </div>
                     </div>
-                    <div class="form-step">
+                    <div class="form-step step-owner">
                         <div class="stepform-hd-top">
                             <h2>Select a Booking Slot</h2>
                         </div>
@@ -185,7 +185,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-step">
+                    <div class="form-step step-review">
                         <div class="stepform-hd-top">
                             <h2>Select a Booking Slot</h2>
                         </div>
@@ -1174,11 +1174,36 @@ function getPetFormHTML(index, type) {
 }
 
 // Trigger form generation on moving from Step 1 -> Step 2
-document.getElementById("nextBtn").addEventListener("click", function() {
-  let numDogs = parseInt(document.getElementById("numDogs").value);
-  let numCats = parseInt(document.getElementById("numCats").value);
+// document.getElementById("nextBtn").addEventListener("click", function() {
+//   let numDogs = parseInt(document.getElementById("numDogs").value);
+//   let numCats = parseInt(document.getElementById("numCats").value);
 
-  generatePetForms(numDogs, numCats);
+//   generatePetForms(numDogs, numCats);
+// });
+
+
+function goToNextStep() {
+  let current = document.querySelector(".form-step.active");
+  let next = current.nextElementSibling;
+
+  if (next) {
+    current.classList.remove("active");
+    next.classList.add("active");
+  }
+}
+
+document.getElementById("nextBtn").addEventListener("click", function () {
+  const activeStep = document.querySelector(".form-step.active");
+
+  // Step 1 → Step 2: generate pets
+  if (activeStep && activeStep.classList.contains("step-slot")) {
+    let numDogs = parseInt(document.getElementById("numDogs").value) || 0;
+    let numCats = parseInt(document.getElementById("numCats").value) || 0;
+
+    generatePetForms(numDogs, numCats);
+  }
+
+  goToNextStep();
 });
 </script> 
 
