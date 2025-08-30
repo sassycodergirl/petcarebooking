@@ -462,31 +462,62 @@
 
 
 
-<!-- Modal -->
+<!--OTP Modal -->
+
+
+
+
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content p-4">
-      <h4 class="text-center mb-3">Login / Signup with Phone</h4>
+        <div class="row">
+          <div class="col-md-7">
+                    <div class="text-center">
+                             <a class="navbar-brand" href="/"><img src="{{asset('images/logo.png')}}" alt></a>
+                     </div>
+                     <div class="text-center mt-4">
+                        <h3 class="text-white mb-1">Welcome to Furry & Friends </h3>
+                        <h4 class="text-white">Register to avail the best deals!</h4>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                     </div>
+              </div>
+               <div class="col-md-5">
+                <div class="login-signup-form bg-white p-md-4">
+                    <h4 class="text-center mb-3">Login / Signup with Phone</h4>
 
-      <!-- Phone Input -->
-      <div id="phoneSection">
-        <label class="form-label">Phone (E.164 format)</label>
-        <input type="text" id="phone" class="form-control mb-3" placeholder="+9198XXXXXXXX">
-        <button id="sendOtpBtn" class="btn btn-primary w-100">Send OTP</button>
-      </div>
+                    <!-- Phone Input -->
+                    <div id="phoneSection">
+                      <label class="form-label">Phone (E.164 format)</label>
+                      <input type="text" id="phone" class="form-control mb-3" placeholder="+9198XXXXXXXX">
+                      <button id="sendOtpBtn" class="btn btn-primary w-100">Send OTP</button>
+                    </div>
 
-      <!-- OTP Input (hidden initially) -->
-      <div id="otpSection" class="d-none">
-        <label class="form-label">Enter OTP</label>
-        <input type="text" id="otp" class="form-control mb-3" placeholder="Enter OTP">
-        <button id="verifyOtpBtn" class="btn btn-success w-100">Verify & Login</button>
-      </div>
+                    <!-- OTP Input (hidden initially) -->
+                    <div id="otpSection" class="d-none">
+                      <label class="form-label">Enter OTP</label>
+                      <input type="text" id="otp" class="form-control mb-3" placeholder="Enter OTP">
+                      <button id="verifyOtpBtn" class="btn btn-success w-100">Verify & Login</button>
+                    </div>
 
-      <div id="loginError" class="text-danger mt-3"></div>
+                    <div id="loginError" class="text-danger mt-3"></div>
+                     <div class="text-center">
+                            <p>I accept that I have read & understood Furry & Friends <a href="#">Privacy Policy</a> and <a href="#">T&Cs.</a></p>
+                            <a href="{{ route('login') }}">Other Ways to Login</a>
+                     </div>
+                  </div>
+              </div>
+        </div>
     </div>
   </div>
 </div>
-
+<!--OTP Modal -->
 
 
 
