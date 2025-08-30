@@ -1242,6 +1242,15 @@ function saveBookingForm() {
     let checkOut = document.querySelector(".checkOut");
     if (checkOut) data.checkOut = checkOut.value;
 
+       // ✅ Save Summary Details
+    data.summary = {
+        totalPets: document.getElementById("totalPets")?.textContent || 0,
+        durationText: document.getElementById("durationText")?.textContent || "0",
+        basePrice: document.getElementById("basePrice")?.textContent || 0,
+        penaltyPrice: document.getElementById("penaltyPrice")?.textContent || 0,
+        totalPrice: document.getElementById("totalPrice")?.textContent || 0,
+    };
+
     // Save to localStorage
     localStorage.setItem("bookingFormData", JSON.stringify(data));
 }
@@ -1303,6 +1312,20 @@ function restoreBookingForm() {
     if (savedData.checkOut) {
         let checkOut = document.querySelector(".checkOut");
         if (checkOut) checkOut.value = savedData.checkOut;
+    }
+
+    // ✅ Restore summary details
+    if (savedData.summary) {
+        document.getElementById("totalPets").textContent = savedData.summary.totalPets;
+        document.getElementById("durationText").textContent = savedData.summary.durationText;
+        document.getElementById("basePrice").textContent = savedData.summary.basePrice;
+        document.getElementById("penaltyPrice").textContent = savedData.summary.penaltyPrice;
+        document.getElementById("totalPrice").textContent = savedData.summary.totalPrice;
+
+        // Show summary box if valid
+        if (parseInt(savedData.summary.totalPets) > 0) {
+            document.getElementById("summaryBox").classList.remove("d-none");
+        }
     }
 
 }
