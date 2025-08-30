@@ -1091,7 +1091,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <!--petform dynamic generate-->
-<script>
+<!-- <script>
 function generatePetForms(numDogs, numCats) {
   let wrapper = document.getElementById("petDetailsWrapper");
   wrapper.innerHTML = ""; // reset
@@ -1157,7 +1157,76 @@ document.getElementById("nextBtn").addEventListener("click", function() {
 
   generatePetForms(numDogs, numCats);
 });
+</script> -->
+
+
+
+<div id="petDetailsContainer"></div>
+<button type="button" onclick="addPetForm()">+ Add Pet</button>
+
+<script>
+let petCount = 0;
+
+function addPetForm() {
+    petCount++;
+
+    const container = document.getElementById("petDetailsContainer");
+
+    const petForm = document.createElement("div");
+    petForm.classList.add("pet-form");
+    petForm.innerHTML = `
+        <h5>Pet ${petCount}</h5>
+        <div class="mb-3">
+            <label>Pet Type</label>
+            <select class="form-select pet-type" name="pets[${petCount}][type]" 
+                onchange="toggleBreedOptions(this, ${petCount})" required>
+                <option value="">Select Type</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Pet Name</label>
+            <input type="text" class="form-control" name="pets[${petCount}][name]" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Breed</label>
+            <select class="form-select pet-breed" name="pets[${petCount}][breed]" required>
+                <option value="">Select Breed</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Age</label>
+            <input type="number" class="form-control" name="pets[${petCount}][age]" required>
+        </div>
+    `;
+
+    container.appendChild(petForm);
+}
+
+function toggleBreedOptions(select, id) {
+    const breedSelect = select.closest(".pet-form").querySelector(".pet-breed");
+
+    // Reset breed options
+    breedSelect.innerHTML = `<option value="">Select Breed</option>`;
+
+    if (select.value === "dog") {
+        const dogBreeds = ["Labrador", "German Shepherd", "Golden Retriever", "Pug", "Beagle", "Other"];
+        dogBreeds.forEach(breed => {
+            breedSelect.innerHTML += `<option value="${breed}">${breed}</option>`;
+        });
+    } else if (select.value === "cat") {
+        const catBreeds = ["Persian", "Siamese", "Maine Coon", "Bengal", "Sphynx", "Other"];
+        catBreeds.forEach(breed => {
+            breedSelect.innerHTML += `<option value="${breed}">${breed}</option>`;
+        });
+    }
+}
 </script>
+
 <!--petform dynamic generate-->
 
 <!--sessionStorage-->
