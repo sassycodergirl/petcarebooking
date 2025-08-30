@@ -386,6 +386,13 @@ $(document).ready(function () {
     function updateSteps() {
         $(".form-step").removeClass("active").eq(currentStep).addClass("active");
 
+        
+        $(".steps .step").removeClass("active").each(function(index) {
+            if (index <= currentStep) {
+                $(this).addClass("active");
+            }
+        });
+
         // Hide previous button on first step
         if (currentStep === 0) {
             $("#prevBtn").hide();
