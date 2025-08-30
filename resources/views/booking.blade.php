@@ -495,7 +495,14 @@
                     <!-- Phone Input -->
                     <div id="phoneSection" class="text-center">
                       <label class="form-label">Enter Mobile Number</label>
-                      <input type="text" id="phone" class="form-control mb-3" placeholder="+9198XXXXXXXX">
+                      <!-- <input type="text" id="phone" class="form-control mb-3" placeholder="+9198XXXXXXXX"> -->
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            🇮🇳 +91
+                        </span>
+                        <input type="text" id="phone" class="form-control" placeholder="Enter phone number" maxlength="10">
+                    </div>
+
                       <button id="sendOtpBtn" class="btn btn-primary w-100">Send OTP</button>
                     </div>
 
@@ -889,175 +896,7 @@ function calculateSummary() {
         }
     }
 
-    // Boarding Logic
-    // if (booking === "Boarding") {
-    //     const basePerDay = prices.Boarding.daily;
-    //     let days = 1;
 
-    //     let cycleStart = new Date(inTime);
-    //     cycleStart.setHours(8, 0, 0, 0);
-    //     let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-
-    //     // if check-in not at cycle start, adjust
-    //     if (inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
-
-    //     while (outTime > cycleEnd) {
-    //         days++;
-    //         cycleStart.setDate(cycleStart.getDate() + 1);
-    //         cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-    //     }
-
-    //     basePrice = basePerDay * days;
-    //     extraCharge = 0;
-    // }
-     // Boarding Logic
-    // if (booking === "Boarding") {
-    //     // --- Block days check ---
-    //     let currentDate = new Date(inTime);
-    //     let blocked = false;
-    //     while (currentDate <= outTime) {
-    //         const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
-    //         if (fullyBookedDates.includes(dateStr)) {
-    //             blocked = true;
-    //             break;
-    //         }
-    //         currentDate.setDate(currentDate.getDate() + 1);
-    //     }
-
-    //     if (blocked) {
-    //         penaltyMessage.classList.remove("d-none");
-    //         penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
-    //         basePriceEl.textContent = 0;
-    //         penaltyPriceEl.textContent = 0;
-    //         totalPriceEl.textContent = 0;
-    //         return; // stop here
-    //     }
-
-    //     // --- Price calculation ---
-    //     const basePerDay = prices.Boarding.daily;
-    //     let days = 1;
-
-    //     let cycleStart = new Date(inTime);
-    //     cycleStart.setHours(8, 0, 0, 0);
-    //     let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-
-    //     // if check-in not at cycle start, adjust
-    //     if (inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
-
-    //     while (outTime > cycleEnd) {
-    //         days++;
-    //         cycleStart.setDate(cycleStart.getDate() + 1);
-    //         cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-    //     }
-
-    //     basePrice = basePerDay * days;
-    //     extraCharge = 0;
-    // }
-
-//     if (booking === "Boarding") {
-//     // --- Block days check ---
-//     let currentDate = new Date(inTime);
-//     let blocked = false;
-//     while (currentDate <= outTime) {
-//         const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
-//         if (fullyBookedDates.includes(dateStr)) {
-//             blocked = true;
-//             break;
-//         }
-//         currentDate.setDate(currentDate.getDate() + 1);
-//     }
-
-//     if (blocked) {
-//         penaltyMessage.classList.remove("d-none");
-//         penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
-//         basePriceEl.textContent = 0;
-//         penaltyPriceEl.textContent = 0;
-//         totalPriceEl.textContent = 0;
-//         return; // stop here
-//     }
-
-//     // --- Price calculation ---
-//     const basePerDay = prices.Boarding.daily;
-//     let days = 1;
-
-//     let cycleStart = new Date(inTime);
-//     cycleStart.setHours(8, 0, 0, 0);
-//     let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-
-//     if (inTime > cycleStart) cycleEnd = new Date(cycleEnd.getTime());
-
-//     while (outTime > cycleEnd) {
-//         days++;
-//         cycleStart.setDate(cycleStart.getDate() + 1);
-//         cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-//     }
-
-//     // 👇 First cycle goes into base price, remaining into extraCharge
-//     basePrice = basePerDay;  
-//     extraCharge = (days - 1) * basePerDay;  
-//     earlyCharge = 0;
-// }
-// if (booking === "Boarding") {
-//     // --- Block days check ---
-//     let currentDate = new Date(inTime);
-//     let blocked = false;
-//     while (currentDate <= outTime) {
-//         const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(currentDate.getDate()).padStart(2,'0')}`;
-//         if (fullyBookedDates.includes(dateStr)) {
-//             blocked = true;
-//             break;
-//         }
-//         currentDate.setDate(currentDate.getDate() + 1);
-//     }
-
-//     if (blocked) {
-//         penaltyMessage.classList.remove("d-none");
-//         penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
-//         basePriceEl.textContent = 0;
-//         penaltyPriceEl.textContent = 0;
-//         totalPriceEl.textContent = 0;
-//         return; // stop here
-//     }
-
-//     // --- Price calculation ---
-//     const basePerDay = prices.Boarding.daily;
-
-//     // Align first cycle start (8:00 AM of check-in date)
-//     let cycleStart = new Date(inTime);
-//     cycleStart.setHours(8, 0, 0, 0);
-//     let cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-
-//     // If they check-in AFTER 8 AM → still counts for today
-//     if (inTime > cycleStart) {
-//         // cycleEnd remains next day's 8 AM
-//     } else {
-//         // If they check-in BEFORE 8 AM → penalty
-//         penaltyMessage.classList.remove("d-none");
-//         penaltyMessage.textContent = "Early check-in before 8:00 AM incurs additional charges.";
-//     }
-
-//     // Count days by full cycles (8 AM → 8 AM)
-//     let days = 1;
-//     while (outTime > cycleEnd) {
-//         days++;
-//         cycleStart.setDate(cycleStart.getDate() + 1);
-//         cycleEnd = new Date(cycleStart.getTime() + 24 * 60 * 60 * 1000);
-//     }
-
-//     // Now check for penalty at checkout
-//     if (outTime.getHours() > 8 || 
-//         (outTime.getHours() === 8 && (outTime.getMinutes() > 0 || outTime.getSeconds() > 0))) {
-//         penaltyMessage.classList.remove("d-none");
-//         penaltyMessage.textContent = "Late check-out after 8:00 AM incurs additional charges.";
-//         extraCharge = basePerDay; // one extra day
-//     } else {
-//         extraCharge = 0; // no additional if exactly at 8 AM
-//     }
-
-//     // Pricing assignment
-//     basePrice = days * basePerDay;
-//     earlyCharge = 0; // handled in penalty if needed
-// }
 
 
 if (booking === "Boarding") {
@@ -1141,21 +980,7 @@ if (booking === "Boarding") {
 
 
 
-    // function toggleSummaryVisibility() {
-    //     const location = document.querySelector('select[name="location"]').value;
-    //     const booking = getSelectedBooking();
-    //     const inTime = checkInPicker.selectedDates[0];
-    //     const outTime = checkOutPicker.selectedDates[0];
-    //     const dogs = parseInt(document.getElementById('numDogs').value) || 0;
-    //     const cats = parseInt(document.getElementById('numCats').value) || 0;
-    //     const totalPets = dogs + cats;
 
-    //     if(location && booking && inTime && outTime && totalPets>0){
-    //         summaryBox.classList.remove('d-none');
-    //     } else {
-    //         summaryBox.classList.add('d-none');
-    //     }
-    // }
 
     function toggleSummaryVisibility() {
     const location = document.querySelector('select[name="location"]').value;
@@ -1301,7 +1126,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
 
 
 <!--otp based login/register-->
-<script>
+<!-- <script>
 document.addEventListener("DOMContentLoaded", function () {
     const sendOtpBtn = document.getElementById("sendOtpBtn");
     const verifyOtpBtn = document.getElementById("verifyOtpBtn");
@@ -1358,6 +1183,70 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+</script> -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const sendOtpBtn = document.getElementById("sendOtpBtn");
+    const verifyOtpBtn = document.getElementById("verifyOtpBtn");
+    const phoneInput = document.getElementById("phone");
+    const otpInput = document.getElementById("otp");
+    const phoneSection = document.getElementById("phoneSection");
+    const otpSection = document.getElementById("otpSection");
+    const errorBox = document.getElementById("loginError");
+
+    // Send OTP
+    sendOtpBtn.addEventListener("click", function () {
+        const fullPhone = "+91" + phoneInput.value.trim();
+
+        fetch("{{ route('phone.login.send') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ phone: fullPhone })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                errorBox.innerText = data.message;
+                phoneSection.classList.add("d-none");
+                otpSection.classList.remove("d-none");
+            } else {
+                errorBox.innerText = data.message;
+            }
+        });
+    });
+
+    // Verify OTP
+    verifyOtpBtn.addEventListener("click", function () {
+        const fullPhone = "+91" + phoneInput.value.trim();
+
+        fetch("{{ route('phone.login.verify') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ phone: fullPhone, otp: otpInput.value })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                errorBox.innerText = "✅ " + data.message;
+                setTimeout(() => {
+                    let modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                    modal.hide();
+                    location.reload();
+                }, 1000);
+            } else {
+                errorBox.innerText = data.message;
+            }
+        });
+    });
+});
+
 </script>
 
 <!--otp based login/register-->
