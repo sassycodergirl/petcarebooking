@@ -392,69 +392,7 @@
             </div>
         </div>
     </section>
-<!-- Login Modal -->
-<!-- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <form id="ajaxLoginForm">
-        @csrf
-       
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-       
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="text-center">
-                             <a class="navbar-brand" href="/"><img src="{{asset('images/logo.png')}}" alt></a>
-                     </div>
-                     <div class="text-center mt-4">
-                        <h3 class="text-white mb-1">Welcome to Furry & Friends </h3>
-                        <h4 class="text-white">Register to avail the best deals!</h4>
-                     </div>
-                     <div class="row">
-                        <div class="col-md-4">
-                        </div>
-                        <div class="col-md-4">
-                        </div>
-                        <div class="col-md-4">
-                        </div>
-                     </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="login-signup-form bg-white p-md-4">
-                        <div>
-                            <h4 class="text-center">Login / Signup</h4>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" name="password" placeholder="Password" required>
-                            </div>
-                            <div id="loginError" class="text-danger"></div>
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
-                        <div class="text-center">
-                            <p>I accept that I have read & understood Furry & Friends <a href="#">Privacy Policy</a> and <a href="#">T&Cs.</a></p>
-                            <a href="{{ route('login') }}">Other Ways to Login</a>
-                        </div>
-                    </div>
-                </div>
 
-          
-
-            </div>
-       
-        </div>
-       
-          
-       
-      </form>
-    </div>
-  </div>
-</div> -->
-<!-- Login Modal -->
 
 
 
@@ -510,7 +448,7 @@
                       <button id="verifyOtpBtn" class="btn btn-success w-100">Verify & Login</button>
                     </div>
 
-                    <div id="loginError" class="text-danger mt-3"></div>
+                    <div id="loginError" class="text-success text-center my-3"></div>
                      <div class="text-center terms-para">
                             <p>I accept that I have read & understood Furry & Friends <a href="#">Privacy Policy</a> and <a href="#">T&Cs.</a></p>
                             <a href="{{ route('login') }}">Other Ways to Login</a>
