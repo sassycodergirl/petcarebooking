@@ -422,7 +422,7 @@
                                 </div>
                                 <div class="usp-para">
                                     <h4>Trusted Daycare & Boarding</h4>
-                                    <p>Safe, hygienic, and vet-approved facilities to keep your pets happy and comfortable.</p>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -431,7 +431,7 @@
                                 <div class="icon-div"></div>
                                 <div class="usp-para">
                                     <h4>Easy Online Booking</h4>
-                                    <p>Real-time slot availability, quick reservations, and hassle-free payments in just a few clicks.</p>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -440,7 +440,7 @@
                                 <div class="icon-div"></div>
                                 <div class="usp-para">
                                     <h4>Pet Community & Events</h4>
-                                    <p>Join a growing network of pet parents, fun meetups, and exclusive pet-friendly events.</p>
+                                   
                                 </div>
                             </div>
                         </div>
