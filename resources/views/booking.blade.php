@@ -418,7 +418,7 @@
                         <div class="col-md-4">
                             <div class="usp-card">
                                 <div class="icon-div">
-                                    <img class="img-fluid" src="{{asset('images/pet.png')}}" alt="Trusted Daycare & Boarding">
+                                    <img class="img-fluid" src="{{asset('images/petcare.png')}}" alt="Trusted Daycare & Boarding">
                                 </div>
                                 <div class="usp-para">
                                     <h4>Trusted Daycare & Boarding</h4>
@@ -428,7 +428,9 @@
                         </div>
                         <div class="col-md-4">
                             <div class="usp-card">
-                                <div class="icon-div"></div>
+                                <div class="icon-div">
+                                    <img class="img-fluid" src="{{asset('images/booking.png')}}" alt="Trusted Daycare & Boarding">
+                                </div>
                                 <div class="usp-para">
                                     <h4>Easy Online Booking</h4>
                                   
@@ -437,7 +439,9 @@
                         </div>
                         <div class="col-md-4">
                             <div class="usp-card">
-                                <div class="icon-div"></div>
+                                <div class="icon-div">
+                                    <img class="img-fluid" src="{{asset('images/pet-event.png')}}" alt="Trusted Daycare & Boarding">
+                                </div>
                                 <div class="usp-para">
                                     <h4>Pet Community & Events</h4>
                                    
