@@ -26,11 +26,11 @@
                     </div>
                     <div class="step">
                         <span>3</span>
-                        <div class="step-txt">Review</div>
+                        <div class="step-txt">Owner Details</div>
                     </div>
                     <div class="step">
                         <span>4</span>
-                        <div class="step-txt">Payment</div>
+                        <div class="step-txt">Review & Payment</div>
                     </div>
                 </div>
 
@@ -144,133 +144,7 @@
                             <h2>Pet Details</h2>
                         </div>
                         <div class="stepform-body">
-                            <div class="row stepform-body-row">
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Owner’s name</label>
-                                        <input type="text" placeholder="Enter Pet Owner name" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Pet’s name</label>
-                                        <input type="text" placeholder="Enter Pet’s name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Pet Type</label>
-                                        <select>
-                                            <option value="0">Select Pet Type</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Pet’s Breed</label>
-                                        <select>
-                                            <option value="0">Select Breed</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Pet’s Age</label>
-                                        <input type="number" placeholder="Enter Pet’s age">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Gender</label>
-                                        <div class="booking-type">
-                                            <label>
-                                                <input type="radio" name="gender" value="Male">
-                                                Male
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="gender" value="Female" checked>
-                                                Female
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="stepform-body-col">
-                                        <label>Residential Address:</label>
-                                        <input type="text" placeholder="Enter Residential Address">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Contact Number</label>
-                                        <input type="text" placeholder="Enter Contact Number">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Alternate Contact Number</label>
-                                        <input type="text" placeholder="Enter Alternate Contact Number">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Existing disease/ Co-morbidity</label>
-                                        <input type="text" placeholder="Type here">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Deworming & Date:</label>
-                                        <input type="date" placeholder="Enter Date">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Allergies</label>
-                                        <div class="booking-type">
-                                            <label>
-                                                <input type="radio" name="allergies" value="Yes">
-                                                Yes
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="allergies" value="No" checked>
-                                                No
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Food Habits</label>
-                                        <input type="text" placeholder="Type here">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Walk schedule</label>
-                                        <input type="text" placeholder="Type here">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Kindly attach Adhar Card Number of the owner:</label>
-                                        <input type="number" placeholder="Type here">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="stepform-body-col">
-                                        <label>Any habits or behaviour concern</label>
-                                        <input type="number" placeholder="Type here">
-                                    </div>
-                                </div>
-                                
-                            </div>
+                            <div id="petDetailsWrapper"></div>
                         </div>
                     </div>
                     <div class="form-step">
@@ -1213,6 +1087,78 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <!--otp based login/register-->
+
+
+
+<!--petform dynamic generate-->
+<script>
+function generatePetForms(numDogs, numCats) {
+  let wrapper = document.getElementById("petDetailsWrapper");
+  wrapper.innerHTML = ""; // reset
+
+  let petIndex = 1;
+
+  // Generate Dogs
+  for (let i = 1; i <= numDogs; i++) {
+    wrapper.innerHTML += getPetFormHTML(petIndex, "Dog");
+    petIndex++;
+  }
+
+  // Generate Cats
+  for (let i = 1; i <= numCats; i++) {
+    wrapper.innerHTML += getPetFormHTML(petIndex, "Cat");
+    petIndex++;
+  }
+}
+
+function getPetFormHTML(index, type) {
+  return `
+    <div class="pet-form-box mb-4 p-3 border rounded">
+      <h5>Pet ${index} (${type})</h5>
+      <div class="row">
+        <div class="col-md-6">
+          <label>Pet’s Name</label>
+          <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" required>
+        </div>
+        <div class="col-md-6">
+          <label>Breed</label>
+          <input type="text" name="pets[${index}][breed]" placeholder="Enter Breed">
+        </div>
+        <div class="col-md-6">
+          <label>Age</label>
+          <input type="number" name="pets[${index}][age]" placeholder="Enter Age">
+        </div>
+        <div class="col-md-6">
+          <label>Gender</label>
+          <select name="pets[${index}][gender]">
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label>Existing Conditions</label>
+          <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues">
+        </div>
+        <div class="col-md-6">
+          <label>Food Habits</label>
+          <input type="text" name="pets[${index}][food]" placeholder="Type here">
+        </div>
+        <input type="hidden" name="pets[${index}][type]" value="${type}">
+      </div>
+    </div>
+  `;
+}
+
+// Trigger form generation on moving from Step 1 -> Step 2
+document.getElementById("nextBtn").addEventListener("click", function() {
+  let numDogs = parseInt(document.getElementById("numDogs").value);
+  let numCats = parseInt(document.getElementById("numCats").value);
+
+  generatePetForms(numDogs, numCats);
+});
+</script>
+<!--petform dynamic generate-->
 
 <!--sessionStorage-->
 <script>
