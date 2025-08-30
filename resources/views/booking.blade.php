@@ -350,12 +350,9 @@
                         @else
                         <div class="buttons-wrap d-block text-end">
                             <button type="button" class="btn-step-next" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                Login to Continue
+                                Login/Register to Continue
                             </button>
-                            <p class="register-link mt-4">
-                                Not a member? 
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register Now</a>
-                            </p>
+                            
                         </div>
                         @endif
                    
