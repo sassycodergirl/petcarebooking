@@ -507,7 +507,7 @@
                     </div>
 
                     <div id="loginError" class="text-danger mt-3"></div>
-                     <div class="text-center">
+                     <div class="text-center terms">
                             <p>I accept that I have read & understood Furry & Friends <a href="#">Privacy Policy</a> and <a href="#">T&Cs.</a></p>
                             <a href="{{ route('login') }}">Other Ways to Login</a>
                      </div>
