@@ -139,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-step">
+                    <div class="form-step pet-details">
                         <div class="stepform-hd-top">
                             <h2>Pet Details</h2>
                         </div>
