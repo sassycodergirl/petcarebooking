@@ -190,7 +190,7 @@ textarea {
 input::placeholder,
 textarea::placeholder {
 	opacity: 1;
-	color: gray;
+	color: var(--bg-text-color);
 }
 
 .cmn-btn {
@@ -3793,7 +3793,7 @@ blockquote {
 .form-step input[type="password"]::placeholder, 
 .form-step input[type="email"]::placeholder {
 	opacity: 1;
-		color: var(--bg-text-color);
+		color: rgb(151, 151, 151);
 	font-family: var(--default-body-font);
 	font-weight: 500;
 } 
