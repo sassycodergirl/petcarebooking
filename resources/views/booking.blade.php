@@ -1224,6 +1224,28 @@ $(document).ready(function () {
     }
 
 
+
+    function validatePetStep() {
+    let isValid = true;
+
+    // Clear previous errors
+    $(".pet-error").remove();
+
+    $("#petDetailsWrapper .pet-form-box").each(function() {
+        const petNameInput = $(this).find("input[name*='[name]']");
+        const petNameVal = petNameInput.val().trim();
+
+        if(!/^[a-zA-Z\s]+$/.test(petNameVal) || petNameVal === "") {
+            petNameInput.after('<div class="pet-error text-danger">Please enter a valid name (letters only).</div>');
+            isValid = false;
+        }
+    });
+
+    return isValid;
+}
+
+
+
     function validateOwnerStep() {
     let isValid = true;
 
@@ -1347,6 +1369,11 @@ $(document).ready(function () {
 
         const activeStepEl = $(".form-step").eq(currentStep);
 
+          // Step 2 → Pet Details validation
+            if(activeStepEl.hasClass("step-pets")){
+                if(!validatePetStep()) return; // stop if invalid
+            }
+        // Step 3 → Owner Details validation
             if(activeStepEl.hasClass("step-owner")){
                 if(!validateOwnerStep()) return; // stop moving forward if invalid
             }
