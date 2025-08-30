@@ -1282,7 +1282,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Send OTP
     sendOtpBtn.addEventListener("click", function () {
-        fetch("{{ route('phone.sendOtp') }}", {
+        fetch("{{ route('phone.login.send') }}", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -1304,7 +1304,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Verify OTP
     verifyOtpBtn.addEventListener("click", function () {
-        fetch("{{ route('phone.verifyOtp') }}", {
+        fetch("{{ route('phone.login.verify') }}", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -1328,6 +1328,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+
 <!--otp based login/register-->
 
 <!--sessionStorage-->
