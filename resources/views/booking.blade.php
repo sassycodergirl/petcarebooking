@@ -396,15 +396,14 @@
         </div>
     </section>
 <!-- Login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <form id="ajaxLoginForm">
         @csrf
-        <!-- <div class="modal-header"> -->
-          <!-- <h5 class="modal-title" id="loginModalLabel">Login to Continue Booking</h5> -->
+       
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <!-- </div> -->
+       
         <div class="modal-body">
             <div class="row">
                 <div class="col-md-7">
@@ -445,6 +444,9 @@
                         </div>
                     </div>
                 </div>
+
+          
+
             </div>
        
         </div>
@@ -454,8 +456,38 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->
 <!-- Login Modal -->
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4">
+      <h4 class="text-center mb-3">Login / Signup with Phone</h4>
+
+      <!-- Phone Input -->
+      <div id="phoneSection">
+        <label class="form-label">Phone (E.164 format)</label>
+        <input type="text" id="phone" class="form-control mb-3" placeholder="+9198XXXXXXXX">
+        <button id="sendOtpBtn" class="btn btn-primary w-100">Send OTP</button>
+      </div>
+
+      <!-- OTP Input (hidden initially) -->
+      <div id="otpSection" class="d-none">
+        <label class="form-label">Enter OTP</label>
+        <input type="text" id="otp" class="form-control mb-3" placeholder="Enter OTP">
+        <button id="verifyOtpBtn" class="btn btn-success w-100">Verify & Login</button>
+      </div>
+
+      <div id="loginError" class="text-danger mt-3"></div>
+    </div>
+  </div>
+</div>
+
+
 
 
 
@@ -1237,6 +1269,67 @@ registerModal.addEventListener('hidden.bs.modal', function () {
 </script>
 
 
+<!--otp based login/register-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const sendOtpBtn = document.getElementById("sendOtpBtn");
+    const verifyOtpBtn = document.getElementById("verifyOtpBtn");
+    const phoneInput = document.getElementById("phone");
+    const otpInput = document.getElementById("otp");
+    const phoneSection = document.getElementById("phoneSection");
+    const otpSection = document.getElementById("otpSection");
+    const errorBox = document.getElementById("loginError");
+
+    // Send OTP
+    sendOtpBtn.addEventListener("click", function () {
+        fetch("{{ route('phone.sendOtp') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ phone: phoneInput.value })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                errorBox.innerText = data.message;
+                phoneSection.classList.add("d-none");
+                otpSection.classList.remove("d-none");
+            } else {
+                errorBox.innerText = data.message;
+            }
+        });
+    });
+
+    // Verify OTP
+    verifyOtpBtn.addEventListener("click", function () {
+        fetch("{{ route('phone.verifyOtp') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ phone: phoneInput.value, otp: otpInput.value })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                errorBox.innerText = "✅ " + data.message;
+                setTimeout(() => {
+                    let modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                    modal.hide();
+                    location.reload(); // refresh navbar login status
+                }, 1000);
+            } else {
+                errorBox.innerText = data.message;
+            }
+        });
+    });
+});
+</script>
+<!--otp based login/register-->
+
 <!--sessionStorage-->
 <script>
 // Save form data into localStorage
@@ -1342,3 +1435,5 @@ document.querySelectorAll("#bookingForm input, #bookingForm select").forEach(el 
 
 
 <!--sessionStorage-->
+
+

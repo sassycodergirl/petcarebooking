@@ -23,7 +23,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'phone',
         'profile_photo',                  // profile photo path
-        'notification_preference' // email / whatsapp / both / none
+        'notification_preference', // email / whatsapp / both / none
+        'phone_verified_at'
     ];
 
     /**
@@ -43,6 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'phone_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 
