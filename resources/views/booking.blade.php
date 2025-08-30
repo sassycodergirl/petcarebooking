@@ -35,7 +35,7 @@
                 </div>
 
                 <!-- Form steps -->
-                <form id="stepForm">
+                <form id="stepForm" enctype="multipart/form-data" method="POST" action="#">
                     <div class="form-step step-slot active">
                         <div class="stepform-hd-top">
                             <h3>Select a Booking Slot</h3>
@@ -150,9 +150,9 @@
                     </div>
                     <div class="form-step step-owner">
                         <div class="stepform-hd-top">
-                            <h2>Select a Booking Slot</h2>
+                            <h2>Owners Details</h2>
                         </div>
-                        <div class="stepform-body">
+                        <!-- <div class="stepform-body">
                             <div class="row stepform-body-row">
                                 <div class="col-md-6">
                                     <div class="stepform-body-col">
@@ -182,6 +182,40 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div> -->
+                          <div class="stepform-body">
+                            <div class="row stepform-body-row">
+                            <div class="col-md-6">
+                                <div class="stepform-body-col">
+                                <label>Owner’s Name</label>
+                                <input type="text" name="owner[name]" placeholder="Enter Owner’s name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="stepform-body-col">
+                                <label>Contact Number</label>
+                                <input type="text" name="owner[contact]" placeholder="Enter Contact Number" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="stepform-body-col">
+                                <label>Residential Address</label>
+                                <input type="text" name="owner[address]" placeholder="Enter Residential Address" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="stepform-body-col">
+                                <label>Alternate Contact Number</label>
+                                <input type="text" name="owner[alt_contact]" placeholder="Enter Alternate Contact Number">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="stepform-body-col">
+                                <label for="aadharUpload">Upload Aadhar (Image)</label>
+                                <input type="file" id="aadharUpload" name="owner[aadhar]" accept="image/*" required>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
