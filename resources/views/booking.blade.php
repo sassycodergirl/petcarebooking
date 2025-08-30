@@ -1396,7 +1396,8 @@ $(document).ready(function () {
         // If last step → populate review
         if(currentStep === totalSteps - 1){
             populateReviewStep();
-            $("#nextBtn").text("Submit");
+            // $("#nextBtn").text("Submit");
+            $("#nextBtn").hide();
         } else {
             $("#nextBtn").text("Continue");
         }
