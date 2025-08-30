@@ -219,33 +219,49 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-step step-review">
+                   <div class="form-step step-review">
                         <div class="stepform-hd-top">
-                            <h2>Select a Booking Slot</h2>
+                            <h2>Review Your Booking</h2>
                         </div>
-                        <div class="stepform-body">
-                            <div class="row stepform-body-row">
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Location</label>
-                                        <div class="stepform-inp-wrap">
-                                            <input type="text" name="location" placeholder="Kharghar (Nearest Location)">
-                                            <img src="images/point.svg" class="point-img" alt="">
-                                        </div>
-                                    </div>
+                        <div class="stepform-body row">
+                            <!-- Left column: User details -->
+                            <div class="col-md-8" id="reviewLeft">
+                                <div class="review-section">
+                                    <h4>Booking Details</h4>
+                                    <p><strong>Date & Time:</strong> <span id="reviewDateTime"></span></p>
+                                    <p><strong>Location:</strong> <span id="reviewLocation"></span></p>
+                                    <p><strong>Booking Type:</strong> <span id="reviewBookingType"></span></p>
+
+                                    <h4>Pet Details</h4>
+                                    <div id="reviewPets"></div>
+
+                                    <h4>Owner Details</h4>
+                                    <p><strong>Name:</strong> <span id="reviewOwnerName"></span></p>
+                                    <p><strong>Contact:</strong> <span id="reviewOwnerContact"></span></p>
+                                    <p><strong>Address:</strong> <span id="reviewOwnerAddress"></span></p>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="stepform-body-col">
-                                        <label>Location</label>
-                                        <div class="stepform-inp-wrap">
-                                            <input type="text" name="location" placeholder="Kharghar (Nearest Location)">
-                                            <img src="images/point.svg" class="point-img" alt="">
-                                        </div>
+                            </div>
+
+                            <!-- Right column: Summary & Checkout -->
+                            <div class="col-md-4" id="reviewRight">
+                                <div class="summary-box p-3 border rounded">
+                                    <h5>Booking Summary</h5>
+                                    <p>Total Pets: <span id="reviewTotalPets"></span></p>
+                                    <p><strong>Duration:</strong> <span id="reviewDuration"></span></p>
+                                    <p><strong>Base Price:</strong> ₹<span id="reviewBasePrice"></span></p>
+                                    <p><strong>Additional Charges:</strong> ₹<span id="reviewPenaltyPrice"></span></p>
+                                    <p><strong>Total:</strong> ₹<span id="reviewTotalPrice"></span></p>
+                                    <hr>
+                                    <div class="terms">
+                                        <input type="checkbox" id="acceptTnC" required>
+                                        <label for="acceptTnC">I accept the Terms & Conditions</label>
                                     </div>
+                                    <button type="button" id="expressCheckout" class="btn btn-primary mt-3">Express Checkout</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <!-- <div class="buttons-wrap">
                         <button type="button" class="btn-step-prv" id="prevBtn"><i class="fa-solid fa-arrow-left"></i> Prviously</button>
                         <button type="button" class="btn-step-next" id="nextBtn">Continue</button>
@@ -1241,13 +1257,54 @@ document.getElementById("nextBtn").addEventListener("click", function () {
 });
 </script> 
 
-
-
-
-
-
-
 <!--petform dynamic generate-->
+
+<!--review & checkout-->
+<script>
+function populateReviewStep() {
+    // Booking Details
+    $("#reviewDateTime").text($("#checkIn").val() + " to " + $("#checkOut").val());
+    $("#reviewLocation").text($("select[name='location']").val());
+    $("#reviewBookingType").text($("input[name='bookingType']:checked").val());
+
+    // Pet Details
+    let petsHTML = "";
+    $("#petDetailsWrapper .pet-form-box").each(function(index){
+        const petName = $(this).find("input[name*='[name]']").val();
+        const petBreed = $(this).find("input[name*='[breed]']").val();
+        const petAge = $(this).find("input[name*='[age]']").val();
+        const petGender = $(this).find("select[name*='[gender]']").val();
+        const petType = $(this).find("input[name*='[type]']").val();
+
+        petsHTML += `
+            <p><strong>${petType} ${index+1}:</strong> ${petName}, Breed: ${petBreed}, Age: ${petAge}, Gender: ${petGender}</p>
+        `;
+    });
+    $("#reviewPets").html(petsHTML);
+
+    // Owner Details
+    $("#reviewOwnerName").text($("input[name='owner[name]']").val());
+    $("#reviewOwnerContact").text($("input[name='owner[contact]']").val());
+    $("#reviewOwnerAddress").text($("input[name='owner[address]']").val());
+
+    // Booking Summary
+    $("#reviewTotalPets").text(parseInt($("#numDogs").val()) + parseInt($("#numCats").val()));
+    $("#reviewDuration").text($("#durationText").text());
+    $("#reviewBasePrice").text($("#basePrice").text());
+    $("#reviewPenaltyPrice").text($("#penaltyPrice").text());
+    $("#reviewTotalPrice").text($("#totalPrice").text());
+}
+
+// Call populateReviewStep when navigating to last step
+$("#nextBtn").click(function () {
+    if (currentStep === totalSteps - 1) {
+        if (validateStep()) {
+            populateReviewStep();
+        }
+    }
+});
+</script> 
+<!--review & checkout-->
 
 <!--sessionStorage-->
 <script>
