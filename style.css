@@ -6380,6 +6380,14 @@ font-weight: 400;
 .terms-para a{
 	text-decoration: underline;
 }
+.usp-card{
+	text-align: center;
+}
+.usp-heading{
+	font-weight: 500;
+    font-size: 18px;
+	margin-top: 20px;
+}
 @media (min-width: 990px) {
     .modal-dialog {
         max-width: 990px;

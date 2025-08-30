@@ -421,7 +421,7 @@
                                     <img class="img-fluid" src="{{asset('images/petcare.png')}}" alt="Trusted Daycare & Boarding">
                                 </div>
                                 <div class="usp-para">
-                                    <h4>Trusted Daycare & Boarding</h4>
+                                    <h4 class="usp-heading">Trusted Daycare & Boarding</h4>
                                   
                                 </div>
                             </div>
@@ -432,7 +432,7 @@
                                     <img class="img-fluid" src="{{asset('images/booking.png')}}" alt="Trusted Daycare & Boarding">
                                 </div>
                                 <div class="usp-para">
-                                    <h4>Easy Online Booking</h4>
+                                    <h4 class="usp-heading">Easy Online Booking</h4>
                                   
                                 </div>
                             </div>
@@ -443,7 +443,7 @@
                                     <img class="img-fluid" src="{{asset('images/pet-event.png')}}" alt="Trusted Daycare & Boarding">
                                 </div>
                                 <div class="usp-para">
-                                    <h4>Pet Community & Events</h4>
+                                    <h4 class="usp-heading">Pet Community & Events</h4>
                                    
                                 </div>
                             </div>
