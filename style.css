@@ -6385,9 +6385,14 @@ font-weight: 400;
 }
 .usp-heading{
 	font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
 	margin-top: 20px;
 	color: #ffff;
+}
+.usp-card{
+	background: #ffffff29;
+    padding: 15px 12px;
+    border-radius: 15px;
 }
 @media (min-width: 990px) {
     .modal-dialog {
