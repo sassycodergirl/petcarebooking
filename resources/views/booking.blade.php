@@ -1145,6 +1145,7 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).ready(function () {
     let currentStep = 0;
     const totalSteps = $(".form-step").length;
+    let petsGenerated = false; // track if pet forms are generated
 
     const dogBreeds = [
         "Labrador Retriever", "German Shepherd", "Golden Retriever",
@@ -1207,7 +1208,7 @@ $(document).ready(function () {
 
     function generatePetForms(numDogs, numCats) {
         let wrapper = $("#petDetailsWrapper");
-        wrapper.html(""); // reset
+        wrapper.html(""); // reset only first time
         let petIndex = 1;
 
         for (let i = 1; i <= numDogs; i++) {
@@ -1221,11 +1222,17 @@ $(document).ready(function () {
         }
     }
 
+    function formatDateTime(dt) {
+        const date = new Date(dt);
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+        return date.toLocaleString('en-IN', options);
+    }
+
     function populateReviewStep() {
         // Booking Details
-        $("#reviewDateTime").text($("#checkIn").val() + " to " + $("#checkOut").val());
         $("#reviewLocation").text($("select[name='location']").val());
         $("#reviewBookingType").text($("input[name='bookingType']:checked").val());
+        $("#reviewDateTime").text(formatDateTime($("#checkIn").val()) + " to " + formatDateTime($("#checkOut").val()));
 
         // Pet Details
         let petsHTML = "";
@@ -1265,7 +1272,6 @@ $(document).ready(function () {
 
     function validateStep() {
         let isValid = true;
-
         const activeStepEl = $(".form-step").eq(currentStep);
 
         activeStepEl.find("input[required], select[required]").each(function () {
@@ -1305,11 +1311,12 @@ $(document).ready(function () {
 
         const activeStepEl = $(".form-step").eq(currentStep);
 
-        // Step 1 → Step 2: generate pets
-        if(activeStepEl.hasClass("step-slot")){
+        // Step 1 → Step 2: generate pets only once
+        if(activeStepEl.hasClass("step-slot") && !petsGenerated){
             const numDogs = parseInt($("#numDogs").val()) || 0;
             const numCats = parseInt($("#numCats").val()) || 0;
             generatePetForms(numDogs, numCats);
+            petsGenerated = true;
         }
 
         // Move to next step
@@ -1340,6 +1347,7 @@ $(document).ready(function () {
     updateStepIndicators(); // initialize
 });
 </script>
+
 
 
 <!--step form js-->
