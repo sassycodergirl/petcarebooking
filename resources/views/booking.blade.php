@@ -414,7 +414,7 @@
                         <h3 class="text-white mb-1 login-head">Welcome to Furry & Friends </h3>
                         <h4 class="text-white login-subhead">Register to avail the best deals!</h4>
                      </div>
-                     <div class="row d-none d-md-block d-lg-block">
+                     <div class="row d-none d-md-flex d-lg-flex">
                         <div class="col-md-4">
                             <div class="usp-card">
                                 <div class="icon-div">
