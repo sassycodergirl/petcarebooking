@@ -190,7 +190,7 @@ textarea {
 input::placeholder,
 textarea::placeholder {
 	opacity: 1;
-	color: var(--bg-text-color);
+	color: gray;
 }
 
 .cmn-btn {
@@ -6394,10 +6394,7 @@ font-weight: 400;
     padding: 15px 12px;
     border-radius: 15px;
 }
-.pet-details input::placeholder{
-	color: gray;
-	opacity: 0.5;
-}
+
 @media (min-width: 990px) {
     .modal-dialog {
         max-width: 990px;
