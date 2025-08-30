@@ -1140,171 +1140,209 @@ document.addEventListener("DOMContentLoaded", function () {
 <!--otp based login/register-->
 
 
-
-<!--petform dynamic generate-->
+<!--step form js-->
 <script>
-function generatePetForms(numDogs, numCats) {
-  let wrapper = document.getElementById("petDetailsWrapper");
-  wrapper.innerHTML = ""; // reset
+$(document).ready(function () {
+    let currentStep = 0;
+    const totalSteps = $(".form-step").length;
 
-  let petIndex = 1;
+    const dogBreeds = [
+        "Labrador Retriever", "German Shepherd", "Golden Retriever",
+        "Beagle", "Bulldog", "Poodle", "Rottweiler", "Dachshund", "Other"
+    ];
 
-  // Generate Dogs
-  for (let i = 1; i <= numDogs; i++) {
-    wrapper.innerHTML += getPetFormHTML(petIndex, "Dog");
-    petIndex++;
-  }
+    const catBreeds = [
+        "Persian", "Maine Coon", "Siamese",
+        "Ragdoll", "Bengal", "Sphynx", "British Shorthair", "Other"
+    ];
 
-  // Generate Cats
-  for (let i = 1; i <= numCats; i++) {
-    wrapper.innerHTML += getPetFormHTML(petIndex, "Cat");
-    petIndex++;
-  }
-}
-
-
-const dogBreeds = [
-  "Labrador Retriever", "German Shepherd", "Golden Retriever",
-  "Beagle", "Bulldog", "Poodle", "Rottweiler", "Dachshund", "Other"
-];
-
-const catBreeds = [
-  "Persian", "Maine Coon", "Siamese",
-  "Ragdoll", "Bengal", "Sphynx", "British Shorthair", "Other"
-];
-
-function getBreedOptions(type, index) {
-  let breeds = type === "Dog" ? dogBreeds : catBreeds;
-  return `
-    <select name="pets[${index}][breed]" required>
-      <option value="">Select ${type} Breed</option>
-      ${breeds.map(b => `<option value="${b}">${b}</option>`).join("")}
-    </select>
-  `;
-}
-
-
-function getPetFormHTML(index, type) {
-  return `
-    <div class="pet-form-box mb-4 p-3 border rounded">
-      <h5>Pet ${index} (${type})</h5>
-      <div class="row">
-        <div class="col-md-6">
-          <label>Pet’s Name</label>
-          <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" required>
-        </div>
-        <div class="col-md-6">
-          <label>Breed</label>
-           ${getBreedOptions(type, index)}
-        </div>
-        <div class="col-md-6">
-          <label>Age</label>
-          <input type="number" name="pets[${index}][age]" placeholder="Enter Age">
-        </div>
-        <div class="col-md-6">
-          <label>Gender</label>
-          <select name="pets[${index}][gender]">
-            <option value="">Select</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <label>Existing Conditions</label>
-          <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues">
-        </div>
-        <div class="col-md-6">
-          <label>Food Habits</label>
-          <input type="text" name="pets[${index}][food]" placeholder="Type here">
-        </div>
-        <input type="hidden" name="pets[${index}][type]" value="${type}">
-      </div>
-    </div>
-  `;
-}
-
-// Trigger form generation on moving from Step 1 -> Step 2
-// document.getElementById("nextBtn").addEventListener("click", function() {
-//   let numDogs = parseInt(document.getElementById("numDogs").value);
-//   let numCats = parseInt(document.getElementById("numCats").value);
-
-//   generatePetForms(numDogs, numCats);
-// });
-
-
-function goToNextStep() {
-  let current = document.querySelector(".form-step.active");
-  let next = current.nextElementSibling;
-
-  if (next) {
-    current.classList.remove("active");
-    next.classList.add("active");
-  }
-}
-
-document.getElementById("nextBtn").addEventListener("click", function () {
-  const activeStep = document.querySelector(".form-step.active");
-
-  // Step 1 → Step 2: generate pets
-  if (activeStep && activeStep.classList.contains("step-slot")) {
-    let numDogs = parseInt(document.getElementById("numDogs").value) || 0;
-    let numCats = parseInt(document.getElementById("numCats").value) || 0;
-
-    generatePetForms(numDogs, numCats);
-  }
-
-  goToNextStep();
-});
-</script> 
-
-<!--petform dynamic generate-->
-
-<!--review & checkout-->
-<script>
-function populateReviewStep() {
-    // Booking Details
-    $("#reviewDateTime").text($("#checkIn").val() + " to " + $("#checkOut").val());
-    $("#reviewLocation").text($("select[name='location']").val());
-    $("#reviewBookingType").text($("input[name='bookingType']:checked").val());
-
-    // Pet Details
-    let petsHTML = "";
-    $("#petDetailsWrapper .pet-form-box").each(function(index){
-        const petName = $(this).find("input[name*='[name]']").val();
-        const petBreed = $(this).find("input[name*='[breed]']").val();
-        const petAge = $(this).find("input[name*='[age]']").val();
-        const petGender = $(this).find("select[name*='[gender]']").val();
-        const petType = $(this).find("input[name*='[type]']").val();
-
-        petsHTML += `
-            <p><strong>${petType} ${index+1}:</strong> ${petName}, Breed: ${petBreed}, Age: ${petAge}, Gender: ${petGender}</p>
+    function getBreedOptions(type, index) {
+        let breeds = type === "Dog" ? dogBreeds : catBreeds;
+        return `
+            <select name="pets[${index}][breed]" required>
+              <option value="">Select ${type} Breed</option>
+              ${breeds.map(b => `<option value="${b}">${b}</option>`).join("")}
+            </select>
         `;
-    });
-    $("#reviewPets").html(petsHTML);
+    }
 
-    // Owner Details
-    $("#reviewOwnerName").text($("input[name='owner[name]']").val());
-    $("#reviewOwnerContact").text($("input[name='owner[contact]']").val());
-    $("#reviewOwnerAddress").text($("input[name='owner[address]']").val());
+    function getPetFormHTML(index, type) {
+        return `
+        <div class="pet-form-box mb-4 p-3 border rounded">
+            <h5>Pet ${index} (${type})</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Pet’s Name</label>
+                    <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" required>
+                </div>
+                <div class="col-md-6">
+                    <label>Breed</label>
+                    ${getBreedOptions(type, index)}
+                </div>
+                <div class="col-md-6">
+                    <label>Age</label>
+                    <input type="number" name="pets[${index}][age]" placeholder="Enter Age">
+                </div>
+                <div class="col-md-6">
+                    <label>Gender</label>
+                    <select name="pets[${index}][gender]">
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Existing Conditions</label>
+                    <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues">
+                </div>
+                <div class="col-md-6">
+                    <label>Food Habits</label>
+                    <input type="text" name="pets[${index}][food]" placeholder="Type here">
+                </div>
+                <input type="hidden" name="pets[${index}][type]" value="${type}">
+            </div>
+        </div>
+        `;
+    }
 
-    // Booking Summary
-    $("#reviewTotalPets").text(parseInt($("#numDogs").val()) + parseInt($("#numCats").val()));
-    $("#reviewDuration").text($("#durationText").text());
-    $("#reviewBasePrice").text($("#basePrice").text());
-    $("#reviewPenaltyPrice").text($("#penaltyPrice").text());
-    $("#reviewTotalPrice").text($("#totalPrice").text());
-}
+    function generatePetForms(numDogs, numCats) {
+        let wrapper = $("#petDetailsWrapper");
+        wrapper.html(""); // reset
+        let petIndex = 1;
 
-// Call populateReviewStep when navigating to last step
-$("#nextBtn").click(function () {
-    if (currentStep === totalSteps - 1) {
-        if (validateStep()) {
-            populateReviewStep();
+        for (let i = 1; i <= numDogs; i++) {
+            wrapper.append(getPetFormHTML(petIndex, "Dog"));
+            petIndex++;
+        }
+
+        for (let i = 1; i <= numCats; i++) {
+            wrapper.append(getPetFormHTML(petIndex, "Cat"));
+            petIndex++;
         }
     }
+
+    function populateReviewStep() {
+        // Booking Details
+        $("#reviewDateTime").text($("#checkIn").val() + " to " + $("#checkOut").val());
+        $("#reviewLocation").text($("select[name='location']").val());
+        $("#reviewBookingType").text($("input[name='bookingType']:checked").val());
+
+        // Pet Details
+        let petsHTML = "";
+        $("#petDetailsWrapper .pet-form-box").each(function(index){
+            const petName = $(this).find("input[name*='[name]']").val();
+            const petBreed = $(this).find("select[name*='[breed]']").val();
+            const petAge = $(this).find("input[name*='[age]']").val();
+            const petGender = $(this).find("select[name*='[gender]']").val();
+            const petType = $(this).find("input[name*='[type]']").val();
+
+            petsHTML += `
+                <p><strong>${petType} ${index+1}:</strong> ${petName}, Breed: ${petBreed}, Age: ${petAge}, Gender: ${petGender}</p>
+            `;
+        });
+        $("#reviewPets").html(petsHTML);
+
+        // Owner Details
+        $("#reviewOwnerName").text($("input[name='owner[name]']").val());
+        $("#reviewOwnerContact").text($("input[name='owner[contact]']").val());
+        $("#reviewOwnerAddress").text($("input[name='owner[address]']").val());
+
+        // Booking Summary
+        $("#reviewTotalPets").text(parseInt($("#numDogs").val()) + parseInt($("#numCats").val()));
+        $("#reviewDuration").text($("#durationText").text());
+        $("#reviewBasePrice").text($("#basePrice").text());
+        $("#reviewPenaltyPrice").text($("#penaltyPrice").text());
+        $("#reviewTotalPrice").text($("#totalPrice").text());
+    }
+
+    function updateStepIndicators() {
+        $(".steps .step").each(function(index){
+            $(this).removeClass("active completed");
+            if(index < currentStep) $(this).addClass("completed");
+            if(index === currentStep) $(this).addClass("active");
+        });
+    }
+
+    function validateStep() {
+        let isValid = true;
+
+        const activeStepEl = $(".form-step").eq(currentStep);
+
+        activeStepEl.find("input[required], select[required]").each(function () {
+            if (!this.checkValidity()) {
+                this.reportValidity();
+                isValid = false;
+                return false;
+            }
+        });
+
+        // Step 1 extra validation
+        if(activeStepEl.hasClass("step-slot")){
+            const bookingType = $("input[name='bookingType']:checked").val();
+            const location = $("select[name='location']").val();
+            const numDogs = parseInt($("#numDogs").val());
+            const numCats = parseInt($("#numCats").val());
+            const checkIn = $("#checkIn").val();
+            const checkOut = $("#checkOut").val();
+
+            if (!bookingType || !location) {
+                alert("Please select location and booking type.");
+                isValid = false;
+            } else if (numDogs + numCats < 1) {
+                alert("Please select at least 1 dog or cat.");
+                isValid = false;
+            } else if (!checkIn || !checkOut) {
+                alert("Please select both check-in and check-out dates.");
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+
+    $("#nextBtn").click(function () {
+        if(!validateStep()) return;
+
+        const activeStepEl = $(".form-step").eq(currentStep);
+
+        // Step 1 → Step 2: generate pets
+        if(activeStepEl.hasClass("step-slot")){
+            const numDogs = parseInt($("#numDogs").val()) || 0;
+            const numCats = parseInt($("#numCats").val()) || 0;
+            generatePetForms(numDogs, numCats);
+        }
+
+        // Move to next step
+        if(currentStep < totalSteps - 1){
+            currentStep++;
+            $(".form-step").removeClass("active").eq(currentStep).addClass("active");
+            updateStepIndicators();
+        }
+
+        // If last step → populate review
+        if(currentStep === totalSteps - 1){
+            populateReviewStep();
+            $("#nextBtn").text("Submit");
+        } else {
+            $("#nextBtn").text("Continue");
+        }
+    });
+
+    $("#prevBtn").click(function () {
+        if(currentStep > 0){
+            currentStep--;
+            $(".form-step").removeClass("active").eq(currentStep).addClass("active");
+            updateStepIndicators();
+            $("#nextBtn").text("Continue");
+        }
+    });
+
+    updateStepIndicators(); // initialize
 });
-</script> 
-<!--review & checkout-->
+</script>
+
+
+<!--step form js-->
 
 <!--sessionStorage-->
 <script>

@@ -379,86 +379,86 @@ $(document).ready(function(){
 // });
 
 
-$(document).ready(function () {
-    let currentStep = 0;
-    const totalSteps = $(".form-step").length;
+// $(document).ready(function () {
+//     let currentStep = 0;
+//     const totalSteps = $(".form-step").length;
 
-    function updateSteps() {
-        $(".form-step").removeClass("active").eq(currentStep).addClass("active");
+//     function updateSteps() {
+//         $(".form-step").removeClass("active").eq(currentStep).addClass("active");
 
         
-        $(".steps .step").removeClass("active").each(function(index) {
-            if (index <= currentStep) {
-                $(this).addClass("active");
-            }
-        });
+//         $(".steps .step").removeClass("active").each(function(index) {
+//             if (index <= currentStep) {
+//                 $(this).addClass("active");
+//             }
+//         });
 
-        // Hide previous button on first step
-        if (currentStep === 0) {
-            $("#prevBtn").hide();
-        } else {
-            $("#prevBtn").show();
-        }
+//         // Hide previous button on first step
+//         if (currentStep === 0) {
+//             $("#prevBtn").hide();
+//         } else {
+//             $("#prevBtn").show();
+//         }
 
-        $("#nextBtn").text(currentStep === totalSteps - 1 ? "Submit" : "Continue");
-    }
+//         $("#nextBtn").text(currentStep === totalSteps - 1 ? "Submit" : "Continue");
+//     }
 
-    function validateStep() {
-        let isValid = true;
+//     function validateStep() {
+//         let isValid = true;
 
-        // Required input check
-        $(".form-step").eq(currentStep).find("input[required]").each(function () {
-            if (!this.checkValidity()) {
-                this.reportValidity();
-                isValid = false;
-                return false;
-            }
-        });
+//         // Required input check
+//         $(".form-step").eq(currentStep).find("input[required]").each(function () {
+//             if (!this.checkValidity()) {
+//                 this.reportValidity();
+//                 isValid = false;
+//                 return false;
+//             }
+//         });
 
-        // Step 1 extra check: booking type, location, pets, check-in/out
-        if (currentStep === 0) {
-            const bookingType = $("input[name='bookingType']:checked").val();
-            const location = $("select[name='location']").val();
-            const numDogs = parseInt($("#numDogs").val());
-            const numCats = parseInt($("#numCats").val());
-            const checkIn = $("#checkIn").val();
-            const checkOut = $("#checkOut").val();
+//         // Step 1 extra check: booking type, location, pets, check-in/out
+//         if (currentStep === 0) {
+//             const bookingType = $("input[name='bookingType']:checked").val();
+//             const location = $("select[name='location']").val();
+//             const numDogs = parseInt($("#numDogs").val());
+//             const numCats = parseInt($("#numCats").val());
+//             const checkIn = $("#checkIn").val();
+//             const checkOut = $("#checkOut").val();
 
-            if (!bookingType || !location) {
-                alert("Please select location and booking type.");
-                isValid = false;
-            } else if (numDogs + numCats < 1) {
-                alert("Please select at least 1 dog or cat.");
-                isValid = false;
-            } else if (!checkIn || !checkOut) {
-                alert("Please select both check-in and check-out dates.");
-                isValid = false;
-            }
-        }
+//             if (!bookingType || !location) {
+//                 alert("Please select location and booking type.");
+//                 isValid = false;
+//             } else if (numDogs + numCats < 1) {
+//                 alert("Please select at least 1 dog or cat.");
+//                 isValid = false;
+//             } else if (!checkIn || !checkOut) {
+//                 alert("Please select both check-in and check-out dates.");
+//                 isValid = false;
+//             }
+//         }
 
-        return isValid;
-    }
+//         return isValid;
+//     }
 
-    $("#nextBtn").click(function () {
-        if (currentStep < totalSteps - 1) {
-            if (validateStep()) {
-                currentStep++;
-                updateSteps();
-            }
-        } else {
-            if (validateStep()) {
-                $("#stepForm").submit(); // final submit
-            }
-        }
-    });
+//     $("#nextBtn").click(function () {
+//         if (currentStep < totalSteps - 1) {
+//             if (validateStep()) {
+//                 currentStep++;
+//                 updateSteps();
+//             }
+//         } else {
+//             if (validateStep()) {
+//                 $("#stepForm").submit(); // final submit
+//             }
+//         }
+//     });
 
-    $("#prevBtn").click(function () {
-        if (currentStep > 0) {
-            currentStep--;
-            updateSteps();
-        }
-    });
+//     $("#prevBtn").click(function () {
+//         if (currentStep > 0) {
+//             currentStep--;
+//             updateSteps();
+//         }
+//     });
 
-    updateSteps();
-});
+//     updateSteps();
+// });
 
