@@ -6363,6 +6363,9 @@ blockquote {
 .login-signup-form{
 	border-radius: 15px;
 }
+.login-head,.login-subhead{
+font-weight: 400;
+}
 .btn-close {
 	position: absolute;
     right: -4%;

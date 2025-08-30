@@ -411,8 +411,8 @@
                              <a class="navbar-brand" href="/"><img src="{{asset('images/logo.png')}}" alt></a>
                      </div>
                      <div class="text-center mt-4">
-                        <h3 class="text-white mb-1">Welcome to Furry & Friends </h3>
-                        <h4 class="text-white">Register to avail the best deals!</h4>
+                        <h3 class="text-white mb-1 login-head">Welcome to Furry & Friends </h3>
+                        <h4 class="text-white login-subhead">Register to avail the best deals!</h4>
                      </div>
                      <div class="row">
                         <div class="col-md-4">
