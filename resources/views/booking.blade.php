@@ -490,11 +490,11 @@
               </div>
                <div class="col-md-5">
                 <div class="login-signup-form bg-white p-md-4">
-                    <h4 class="text-center mb-3">Login / Signup with Phone</h4>
+                    <h4 class="text-center mb-3">Login / Signup</h4>
 
                     <!-- Phone Input -->
                     <div id="phoneSection">
-                      <label class="form-label">Phone (E.164 format)</label>
+                      <label class="form-label">Enter Mobile Number</label>
                       <input type="text" id="phone" class="form-control mb-3" placeholder="+9198XXXXXXXX">
                       <button id="sendOtpBtn" class="btn btn-primary w-100">Send OTP</button>
                     </div>
