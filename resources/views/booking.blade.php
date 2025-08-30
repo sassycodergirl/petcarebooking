@@ -228,9 +228,10 @@
                             <div class="col-md-8" id="reviewLeft">
                                 <div class="review-section">
                                     <h4>Booking Details</h4>
-                                    <p><strong>Date & Time:</strong> <span id="reviewDateTime"></span></p>
+                                    
                                     <p><strong>Location:</strong> <span id="reviewLocation"></span></p>
                                     <p><strong>Booking Type:</strong> <span id="reviewBookingType"></span></p>
+                                    <p><strong>Date & Time:</strong> <span id="reviewDateTime"></span></p>
 
                                     <h4>Pet Details</h4>
                                     <div id="reviewPets"></div>
@@ -1222,9 +1223,44 @@ $(document).ready(function () {
         }
     }
 
+
+    function validateOwnerStep() {
+    let isValid = true;
+
+    // Clear previous errors
+    $(".owner-error").remove();
+
+    // Name validation (only letters and spaces)
+    const ownerName = $("input[name='owner[name]']");
+    const nameVal = ownerName.val().trim();
+    if(!/^[a-zA-Z\s]+$/.test(nameVal) || nameVal === "") {
+        ownerName.after('<div class="owner-error text-danger">Please enter a valid name (letters only).</div>');
+        isValid = false;
+    }
+
+    // Phone validation (10 digits)
+    const ownerPhone = $("input[name='owner[contact]']");
+    const phoneVal = ownerPhone.val().trim();
+    if(!/^\d{10}$/.test(phoneVal)) {
+        ownerPhone.after('<div class="owner-error text-danger">Please enter a valid 10-digit phone number.</div>');
+        isValid = false;
+    }
+
+    // Alternate phone validation (optional, but if filled must be 10 digits)
+    const altPhone = $("input[name='owner[alt_contact]']");
+    const altVal = altPhone.val().trim();
+    if(altVal !== "" && !/^\d{10}$/.test(altVal)) {
+        altPhone.after('<div class="owner-error text-danger">Please enter a valid 10-digit alternate phone number.</div>');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+
     function formatDateTime(dt) {
         const date = new Date(dt);
-        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' };
         return date.toLocaleString('en-IN', options);
     }
 
@@ -1310,6 +1346,10 @@ $(document).ready(function () {
         if(!validateStep()) return;
 
         const activeStepEl = $(".form-step").eq(currentStep);
+
+            if(activeStepEl.hasClass("step-owner")){
+                if(!validateOwnerStep()) return; // stop moving forward if invalid
+            }
 
         // Step 1 → Step 2: generate pets only once
         if(activeStepEl.hasClass("step-slot") && !petsGenerated){
