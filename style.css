@@ -6387,6 +6387,7 @@ font-weight: 400;
 	font-weight: 500;
     font-size: 18px;
 	margin-top: 20px;
+	color: #ffff;
 }
 @media (min-width: 990px) {
     .modal-dialog {
