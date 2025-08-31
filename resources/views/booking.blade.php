@@ -196,7 +196,16 @@
                             <div class="col-md-6">
                                 <div class="stepform-body-col">
                                 <label>Contact Number</label>
-                                <input type="text" name="owner[contact]" placeholder="Enter Contact Number" value="{{ Auth::user()->phone }}" readonly  required>
+                                <!-- <input type="text" name="owner[contact]" placeholder="Enter Contact Number" value="{{ Auth::user()->phone }}" readonly  required> -->
+                                 @if(Auth::check())
+                                        <input type="text" name="owner[contact]" 
+                                            value="{{ Auth::user()->phone }}" 
+                                            readonly required>
+                                    @else
+                                        <input type="text" name="owner[contact]" 
+                                            placeholder="Enter Contact Number" 
+                                             required>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-12">
