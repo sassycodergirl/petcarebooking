@@ -3881,6 +3881,9 @@ blockquote {
 }
 .review-section h5{
 	margin-bottom: 0;
+    FONT-WEIGHT: 500;
+    font-size: 16px;
+    color: #775037;
 }
 .btn-step-prv {
 	border: 1px solid var(--bg-orange);
@@ -3937,6 +3940,9 @@ blockquote {
 		}
 		.fc .fc-daygrid-day-number {
 			font-size: 15px !important;
+		}
+		.review-title {
+    		font-size: 17px;
 		}
     }
 
@@ -6416,6 +6422,11 @@ font-weight: 400;
 .review-title{
 	    font-size: 20px;
 	    font-weight: 500;
+}
+.dynamic-content{
+	    color: #000;
+    font-weight: 600;
+    margin-top: 5px;
 }
 .stepform-body{
 	    /* background: #8667422b; */
