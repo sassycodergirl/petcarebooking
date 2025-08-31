@@ -6428,6 +6428,9 @@ font-weight: 400;
     font-weight: 600;
     margin-top: 5px;
 }
+.border-top{
+	border-top: 1px solid gray;
+}
 .stepform-body{
 	    /* background: #8667422b; */
 		background: #0065fd2b;
@@ -6435,6 +6438,20 @@ font-weight: 400;
 .fc .fc-button-primary {
     background-color: #654d41e6;
     border-color: #ffac2a;
+}
+#expressCheckout{
+	width: 100%;
+    background: #000000;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+}
+.data-row{
+	    display: flex;
+    justify-content: space-between;
+}
+.data-row strong{
+	color: gray;
 }
 @media (min-width: 990px) {
     .modal-dialog {

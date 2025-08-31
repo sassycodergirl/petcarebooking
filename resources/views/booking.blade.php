@@ -286,13 +286,13 @@
 
                                 <!-- Right column: Summary & Checkout -->
                                 <div class="col-md-4" id="reviewRight">
-                                    <div class="summary-box p-3 border rounded">
-                                        <h5 class="review-title">Booking Summary</h5>
-                                        <p>Total Pets: <span id="reviewTotalPets"></span></p>
-                                        <p><strong>Duration:</strong> <span id="reviewDuration"></span></p>
-                                        <p><strong>Base Price:</strong> ₹<span id="reviewBasePrice"></span></p>
-                                        <p><strong>Additional Charges:</strong> ₹<span id="reviewPenaltyPrice"></span></p>
-                                        <p><strong>Total:</strong> ₹<span id="reviewTotalPrice"></span></p>
+                                    <div class="summary-box p-5 border rounded">
+                                        <h5 class="review-title">Payment Summary</h5>
+                                        <p class="data-row"><strong>Total Pets:</strong> <span id="reviewTotalPets" class="dynamic-content"></span></p>
+                                        <p class="data-row"><strong>Duration:</strong> <span id="reviewDuration" class="dynamic-content"></span></p>
+                                        <p class="data-row"><strong>Base Price:</strong> ₹<span id="reviewBasePrice" class="dynamic-content"></span></p>
+                                        <p class="data-row"><strong>Additional Charges:</strong> ₹<span id="reviewPenaltyPrice" class="dynamic-content"></span></p>
+                                        <p class="data-row border-top pt-4"><strong>Total:</strong> ₹<span id="reviewTotalPrice" class="dynamic-content"></span></p>
                                         <hr>
                                         <div class="terms">
                                             <input type="checkbox" id="acceptTnC" required>
