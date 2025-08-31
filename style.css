@@ -6394,6 +6394,10 @@ font-weight: 400;
     padding: 15px 12px;
     border-radius: 15px;
 }
+.review-title{
+	    font-size: 20px;
+	    font-weight: 500;
+}
 
 @media (min-width: 990px) {
     .modal-dialog {
