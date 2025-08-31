@@ -1332,19 +1332,43 @@ registerModal.addEventListener('hidden.bs.modal', function () {
             $("#reviewTotalPrice").text("₹" + $("#totalPrice").text());
         }
 
-        function updateStepIndicators() {
-            $(".steps .step").each(function(index){
-                $(this).removeClass("active completed");
-                if(index < currentStep) $(this).addClass("completed");
-                if(index === currentStep) $(this).addClass("active");
-            });
+         function showStep(step) {
+            steps.removeClass("active");
+            steps.eq(step).addClass("active");
+            $("#prevBtn").toggle(step > 0);
+            updateStepIndicators();
+            toggleNextButton(); // ✅ check nextBtn on every step change
+        }
 
-            // Hide prev button on first step
-                if(currentStep === 0){
-                    $("#prevBtn").hide();
-                } else {
-                    $("#prevBtn").show();
-                }
+        // function updateStepIndicators() {
+        //     $(".steps .step").each(function(index){
+        //         $(this).removeClass("active completed");
+        //         if(index < currentStep) $(this).addClass("completed");
+        //         if(index === currentStep) $(this).addClass("active");
+        //     });
+
+        //     // Hide prev button on first step
+        //         if(currentStep === 0){
+        //             $("#prevBtn").hide();
+        //         } else {
+        //             $("#prevBtn").show();
+        //         }
+        // }
+        function updateStepIndicators() {
+            $(".step-indicator .step").each(function (index) {
+                $(this).toggleClass("active", index === currentStep);
+                $(this).toggleClass("completed", index < currentStep);
+            });
+        }
+
+         // ✅ Centralized function for hiding/showing Next button
+        function toggleNextButton() {
+            if (currentStep === totalSteps - 1) {
+                populateReviewStep();
+                $("#nextBtn").hide(); // hide at review step
+            } else {
+                $("#nextBtn").show().text("Continue"); // show on others
+            }
         }
 
         function validateStep() {
@@ -1406,11 +1430,16 @@ registerModal.addEventListener('hidden.bs.modal', function () {
             }
 
             // Move to next step
-            if(currentStep < totalSteps - 1){
-                currentStep++;
-                $(".form-step").removeClass("active").eq(currentStep).addClass("active");
-                updateStepIndicators();
-            }
+            // if(currentStep < totalSteps - 1){
+            //     currentStep++;
+            //     $(".form-step").removeClass("active").eq(currentStep).addClass("active");
+            //     updateStepIndicators();
+            // }
+
+            if (currentStep < totalSteps - 1) {
+            currentStep++;
+            showStep(currentStep);
+        }
 
             // If last step → populate review
             if(currentStep === totalSteps - 1){
@@ -1424,15 +1453,20 @@ registerModal.addEventListener('hidden.bs.modal', function () {
         });
 
         $("#prevBtn").click(function () {
-            if(currentStep > 0){
+            // if(currentStep > 0){
+            //     currentStep--;
+            //     $(".form-step").removeClass("active").eq(currentStep).addClass("active");
+            //     updateStepIndicators();
+            //     $("#nextBtn").text("Continue");
+            // }
+            if (currentStep > 0) {
                 currentStep--;
-                $(".form-step").removeClass("active").eq(currentStep).addClass("active");
-                updateStepIndicators();
-                $("#nextBtn").text("Continue");
+                showStep(currentStep);
             }
         });
 
-        updateStepIndicators(); // initialize
+        // updateStepIndicators(); // initialize
+        showStep(currentStep);
     });
 </script>
 
