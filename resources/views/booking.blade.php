@@ -234,70 +234,72 @@
                         <div class="stepform-hd-top text-center">
                             <h3 class="title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M21.455 5.416a.75.75 0 0 1-.096.943l-9.193 9.192a.75.75 0 0 1-.34.195l-3.829 1a.75.75 0 0 1-.915-.915l1-3.828a.8.8 0 0 1 .161-.312L17.47 2.47a.75.75 0 0 1 1.06 0l2.829 2.828a1 1 0 0 1 .096.118m-1.687.412L18 4.061l-8.518 8.518l-.625 2.393l2.393-.625z" clip-rule="evenodd"/><path fill="currentColor" d="M19.641 17.16a44.4 44.4 0 0 0 .261-7.04a.4.4 0 0 1 .117-.3l.984-.984a.198.198 0 0 1 .338.127a46 46 0 0 1-.21 8.372c-.236 2.022-1.86 3.607-3.873 3.832a47.8 47.8 0 0 1-10.516 0c-2.012-.225-3.637-1.81-3.873-3.832a46 46 0 0 1 0-10.67c.236-2.022 1.86-3.607 3.873-3.832a48 48 0 0 1 7.989-.213a.2.2 0 0 1 .128.34l-.993.992a.4.4 0 0 1-.297.117a46 46 0 0 0-6.66.255a2.89 2.89 0 0 0-2.55 2.516a44.4 44.4 0 0 0 0 10.32a2.89 2.89 0 0 0 2.55 2.516c3.355.375 6.827.375 10.183 0a2.89 2.89 0 0 0 2.55-2.516"/></svg></span>Review Your Booking</h3>
                         </div>
-                        <div class="stepform-body row">
-                            <!-- Left column: User details -->
-                            <div class="col-md-8" id="reviewLeft">
-                                <div class="review-section">
-                                    <div class="booking-details-div bg-white p-3 p-md-5 box-shadow border rounded">
-                                        <h4 class="review-title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024"><path fill="currentColor" d="m960 95.888l-256.224.001V32.113c0-17.68-14.32-32-32-32s-32 14.32-32 32v63.76h-256v-63.76c0-17.68-14.32-32-32-32s-32 14.32-32 32v63.76H64c-35.344 0-64 28.656-64 64v800c0 35.343 28.656 64 64 64h896c35.344 0 64-28.657 64-64v-800c0-35.329-28.656-63.985-64-63.985m0 863.985H64v-800h255.776v32.24c0 17.679 14.32 32 32 32s32-14.321 32-32v-32.224h256v32.24c0 17.68 14.32 32 32 32s32-14.32 32-32v-32.24H960zM736 511.888h64c17.664 0 32-14.336 32-32v-64c0-17.664-14.336-32-32-32h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32m0 255.984h64c17.664 0 32-14.32 32-32v-64c0-17.664-14.336-32-32-32h-64c-17.664 0-32 14.336-32 32v64c0 17.696 14.336 32 32 32m-192-128h-64c-17.664 0-32 14.336-32 32v64c0 17.68 14.336 32 32 32h64c17.664 0 32-14.32 32-32v-64c0-17.648-14.336-32-32-32m0-255.984h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32h64c17.664 0 32-14.336 32-32v-64c0-17.68-14.336-32-32-32m-256 0h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32h64c17.664 0 32-14.336 32-32v-64c0-17.68-14.336-32-32-32m0 255.984h-64c-17.664 0-32 14.336-32 32v64c0 17.68 14.336 32 32 32h64c17.664 0 32-14.32 32-32v-64c0-17.648-14.336-32-32-32"/></svg></span>Booking Details</h4>
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <h5>Location:</h5> <div id="reviewLocation"></div>
+                        <div class="stepform-body">
+                            <div class="row">
+                                <!-- Left column: User details -->
+                                <div class="col-md-8" id="reviewLeft">
+                                    <div class="review-section">
+                                        <div class="booking-details-div bg-white p-3 p-md-5 box-shadow border rounded">
+                                            <h4 class="review-title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 1024 1024"><path fill="currentColor" d="m960 95.888l-256.224.001V32.113c0-17.68-14.32-32-32-32s-32 14.32-32 32v63.76h-256v-63.76c0-17.68-14.32-32-32-32s-32 14.32-32 32v63.76H64c-35.344 0-64 28.656-64 64v800c0 35.343 28.656 64 64 64h896c35.344 0 64-28.657 64-64v-800c0-35.329-28.656-63.985-64-63.985m0 863.985H64v-800h255.776v32.24c0 17.679 14.32 32 32 32s32-14.321 32-32v-32.224h256v32.24c0 17.68 14.32 32 32 32s32-14.32 32-32v-32.24H960zM736 511.888h64c17.664 0 32-14.336 32-32v-64c0-17.664-14.336-32-32-32h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32m0 255.984h64c17.664 0 32-14.32 32-32v-64c0-17.664-14.336-32-32-32h-64c-17.664 0-32 14.336-32 32v64c0 17.696 14.336 32 32 32m-192-128h-64c-17.664 0-32 14.336-32 32v64c0 17.68 14.336 32 32 32h64c17.664 0 32-14.32 32-32v-64c0-17.648-14.336-32-32-32m0-255.984h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32h64c17.664 0 32-14.336 32-32v-64c0-17.68-14.336-32-32-32m-256 0h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32h64c17.664 0 32-14.336 32-32v-64c0-17.68-14.336-32-32-32m0 255.984h-64c-17.664 0-32 14.336-32 32v64c0 17.68 14.336 32 32 32h64c17.664 0 32-14.32 32-32v-64c0-17.648-14.336-32-32-32"/></svg></span>Booking Details</h4>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 mb-4">
+                                                    <h5>Location:</h5> <div id="reviewLocation"></div>
+                                                </div>
+                                                <div class="col-12 col-md-6 mb-4">
+                                                    <h5>Booking Type: </h5><div id="reviewBookingType"></div>
+                                                </div>
+                                                <div class="col-12 col-md-6 mb-4">
+                                                    <h5>Check In Date & Time: </h5><div id="reviewCheckInDateTime"></div>
+                                                </div>
+                                                <div class="col-12 col-md-6 mb-4">
+                                                    <h5>Check Out Date & Time:</h5><div id="reviewCheckOutDateTime"></div>
+                                                </div>
+                                                
                                             </div>
-                                            <div class="col-12 col-md-6">
-                                                 <h5>Booking Type: </h5><div id="reviewBookingType"></div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                 <h5>Check In Date & Time: </h5><div id="reviewCheckInDateTime"></div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                 <h5>Check Out Date & Time:</h5><div id="reviewCheckOutDateTime"></div>
+                                    
+                                        </div>
+
+                                        <div class="pet-details-div bg-white p-3 p-md-5 box-shadow border rounded">
+                                            <h4>Pet Details</h4>
+                                            <div class="row" id="reviewPets"></div>
+                                        </div>
+
+                                        <div class="owner-details-div bg-white p-3 p-md-5 box-shadow border rounded">
+                                            <h4 class="review-title">Owner Details</h4>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 mb-4">
+                                                    <h5>Name:</h5> <div id="reviewOwnerName"></span></div>
+                                                </div>
+                                                <div class="col-12 col-md-6 mb-4">
+                                                    <h5>Contact:</h5> <div id="reviewOwnerContact"></span></div>
+                                                </div>
+                                                <div class="col-12 col-md-6 mb-4">
+                                                    <h5>Address:</h5> <div id="reviewOwnerAddress"></span></div>
+                                                </div>
                                             </div>
                                             
-                                        </div>
-                                   
-                                    </div>
-
-                                    <div class="pet-details-div bg-white p-3 p-md-5 box-shadow border rounded">
-                                        <h4>Pet Details</h4>
-                                        <div class="row" id="reviewPets"></div>
-                                    </div>
-
-                                    <div class="owner-details-div bg-white p-3 p-md-5 box-shadow border rounded">
-                                        <h4 class="review-title">Owner Details</h4>
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <h5>Name:</h5> <div id="reviewOwnerName"></span></div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <h5>Contact:</h5> <div id="reviewOwnerContact"></span></div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                 <h5>Address:</h5> <div id="reviewOwnerAddress"></span></div>
-                                            </div>
-                                        </div>
+                                            
                                         
-                                        
-                                       
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Right column: Summary & Checkout -->
-                            <div class="col-md-4" id="reviewRight">
-                                <div class="summary-box p-3 border rounded">
-                                    <h5 class="review-title">Booking Summary</h5>
-                                    <p>Total Pets: <span id="reviewTotalPets"></span></p>
-                                    <p><strong>Duration:</strong> <span id="reviewDuration"></span></p>
-                                    <p><strong>Base Price:</strong> ₹<span id="reviewBasePrice"></span></p>
-                                    <p><strong>Additional Charges:</strong> ₹<span id="reviewPenaltyPrice"></span></p>
-                                    <p><strong>Total:</strong> ₹<span id="reviewTotalPrice"></span></p>
-                                    <hr>
-                                    <div class="terms">
-                                        <input type="checkbox" id="acceptTnC" required>
-                                        <label for="acceptTnC">I accept the Terms & Conditions</label>
+                                <!-- Right column: Summary & Checkout -->
+                                <div class="col-md-4" id="reviewRight">
+                                    <div class="summary-box p-3 border rounded">
+                                        <h5 class="review-title">Booking Summary</h5>
+                                        <p>Total Pets: <span id="reviewTotalPets"></span></p>
+                                        <p><strong>Duration:</strong> <span id="reviewDuration"></span></p>
+                                        <p><strong>Base Price:</strong> ₹<span id="reviewBasePrice"></span></p>
+                                        <p><strong>Additional Charges:</strong> ₹<span id="reviewPenaltyPrice"></span></p>
+                                        <p><strong>Total:</strong> ₹<span id="reviewTotalPrice"></span></p>
+                                        <hr>
+                                        <div class="terms">
+                                            <input type="checkbox" id="acceptTnC" required>
+                                            <label for="acceptTnC">I accept the Terms & Conditions</label>
+                                        </div>
+                                        <button type="button" id="expressCheckout" class="btn btn-primary mt-3">Express Checkout</button>
                                     </div>
-                                    <button type="button" id="expressCheckout" class="btn btn-primary mt-3">Express Checkout</button>
                                 </div>
                             </div>
                         </div>

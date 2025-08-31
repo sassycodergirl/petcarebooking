@@ -3878,7 +3878,9 @@ blockquote {
     gap: 20px;
 	    background: #ffffff82;
 }
-
+.review-section h5{
+	margin-bottom: 0;
+}
 .btn-step-prv {
 	border: 1px solid var(--bg-orange);
 	border-radius: 8px;
