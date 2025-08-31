@@ -185,6 +185,7 @@
                             </div>
                         </div> -->
                           <div class="stepform-body">
+                            <div class="bg-white p-3 p-md-5">
                             <div class="row stepform-body-row">
                             <div class="col-md-6">
                                 <div class="stepform-body-col">
@@ -215,6 +216,7 @@
                                 <label for="aadharUpload">Upload Aadhar (Image)</label>
                                 <input type="file" id="aadharUpload" name="owner[aadhar]" accept="image/*" required>
                                 </div>
+                            </div>
                             </div>
                             </div>
                         </div>
