@@ -3687,7 +3687,7 @@ blockquote {
 	background-color: var(--bg-white);
 	font-family: var(--default-heading-font);
 	font-weight: 400;
-	font-size: 24px;
+	font-size: 18px;
 	border: 1px dashed var(--bg-text-color);
 }
 
