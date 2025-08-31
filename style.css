@@ -6443,6 +6443,9 @@ font-weight: 400;
 .terms-check label{
 	    font-size: 15px;
 }
+.total-div{
+	background: #dddddd;
+}
 .fc .fc-button-primary {
     background-color: #654d41e6;
     border-color: #ffac2a;

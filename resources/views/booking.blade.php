@@ -243,7 +243,7 @@
                                     <div class="review-section">
                                         <div class="booking-details-div bg-white p-3 p-md-4 box-shadow border rounded mb-4">
                                             <h4 class="review-title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 19c0 1.7 1.3 3 3 3h14c1.7 0 3-1.3 3-3v-8H2zM19 4h-2V3c0-.6-.4-1-1-1s-1 .4-1 1v1H9V3c0-.6-.4-1-1-1s-1 .4-1 1v1H5C3.3 4 2 5.3 2 7v2h20V7c0-1.7-1.3-3-3-3"/></svg></span>Booking Details</h4>
-                                            <div class="row">
+                                            <div class="row border-top pt-4">
                                                 <div class="col-12 col-md-6 mb-4">
                                                     <h5>Location:</h5> <div id="reviewLocation" class="dynamic-content"></div>
                                                 </div>
@@ -263,12 +263,12 @@
 
                                         <div class="pet-details-div bg-white p-3 p-md-4 box-shadow border rounded mb-4">
                                             <h4 class="review-title"><span class="me-2"> <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="M11.9 8.4c1.3 0 2.1-1.9 2.1-3.1c0-1-.5-2.2-1.5-2.2c-1.3 0-2.1 1.9-2.1 3.1c0 1 .5 2.2 1.5 2.2m-3.8 0c1 0 1.5-1.2 1.5-2.2C9.6 4.9 8.8 3 7.5 3C6.5 3 6 4.2 6 5.2c-.1 1.3.7 3.2 2.1 3.2m7.4-1c-1.3 0-2.2 1.8-2.2 3.1c0 .9.4 1.8 1.3 1.8c1.3 0 2.2-1.8 2.2-3.1c0-.9-.5-1.8-1.3-1.8m-8.7 3.1c0-1.3-1-3.1-2.2-3.1c-.9 0-1.3.9-1.3 1.8c0 1.3 1 3.1 2.2 3.1c.9 0 1.3-.9 1.3-1.8m3.2-.2c-2 0-4.7 3.2-4.7 5.4c0 1 .7 1.3 1.5 1.3c1.2 0 2.1-.8 3.2-.8c1 0 1.9.8 3 .8c.8 0 1.7-.2 1.7-1.3c0-2.2-2.7-5.4-4.7-5.4"/></svg></span>Pet Details</h4>
-                                            <div class="row" id="reviewPets"></div>
+                                            <div class="row " id="reviewPets"></div>
                                         </div>
 
                                         <div class="owner-details-div bg-white p-3 p-md-4 box-shadow border rounded mb-4">
                                             <h4 class="review-title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12.75c3.942 0 7.987 2.563 8.249 7.712a.75.75 0 0 1-.71.787c-2.08.106-11.713.171-15.077 0a.75.75 0 0 1-.711-.787C4.013 15.314 8.058 12.75 12 12.75m0-9a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5"/></svg></span>Owner Details</h4>
-                                            <div class="row">
+                                            <div class="row border-top pt-4">
                                                 <div class="col-12 col-md-6 mb-4">
                                                     <h5>Full Name:</h5> <div id="reviewOwnerName" class="dynamic-content"></span></div>
                                                 </div>
@@ -299,9 +299,9 @@
                                         <h5 class="review-title">Payment Summary</h5>
                                         <p class="data-row"><strong>Total Pets:</strong> <span id="reviewTotalPets" class="dynamic-content"></span></p>
                                         <p class="data-row"><strong>Duration:</strong> <span id="reviewDuration" class="dynamic-content"></span></p>
-                                        <p class="data-row"><strong>Base Price:</strong> ₹<span id="reviewBasePrice" class="dynamic-content"></span></p>
-                                        <p class="data-row"><strong>Additional Charges:</strong> ₹<span id="reviewPenaltyPrice" class="dynamic-content"></span></p>
-                                        <p class="data-row border-top p-2"><strong>Total:</strong> ₹<span id="reviewTotalPrice" class="dynamic-content"></span></p>
+                                        <p class="data-row"><strong>Base Price:</strong> <span id="reviewBasePrice" class="dynamic-content"></span></p>
+                                        <p class="data-row"><strong>Additional Charges:</strong> <span id="reviewPenaltyPrice" class="dynamic-content"></span></p>
+                                        <p class="data-row border-top p-2 total-div"><strong>Total:</strong> <span id="reviewTotalPrice" class="dynamic-content"></span></p>
                                         <hr>
                                         <div class="terms-check">
                                             <input type="checkbox" id="acceptTnC" required>
@@ -1063,64 +1063,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
 
 
 <!--otp based login/register-->
-<!-- <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const sendOtpBtn = document.getElementById("sendOtpBtn");
-    const verifyOtpBtn = document.getElementById("verifyOtpBtn");
-    const phoneInput = document.getElementById("phone");
-    const otpInput = document.getElementById("otp");
-    const phoneSection = document.getElementById("phoneSection");
-    const otpSection = document.getElementById("otpSection");
-    const errorBox = document.getElementById("loginError");
 
-    // Send OTP
-    sendOtpBtn.addEventListener("click", function () {
-        fetch("{{ route('phone.login.send') }}", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            },
-            body: JSON.stringify({ phone: phoneInput.value })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                errorBox.innerText = data.message;
-                phoneSection.classList.add("d-none");
-                otpSection.classList.remove("d-none");
-            } else {
-                errorBox.innerText = data.message;
-            }
-        });
-    });
-
-    // Verify OTP
-    verifyOtpBtn.addEventListener("click", function () {
-        fetch("{{ route('phone.login.verify') }}", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            },
-            body: JSON.stringify({ phone: phoneInput.value, otp: otpInput.value })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                errorBox.innerText = "✅ " + data.message;
-                setTimeout(() => {
-                    let modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
-                    modal.hide();
-                    location.reload(); // refresh navbar login status
-                }, 1000);
-            } else {
-                errorBox.innerText = data.message;
-            }
-        });
-    });
-});
-</script> -->
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -1191,306 +1134,306 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <!--step form js-->
 <script>
-$(document).ready(function () {
-    let currentStep = 0;
-    const totalSteps = $(".form-step").length;
-    let petsGenerated = false; // track if pet forms are generated
+    $(document).ready(function () {
+        let currentStep = 0;
+        const totalSteps = $(".form-step").length;
+        let petsGenerated = false; // track if pet forms are generated
 
-    const dogBreeds = [
-        "Labrador Retriever", "German Shepherd", "Golden Retriever",
-        "Beagle", "Bulldog", "Poodle", "Rottweiler", "Dachshund", "Other"
-    ];
+        const dogBreeds = [
+            "Labrador Retriever", "German Shepherd", "Golden Retriever",
+            "Beagle", "Bulldog", "Poodle", "Rottweiler", "Dachshund", "Other"
+        ];
 
-    const catBreeds = [
-        "Persian", "Maine Coon", "Siamese",
-        "Ragdoll", "Bengal", "Sphynx", "British Shorthair", "Other"
-    ];
+        const catBreeds = [
+            "Persian", "Maine Coon", "Siamese",
+            "Ragdoll", "Bengal", "Sphynx", "British Shorthair", "Other"
+        ];
 
-    function getBreedOptions(type, index) {
-        let breeds = type === "Dog" ? dogBreeds : catBreeds;
-        return `
-            <select name="pets[${index}][breed]" required>
-              <option value="">Select ${type} Breed</option>
-              ${breeds.map(b => `<option value="${b}">${b}</option>`).join("")}
-            </select>
-        `;
-    }
+        function getBreedOptions(type, index) {
+            let breeds = type === "Dog" ? dogBreeds : catBreeds;
+            return `
+                <select name="pets[${index}][breed]" required>
+                <option value="">Select ${type} Breed</option>
+                ${breeds.map(b => `<option value="${b}">${b}</option>`).join("")}
+                </select>
+            `;
+        }
 
-    function getPetFormHTML(index, type) {
-        return `
-        <div class="pet-form-box bg-white mb-4 p-3 p-md-5 border rounded">
-            <h5>Pet ${index} (${type})</h5>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <label>Pet’s Name</label>
-                    <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" required>
+        function getPetFormHTML(index, type) {
+            return `
+            <div class="pet-form-box bg-white mb-4 p-3 p-md-5 border rounded">
+                <h5>Pet ${index} (${type})</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <label>Pet’s Name</label>
+                        <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" required>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Breed</label>
+                        ${getBreedOptions(type, index)}
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Age</label>
+                        <input type="number" min="1" name="pets[${index}][age]" placeholder="Enter Age">
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Gender</label>
+                        <select name="pets[${index}][gender]">
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Existing Conditions</label>
+                        <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues">
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Food Habits</label>
+                        <input type="text" name="pets[${index}][food]" placeholder="Type here">
+                    </div>
+                    <input type="hidden" name="pets[${index}][type]" value="${type}">
                 </div>
-                <div class="col-md-6 mb-4">
-                    <label>Breed</label>
-                    ${getBreedOptions(type, index)}
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Age</label>
-                    <input type="number" min="1" name="pets[${index}][age]" placeholder="Enter Age">
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Gender</label>
-                    <select name="pets[${index}][gender]">
-                        <option value="">Select</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Existing Conditions</label>
-                    <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues">
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Food Habits</label>
-                    <input type="text" name="pets[${index}][food]" placeholder="Type here">
-                </div>
-                <input type="hidden" name="pets[${index}][type]" value="${type}">
             </div>
-        </div>
-        `;
-    }
-
-    function generatePetForms(numDogs, numCats) {
-        let wrapper = $("#petDetailsWrapper");
-        wrapper.html(""); // reset only first time
-        let petIndex = 1;
-
-        for (let i = 1; i <= numDogs; i++) {
-            wrapper.append(getPetFormHTML(petIndex, "Dog"));
-            petIndex++;
+            `;
         }
 
-        for (let i = 1; i <= numCats; i++) {
-            wrapper.append(getPetFormHTML(petIndex, "Cat"));
-            petIndex++;
+        function generatePetForms(numDogs, numCats) {
+            let wrapper = $("#petDetailsWrapper");
+            wrapper.html(""); // reset only first time
+            let petIndex = 1;
+
+            for (let i = 1; i <= numDogs; i++) {
+                wrapper.append(getPetFormHTML(petIndex, "Dog"));
+                petIndex++;
+            }
+
+            for (let i = 1; i <= numCats; i++) {
+                wrapper.append(getPetFormHTML(petIndex, "Cat"));
+                petIndex++;
+            }
         }
+
+
+
+        function validatePetStep() {
+        let isValid = true;
+
+        // Clear previous errors
+        $(".pet-error").remove();
+
+        $("#petDetailsWrapper .pet-form-box").each(function() {
+            const petNameInput = $(this).find("input[name*='[name]']");
+            const petNameVal = petNameInput.val().trim();
+
+            if(!/^[a-zA-Z\s]+$/.test(petNameVal) || petNameVal === "") {
+                petNameInput.after('<div class="pet-error text-danger">Please enter a valid name (letters only).</div>');
+                isValid = false;
+            }
+        });
+
+        return isValid;
     }
 
+    function validateOwnerStep() {
+        let isValid = true;
 
+        // Clear previous errors
+        $(".owner-error").remove();
 
-    function validatePetStep() {
-    let isValid = true;
-
-    // Clear previous errors
-    $(".pet-error").remove();
-
-    $("#petDetailsWrapper .pet-form-box").each(function() {
-        const petNameInput = $(this).find("input[name*='[name]']");
-        const petNameVal = petNameInput.val().trim();
-
-        if(!/^[a-zA-Z\s]+$/.test(petNameVal) || petNameVal === "") {
-            petNameInput.after('<div class="pet-error text-danger">Please enter a valid name (letters only).</div>');
+        // Name validation (only letters and spaces)
+        const ownerName = $("input[name='owner[name]']");
+        const nameVal = ownerName.val().trim();
+        if (!/^[a-zA-Z\s]+$/.test(nameVal) || nameVal === "") {
+            ownerName.after('<div class="owner-error text-danger">Please enter a valid name (letters only).</div>');
             isValid = false;
         }
-    });
 
-    return isValid;
-}
+        // Contact (skipped since pre-filled & readonly)
 
-
-
-  function validateOwnerStep() {
-    let isValid = true;
-
-    // Clear previous errors
-    $(".owner-error").remove();
-
-    // Name validation (only letters and spaces)
-    const ownerName = $("input[name='owner[name]']");
-    const nameVal = ownerName.val().trim();
-    if (!/^[a-zA-Z\s]+$/.test(nameVal) || nameVal === "") {
-        ownerName.after('<div class="owner-error text-danger">Please enter a valid name (letters only).</div>');
-        isValid = false;
-    }
-
-    // Contact (skipped since pre-filled & readonly)
-
-    // Alternate phone validation (optional, but if filled must be 10 digits)
-    const altPhone = $("input[name='owner[alt_contact]']");
-    const altVal = altPhone.val().trim();
-    if (altVal !== "" && !/^\d{10}$/.test(altVal)) {
-        altPhone.after('<div class="owner-error text-danger">Please enter a valid 10-digit alternate phone number.</div>');
-        isValid = false;
-    }
-
-    return isValid;
-}
-
-
-
-    function formatDateTime(dt) {
-        const date = new Date(dt);
-        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' };
-        return date.toLocaleString('en-IN', options);
-    }
-
-    function populateReviewStep() {
-        // Booking Details
-        $("#reviewLocation").text($("select[name='location']").val());
-        $("#reviewBookingType").text($("input[name='bookingType']:checked").val());
-        // $("#reviewDateTime").text(formatDateTime($("#checkIn").val()) + " to " + formatDateTime($("#checkOut").val()));
-        $("#reviewCheckInDateTime").text(formatDateTime($("#checkIn").val()));
-        $("#reviewCheckOutDateTime").text(formatDateTime($("#checkOut").val()));
-        // Pet Details
-        let petsHTML = "";
-        $("#petDetailsWrapper .pet-form-box").each(function(index){
-            const petName = $(this).find("input[name*='[name]']").val();
-            const petBreed = $(this).find("select[name*='[breed]']").val();
-            const petAge = $(this).find("input[name*='[age]']").val();
-            const petGender = $(this).find("select[name*='[gender]']").val();
-            const petType = $(this).find("input[name*='[type]']").val();
-
-            petsHTML += `
-                    <div class="col-md-12 mb-4 pt-4 border-top">
-                    <h5>${petType} #${index+1}</h5>
-                    </div>
-
-                    <div class="col-12 col-md-4 mb-4">
-                    <h5>Name</h5>
-                    <p class="dynamic-content">${petName}</p>
-                    </div>
-
-                    <div class="col-12 col-md-3 mb-4">
-                    <h5>Breed</h5>
-                    <p class="dynamic-content">${petBreed}</p>
-                    </div>
-
-
-                    <div class="col-12 col-md-2 mb-4">
-                    <h5>Age</h5>
-                    <p class="dynamic-content">${petAge}</p>
-                    </div>
-
-
-                        <div class="col-12 col-md-3 mb-4">
-                    <h5>Gender</h5>
-                    <p class="dynamic-content">${petGender}</p>
-                    </div>
-            `;
-        });
-        $("#reviewPets").html(petsHTML);
-
-        // Owner Details
-        $("#reviewOwnerName").text($("input[name='owner[name]']").val());
-        $("#reviewOwnerContact").text($("input[name='owner[contact]']").val());
-        $("#reviewOwnerAddress").text($("input[name='owner[address]']").val());
-        $("#reviewOwnerAltContact").text($("input[name='owner[alt_contact]']").val());
-        $("#reviewOwnerAadhar").text($("input[name='owner[aadhar]").val());
-
-        // Booking Summary
-        $("#reviewTotalPets").text(parseInt($("#numDogs").val()) + parseInt($("#numCats").val()));
-        $("#reviewDuration").text($("#durationText").text());
-        $("#reviewBasePrice").text($("#basePrice").text());
-        $("#reviewPenaltyPrice").text($("#penaltyPrice").text());
-        $("#reviewTotalPrice").text($("#totalPrice").text());
-    }
-
-    function updateStepIndicators() {
-        $(".steps .step").each(function(index){
-            $(this).removeClass("active completed");
-            if(index < currentStep) $(this).addClass("completed");
-            if(index === currentStep) $(this).addClass("active");
-        });
-
-        // Hide prev button on first step
-            if(currentStep === 0){
-                $("#prevBtn").hide();
-            } else {
-                $("#prevBtn").show();
-            }
-    }
-
-    function validateStep() {
-        let isValid = true;
-        const activeStepEl = $(".form-step").eq(currentStep);
-
-        activeStepEl.find("input[required], select[required]").each(function () {
-            if (!this.checkValidity()) {
-                this.reportValidity();
-                isValid = false;
-                return false;
-            }
-        });
-
-        // Step 1 extra validation
-        if(activeStepEl.hasClass("step-slot")){
-            const bookingType = $("input[name='bookingType']:checked").val();
-            const location = $("select[name='location']").val();
-            const numDogs = parseInt($("#numDogs").val());
-            const numCats = parseInt($("#numCats").val());
-            const checkIn = $("#checkIn").val();
-            const checkOut = $("#checkOut").val();
-
-            if (!bookingType || !location) {
-                alert("Please select location and booking type.");
-                isValid = false;
-            } else if (numDogs + numCats < 1) {
-                alert("Please select at least 1 dog or cat.");
-                isValid = false;
-            } else if (!checkIn || !checkOut) {
-                alert("Please select both check-in and check-out dates.");
-                isValid = false;
-            }
+        // Alternate phone validation (optional, but if filled must be 10 digits)
+        const altPhone = $("input[name='owner[alt_contact]']");
+        const altVal = altPhone.val().trim();
+        if (altVal !== "" && !/^\d{10}$/.test(altVal)) {
+            altPhone.after('<div class="owner-error text-danger">Please enter a valid 10-digit alternate phone number.</div>');
+            isValid = false;
         }
 
         return isValid;
     }
 
-    $("#nextBtn").click(function () {
-        if(!validateStep()) return;
+        function formatDateTime(dt) {
+            const date = new Date(dt);
+            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+            return date.toLocaleString('en-IN', options);
+        }
 
-        const activeStepEl = $(".form-step").eq(currentStep);
+        function populateReviewStep() {
+            // Booking Details
+            $("#reviewLocation").text($("select[name='location']").val());
+            $("#reviewBookingType").text($("input[name='bookingType']:checked").val());
+            // $("#reviewDateTime").text(formatDateTime($("#checkIn").val()) + " to " + formatDateTime($("#checkOut").val()));
+            $("#reviewCheckInDateTime").text(formatDateTime($("#checkIn").val()));
+            $("#reviewCheckOutDateTime").text(formatDateTime($("#checkOut").val()));
+            // Pet Details
+            let petsHTML = "";
+            $("#petDetailsWrapper .pet-form-box").each(function(index){
+                const petName = $(this).find("input[name*='[name]']").val();
+                const petBreed = $(this).find("select[name*='[breed]']").val();
+                const petAge = $(this).find("input[name*='[age]']").val();
+                const petGender = $(this).find("select[name*='[gender]']").val();
+                const petType = $(this).find("input[name*='[type]']").val();
 
-          // Step 2 → Pet Details validation
-            if(activeStepEl.hasClass("step-pets")){
-                if(!validatePetStep()) return; // stop if invalid
+                petsHTML += `
+                        <div class="col-md-12 mb-4 pt-4 border-top">
+                        <h5>${petType} #${index+1}</h5>
+                        </div>
+
+                        <div class="col-12 col-md-4 mb-4">
+                        <h5>Name</h5>
+                        <p class="dynamic-content">${petName}</p>
+                        </div>
+
+                        <div class="col-12 col-md-3 mb-4">
+                        <h5>Breed</h5>
+                        <p class="dynamic-content">${petBreed}</p>
+                        </div>
+
+
+                        <div class="col-12 col-md-2 mb-4">
+                        <h5>Age</h5>
+                        <p class="dynamic-content">${petAge}</p>
+                        </div>
+
+
+                            <div class="col-12 col-md-3 mb-4">
+                        <h5>Gender</h5>
+                        <p class="dynamic-content">${petGender}</p>
+                        </div>
+                `;
+            });
+            $("#reviewPets").html(petsHTML);
+
+            // Owner Details
+            $("#reviewOwnerName").text($("input[name='owner[name]']").val());
+            $("#reviewOwnerContact").text($("input[name='owner[contact]']").val());
+            $("#reviewOwnerAddress").text($("input[name='owner[address]']").val());
+            $("#reviewOwnerAltContact").text($("input[name='owner[alt_contact]']").val());
+            let aadharFile = $("input[name='owner[aadhar]']")[0].files[0];
+            if (aadharFile) {
+                $("#reviewOwnerAadhar").text(aadharFile.name); // only filename
             }
-        // Step 3 → Owner Details validation
-            if(activeStepEl.hasClass("step-owner")){
-                if(!validateOwnerStep()) return; // stop moving forward if invalid
+
+            // Booking Summary
+            $("#reviewTotalPets").text(parseInt($("#numDogs").val()) + parseInt($("#numCats").val()));
+            $("#reviewDuration").text($("#durationText").text());
+            $("#reviewBasePrice").text("₹" + $("#basePrice").text());
+            $("#reviewPenaltyPrice").text("₹" + $("#penaltyPrice").text());
+            $("#reviewTotalPrice").text("₹" + $("#totalPrice").text());
+        }
+
+        function updateStepIndicators() {
+            $(".steps .step").each(function(index){
+                $(this).removeClass("active completed");
+                if(index < currentStep) $(this).addClass("completed");
+                if(index === currentStep) $(this).addClass("active");
+            });
+
+            // Hide prev button on first step
+                if(currentStep === 0){
+                    $("#prevBtn").hide();
+                } else {
+                    $("#prevBtn").show();
+                }
+        }
+
+        function validateStep() {
+            let isValid = true;
+            const activeStepEl = $(".form-step").eq(currentStep);
+
+            activeStepEl.find("input[required], select[required]").each(function () {
+                if (!this.checkValidity()) {
+                    this.reportValidity();
+                    isValid = false;
+                    return false;
+                }
+            });
+
+            // Step 1 extra validation
+            if(activeStepEl.hasClass("step-slot")){
+                const bookingType = $("input[name='bookingType']:checked").val();
+                const location = $("select[name='location']").val();
+                const numDogs = parseInt($("#numDogs").val());
+                const numCats = parseInt($("#numCats").val());
+                const checkIn = $("#checkIn").val();
+                const checkOut = $("#checkOut").val();
+
+                if (!bookingType || !location) {
+                    alert("Please select location and booking type.");
+                    isValid = false;
+                } else if (numDogs + numCats < 1) {
+                    alert("Please select at least 1 dog or cat.");
+                    isValid = false;
+                } else if (!checkIn || !checkOut) {
+                    alert("Please select both check-in and check-out dates.");
+                    isValid = false;
+                }
             }
 
-        // Step 1 → Step 2: generate pets only once
-        if(activeStepEl.hasClass("step-slot") && !petsGenerated){
-            const numDogs = parseInt($("#numDogs").val()) || 0;
-            const numCats = parseInt($("#numCats").val()) || 0;
-            generatePetForms(numDogs, numCats);
-            petsGenerated = true;
+            return isValid;
         }
 
-        // Move to next step
-        if(currentStep < totalSteps - 1){
-            currentStep++;
-            $(".form-step").removeClass("active").eq(currentStep).addClass("active");
-            updateStepIndicators();
-        }
+        $("#nextBtn").click(function () {
+            if(!validateStep()) return;
 
-        // If last step → populate review
-        if(currentStep === totalSteps - 1){
-            populateReviewStep();
-            // $("#nextBtn").text("Submit");
-            $("#nextBtn").hide();
-        } else {
-            $("#nextBtn").text("Continue");
-        }
+            const activeStepEl = $(".form-step").eq(currentStep);
+
+            // Step 2 → Pet Details validation
+                if(activeStepEl.hasClass("step-pets")){
+                    if(!validatePetStep()) return; // stop if invalid
+                }
+            // Step 3 → Owner Details validation
+                if(activeStepEl.hasClass("step-owner")){
+                    if(!validateOwnerStep()) return; // stop moving forward if invalid
+                }
+
+            // Step 1 → Step 2: generate pets only once
+            if(activeStepEl.hasClass("step-slot") && !petsGenerated){
+                const numDogs = parseInt($("#numDogs").val()) || 0;
+                const numCats = parseInt($("#numCats").val()) || 0;
+                generatePetForms(numDogs, numCats);
+                petsGenerated = true;
+            }
+
+            // Move to next step
+            if(currentStep < totalSteps - 1){
+                currentStep++;
+                $(".form-step").removeClass("active").eq(currentStep).addClass("active");
+                updateStepIndicators();
+            }
+
+            // If last step → populate review
+            if(currentStep === totalSteps - 1){
+                populateReviewStep();
+                // $("#nextBtn").text("Submit");
+                $("#nextBtn").hide();
+            } else {
+                // $("#nextBtn").text("Continue");
+                 $("#nextBtn").show().text("Continue");
+            }
+        });
+
+        $("#prevBtn").click(function () {
+            if(currentStep > 0){
+                currentStep--;
+                $(".form-step").removeClass("active").eq(currentStep).addClass("active");
+                updateStepIndicators();
+                $("#nextBtn").text("Continue");
+            }
+        });
+
+        updateStepIndicators(); // initialize
     });
-
-    $("#prevBtn").click(function () {
-        if(currentStep > 0){
-            currentStep--;
-            $(".form-step").removeClass("active").eq(currentStep).addClass("active");
-            updateStepIndicators();
-            $("#nextBtn").text("Continue");
-        }
-    });
-
-    updateStepIndicators(); // initialize
-});
 </script>
 
 
