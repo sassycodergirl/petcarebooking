@@ -3754,7 +3754,9 @@ blockquote {
 	font-weight: 500;
 
 }
-
+.fc .fc-toolbar-title {
+    font-size: 1.3em !important;
+}
 .stepform-body {
 	padding: 20px 30px;
 }
