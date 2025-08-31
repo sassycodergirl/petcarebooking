@@ -9,6 +9,8 @@
                 <h1>Book Day Care</h1>
             </div>
         </div>
+        <img src="{{ asset('images/dog-banner-img.png') }}" class="dog-banner-img" alt="">
+        <img src="{{ asset('images/events-img-ovr.png') }}" class="events-img-ovr" alt="">
     </section>
 
     <section class="step-form-sec">
