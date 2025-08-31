@@ -1277,7 +1277,7 @@ $(document).ready(function () {
 
 
 
-    function validateOwnerStep() {
+  function validateOwnerStep() {
     let isValid = true;
 
     // Clear previous errors
@@ -1286,29 +1286,24 @@ $(document).ready(function () {
     // Name validation (only letters and spaces)
     const ownerName = $("input[name='owner[name]']");
     const nameVal = ownerName.val().trim();
-    if(!/^[a-zA-Z\s]+$/.test(nameVal) || nameVal === "") {
+    if (!/^[a-zA-Z\s]+$/.test(nameVal) || nameVal === "") {
         ownerName.after('<div class="owner-error text-danger">Please enter a valid name (letters only).</div>');
         isValid = false;
     }
 
-    // Phone validation (10 digits)
-    const ownerPhone = $("input[name='owner[contact]']");
-    const phoneVal = ownerPhone.val().trim();
-    if(!/^\d{10}$/.test(phoneVal)) {
-        ownerPhone.after('<div class="owner-error text-danger">Please enter a valid 10-digit phone number.</div>');
-        isValid = false;
-    }
+    // Contact (skipped since pre-filled & readonly)
 
     // Alternate phone validation (optional, but if filled must be 10 digits)
     const altPhone = $("input[name='owner[alt_contact]']");
     const altVal = altPhone.val().trim();
-    if(altVal !== "" && !/^\d{10}$/.test(altVal)) {
+    if (altVal !== "" && !/^\d{10}$/.test(altVal)) {
         altPhone.after('<div class="owner-error text-danger">Please enter a valid 10-digit alternate phone number.</div>');
         isValid = false;
     }
 
     return isValid;
 }
+
 
 
     function formatDateTime(dt) {
