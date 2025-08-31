@@ -35,7 +35,7 @@
   .fc .fc-daygrid-day-number {
     text-decoration: none;
     color: #000;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 18px;
   }
   .fc .fc-col-header-cell-cushion {
