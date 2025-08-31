@@ -1191,19 +1191,19 @@ $(document).ready(function () {
         <div class="pet-form-box mb-4 p-3 border rounded">
             <h5>Pet ${index} (${type})</h5>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <label>Pet’s Name</label>
                     <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" required>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <label>Breed</label>
                     ${getBreedOptions(type, index)}
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <label>Age</label>
                     <input type="number" min="1" name="pets[${index}][age]" placeholder="Enter Age">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <label>Gender</label>
                     <select name="pets[${index}][gender]">
                         <option value="">Select</option>
@@ -1211,11 +1211,11 @@ $(document).ready(function () {
                         <option value="Female">Female</option>
                     </select>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <label>Existing Conditions</label>
                     <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-4">
                     <label>Food Habits</label>
                     <input type="text" name="pets[${index}][food]" placeholder="Type here">
                 </div>

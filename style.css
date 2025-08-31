@@ -6398,7 +6398,9 @@ font-weight: 400;
 	    font-size: 20px;
 	    font-weight: 500;
 }
-
+.stepform-body{
+	    background: #8667422b;
+}
 @media (min-width: 990px) {
     .modal-dialog {
         max-width: 990px;
