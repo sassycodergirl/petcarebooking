@@ -3873,8 +3873,10 @@ blockquote {
     display: flex;
     flex-wrap: wrap;
     justify-content: end;
-    padding: 0 30px 30px;
+    padding: 30px 30px 30px;
+	border-top: 1px solid #1642bf57;
     gap: 20px;
+	    background: #ffffff82;
 }
 
 .btn-step-prv {
