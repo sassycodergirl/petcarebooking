@@ -3760,7 +3760,9 @@ blockquote {
 .stepform-body {
 	padding: 20px 30px;
 }
-
+.box-shadow{
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 .form-step label {
 	font-weight: 400;
 	color: var(--bg-text-color);
