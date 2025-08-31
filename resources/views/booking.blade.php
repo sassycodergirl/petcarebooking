@@ -1188,7 +1188,7 @@ $(document).ready(function () {
 
     function getPetFormHTML(index, type) {
         return `
-        <div class="pet-form-box mb-4 p-3 border rounded">
+        <div class="pet-form-box bg-white mb-4 p-3 border rounded">
             <h5>Pet ${index} (${type})</h5>
             <div class="row">
                 <div class="col-md-6 mb-4">
