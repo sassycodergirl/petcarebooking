@@ -3750,9 +3750,9 @@ blockquote {
 	border-bottom: 1px solid rgba(74, 50, 36, 0.5);;
 }
 
-.stepform-hd-top h2 {
+.stepform-hd-top .title {
 	font-weight: 500;
-	font-size: 40px;
+
 }
 
 .stepform-body {
