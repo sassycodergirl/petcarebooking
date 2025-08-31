@@ -38,7 +38,7 @@
                 <form id="stepForm" enctype="multipart/form-data" method="POST" action="#">
                     <div class="form-step step-slot active">
                         <div class="stepform-hd-top text-center">
-                            <h3 class="title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 1024 1024"><path fill="currentColor" d="m960 95.888l-256.224.001V32.113c0-17.68-14.32-32-32-32s-32 14.32-32 32v63.76h-256v-63.76c0-17.68-14.32-32-32-32s-32 14.32-32 32v63.76H64c-35.344 0-64 28.656-64 64v800c0 35.343 28.656 64 64 64h896c35.344 0 64-28.657 64-64v-800c0-35.329-28.656-63.985-64-63.985m0 863.985H64v-800h255.776v32.24c0 17.679 14.32 32 32 32s32-14.321 32-32v-32.224h256v32.24c0 17.68 14.32 32 32 32s32-14.32 32-32v-32.24H960zM736 511.888h64c17.664 0 32-14.336 32-32v-64c0-17.664-14.336-32-32-32h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32m0 255.984h64c17.664 0 32-14.32 32-32v-64c0-17.664-14.336-32-32-32h-64c-17.664 0-32 14.336-32 32v64c0 17.696 14.336 32 32 32m-192-128h-64c-17.664 0-32 14.336-32 32v64c0 17.68 14.336 32 32 32h64c17.664 0 32-14.32 32-32v-64c0-17.648-14.336-32-32-32m0-255.984h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32h64c17.664 0 32-14.336 32-32v-64c0-17.68-14.336-32-32-32m-256 0h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32h64c17.664 0 32-14.336 32-32v-64c0-17.68-14.336-32-32-32m0 255.984h-64c-17.664 0-32 14.336-32 32v64c0 17.68 14.336 32 32 32h64c17.664 0 32-14.32 32-32v-64c0-17.648-14.336-32-32-32"/></svg></span>Select a Booking Slot</h3>
+                            <h3 class="title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M19.5 4h-3V2.5a.5.5 0 0 0-1 0V4h-7V2.5a.5.5 0 0 0-1 0V4h-3A2.503 2.503 0 0 0 2 6.5v13A2.503 2.503 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 19.5 4M21 19.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5V11h18zm0-9.5H3V6.5C3 5.672 3.67 5 4.5 5h3v1.5a.5.5 0 0 0 1 0V5h7v1.5a.5.5 0 0 0 1 0V5h3A1.5 1.5 0 0 1 21 6.5z"/></svg></span>Select a Booking Slot</h3>
                         </div>
                         <div class="stepform-body">
                             <div class="step-1-wrapper">
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <div class="form-step step-pet-details">
-                        <div class="stepform-hd-top">
+                        <div class="stepform-hd-top text-center">
                             <h3 class="title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M26.123 43.5c.564-15.254-5.578-20.398-10.426-23.59c1.182-5.795 5.427-8.926 5.427-8.926" stroke-width="1"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M25.098 10.331s-1.973 3.193-3.747 3.26c0 0-.577-5.832-.355-7.007C22.437 4.9 25.541 4.5 27.315 4.5s3.193 1.197 3.437 3.814c1.685.022 3.281.798 3.614 1.53c-.111 1.862-1.619 2.815-3.082 3.37s-2.66 1.463-2.66 2.35s.398 4.234 2.881 4.7s6.408 1.685 6.408 5.698s-1.352 3.348-1.352 7.28s.413 3.045.413 5.055s-.65 3.784-1.3 4.966" stroke-width="1"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M32.333 42.909s.74-3.43.74-5.055s-1.382-3.74-2.839-5.573c-1.256-1.581-4.533-.204-4.414 3.904m10.304-14.043c3.304.34 5.61-2.558 3.659-6.046M15.697 19.91c.207.916.377 2.749.377 2.749c-1.132 0-2.159.957-2.802 1.379c-1.312.86-2.686 1.148-2.638 2.7c.473 1.242 2.594 1.382 4.132 1.353l-.034.864c-1.531 1.464-4.423 4.746-4.423 8.78c0 4.7 3.437 5.528 5.388 5.528s11.68-4.918 8.489-13.51" stroke-width="1"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M7.708 30.138c.916.089 1.921.236 1.921 1.685S7.501 34.63 7.501 38.03s2.284 5.233 8.196 5.233m21.186-6.213c-.559-2.182-3.101-4.577-3.81-4.931s-.751 3.236-.236 4.448" stroke-width="1"/></svg></span>Pet Details</h3>
                         </div>
                         <div class="stepform-body">
@@ -149,7 +149,7 @@
                         </div>
                     </div>
                     <div class="form-step step-owner">
-                        <div class="stepform-hd-top">
+                        <div class="stepform-hd-top text-center">
                             <h3 class="title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M12 2c5.524 0 10 4.478 10 10s-4.476 10-10 10m-3-.5a11 11 0 0 1-3.277-1.754m0-15.492A11.3 11.3 0 0 1 9 2.5m-7 7.746a9.6 9.6 0 0 1 1.296-3.305M2 13.754a9.6 9.6 0 0 0 1.296 3.305"/><path d="M15 9a3 3 0 1 0-6 0a3 3 0 0 0 6 0"/><path d="M17 17a5 5 0 0 0-10 0"/></g></svg></span>Owners Details</h3>
                         </div>
                         <!-- <div class="stepform-body">
@@ -220,7 +220,7 @@
                         </div>
                     </div>
                    <div class="form-step step-review">
-                        <div class="stepform-hd-top">
+                        <div class="stepform-hd-top text-center">
                             <h3 class="title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M21.455 5.416a.75.75 0 0 1-.096.943l-9.193 9.192a.75.75 0 0 1-.34.195l-3.829 1a.75.75 0 0 1-.915-.915l1-3.828a.8.8 0 0 1 .161-.312L17.47 2.47a.75.75 0 0 1 1.06 0l2.829 2.828a1 1 0 0 1 .096.118m-1.687.412L18 4.061l-8.518 8.518l-.625 2.393l2.393-.625z" clip-rule="evenodd"/><path fill="currentColor" d="M19.641 17.16a44.4 44.4 0 0 0 .261-7.04a.4.4 0 0 1 .117-.3l.984-.984a.198.198 0 0 1 .338.127a46 46 0 0 1-.21 8.372c-.236 2.022-1.86 3.607-3.873 3.832a47.8 47.8 0 0 1-10.516 0c-2.012-.225-3.637-1.81-3.873-3.832a46 46 0 0 1 0-10.67c.236-2.022 1.86-3.607 3.873-3.832a48 48 0 0 1 7.989-.213a.2.2 0 0 1 .128.34l-.993.992a.4.4 0 0 1-.297.117a46 46 0 0 0-6.66.255a2.89 2.89 0 0 0-2.55 2.516a44.4 44.4 0 0 0 0 10.32a2.89 2.89 0 0 0 2.55 2.516c3.355.375 6.827.375 10.183 0a2.89 2.89 0 0 0 2.55-2.516"/></svg></span>Review Your Booking</h3>
                         </div>
                         <div class="stepform-body row">
