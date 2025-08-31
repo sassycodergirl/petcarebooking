@@ -1337,7 +1337,7 @@ $(document).ready(function () {
             const petType = $(this).find("input[name*='[type]']").val();
 
             petsHTML += `
-                    <div class="col-md-12 mb-4 border-top">
+                    <div class="col-md-12 mb-4 pt-4 border-top">
                     <h5>${petType} ${index+1}</h5>
                     </div>
 
