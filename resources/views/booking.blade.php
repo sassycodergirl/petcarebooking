@@ -305,10 +305,7 @@
                         </div>
                     </div>
 
-                    <!-- <div class="buttons-wrap">
-                        <button type="button" class="btn-step-prv" id="prevBtn"><i class="fa-solid fa-arrow-left"></i> Prviously</button>
-                        <button type="button" class="btn-step-next" id="nextBtn">Continue</button>
-                    </div> -->
+               
                    
                         @if(Auth::check())
                         <div class="buttons-wrap">
@@ -1340,7 +1337,7 @@ $(document).ready(function () {
             const petType = $(this).find("input[name*='[type]']").val();
 
             petsHTML += `
-                    <div class="col-md-12 mb-4">
+                    <div class="col-md-12 mb-4 border-top">
                     <h5>${petType} ${index+1}</h5>
                     </div>
 
