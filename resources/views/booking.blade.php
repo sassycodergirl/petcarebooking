@@ -1137,6 +1137,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
     $(document).ready(function () {
         let currentStep = 0;
         const totalSteps = $(".form-step").length;
+        const steps = $(".form-step");
         let petsGenerated = false; // track if pet forms are generated
 
         const dogBreeds = [
