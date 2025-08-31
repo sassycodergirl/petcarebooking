@@ -55,10 +55,10 @@
 
                                     <!-- Booking Form & Summary -->
                                     <div class="col-12 col-md-4">
-                                        <div class="calender-box p-2 px-md-4 py-md-5">
+                                        <div class="calender-box bg-white p-2 px-md-4 py-md-5">
                                         <h4>Book Your Slot</h4>
                                         <div id="bookingForm">
-                                            <div class="mb-3 bg-white p-4">
+                                            <div class="mb-3">
                                                 <label class="form-label">Location</label>
                                                 <select class="form-select location"  name="location" required>
                                                 <option value="">Select Location</option>
@@ -68,7 +68,7 @@
                                             </div>
 
 
-                                            <div class="mb-3 bg-white p-4">
+                                            <div class="mb-3">
                                             <label class="form-label">Booking Type</label>
                                                 <div class="form-check">
                                                     <input class="form-check-input bookingType"  type="radio" name="bookingType" id="daycare4" value="Daycare4">
@@ -78,14 +78,14 @@
                                                     <input class="form-check-input" type="radio" name="bookingType" id="daycare12" value="Daycare12">
                                                     <label class="form-check-label" for="daycare12">Daycare (12 Hours)</label>
                                                 </div> -->
-                                                <div class="form-check bg-white p-4">
+                                                <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="bookingType" id="boarding" value="Boarding">
                                                     <label class="form-check-label" for="boarding">Boarding</label>
                                                 </div>
                                             </div>
 
 
-                                            <div class="row bg-white p-4">
+                                            <div class="row">
                                                 <div class="col-6 col-md-6 mb-3">
                                                 <label class="form-label">Dogs</label>
                                                 <div class="input-group">
@@ -107,17 +107,16 @@
 
 
                                     
-                                        <div class="bg-white p-4">
-                                            <!-- Check-in / Check-out hidden initially -->
-                                            <div class="mb-3 hidden-field" id="checkInField">
-                                                <label class="form-label">Check-in</label>
-                                                <input type="text" name="checkin" id="checkIn" class="form-control checkIn" placeholder="Enter Check-in Date & Time">
-                                            </div>
 
-                                            <div class="mb-3 hidden-field" id="checkOutField">
-                                                <label class="form-label">Check-out</label>
-                                                <input type="text" name="checkout" id="checkOut" class="form-control checkOut" placeholder="Enter Check-Out Date & Time">
-                                            </div>
+                                        <!-- Check-in / Check-out hidden initially -->
+                                        <div class="mb-3 hidden-field" id="checkInField">
+                                            <label class="form-label">Check-in</label>
+                                            <input type="text" name="checkin" id="checkIn" class="form-control checkIn" placeholder="Enter Check-in Date & Time">
+                                        </div>
+
+                                        <div class="mb-3 hidden-field" id="checkOutField">
+                                            <label class="form-label">Check-out</label>
+                                            <input type="text" name="checkout" id="checkOut" class="form-control checkOut" placeholder="Enter Check-Out Date & Time">
                                         </div>
 
                                         <div id="penaltyMessage" class="penalty-text d-none"></div>
