@@ -6403,7 +6403,8 @@ font-weight: 400;
 	    font-weight: 500;
 }
 .stepform-body{
-	    background: #8667422b;
+	    /* background: #8667422b; */
+		background: #0065fd2b;
 }
 @media (min-width: 990px) {
     .modal-dialog {
