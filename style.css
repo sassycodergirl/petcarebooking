@@ -6435,7 +6435,14 @@ font-weight: 400;
 	    /* background: #8667422b; */
 		background: #0065fd2b;
 }
-
+.terms-check{
+	display: flex;
+    align-items: normal;
+    gap: 10px;
+}
+.terms-check label{
+	    font-size: 15px;
+}
 .fc .fc-button-primary {
     background-color: #654d41e6;
     border-color: #ffac2a;

@@ -268,14 +268,21 @@
                                             <h4 class="review-title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12.75c3.942 0 7.987 2.563 8.249 7.712a.75.75 0 0 1-.71.787c-2.08.106-11.713.171-15.077 0a.75.75 0 0 1-.711-.787C4.013 15.314 8.058 12.75 12 12.75m0-9a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5"/></svg></span>Owner Details</h4>
                                             <div class="row">
                                                 <div class="col-12 col-md-6 mb-4">
-                                                    <h5>Name:</h5> <div id="reviewOwnerName" class="dynamic-content"></span></div>
+                                                    <h5>Full Name:</h5> <div id="reviewOwnerName" class="dynamic-content"></span></div>
                                                 </div>
                                                 <div class="col-12 col-md-6 mb-4">
-                                                    <h5>Contact:</h5> <div id="reviewOwnerContact" class="dynamic-content"></span></div>
+                                                    <h5>Contact Number:</h5> <div id="reviewOwnerContact" class="dynamic-content"></span></div>
+                                                </div>
+                                                <div class="col-12 col-md-6 mb-4">
+                                                    <h5>Alternate Contact Number:</h5> <div id="reviewOwnerAltContact" class="dynamic-content"></span></div>
+                                                </div>
+                                                <div class="col-12 col-md-6 mb-4">
+                                                    <h5>ID Document:</h5> <div id="reviewOwnerAadhar" class="dynamic-content"></span></div>
                                                 </div>
                                                 <div class="col-12 col-md-6 mb-4">
                                                     <h5>Address:</h5> <div id="reviewOwnerAddress" class="dynamic-content"></span></div>
                                                 </div>
+                                              
                                             </div>
                                             
                                             
@@ -286,13 +293,13 @@
 
                                 <!-- Right column: Summary & Checkout -->
                                 <div class="col-md-4" id="reviewRight">
-                                    <div class="summary-box p-5 border rounded">
+                                    <div class="summary-box p-4 border rounded">
                                         <h5 class="review-title">Payment Summary</h5>
                                         <p class="data-row"><strong>Total Pets:</strong> <span id="reviewTotalPets" class="dynamic-content"></span></p>
                                         <p class="data-row"><strong>Duration:</strong> <span id="reviewDuration" class="dynamic-content"></span></p>
                                         <p class="data-row"><strong>Base Price:</strong> ₹<span id="reviewBasePrice" class="dynamic-content"></span></p>
                                         <p class="data-row"><strong>Additional Charges:</strong> ₹<span id="reviewPenaltyPrice" class="dynamic-content"></span></p>
-                                        <p class="data-row border-top pt-4"><strong>Total:</strong> ₹<span id="reviewTotalPrice" class="dynamic-content"></span></p>
+                                        <p class="data-row border-top p-2"><strong>Total:</strong> ₹<span id="reviewTotalPrice" class="dynamic-content"></span></p>
                                         <hr>
                                         <div class="terms-check">
                                             <input type="checkbox" id="acceptTnC" required>
@@ -1370,6 +1377,8 @@ $(document).ready(function () {
         $("#reviewOwnerName").text($("input[name='owner[name]']").val());
         $("#reviewOwnerContact").text($("input[name='owner[contact]']").val());
         $("#reviewOwnerAddress").text($("input[name='owner[address]']").val());
+        $("#reviewOwnerAltContact").text($("input[name='owner[alt_contact]']").val());
+        $("#reviewOwnerAadhar").text($("input[name='owner[aadhar]").val());
 
         // Booking Summary
         $("#reviewTotalPets").text(parseInt($("#numDogs").val()) + parseInt($("#numCats").val()));
