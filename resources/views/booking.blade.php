@@ -294,9 +294,9 @@
                                         <p class="data-row"><strong>Additional Charges:</strong> ₹<span id="reviewPenaltyPrice" class="dynamic-content"></span></p>
                                         <p class="data-row border-top pt-4"><strong>Total:</strong> ₹<span id="reviewTotalPrice" class="dynamic-content"></span></p>
                                         <hr>
-                                        <div class="terms">
+                                        <div class="terms-check">
                                             <input type="checkbox" id="acceptTnC" required>
-                                            <label for="acceptTnC">I accept the Terms & Conditions</label>
+                                            <label for="acceptTnC">I agree to the Terms of Service & Privacy Policy</label>
                                         </div>
                                         <button type="button" id="expressCheckout" class="btn btn-primary mt-3">Express Checkout</button>
                                     </div>
