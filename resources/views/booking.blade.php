@@ -256,9 +256,20 @@
 
                                     <div class="owner-details-div bg-white p-3 p-md-5 box-shadow">
                                         <h4 class="review-title">Owner Details</h4>
-                                        <h5><strong>Name:</strong> <span id="reviewOwnerName"></span></h5>
-                                        <h5><strong>Contact:</strong> <span id="reviewOwnerContact"></span></h5>
-                                        <h5><strong>Address:</strong> <span id="reviewOwnerAddress"></span></h5>
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <h5>Name:</h5> <div id="reviewOwnerName"></span></div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <h5>Contact:</h5> <div id="reviewOwnerContact"></span></div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                 <h5><strong>Address:</h5> <div id="reviewOwnerAddress"></span></div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -1323,7 +1334,31 @@ $(document).ready(function () {
             const petType = $(this).find("input[name*='[type]']").val();
 
             petsHTML += `
-                <p><strong>${petType} ${index+1}:</strong> ${petName}, Breed: ${petBreed}, Age: ${petAge}, Gender: ${petGender}</p>
+                    <div class="col-md-12">
+                    <h5>${petType} ${index+1}:</h5>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                    <p>Name</p>
+                    <h5>${petName}</h5>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                    <p>Breed</p>
+                    <h5>${petBreed}</h5>
+                    </div>
+
+
+                    <div class="col-12 col-md-6">
+                    <p>Age</p>
+                    <h5>${petAge}</h5>
+                    </div>
+
+
+                        <div class="col-12 col-md-6">
+                    <p>Gender</p>
+                    <h5>${petGender}</h5>
+                    </div>
             `;
         });
         $("#reviewPets").html(petsHTML);
