@@ -3754,6 +3754,7 @@ blockquote {
 	font-weight: 500;
 
 }
+
 .fc .fc-toolbar-title {
     font-size: 1.3em !important;
 }
@@ -3928,6 +3929,16 @@ blockquote {
 }
 
 /* ========== responsive css =========== */
+
+
+  @media only screen and (max-width: 768px) {
+        .stepform-hd-top .title {
+			    font-size: 17px;
+		}
+		.fc .fc-daygrid-day-number {
+			font-size: 15px;
+		}
+    }
 
 @media(min-width: 1170px) {
 	.container {
@@ -5041,7 +5052,7 @@ blockquote {
 }
 
 .buttons-wrap {
-    padding: 0 15px 15px;
+    padding: 15px 15px 15px;
 }
 
 }
@@ -6409,6 +6420,10 @@ font-weight: 400;
 .stepform-body{
 	    /* background: #8667422b; */
 		background: #0065fd2b;
+}
+.fc .fc-button-primary {
+    background-color: #654d41e6;
+    border-color: #ffac2a;
 }
 @media (min-width: 990px) {
     .modal-dialog {
