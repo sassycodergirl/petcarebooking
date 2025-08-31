@@ -1338,27 +1338,27 @@ $(document).ready(function () {
 
             petsHTML += `
                     <div class="col-md-12 mb-4 pt-4 border-top">
-                    <h5>${petType} ${index+1}</h5>
+                    <h5>${petType} #${index+1}</h5>
                     </div>
 
-                    <div class="col-12 col-md-6 mb-4">
+                    <div class="col-12 col-md-4 mb-4">
                     <h5>Name</h5>
                     <p class="dynamic-content">${petName}</p>
                     </div>
 
-                    <div class="col-12 col-md-6 mb-4">
+                    <div class="col-12 col-md-3 mb-4">
                     <h5>Breed</h5>
                     <p class="dynamic-content">${petBreed}</p>
                     </div>
 
 
-                    <div class="col-12 col-md-6 mb-4">
+                    <div class="col-12 col-md-2 mb-4">
                     <h5>Age</h5>
                     <p class="dynamic-content">${petAge}</p>
                     </div>
 
 
-                        <div class="col-12 col-md-6 mb-4">
+                        <div class="col-12 col-md-3 mb-4">
                     <h5>Gender</h5>
                     <p class="dynamic-content">${petGender}</p>
                     </div>
