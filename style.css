@@ -3873,7 +3873,7 @@ blockquote {
     display: flex;
     flex-wrap: wrap;
     justify-content: end;
-    padding: 30px 30px 30px;
+    padding: 10px 30px 10px;
 	border-top: 1px solid #1642bf57;
     gap: 20px;
 	    background: #ffffff82;
