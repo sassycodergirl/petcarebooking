@@ -1326,6 +1326,13 @@ $(document).ready(function () {
             if(index < currentStep) $(this).addClass("completed");
             if(index === currentStep) $(this).addClass("active");
         });
+
+        // Hide prev button on first step
+            if(currentStep === 0){
+                $("#prevBtn").hide();
+            } else {
+                $("#prevBtn").show();
+            }
     }
 
     function validateStep() {
