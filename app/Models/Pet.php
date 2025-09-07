@@ -11,5 +11,9 @@ class Pet extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function reservations()
+    {
+        return $this->hasMany(\App\Models\PetSlotReservation::class, 'pet_id');
+    }
 } 
 ?>
