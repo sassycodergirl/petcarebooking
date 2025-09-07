@@ -1656,7 +1656,7 @@ document.getElementById('expressCheckout').addEventListener('click', function() 
     formData.append('pets', JSON.stringify(pets));
 
     // AJAX Request
-    fetch('{{ url("booking/store") }}', {
+    fetch('{{ route("bookings.store") }}', {  
         method: 'POST',
         headers: {
             'X-CSRF-TOKEN': '{{ csrf_token() }}'
