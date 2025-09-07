@@ -1611,71 +1611,94 @@ document.querySelectorAll("#bookingForm input, #bookingForm select").forEach(el 
 
 
 <script>
-document.getElementById('expressCheckout').addEventListener('click', function() {
-    if (!document.getElementById('acceptTnC').checked) {
-        alert('Please accept Terms & Conditions');
-        return;
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    const checkoutBtn = document.getElementById('expressCheckout');
 
-    let formData = new FormData();
+    if (!checkoutBtn) return;
 
-    // Booking Details
-    formData.append('location', document.getElementById('reviewLocation').innerText.trim());
-    formData.append('booking_type', document.getElementById('reviewBookingType').innerText.trim());
-    formData.append('check_in', document.getElementById('reviewCheckInDateTime').innerText.trim());
-    formData.append('check_out', document.getElementById('reviewCheckOutDateTime').innerText.trim());
-
-    // Pricing
-    formData.append('base_price', document.getElementById('reviewBasePrice').innerText.replace('₹','').trim());
-    formData.append('penalty_price', document.getElementById('reviewPenaltyPrice').innerText.replace('₹','').trim());
-    formData.append('total_price', document.getElementById('reviewTotalPrice').innerText.replace('₹','').trim());
-
-    // Owner Details
-    formData.append('owner[name]', document.getElementById('reviewOwnerName').innerText.trim());
-    formData.append('owner[contact]', document.getElementById('reviewOwnerContact').innerText.trim());
-    formData.append('owner[alt_contact]', document.getElementById('reviewOwnerAltContact').innerText.trim());
-    formData.append('owner[address]', document.getElementById('reviewOwnerAddress').innerText.trim());
-
-    // Aadhar File
-    let aadharInput = document.getElementById('aadharUpload');
-    if (aadharInput && aadharInput.files.length > 0) {
-        formData.append('owner[aadhar]', aadharInput.files[0]);
-    }
-
-    // Pets
-    let pets = [];
-    document.querySelectorAll('#reviewPets .pet-item').forEach(div => {
-        pets.push({
-            name: div.dataset.name,
-            breed: div.dataset.breed,
-            age: div.dataset.age,
-            gender: div.dataset.gender,
-            type: div.dataset.type
-        });
-    });
-    formData.append('pets', JSON.stringify(pets));
-
-    // AJAX Request
-    fetch('{{ route("bookings.store") }}', {  
-        method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.booking) {
-            alert('Booking successful!');
-            // optional redirect
-        } else {
-            alert('Booking failed!');
+    checkoutBtn.addEventListener('click', async function() {
+        // 1. Check Terms & Conditions
+        const tncChecked = document.getElementById('acceptTnC')?.checked;
+        if (!tncChecked) {
+            alert('Please accept Terms & Conditions');
+            return;
         }
-    })
-    .catch(err => console.error(err));
-});
 
+        // 2. Ensure user is logged in
+        @guest
+            alert('Please login to complete booking.');
+            window.location.href = "{{ route('login') }}";
+            return;
+        @endguest
+
+        try {
+            // 3. Prepare FormData
+            const formData = new FormData();
+
+            // Booking Details
+            formData.append('location', document.getElementById('reviewLocation').innerText.trim());
+            formData.append('booking_type', document.getElementById('reviewBookingType').innerText.trim());
+            formData.append('check_in', document.getElementById('reviewCheckInDateTime').innerText.trim());
+            formData.append('check_out', document.getElementById('reviewCheckOutDateTime').innerText.trim());
+
+            // Pricing
+            formData.append('base_price', document.getElementById('reviewBasePrice').innerText.replace('₹','').trim());
+            formData.append('penalty_price', document.getElementById('reviewPenaltyPrice').innerText.replace('₹','').trim());
+            formData.append('total_price', document.getElementById('reviewTotalPrice').innerText.replace('₹','').trim());
+
+            // Owner Details
+            formData.append('owner[name]', document.getElementById('reviewOwnerName').innerText.trim());
+            formData.append('owner[contact]', document.getElementById('reviewOwnerContact').innerText.trim());
+            formData.append('owner[alt_contact]', document.getElementById('reviewOwnerAltContact').innerText.trim());
+            formData.append('owner[address]', document.getElementById('reviewOwnerAddress').innerText.trim());
+
+            // Aadhar File
+            const aadharInput = document.getElementById('aadharUpload');
+            if (aadharInput && aadharInput.files.length > 0) {
+                formData.append('owner[aadhar]', aadharInput.files[0]);
+            }
+
+            // Pets
+            const pets = [];
+            document.querySelectorAll('#reviewPets .pet-item').forEach(div => {
+                pets.push({
+                    name: div.dataset.name,
+                    breed: div.dataset.breed,
+                    age: div.dataset.age,
+                    gender: div.dataset.gender,
+                    type: div.dataset.type
+                });
+            });
+            formData.append('pets', JSON.stringify(pets));
+
+            // 4. AJAX POST to store booking
+            const response = await fetch('{{ url("/bookings") }}', { // POST URL
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: formData
+            });
+
+            // 5. Parse JSON safely
+            const data = await response.json();
+
+            if (response.ok && data.booking) {
+                alert('Booking successful!');
+                // Optional: redirect to bookings page
+                window.location.href = "{{ route('bookings.index') }}";
+            } else {
+                alert(data.message || 'Booking failed!');
+            }
+
+        } catch (err) {
+            console.error(err);
+            alert('Something went wrong. Please try again.');
+        }
+    });
+});
 </script>
+
 
 
 
