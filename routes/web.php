@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\ShopProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Customer\DashboardController;
 use App\Http\Controllers\Customer\ProfileController;
 use App\Http\Controllers\Customer\PetController;
@@ -143,4 +144,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout/place-order', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/order/success/{id}', fn($id) => view('frontend.checkout.success', ['orderId' => $id]))->name('order.success');
+});
+
+
+
+// Public route to check availability
+Route::get('/slots/availability', [BookingController::class, 'getAvailability'])->name('bookings.availability');
+
+// Protected routes for logged-in users
+Route::middleware(['auth'])->group(function () {
+    Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+    Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
 });

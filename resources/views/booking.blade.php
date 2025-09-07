@@ -37,7 +37,8 @@
                 </div>
 
                 <!-- Form steps -->
-                <form id="stepForm" enctype="multipart/form-data" method="POST" action="#">
+                <form id="stepForm" enctype="multipart/form-data" method="POST" action="{{ route('bookings.store') }}">
+                @csrf
                     <div class="form-step step-slot active">
                         <div class="stepform-hd-top text-center">
                             <h3 class="title"><span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M19.5 4h-3V2.5a.5.5 0 0 0-1 0V4h-7V2.5a.5.5 0 0 0-1 0V4h-3A2.503 2.503 0 0 0 2 6.5v13A2.503 2.503 0 0 0 4.5 22h15a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 19.5 4M21 19.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5V11h18zm0-9.5H3V6.5C3 5.672 3.67 5 4.5 5h3v1.5a.5.5 0 0 0 1 0V5h7v1.5a.5.5 0 0 0 1 0V5h3A1.5 1.5 0 0 1 21 6.5z"/></svg></span>Select a Booking Slot</h3>
@@ -1286,7 +1287,11 @@ registerModal.addEventListener('hidden.bs.modal', function () {
                 const petType = $(this).find("input[name*='[type]']").val();
 
                 petsHTML += `
-                        <div class="col-md-12 mb-4 pt-4 border-top">
+                        <div class="col-md-12 mb-4 pt-4 border-top" data-name="${petName}"
+                data-breed="${petBreed}"
+                data-age="${petAge}"
+                data-gender="${petGender}"
+                data-type="${petType}" >
                         <h5>${petType} #${index+1}</h5>
                         </div>
 
@@ -1603,5 +1608,75 @@ document.querySelectorAll("#bookingForm input, #bookingForm select").forEach(el 
 
 
 <!--sessionStorage-->
+
+
+<script>
+document.getElementById('expressCheckout').addEventListener('click', function() {
+    if (!document.getElementById('acceptTnC').checked) {
+        alert('Please accept Terms & Conditions');
+        return;
+    }
+
+    let formData = new FormData();
+
+    // Booking Details
+    formData.append('location', document.getElementById('reviewLocation').innerText.trim());
+    formData.append('booking_type', document.getElementById('reviewBookingType').innerText.trim());
+    formData.append('check_in', document.getElementById('reviewCheckInDateTime').innerText.trim());
+    formData.append('check_out', document.getElementById('reviewCheckOutDateTime').innerText.trim());
+
+    // Pricing
+    formData.append('base_price', document.getElementById('reviewBasePrice').innerText.replace('₹','').trim());
+    formData.append('penalty_price', document.getElementById('reviewPenaltyPrice').innerText.replace('₹','').trim());
+    formData.append('total_price', document.getElementById('reviewTotalPrice').innerText.replace('₹','').trim());
+
+    // Owner Details
+    formData.append('owner[name]', document.getElementById('reviewOwnerName').innerText.trim());
+    formData.append('owner[contact]', document.getElementById('reviewOwnerContact').innerText.trim());
+    formData.append('owner[alt_contact]', document.getElementById('reviewOwnerAltContact').innerText.trim());
+    formData.append('owner[address]', document.getElementById('reviewOwnerAddress').innerText.trim());
+
+    // Aadhar File
+    let aadharInput = document.getElementById('aadharUpload');
+    if (aadharInput && aadharInput.files.length > 0) {
+        formData.append('owner[aadhar]', aadharInput.files[0]);
+    }
+
+    // Pets
+    let pets = [];
+    document.querySelectorAll('#reviewPets .pet-item').forEach(div => {
+        pets.push({
+            name: div.dataset.name,
+            breed: div.dataset.breed,
+            age: div.dataset.age,
+            gender: div.dataset.gender,
+            type: div.dataset.type
+        });
+    });
+    formData.append('pets', JSON.stringify(pets));
+
+    // AJAX Request
+    fetch('/booking/store', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.booking) {
+            alert('Booking successful!');
+            // optional redirect
+        } else {
+            alert('Booking failed!');
+        }
+    })
+    .catch(err => console.error(err));
+});
+
+</script>
+
+
 
 

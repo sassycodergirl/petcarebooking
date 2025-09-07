@@ -24,7 +24,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'profile_photo',                  // profile photo path
         'notification_preference', // email / whatsapp / both / none
-        'phone_verified_at'
+        'phone_verified_at',
+        'alt_contact',            // added
+        'residential_address',    // added
+        'aadhar',                 // added
     ];
 
     /**
