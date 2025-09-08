@@ -1672,7 +1672,7 @@ document.addEventListener('DOMContentLoaded', function() {
             formData.append('pets', JSON.stringify(pets));
 
             // 4. AJAX POST to store booking
-            const response = await fetch('{{ url("/bookings") }}', { // POST URL
+            const response = await fetch('{{ url("/bookings") }}', {
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
