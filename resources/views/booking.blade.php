@@ -1671,8 +1671,17 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             formData.append('pets', JSON.stringify(pets));
 
-           console.log(formData);
-            throw new Error("Debug stop - die in JS");
+            //debug
+            console.log("FormData contents:");
+            for (let [key, value] of formData.entries()) {
+                    if (value instanceof File) {
+                        console.log(`${key}: [File] name=${value.name}, size=${value.size}, type=${value.type}`);
+                    } else {
+                        console.log(`${key}:`, value);
+                    }
+                }
+                throw new Error("Debug stop - die in JS");
+            //debug
 
             // 4. AJAX POST to store booking
             const response = await fetch('{{ url("/bookings") }}', {
