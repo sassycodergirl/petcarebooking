@@ -1287,7 +1287,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
                 const petType = $(this).find("input[name*='[type]']").val();
 
                 petsHTML += `
-                        <div class="col-md-12 mb-4 pt-4 border-top" data-name="${petName}"
+                        <div class="col-md-12 mb-4 pt-4 border-top pet-item" data-name="${petName}"
                 data-breed="${petBreed}"
                 data-age="${petAge}"
                 data-gender="${petGender}"
