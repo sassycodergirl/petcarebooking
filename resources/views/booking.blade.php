@@ -1680,7 +1680,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.log(`${key}:`, value);
                     }
                 }
-                throw new Error("Debug stop - die in JS");
+                // throw new Error("Debug stop - die in JS");
             //debug
 
             // 4. AJAX POST to store booking
