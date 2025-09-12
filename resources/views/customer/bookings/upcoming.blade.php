@@ -1,11 +1,11 @@
    @include('customer.partials.dash-header')
 
-        <div class="container-fluid">
+        <div class="container-fluid p-5">
             <h2 class="mb-4">Upcoming Bookings</h2>
 
             @if($bookings->count() > 0)
             <div class="table-responsive">
-                <table class="table table-bordered table-hover">
+                 <table id="basic-datatables" class="table table-bordered table-hover display table-hover">
                     <thead class="table-light">
                         <tr>
                             <th>#</th>

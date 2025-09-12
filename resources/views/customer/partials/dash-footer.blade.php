@@ -30,7 +30,17 @@
     <script src="{{ asset('customer/assets/js/dashboard.js') }}"></script>
     <!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
-
+   <script>
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "pageLength": 10,
+            "lengthChange": true
+        });
+    });
+</script>
 
      <script>
         const photoInput   = document.getElementById('photo');
