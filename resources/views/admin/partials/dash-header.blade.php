@@ -105,55 +105,42 @@
                   <p>Booking Management</p>
                   <span class="caret"></span>
                 </a>
-                <!-- <div class="collapse" id="base">
+                <div class="collapse" id="base">
                   <ul class="nav nav-collapse">
                     <li>
-                      <a href="components/avatars.html">
-                        <span class="sub-item">Avatars</span>
+                      <a href="#">
+                        <span class="sub-item">All Bookings</span>
                       </a>
                     </li>
                     <li>
-                      <a href="components/buttons.html">
-                        <span class="sub-item">Buttons</span>
+                      <a href="#">
+                        <span class="sub-item">Upcoming Bookings</span>
                       </a>
                     </li>
                     <li>
-                      <a href="components/gridsystem.html">
-                        <span class="sub-item">Grid System</span>
+                      <a href="#">
+                        <span class="sub-item">Past Bookings</span>
                       </a>
                     </li>
                     <li>
-                      <a href="components/panels.html">
-                        <span class="sub-item">Panels</span>
+                      <a href="#">
+                        <span class="sub-item">Pending Approvals</span>
                       </a>
                     </li>
                     <li>
-                      <a href="components/notifications.html">
-                        <span class="sub-item">Notifications</span>
+                      <a href="#">
+                        <span class="sub-item">Booking Calendar</span>
                       </a>
                     </li>
                     <li>
-                      <a href="components/sweetalert.html">
-                        <span class="sub-item">Sweet Alert</span>
+                      <a href="#">
+                        <span class="sub-item">Reports</span>
                       </a>
                     </li>
-                    <li>
-                      <a href="components/font-awesome-icons.html">
-                        <span class="sub-item">Font Awesome Icons</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/simple-line-icons.html">
-                        <span class="sub-item">Simple Line Icons</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/typography.html">
-                        <span class="sub-item">Typography</span>
-                      </a>
-                    </li>
+                 
+                   
                   </ul>
-                </div> -->
+                </div> 
               </li>
               <li class="nav-item  submenu">
                 <a data-bs-toggle="collapse" href="#sidebarLayouts">
