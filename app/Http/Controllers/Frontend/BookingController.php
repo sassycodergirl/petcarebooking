@@ -50,7 +50,7 @@ class BookingController extends Controller
             // 3. Handle Aadhar upload
             if ($request->hasFile('owner.aadhar')) {
                 $aadharFile = $request->file('owner.aadhar');
-                $aadharFileName = 'aadhar_' . time() . '_' . $aadharFile->getClientOriginalName();
+                $aadharFileName = 'aadhar_' . time() . '.' . $aadharFile->getClientOriginalExtension();
                 $aadharFile->move(public_path('user'), $aadharFileName);
                 $user->update(['aadhar' => $aadharFileName]);
             }

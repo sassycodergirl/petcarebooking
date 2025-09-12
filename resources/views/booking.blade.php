@@ -1637,9 +1637,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Booking Details
             formData.append('location', document.getElementById('reviewLocation').innerText.trim());
-            formData.append('booking_type', document.getElementById('reviewBookingType').innerText.trim());
-            formData.append('check_in', document.getElementById('reviewCheckInDateTime').innerText.trim());
-            formData.append('check_out', document.getElementById('reviewCheckOutDateTime').innerText.trim());
+            // formData.append('booking_type', document.getElementById('reviewBookingType').innerText.trim());
+            // formData.append('check_in', document.getElementById('reviewCheckInDateTime').innerText.trim());
+            // formData.append('check_out', document.getElementById('reviewCheckOutDateTime').innerText.trim());
+            // --- Booking Type ---
+            let rawBookingType = document.getElementById('reviewBookingType').innerText.trim().toLowerCase();
+
+            // If it starts with 'daycare' (like daycare4, daycare12), normalize to 'daycare'
+            if (rawBookingType.startsWith('daycare')) {
+                rawBookingType = 'daycare';
+            }
+            // If it starts with 'boarding', normalize to 'boarding'
+            else if (rawBookingType.startsWith('boarding')) {
+                rawBookingType = 'boarding';
+            }
+
+            formData.append('booking_type', rawBookingType);
+
+
+            // --- Check-in / Check-out ---
+            // Helper: parse text like "12 Sept 2025, 12:00 pm" into "YYYY-MM-DD HH:mm:ss"
+            function formatDateTime(dateString) {
+                const d = new Date(dateString); // browser parses most human-readable dates
+                if (isNaN(d)) {
+                    console.error("Invalid date:", dateString);
+                    return null;
+                }
+                // Format: YYYY-MM-DD HH:mm:ss
+                return d.getFullYear() + "-" +
+                    String(d.getMonth() + 1).padStart(2, '0') + "-" +
+                    String(d.getDate()).padStart(2, '0') + " " +
+                    String(d.getHours()).padStart(2, '0') + ":" +
+                    String(d.getMinutes()).padStart(2, '0') + ":" +
+                    String(d.getSeconds()).padStart(2, '0');
+            }
+
+            const rawCheckIn = document.getElementById('reviewCheckInDateTime').innerText.trim();
+            const rawCheckOut = document.getElementById('reviewCheckOutDateTime').innerText.trim();
+
+            formData.append('check_in', formatDateTime(rawCheckIn));
+            formData.append('check_out', formatDateTime(rawCheckOut));
+
 
             // Pricing
             formData.append('base_price', document.getElementById('reviewBasePrice').innerText.replace('₹','').trim());
