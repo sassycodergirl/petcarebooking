@@ -41,7 +41,7 @@
                             </td>
                             <td class="text-center">
                                 <a data-bs-toggle="collapse" href="#pets-{{ $booking->id }}" role="button" aria-expanded="false" aria-controls="pets-{{ $booking->id }}">
-                                    <i class="fas fa-chevron-down"></i>
+                                   Click Here
                                 </a>
                             </td>
                         </tr>
