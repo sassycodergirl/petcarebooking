@@ -15,6 +15,7 @@ use App\Http\Controllers\Customer\ProfileController;
 use App\Http\Controllers\Customer\PetController;
 use App\Http\Controllers\Customer\AddressController;
 use App\Http\Controllers\Auth\PhoneAuthController;
+use App\Http\Controllers\Customer\BookingController as CustomerBookingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -111,6 +112,10 @@ Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(functi
     Route::get('pets/{id}/edit', [PetController::class, 'edit'])->name('pets.edit');
     Route::put('pets/{id}', [PetController::class, 'update'])->name('pets.update');
     Route::delete('pets/{id}', [PetController::class, 'destroy'])->name('pets.destroy');
+
+    //booking
+     Route::get('/bookings/upcoming', [CustomerBookingController::class, 'upcoming'])->name('bookings.upcoming');
+     Route::get('/bookings/past', [CustomerBookingController::class, 'past'])->name('bookings.past');
 });
 
 // -----------------------------

@@ -1736,7 +1736,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.ok && data.booking) {
                 alert('Booking successful!');
                 // Optional: redirect to bookings page
-                window.location.href = "{{ route('bookings.index') }}";
+                // window.location.href = "{{ route('bookings.index') }}";
             } else {
                 alert(data.message || 'Booking failed!');
             }

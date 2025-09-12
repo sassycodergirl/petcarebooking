@@ -176,8 +176,8 @@
               </a>
               <div class="collapse" id="form-elements">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="#">Upcoming Bookings</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Past Bookings</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('customer.bookings.upcoming') }}">Upcoming Bookings</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('customer.bookings.past') }}">Past Bookings</a></li>
                 </ul>
               </div>
             </li>
