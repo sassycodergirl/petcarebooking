@@ -565,7 +565,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function fetchAvailability(location) {
         try {
-            const response = await fetch(`/get-availability?location=${location}`);
+            const response = await fetch("{{ url('/get-availability') }}?location=" + encodeURIComponent(location));
             const data = await response.json();
             fullyBookedDates = data.fullyBookedDates; // ✅ dynamically populated
             updateSlotInfo(); // Refresh slot info after fetching
@@ -743,7 +743,7 @@ async function updateSlotInfo() {
 
     // Fetch availability dynamically
     const location = document.querySelector("select[name='location']").value;
-    const res = await fetch(`/get-availability?location=${location}`);
+    const response = await fetch("{{ url('/get-availability') }}?location=" + encodeURIComponent(location));
     const data = await res.json();
 
     let totalSlots = 7; // Default fallback
