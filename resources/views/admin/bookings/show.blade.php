@@ -82,11 +82,13 @@
                 <tbody>
                     @foreach($booking->extra_pet_details as $pet)
                         <tr>
-                            <td>{{ $pet['name'] }}</td>
+                            <td>{{ ucfirst($pet['name']) }}</td>
                             <td>{{ ucfirst($pet['type']) }}</td>
                             <td>{{ $pet['breed'] }}</td>
                             <td>{{ $pet['age'] }}</td>
                             <td>{{ ucfirst($pet['gender']) }}</td>
+                            <td>{{ ucfirst($pet['conditions']) ?? '-' }}</td>
+                            <td>{{ ucfirst($pet['food']) ?? '-' }}</td>
                         </tr>
                     @endforeach
                 </tbody>

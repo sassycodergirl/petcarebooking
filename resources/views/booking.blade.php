@@ -1285,13 +1285,17 @@ registerModal.addEventListener('hidden.bs.modal', function () {
                 const petAge = $(this).find("input[name*='[age]']").val();
                 const petGender = $(this).find("select[name*='[gender]']").val();
                 const petType = $(this).find("input[name*='[type]']").val();
+                const petConditions = $(this).find("input[name*='[conditions]']").val();
+                const petFood = $(this).find("input[name*='[food]']").val();
 
                 petsHTML += `
                         <div class="col-md-12 mb-4 pt-4 border-top pet-item" data-name="${petName}"
                 data-breed="${petBreed}"
                 data-age="${petAge}"
                 data-gender="${petGender}"
-                data-type="${petType}" >
+                data-type="${petType}"
+                data-conditions="${petConditions}"
+                data-food="${petFood}" >
                         <h5>${petType} #${index+1}</h5>
                         </div>
 
@@ -1312,9 +1316,19 @@ registerModal.addEventListener('hidden.bs.modal', function () {
                         </div>
 
 
-                            <div class="col-12 col-md-3 mb-4">
-                        <h5>Gender</h5>
-                        <p class="dynamic-content">${petGender}</p>
+                        <div class="col-12 col-md-3 mb-4">
+                            <h5>Gender</h5>
+                            <p class="dynamic-content">${petGender}</p>
+                        </div>
+
+                        <div class="col-12 col-md-6 mb-4">
+                            <h5>Existing Conditions</h5>
+                            <p class="dynamic-content">${petConditions || "None"}</p>
+                        </div>
+
+                        <div class="col-12 col-md-6 mb-4">
+                            <h5>Food Habits</h5>
+                            <p class="dynamic-content">${petFood || "Not specified"}</p>
                         </div>
                 `;
             });
@@ -1704,7 +1718,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     breed: div.dataset.breed,
                     age: div.dataset.age,
                     gender: div.dataset.gender,
-                    type: div.dataset.type
+                    type: div.dataset.type,
+                    conditions: div.dataset.conditions,
+                    food: div.dataset.food
                 });
             });
             formData.append('pets', JSON.stringify(pets));
