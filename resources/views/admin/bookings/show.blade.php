@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <th>Contact</th>
-                    <td>{{ $booking->user->contact }}</td>
+                    <td>{{ $booking->user->phone }}</td>
                 </tr>
                 <tr>
                     <th>Alt Contact</th>
@@ -105,7 +105,7 @@
                 <tbody>
                     @foreach($booking->reservations as $res)
                         <tr>
-                            <td>{{ $res->slot->slot_date }}</td>
+                            td>{{ $booking->check_in->format('d M Y') }} - {{ $booking->check_out->format('d M Y') }}</td>
                             <td>{{ $res->slot->location }}</td>
                             <td>{{ ucfirst($res->status) }}</td>
                         </tr>
