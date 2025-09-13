@@ -570,13 +570,13 @@ document.addEventListener('DOMContentLoaded', function () {
             fullyBookedDates = data.fullyBookedDates; // ✅ dynamically populated
             console.log(fullyBookedDates);
             updateSlotInfo(); // Refresh slot info after fetching
+              calendar.render();
         } catch (err) {
             console.error("Error fetching availability:", err);
         }
     }
 
-    // Example usage: call when page loads or location changes
-    fetchAvailability('Kharghar');
+
 
     let calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
         initialView: 'dayGridMonth',
@@ -596,23 +596,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 arg.el.style.backgroundColor="red";
                 arg.el.style.color="white";
             }
-        },
-         datesSet: function() {
-        // Ensure booked dates are styled after calendar renders
-        document.querySelectorAll('.fc-daygrid-day').forEach(el => {
-            const y = el.dataset.date.split('-')[0];
-            const m = el.dataset.date.split('-')[1];
-            const d = el.dataset.date.split('-')[2];
-            const dateStr = `${y}-${m}-${d}`;
-            if(fullyBookedDates.includes(dateStr)){
-                el.classList.add("fc-day-disabled");
-                el.style.backgroundColor="red";
-                el.style.color="white";
-            }
-        });
-    }
+        }
     });
     calendar.render();
+        // Example usage: call when page loads or location changes
+    fetchAvailability('Kharghar');
 
     const prices = { 
         "Daycare4": 499, 
