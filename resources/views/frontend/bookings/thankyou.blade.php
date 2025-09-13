@@ -16,7 +16,7 @@
     </section>
 
 <div class="container py-5">
-<div class="thank-you-page text-center py-5">
+<div class="thank-you-page py-5">
 
   
    
@@ -87,7 +87,7 @@
     <div class="stepper-content">
       <div class="stepper-title">Booking Request Submitted</div>
       <div class="stepper-status">Completed</div>
-      <div class="stepper-time">{{ $booking->created_at->format('M d, h:i A') }}</div>
+      <div class="stepper-time"> {{ $booking->created_at->timezone('Asia/Kolkata')->format('M d, h:i A') }}</div>
     </div>
   </div>
 
