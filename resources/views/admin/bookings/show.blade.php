@@ -77,6 +77,8 @@
                         <th>Breed</th>
                         <th>Age</th>
                         <th>Gender</th>
+                        <th>Condition</th>
+                        <th>Food Preference</th>
                     </tr>
                 </thead>
                 <tbody>
