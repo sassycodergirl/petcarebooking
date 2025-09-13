@@ -1749,10 +1749,15 @@ document.addEventListener('DOMContentLoaded', function() {
             // 5. Parse JSON safely
             const data = await response.json();
 
+            // if (response.ok && data.booking) {
+            //     alert('Booking successful!');
+            //     // Optional: redirect to bookings page
+            //     // window.location.href = "{{ route('bookings.index') }}";
+            // } else {
+            //     alert(data.message || 'Booking failed!');
+            // }
             if (response.ok && data.booking) {
-                alert('Booking successful!');
-                // Optional: redirect to bookings page
-                // window.location.href = "{{ route('bookings.index') }}";
+                window.location.href = data.redirect_url;
             } else {
                 alert(data.message || 'Booking failed!');
             }

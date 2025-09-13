@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use App\Helpers\TwilioHelper;
 
 class BookingController extends Controller
 {
@@ -138,9 +139,15 @@ class BookingController extends Controller
             // 8. Update booking with pet IDs
             $booking->update(['pet_ids' => $petIds]);
 
+             // Send WhatsApp notification
+            $ownerPhone = $validated['owner']['contact'];
+            $message = "Hi {$validated['owner']['name']}, your booking has been received and is currently pending approval. We’ll notify you once it is approved.";
+            TwilioHelper::sendWhatsApp($ownerPhone, $message);
+
             return response()->json([
                 'message' => 'Booking created successfully (pending)',
                 'booking' => $booking,
+                'redirect_url' => route('bookings.thankyou', $booking->id)
             ]);
         });
     }
@@ -180,6 +187,13 @@ class BookingController extends Controller
             'fullyBookedDates' => $fullyBookedDates,
             'availability'     => $availability,
         ]);
+    }
+
+
+    public function thankYou($id)
+    {
+        $booking = Booking::findOrFail($id);
+        return view('frontend.bookings.thankyou', compact('booking'));
     }
 
 }

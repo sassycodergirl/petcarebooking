@@ -171,6 +171,6 @@ Route::get('/slots/availability', [BookingController::class, 'getAvailability'])
 
 // Protected routes for logged-in users
 Route::middleware(['auth'])->group(function () {
-    Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+    Route::get('/bookings/thank-you/{id}', [BookingController::class, 'thankYou'])->name('bookings.thankyou');
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
 });
