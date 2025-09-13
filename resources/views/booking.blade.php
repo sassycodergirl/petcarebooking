@@ -1223,50 +1223,113 @@ registerModal.addEventListener('hidden.bs.modal', function () {
    
 
 
-    function generatePetForms(numDogs, numCats, petsData = []) {
-    let wrapper = $("#petDetailsWrapper");
-    console.log("Wrapper exists:", wrapper.length); 
-    console.log("PetsData inside generatePetForms:", petsData);
+//     function generatePetForms(numDogs, numCats, petsData = []) {
+//     let wrapper = $("#petDetailsWrapper");
+//     console.log("Wrapper exists:", wrapper.length); 
+//     console.log("PetsData inside generatePetForms:", petsData);
 
-    let existingForms = wrapper.children(".pet-form-box").length;
-    let petIndex = existingForms + 1;
+//     let existingForms = wrapper.children(".pet-form-box").length;
+//     let petIndex = existingForms + 1;
 
-    // Prefill pets only if wrapper is empty (first load)
-    if(existingForms === 0 && petsData.length > 0) {
-        petsData.forEach(pet => {
-            console.log(`Prefilling ${pet.type}:`, pet);
-            wrapper.append(getPetFormHTML(petIndex, pet.type, pet));
-            petIndex++;
-        });
-    }
+//     // Prefill pets only if wrapper is empty (first load)
+//     if(existingForms === 0 && petsData.length > 0) {
+//         petsData.forEach(pet => {
+//             console.log(`Prefilling ${pet.type}:`, pet);
+//             wrapper.append(getPetFormHTML(petIndex, pet.type, pet));
+//             petIndex++;
+//         });
+//     }
 
-    // Count how many dogs/cats already rendered
-    let currentDogs = wrapper.children(".pet-form-box").filter(function(){
-        return $(this).find("input[name*='[type]']").val().toLowerCase() === 'dog';
-    }).length;
+//     // Count how many dogs/cats already rendered
+//     let currentDogs = wrapper.children(".pet-form-box").filter(function(){
+//         return $(this).find("input[name*='[type]']").val().toLowerCase() === 'dog';
+//     }).length;
 
-    let currentCats = wrapper.children(".pet-form-box").filter(function(){
-        return $(this).find("input[name*='[type]']").val().toLowerCase() === 'cat';
-    }).length;
+//     let currentCats = wrapper.children(".pet-form-box").filter(function(){
+//         return $(this).find("input[name*='[type]']").val().toLowerCase() === 'cat';
+//     }).length;
 
-    console.log("Current dogs:", currentDogs, "Current cats:", currentCats);
+//     console.log("Current dogs:", currentDogs, "Current cats:", currentCats);
 
-    // Append extra dogs if numDogs increased
-    if(numDogs > currentDogs) {
-        for (let i = currentDogs + 1; i <= numDogs; i++) {
-            wrapper.append(getPetFormHTML(petIndex, "Dog"));
-            petIndex++;
+//     // Append extra dogs if numDogs increased
+//     if(numDogs > currentDogs) {
+//         for (let i = currentDogs + 1; i <= numDogs; i++) {
+//             wrapper.append(getPetFormHTML(petIndex, "Dog"));
+//             petIndex++;
+//         }
+//     }
+
+//     // Append extra cats if numCats increased
+//     if(numCats > currentCats) {
+//         for (let i = currentCats + 1; i <= numCats; i++) {
+//             wrapper.append(getPetFormHTML(petIndex, "Cat"));
+//             petIndex++;
+//         }
+//     }
+// }
+
+
+        function generatePetForms(numDogs, numCats, petsData = []) {
+            let wrapper = $("#petDetailsWrapper");
+            console.log("Wrapper exists:", wrapper.length); 
+            console.log("PetsData inside generatePetForms:", petsData);
+
+            let existingForms = wrapper.children(".pet-form-box").length;
+            let petIndex = existingForms + 1;
+
+            // Prefill pets only if wrapper is empty (first load)
+            if(existingForms === 0 && petsData.length > 0) {
+                petsData.forEach(pet => {
+                    console.log(`Prefilling ${pet.type}:`, pet);
+                    wrapper.append(getPetFormHTML(petIndex, pet.type, pet));
+                    petIndex++;
+                });
+            }
+
+            // Count how many dogs/cats already rendered
+            let currentDogs = wrapper.children(".pet-form-box").filter(function(){
+                return $(this).find("input[name*='[type]']").val().toLowerCase() === 'dog';
+            }).length;
+
+            let currentCats = wrapper.children(".pet-form-box").filter(function(){
+                return $(this).find("input[name*='[type]']").val().toLowerCase() === 'cat';
+            }).length;
+
+            console.log("Current dogs:", currentDogs, "Current cats:", currentCats);
+
+            // ✅ Remove extra dog forms if count decreased
+            if (numDogs < currentDogs) {
+                wrapper.children(".pet-form-box").filter(function(){
+                    return $(this).find("input[name*='[type]']").val().toLowerCase() === 'dog';
+                }).slice(numDogs).remove();
+                currentDogs = numDogs;
+            }
+
+            // ✅ Remove extra cat forms if count decreased
+            if (numCats < currentCats) {
+                wrapper.children(".pet-form-box").filter(function(){
+                    return $(this).find("input[name*='[type]']").val().toLowerCase() === 'cat';
+                }).slice(numCats).remove();
+                currentCats = numCats;
+            }
+
+            // Append extra dogs if numDogs increased
+            if(numDogs > currentDogs) {
+                for (let i = currentDogs + 1; i <= numDogs; i++) {
+                    wrapper.append(getPetFormHTML(petIndex, "Dog"));
+                    petIndex++;
+                }
+            }
+
+            // Append extra cats if numCats increased
+            if(numCats > currentCats) {
+                for (let i = currentCats + 1; i <= numCats; i++) {
+                    wrapper.append(getPetFormHTML(petIndex, "Cat"));
+                    petIndex++;
+                }
+            }
         }
-    }
 
-    // Append extra cats if numCats increased
-    if(numCats > currentCats) {
-        for (let i = currentCats + 1; i <= numCats; i++) {
-            wrapper.append(getPetFormHTML(petIndex, "Cat"));
-            petIndex++;
-        }
-    }
-}
 
 
 
