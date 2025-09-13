@@ -1262,14 +1262,17 @@ $.get(getUserPetsUrl, function(res) {
         try {
             pets = JSON.parse(pets);
         } catch(e) {
+            console.error("Failed to parse pets JSON:", e);
             pets = [];
         }
     }
     pets = Array.isArray(pets) ? pets : [];
+    console.log("Pets array after parsing:", pets);
     
 
     const numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
     const numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
+     console.log("NumDogs:", numDogs, "NumCats:", numCats);
     generatePetForms(numDogs, numCats, pets);
 });
 
