@@ -1222,17 +1222,24 @@ function getPetFormHTML(index, type, petData = {}) {
 // Generate all pet forms, prefilled + empty extra forms
 function generatePetForms(numDogs, numCats, petsData = []) {
     let wrapper = $("#petDetailsWrapper");
+
+    console.log("Wrapper exists:", wrapper.length); // should be 1
+    console.log("PetsData inside generatePetForms:", petsData);
+
+
     wrapper.html(""); // reset
     let petIndex = 1;
 
     // Prefill dogs
     petsData.filter(p => p.type.toLowerCase() === 'dog').forEach(pet => {
+        console.log("Appending dog:", pet);
         wrapper.append(getPetFormHTML(petIndex, "Dog", pet));
         petIndex++;
     });
 
     // Prefill cats
     petsData.filter(p => p.type.toLowerCase() === 'cat').forEach(pet => {
+         console.log("Appending cat:", pet);
         wrapper.append(getPetFormHTML(petIndex, "Cat", pet));
         petIndex++;
     });
