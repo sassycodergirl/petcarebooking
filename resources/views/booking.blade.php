@@ -1461,10 +1461,18 @@ registerModal.addEventListener('hidden.bs.modal', function () {
         //             $("#prevBtn").show();
         //         }
         // }
+        // function updateStepIndicators() {
+        //     $(".step-indicator .step").each(function (index) {
+        //         $(this).toggleClass("active", index === currentStep);
+        //         $(this).toggleClass("completed", index < currentStep);
+        //     });
+        // }
+
         function updateStepIndicators() {
-            $(".step-indicator .step").each(function (index) {
-                $(this).toggleClass("active", index === currentStep);
-                $(this).toggleClass("completed", index < currentStep);
+            $(".steps .step").each(function (index) {
+                $(this).removeClass("active completed");
+                if (index < currentStep) $(this).addClass("completed");
+                if (index === currentStep) $(this).addClass("active");
             });
         }
 
