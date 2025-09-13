@@ -1158,119 +1158,124 @@ registerModal.addEventListener('hidden.bs.modal', function () {
             "Ragdoll", "Bengal", "Sphynx", "British Shorthair", "Other"
         ];
 
-        function getBreedOptions(type, index) {
+        // function getBreedOptions(type, index) {
+        //     let breeds = type === "Dog" ? dogBreeds : catBreeds;
+        //     return `
+        //         <select name="pets[${index}][breed]" required>
+        //         <option value="">Select ${type} Breed</option>
+        //         ${breeds.map(b => `<option value="${b}">${b}</option>`).join("")}
+        //         </select>
+        //     `;
+        // }
+
+        function getBreedOptions(type, index, selectedBreed = '') {
             let breeds = type === "Dog" ? dogBreeds : catBreeds;
             return `
                 <select name="pets[${index}][breed]" required>
-                <option value="">Select ${type} Breed</option>
-                ${breeds.map(b => `<option value="${b}">${b}</option>`).join("")}
+                    <option value="">Select ${type} Breed</option>
+                    ${breeds.map(b => `<option value="${b}" ${b === selectedBreed ? 'selected' : ''}>${b}</option>`).join('')}
                 </select>
             `;
         }
 
+
    
-        function getPetFormHTML(index, type, petData = {}) {
-            return `
-            <div class="pet-form-box bg-white mb-4 p-3 p-md-5 border rounded">
-                <h5>Pet ${index} (${type})</h5>
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <label>Pet’s Name</label>
-                        <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" value="${petData.name || ''}" required>
+           function getPetFormHTML(index, type, petData = {}) {
+                return `
+                <div class="pet-form-box bg-white mb-4 p-3 p-md-5 border rounded">
+                    <h5>Pet ${index} (${type})</h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label>Pet’s Name</label>
+                            <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" value="${petData.name || ''}" required>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label>Breed</label>
+                            ${getBreedOptions(type, index, petData.breed || '')}
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label>Age</label>
+                            <input type="number" min="1" name="pets[${index}][age]" placeholder="Enter Age" value="${petData.age || ''}">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label>Gender</label>
+                            <select name="pets[${index}][gender]">
+                                <option value="">Select</option>
+                                <option value="Male" ${petData.gender === 'Male' ? 'selected' : ''}>Male</option>
+                                <option value="Female" ${petData.gender === 'Female' ? 'selected' : ''}>Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label>Existing Conditions</label>
+                            <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues" value="${petData.conditions || ''}">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label>Food Habits</label>
+                            <input type="text" name="pets[${index}][food]" placeholder="Type here" value="${petData.food || ''}">
+                        </div>
+                        <input type="hidden" name="pets[${index}][type]" value="${type}">
                     </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Breed</label>
-                        ${getBreedOptions(type, index, petData.breed)}
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Age</label>
-                        <input type="number" min="1" name="pets[${index}][age]" placeholder="Enter Age" value="${petData.age || ''}">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Gender</label>
-                        <select name="pets[${index}][gender]">
-                            <option value="">Select</option>
-                            <option value="Male" ${petData.gender === 'Male' ? 'selected' : ''}>Male</option>
-                            <option value="Female" ${petData.gender === 'Female' ? 'selected' : ''}>Female</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Existing Conditions</label>
-                        <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues" value="${petData.conditions || ''}">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Food Habits</label>
-                        <input type="text" name="pets[${index}][food]" placeholder="Type here" value="${petData.food || ''}">
-                    </div>
-                    <input type="hidden" name="pets[${index}][type]" value="${type}">
                 </div>
-            </div>
-            `;
-        }
-
-        // Modified generatePetForms to accept existing pet data
-        function generatePetForms(numDogs, numCats, petsData = []) {
-            let wrapper = $("#petDetailsWrapper");
-            wrapper.html(""); // reset
-            let petIndex = 1;
-
-            // Populate dogs
-            petsData.filter(p => p.type.toLowerCase() === 'dog').forEach(pet => {
-                wrapper.append(getPetFormHTML(petIndex, "Dog", pet));
-                petIndex++;
-            });
-
-            // Populate cats
-            petsData.filter(p => p.type.toLowerCase() === 'cat').forEach(pet => {
-                wrapper.append(getPetFormHTML(petIndex, "Cat", pet));
-                petIndex++;
-            });
-
-            // If user has extra dogs/cats without saved data
-            for (let i = petsData.filter(p => p.type.toLowerCase() === 'dog').length + 1; i <= numDogs; i++) {
-                wrapper.append(getPetFormHTML(petIndex, "Dog"));
-                petIndex++;
+                `;
             }
 
-            for (let i = petsData.filter(p => p.type.toLowerCase() === 'cat').length + 1; i <= numCats; i++) {
-                wrapper.append(getPetFormHTML(petIndex, "Cat"));
-                petIndex++;
+            function generatePetForms(numDogs, numCats, petsData = []) {
+                let wrapper = $("#petDetailsWrapper");
+                wrapper.html(""); // reset
+                let petIndex = 1;
+
+                // Prefill existing pets
+                petsData.filter(p => p.type.toLowerCase() === 'dog').forEach(pet => {
+                    wrapper.append(getPetFormHTML(petIndex, "Dog", pet));
+                    petIndex++;
+                });
+
+                petsData.filter(p => p.type.toLowerCase() === 'cat').forEach(pet => {
+                    wrapper.append(getPetFormHTML(petIndex, "Cat", pet));
+                    petIndex++;
+                });
+
+                // Add empty forms if user wants extra dogs/cats
+                for (let i = petsData.filter(p => p.type.toLowerCase() === 'dog').length + 1; i <= numDogs; i++) {
+                    wrapper.append(getPetFormHTML(petIndex, "Dog"));
+                    petIndex++;
+                }
+
+                for (let i = petsData.filter(p => p.type.toLowerCase() === 'cat').length + 1; i <= numCats; i++) {
+                    wrapper.append(getPetFormHTML(petIndex, "Cat"));
+                    petIndex++;
+                }
             }
-        }
 
-        //prefill pet data
-           const getUserPetsUrl = "{{ url('user/pets') }}";
+       // Prefill pets data
+        const getUserPetsUrl = "{{ url('user/pets') }}";
+        $.get(getUserPetsUrl, function(res) {
+            console.log("Pets response:", res);
+            const pets = res.pets || [];
+            let numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
+            let numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
 
-        $(document).ready(function() {
-            $.get(getUserPetsUrl, function(res) {
-                console.log("Pets response:", res);
-                const pets = res.pets;
-                let numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
-                let numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
-
-                  generatePetForms(numDogs, numCats, pets);
-            });
+            generatePetForms(numDogs, numCats, pets);
         });
-        //prefill pet dataView 
 
 
         function validatePetStep() {
-        let isValid = true;
+            let isValid = true;
 
-        // Clear previous errors
-        $(".pet-error").remove();
+            // Clear previous errors
+            $(".pet-error").remove();
 
-        $("#petDetailsWrapper .pet-form-box").each(function() {
-            const petNameInput = $(this).find("input[name*='[name]']");
-            const petNameVal = petNameInput.val().trim();
+            $("#petDetailsWrapper .pet-form-box").each(function() {
+                const petNameInput = $(this).find("input[name*='[name]']");
+                const petNameVal = petNameInput.val().trim();
 
-            if(!/^[a-zA-Z\s]+$/.test(petNameVal) || petNameVal === "") {
-                petNameInput.after('<div class="pet-error text-danger">Please enter a valid name (letters only).</div>');
-                isValid = false;
-            }
-        });
+                if(!/^[a-zA-Z\s]+$/.test(petNameVal) || petNameVal === "") {
+                    petNameInput.after('<div class="pet-error text-danger">Please enter a valid name (letters only).</div>');
+                    isValid = false;
+                }
+            });
 
-        return isValid;
+            return isValid;
     }
 
     function validateOwnerStep() {
