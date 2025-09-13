@@ -190,6 +190,30 @@ class BookingController extends Controller
     }
 
 
+    public function getUserPets()
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return response()->json(['pets' => []]);
+        }
+
+        $pets = $user->pets()->get()->map(function ($pet) {
+            return [
+                'id'         => $pet->id,
+                'name'       => $pet->name,
+                'type'       => $pet->type,
+                'breed'      => $pet->breed,
+                'age'        => $pet->age,
+                'gender'     => $pet->gender,
+                'conditions' => $pet->conditions,
+                'food'       => $pet->food,
+            ];
+        });
+
+        return response()->json(['pets' => $pets]);
+    }
+
+
     public function thankYou($id)
     {
         $booking = Booking::findOrFail($id);

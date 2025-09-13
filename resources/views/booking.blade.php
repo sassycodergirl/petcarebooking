@@ -193,7 +193,7 @@
                             <div class="col-md-6">
                                 <div class="stepform-body-col">
                                 <label>Owner’s Name</label>
-                                <input type="text" name="owner[name]" placeholder="Enter Owner’s name" required>
+                                <input type="text" name="owner[name]" value="{{ Auth::check() ? Auth::user()->name : '' }}" placeholder="Enter Owner’s name" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -214,19 +214,26 @@
                             <div class="col-md-12">
                                 <div class="stepform-body-col">
                                 <label>Residential Address</label>
-                                <input type="text" name="owner[address]" placeholder="Enter Residential Address" required>
+                                <input type="text" name="owner[address]" placeholder="Enter Residential Address" value="{{ Auth::check() ? Auth::user()->residential_address : '' }}"  required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="stepform-body-col">
                                 <label>Alternate Contact Number</label>
-                                <input type="text" name="owner[alt_contact]" placeholder="Enter Alternate Contact Number">
+                                <input type="text" name="owner[alt_contact]" placeholder="Enter Alternate Contact Number" value="{{ Auth::check() ? Auth::user()->alt_contact : '' }}" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="stepform-body-col">
-                                <label for="aadharUpload">Upload Aadhar (Image)</label>
-                                <input type="file" id="aadharUpload" name="owner[aadhar]" accept="image/*" required>
+                                    <label for="aadharUpload">Upload Aadhar (Image)</label>
+                                    <input type="file" id="aadharUpload" name="owner[aadhar]" accept="image/*" {{ Auth::check() && Auth::user()->aadhar ? '' : 'required' }}>
+
+                                      @if(Auth::check() && Auth::user()->aadhar)
+                                            <div class="mb-2">
+                                                <a href="{{ asset('public/user/'.$booking->user->aadhar) }}" target="_blank">View uploaded Aadhar</a>
+                                            </div>
+                                            <small>If you want to update, choose a new file</small>
+                                        @endif
                                 </div>
                             </div>
                             </div>
@@ -1215,6 +1222,18 @@ registerModal.addEventListener('hidden.bs.modal', function () {
                 petIndex++;
             }
         }
+
+        //prefill pet data
+        $(document).ready(function() {
+            $.get("/user/pets", function(res) {
+                const pets = res.pets;
+                let numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
+                let numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
+
+                generatePetForms(numDogs, numCats, pets);
+            });
+        });
+        //prefill pet data
 
 
 

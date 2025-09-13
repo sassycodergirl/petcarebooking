@@ -175,3 +175,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::get('/bookings/thank-you/{id}', [BookingController::class, 'thankYou'])->name('bookings.thankyou');
 });
+
+Route::get('/user/pets', [BookingController::class, 'getUserPets'])->middleware('auth');
