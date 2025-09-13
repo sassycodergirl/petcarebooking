@@ -94,22 +94,33 @@ class BookingManagementController extends Controller
     // Cancel booking
     public function cancel(Booking $booking)
     {
-        $booking->update(['status' => 'cancelled']);
+        DB::transaction(function () use ($booking) {
+            // 1. Only proceed if booking is not already cancelled
+            if ($booking->status !== 'cancelled') {
+                $booking->update(['status' => 'cancelled']);
 
-        // Send WhatsApp notification
-        if ($booking->user && $booking->user->phone) {
-            $refundAmount = isset($booking->total_price) ? "₹{$booking->total_price}" : "the paid amount";
-            $bookingType = isset($booking->booking_type) ? ucfirst($booking->booking_type) : 'N/A';
-            $checkIn = isset($booking->check_in) ? $booking->check_in->format('d M Y, h:i A') : 'N/A';
-            $checkOut = isset($booking->check_out) ? $booking->check_out->format('d M Y, h:i A') : 'N/A';
-            TwilioHelper::sendWhatsApp(
-                $booking->user->phone,
-                "Hi {$booking->user->name}, unfortunately your booking #{$booking->id} ({$bookingType}) has been cancelled. Check-in: {$checkIn}, Check-out: {$checkOut}. A refund of {$refundAmount} will be initiated shortly."
-            );
-        }
+                // 2. Cancel all related pet slot reservations
+                $booking->petSlotReservations()->active()->get()->each(function ($reservation) {
+                    $reservation->cancel();
+                });
+
+                // 3. Send WhatsApp notification
+                if ($booking->user && $booking->user->phone) {
+                    $refundAmount = isset($booking->total_price) ? "₹{$booking->total_price}" : "the paid amount";
+                    $bookingType = isset($booking->booking_type) ? ucfirst($booking->booking_type) : 'N/A';
+                    $checkIn = isset($booking->check_in) ? $booking->check_in->format('d M Y, h:i A') : 'N/A';
+                    $checkOut = isset($booking->check_out) ? $booking->check_out->format('d M Y, h:i A') : 'N/A';
+                    TwilioHelper::sendWhatsApp(
+                        $booking->user->phone,
+                        "Hi {$booking->user->name}, unfortunately your booking #{$booking->id} ({$bookingType}) has been cancelled. Check-in: {$checkIn}, Check-out: {$checkOut}. A refund of {$refundAmount} will be initiated shortly."
+                    );
+                }
+            }
+        });
 
         return back()->with('success', 'Booking cancelled successfully.');
     }
+
 
     // Mark booking as complete
     public function complete(Booking $booking)
