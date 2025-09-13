@@ -6474,7 +6474,7 @@ font-weight: 400;
 
 /* From Uiverse.io by akshat-patel28 */ 
 .success-card {
-  width: 330px;
+  width: 370px;
   height: 80px;
   border-radius: 8px;
   box-sizing: border-box;
@@ -6525,18 +6525,12 @@ font-weight: 400;
 }
 .message-text {
   color: #269b24;
-  font-size: 17px;
+  font-size: 25px;
   font-weight: 700;
 }
 .sub-text {
   font-size: 14px;
   color: #555;
-}
-.cross-icon {
-  width: 18px;
-  height: 18px;
-  color: #555;
-  cursor: pointer;
 }
 
 
