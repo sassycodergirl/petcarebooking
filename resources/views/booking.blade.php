@@ -1169,157 +1169,157 @@ registerModal.addEventListener('hidden.bs.modal', function () {
         //     `;
         // }
 
-// Generate breed select HTML
-function getBreedOptions(type, index, selectedBreed = '') {
-    let breeds = type === "Dog" ? dogBreeds : catBreeds;
-    return `
-        <select name="pets[${index}][breed]" required>
-            <option value="">Select ${type} Breed</option>
-            ${breeds.map(b => `<option value="${b}" ${b === selectedBreed ? 'selected' : ''}>${b}</option>`).join('')}
-        </select>
-    `;
-}
-
-// Generate individual pet form HTML
-function getPetFormHTML(index, type, petData = {}) {
-    return `
-    <div class="pet-form-box bg-white mb-4 p-3 p-md-5 border rounded">
-        <h5>Pet ${index} (${type})</h5>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label>Pet’s Name</label>
-                <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" value="${petData.name || ''}" required>
-            </div>
-            <div class="col-md-6 mb-4">
-                <label>Breed</label>
-                ${getBreedOptions(type, index, petData.breed || '')}
-            </div>
-            <div class="col-md-6 mb-4">
-                <label>Age</label>
-                <input type="number" min="1" name="pets[${index}][age]" placeholder="Enter Age" value="${petData.age || ''}">
-            </div>
-            <div class="col-md-6 mb-4">
-                <label>Gender</label>
-                <select name="pets[${index}][gender]">
-                    <option value="">Select</option>
-                    <option value="Male" ${petData.gender === 'Male' ? 'selected' : ''}>Male</option>
-                    <option value="Female" ${petData.gender === 'Female' ? 'selected' : ''}>Female</option>
+        // Generate breed select HTML
+        function getBreedOptions(type, index, selectedBreed = '') {
+            let breeds = type === "Dog" ? dogBreeds : catBreeds;
+            return `
+                <select name="pets[${index}][breed]" required>
+                    <option value="">Select ${type} Breed</option>
+                    ${breeds.map(b => `<option value="${b}" ${b === selectedBreed ? 'selected' : ''}>${b}</option>`).join('')}
                 </select>
+            `;
+        }
+
+    // Generate individual pet form HTML
+    function getPetFormHTML(index, type, petData = {}) {
+        return `
+        <div class="pet-form-box bg-white mb-4 p-3 p-md-5 border rounded">
+            <h5>Pet ${index} (${type})</h5>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label>Pet’s Name</label>
+                    <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" value="${petData.name || ''}" required>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label>Breed</label>
+                    ${getBreedOptions(type, index, petData.breed || '')}
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label>Age</label>
+                    <input type="number" min="1" name="pets[${index}][age]" placeholder="Enter Age" value="${petData.age || ''}">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label>Gender</label>
+                    <select name="pets[${index}][gender]">
+                        <option value="">Select</option>
+                        <option value="Male" ${petData.gender === 'Male' ? 'selected' : ''}>Male</option>
+                        <option value="Female" ${petData.gender === 'Female' ? 'selected' : ''}>Female</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label>Existing Conditions</label>
+                    <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues" value="${petData.conditions || ''}">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label>Food Habits</label>
+                    <input type="text" name="pets[${index}][food]" placeholder="Type here" value="${petData.food || ''}">
+                </div>
+                <input type="hidden" name="pets[${index}][type]" value="${type}">
             </div>
-            <div class="col-md-6 mb-4">
-                <label>Existing Conditions</label>
-                <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues" value="${petData.conditions || ''}">
-            </div>
-            <div class="col-md-6 mb-4">
-                <label>Food Habits</label>
-                <input type="text" name="pets[${index}][food]" placeholder="Type here" value="${petData.food || ''}">
-            </div>
-            <input type="hidden" name="pets[${index}][type]" value="${type}">
         </div>
-    </div>
-    `;
-}
+        `;
+    }
 
-// Generate all pet forms, prefilled + empty extra forms
-// function generatePetForms(numDogs, numCats, petsData = []) {
-//     let wrapper = $("#petDetailsWrapper");
+    // Generate all pet forms, prefilled + empty extra forms
+    // function generatePetForms(numDogs, numCats, petsData = []) {
+    //     let wrapper = $("#petDetailsWrapper");
 
-//     console.log("Wrapper exists:", wrapper.length); // should be 1
-//     console.log("PetsData inside generatePetForms:", petsData);
+    //     console.log("Wrapper exists:", wrapper.length); // should be 1
+    //     console.log("PetsData inside generatePetForms:", petsData);
 
 
-//     wrapper.html(""); // reset
-//     let petIndex = 1;
+    //     wrapper.html(""); // reset
+    //     let petIndex = 1;
 
-//     // Prefill dogs
-//     petsData.filter(p => p.type.toLowerCase() === 'dog').forEach(pet => {
-//         console.log("Appending dog:", pet);
-//         wrapper.append(getPetFormHTML(petIndex, "Dog", pet));
-//         petIndex++;
-//     });
+    //     // Prefill dogs
+    //     petsData.filter(p => p.type.toLowerCase() === 'dog').forEach(pet => {
+    //         console.log("Appending dog:", pet);
+    //         wrapper.append(getPetFormHTML(petIndex, "Dog", pet));
+    //         petIndex++;
+    //     });
 
-//     // Prefill cats
-//     petsData.filter(p => p.type.toLowerCase() === 'cat').forEach(pet => {
-//          console.log("Appending cat:", pet);
-//         wrapper.append(getPetFormHTML(petIndex, "Cat", pet));
-//         petIndex++;
-//     });
+    //     // Prefill cats
+    //     petsData.filter(p => p.type.toLowerCase() === 'cat').forEach(pet => {
+    //          console.log("Appending cat:", pet);
+    //         wrapper.append(getPetFormHTML(petIndex, "Cat", pet));
+    //         petIndex++;
+    //     });
 
-//     // Add empty forms if user wants extra dogs
-//     for (let i = petsData.filter(p => p.type.toLowerCase() === 'dog').length + 1; i <= numDogs; i++) {
-//         wrapper.append(getPetFormHTML(petIndex, "Dog"));
-//         petIndex++;
-//     }
+    //     // Add empty forms if user wants extra dogs
+    //     for (let i = petsData.filter(p => p.type.toLowerCase() === 'dog').length + 1; i <= numDogs; i++) {
+    //         wrapper.append(getPetFormHTML(petIndex, "Dog"));
+    //         petIndex++;
+    //     }
 
-//     // Add empty forms if user wants extra cats
-//     for (let i = petsData.filter(p => p.type.toLowerCase() === 'cat').length + 1; i <= numCats; i++) {
-//         wrapper.append(getPetFormHTML(petIndex, "Cat"));
-//         petIndex++;
-//     }
-// }
+    //     // Add empty forms if user wants extra cats
+    //     for (let i = petsData.filter(p => p.type.toLowerCase() === 'cat').length + 1; i <= numCats; i++) {
+    //         wrapper.append(getPetFormHTML(petIndex, "Cat"));
+    //         petIndex++;
+    //     }
+    // }
 
-function generatePetForms(numDogs, numCats, petsData = []) {
-    let wrapper = $("#petDetailsWrapper");
-    console.log("Wrapper exists:", wrapper.length); 
-    console.log("PetsData inside generatePetForms:", petsData);
+    function generatePetForms(numDogs, numCats, petsData = []) {
+        let wrapper = $("#petDetailsWrapper");
+        console.log("Wrapper exists:", wrapper.length); 
+        console.log("PetsData inside generatePetForms:", petsData);
 
-    let existingForms = wrapper.children(".pet-form-box").length;
-    let petIndex = existingForms + 1;
+        let existingForms = wrapper.children(".pet-form-box").length;
+        let petIndex = existingForms + 1;
 
-    // Prefill pets only if wrapper is empty (first load)
-    if(existingForms === 0 && petsData.length > 0) {
-        petsData.forEach(pet => {
-            console.log(`Prefilling ${pet.type}:`, pet);
-            wrapper.append(getPetFormHTML(petIndex, pet.type, pet));
+        // Prefill pets only if wrapper is empty (first load)
+        if(existingForms === 0 && petsData.length > 0) {
+            petsData.forEach(pet => {
+                console.log(`Prefilling ${pet.type}:`, pet);
+                wrapper.append(getPetFormHTML(petIndex, pet.type, pet));
+                petIndex++;
+            });
+        }
+
+        // Count how many dogs/cats already rendered
+        let currentDogs = wrapper.children(".pet-form-box").filter(function(){
+            return $(this).find("input[name*='[type]']").val().toLowerCase() === 'dog';
+        }).length;
+
+        let currentCats = wrapper.children(".pet-form-box").filter(function(){
+            return $(this).find("input[name*='[type]']").val().toLowerCase() === 'cat';
+        }).length;
+
+        // Append extra dogs if numDogs increased
+        for (let i = currentDogs + 1; i <= numDogs; i++) {
+            wrapper.append(getPetFormHTML(petIndex, "Dog"));
             petIndex++;
+        }
+
+        // Append extra cats if numCats increased
+        for (let i = currentCats + 1; i <= numCats; i++) {
+            wrapper.append(getPetFormHTML(petIndex, "Cat"));
+            petIndex++;
+        }
+    }
+
+
+
+        // Fetch user pets and generate forms
+        const getUserPetsUrl = "{{ url('user/pets') }}";
+        $.get(getUserPetsUrl, function(res) {
+            console.log("Pets response:", res);
+
+            // Ensure we have an array
+            fetchedPets = Array.isArray(res.pets) ? res.pets : [];
+
+            // Debug
+            console.log("Pets array after parsing:", fetchedPets);
+
+            // Count pets from fetched data or from user input if first-time
+            const numDogs = fetchedPets.filter(p => p.type.toLowerCase() === "dog").length || parseInt($("#numDogs").val()) || 0;
+            const numCats = fetchedPets.filter(p => p.type.toLowerCase() === "cat").length || parseInt($("#numCats").val()) || 0;
+
+            console.log("NumDogs:", numDogs, "NumCats:", numCats);
+
+            // Generate forms (prefilled if pets exist)
+            generatePetForms(numDogs, numCats, fetchedPets);
+            petsGenerated = true;
         });
-    }
-
-    // Count how many dogs/cats already rendered
-    let currentDogs = wrapper.children(".pet-form-box").filter(function(){
-        return $(this).find("input[name*='[type]']").val().toLowerCase() === 'dog';
-    }).length;
-
-    let currentCats = wrapper.children(".pet-form-box").filter(function(){
-        return $(this).find("input[name*='[type]']").val().toLowerCase() === 'cat';
-    }).length;
-
-    // Append extra dogs if numDogs increased
-    for (let i = currentDogs + 1; i <= numDogs; i++) {
-        wrapper.append(getPetFormHTML(petIndex, "Dog"));
-        petIndex++;
-    }
-
-    // Append extra cats if numCats increased
-    for (let i = currentCats + 1; i <= numCats; i++) {
-        wrapper.append(getPetFormHTML(petIndex, "Cat"));
-        petIndex++;
-    }
-}
-
-
-
-// Fetch user pets and generate forms
-const getUserPetsUrl = "{{ url('user/pets') }}";
-$.get(getUserPetsUrl, function(res) {
-    console.log("Pets response:", res);
-
-    // Ensure we have an array
-    fetchedPets = Array.isArray(res.pets) ? res.pets : [];
-
-    // Debug
-    console.log("Pets array after parsing:", fetchedPets);
-
-    // Count pets from fetched data or from user input if first-time
-    const numDogs = fetchedPets.filter(p => p.type.toLowerCase() === "dog").length || parseInt($("#numDogs").val()) || 0;
-    const numCats = fetchedPets.filter(p => p.type.toLowerCase() === "cat").length || parseInt($("#numCats").val()) || 0;
-
-    console.log("NumDogs:", numDogs, "NumCats:", numCats);
-
-    // Generate forms (prefilled if pets exist)
-    generatePetForms(numDogs, numCats, fetchedPets);
-    petsGenerated = true;
-});
 
    
         
