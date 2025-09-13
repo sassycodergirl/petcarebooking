@@ -70,12 +70,7 @@
                                             @endif
 
                                            
-                                            @if($booking->status == 'approved')
-                                                <form method="POST" action="{{ route('admin.bookings.complete', $booking->id) }}" class="d-inline">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-primary">Mark Completed</button>
-                                                </form>
-                                            @endif
+                                         
                                         </td>
 
                                     </tr>
