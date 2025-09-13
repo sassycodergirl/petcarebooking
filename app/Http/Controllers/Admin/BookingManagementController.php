@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
-use App\Models\petSlotReservation;
+use App\Models\PetSlotReservation;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -102,7 +102,7 @@ class BookingManagementController extends Controller
                 $booking->update(['status' => 'cancelled']);
 
                 // 2. Cancel all related pet slot reservations
-                $booking->petSlotReservation()->active()->get()->each(function ($reservation) {
+                $booking->reservations()->active()->get()->each(function ($reservation) {
                     $reservation->cancel();
                 });
 
