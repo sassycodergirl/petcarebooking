@@ -58,9 +58,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Admin CMS (auth + admin)
 // -----------------------------
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin-furry-cms', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin-furry-cms', function () {return view('admin.dashboard'); })->name('admin.dashboard');
 
     // Products routes
     Route::get('/admin-furry-cms/products', [ProductController::class, 'index'])->name('admin.products.index');
@@ -85,6 +83,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Global product setting
     Route::get('/admin-furry-cms/products/settings', [ProductController::class, 'settings'])->name('admin.products.settings');
     Route::post('/admin-furry-cms/products/settings/colors', [ProductController::class, 'updateColors'])->name('admin.products.settings.colors.update');
+
+    // Booking Management
+    Route::prefix('admin-furry-cms/bookings')->name('admin.bookings.')->group(function () {
+        Route::get('/', [BookingManagementController::class, 'index'])->name('index'); // All bookings
+        Route::get('/upcoming', [BookingManagementController::class, 'upcoming'])->name('upcoming'); // Upcoming
+        Route::get('/past', [BookingManagementController::class, 'past'])->name('past'); // Past
+        Route::get('/pending', [BookingManagementController::class, 'pending'])->name('pending'); // Pending approvals
+        Route::get('/calendar', [BookingManagementController::class, 'calendar'])->name('calendar'); // Calendar view
+        Route::get('/{booking}', [BookingManagementController::class, 'show'])->name('show'); // Single booking details
+        Route::post('/{booking}/approve', [BookingManagementController::class, 'approve'])->name('approve'); // Approve booking
+        Route::post('/{booking}/cancel', [BookingManagementController::class, 'cancel'])->name('cancel'); // Cancel booking
+        Route::post('/{booking}/complete', [BookingManagementController::class, 'complete'])->name('complete'); // Mark complete
+    });
+
 });
 
 // -----------------------------

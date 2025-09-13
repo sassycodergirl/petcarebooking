@@ -108,7 +108,7 @@
                 <div class="collapse" id="base">
                   <ul class="nav nav-collapse">
                     <li>
-                      <a href="#">
+                      <a href="{{ route('admin.bookings.index') }}">
                         <span class="sub-item">All Bookings</span>
                       </a>
                     </li>
