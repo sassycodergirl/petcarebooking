@@ -24,8 +24,8 @@
                         <tr>
                             <td>{{ $booking->id }}</td>
                             <td>{{ $booking->user->name }}</td>
-                            <td>{{ $booking->check_in->format('d M Y') }}</td>
-                            <td>{{ $booking->check_out->format('d M Y') }}</td>
+                           <td>{{ $booking->check_in?->format('d M Y H:i') }}</td>
+                            <td>{{ $booking->check_out?->format('d M Y H:i') }}</td>
                             <td>{{ $booking->location }}</td>
                             <td>
                                 <span class="badge bg-{{ $booking->status == 'pending' ? 'warning' : ($booking->status == 'approved' ? 'success' : 'secondary') }}">
