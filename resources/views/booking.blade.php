@@ -767,7 +767,7 @@ async function updateSlotInfo() {
         }
     });
 
-    slotInfo.innerHTML = `<b>Slots for ${startStr}${startStr !== endStr ? " to " + endStr : ""}</b><br>
+    slotInfo.innerHTML = `<b>Slots for ${formatHumanDate(startStr)}${startStr !== endStr ? " to " + formatHumanDate(endStr) : ""}</b><br>
                           Total Slots: ${totalSlots}<br>
                           Available Daycare: ${availableDaycare}<br>
                           Available Boarding: ${availableBoarding}<br>`;
