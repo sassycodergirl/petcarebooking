@@ -50,19 +50,20 @@
                                         <td>
                                             <a href="{{ route('admin.bookings.show', $booking->id) }}" class="btn btn-sm btn-info">View</a>
                                             
-                                            @if($booking->status == 'pending')
-                                                <form action="{{ route('admin.bookings.approve', $booking->id) }}" method="POST" class="d-inline">
-                                                    @csrf @method('PATCH')
-                                                    <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                               @if($booking->status == 'pending')
+                                                <form method="POST" action="{{ route('admin.bookings.approve', $booking->id) }}" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success">Approve</button>
                                                 </form>
-                                                <form action="{{ route('admin.bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
-                                                    @csrf @method('PATCH')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+
+                                                <form method="POST" action="{{ route('admin.bookings.cancel', $booking->id) }}" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Cancel</button>
                                                 </form>
                                             @elseif($booking->status == 'approved')
-                                                <form action="{{ route('admin.bookings.complete', $booking->id) }}" method="POST" class="d-inline">
-                                                    @csrf @method('PATCH')
-                                                    <button type="submit" class="btn btn-sm btn-primary">Mark Completed</button>
+                                                <form method="POST" action="{{ route('admin.bookings.complete', $booking->id) }}" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-primary">Mark Completed</button>
                                                 </form>
                                             @endif
                                         </td>
