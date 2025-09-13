@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Helpers\TwilioHelper;
 
 class BookingManagementController extends Controller
 {
@@ -50,9 +51,19 @@ class BookingManagementController extends Controller
     }
 
     // Approve booking
+
     public function approve(Booking $booking)
     {
         $booking->update(['status' => 'approved']);
+
+        // Send WhatsApp notification
+        if ($booking->user && $booking->user->phone) {
+            TwilioHelper::sendWhatsApp(
+                $booking->user->phone,
+                "Hi {$booking->user->name}, your booking #{$booking->id} has been approved. We look forward to seeing you!"
+            );
+        }
+
         return back()->with('success', 'Booking approved successfully.');
     }
 
@@ -60,6 +71,15 @@ class BookingManagementController extends Controller
     public function cancel(Booking $booking)
     {
         $booking->update(['status' => 'cancelled']);
+
+        // Send WhatsApp notification
+        if ($booking->user && $booking->user->phone) {
+            TwilioHelper::sendWhatsApp(
+                $booking->user->phone,
+                "Hi {$booking->user->name}, unfortunately your booking #{$booking->id} has been cancelled."
+            );
+        }
+
         return back()->with('success', 'Booking cancelled successfully.');
     }
 
