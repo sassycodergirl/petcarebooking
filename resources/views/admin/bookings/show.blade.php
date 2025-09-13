@@ -113,26 +113,31 @@
                 </tbody>
             </table>
 
-            {{-- Admin Actions --}}
+           {{-- Admin Actions --}}
             <div class="mt-4">
                 @if($booking->status == 'pending')
-                    <form method="POST" action="{{ route('admin.bookings.update', $booking->id) }}" class="d-inline">
+                    <form method="POST" action="{{ route('admin.bookings.approve', $booking->id) }}" class="d-inline">
                         @csrf
                         @method('PATCH')
-                        <input type="hidden" name="status" value="approved">
                         <button type="submit" class="btn btn-success">Approve</button>
                     </form>
 
-                    <form method="POST" action="{{ route('admin.bookings.update', $booking->id) }}" class="d-inline">
+                    <form method="POST" action="{{ route('admin.bookings.cancel', $booking->id) }}" class="d-inline">
                         @csrf
                         @method('PATCH')
-                        <input type="hidden" name="status" value="cancelled">
                         <button type="submit" class="btn btn-danger">Cancel</button>
+                    </form>
+                @elseif($booking->status == 'approved')
+                    <form method="POST" action="{{ route('admin.bookings.complete', $booking->id) }}" class="d-inline">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-primary">Mark Completed</button>
                     </form>
                 @endif
 
                 <a href="{{ route('admin.bookings.index') }}" class="btn btn-secondary">Back</a>
             </div>
+
         </div>
     </div>
 </div>
