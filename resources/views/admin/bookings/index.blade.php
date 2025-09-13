@@ -60,10 +60,13 @@
                                                 @endif
 
                                               
-                                                <form action="{{ route('admin.bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
-                                                </form>
+                                              <form action="{{ route('admin.bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-danger" 
+                                                        onclick="return confirm('Are you sure you want to cancel this booking?');">
+                                                    Cancel
+                                                </button>
+                                            </form>
                                             @endif
 
                                            

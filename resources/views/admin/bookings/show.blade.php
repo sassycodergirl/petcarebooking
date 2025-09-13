@@ -127,9 +127,12 @@
                     </form>
 
                     
-                    <form method="POST" action="{{ route('admin.bookings.cancel', $booking->id) }}" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-danger">Cancel</button>
+                     <form action="{{ route('admin.bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-danger" 
+                                                        onclick="return confirm('Are you sure you want to cancel this booking?');">
+                                                    Cancel
+                                                </button>
                     </form>
 
                 @elseif($booking->status == 'approved')
