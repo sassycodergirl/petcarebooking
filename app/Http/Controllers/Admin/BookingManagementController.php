@@ -20,14 +20,23 @@ class BookingManagementController extends Controller
     // Upcoming bookings
     public function upcoming()
     {
-        $bookings = Booking::where('check_in', '>=', Carbon::now())->orderBy('check_in')->paginate(20);
+       $bookings = Booking::where('check_in', '>=', Carbon::now())
+        ->whereIn('status', ['approved']) // only active ones
+        ->orderBy('check_in')
+        ->paginate(20);
         return view('admin.bookings.upcoming', compact('bookings'));
     }
 
     // Past bookings
-    public function past()
+   public function past()
     {
-        $bookings = Booking::where('check_out', '<', Carbon::now())->orderBy('check_out', 'desc')->paginate(20);
+        $bookings = Booking::where(function ($query) {
+                $query->where('check_out', '<', Carbon::now())
+                    ->orWhere('status', 'completed'); // force completed into past
+            })
+            ->orderBy('check_out', 'desc')
+            ->paginate(20);
+
         return view('admin.bookings.past', compact('bookings'));
     }
 
@@ -37,6 +46,16 @@ class BookingManagementController extends Controller
         $bookings = Booking::where('status', 'pending')->orderBy('created_at', 'desc')->paginate(20);
         return view('admin.bookings.pending', compact('bookings'));
     }
+
+    // Cancelled bookings
+        public function cancelled()
+        {
+            $bookings = Booking::where('status', 'cancelled')
+                ->orderBy('check_in', 'desc')
+                ->paginate(20);
+
+            return view('admin.bookings.cancelled', compact('bookings'));
+        }
 
     // Calendar view
     public function calendar()

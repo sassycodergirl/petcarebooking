@@ -47,26 +47,34 @@
                                         </td>
                                         <td>₹{{ number_format($booking->total_price, 2) }}</td>
                                         <td>{{ $booking->created_at->diffForHumans() }}</td>
-                                        <td>
+                                       <td>
                                             <a href="{{ route('admin.bookings.show', $booking->id) }}" class="btn btn-sm btn-info">View</a>
-                                            
-                                               @if($booking->status == 'pending')
-                                                <form method="POST" action="{{ route('admin.bookings.approve', $booking->id) }}" class="d-inline">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-success">Approve</button>
-                                                </form>
 
-                                                <form method="POST" action="{{ route('admin.bookings.cancel', $booking->id) }}" class="d-inline">
+                                            @if(in_array($booking->status, ['pending', 'approved']))
+                                               
+                                                @if($booking->status == 'pending')
+                                                    <form method="POST" action="{{ route('admin.bookings.approve', $booking->id) }}" class="d-inline">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-success">Approve</button>
+                                                    </form>
+                                                @endif
+
+                                              
+                                                <form action="{{ route('bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger">Cancel</button>
+                                                    <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
                                                 </form>
-                                            @elseif($booking->status == 'approved')
+                                            @endif
+
+                                           
+                                            @if($booking->status == 'approved')
                                                 <form method="POST" action="{{ route('admin.bookings.complete', $booking->id) }}" class="d-inline">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary">Mark Completed</button>
                                                 </form>
                                             @endif
                                         </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>
