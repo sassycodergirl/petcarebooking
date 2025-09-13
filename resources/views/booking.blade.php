@@ -1293,7 +1293,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
                 let numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
                 let numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
 
-                generatePetForms(numDogs, numCats, pets);
+                 generatePetFormsWithData(numDogs, numCats, pets);
             });
         });
         //prefill pet dataView uploaded Aadhar
