@@ -1607,6 +1607,16 @@ registerModal.addEventListener('hidden.bs.modal', function () {
             if(activeStepEl.hasClass("step-slot") && !petsGenerated){
                 const numDogs = parseInt($("#numDogs").val()) || 0;
                 const numCats = parseInt($("#numCats").val()) || 0;
+
+                console.log("Step-slot Next Clicked");
+                console.log("Requested numDogs:", numDogs, "numCats:", numCats);
+                console.log("Fetched pets data:", fetchedPets);
+                console.log("Fetched pets count:", fetchedPets.length);
+
+
+                let prefilledDogs = fetchedPets.filter(p => p.type.toLowerCase() === "dog").length;
+                let prefilledCats = fetchedPets.filter(p => p.type.toLowerCase() === "cat").length;
+                console.log("Prefilled dogs:", prefilledDogs, "Prefilled cats:", prefilledCats)
                 // generatePetForms(numDogs, numCats);
                  generatePetForms(numDogs, numCats, fetchedPets);
                 petsGenerated = true;
