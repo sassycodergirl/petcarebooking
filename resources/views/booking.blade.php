@@ -1224,15 +1224,17 @@ registerModal.addEventListener('hidden.bs.modal', function () {
         }
 
         //prefill pet data
-        $(document).ready(function() {
-            $.get("/user/pets", function(res) {
-                const pets = res.pets;
-                let numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
-                let numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
+           const getUserPetsUrl = "{{ url('user/pets') }}";
 
-                generatePetForms(numDogs, numCats, pets);
+            $(document).ready(function() {
+                $.get(getUserPetsUrl, function(res) {
+                    const pets = res.pets;
+                    let numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
+                    let numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
+
+                    generatePetForms(numDogs, numCats, pets);
+                });
             });
-        });
         //prefill pet dataView uploaded Aadhar
 
 
