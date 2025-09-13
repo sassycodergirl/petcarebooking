@@ -82,7 +82,7 @@ class BookingManagementController extends Controller
             $bookingType = isset($booking->booking_type) ? ucfirst($booking->booking_type) : 'N/A';
              $message = "Hi {$booking->user->name}, your booking #{$booking->id} ({$bookingType}) has been approved. "
              . "Check-in: {$checkIn}, Check-out: {$checkOut}. "
-             . "We look forward to seeing you!";
+             . "We are looking forward to seeing you!";
 
             TwilioHelper::sendWhatsApp($booking->user->phone, $message);
           
