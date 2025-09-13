@@ -1600,7 +1600,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
                 }
 
             // Step 1 → Step 2: generate pets only once
-            if(activeStepEl.hasClass("step-slot") && !petsGenerated){
+            if(activeStepEl.hasClass("step-slot")){
                 const numDogs = parseInt($("#numDogs").val()) || 0;
                 const numCats = parseInt($("#numCats").val()) || 0;
 
