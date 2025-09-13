@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductVariantGalleryController;
 use App\Http\Controllers\Admin\ProductGalleryController;
+use App\Http\Controllers\Admin\BookingManagementController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\ShopProductController;
 use App\Http\Controllers\Frontend\CartController;
