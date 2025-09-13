@@ -744,7 +744,7 @@ async function updateSlotInfo() {
     // Fetch availability dynamically
     const location = document.querySelector("select[name='location']").value;
     const response = await fetch("{{ url('/get-availability') }}?location=" + encodeURIComponent(location));
-    const data = await res.json();
+    const data = await response.json();
 
     let totalSlots = 7; // Default fallback
     let availableDaycare = 0;
