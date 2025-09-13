@@ -167,7 +167,9 @@ Route::middleware(['auth'])->group(function () {
 
 
 // Public route to check availability
-Route::get('/slots/availability', [BookingController::class, 'getAvailability'])->name('bookings.availability');
+
+Route::get('/get-availability', [BookingController::class, 'getAvailability']);
+
 
 // Protected routes for logged-in users
 Route::middleware(['auth'])->group(function () {

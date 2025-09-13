@@ -559,8 +559,23 @@ document.addEventListener('DOMContentLoaded', function () {
     checkIn.disabled = true;
     checkOut.disabled = true;
 
-    const fullyBookedDates = ["2025-08-28", "2025-08-30"];
+    // const fullyBookedDates = ["2025-08-28", "2025-08-30"];
+    let fullyBookedDates = [];
     let selectedDateEl = null;
+
+    async function fetchAvailability(location) {
+        try {
+            const response = await fetch(`/get-availability?location=${location}`);
+            const data = await response.json();
+            fullyBookedDates = data.fullyBookedDates; // ✅ dynamically populated
+            updateSlotInfo(); // Refresh slot info after fetching
+        } catch (err) {
+            console.error("Error fetching availability:", err);
+        }
+    }
+
+    // Example usage: call when page loads or location changes
+    fetchAvailability('Kharghar');
 
     let calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
         initialView: 'dayGridMonth',
@@ -674,7 +689,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
   
 
-    function updateSlotInfo() {
+//     function updateSlotInfo() {
+//     const inTime = checkInPicker.selectedDates[0];
+//     const outTime = checkOutPicker.selectedDates[0];
+
+//     let startStr = "";
+//     let endStr = "";
+
+//     if (inTime && outTime) {
+//         // Full range selected
+//         startStr = `${inTime.getFullYear()}-${String(inTime.getMonth()+1).padStart(2,'0')}-${String(inTime.getDate()).padStart(2,'0')}`;
+//         endStr = `${outTime.getFullYear()}-${String(outTime.getMonth()+1).padStart(2,'0')}-${String(outTime.getDate()).padStart(2,'0')}`;
+//     } else if (selectedDateEl) {
+//         // Only single date clicked
+//         const date = selectedDateEl.getAttribute('data-date');
+//         startStr = date;
+//         endStr = date;
+//     } else {
+//         slotInfo.innerHTML = "Please select a date to see availability.";
+//         return;
+//     }
+
+//     // TODO: Replace with dynamic availability if needed
+//     const totalSlots = 7;
+//     const availableDaycare = 5;
+//     const availableBoarding = 2;
+
+//     slotInfo.innerHTML = `<b>Slots for ${startStr}${startStr !== endStr ? " to " + endStr : ""}</b><br>
+//                           Total Slots: ${totalSlots}<br>
+//                           Available Daycare: ${availableDaycare}<br>
+//                           Available Boarding: ${availableBoarding}<br>`;
+// }
+
+
+async function updateSlotInfo() {
     const inTime = checkInPicker.selectedDates[0];
     const outTime = checkOutPicker.selectedDates[0];
 
@@ -682,11 +730,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let endStr = "";
 
     if (inTime && outTime) {
-        // Full range selected
         startStr = `${inTime.getFullYear()}-${String(inTime.getMonth()+1).padStart(2,'0')}-${String(inTime.getDate()).padStart(2,'0')}`;
         endStr = `${outTime.getFullYear()}-${String(outTime.getMonth()+1).padStart(2,'0')}-${String(outTime.getDate()).padStart(2,'0')}`;
     } else if (selectedDateEl) {
-        // Only single date clicked
         const date = selectedDateEl.getAttribute('data-date');
         startStr = date;
         endStr = date;
@@ -695,16 +741,38 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // TODO: Replace with dynamic availability if needed
-    const totalSlots = 7;
-    const availableDaycare = 5;
-    const availableBoarding = 2;
+    // Fetch availability dynamically
+    const location = document.querySelector("select[name='location']").value;
+    const res = await fetch(`/get-availability?location=${location}`);
+    const data = await res.json();
+
+    let totalSlots = 7; // Default fallback
+    let availableDaycare = 0;
+    let availableBoarding = 0;
+
+    // Filter selected range
+    const selectedDates = [];
+    let currentDate = new Date(startStr);
+    const endDateObj = new Date(endStr);
+
+    while(currentDate <= endDateObj){
+        selectedDates.push(currentDate.toISOString().slice(0,10));
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    data.availability.forEach(slot => {
+        if(selectedDates.includes(slot.date)){
+            availableDaycare += slot.availableSlots; // you can customize based on type
+            availableBoarding += slot.availableSlots; // if stored separately
+        }
+    });
 
     slotInfo.innerHTML = `<b>Slots for ${startStr}${startStr !== endStr ? " to " + endStr : ""}</b><br>
                           Total Slots: ${totalSlots}<br>
                           Available Daycare: ${availableDaycare}<br>
                           Available Boarding: ${availableBoarding}<br>`;
 }
+
 
 
     function toggleCheckFields() {
