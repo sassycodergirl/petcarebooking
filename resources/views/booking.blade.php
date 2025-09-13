@@ -525,6 +525,13 @@
 
 <!-- Registration Modal -->
 
+
+<!-- Loader -->
+<div id="checkoutLoader" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+    background:rgba(255,255,255,0.8); z-index:9999; display:flex; align-items:center; justify-content:center;">
+     <img src="{{ asset('images/loader.gif') }}" alt="Loading..." width="60">
+</div>
+
 @include('partials.footer')
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
@@ -1800,6 +1807,7 @@ document.querySelectorAll("#bookingForm input, #bookingForm select").forEach(el 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const checkoutBtn = document.getElementById('expressCheckout');
+    const loader = document.getElementById('checkoutLoader');
 
     if (!checkoutBtn) return;
 
@@ -1819,6 +1827,11 @@ document.addEventListener('DOMContentLoaded', function() {
         @endguest
 
         try {
+            const originalText = checkoutBtn.innerHTML;
+
+            checkoutBtn.disabled = true;
+             checkoutBtn.innerHTML = "Processing...";
+             loader.style.display = "flex"; // Show loader
             // 3. Prepare FormData
             const formData = new FormData();
 
@@ -1930,13 +1943,20 @@ document.addEventListener('DOMContentLoaded', function() {
             //     alert(data.message || 'Booking failed!');
             // }
             if (response.ok && data.booking) {
+                loader.style.display = "none";
                 window.location.href = data.redirect_url;
             } else {
+                 loader.style.display = "none"; // Hide loader
+                 checkoutBtn.disabled = false; 
+                  checkoutBtn.innerHTML = originalText; // Reset text
                 alert(data.message || 'Booking failed!');
             }
 
         } catch (err) {
             console.error(err);
+             loader.style.display = "none"; // Hide loader
+            checkoutBtn.disabled = false; 
+             checkoutBtn.innerHTML = originalText; // Reset text
             alert('Something went wrong. Please try again.');
         }
     });
