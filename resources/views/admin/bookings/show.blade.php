@@ -105,7 +105,7 @@
                 <tbody>
                     @foreach($booking->reservations as $res)
                         <tr>
-                            <td>{{ $booking->check_in->format('d M Y') }} - {{ $booking->check_out->format('d M Y') }}</td>
+                            <td>{{ $booking->check_in->format('d M Y, h:i A') }} - {{ $booking->check_out->format('d M Y, h:i A') }}</td>
                             <td>{{ $res->slot->location }}</td>
                             <td>{{ ucfirst($res->status) }}</td>
                         </tr>
