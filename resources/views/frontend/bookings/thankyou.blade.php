@@ -16,7 +16,7 @@
     </section>
 
 <div class="container py-5">
-<div class="thank-you-page py-5">
+<div class="thank-you-page pb-5">
 
   
    
