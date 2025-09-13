@@ -230,7 +230,7 @@
 
                                       @if(Auth::check() && Auth::user()->aadhar)
                                             <div class="mb-2">
-                                                <a href="{{ asset('public/user/'.$booking->user->aadhar) }}" target="_blank">View uploaded Aadhar</a>
+                                                <a href="{{ asset('public/user/'.Auth::user()->aadhar) }}" target="_blank">View uploaded Aadhar</a>
                                             </div>
                                             <small>If you want to update, choose a new file</small>
                                         @endif
@@ -1233,7 +1233,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
                 generatePetForms(numDogs, numCats, pets);
             });
         });
-        //prefill pet data
+        //prefill pet dataView uploaded Aadhar
 
 
 
