@@ -1254,8 +1254,20 @@ function generatePetForms(numDogs, numCats, petsData = []) {
 const getUserPetsUrl = "{{ url('user/pets') }}";
 $.get(getUserPetsUrl, function(res) {
     console.log("Pets response:", res);
+
+    let pets = res.pets;
+
+    // Ensure pets is an array
+    if (typeof pets === 'string') {
+        try {
+            pets = JSON.parse(pets);
+        } catch(e) {
+            pets = [];
+        }
+    }
+    pets = Array.isArray(pets) ? pets : [];
     
-     const pets = Array.isArray(res.pets) ? res.pets : [];
+
     const numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
     const numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
     generatePetForms(numDogs, numCats, pets);
