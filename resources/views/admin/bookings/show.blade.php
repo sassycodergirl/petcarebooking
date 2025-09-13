@@ -5,7 +5,7 @@
     <div class="dash-content card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h4>Booking Details #{{ $booking->id }}</h4>
-            <span class="badge bg-{{ $booking->status == 'pending' ? 'warning' : ($booking->status == 'approved' ? 'success' : 'danger') }}">
+            <span class="btn badge bg-{{ $booking->status == 'pending' ? 'warning' : ($booking->status == 'approved' ? 'success' : 'danger') }}">
                 {{ ucfirst($booking->status) }}
             </span>
         </div>

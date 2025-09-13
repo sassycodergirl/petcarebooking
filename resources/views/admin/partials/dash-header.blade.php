@@ -113,17 +113,17 @@
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="{{ route('admin.bookings.upcoming') }}">
                         <span class="sub-item">Upcoming Bookings</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="{{ route('admin.bookings.past') }}">
                         <span class="sub-item">Past Bookings</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="{{ route('admin.bookings.pending') }}">
                         <span class="sub-item">Pending Approvals</span>
                       </a>
                     </li>
