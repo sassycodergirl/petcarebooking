@@ -87,8 +87,8 @@
                             <td>{{ $pet['breed'] }}</td>
                             <td>{{ $pet['age'] }}</td>
                             <td>{{ ucfirst($pet['gender']) }}</td>
-                            <td>{{ ucfirst($pet['conditions']) ?? '-' }}</td>
-                            <td>{{ ucfirst($pet['food']) ?? '-' }}</td>
+                            <td>{{ isset($pet['conditions']) ? ucfirst($pet['conditions']) : '-' }}</td>
+                            <td>{{ isset($pet['food']) ? ucfirst($pet['food']) : '-' }}</td>
                         </tr>
                     @endforeach
                 </tbody>
