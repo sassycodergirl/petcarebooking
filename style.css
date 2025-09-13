@@ -6471,16 +6471,20 @@ font-weight: 400;
 	}
 }
 
-
+.thank-you-page{
+	margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
 /* From Uiverse.io by akshat-patel28 */ 
 .success-card {
-  width: 370px;
-  height: 80px;
+  /* width: 370px; */
+  /* height:100%; */
   border-radius: 8px;
   box-sizing: border-box;
   padding: 10px 15px;
   background-color: #ffffff;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
   position: relative;
   overflow: hidden;
   display: flex;
@@ -6488,17 +6492,10 @@ font-weight: 400;
   justify-content: space-around;
   gap: 15px;
 }
-.wave {
-  position: absolute;
-  transform: rotate(90deg);
-  left: -31px;
-  top: 32px;
-  width: 80px;
-  fill: #04e4003a;
-}
+
 .icon-container {
-  width: 35px;
-  height: 35px;
+  width: 5em;
+  height: 5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6507,8 +6504,8 @@ font-weight: 400;
   margin-left: 8px;
 }
 .success-card .icon {
-  width: 17px;
-  height: 17px;
+  width: 3em;
+  height: 3em;
   color: #269b24;
 }
 .message-text-container {
@@ -6543,6 +6540,7 @@ font-weight: 400;
   padding: 32px;
   width: 400px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
 }
 
 .stepper-step {

@@ -141,7 +141,10 @@ class BookingController extends Controller
 
              // Send WhatsApp notification
             $ownerPhone = $validated['owner']['contact'];
-            $message = "Hi {$validated['owner']['name']},your booking (ID: {$booking->id}) has been received and is currently pending approval. We’ll notify you once it is approved.";
+            $checkIn  = Carbon::parse($validated['check_in'])->format('M d, h:i A');
+            $checkOut = Carbon::parse($validated['check_out'])->format('M d, h:i A');
+            $message = "Hi {$validated['owner']['name']}, your booking (ID: {$booking->id}) has been received and is currently pending approval. "
+         . "Check-in: {$checkIn}, Check-out: {$checkOut}. We’ll notify you once it is approved.";
             TwilioHelper::sendWhatsApp($ownerPhone, $message);
 
             return response()->json([
