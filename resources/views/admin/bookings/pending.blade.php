@@ -33,7 +33,7 @@
                                 <td>{{ $booking->check_out->format('d M Y') }}</td>
                                 <td>₹ {{ number_format($booking->total_price, 2) }}</td>
                                 <td>
-                                    <span class="badge bg-warning">
+                                    <span class="badge btn bg-warning">
                                         {{ ucfirst($booking->status) }}
                                     </span>
                                 </td>
