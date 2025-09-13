@@ -6478,6 +6478,8 @@ font-weight: 400;
 }
 /* From Uiverse.io by akshat-patel28 */ 
 .success-card {
+	
+margin: auto;
   /* width: 370px; */
   /* height:100%; */
   border-radius: 8px;
@@ -6540,7 +6542,7 @@ font-weight: 400;
   padding: 32px;
   width: 400px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-
+    margin: 0 auto;
 }
 
 .stepper-step {
