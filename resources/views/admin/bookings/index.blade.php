@@ -60,7 +60,7 @@
                                                 @endif
 
                                               
-                                                <form action="{{ route('bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('admin.bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
                                                 </form>
