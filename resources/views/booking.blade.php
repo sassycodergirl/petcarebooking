@@ -767,6 +767,8 @@ async function updateSlotInfo() {
         }
     });
 
+
+
     slotInfo.innerHTML = `<b>Slots for ${formatHumanDate(startStr)}${startStr !== endStr ? " to " + formatHumanDate(endStr) : ""}</b><br>
                           Total Slots: ${totalSlots}<br>
                           Available Daycare: ${availableDaycare}<br>
@@ -774,7 +776,11 @@ async function updateSlotInfo() {
 }
 
 
-
+    function formatHumanDate(dateStr) {
+    const d = new Date(dateStr);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return d.toLocaleDateString('en-US', options); // "Sep 15, 2025"
+}
     function toggleCheckFields() {
         const selectedBooking = getSelectedBooking();
         if (selectedBooking) {
