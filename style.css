@@ -6651,27 +6651,10 @@ font-weight: 400;
   margin-top: 4px;
 }
 
-.stepper-controls {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 32px;
-}
 
-.stepper-button {
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  background-color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
 
-.stepper-button-primary {
-  background-color: #0f172a;
-  color: white;
-  border-color: #0f172a;
-}
+
+
+
 
 /*added by sudipa*/
