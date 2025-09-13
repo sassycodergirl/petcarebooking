@@ -1610,8 +1610,8 @@ registerModal.addEventListener('hidden.bs.modal', function () {
                 console.log("Fetched pets count:", fetchedPets.length);
 
                 // Clear old forms before regenerating
-                $("#petFormsContainer").empty();
-                
+                $("#petDetailsWrapper").empty();
+
                 let prefilledDogs = fetchedPets.filter(p => p.type.toLowerCase() === "dog").length;
                 let prefilledCats = fetchedPets.filter(p => p.type.toLowerCase() === "cat").length;
                 console.log("Prefilled dogs:", prefilledDogs, "Prefilled cats:", prefilledCats)
