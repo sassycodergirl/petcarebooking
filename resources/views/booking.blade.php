@@ -1146,6 +1146,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
         let currentStep = 0;
         const totalSteps = $(".form-step").length;
         const steps = $(".form-step");
+        let fetchedPets = [];
         let petsGenerated = false; // track if pet forms are generated
 
         const dogBreeds = [
@@ -1257,30 +1258,28 @@ function generatePetForms(numDogs, numCats, petsData = []) {
     }
 }
 
+
+
 // Fetch user pets and generate forms
 const getUserPetsUrl = "{{ url('user/pets') }}";
 $.get(getUserPetsUrl, function(res) {
     console.log("Pets response:", res);
 
-    let pets = res.pets;
+    // Ensure we have an array
+    fetchedPets = Array.isArray(res.pets) ? res.pets : [];
 
-    // Ensure pets is an array
-    if (typeof pets === 'string') {
-        try {
-            pets = JSON.parse(pets);
-        } catch(e) {
-            console.error("Failed to parse pets JSON:", e);
-            pets = [];
-        }
-    }
-    pets = Array.isArray(pets) ? pets : [];
-    console.log("Pets array after parsing:", pets);
-    
+    // Debug
+    console.log("Pets array after parsing:", fetchedPets);
 
-    const numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
-    const numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
-     console.log("NumDogs:", numDogs, "NumCats:", numCats);
-    generatePetForms(numDogs, numCats, pets);
+    // Count pets from fetched data or from user input if first-time
+    const numDogs = fetchedPets.filter(p => p.type.toLowerCase() === "dog").length || parseInt($("#numDogs").val()) || 0;
+    const numCats = fetchedPets.filter(p => p.type.toLowerCase() === "cat").length || parseInt($("#numCats").val()) || 0;
+
+    console.log("NumDogs:", numDogs, "NumCats:", numCats);
+
+    // Generate forms (prefilled if pets exist)
+    generatePetForms(numDogs, numCats, fetchedPets);
+    petsGenerated = true;
 });
 
    
@@ -1514,7 +1513,8 @@ $.get(getUserPetsUrl, function(res) {
             if(activeStepEl.hasClass("step-slot") && !petsGenerated){
                 const numDogs = parseInt($("#numDogs").val()) || 0;
                 const numCats = parseInt($("#numCats").val()) || 0;
-                generatePetForms(numDogs, numCats);
+                // generatePetForms(numDogs, numCats);
+                 generatePetForms(numDogs, numCats, fetchedPets);
                 petsGenerated = true;
             }
 
