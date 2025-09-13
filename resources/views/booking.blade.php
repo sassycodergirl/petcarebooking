@@ -568,6 +568,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const response = await fetch("{{ url('/get-availability') }}?location=" + encodeURIComponent(location));
             const data = await response.json();
             fullyBookedDates = data.fullyBookedDates; // ✅ dynamically populated
+            console.log(fullyBookedDates);
             updateSlotInfo(); // Refresh slot info after fetching
         } catch (err) {
             console.error("Error fetching availability:", err);

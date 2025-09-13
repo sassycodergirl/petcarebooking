@@ -82,6 +82,8 @@ class BookingController extends Controller
 
             $petIds = [];
 
+
+
             // 7. Create pets & reservations
             foreach ($petsData as $petData) {
                 $pet = Pet::updateOrCreate(
@@ -96,14 +98,25 @@ class BookingController extends Controller
                 $petIds[] = $pet->id;
 
                 // Determine dates for slot reservation
+                $checkIn  = Carbon::parse($validated['check_in']);
+                $checkOut = Carbon::parse($validated['check_out']);
+                $dates = [];
+
+                // Determine dates for slot reservation
                 if ($validated['booking_type'] === 'daycare') {
-                    $dates = [Carbon::parse($validated['check_in'])->toDateString()];
+                    $dates[] = $checkIn->toDateString();
                 } else {
-                    $dates = CarbonPeriod::create(
-                        Carbon::parse($validated['check_in']),
-                        Carbon::parse($validated['check_out'])
-                    )->toArray();
-                    $dates = array_map(fn($d) => $d->toDateString(), $dates);
+                     // Boarding: 8:00 AM to 8:00 AM next day logic
+                        $current = $checkIn->copy();
+                        while ($current->lt($checkOut)) {
+                            $dates[] = $current->toDateString();
+                            $current->addDay();
+                        }
+
+                        // Include check-out day only if checkout time is after 08:00
+                        if ($checkOut->format('H:i') > '08:00') {
+                            $dates[] = $checkOut->toDateString();
+                        }
                 }
 
                 foreach ($dates as $slotDate) {
