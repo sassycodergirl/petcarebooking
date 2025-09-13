@@ -1369,14 +1369,14 @@ registerModal.addEventListener('hidden.bs.modal', function () {
         });
 
     // When user changes number of dogs or cats
-        $("#numDogs, #numCats").on("change", function() {
-            const numDogs = parseInt($("#numDogs").val()) || 0;
-            const numCats = parseInt($("#numCats").val()) || 0;
+        // $("#numDogs, #numCats").on("change", function() {
+        //     const numDogs = parseInt($("#numDogs").val()) || 0;
+        //     const numCats = parseInt($("#numCats").val()) || 0;
 
-            // Re-generate pet forms based on new numbers
-            // Pass existing fetchedPets so prefilled data is retained
-            generatePetForms(numDogs, numCats, fetchedPets);
-        });
+        //     // Re-generate pet forms based on new numbers
+        //     // Pass existing fetchedPets so prefilled data is retained
+        //     generatePetForms(numDogs, numCats, fetchedPets);
+        // });
         
 
 
