@@ -1251,7 +1251,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
         const getUserPetsUrl = "{{ url('user/pets') }}";
         $.get(getUserPetsUrl, function(res) {
             console.log("Pets response:", res);
-            const pets = res.pets || [];
+            const pets = res.pets || res || [];
             let numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
             let numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
 
