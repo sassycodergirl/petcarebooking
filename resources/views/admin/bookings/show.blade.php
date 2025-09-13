@@ -59,7 +59,7 @@
                     <th>Aadhar</th>
                     <td>
                         @if($booking->user->aadhar)
-                           <a href="{{ asset('public/user/'.$booking->user->aadhar) }}" target="_blank">View File</a>
+                           <a href="{{ asset('public/user/'.$booking->user->aadhar) }}" target="_blank">View Aadhar</a>
                         @else
                             —
                         @endif
