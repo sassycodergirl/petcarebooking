@@ -722,58 +722,116 @@ document.addEventListener('DOMContentLoaded', function () {
 // }
 
 
-async function updateSlotInfo() {
-    const inTime = checkInPicker.selectedDates[0];
-    const outTime = checkOutPicker.selectedDates[0];
+// async function updateSlotInfo() {
+//     const inTime = checkInPicker.selectedDates[0];
+//     const outTime = checkOutPicker.selectedDates[0];
 
-    let startStr = "";
-    let endStr = "";
+//     let startStr = "";
+//     let endStr = "";
 
-    if (inTime && outTime) {
-        startStr = `${inTime.getFullYear()}-${String(inTime.getMonth()+1).padStart(2,'0')}-${String(inTime.getDate()).padStart(2,'0')}`;
-        endStr = `${outTime.getFullYear()}-${String(outTime.getMonth()+1).padStart(2,'0')}-${String(outTime.getDate()).padStart(2,'0')}`;
-    } else if (selectedDateEl) {
-        const date = selectedDateEl.getAttribute('data-date');
-        startStr = date;
-        endStr = date;
-    } else {
-        slotInfo.innerHTML = "Please select a date to see availability.";
-        return;
-    }
+//     if (inTime && outTime) {
+//         startStr = `${inTime.getFullYear()}-${String(inTime.getMonth()+1).padStart(2,'0')}-${String(inTime.getDate()).padStart(2,'0')}`;
+//         endStr = `${outTime.getFullYear()}-${String(outTime.getMonth()+1).padStart(2,'0')}-${String(outTime.getDate()).padStart(2,'0')}`;
+//     } else if (selectedDateEl) {
+//         const date = selectedDateEl.getAttribute('data-date');
+//         startStr = date;
+//         endStr = date;
+//     } else {
+//         slotInfo.innerHTML = "Please select a date to see availability.";
+//         return;
+//     }
 
-    // Fetch availability dynamically
-    const location = document.querySelector("select[name='location']").value;
-    const response = await fetch("{{ url('/get-availability') }}?location=" + encodeURIComponent(location));
-    const data = await response.json();
+//     // Fetch availability dynamically
+//     const location = document.querySelector("select[name='location']").value;
+//     const response = await fetch("{{ url('/get-availability') }}?location=" + encodeURIComponent(location));
+//     const data = await response.json();
 
-    let totalSlots = 7; // Default fallback
-    let availableDaycare = 0;
-    let availableBoarding = 0;
+//     let totalSlots = 7; // Default fallback
+//     let availableDaycare = 0;
+//     let availableBoarding = 0;
 
-    // Filter selected range
-    const selectedDates = [];
-    let currentDate = new Date(startStr);
-    const endDateObj = new Date(endStr);
+//     // Filter selected range
+//     const selectedDates = [];
+//     let currentDate = new Date(startStr);
+//     const endDateObj = new Date(endStr);
 
-    while(currentDate <= endDateObj){
-        selectedDates.push(currentDate.toISOString().slice(0,10));
-        currentDate.setDate(currentDate.getDate() + 1);
-    }
+//     while(currentDate <= endDateObj){
+//         selectedDates.push(currentDate.toISOString().slice(0,10));
+//         currentDate.setDate(currentDate.getDate() + 1);
+//     }
 
-    data.availability.forEach(slot => {
-        if(selectedDates.includes(slot.date)){
-            availableDaycare += slot.availableSlots; // you can customize based on type
-            availableBoarding += slot.availableSlots; // if stored separately
+//     data.availability.forEach(slot => {
+//         if(selectedDates.includes(slot.date)){
+//             availableDaycare += slot.availableSlots; // you can customize based on type
+//             availableBoarding += slot.availableSlots; // if stored separately
+//         }
+//     });
+
+
+
+//     slotInfo.innerHTML = `<b>Slots for ${formatHumanDate(startStr)}${startStr !== endStr ? " to " + formatHumanDate(endStr) : ""}</b><br>
+//                           Total Slots: ${totalSlots}<br>
+//                           Available Daycare: ${availableDaycare}<br>
+//                           Available Boarding: ${availableBoarding}<br>`;
+// }
+
+
+    async function updateSlotInfo() {
+        const inTime = checkInPicker.selectedDates[0];
+        const outTime = checkOutPicker.selectedDates[0];
+
+        let startStr = "";
+        let endStr = "";
+
+        if (inTime && outTime) {
+            startStr = `${inTime.getFullYear()}-${String(inTime.getMonth()+1).padStart(2,'0')}-${String(inTime.getDate()).padStart(2,'0')}`;
+            endStr = `${outTime.getFullYear()}-${String(outTime.getMonth()+1).padStart(2,'0')}-${String(outTime.getDate()).padStart(2,'0')}`;
+        } else if (selectedDateEl) {
+            const date = selectedDateEl.getAttribute('data-date');
+            startStr = date;
+            endStr = date;
+        } else {
+            slotInfo.innerHTML = "Please select a date to see availability.";
+            return;
         }
-    });
 
+        const location = document.querySelector("select[name='location']").value;
+        const response = await fetch("{{ url('/get-availability') }}?location=" + encodeURIComponent(location));
+        const data = await response.json();
 
+        const totalSlots = 7; // default max capacity
+        let availableDaycare = 0;
+        let availableBoarding = 0;
 
-    slotInfo.innerHTML = `<b>Slots for ${formatHumanDate(startStr)}${startStr !== endStr ? " to " + formatHumanDate(endStr) : ""}</b><br>
-                          Total Slots: ${totalSlots}<br>
-                          Available Daycare: ${availableDaycare}<br>
-                          Available Boarding: ${availableBoarding}<br>`;
-}
+        // Prepare a map for faster lookup
+        const availabilityMap = {};
+        data.availability.forEach(slot => {
+            availabilityMap[slot.date] = slot.availableSlots;
+        });
+
+        // Filter selected range
+        const selectedDates = [];
+        let currentDate = new Date(startStr);
+        const endDateObj = new Date(endStr);
+
+        while(currentDate <= endDateObj){
+            const dateStr = currentDate.toISOString().slice(0,10);
+            selectedDates.push(dateStr);
+
+            // If slot exists, use its availableSlots, else assume full availability
+            const available = availabilityMap[dateStr] !== undefined ? availabilityMap[dateStr] : totalSlots;
+            availableDaycare += available;
+            availableBoarding += available;
+
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+
+        slotInfo.innerHTML = `<b>Slots for ${formatHumanDate(startStr)}${startStr !== endStr ? " to " + formatHumanDate(endStr) : ""}</b><br>
+                            Total Slots: ${totalSlots}<br>
+                            Available Daycare: ${availableDaycare}<br>
+                            Available Boarding: ${availableBoarding}<br>`;
+    }
+
 
 
     function formatHumanDate(dateStr) {
