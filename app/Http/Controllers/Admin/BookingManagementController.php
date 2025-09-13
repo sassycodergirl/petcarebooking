@@ -122,8 +122,7 @@ class BookingManagementController extends Controller
         if ($booking->user && $booking->user->phone) {
             TwilioHelper::sendWhatsApp(
                 $booking->user->phone,
-                "Hi {$booking->user->name}, your booking #{$booking->id} has been completed. Thank you for choosing us! 
-                Your pet's stay is completed. We'd love to hear your feedback – please leave us a review: {$googleReviewLink}"
+                "Hi {$booking->user->name}, your booking #{$booking->id} has been completed. Thank you for choosing us! Your pet's stay is completed. We'd love to hear your feedback – please leave us a review: {$googleReviewLink}"
             );
         }
 
