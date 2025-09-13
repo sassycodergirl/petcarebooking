@@ -1168,6 +1168,61 @@ registerModal.addEventListener('hidden.bs.modal', function () {
             `;
         }
 
+         function getPetFormHTML(index, type) {
+            return `
+            <div class="pet-form-box bg-white mb-4 p-3 p-md-5 border rounded">
+                <h5>Pet ${index} (${type})</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <label>Pet’s Name</label>
+                        <input type="text" name="pets[${index}][name]" placeholder="Enter Pet’s name" required>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Breed</label>
+                        ${getBreedOptions(type, index)}
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Age</label>
+                        <input type="number" min="1" name="pets[${index}][age]" placeholder="Enter Age">
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Gender</label>
+                        <select name="pets[${index}][gender]">
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Existing Conditions</label>
+                        <input type="text" name="pets[${index}][conditions]" placeholder="Any health issues">
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Food Habits</label>
+                        <input type="text" name="pets[${index}][food]" placeholder="Type here">
+                    </div>
+                    <input type="hidden" name="pets[${index}][type]" value="${type}">
+                </div>
+            </div>
+            `;
+        }
+
+        function generatePetForms(numDogs, numCats) {
+            let wrapper = $("#petDetailsWrapper");
+            wrapper.html(""); // reset only first time
+            let petIndex = 1;
+
+            for (let i = 1; i <= numDogs; i++) {
+                wrapper.append(getPetFormHTML(petIndex, "Dog"));
+                petIndex++;
+            }
+
+            for (let i = 1; i <= numCats; i++) {
+                wrapper.append(getPetFormHTML(petIndex, "Cat"));
+                petIndex++;
+            }
+        }
+
        // New function: generate forms with pre-filled pets if available
         function generatePetFormsWithData(numDogs, numCats, petsData = []) {
             let wrapper = $("#petDetailsWrapper");
