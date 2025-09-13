@@ -1289,6 +1289,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
 
         $(document).ready(function() {
             $.get(getUserPetsUrl, function(res) {
+                console.log("Pets response:", res);
                 const pets = res.pets;
                 let numDogs = pets.filter(p => p.type.toLowerCase() === "dog").length;
                 let numCats = pets.filter(p => p.type.toLowerCase() === "cat").length;
@@ -1296,8 +1297,7 @@ registerModal.addEventListener('hidden.bs.modal', function () {
                  generatePetFormsWithData(numDogs, numCats, pets);
             });
         });
-        //prefill pet dataView uploaded Aadhar
-
+        //prefill pet dataView 
 
 
         function validatePetStep() {
