@@ -143,7 +143,8 @@ class BookingController extends Controller
             $ownerPhone = $validated['owner']['contact'];
             $checkIn  = Carbon::parse($validated['check_in'])->format('M d, h:i A');
             $checkOut = Carbon::parse($validated['check_out'])->format('M d, h:i A');
-            $message = "Hi {$validated['owner']['name']}, your booking (ID: {$booking->id}) has been received and is currently pending approval. "
+            $bookingType = isset($booking->booking_type) ? ucfirst($booking->booking_type) : 'N/A';
+            $message = "Hi {$validated['owner']['name']}, your booking (ID: {$booking->id}) ({$bookingType}) has been received and is currently pending approval. "
          . "Check-in: {$checkIn}, Check-out: {$checkOut}. We’ll notify you once it is approved.";
             TwilioHelper::sendWhatsApp($ownerPhone, $message);
 

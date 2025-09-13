@@ -77,10 +77,15 @@ class BookingManagementController extends Controller
 
         // Send WhatsApp notification
         if ($booking->user && $booking->user->phone) {
-            TwilioHelper::sendWhatsApp(
-                $booking->user->phone,
-                "Hi {$booking->user->name}, your booking #{$booking->id} has been approved. We look forward to seeing you!"
-            );
+            $checkIn  = Carbon::parse($booking->check_in)->format('M d, h:i A');
+            $checkOut = Carbon::parse($booking->check_out)->format('M d, h:i A');
+            $bookingType = isset($booking->booking_type) ? ucfirst($booking->booking_type) : 'N/A';
+             $message = "Hi {$booking->user->name}, your booking #{$booking->id} ({$bookingType}) has been approved. "
+             . "Check-in: {$checkIn}, Check-out: {$checkOut}. "
+             . "We look forward to seeing you!";
+
+            TwilioHelper::sendWhatsApp($booking->user->phone, $message);
+          
         }
 
         return back()->with('success', 'Booking approved successfully.');
@@ -93,9 +98,13 @@ class BookingManagementController extends Controller
 
         // Send WhatsApp notification
         if ($booking->user && $booking->user->phone) {
+            $refundAmount = isset($booking->total_price) ? "₹{$booking->total_price}" : "the paid amount";
+            $bookingType = isset($booking->booking_type) ? ucfirst($booking->booking_type) : 'N/A';
+            $checkIn = isset($booking->check_in) ? $booking->check_in->format('d M Y, h:i A') : 'N/A';
+            $checkOut = isset($booking->check_out) ? $booking->check_out->format('d M Y, h:i A') : 'N/A';
             TwilioHelper::sendWhatsApp(
                 $booking->user->phone,
-                "Hi {$booking->user->name}, unfortunately your booking #{$booking->id} has been cancelled."
+                "Hi {$booking->user->name}, unfortunately your booking #{$booking->id} ({$bookingType}) has been cancelled. Check-in: {$checkIn}, Check-out: {$checkOut}. A refund of {$refundAmount} will be initiated shortly."
             );
         }
 
@@ -106,6 +115,18 @@ class BookingManagementController extends Controller
     public function complete(Booking $booking)
     {
         $booking->update(['status' => 'completed']);
-        return back()->with('success', 'Booking marked as completed.');
+         // Dummy Google review link
+        $googleReviewLink = "https://g.page/r/CUSTOM_DUMMY_REVIEW_LINK";
+
+        // Send WhatsApp notification to user
+        if ($booking->user && $booking->user->phone) {
+            TwilioHelper::sendWhatsApp(
+                $booking->user->phone,
+                "Hi {$booking->user->name}, your booking #{$booking->id} has been completed. Thank you for choosing us! 
+                Your pet's stay is completed. We'd love to hear your feedback – please leave us a review: {$googleReviewLink}"
+            );
+        }
+
+        return back()->with('success', 'Booking marked as completed and user notified.');
     }
 }
