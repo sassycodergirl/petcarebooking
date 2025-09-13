@@ -84,7 +84,7 @@ class BookingController extends Controller
 
             // 7. Create pets & reservations
             foreach ($petsData as $petData) {
-                $pet = Pet::firstOrCreate(
+                $pet = Pet::updateOrCreate(
                     [
                         'user_id' => $user->id,
                         'name'    => $petData['name'],
