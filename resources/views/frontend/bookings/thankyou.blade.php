@@ -11,7 +11,7 @@
         </div>
         <img src="{{ asset('images/dog-banner-img.png') }}" class="dog-banner-img" alt="">
         <img src="{{ asset('images/events-img-ovr.png') }}" class="events-img-ovr" alt="">
-        <img src="{{ asset('images/success.png') }}" class="events-img-ovr" alt="">
+         <img src="{{ asset('images/about-banner.png') }}" class="events-banner-img about-banner" alt="">
         
     </section>
 
