@@ -1221,38 +1221,77 @@ function getPetFormHTML(index, type, petData = {}) {
 }
 
 // Generate all pet forms, prefilled + empty extra forms
+// function generatePetForms(numDogs, numCats, petsData = []) {
+//     let wrapper = $("#petDetailsWrapper");
+
+//     console.log("Wrapper exists:", wrapper.length); // should be 1
+//     console.log("PetsData inside generatePetForms:", petsData);
+
+
+//     wrapper.html(""); // reset
+//     let petIndex = 1;
+
+//     // Prefill dogs
+//     petsData.filter(p => p.type.toLowerCase() === 'dog').forEach(pet => {
+//         console.log("Appending dog:", pet);
+//         wrapper.append(getPetFormHTML(petIndex, "Dog", pet));
+//         petIndex++;
+//     });
+
+//     // Prefill cats
+//     petsData.filter(p => p.type.toLowerCase() === 'cat').forEach(pet => {
+//          console.log("Appending cat:", pet);
+//         wrapper.append(getPetFormHTML(petIndex, "Cat", pet));
+//         petIndex++;
+//     });
+
+//     // Add empty forms if user wants extra dogs
+//     for (let i = petsData.filter(p => p.type.toLowerCase() === 'dog').length + 1; i <= numDogs; i++) {
+//         wrapper.append(getPetFormHTML(petIndex, "Dog"));
+//         petIndex++;
+//     }
+
+//     // Add empty forms if user wants extra cats
+//     for (let i = petsData.filter(p => p.type.toLowerCase() === 'cat').length + 1; i <= numCats; i++) {
+//         wrapper.append(getPetFormHTML(petIndex, "Cat"));
+//         petIndex++;
+//     }
+// }
+
 function generatePetForms(numDogs, numCats, petsData = []) {
     let wrapper = $("#petDetailsWrapper");
-
-    console.log("Wrapper exists:", wrapper.length); // should be 1
+    console.log("Wrapper exists:", wrapper.length); 
     console.log("PetsData inside generatePetForms:", petsData);
 
+    let existingForms = wrapper.children(".pet-form-box").length;
+    let petIndex = existingForms + 1;
 
-    wrapper.html(""); // reset
-    let petIndex = 1;
+    // Prefill pets only if wrapper is empty (first load)
+    if(existingForms === 0 && petsData.length > 0) {
+        petsData.forEach(pet => {
+            console.log(`Prefilling ${pet.type}:`, pet);
+            wrapper.append(getPetFormHTML(petIndex, pet.type, pet));
+            petIndex++;
+        });
+    }
 
-    // Prefill dogs
-    petsData.filter(p => p.type.toLowerCase() === 'dog').forEach(pet => {
-        console.log("Appending dog:", pet);
-        wrapper.append(getPetFormHTML(petIndex, "Dog", pet));
-        petIndex++;
-    });
+    // Count how many dogs/cats already rendered
+    let currentDogs = wrapper.children(".pet-form-box").filter(function(){
+        return $(this).find("input[name*='[type]']").val().toLowerCase() === 'dog';
+    }).length;
 
-    // Prefill cats
-    petsData.filter(p => p.type.toLowerCase() === 'cat').forEach(pet => {
-         console.log("Appending cat:", pet);
-        wrapper.append(getPetFormHTML(petIndex, "Cat", pet));
-        petIndex++;
-    });
+    let currentCats = wrapper.children(".pet-form-box").filter(function(){
+        return $(this).find("input[name*='[type]']").val().toLowerCase() === 'cat';
+    }).length;
 
-    // Add empty forms if user wants extra dogs
-    for (let i = petsData.filter(p => p.type.toLowerCase() === 'dog').length + 1; i <= numDogs; i++) {
+    // Append extra dogs if numDogs increased
+    for (let i = currentDogs + 1; i <= numDogs; i++) {
         wrapper.append(getPetFormHTML(petIndex, "Dog"));
         petIndex++;
     }
 
-    // Add empty forms if user wants extra cats
-    for (let i = petsData.filter(p => p.type.toLowerCase() === 'cat').length + 1; i <= numCats; i++) {
+    // Append extra cats if numCats increased
+    for (let i = currentCats + 1; i <= numCats; i++) {
         wrapper.append(getPetFormHTML(petIndex, "Cat"));
         petIndex++;
     }
@@ -1552,6 +1591,16 @@ $.get(getUserPetsUrl, function(res) {
                 currentStep--;
                 showStep(currentStep);
             }
+        });
+
+        // When user changes number of dogs or cats
+        $("#numDogs, #numCats").on("change", function() {
+            const numDogs = parseInt($("#numDogs").val()) || 0;
+            const numCats = parseInt($("#numCats").val()) || 0;
+
+            // Re-generate pet forms based on new numbers
+            // Pass existing fetchedPets so prefilled data is retained
+            generatePetForms(numDogs, numCats, fetchedPets);
         });
 
         // updateStepIndicators(); // initialize
