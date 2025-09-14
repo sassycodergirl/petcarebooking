@@ -90,6 +90,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/', [BookingManagementController::class, 'index'])->name('index'); // All bookings
         Route::get('/upcoming', [BookingManagementController::class, 'upcoming'])->name('upcoming'); // Upcoming
         Route::get('/past', [BookingManagementController::class, 'past'])->name('past'); // Past
+        Route::get('/cancelled', [BookingManagementController::class, 'cancelled'])->name('cancelled'); // Cancelled
         Route::get('/pending', [BookingManagementController::class, 'pending'])->name('pending'); // Pending approvals
         Route::get('/calendar', [BookingManagementController::class, 'calendar'])->name('calendar'); // Calendar view
         Route::get('/{booking}', [BookingManagementController::class, 'show'])->name('show'); // Single booking details

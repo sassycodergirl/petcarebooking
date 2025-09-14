@@ -127,6 +127,12 @@
                         <span class="sub-item">Pending Approvals</span>
                       </a>
                     </li>
+
+                    <li>
+                      <a href="{{ route('admin.bookings.cancelled') }}">
+                        <span class="sub-item">Cancelled Bookings</span>
+                      </a>
+                    </li>
                     <li>
                       <a href="#">
                         <span class="sub-item">Booking Calendar</span>

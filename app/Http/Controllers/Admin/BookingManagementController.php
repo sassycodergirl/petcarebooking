@@ -50,14 +50,15 @@ class BookingManagementController extends Controller
     }
 
     // Cancelled bookings
-        public function cancelled()
-        {
-            $bookings = Booking::where('status', 'cancelled')
-                ->orderBy('check_in', 'desc')
-                ->paginate(20);
+    public function cancelled()
+    {
+        $bookings = Booking::with('user')
+                        ->where('status', 'cancelled')
+                        ->orderBy('check_in', 'desc')
+                        ->paginate(15);
 
-            return view('admin.bookings.cancelled', compact('bookings'));
-        }
+        return view('admin.bookings.cancelled', compact('bookings'));
+    }
 
     // Calendar view
     public function calendar()
