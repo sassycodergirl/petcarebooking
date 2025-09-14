@@ -6691,13 +6691,17 @@ background-color: #ffe000;
   color: rgb(26, 26, 26);
 }
 
-.cookieDescription, .cookieDescription a {
+.cookieDescription{
   text-align: center;
   font-size: 0.7em;
   font-weight: 600;
   color: rgb(99, 99, 99);
 }
-
+ .cookieDescription a {
+	font-size: 0.9em;
+    font-weight: 600;
+	color:rgb(97, 81, 81) ;
+ }
 .buttonContainer {
   display: flex;
   gap: 20px;
