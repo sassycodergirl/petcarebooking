@@ -6677,7 +6677,13 @@ background-color: #ffe000;
 
 
 
+#cookieSvg {
+  width: 50px;
+}
 
+#cookieSvg g path {
+  fill: rgb(97, 81, 81);
+}
 
 .cookieHeading {
   font-size: 1.2em;
