@@ -107,16 +107,22 @@ class BookingController extends Controller
                     $dates[] = $checkIn->toDateString();
                 } else {
                      // Boarding: 8:00 AM to 8:00 AM next day logic
-                        $current = $checkIn->copy();
-                        while ($current->lt($checkOut)) {
+                        // $current = $checkIn->copy();
+                        $current = $checkIn->copy()->setTime(8, 0); // Start at 8 AM of check-in day
+                       while ($current->lt($checkOut)) {
                             $dates[] = $current->toDateString();
                             $current->addDay();
                         }
 
-                        // Include check-out day only if checkout time is after 08:00
-                        if ($checkOut->format('H:i') > '08:00') {
-                            $dates[] = $checkOut->toDateString();
-                        }
+                        // // Include check-out day only if checkout time is after 08:00
+                        // if ($checkOut->format('H:i') > '08:00') {
+                        //     $dates[] = $checkOut->toDateString();
+                        // }
+                        
+                            // CONDITIONALLY include check-out day ONLY if checkout time > 08:00
+                            if ($checkOut->format('H:i') > '08:00') {
+                                $dates[] = $checkOut->toDateString();
+                            }
                 }
 
                 foreach ($dates as $slotDate) {
