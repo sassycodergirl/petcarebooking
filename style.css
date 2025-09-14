@@ -6670,7 +6670,7 @@ background-color: #ffe000;
   justify-content: center;
   padding: 20px 30px;
   gap: 13px;
-  position: relative;
+  /* position: relative; */
   overflow: hidden;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.062);
 }
