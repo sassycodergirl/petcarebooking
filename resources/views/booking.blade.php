@@ -2088,7 +2088,7 @@ document.addEventListener('DOMContentLoaded', function() {
             //debug
 
             // 4. AJAX POST to store booking
-            const response = await fetch('{{ url("/bookings") }}', {
+            const response = await fetch('{{ route("bookings.store") }}', {
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
