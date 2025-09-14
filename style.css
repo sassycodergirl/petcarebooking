@@ -6662,7 +6662,7 @@ background-color: #ffe000;
   /* height: 220px; */
      position: fixed;
     bottom: 0;
-    background: #fff;
+    background: #000;
     z-index: 999;
   display: flex;
   flex-direction: column;
@@ -6682,25 +6682,25 @@ background-color: #ffe000;
 }
 
 #cookieSvg g path {
-  fill: rgb(97, 81, 81);
+  fill:rgb(255 182 55);
 }
 
 .cookieHeading {
   font-size: 1.2em;
   font-weight: 800;
-  color: rgb(26, 26, 26);
+  color: #fff;
 }
 
 .cookieDescription{
-  text-align: center;
-  font-size: 0.7em;
-  font-weight: 600;
-  color: rgb(99, 99, 99);
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: rgb(217 215 211);
 }
  .cookieDescription a {
 	font-size: 0.9em;
     font-weight: 600;
-	color:rgb(97, 81, 81) ;
+	color:rgb(255 182 55) ;
  }
 .buttonContainer {
   display: flex;
