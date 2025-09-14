@@ -1974,6 +1974,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!checkoutBtn) return;
 
     checkoutBtn.addEventListener('click', async function() {
+         event.preventDefault(); 
         // 1. Check Terms & Conditions
         const tncChecked = document.getElementById('acceptTnC')?.checked;
         if (!tncChecked) {
