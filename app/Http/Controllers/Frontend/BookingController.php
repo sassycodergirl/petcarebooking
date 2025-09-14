@@ -58,6 +58,7 @@ class BookingController extends Controller
 
             // 4. Decode pets JSON
             $petsData = json_decode($validated['pets'], true);
+            $numPets = count($petsData);
 
             // 5. Count dogs and cats
             $numDogs = count(array_filter($petsData, fn($p) => strtolower($p['type']) === 'dog'));
@@ -82,9 +83,59 @@ class BookingController extends Controller
 
             $petIds = [];
 
+            // ---------------------- BULLETPROOF SLOT LOGIC ----------------------
+            $checkIn  = Carbon::parse($validated['check_in']);
+            $checkOut = Carbon::parse($validated['check_out']);
+            $dates = [];
 
+            if ($validated['booking_type'] === 'daycare') {
+                $dates[] = $checkIn->toDateString();
+            } else {
+                // Boarding: 8:00 AM → 8:00 AM next day
+                $start = $checkIn->copy()->setTime(8, 0);
+                $end   = $checkOut->copy()->setTime(8, 0);
 
-            // 7. Create pets & reservations
+                // Create period from start to end
+                $period = CarbonPeriod::create($start, '1 day', $end);
+
+                foreach ($period as $date) {
+                    $dates[] = $date->toDateString();
+                }
+
+                // Include checkout day if after 08:00
+                if ($checkOut->gt($checkOut->copy()->setTime(8, 0))) {
+                    $dates[] = $checkOut->toDateString();
+                }
+
+                // Remove duplicates
+                $dates = array_unique($dates);
+            }
+
+            // ---------------------- CREATE SLOTS ----------------------
+            foreach ($dates as $slotDate) {
+                $slot = Slot::where('location', $validated['location'])
+                    ->where('slot_date', $slotDate)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (!$slot) {
+                    $slot = Slot::create([
+                        'location'     => $validated['location'],
+                        'slot_date'    => $slotDate,
+                        'max_capacity' => 7,
+                        'booked_count' => 0,
+                    ]);
+                }
+
+                if ($slot->booked_count + $numPets > $slot->max_capacity) {
+                    throw new \Exception("No slots available for {$slotDate} at {$validated['location']}");
+                }
+
+                // Increment once per slot (total pets)
+                $slot->increment('booked_count', $numPets);
+            }
+
+            // ---------------------- CREATE PETS & RESERVATIONS ----------------------
             foreach ($petsData as $petData) {
                 $pet = Pet::updateOrCreate(
                     [
@@ -97,54 +148,10 @@ class BookingController extends Controller
 
                 $petIds[] = $pet->id;
 
-                // Determine dates for slot reservation
-                $checkIn  = Carbon::parse($validated['check_in']);
-                $checkOut = Carbon::parse($validated['check_out']);
-                $dates = [];
-
-                // Determine dates for slot reservation
-                if ($validated['booking_type'] === 'daycare') {
-                    $dates[] = $checkIn->toDateString();
-                } else {
-                     // Boarding: 8:00 AM to 8:00 AM next day logic
-                        // $current = $checkIn->copy();
-                        $current = $checkIn->copy()->setTime(8, 0); // Start at 8 AM of check-in day
-                       while ($current->lt($checkOut)) {
-                            $dates[] = $current->toDateString();
-                            $current->addDay();
-                        }
-
-                        // // Include check-out day only if checkout time is after 08:00
-                        // if ($checkOut->format('H:i') > '08:00') {
-                        //     $dates[] = $checkOut->toDateString();
-                        // }
-                        
-                            // CONDITIONALLY include check-out day ONLY if checkout time > 08:00
-                            if ($checkOut->format('H:i') > '08:00') {
-                                $dates[] = $checkOut->toDateString();
-                            }
-                }
-
                 foreach ($dates as $slotDate) {
                     $slot = Slot::where('location', $validated['location'])
                         ->where('slot_date', $slotDate)
-                        ->lockForUpdate()
                         ->first();
-
-                    if (!$slot) {
-                        $slot = Slot::create([
-                            'location'     => $validated['location'],
-                            'slot_date'    => $slotDate,
-                            'max_capacity' => 7,
-                            'booked_count' => 0,
-                        ]);
-                    }
-
-                    if ($slot->booked_count >= $slot->max_capacity) {
-                        throw new \Exception("No slots available for {$slotDate} at {$validated['location']}");
-                    }
-
-                    $slot->increment('booked_count');
 
                     PetSlotReservation::create([
                         'booking_id' => $booking->id,
@@ -155,16 +162,15 @@ class BookingController extends Controller
                 }
             }
 
-            // 8. Update booking with pet IDs
             $booking->update(['pet_ids' => $petIds]);
 
-             // Send WhatsApp notification
+            // Send WhatsApp notification
             $ownerPhone = $validated['owner']['contact'];
-            $checkIn  = Carbon::parse($validated['check_in'])->format('M d, h:i A');
-            $checkOut = Carbon::parse($validated['check_out'])->format('M d, h:i A');
-            $bookingType = isset($booking->booking_type) ? ucfirst($booking->booking_type) : 'N/A';
+            $checkInFmt  = $checkIn->format('M d, h:i A');
+            $checkOutFmt = $checkOut->format('M d, h:i A');
+            $bookingType = ucfirst($booking->booking_type ?? 'N/A');
             $message = "Hi {$validated['owner']['name']}, your booking (ID: {$booking->id}) ({$bookingType}) has been received and is currently pending approval. "
-         . "Check-in: {$checkIn}, Check-out: {$checkOut}. We’ll notify you once it is approved.";
+                . "Check-in: {$checkInFmt}, Check-out: {$checkOutFmt}. We’ll notify you once it is approved.";
             TwilioHelper::sendWhatsApp($ownerPhone, $message);
 
             return response()->json([
@@ -174,6 +180,9 @@ class BookingController extends Controller
             ]);
         });
     }
+
+
+
 
 
     /**
