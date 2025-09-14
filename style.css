@@ -6705,9 +6705,6 @@ background-color: #ffe000;
 }
 
 .acceptButton {
-
-
-  height: 30px;
   background-color:#0b33a5;
   transition-duration: .2s;
   border: none;
@@ -6719,8 +6716,6 @@ background-color: #ffe000;
 }
 
 .declineButton {
-
-  height: 30px;
   background-color: rgb(218, 218, 218);
   transition-duration: .2s;
   color: rgb(46, 46, 46);
