@@ -902,7 +902,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+function setNextDisabled(disabled) {
+    const btn = document.querySelector('#nextBtn');
+    if (!btn) return;
 
+    if (disabled) {
+        btn.setAttribute('disabled', 'true');
+        btn.classList.add('disabled-force');
+    } else {
+        btn.removeAttribute('disabled');
+        btn.classList.remove('disabled-force');
+    }
+}
 
 
 
@@ -1017,7 +1028,7 @@ if (booking === "Boarding") {
         penaltyMessage.classList.remove("d-none");
         penaltyMessage.textContent = "Boarding cannot be booked because one or more days in this range are fully booked.";
      
-        document.querySelector("#nextBtn").setAttribute("disabled", "true");
+          setNextDisabled(true);
         basePriceEl.textContent = 0;
         penaltyPriceEl.textContent = 0;
         totalPriceEl.textContent = 0;
@@ -1025,7 +1036,7 @@ if (booking === "Boarding") {
     }
     else{
          
-         document.querySelector("#nextBtn").setAttribute("disabled", "true");
+     setNextDisabled(false);
     }
     
 

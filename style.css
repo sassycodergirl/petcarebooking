@@ -6647,6 +6647,12 @@ background-color: #ffe000;
 
 
 
+#nextBtn.disabled-force {
+    pointer-events: none !important;
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    background-color: #ccc !important; /* optional: gray out */
+}
 
 
 
