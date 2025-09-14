@@ -6659,7 +6659,7 @@ background-color: #ffe000;
 /* From Uiverse.io by vinodjangid07 */ 
 .cookie-card {
   width: 300px;
-  height: 220px;
+  /* height: 220px; */
      position: sticky;
     bottom: 0;
     background: #fff;
