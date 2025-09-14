@@ -1988,8 +1988,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         @endguest
 
+         const originalText = checkoutBtn.innerHTML;
+
         try {
-            const originalText = checkoutBtn.innerHTML;
+           
 
             checkoutBtn.disabled = true;
              checkoutBtn.innerHTML = "Processing...";

@@ -173,7 +173,7 @@ Route::get('/get-availability', [BookingController::class, 'getAvailability']);
 
 // Protected routes for logged-in users
 Route::middleware(['auth'])->group(function () {
-    // Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::get('/bookings/thank-you/{id}', [BookingController::class, 'thankYou'])->name('bookings.thankyou');
 });
