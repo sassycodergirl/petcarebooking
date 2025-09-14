@@ -6658,7 +6658,7 @@ background-color: #ffe000;
 
 /* From Uiverse.io by vinodjangid07 */ 
 .cookie-card {
-  width: 300px;
+  width: 370px;
   /* height: 220px; */
      position: fixed;
     bottom: 0;
@@ -6691,7 +6691,7 @@ background-color: #ffe000;
   color: rgb(26, 26, 26);
 }
 
-.cookieDescription {
+.cookieDescription, .cookieDescription a {
   text-align: center;
   font-size: 0.7em;
   font-weight: 600;
@@ -6706,13 +6706,15 @@ background-color: #ffe000;
 
 .acceptButton {
 
+
   height: 30px;
-  background-color:#25098b;
+  background-color:#0b33a5;
   transition-duration: .2s;
   border: none;
   color: rgb(241, 241, 241);
   cursor: pointer;
   font-weight: 600;
+  padding: 10px;
 
 }
 
@@ -6725,6 +6727,7 @@ background-color: #ffe000;
   border: none;
   cursor: pointer;
   font-weight: 600;
+  padding: 10px;
 }
 
 .declineButton:hover {
