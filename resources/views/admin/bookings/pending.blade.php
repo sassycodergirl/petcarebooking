@@ -38,19 +38,30 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.bookings.show', $booking->id) }}" class="btn btn-sm btn-info">View</a>
-                                    
-                                    <form action="{{ route('admin.bookings.approve', $booking->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="btn btn-sm btn-success">Approve</button>
-                                    </form>
-                                    <form action="{{ route('admin.bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
-                                    </form>
-                                </td>
+                                            <a href="{{ route('admin.bookings.show', $booking->id) }}" class="btn btn-sm btn-info">View</a>
+
+                                            @if(in_array($booking->status, ['pending', 'approved']))
+                                               
+                                                @if($booking->status == 'pending')
+                                                    <form method="POST" action="{{ route('admin.bookings.approve', $booking->id) }}" class="d-inline">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-success">Approve</button>
+                                                    </form>
+                                                @endif
+
+                                              
+                                              <form action="{{ route('admin.bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-danger" 
+                                                        onclick="return confirm('Are you sure you want to cancel this booking?');">
+                                                    Cancel
+                                                </button>
+                                            </form>
+                                            @endif
+
+                                           
+                                         
+                                        </td>
                             </tr>
                         @endforeach
                     </tbody>
