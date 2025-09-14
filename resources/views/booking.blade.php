@@ -560,21 +560,58 @@ document.addEventListener('DOMContentLoaded', function () {
     checkOut.disabled = true;
 
     // const fullyBookedDates = ["2025-08-28", "2025-08-30"];
+
+    const prices = { 
+        "Daycare4": 499, 
+        "Daycare12": 799, 
+        "Boarding": {
+            1: 1350, 4: 5400, 7: 9450, 10: 13500, 15: 20250, 30: 41850, daily: 1350
+        }
+    };
+    
     let fullyBookedDates = [];
     let selectedDateEl = null;
 
+    // async function fetchAvailability(location) {
+    //     try {
+    //         const response = await fetch("{{ url('/get-availability') }}?location=" + encodeURIComponent(location));
+    //         const data = await response.json();
+    //         fullyBookedDates = data.fullyBookedDates; // dynamically populated
+    //         console.log(fullyBookedDates);
+    //         updateSlotInfo(); // Refresh slot info after fetching
+    //           calendar.render();
+    //     } catch (err) {
+    //         console.error("Error fetching availability:", err);
+    //     }
+    // }
+
+
     async function fetchAvailability(location) {
-        try {
-            const response = await fetch("{{ url('/get-availability') }}?location=" + encodeURIComponent(location));
-            const data = await response.json();
-            fullyBookedDates = data.fullyBookedDates; // ✅ dynamically populated
-            console.log(fullyBookedDates);
-            updateSlotInfo(); // Refresh slot info after fetching
-              calendar.render();
-        } catch (err) {
-            console.error("Error fetching availability:", err);
-        }
+    try {
+        const response = await fetch("{{ url('/get-availability') }}?location=" + encodeURIComponent(location));
+        const data = await response.json();
+        fullyBookedDates = data.fullyBookedDates; // ✅ dynamically populated
+        console.log(fullyBookedDates);
+        updateSlotInfo();
+
+        // 🔥 apply red background to booked dates immediately
+        document.querySelectorAll('.fc-daygrid-day').forEach(dayEl => {
+            const localDate = dayEl.getAttribute("data-date");
+            if (fullyBookedDates.includes(localDate)) {
+                dayEl.classList.add("fc-day-disabled");
+                dayEl.style.backgroundColor = "red";
+                dayEl.style.color = "white";
+            } else {
+                dayEl.classList.remove("fc-day-disabled");
+                dayEl.style.backgroundColor = "";
+                dayEl.style.color = "";
+            }
+        });
+
+    } catch (err) {
+        console.error("Error fetching availability:", err);
     }
+}
 
 
 
@@ -602,13 +639,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Example usage: call when page loads or location changes
     fetchAvailability('Kharghar');
 
-    const prices = { 
-        "Daycare4": 499, 
-        "Daycare12": 799, 
-        "Boarding": {
-            1: 1350, 4: 5400, 7: 9450, 10: 13500, 15: 20250, 30: 41850, daily: 1350
-        }
-    };
+
 
     let checkInPicker = flatpickr("#checkIn", {
         enableTime: true,
