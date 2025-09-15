@@ -140,15 +140,9 @@ class BookingManagementController extends Controller
     }
 
 
-    public function calendar()
-    {
-        // returns the blade view (see section C)
-        return view('admin.bookings.calendar');
-    }
+    public function calendar(){return view('admin.bookings.calendar');}
 
-
-    public function calendarData(Request $request)
-    {
+    public function calendarData(Request $request){
         // FullCalendar sends start/end params (ISO dates). We'll use them to limit the dataset.
         $start = $request->query('start'); // e.g. 2025-09-01
         $end   = $request->query('end');   // e.g. 2025-09-30
