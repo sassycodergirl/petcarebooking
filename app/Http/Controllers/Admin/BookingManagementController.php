@@ -306,8 +306,11 @@ class BookingManagementController extends Controller
                     'start' => $b['check_in'],
                     'end'   => $b['check_out'],
                     'allDay' => false,
-                    'extendedProps' => [
-                        'bookings' => [$b],
+                    // 'extendedProps' => [
+                    //     'bookings' => [$b],
+                    // ],
+                     'extendedProps' => [
+                        'bookings' => array_filter($data['bookings'], fn($b) => $b['type'] === 'daycare')
                     ],
                     'classNames' => ['fc-daycare-heavy']
                 ];
