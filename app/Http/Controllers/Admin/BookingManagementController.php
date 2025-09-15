@@ -295,39 +295,25 @@ class BookingManagementController extends Controller
         }
 
 
-        // Build FullCalendar-friendly event array (one event per date that has any bookings)
-        // $events = [];
-        // foreach ($summary as $date => $data) {
-        //     $events[] = [
-        //         'title' => "Daycare: {$data['daycare']} | Boarding: {$data['boarding']}",
-        //         'start' => $date,
-        //         'allDay' => true,
-        //         'extendedProps' => [
-        //             'bookings' => $data['bookings']
-        //         ],
-        //         // add a class so you can style days differently (optional)
-        //         'classNames' => [
-        //             ($data['boarding'] > $data['daycare'] ? 'fc-boarding-heavy' : ($data['daycare'] > $data['boarding'] ? 'fc-daycare-heavy' : 'fc-mixed'))
-        //         ]
-        //     ];
-        // }
+      
 
         $events = [];
         foreach ($summary as $date => $data) {
-            // Daycare event (if any)
-            if ($data['daycare'] > 0) {
+            // Daycare events: show in actual hours
+            foreach (array_filter($data['bookings'], fn($b) => $b['type'] === 'daycare') as $b) {
                 $events[] = [
-                    'title' => "Daycare: {$data['daycare']}",
-                    'start' => $date,
-                    'allDay' => true,
+                    'title' => "Daycare: 1", // Or total per slot if needed
+                    'start' => $b['check_in'],
+                    'end'   => $b['check_out'],
+                    'allDay' => false,
                     'extendedProps' => [
-                        'bookings' => array_filter($data['bookings'], fn($b) => $b['type'] === 'daycare')
+                        'bookings' => [$b],
                     ],
                     'classNames' => ['fc-daycare-heavy']
                 ];
             }
 
-            // Boarding event (if any)
+            // Boarding events: keep all-day
             if ($data['boarding'] > 0) {
                 $events[] = [
                     'title' => "Boarding: {$data['boarding']}",
