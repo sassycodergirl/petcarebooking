@@ -56,7 +56,7 @@
     background: rgb(40 167 69) !important;padding: 7px;    font-size: 15px;
 }
 .fc-completed .fc-event-main, .fc-completed{ background:#6c757d99 !important;padding: 7px;  font-size: 15px; }
-.fc-toolbar .fc-button {
+.fc-timeGridWeek-button {
     background: #5c6789 !important;}
 </style>
 
