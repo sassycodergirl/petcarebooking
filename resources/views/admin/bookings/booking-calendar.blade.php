@@ -51,7 +51,7 @@
 
 
 <style>
-.fc-daycare-heavy .fc-event-main { background: rgb(43 135 231) !important ;padding: 7px;    font-size: 15px;}
+.fc-daycare-heavy .fc-event-main,.fc-daygrid-dot-event { background: rgb(43 135 231) !important ;padding: 7px;    font-size: 15px;}
 .fc-boarding-heavy .fc-event-main {
     background: rgb(40 167 69) !important;padding: 7px;    font-size: 15px;
 }
