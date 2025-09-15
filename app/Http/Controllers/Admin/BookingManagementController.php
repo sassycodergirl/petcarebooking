@@ -296,20 +296,49 @@ class BookingManagementController extends Controller
 
 
         // Build FullCalendar-friendly event array (one event per date that has any bookings)
+        // $events = [];
+        // foreach ($summary as $date => $data) {
+        //     $events[] = [
+        //         'title' => "Daycare: {$data['daycare']} | Boarding: {$data['boarding']}",
+        //         'start' => $date,
+        //         'allDay' => true,
+        //         'extendedProps' => [
+        //             'bookings' => $data['bookings']
+        //         ],
+        //         // add a class so you can style days differently (optional)
+        //         'classNames' => [
+        //             ($data['boarding'] > $data['daycare'] ? 'fc-boarding-heavy' : ($data['daycare'] > $data['boarding'] ? 'fc-daycare-heavy' : 'fc-mixed'))
+        //         ]
+        //     ];
+        // }
+
         $events = [];
         foreach ($summary as $date => $data) {
-            $events[] = [
-                'title' => "Daycare: {$data['daycare']} | Boarding: {$data['boarding']}",
-                'start' => $date,
-                'allDay' => true,
-                'extendedProps' => [
-                    'bookings' => $data['bookings']
-                ],
-                // add a class so you can style days differently (optional)
-                'classNames' => [
-                    ($data['boarding'] > $data['daycare'] ? 'fc-boarding-heavy' : ($data['daycare'] > $data['boarding'] ? 'fc-daycare-heavy' : 'fc-mixed'))
-                ]
-            ];
+            // Daycare event (if any)
+            if ($data['daycare'] > 0) {
+                $events[] = [
+                    'title' => "Daycare: {$data['daycare']}",
+                    'start' => $date,
+                    'allDay' => true,
+                    'extendedProps' => [
+                        'bookings' => array_filter($data['bookings'], fn($b) => $b['type'] === 'daycare')
+                    ],
+                    'classNames' => ['fc-daycare-heavy']
+                ];
+            }
+
+            // Boarding event (if any)
+            if ($data['boarding'] > 0) {
+                $events[] = [
+                    'title' => "Boarding: {$data['boarding']}",
+                    'start' => $date,
+                    'allDay' => true,
+                    'extendedProps' => [
+                        'bookings' => array_filter($data['bookings'], fn($b) => $b['type'] === 'boarding')
+                    ],
+                    'classNames' => ['fc-boarding-heavy']
+                ];
+            }
         }
 
         return response()->json($events);
