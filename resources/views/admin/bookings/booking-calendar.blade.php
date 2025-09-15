@@ -53,7 +53,7 @@
 <style>
 .fc-daycare-heavy .fc-event-main { background: rgba(17, 138, 178, 0.12) !important; }
 .fc-boarding-heavy .fc-event-main {
-    background: rgb(40 167 69) !important;
+    background: rgb(40 167 69) !important;padding: 7px;
 }
 .fc-mixed .fc-event-main { background: rgba(108,117,125,0.06) !important; }
 </style>
