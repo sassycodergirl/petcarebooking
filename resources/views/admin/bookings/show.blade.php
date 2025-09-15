@@ -98,22 +98,29 @@
 
             {{-- Slots Info --}}
             <h5 class="mt-4 mb-3">📅 Slot Reservations</h5>
-            <table class="table table-bordered">
+           <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>S.No</th>
                         <th>Date</th>
                         <th>Location</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @php $i = 1; @endphp
                     @foreach($booking->reservations as $res)
                         <tr>
+                            <td>{{ $i++ }}</td>
                             <td>{{ $booking->check_in->format('d M Y, h:i A') }} - {{ $booking->check_out->format('d M Y, h:i A') }}</td>
                             <td>{{ $res->slot->location }}</td>
                             <td>{{ ucfirst($res->status) }}</td>
                         </tr>
                     @endforeach
+                    {{-- Optional row showing total slots --}}
+                    <tr>
+                        <td colspan="4" class="text-end"><strong>Total Slots Booked: {{ $booking->reservations->count() }}</strong></td>
+                    </tr>
                 </tbody>
             </table>
 
