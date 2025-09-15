@@ -69,7 +69,18 @@ document.addEventListener('DOMContentLoaded', function() {
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,listWeek'
+            right: 'dayGridMonth,timeGridWeek'
+        },
+         slotLabelFormat: { // for time axis
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true // ✅ show AM/PM fully
+        },
+        eventTimeFormat: { // for event times
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true, // ✅ show AM/PM fully
+            meridiem: 'short' // 'AM'/'PM' instead of 'a' or 'p'
         },
         // 🔹 Updated JSON feed route
         events: "{{ route('admin.bookings.booking-calendar.data') }}",
