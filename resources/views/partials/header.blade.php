@@ -58,6 +58,55 @@
         cursor: pointer;
     }
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const cookieBox = document.querySelector(".cookie-card");
+  const acceptBtn = document.querySelector(".acceptButton");
+  const declineBtn = document.querySelector(".declineButton");
+
+  // Check existing consent
+
+  const consent = localStorage.getItem("cookieConsent");
+  if (consent) {
+    cookieBox.style.display = "none";
+    if (consent === "accepted") {
+      loadAnalytics();
+    }
+  } else {
+    // Show cookie box after 2 seconds if no choice yet
+    setTimeout(() => {
+      cookieBox.style.display = "flex"; // or "block"
+    }, 2000);
+  }
+
+  // Accept all cookies
+  acceptBtn.addEventListener("click", function () {
+    localStorage.setItem("cookieConsent", "accepted");
+    cookieBox.style.display = "none";
+    loadAnalytics();
+  });
+
+  // Decline cookies
+  declineBtn.addEventListener("click", function () {
+    localStorage.setItem("cookieConsent", "declined");
+    cookieBox.style.display = "none";
+    console.log("❌ Analytics disabled – only necessary cookies running.");
+  });
+
+  // Load Google Analytics & FB Pixel *only if accepted*
+  function loadAnalytics() {
+    console.log("✅ Loading Analytics & Facebook Pixel");
+
+    // Example: Google Analytics (GA4)
+ 
+
+    // Example: Facebook Pixel
+
+  }
+});
+</script>
+
 </head>
 
 <body>
