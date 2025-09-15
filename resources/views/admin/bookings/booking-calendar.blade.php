@@ -55,7 +55,7 @@
 .fc-boarding-heavy .fc-event-main {
     background: rgb(40 167 69) !important;padding: 7px;    font-size: 15px;
 }
-.fc-mixed .fc-event-main { background: rgba(108,117,125,0.06) !important; }
+.fc-completed .fc-event-main, .fc-completed{ background: rgba(108,117,125,0.06) !important;padding: 7px;  font-size: 15px; }
 </style>
 
 <script>

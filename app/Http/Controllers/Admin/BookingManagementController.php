@@ -301,6 +301,7 @@ class BookingManagementController extends Controller
         foreach ($summary as $date => $data) {
             // Daycare events: show in actual hours
             foreach (array_filter($data['bookings'], fn($b) => $b['type'] === 'daycare') as $b) {
+                $className = $b['status'] === 'completed' ? 'fc-completed' : 'fc-daycare-heavy';
                 $events[] = [
                     'title' => "Daycare: {$data['daycare']}",
                     'start' => $b['check_in'],
@@ -312,12 +313,14 @@ class BookingManagementController extends Controller
                      'extendedProps' => [
                         'bookings' => array_filter($data['bookings'], fn($b) => $b['type'] === 'daycare')
                     ],
-                    'classNames' => ['fc-daycare-heavy']
+                    'classNames' => [$className]
                 ];
             }
 
             // Boarding events: keep all-day
             if ($data['boarding'] > 0) {
+                 $allCompleted = count(array_filter($data['bookings'], fn($b) => $b['type'] === 'boarding' && $b['status'] === 'completed')) === count(array_filter($data['bookings'], fn($b) => $b['type'] === 'boarding'));
+                 $className = $allCompleted ? 'fc-completed' : 'fc-boarding-heavy';
                 $events[] = [
                     'title' => "Boarding: {$data['boarding']}",
                     'start' => $date,
@@ -325,7 +328,7 @@ class BookingManagementController extends Controller
                     'extendedProps' => [
                         'bookings' => array_filter($data['bookings'], fn($b) => $b['type'] === 'boarding')
                     ],
-                    'classNames' => ['fc-boarding-heavy']
+                    'classNames' => [$className]
                 ];
             }
         }
