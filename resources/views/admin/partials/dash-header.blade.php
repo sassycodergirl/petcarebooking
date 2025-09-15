@@ -134,7 +134,7 @@
                       </a>
                     </li>
                     <li>
-                      <a href="/admin-furry-cms/bookings/calendar">
+                      <a href="{{ route('admin.bookings.calendar') }}">
                         <span class="sub-item">Booking Calendar</span>
                     </a>
                     </li>
