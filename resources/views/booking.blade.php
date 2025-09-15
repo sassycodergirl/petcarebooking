@@ -646,6 +646,7 @@ document.addEventListener('DOMContentLoaded', function () {
         dateFormat: "Y-m-d H:i",
         minDate: "today",
         disable: fullyBookedDates,
+         disableMobile: true,  
         onChange: function(selectedDates) {
             if(selectedDates.length > 0) {
                 let minCheckout = new Date(selectedDates[0].getTime() + 30*60*1000);
@@ -664,6 +665,7 @@ document.addEventListener('DOMContentLoaded', function () {
         dateFormat: "Y-m-d H:i",
         minDate: "today",
         disable: fullyBookedDates,
+         disableMobile: true,  
         onChange: function() {
             highlightBookingRange();
             calculateSummary();
