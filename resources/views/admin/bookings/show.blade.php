@@ -101,20 +101,20 @@
            <table class="table table-bordered">
                 <thead>
                     <tr>
-                       
+                       <th>Total Slots</th>
                         <th>Date & Time</th>
                         <th>Location</th>
                         <th>Status</th>
-                        <th>Total Slots</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                      
+                        <td>{{ $booking->num_dogs + $booking->num_cats }} (Dogs: {{ $booking->num_dogs }}, Cats: {{ $booking->num_cats }})</td>
                         <td>{{ $booking->check_in->format('d M Y, h:i A') }} - {{ $booking->check_out->format('d M Y, h:i A') }}</td>
                         <td>{{ $booking->location }}</td>
                         <td>{{ ucfirst($booking->status) }}</td>
-                        <td>{{ $booking->num_dogs + $booking->num_cats }} (Dogs: {{ $booking->num_dogs }}, Cats: {{ $booking->num_cats }})</td>
+                        
                     </tr>
                 </tbody>
             </table>
