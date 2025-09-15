@@ -87,6 +87,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // Booking Management
     Route::prefix('admin-furry-cms/bookings')->name('admin.bookings.')->group(function () {
+         // Booking Calendar page
+       Route::get('/booking-calendar', [BookingManagementController::class, 'bookingCalendarView'])->name('booking-calendar');
+
+        // JSON feed for FullCalendar
+        Route::get('/booking-calendar-data', [BookingManagementController::class, 'bookingCalendarData'])
+            ->name('booking-calendar.data');
+            
         Route::get('/', [BookingManagementController::class, 'index'])->name('index'); // All bookings
         Route::get('/upcoming', [BookingManagementController::class, 'upcoming'])->name('upcoming'); // Upcoming
         Route::get('/past', [BookingManagementController::class, 'past'])->name('past'); // Past
@@ -97,12 +104,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/{booking}/approve', [BookingManagementController::class, 'approve'])->name('approve'); // Approve booking
         Route::post('/{booking}/cancel', [BookingManagementController::class, 'cancel'])->name('cancel'); // Cancel booking
         Route::post('/{booking}/complete', [BookingManagementController::class, 'complete'])->name('complete'); // Mark complete
-        // Booking Calendar page
-       Route::get('/booking-calendar', [BookingManagementController::class, 'bookingCalendarView'])->name('booking-calendar');
-
-        // JSON feed for FullCalendar
-        Route::get('/booking-calendar-data', [BookingManagementController::class, 'bookingCalendarData'])
-            ->name('booking-calendar.data');
+       
     });
 
 });
