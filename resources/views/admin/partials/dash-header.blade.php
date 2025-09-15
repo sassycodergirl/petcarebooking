@@ -49,7 +49,14 @@
            border: none;
            background: transparent;
       }
-  
+      .logout-btn{
+        background: #feb65b;
+        color: #000;
+        padding: 10px 20px;
+        width: 100%;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
 
     </style>
      
@@ -189,7 +196,7 @@
                 </a> -->
 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
     @csrf
-    <button type="submit" class="btn btn-link p-0 m-0 align-baseline">Logout</button>
+    <button type="submit" class="logout-btn">Logout</button>
 </form>
               </li>
             
