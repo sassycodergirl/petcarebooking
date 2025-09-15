@@ -226,7 +226,7 @@ class BookingManagementController extends Controller
                     'status'    => $b->status,
                     'num_dogs'  => $b->num_dogs,
                     'num_cats'  => $b->num_cats,
-                    'total_pets'=> $b->total_pets,
+                    'total_pets'=> ($b->num_dogs ?? 0) + ($b->num_cats ?? 0),
                 ];
             }
         }
