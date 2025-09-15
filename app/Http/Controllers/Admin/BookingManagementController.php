@@ -169,6 +169,68 @@ class BookingManagementController extends Controller
         // Aggregate per date
         $summary = [];
 
+        // foreach ($bookings as $b) {
+        //     $checkIn  = Carbon::parse($b->check_in);
+        //     $checkOut = Carbon::parse($b->check_out);
+
+        //     $dates = [];
+
+        //     if ($b->booking_type === 'daycare') {
+        //         // Daycare occupies the check-in day only.
+        //         $dates[] = $checkIn->toDateString();
+        //     } else {
+        //         // Boarding: 8:00 AM -> 8:00 AM next day cycle
+        //         $current = $checkIn->copy()->setTime(8, 0);
+
+        //         // Add each 8AM boundary date while current < checkOut
+        //         while ($current->lt($checkOut)) {
+        //             $dates[] = $current->toDateString();
+        //             $current->addDay();
+        //         }
+
+        //         // If checkOut time is after 08:00, ensure check-out day is included (only if not already)
+        //         if ($checkOut->format('H:i') > '08:00' && !in_array($checkOut->toDateString(), $dates)) {
+        //             $dates[] = $checkOut->toDateString();
+        //         }
+        //     }
+
+        //     // Normalize unique dates
+        //     $dates = array_values(array_unique($dates));
+
+        //     // For each occupied date, increment the corresponding bucket and attach booking details
+        //     foreach ($dates as $date) {
+        //         if (!isset($summary[$date])) {
+        //             $summary[$date] = [
+        //                 'daycare'  => 0,
+        //                 'boarding' => 0,
+        //                 'bookings' => []
+        //             ];
+        //         }
+
+        //         $summary[$date][$b->booking_type] += 1;
+
+        //         // Prepare pet names if stored in extra_pet_details, otherwise empty array
+        //         $petNames = [];
+        //         if (!empty($b->extra_pet_details) && is_array($b->extra_pet_details)) {
+        //             $petNames = array_map(fn($p) => $p['name'] ?? '', $b->extra_pet_details);
+        //         }
+
+        //         $summary[$date]['bookings'][] = [
+        //             'id'        => $b->id,
+        //             'owner'     => $b->user->name ?? '',
+        //             'type'      => $b->booking_type,
+        //             'check_in'  => $checkIn->toDateTimeString(),
+        //             'check_out' => $checkOut->toDateTimeString(),
+        //             'location'  => $b->location,
+        //             'price'     => $b->total_price,
+        //             'status'    => $b->status,
+        //             'num_dogs'  => $b->num_dogs,
+        //             'num_cats'  => $b->num_cats,
+        //             'total_pets'=> ($b->num_dogs ?? 0) + ($b->num_cats ?? 0),
+        //         ];
+        //     }
+        // }
+
         foreach ($bookings as $b) {
             $checkIn  = Carbon::parse($b->check_in);
             $checkOut = Carbon::parse($b->check_out);
@@ -176,28 +238,30 @@ class BookingManagementController extends Controller
             $dates = [];
 
             if ($b->booking_type === 'daycare') {
-                // Daycare occupies the check-in day only.
+                // Daycare occupies the check-in day only
                 $dates[] = $checkIn->toDateString();
             } else {
                 // Boarding: 8:00 AM -> 8:00 AM next day cycle
                 $current = $checkIn->copy()->setTime(8, 0);
 
-                // Add each 8AM boundary date while current < checkOut
+                // If checkIn < 8AM, count that day as starting previous day 8AM
+                if ($checkIn->lt($current)) {
+                    $current->subDay();
+                }
+
                 while ($current->lt($checkOut)) {
                     $dates[] = $current->toDateString();
                     $current->addDay();
                 }
 
-                // If checkOut time is after 08:00, ensure check-out day is included (only if not already)
+                // Ensure last day is counted if checkout > 8AM
                 if ($checkOut->format('H:i') > '08:00' && !in_array($checkOut->toDateString(), $dates)) {
                     $dates[] = $checkOut->toDateString();
                 }
             }
 
-            // Normalize unique dates
             $dates = array_values(array_unique($dates));
 
-            // For each occupied date, increment the corresponding bucket and attach booking details
             foreach ($dates as $date) {
                 if (!isset($summary[$date])) {
                     $summary[$date] = [
@@ -207,12 +271,11 @@ class BookingManagementController extends Controller
                     ];
                 }
 
-                $summary[$date][$b->booking_type] += 1;
-
-                // Prepare pet names if stored in extra_pet_details, otherwise empty array
-                $petNames = [];
-                if (!empty($b->extra_pet_details) && is_array($b->extra_pet_details)) {
-                    $petNames = array_map(fn($p) => $p['name'] ?? '', $b->extra_pet_details);
+                // Increment total pets for boarding/daycare
+                if ($b->booking_type === 'boarding') {
+                    $summary[$date]['boarding'] += ($b->num_dogs ?? 0) + ($b->num_cats ?? 0);
+                } else {
+                    $summary[$date]['daycare'] += ($b->num_dogs ?? 0) + ($b->num_cats ?? 0);
                 }
 
                 $summary[$date]['bookings'][] = [
@@ -230,6 +293,7 @@ class BookingManagementController extends Controller
                 ];
             }
         }
+
 
         // Build FullCalendar-friendly event array (one event per date that has any bookings)
         $events = [];
