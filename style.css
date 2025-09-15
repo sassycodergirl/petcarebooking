@@ -6738,4 +6738,15 @@ background-color: #ffe000;
   background-color: #9173ff;
   transition-duration: .2s;
 } 
+
+.cookie-card {
+  display: none;              /* hidden by default */
+  opacity: 0;                 /* transparent */
+  transition: opacity 0.6s ease; /* smooth fade */
+}
+.cookie-card.show {
+  display: flex;              /* or block, depending on your layout */
+  opacity: 1;                 /* fully visible */
+}
+
 /*added by sudipa*/
