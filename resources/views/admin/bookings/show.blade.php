@@ -101,25 +101,20 @@
            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>S.No</th>
-                        <th>Date</th>
+                       
+                        <th>Date & Time</th>
                         <th>Location</th>
                         <th>Status</th>
+                        <th>Total Pets</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php $i = 1; @endphp
-                    @foreach($booking->reservations as $res)
-                        <tr>
-                            <td>{{ $i++ }}</td>
-                            <td>{{ $booking->check_in->format('d M Y, h:i A') }} - {{ $booking->check_out->format('d M Y, h:i A') }}</td>
-                            <td>{{ $res->slot->location }}</td>
-                            <td>{{ ucfirst($res->status) }}</td>
-                        </tr>
-                    @endforeach
-                    {{-- Optional row showing total slots --}}
                     <tr>
-                        <td colspan="4" class="text-end"><strong>Total Slots Booked: {{ $booking->reservations->count() }}</strong></td>
+                      
+                        <td>{{ $booking->check_in->format('d M Y, h:i A') }} - {{ $booking->check_out->format('d M Y, h:i A') }}</td>
+                        <td>{{ $booking->location }}</td>
+                        <td>{{ ucfirst($booking->status) }}</td>
+                        <td>{{ $booking->num_dogs + $booking->num_cats }} (Dogs: {{ $booking->num_dogs }}, Cats: {{ $booking->num_cats }})</td>
                     </tr>
                 </tbody>
             </table>
