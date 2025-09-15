@@ -302,7 +302,7 @@ class BookingManagementController extends Controller
             // Daycare events: show in actual hours
             foreach (array_filter($data['bookings'], fn($b) => $b['type'] === 'daycare') as $b) {
                 $events[] = [
-                    'title' => "Daycare: 1", // Or total per slot if needed
+                    'title' => "Daycare: {$data['daycare']}",
                     'start' => $b['check_in'],
                     'end'   => $b['check_out'],
                     'allDay' => false,
