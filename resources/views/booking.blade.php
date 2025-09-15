@@ -643,7 +643,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let checkInPicker = flatpickr("#checkIn", {
         enableTime: true,
-        dateFormat: "Y-m-d H:i",
+        // dateFormat: "Y-m-d H:i",
+        dateFormat: "d M Y H:i",
         minDate: "today",
         disable: fullyBookedDates,
          disableMobile: true,  
@@ -662,7 +663,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let checkOutPicker = flatpickr("#checkOut", {
         enableTime: true,
-        dateFormat: "Y-m-d H:i",
+        // dateFormat: "Y-m-d H:i",
+         dateFormat: "d M Y H:i",
         minDate: "today",
         disable: fullyBookedDates,
          disableMobile: true,  
