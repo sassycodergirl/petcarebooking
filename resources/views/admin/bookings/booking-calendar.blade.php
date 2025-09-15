@@ -81,26 +81,38 @@ document.addEventListener('DOMContentLoaded', function() {
             if (bookings.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="9" class="text-center">No bookings</td></tr>';
             } else {
-                bookings.forEach(function(b) {
-                    var pets = (b.pets && b.pets.length) ? b.pets.join(', ') : '-';
-                    var statusBadge = '<span class="badge bg-' + (b.status === 'approved' ? 'success' : (b.status === 'pending' ? 'warning' : 'danger')) + '">' + b.status + '</span>';
+               bookings.forEach(function(b) {
+                // Count pets by type
+                var petCount = {};
+                if (b.pets && b.pets.length) {
+                    b.pets.forEach(function(p) {
+                        petCount[p.type] = (petCount[p.type] || 0) + 1;
+                    });
+                }
 
-                    tbody.innerHTML += `
-                        <tr>
-                            <td>${b.id}</td>
-                            <td>${b.owner}</td>
-                            <td>${b.type}</td>
-                            <td>${new Date(b.check_in).toLocaleString()}</td>
-                            <td>${new Date(b.check_out).toLocaleString()}</td>
-                            <td>${pets}</td>
-                            <td>₹ ${b.price}</td>
-                            <td>${statusBadge}</td>
-                            <td>
-                                <a href="/admin-furry-cms/bookings/${b.id}" class="btn btn-sm btn-info">View</a>
-                            </td>
-                        </tr>
-                    `;
-                });
+                // Build breakdown string
+                var pets = Object.entries(petCount).map(([type, count]) => `${count} ${type}${count > 1 ? 's' : ''}`).join(', ');
+                if (!pets) pets = '0';
+
+                var statusBadge = '<span class="badge bg-' + (b.status === 'approved' ? 'success' : (b.status === 'pending' ? 'warning' : 'danger')) + '">' + b.status + '</span>';
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${b.id}</td>
+                        <td>${b.owner}</td>
+                        <td>${b.type}</td>
+                        <td>${new Date(b.check_in).toLocaleString()}</td>
+                        <td>${new Date(b.check_out).toLocaleString()}</td>
+                        <td>${pets}</td> <!-- pet breakdown -->
+                        <td>₹ ${b.price}</td>
+                        <td>${statusBadge}</td>
+                        <td>
+                            <a href="/admin-furry-cms/bookings/${b.id}" class="btn btn-sm btn-info">View</a>
+                        </td>
+                    </tr>
+                `;
+            });
+
             }
 
             var modal = new bootstrap.Modal(document.getElementById('bookingModal'));
