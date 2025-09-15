@@ -97,8 +97,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/{booking}/approve', [BookingManagementController::class, 'approve'])->name('approve'); // Approve booking
         Route::post('/{booking}/cancel', [BookingManagementController::class, 'cancel'])->name('cancel'); // Cancel booking
         Route::post('/{booking}/complete', [BookingManagementController::class, 'complete'])->name('complete'); // Mark complete
-        Route::get('/booking-calendar', [BookingManagementController::class, 'calendar'])->name('booking-calendar');          // calendar page
-        Route::get('/booking-calendar-data', [BookingManagementController::class, 'calendarData'])->name('booking-calendar.data'); // JSON feed for FullCalendar
+        // Booking Calendar page
+       Route::get('/booking-calendar', [BookingManagementController::class, 'bookingCalendarView'])->name('booking-calendar');
+
+        // JSON feed for FullCalendar
+        Route::get('/booking-calendar-data', [BookingManagementController::class, 'bookingCalendarData'])
+            ->name('booking-calendar.data');
     });
 
 });
