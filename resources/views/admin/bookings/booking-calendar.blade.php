@@ -58,6 +58,9 @@
 .fc-completed .fc-event-main, .fc-completed{ background:#6c757d99 !important;padding: 7px;  font-size: 15px; }
 .fc-timeGridWeek-button {
     background: #5c6789 !important;}
+.fc-button-group .fc-prev-button,.fc-button-group .fc-next-button{
+  background: cornflowerblue !important;
+}
 </style>
 
 <script>
