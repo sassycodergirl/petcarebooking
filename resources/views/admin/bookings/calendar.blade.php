@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <td>₹ ${b.price}</td>
                             <td>${statusBadge}</td>
                             <td>
-                                <a href="/admin-furry-cms/bookings/${b.id}" class="btn btn-sm btn-info">View</a>
+                                
                             </td>
                         </tr>
                     `;
