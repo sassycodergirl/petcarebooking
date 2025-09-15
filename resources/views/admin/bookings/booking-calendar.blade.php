@@ -83,19 +83,19 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                bookings.forEach(function(b) {
                 // Count pets by type
-                var petCount = {};
-                if (b.pets && b.pets.length) {
-                    b.pets.forEach(function(p) {
-                        petCount[p.type] = (petCount[p.type] || 0) + 1;
-                    });
-                }
+                // var petCount = {};
+                // if (b.pets && b.pets.length) {
+                //     b.pets.forEach(function(p) {
+                //         petCount[p.type] = (petCount[p.type] || 0) + 1;
+                //     });
+                // }
 
                 // Build breakdown string
-                var pets = Object.entries(petCount).map(([type, count]) => `${count} ${type}${count > 1 ? 's' : ''}`).join(', ');
-                if (!pets) pets = '0';
+                // var pets = Object.entries(petCount).map(([type, count]) => `${count} ${type}${count > 1 ? 's' : ''}`).join(', ');
+                // if (!pets) pets = '0';
 
                 var statusBadge = '<span class="badge bg-' + (b.status === 'approved' ? 'success' : (b.status === 'pending' ? 'warning' : 'danger')) + '">' + b.status + '</span>';
-
+                var petsSummary = `${b.total_pets} (Dogs: ${b.num_dogs}, Cats: ${b.num_cats})`;
                 tbody.innerHTML += `
                     <tr>
                         <td>${b.id}</td>
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${b.type}</td>
                         <td>${new Date(b.check_in).toLocaleString()}</td>
                         <td>${new Date(b.check_out).toLocaleString()}</td>
-                        <td>${pets}</td> <!-- pet breakdown -->
+                        <td>${petsSummary}</td>
                         <td>₹ ${b.price}</td>
                         <td>${statusBadge}</td>
                         <td>

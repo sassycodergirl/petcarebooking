@@ -224,7 +224,9 @@ class BookingManagementController extends Controller
                     'location'  => $b->location,
                     'price'     => $b->total_price,
                     'status'    => $b->status,
-                    'pets'      => $petNames,
+                    'num_dogs'  => $b->num_dogs,
+                    'num_cats'  => $b->num_cats,
+                    'total_pets'=> $b->total_pets,
                 ];
             }
         }
