@@ -46,8 +46,9 @@
 @include('admin.partials.dash-footer')
 
 <!-- FullCalendar (free), Bootstrap tooltips assumed available -->
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
 
 <style>
 .fc-daycare-heavy .fc-event-main { background: rgba(17, 138, 178, 0.12) !important; }
