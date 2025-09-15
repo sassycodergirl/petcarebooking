@@ -92,11 +92,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/past', [BookingManagementController::class, 'past'])->name('past'); // Past
         Route::get('/cancelled', [BookingManagementController::class, 'cancelled'])->name('cancelled'); // Cancelled
         Route::get('/pending', [BookingManagementController::class, 'pending'])->name('pending'); // Pending approvals
-        Route::get('/calendar', [BookingManagementController::class, 'calendar'])->name('calendar'); // Calendar view
+      
         Route::get('/{booking}', [BookingManagementController::class, 'show'])->name('show'); // Single booking details
         Route::post('/{booking}/approve', [BookingManagementController::class, 'approve'])->name('approve'); // Approve booking
         Route::post('/{booking}/cancel', [BookingManagementController::class, 'cancel'])->name('cancel'); // Cancel booking
         Route::post('/{booking}/complete', [BookingManagementController::class, 'complete'])->name('complete'); // Mark complete
+        Route::get('/calendar', [BookingManagementController::class, 'calendar'])->name('calendar');          // calendar page
+        Route::get('/calendar-data', [BookingManagementController::class, 'calendarData'])->name('calendar.data'); // JSON feed for FullCalendar
     });
 
 });

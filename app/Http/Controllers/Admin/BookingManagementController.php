@@ -60,11 +60,7 @@ class BookingManagementController extends Controller
         return view('admin.bookings.cancelled', compact('bookings'));
     }
 
-    // Calendar view
-    public function calendar()
-    {
-        return view('admin.bookings.calendar');
-    }
+   
 
     // Show single booking details
     public function show(Booking $booking)
@@ -142,4 +138,119 @@ class BookingManagementController extends Controller
 
         return back()->with('success', 'Booking marked as completed and user notified.');
     }
+
+
+    public function calendar()
+    {
+        // returns the blade view (see section C)
+        return view('admin.bookings.calendar');
+    }
+
+
+    public function calendarData(Request $request)
+    {
+        // FullCalendar sends start/end params (ISO dates). We'll use them to limit the dataset.
+        $start = $request->query('start'); // e.g. 2025-09-01
+        $end   = $request->query('end');   // e.g. 2025-09-30
+
+        // Base query: exclude cancelled bookings
+        $query = Booking::with('user')
+            ->where('status', '!=', 'cancelled');
+
+        // If FullCalendar gave a visible range, fetch only bookings that intersect that range
+        if ($start && $end) {
+            $query->where(function($q) use ($start, $end) {
+                $q->whereBetween('check_in', [$start, $end])
+                ->orWhereBetween('check_out', [$start, $end])
+                ->orWhere(function($q2) use ($start, $end) {
+                    $q2->where('check_in', '<=', $start)->where('check_out', '>=', $end);
+                });
+            });
+        }
+
+        $bookings = $query->get();
+
+        // Aggregate per date
+        $summary = [];
+
+        foreach ($bookings as $b) {
+            $checkIn  = Carbon::parse($b->check_in);
+            $checkOut = Carbon::parse($b->check_out);
+
+            $dates = [];
+
+            if ($b->booking_type === 'daycare') {
+                // Daycare occupies the check-in day only.
+                $dates[] = $checkIn->toDateString();
+            } else {
+                // Boarding: 8:00 AM -> 8:00 AM next day cycle
+                $current = $checkIn->copy()->setTime(8, 0);
+
+                // Add each 8AM boundary date while current < checkOut
+                while ($current->lt($checkOut)) {
+                    $dates[] = $current->toDateString();
+                    $current->addDay();
+                }
+
+                // If checkOut time is after 08:00, ensure check-out day is included (only if not already)
+                if ($checkOut->format('H:i') > '08:00' && !in_array($checkOut->toDateString(), $dates)) {
+                    $dates[] = $checkOut->toDateString();
+                }
+            }
+
+            // Normalize unique dates
+            $dates = array_values(array_unique($dates));
+
+            // For each occupied date, increment the corresponding bucket and attach booking details
+            foreach ($dates as $date) {
+                if (!isset($summary[$date])) {
+                    $summary[$date] = [
+                        'daycare'  => 0,
+                        'boarding' => 0,
+                        'bookings' => []
+                    ];
+                }
+
+                $summary[$date][$b->booking_type] += 1;
+
+                // Prepare pet names if stored in extra_pet_details, otherwise empty array
+                $petNames = [];
+                if (!empty($b->extra_pet_details) && is_array($b->extra_pet_details)) {
+                    $petNames = array_map(fn($p) => $p['name'] ?? '', $b->extra_pet_details);
+                }
+
+                $summary[$date]['bookings'][] = [
+                    'id'        => $b->id,
+                    'owner'     => $b->user->name ?? '',
+                    'type'      => $b->booking_type,
+                    'check_in'  => $checkIn->toDateTimeString(),
+                    'check_out' => $checkOut->toDateTimeString(),
+                    'location'  => $b->location,
+                    'price'     => $b->total_price,
+                    'status'    => $b->status,
+                    'pets'      => $petNames,
+                ];
+            }
+        }
+
+        // Build FullCalendar-friendly event array (one event per date that has any bookings)
+        $events = [];
+        foreach ($summary as $date => $data) {
+            $events[] = [
+                'title' => "Daycare: {$data['daycare']} | Boarding: {$data['boarding']}",
+                'start' => $date,
+                'allDay' => true,
+                'extendedProps' => [
+                    'bookings' => $data['bookings']
+                ],
+                // add a class so you can style days differently (optional)
+                'classNames' => [
+                    ($data['boarding'] > $data['daycare'] ? 'fc-boarding-heavy' : ($data['daycare'] > $data['boarding'] ? 'fc-daycare-heavy' : 'fc-mixed'))
+                ]
+            ];
+        }
+
+        return response()->json($events);
+    }
+
 }
