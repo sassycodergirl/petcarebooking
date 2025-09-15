@@ -57,6 +57,7 @@
 </style>
 
 <script>
+    var baseBookingUrl = "{{ url('admin-furry-cms/bookings') }}";
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('booking-calendar');
 
@@ -118,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>₹ ${b.price}</td>
                         <td>${statusBadge}</td>
                         <td>
-                            <a href="/admin-furry-cms/bookings/${b.id}" class="btn btn-sm btn-info">View</a>
+                             <a href="${baseBookingUrl}/${b.id}" class="btn btn-sm btn-info">View</a>
                         </td>
                     </tr>
                 `;
