@@ -105,7 +105,7 @@
                         <th>Date & Time</th>
                         <th>Location</th>
                         <th>Status</th>
-                        <th>Total Pets</th>
+                        <th>Total Slots</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -131,7 +131,7 @@
                     
                      <form action="{{ route('admin.bookings.cancel', $booking->id) }}" method="POST" class="d-inline">
                                                 @csrf
-                                                <button type="submit" class="btn btn-sm btn-danger" 
+                                                <button type="submit" class="btn btn-danger" 
                                                         onclick="return confirm('Are you sure you want to cancel this booking?');">
                                                     Cancel
                                                 </button>
