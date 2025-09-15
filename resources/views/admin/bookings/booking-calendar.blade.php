@@ -102,9 +102,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     year: 'numeric',
                     hour: '2-digit',
                     minute: '2-digit',
-                    hour12: false // 24-hour format; set true for 12-hour format
+                    hour12: true // ✅ 12-hour format with AM/PM
                 };
-                var checkIn = new Date(b.check_in).toLocaleString('en-GB', options);  // e.g., 16 Sep 2025, 14:30
+
+                var checkIn = new Date(b.check_in).toLocaleString('en-GB', options);  
                 var checkOut = new Date(b.check_out).toLocaleString('en-GB', options);
                 tbody.innerHTML += `
                     <tr>
