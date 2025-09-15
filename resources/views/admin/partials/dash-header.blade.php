@@ -136,7 +136,7 @@
                     <li>
                       <a href="{{ route('admin.bookings.calendar') }}">
                         <span class="sub-item">Booking Calendar</span>
-                      </a>
+                    </a>
                     </li>
                     <li>
                       <a href="#">
