@@ -96,9 +96,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 var statusBadge = '<span class="badge bg-' + (b.status === 'approved' ? 'success' : (b.status === 'pending' ? 'warning' : 'danger')) + '">' + b.status + '</span>';
                 var petsSummary = `${b.total_pets} (Dogs: ${b.num_dogs}, Cats: ${b.num_cats})`;
-                var options = { day: '2-digit', month: 'short', year: 'numeric' };
-                var checkIn = new Date(b.check_in).toLocaleDateString('en-GB', options);  // e.g., 16 Sep 2025
-                var checkOut = new Date(b.check_out).toLocaleDateString('en-GB', options);
+                var options = { 
+                    day: '2-digit', 
+                    month: 'short', 
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false // 24-hour format; set true for 12-hour format
+                };
+                var checkIn = new Date(b.check_in).toLocaleString('en-GB', options);  // e.g., 16 Sep 2025, 14:30
+                var checkOut = new Date(b.check_out).toLocaleString('en-GB', options);
                 tbody.innerHTML += `
                     <tr>
                         <td>${b.id}</td>
