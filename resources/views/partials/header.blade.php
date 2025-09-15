@@ -57,6 +57,14 @@
     .fc-scrollgrid-sync-table td{
         cursor: pointer;
     }
+
+    .flatpickr-calendar {
+    font-size: 14px !important;
+}
+
+.flatpickr-time input {
+    font-size: 14px !important; 
+}
 </style>
 
 <script>
