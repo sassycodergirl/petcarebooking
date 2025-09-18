@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let qty = parseInt(input.value) + change;
         if (qty < 1) qty = 1;
 
-        fetch(`/cart/update/${key}`, {
+        fetch(`{{ url('/cart/update') }}/${key}`, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
@@ -444,7 +444,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function removeCartItem(key) {
-        fetch(`/cart/remove/${key}`, {
+         fetch(`{{ url('/cart/remove') }}/${key}`, {
             method: 'POST',
             headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
         }).then(res => res.json())
@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const colorHex = this.dataset.colorHex || null;
             const image = this.dataset.image;
 
-            fetch(`/cart/add/${productId}`, {
+            fetch(`{{ url('/cart/add') }}/${productId}`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
@@ -496,7 +496,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Header cart click (keep intact)
     headerCartBtn?.addEventListener('click', e => {
         e.preventDefault();
-        fetch(`/cart/items`)
+         fetch(`{{ url('/cart/items') }}`)
         .then(res => res.json())
         .then(data => {
             cartCountEl.textContent = Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0);
