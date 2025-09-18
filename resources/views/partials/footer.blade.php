@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const overlay = document.querySelector(".popup-overlay");
     const cartItemsContainer = document.querySelector(".cart-items");
     const cartTotal = document.querySelector(".cart-total");
+    const cartCount = document.querySelector(".cart-count"); // header count
 
     // Add to cart
     document.addEventListener("click", function (e) {
@@ -133,9 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
                     loadCartItems();
                     overlay.classList.add("active");
+                    updateCartCount(data.count);
                 }
             });
         }
@@ -146,8 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(`{{ route('cart.items') }}`)
             .then(res => res.json())
             .then(data => {
-                cartItemsContainer.innerHTML = data.html;
-                cartTotal.textContent = data.total;
+                cartItemsContainer.innerHTML = data.html || "<p>Your cart is empty.</p>";
+                cartTotal.textContent = data.total || 0;
+                updateCartCount(data.count || 0);
             });
     }
 
@@ -167,9 +169,14 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    // remove row instantly
                     btn.closest(".cart-item").remove();
                     cartTotal.textContent = data.total;
+                    updateCartCount(data.count);
+
+                    // If no items left
+                    if (parseInt(data.count) === 0) {
+                        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+                    }
                 }
             });
         }
@@ -203,6 +210,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         row.remove();
                     }
                     cartTotal.textContent = data.total;
+                    updateCartCount(data.count);
+
+                    if (parseInt(data.count) === 0) {
+                        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+                    }
                 }
             });
         }
@@ -212,8 +224,16 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".popup-close").addEventListener("click", () => {
         overlay.classList.remove("active");
     });
+
+    // Update header cart count
+    function updateCartCount(count) {
+        if (cartCount) {
+            cartCount.textContent = count;
+        }
+    }
 });
 </script>
+
 
 
 
