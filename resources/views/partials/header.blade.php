@@ -168,9 +168,11 @@ window.addEventListener("load", function () {
                                       Dashboard
                                   </a>
                               @else
-                                  <button type="button" class="btn-step-next" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                      <img src="{{ asset('images/user.svg') }}" alt="Login">
-                                  </button>
+                                   <img src="{{ asset('images/user.svg') }}" alt="Login"
+                                    role="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#loginModal"
+                                    style="cursor: pointer;">
                               @endif
                           </li>
                           </ul>
