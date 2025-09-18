@@ -149,12 +149,14 @@ document.addEventListener('DOMContentLoaded', function () {
     addToBagButtons.forEach(btn => {
         btn.addEventListener('click', function () {
             const id = this.dataset.id;
-            fetch(`/cart/add/${id}`, {
+            const quantity = 1; // default for add-to-cart button
+            fetch(`{{ url('/cart/add') }}/${id}`, {
                 method: 'POST',
                 headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                     'Content-Type': 'application/json',
-                }
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ quantity })
             })
             .then(res => res.json())
             .then(data => {
@@ -186,11 +188,11 @@ document.addEventListener('DOMContentLoaded', function () {
         let qty = setVal !== null ? setVal : parseInt(itemDiv.querySelector('.qty-input').value) + change;
         if (qty < 1) qty = 1;
 
-        fetch(`/cart/update/${id}`, {
+        fetch(`{{ url('/cart/update') }}/${id}`, {
             method: 'POST',
             headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                 'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
             body: JSON.stringify({ qty })
         })
@@ -203,10 +205,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function removeCartItem(itemDiv) {
         const id = itemDiv.dataset.id;
-        fetch(`/cart/remove/${id}`, {
+        fetch(`{{ url('/cart/remove') }}/${id}`, {
             method: 'POST',
             headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
             }
         })
         .then(res => res.json())
@@ -216,6 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
 
 </script>
 
