@@ -159,29 +159,30 @@ window.addEventListener("load", function () {
                         <ul>
                             <li><a class="btn-opens" href="javascript:void(0)"><img src="{{asset('images/search.svg')}}" alt=""></a>
                                 <span class="btn-closes"><i class="fa-solid fa-xmark"></i></span></li>
-                            <li>
-                                <a href="#" class="cd-button cart-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512">
-                                        <circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="32" />
-                                        <circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="32" />
-                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="32" d="M48 80h64l48 272h256" />
-                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="32" d="M160 288h249.44a8 8 0 0 0 7.85-6.43l28.8-144a8 8 0 0 0-7.85-9.57H128" />
-                                    </svg>
+                          <li>
+                              <a href="#" class="cd-button cart-btn">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512">
+                                      <circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round"
+                                          stroke-linejoin="round" stroke-width="32" />
+                                      <circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round"
+                                          stroke-linejoin="round" stroke-width="32" />
+                                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="32" d="M48 80h64l48 272h256" />
+                                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="32" d="M160 288h249.44a8 8 0 0 0 7.85-6.43l28.8-144a8 8 0 0 0-7.85-9.57H128" />
+                                  </svg>
 
-                                    @php
-                                        $cart = session('cart', []);
-                                        $itemCount = collect($cart)->sum('qty');
-                                        $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
-                                    @endphp
+                                  @php
+                                      $cart = session('cart', []);
+                                      $itemCount = collect($cart)->sum(fn ($item) => $item['qty'] ?? 0);
+                                      $totalPrice = collect($cart)->reduce(fn ($sum, $item) => $sum + ($item['price'] * ($item['qty'] ?? 0)), 0);
+                                  @endphp
 
-                                    <span class="cd-button-cart-count">{{ $itemCount }}</span>
-                                    <span class="cd-button-cart-total d-none">₹{{ number_format($totalPrice, 2) }}</span>
-                                </a>
-                            </li>
+                                  <span class="cd-button-cart-count">{{ $itemCount }}</span>
+                                  <span class="cd-button-cart-total d-none">₹{{ number_format($totalPrice, 2) }}</span>
+                              </a>
+                          </li>
+
 
 
 
