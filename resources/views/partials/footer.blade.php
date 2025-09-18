@@ -134,12 +134,57 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Render cart items
+    // function renderCartItems(cart, totalPrice) {
+    //     cartItemsContainer.innerHTML = '';
+
+    //     cart.forEach(item => {
+    //         const key = item.variant_id ? item.id + '-' + item.variant_id : item.id;
+
+    //         let variantInfo = '';
+    //         if (item.size || item.color_name) {
+    //             let colorSpan = '';
+    //             if (item.color_hex) {
+    //                 colorSpan = `<span style="background-color:${item.color_hex};display:inline-block;width:15px;height:15px;border-radius:50%;margin-left:5px;"></span>`;
+    //             }
+    //             variantInfo = `<p class="variant-info">` +
+    //                 (item.size ? `Size: ${item.size}` : '') +
+    //                 (item.size && item.color_name ? ' | ' : '') +
+    //                 (item.color_name ? `Color: ${colorSpan}` : '') +
+    //                 `</p>`;
+    //         }
+
+    //         const html = `
+    //         <div class="product-infos mb-4" data-key="${key}">
+    //             <div class="product-info w-100 mb-0 d-flex">
+    //                 <a href="#" class="product-img-pop me-3">
+    //                     <img src="${item.image}" alt="${item.name}" width="60">
+    //                 </a>
+    //                 <div class="product-details-pop flex-grow-1">
+    //                     <h4>${item.name}</h4>
+    //                     ${variantInfo}
+    //                     <p><strong>₹${item.price}</strong></p>
+    //                     <div class="pd-add-to-cart-wrap d-flex align-items-center">
+    //                         <button class="qty-minus" data-key="${key}">-</button>
+    //                         <input type="text" value="${item.qty}" class="qty mx-2" data-key="${key}" readonly>
+    //                         <button class="qty-plus" data-key="${key}">+</button>
+    //                     </div>
+    //                 </div>
+    //                 <div class="remove-icon ms-3">
+    //                     <button class="remove-item" data-key="${key}">×</button>
+    //                 </div>
+    //             </div>
+    //         </div>`;
+    //         cartItemsContainer.insertAdjacentHTML('beforeend', html);
+    //     });
+
+    //     cartTotalEl.textContent = totalPrice.toFixed(2);
+    //     attachCartItemEvents();
+    // }
+
     function renderCartItems(cart, totalPrice) {
         cartItemsContainer.innerHTML = '';
 
-        cart.forEach(item => {
-            const key = item.variant_id ? item.id + '-' + item.variant_id : item.id;
-
+        Object.entries(cart).forEach(([key, item]) => {
             let variantInfo = '';
             if (item.size || item.color_name) {
                 let colorSpan = '';
@@ -174,12 +219,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
             </div>`;
+
             cartItemsContainer.insertAdjacentHTML('beforeend', html);
         });
 
         cartTotalEl.textContent = totalPrice.toFixed(2);
         attachCartItemEvents();
     }
+
 
     // Attach quantity and remove buttons
     function attachCartItemEvents() {
