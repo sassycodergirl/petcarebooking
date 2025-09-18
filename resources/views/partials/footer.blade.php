@@ -133,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
+                    document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
                     loadCartItems();
                     overlay.classList.add("active");
                 }
