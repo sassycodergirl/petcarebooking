@@ -101,10 +101,6 @@
 
 
 
-
-   
-
-
     <!-- Jquery-->
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
@@ -113,190 +109,67 @@
     <script src="{{asset('js/common.js')}}"></script>
 
 
-
-
-
 <script>
- 
-
-       function renderCartDrawer(cartItems = [], variantsData = []) {
-    const container = document.querySelector('.popup-overlay .cart-items');
-    const totalEl = document.querySelector('.cart-total');
-    container.innerHTML = '';
-
-    if (!cartItems || cartItems.length === 0) {
-        container.innerHTML = '<p class="text-center">Your cart is empty.</p>';
-        totalEl.innerText = '0';
-        return;
-    }
-
-    let total = 0;
-
-    cartItems.forEach(item => {
-        total += item.price * item.quantity;
-
-        // Look up variant details from variantsData if item.variant_id exists
-        let variant = variantsData.find(v => v.id == item.variant_id);
-        let sizeHtml = '';
-        let colorHtml = '';
-
-        if (variant) {
-            sizeHtml = variant.size ? `<p>Size: ${variant.size}</p>` : '';
-            colorHtml = variant.color_hex ? `
-                <p style="display:flex;align-items:center;">Color:
-                    <span style="display:inline-block;width:16px;height:16px;border-radius:50%;margin-left:5px;background-color:${variant.color_hex};"></span>
-                </p>` : '';
-        }
-
-        const variantId = item.variant_id ?? '0';
-
-        const html = `
-            <div class="product-infos mb-4">
-                <div class="product-info mb-0">
-                    <a href="#" class="product-img-pop">
-                        <img src="${item.image}" alt="${item.name}">
-                    </a>
-                    <div class="product-details-pop">
-                        <h4>${item.name}</h4>
-                        <div class="variant-data d-flex align-items-center">
-                            ${sizeHtml}${colorHtml}
-                        </div>
-                        <p><strong>₹${item.price}</strong></p>
-                        <div class="pd-add-to-cart-wrap">
-                            <button class="qty-minus" data-id="${item.id}" data-variant="${variantId}" data-size="${item.size}" data-color="${item.color_id}">-</button>
-                            <input type="text" value="${item.quantity}" class="qty" data-id="${item.id}" data-variant="${variantId}" data-size="${item.size}" data-color="${item.color_id}" readonly />
-                            <button class="qty-plus" data-id="${item.id}" data-variant="${variantId}" data-size="${item.size}" data-color="${item.color_id}">+</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="remove-icon">
-                    <button class="remove-item" data-id="${item.id}" data-variant="${variantId}" data-size="${item.size}" data-color="${item.color_id}">Remove</button>
-                </div>
-            </div>
-        `;
-        container.insertAdjacentHTML('beforeend', html);
-    });
-
-    totalEl.innerText = total.toFixed(2);
-}
-
-
-
-
-
-    // Add to cart click
-    document.querySelectorAll('.add-to-bag.cd-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const productId = this.dataset.id;
-            // const quantity = 1;
-            const quantityEl = document.getElementById('product-qty');
-            const quantity = quantityEl && parseInt(quantityEl.value) > 0 ? parseInt(quantityEl.value) : 1;
-
-            fetch(`{{ url('/cart/add') }}/${productId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ quantity })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) {
-                    document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                    renderCartDrawer(data.cart);
-                    document.querySelector('.popup-overlay').classList.add('active');
-                } else alert('Something went wrong');
-            })
-            .catch(err => console.log(err));
-        });
-    });
-
-
-
-
-    // Cart icon click
-    document.querySelector('.cart-btn').addEventListener('click', function(e){
+$(document).ready(function () {
+    // Handle Add to Cart button click
+    $(document).on("click", ".add-to-bag", function (e) {
         e.preventDefault();
 
-        fetch('{{ route("cart.items") }}')
-        .then(res => res.json())
-        .then(data => {
-            if(data.success){
-                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                renderCartDrawer(data.cart);
-                document.querySelector('.popup-overlay').classList.add('active');
-            }
-        })
-        .catch(err => console.error(err));
-    });
+        let btn = $(this);
+        let productId = btn.data("id");
 
-
- 
-document.addEventListener('click', function(e) {
-    const target = e.target;
-    const removeBtn = target.closest('.remove-item');
-
-    // --- Quantity change (+/-) ---
-    if(target.classList.contains('qty-plus') || target.classList.contains('qty-minus')) {
-        const id = target.dataset.id;
-        const variantId = target.dataset.variant;
-        const size = target.dataset.size;
-        const colorId = target.dataset.color;
-        const qtyChange = target.classList.contains('qty-plus') ? 1 : -1;
-
-        fetch(`{{ url('/cart/update') }}/${id}`, {
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json',
-                'X-CSRF-TOKEN':'{{ csrf_token() }}'
+        $.ajax({
+            url: "/cart/add/" + productId,
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",
+                qty: 1
             },
-            body: JSON.stringify({ quantity: qtyChange, variant_id: variantId, size, color_id: colorId })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success) {
-                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                renderCartDrawer(data.cart, variantsData);
+            success: function (res) {
+                if (res.success) {
+                    loadCartItems(); // refresh cart drawer
+                    $(".popup-overlay").addClass("active"); // open cart drawer
+                }
+            },
+            error: function () {
+                alert("Something went wrong!");
             }
         });
-    }
-
-    // --- Remove item ---
-    if(removeBtn) {
-        const id = removeBtn.dataset.id;
-        const variantId = removeBtn.dataset.variant;
-        const size = removeBtn.dataset.size;
-        const colorId = removeBtn.dataset.color;
-
-        fetch(`{{ url('/cart/remove') }}/${id}`, {
-            method:'POST',
-            headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
-            body: JSON.stringify({ variant_id: variantId, size, color_id: colorId })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success) {
-                document.querySelector('.cd-button-cart-count').innerText = data.cart_count;
-                renderCartDrawer(data.cart, variantsData);
-            }
-        });
-    }
-});
-
-
-
-
-    // Close popup
-    document.querySelector('.popup-close').addEventListener('click', function(){
-        document.querySelector('.popup-overlay').classList.remove('active');
     });
 
+    // Load cart items into drawer
+    function loadCartItems() {
+        $.ajax({
+            url: "{{ route('cart.items') }}",
+            type: "GET",
+            success: function (res) {
+                $(".cart-items").html(res.html); // inject items
+                $(".cart-total").text(res.total); // update total
+            }
+        });
+    }
+
+    // Remove item from cart
+    $(document).on("click", ".remove-from-cart", function () {
+        let productId = $(this).data("id");
+        $.ajax({
+            url: "/cart/remove/" + productId,
+            type: "POST",
+            data: { _token: "{{ csrf_token() }}" },
+            success: function (res) {
+                if (res.success) {
+                    loadCartItems();
+                }
+            }
+        });
+    });
+
+    // Close cart drawer
+    $(".popup-close").click(function () {
+        $(".popup-overlay").removeClass("active");
+    });
+});
 </script>
-
-
-
 
 
 <!--OTP Modal -->

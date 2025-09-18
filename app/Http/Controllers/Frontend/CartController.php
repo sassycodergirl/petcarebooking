@@ -14,114 +14,70 @@ class CartController extends Controller
         return view('frontend.cart');
     }
 
-    // Add product to cart
     public function add(Request $request, $id)
-    {
-        $cart = session()->get('cart', []);
-
-        $product = Product::find($id);
-        if (!$product) {
-            return response()->json(['success' => false, 'message' => 'Product not found']);
-        }
-
-        $quantity = $request->quantity ?? 1;
-        $variantId = $request->variant_id ?? null;
-        $size = $request->size ?? null;
-        $colorId = $request->color_id ?? null;
-        $colorHex = $request->color_hex ?? '#ccc';
-
-        $key = $id
-       . '-' . ($variantId ?? '0')
-       . '-' . ($size ?? '0')
-       . '-' . ($colorId ?? '0');
-
-        if(isset($cart[$key])){
-            $cart[$key]['quantity'] += $quantity;
-        }else{
-            $cart[$key] = [
-                'id' => $product->id,
-                'variant_id' => $variantId,
-                'size' => $size,
-                'color_id' => $colorId,
-                'color_hex' => $colorHex,
-                'name' => $product->name,
-                'price' => $product->price,
-                'image' => $product->image ? asset('public/' . $product->image) : asset('images/pd1.png'),
-                'quantity' => $quantity
-            ];
-        }
-
-        session(['cart' => $cart]);
-
-        return response()->json([
-            'success' => true,
-            'cart_count' => array_sum(array_column($cart, 'quantity')),
-            'cart' => array_values($cart)
-        ]);
-    }
-
-    // Update quantity (+/-)
-   public function update(Request $request, $id)
 {
     $cart = session()->get('cart', []);
-    $key = $id
-        . '-' . ($request->variant_id ?? '0')
-        . '-' . ($request->size ?? '0')
-        . '-' . ($request->color_id ?? '0');
+    $qty = $request->input('qty', 1);
 
-    if (isset($cart[$key])) {
-        $newQty = ($cart[$key]['quantity'] ?? 0) + ($request->quantity ?? 0);
-        if ($newQty > 0) {
-            $cart[$key]['quantity'] = $newQty;
-        } else {
-            unset($cart[$key]);
-        }
+    if (isset($cart[$id])) {
+        $cart[$id]['qty'] += $qty;
+    } else {
+        $product = Product::findOrFail($id);
+        $cart[$id] = [
+            'name'  => $product->name,
+            'price' => $product->price,
+            'image' => $product->image,
+            'qty'   => $qty
+        ];
     }
 
-    session(['cart' => $cart]);
+    session()->put('cart', $cart);
+
+    return response()->json(['success' => true]);
+}
+
+public function remove($id)
+{
+    $cart = session()->get('cart', []);
+    if (isset($cart[$id])) {
+        unset($cart[$id]);
+        session()->put('cart', $cart);
+    }
+
+    return response()->json(['success' => true]);
+}
+
+public function items()
+{
+    $cart = session()->get('cart', []);
+    $total = collect($cart)->reduce(fn($c, $i) => $c + ($i['price'] * $i['qty']), 0);
+
+    // Build cart HTML
+    $html = '';
+    foreach ($cart as $id => $item) {
+        $html .= '
+            <div class="cart-item d-flex align-items-center justify-content-between mb-2">
+                <div class="d-flex align-items-center">
+                    <img src="'.asset("public/".$item['image']).'" width="50" class="me-2">
+                    <div>
+                        <p class="m-0">'.$item['name'].'</p>
+                        <small>Qty: '.$item['qty'].'</small>
+                    </div>
+                </div>
+                <div>
+                    <p class="m-0">₹'.($item['price'] * $item['qty']).'</p>
+                    <button class="remove-from-cart btn btn-sm btn-danger" data-id="'.$id.'">Remove</button>
+                </div>
+            </div>
+        ';
+    }
 
     return response()->json([
-        'success' => true,
-        'cart_count' => array_sum(array_column($cart, 'quantity')),
-        'cart' => array_values($cart)
+        'html' => $html,
+        'total' => $total
     ]);
 }
 
 
-
-    // Remove product from cart
-public function remove(Request $request, $id)
-{
-    $cart = session()->get('cart', []);
-    $key = $id
-        . '-' . ($request->variant_id ?? '0')
-        . '-' . ($request->size ?? '0')
-        . '-' . ($request->color_id ?? '0');
-
-    if (isset($cart[$key])) {
-        unset($cart[$key]);
-    }
-
-    session(['cart' => $cart]);
-
-    return response()->json([
-        'success' => true,
-        'cart_count' => array_sum(array_column($cart, 'quantity')),
-        'cart' => array_values($cart)
-    ]);
-}
-
-
-
-    // Get current cart items (for cart icon / drawer)
-    public function items()
-    {
-        $cart = session()->get('cart', []);
-
-        return response()->json([
-            'success' => true,
-            'cart_count' => array_sum(array_column($cart, 'quantity')),
-            'cart' => array_values($cart)
-        ]);
-    }
+   
 }
