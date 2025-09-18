@@ -273,6 +273,10 @@
 
 // });
 
+
+</script>
+
+<script>
 document.addEventListener('DOMContentLoaded', function () {
     const cartOverlay = document.querySelector('.popup-overlay');
     const cartItemsContainer = document.querySelector('.cart-items');
@@ -283,6 +287,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const addToBagButtons = document.querySelectorAll('.add-to-bag');
 
     if (!cartOverlay) return;
+
+    const baseUrl = "{{ url('/') }}"; // Laravel base URL
+    const csrfToken = "{{ csrf_token() }}"; // CSRF token
 
     // Close drawer
     popupCloseBtn?.addEventListener('click', () => {
@@ -298,12 +305,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Render cart items
     function renderCartItems(cart, totalPrice) {
-        cartItemsContainer.innerHTML = ''; // clear previous
-
+        cartItemsContainer.innerHTML = '';
         for (let key in cart) {
             const item = cart[key];
-
             let variantInfo = '';
+
             if (item.size || item.color_name) {
                 let colorSpan = '';
                 if (item.color_hex) {
@@ -337,15 +343,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
             </div>`;
-
             cartItemsContainer.insertAdjacentHTML('beforeend', html);
         }
-
         cartTotalEl.textContent = totalPrice.toFixed(2);
         attachCartItemEvents();
     }
 
-    // Quantity and remove buttons
     function attachCartItemEvents() {
         cartItemsContainer.querySelectorAll('.qty-plus').forEach(btn => {
             btn.onclick = () => updateQty(btn.dataset.key, 1);
@@ -361,33 +364,36 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateQty(key, change) {
         const input = cartItemsContainer.querySelector(`.qty[data-key="${key}"]`);
         if (!input) return;
-
         let qty = parseInt(input.value) + change;
         if (qty < 1) qty = 1;
 
-        fetch(`/cart/update/${key}`, {
+        fetch(`${baseUrl}/cart/update/${key}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            },
             body: JSON.stringify({ qty })
-        }).then(res => res.json())
-          .then(data => {
-              cartCountEl.textContent = data.itemCount;
-              renderCartItems(data.cart, data.totalPrice);
-          });
+        })
+        .then(res => res.json())
+        .then(data => {
+            cartCountEl.textContent = data.itemCount;
+            renderCartItems(data.cart, data.totalPrice);
+        });
     }
 
     function removeCartItem(key) {
-        fetch(`/cart/remove/${key}`, {
+        fetch(`${baseUrl}/cart/remove/${key}`, {
             method: 'POST',
-            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
-        }).then(res => res.json())
-          .then(data => {
-              cartCountEl.textContent = data.itemCount;
-              renderCartItems(data.cart, data.totalPrice);
-          });
+            headers: { 'X-CSRF-TOKEN': csrfToken }
+        })
+        .then(res => res.json())
+        .then(data => {
+            cartCountEl.textContent = data.itemCount;
+            renderCartItems(data.cart, data.totalPrice);
+        });
     }
 
-    // Add to cart
     addToBagButtons.forEach(btn => {
         btn.addEventListener('click', function () {
             const productId = this.dataset.id;
@@ -395,48 +401,60 @@ document.addEventListener('DOMContentLoaded', function () {
             const variantId = this.dataset.variantId || null;
             const size = this.dataset.size || null;
             const colorId = this.dataset.colorId || null;
+            const colorName = this.dataset.colorName || null;
             const colorHex = this.dataset.colorHex || null;
             const image = this.dataset.image;
-            const colorName = this.dataset.colorName || null;
 
-            fetch(`/cart/add/${productId}`, {
+            fetch(`${baseUrl}/cart/add/${productId}`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                body: JSON.stringify({ quantity, variant_id: variantId, size, color_id: colorId, color_hex: colorHex, color_name: colorName, image })
-            }).then(res => res.json())
-              .then(data => {
-                  if (data.success) {
-                      cartCountEl.textContent = data.itemCount;
-                      renderCartItems(data.cart, data.totalPrice);
-                      cartOverlay.style.display = 'block';
-                      setTimeout(() => cartOverlay.classList.add('active'), 10);
-                  }
-              }).catch(err => console.error(err));
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                body: JSON.stringify({
+                    quantity,
+                    variant_id: variantId,
+                    size,
+                    color_id: colorId,
+                    color_name: colorName,
+                    color_hex: colorHex,
+                    image
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    cartCountEl.textContent = data.itemCount;
+                    renderCartItems(data.cart, data.totalPrice);
+                    cartOverlay.style.display = 'block';
+                    setTimeout(() => cartOverlay.classList.add('active'), 10);
+                }
+            })
+            .catch(err => console.error(err));
         });
     });
 
-    // Header cart click
     headerCartBtn?.addEventListener('click', e => {
         e.preventDefault();
-        fetch(`/cart/items`)
-            .then(res => res.json())
-            .then(data => {
-                cartCountEl.textContent = Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0);
-                renderCartItems(data.cart, data.totalPrice);
-                cartOverlay.style.display = 'block';
-                setTimeout(() => cartOverlay.classList.add('active'), 10);
-            });
-    });
-
-    // Initialize cart count
-    fetch(`/cart/items`)
+        fetch(`${baseUrl}/cart/items`)
         .then(res => res.json())
         .then(data => {
             cartCountEl.textContent = Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0);
+            renderCartItems(data.cart, data.totalPrice);
+            cartOverlay.style.display = 'block';
+            setTimeout(() => cartOverlay.classList.add('active'), 10);
         });
-});
+    });
 
+    // Initialize cart count
+    fetch(`${baseUrl}/cart/items`)
+    .then(res => res.json())
+    .then(data => {
+        cartCountEl.textContent = Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0);
+    });
+});
 </script>
+
 
 
 
