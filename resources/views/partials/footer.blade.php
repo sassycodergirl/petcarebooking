@@ -93,7 +93,17 @@
         </div>
         <div class="popup-footer">
             <p class="m-0 total-price">₹<span class="cart-total">0</span></p>
-            <a href="{{ route('checkout.index') }}" class="btn-checkout">Checkout</a>
+            <!-- <a href="{{ route('checkout.index') }}" class="btn-checkout">Checkout</a> -->
+              @if(Auth::check())
+                <a href="{{ route('checkout.index') }}" class="btn-checkout">Checkout</a>
+            @else
+                <a href="javascript:void(0)" 
+                   class="btn-checkout" 
+                   data-bs-toggle="modal" 
+                   data-bs-target="#loginModal">
+                   Checkout
+                </a>
+            @endif
         </div>
     </div>
 </div>
