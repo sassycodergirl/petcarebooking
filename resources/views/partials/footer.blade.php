@@ -94,7 +94,6 @@
         <div class="popup-footer">
             <p class="m-0 total-price">₹<span class="cart-total">0</span></p>
             <a href="{{ route('checkout.index') }}" class="btn-checkout">Checkout</a>
-            
         </div>
     </div>
 </div>
@@ -110,66 +109,111 @@
 
 
 <script>
-$(document).ready(function () {
-    // Handle Add to Cart button click
-    $(document).on("click", ".add-to-bag", function (e) {
-        e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+    const overlay = document.querySelector(".popup-overlay");
+    const cartItemsContainer = document.querySelector(".cart-items");
+    const cartTotal = document.querySelector(".cart-total");
 
-        let btn = $(this);
-        let productId = btn.data("id");
+    // Add to cart
+    document.addEventListener("click", function (e) {
+        if (e.target.closest(".add-to-bag")) {
+            e.preventDefault();
+            const btn = e.target.closest(".add-to-bag");
+            const productId = btn.dataset.id;
+            const quantity = 1;
 
-        $.ajax({
-            url: "/cart/add/" + productId,
-            type: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                qty: 1
-            },
-            success: function (res) {
-                if (res.success) {
-                    loadCartItems(); // refresh cart drawer
-                    $(".popup-overlay").addClass("active"); // open cart drawer
+            fetch(`{{ url('/cart/add') }}/${productId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({ quantity })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    loadCartItems();
+                    overlay.classList.add("active");
                 }
-            },
-            error: function () {
-                alert("Something went wrong!");
-            }
-        });
+            });
+        }
     });
 
     // Load cart items into drawer
     function loadCartItems() {
-        $.ajax({
-            url: "{{ route('cart.items') }}",
-            type: "GET",
-            success: function (res) {
-                $(".cart-items").html(res.html); // inject items
-                $(".cart-total").text(res.total); // update total
-            }
-        });
+        fetch(`{{ route('cart.items') }}`)
+            .then(res => res.json())
+            .then(data => {
+                cartItemsContainer.innerHTML = data.html;
+                cartTotal.textContent = data.total;
+            });
     }
 
     // Remove item from cart
-    $(document).on("click", ".remove-from-cart", function () {
-        let productId = $(this).data("id");
-        $.ajax({
-            url: "/cart/remove/" + productId,
-            type: "POST",
-            data: { _token: "{{ csrf_token() }}" },
-            success: function (res) {
-                if (res.success) {
-                    loadCartItems();
+    document.addEventListener("click", function (e) {
+        if (e.target.closest(".remove-from-cart")) {
+            const btn = e.target.closest(".remove-from-cart");
+            const productId = btn.dataset.id;
+
+            fetch(`{{ url('/cart/remove') }}/${productId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
                 }
-            }
-        });
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    // remove row instantly
+                    btn.closest(".cart-item").remove();
+                    cartTotal.textContent = data.total;
+                }
+            });
+        }
     });
 
-    // Close cart drawer
-    $(".popup-close").click(function () {
-        $(".popup-overlay").removeClass("active");
+    // Increase / Decrease quantity
+    document.addEventListener("click", function (e) {
+        if (e.target.closest(".qty-btn")) {
+            const btn = e.target.closest(".qty-btn");
+            const row = btn.closest(".cart-item");
+            const productId = btn.dataset.id;
+            let currentQty = parseInt(row.querySelector(".item-qty").textContent);
+
+            const newQty = btn.classList.contains("increase") ? currentQty + 1 : currentQty - 1;
+
+            fetch(`{{ url('/cart/update') }}/${productId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({ quantity: newQty })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    if (data.qty > 0) {
+                        row.querySelector(".item-qty").textContent = data.qty;
+                        row.querySelector(".item-subtotal").textContent = "₹" + data.subtotal;
+                    } else {
+                        row.remove();
+                    }
+                    cartTotal.textContent = data.total;
+                }
+            });
+        }
+    });
+
+    // Close drawer
+    document.querySelector(".popup-close").addEventListener("click", () => {
+        overlay.classList.remove("active");
     });
 });
 </script>
+
 
 
 <!--OTP Modal -->
