@@ -160,7 +160,7 @@ window.addEventListener("load", function () {
                             <li><a class="btn-opens" href="javascript:void(0)"><img src="{{asset('images/search.svg')}}" alt=""></a>
                                 <span class="btn-closes"><i class="fa-solid fa-xmark"></i></span></li>
                             <li>
-                                <a href="{{ route('cart.index') }}" class="cd-button cart-btn">
+                                <a href="#" class="cd-button cart-btn">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512">
                                         <circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round"
                                             stroke-linejoin="round" stroke-width="32" />
