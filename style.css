@@ -2438,9 +2438,9 @@ textarea::placeholder {
 }
 
 .product-img-pop {
-	width: 90px;
-	height: 90px;
-	padding: 20px 10px;
+	width: 100px;
+	height: 100px;
+	/* padding: 20px 10px; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
