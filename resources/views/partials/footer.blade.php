@@ -117,45 +117,68 @@ document.addEventListener('DOMContentLoaded', function () {
     const cartTotalEl = document.querySelector('.cart-total');
     const cartCountEl = document.querySelector('.cd-button-cart-count');
     const popupCloseBtn = document.querySelector('.popup-close');
+    const headerCartBtn = document.querySelector('.cd-button.cart-btn');
 
+    // Close cart drawer
     popupCloseBtn.addEventListener('click', () => {
         cartOverlay.classList.remove('active');
         setTimeout(() => { cartOverlay.style.display = 'none'; }, 300);
     });
 
+    // Render cart items
     function renderCartItems(cart, totalPrice) {
         cartItemsContainer.innerHTML = '';
+
         for (let id in cart) {
             const item = cart[id];
+
             cartItemsContainer.innerHTML += `
-           <div class="product-infos mb-4" data-id="${id}">
-            <div class="product-info mb-0 d-flex">
-                <a href="#" class="product-img-pop me-3">
-                    <img src="${item.image}" alt="${item.name}" width="60">
-                </a>
-                <div class="product-details-pop flex-grow-1">
-                    <h4>${item.name}</h4>
-                    <p><strong>₹${item.price}</strong></p>
-                    <div class="pd-add-to-cart-wrap d-flex align-items-center">
-                        <button class="qty-minus" data-id="${id}">-</button>
-                        <input type="text" value="${item.qty}" class="qty mx-2" data-id="${id}" readonly />
-                        <button class="qty-plus" data-id="${id}">+</button>
+            <div class="product-infos mb-4" data-id="${id}">
+                <div class="product-info mb-0 d-flex">
+                    <a href="#" class="product-img-pop me-3">
+                        <img src="${item.image}" alt="${item.name}" width="60">
+                    </a>
+                    <div class="product-details-pop flex-grow-1">
+                        <h4>${item.name}</h4>
+                        <p><strong>₹${item.price}</strong></p>
+                        <div class="pd-add-to-cart-wrap d-flex align-items-center">
+                            <button class="qty-minus" data-id="${id}">-</button>
+                            <input type="text" value="${item.qty}" class="qty mx-2" data-id="${id}" readonly />
+                            <button class="qty-plus" data-id="${id}">+</button>
+                        </div>
+                    </div>
+                    <div class="remove-icon ms-3">
+                        <button class="remove-item" data-id="${id}">Remove</button>
                     </div>
                 </div>
-                <div class="remove-icon ms-3">
-                    <button class="remove-item" data-id="${id}">Remove</button>
-                </div>
-            </div>
-        </div>`;
+            </div>`;
         }
+
         cartTotalEl.textContent = totalPrice.toFixed(2);
         attachCartItemEvents();
     }
 
+    // Attach events for quantity and remove buttons
+    function attachCartItemEvents() {
+        cartItemsContainer.querySelectorAll('.qty-plus').forEach(btn => {
+            btn.onclick = () => updateQty(btn.dataset.id, 1);
+        });
+
+        cartItemsContainer.querySelectorAll('.qty-minus').forEach(btn => {
+            btn.onclick = () => updateQty(btn.dataset.id, -1);
+        });
+
+        cartItemsContainer.querySelectorAll('.remove-item').forEach(btn => {
+            btn.onclick = () => removeCartItem(btn.dataset.id);
+        });
+    }
+
+    // Add to cart button
     addToBagButtons.forEach(btn => {
         btn.addEventListener('click', function () {
             const id = this.dataset.id;
-            const quantity = 1; // default for add-to-cart button
+            const quantity = 1;
+
             fetch(`{{ url('/cart/add') }}/${id}`, {
                 method: 'POST',
                 headers: {
@@ -168,30 +191,18 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 cartCountEl.textContent = data.itemCount;
                 renderCartItems(data.cart, data.totalPrice);
+
                 cartOverlay.style.display = 'block';
                 setTimeout(() => { cartOverlay.classList.add('active'); }, 10);
             });
         });
     });
 
-    function attachCartItemEvents() {
-        cartItemsContainer.querySelectorAll('.btn-increase').forEach(btn => {
-            btn.onclick = () => updateQty(btn.closest('.cart-item'), 1);
-        });
-        cartItemsContainer.querySelectorAll('.btn-decrease').forEach(btn => {
-            btn.onclick = () => updateQty(btn.closest('.cart-item'), -1);
-        });
-        cartItemsContainer.querySelectorAll('.qty-input').forEach(input => {
-            input.oninput = () => updateQty(input.closest('.cart-item'), 0, parseInt(input.value));
-        });
-        cartItemsContainer.querySelectorAll('.btn-remove').forEach(btn => {
-            btn.onclick = () => removeCartItem(btn.closest('.cart-item'));
-        });
-    }
-
-    function updateQty(itemDiv, change = 0, setVal = null) {
-        const id = itemDiv.dataset.id;
-        let qty = setVal !== null ? setVal : parseInt(itemDiv.querySelector('.qty-input').value) + change;
+    // Update quantity
+    function updateQty(id, change = 0, setVal = null) {
+        const itemDiv = cartItemsContainer.querySelector(`.product-infos[data-id="${id}"]`);
+        const input = itemDiv.querySelector('.qty');
+        let qty = setVal !== null ? setVal : parseInt(input.value) + change;
         if (qty < 1) qty = 1;
 
         fetch(`{{ url('/cart/update') }}/${id}`, {
@@ -209,8 +220,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function removeCartItem(itemDiv) {
-        const id = itemDiv.dataset.id;
+    // Remove item
+    function removeCartItem(id) {
         fetch(`{{ url('/cart/remove') }}/${id}`, {
             method: 'POST',
             headers: {
@@ -223,7 +234,30 @@ document.addEventListener('DOMContentLoaded', function () {
             renderCartItems(data.cart, data.totalPrice);
         });
     }
+
+    // Fetch cart on header cart click
+    headerCartBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        fetch(`{{ url('/cart/items') }}`)
+            .then(res => res.json())
+            .then(data => {
+                cartCountEl.textContent = data.cart ? Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0) : 0;
+                renderCartItems(data.cart, data.totalPrice);
+                cartOverlay.style.display = 'block';
+                setTimeout(() => { cartOverlay.classList.add('active'); }, 10);
+            });
+    });
+
+    // Initialize cart count on page load
+    fetch(`{{ url('/cart/items') }}`)
+        .then(res => res.json())
+        .then(data => {
+            cartCountEl.textContent = data.cart ? Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0) : 0;
+        });
 });
+
+
 
 
 </script>
