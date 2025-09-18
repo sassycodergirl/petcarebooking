@@ -507,7 +507,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Initialize cart count
-    fetch(`/cart/items`)
+    fetch(`{{ url('/cart/items') }}`)
     .then(res => res.json())
     .then(data => {
         cartCountEl.textContent = Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0);
