@@ -136,7 +136,14 @@
                                         <h3><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
                                         <div class="">
                                             <p class="card-text">₹{{ $product->price }}</p>
-                                            <button class="add-to-bag cd-button" data-id="{{ $product->id }}"  data-name="{{ $product->name }}"  data-price="{{ $product->price }}" data-image="{{ asset('public/' . $product->image) }}"><img class="d-none d-md-block" src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart</button>
+                                            <!-- <button class="add-to-bag cd-button" data-id="{{ $product->id }}"  data-name="{{ $product->name }}"  data-price="{{ $product->price }}" data-image="{{ asset('public/' . $product->image) }}"><img class="d-none d-md-block" src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart</button> -->
+                                             <button class="add-to-bag cd-button"
+                                                    data-id="{{ $product->id }}"
+                                                    data-name="{{ $product->name }}"
+                                                    data-price="{{ $product->price }}"
+                                                    data-image="{{ asset('public/' . $product->image) }}">
+                                                    <img class="d-none d-md-block" src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart
+                                                </button>
                                         </div>
                                         
                                     </div>

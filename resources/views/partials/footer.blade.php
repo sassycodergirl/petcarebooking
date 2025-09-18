@@ -82,14 +82,14 @@
 
 
 
-<div class="popup-overlay">
+<div class="popup-overlay" style="display:none;">
     <div class="popup-box">
         <div class="popup-header">
             <h3>Your Cart</h3>
             <button type="button" class="popup-close"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="popup-content cart-items">
-            <!-- Cart items will be injected here dynamically -->
+            <!-- Cart items will be injected dynamically -->
         </div>
         <div class="popup-footer">
             <p class="m-0 total-price">₹<span class="cart-total">0</span></p>
@@ -97,6 +97,7 @@
         </div>
     </div>
 </div>
+
 
 
 
@@ -109,129 +110,113 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const overlay = document.querySelector(".popup-overlay");
-    const cartItemsContainer = document.querySelector(".cart-items");
-    const cartTotal = document.querySelector(".cart-total");
-    const cartCount = document.querySelector(".cart-count"); // header count
+document.addEventListener('DOMContentLoaded', function () {
+    const addToBagButtons = document.querySelectorAll('.add-to-bag');
+    const cartOverlay = document.querySelector('.popup-overlay');
+    const cartItemsContainer = document.querySelector('.cart-items');
+    const cartTotalEl = document.querySelector('.cart-total');
+    const cartCountEl = document.querySelector('.cd-button-cart-count');
+    const popupCloseBtn = document.querySelector('.popup-close');
 
-    // Add to cart
-    document.addEventListener("click", function (e) {
-        if (e.target.closest(".add-to-bag")) {
-            e.preventDefault();
-            const btn = e.target.closest(".add-to-bag");
-            const productId = btn.dataset.id;
-            const quantity = 1;
-
-            fetch(`{{ url('/cart/add') }}/${productId}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                body: JSON.stringify({ quantity })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    loadCartItems();
-                    overlay.classList.add("active");
-                    updateCartCount(data.count);
-                }
-            });
-        }
+    popupCloseBtn.addEventListener('click', () => {
+        cartOverlay.classList.remove('active');
+        setTimeout(() => { cartOverlay.style.display = 'none'; }, 300);
     });
 
-    // Load cart items into drawer
-    function loadCartItems() {
-        fetch(`{{ route('cart.items') }}`)
-            .then(res => res.json())
-            .then(data => {
-                cartItemsContainer.innerHTML = data.html || "<p>Your cart is empty.</p>";
-                cartTotal.textContent = data.total || 0;
-                updateCartCount(data.count || 0);
-            });
+    function renderCartItems(cart, totalPrice) {
+        cartItemsContainer.innerHTML = '';
+        for (let id in cart) {
+            const item = cart[id];
+            cartItemsContainer.innerHTML += `
+            <div class="cart-item d-flex justify-content-between align-items-center mb-2" data-id="${id}">
+                <div class="d-flex align-items-center">
+                    <img src="${item.image}" alt="${item.name}" width="50" class="me-2">
+                    <span>${item.name}</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <button class="qty-btn btn-decrease">-</button>
+                    <input type="number" class="qty-input" value="${item.qty}" min="1">
+                    <button class="qty-btn btn-increase">+</button>
+                    <button class="btn-remove ms-2">Remove</button>
+                </div>
+                <span class="ms-2">₹${(item.price * item.qty).toFixed(2)}</span>
+            </div>`;
+        }
+        cartTotalEl.textContent = totalPrice.toFixed(2);
+        attachCartItemEvents();
     }
 
-    // Remove item from cart
-    document.addEventListener("click", function (e) {
-        if (e.target.closest(".remove-from-cart")) {
-            const btn = e.target.closest(".remove-from-cart");
-            const productId = btn.dataset.id;
-
-            fetch(`{{ url('/cart/remove') }}/${productId}`, {
-                method: "POST",
+    addToBagButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const id = this.dataset.id;
+            fetch(`/cart/add/${id}`, {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json',
                 }
             })
             .then(res => res.json())
             .then(data => {
-                if (data.success) {
-                    btn.closest(".cart-item").remove();
-                    cartTotal.textContent = data.total;
-                    updateCartCount(data.count);
-
-                    // If no items left
-                    if (parseInt(data.count) === 0) {
-                        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
-                    }
-                }
+                cartCountEl.textContent = data.itemCount;
+                renderCartItems(data.cart, data.totalPrice);
+                cartOverlay.style.display = 'block';
+                setTimeout(() => { cartOverlay.classList.add('active'); }, 10);
             });
-        }
+        });
     });
 
-    // Increase / Decrease quantity
-    document.addEventListener("click", function (e) {
-        if (e.target.closest(".qty-btn")) {
-            const btn = e.target.closest(".qty-btn");
-            const row = btn.closest(".cart-item");
-            const productId = btn.dataset.id;
-            let currentQty = parseInt(row.querySelector(".item-qty").textContent);
+    function attachCartItemEvents() {
+        cartItemsContainer.querySelectorAll('.btn-increase').forEach(btn => {
+            btn.onclick = () => updateQty(btn.closest('.cart-item'), 1);
+        });
+        cartItemsContainer.querySelectorAll('.btn-decrease').forEach(btn => {
+            btn.onclick = () => updateQty(btn.closest('.cart-item'), -1);
+        });
+        cartItemsContainer.querySelectorAll('.qty-input').forEach(input => {
+            input.oninput = () => updateQty(input.closest('.cart-item'), 0, parseInt(input.value));
+        });
+        cartItemsContainer.querySelectorAll('.btn-remove').forEach(btn => {
+            btn.onclick = () => removeCartItem(btn.closest('.cart-item'));
+        });
+    }
 
-            const newQty = btn.classList.contains("increase") ? currentQty + 1 : currentQty - 1;
+    function updateQty(itemDiv, change = 0, setVal = null) {
+        const id = itemDiv.dataset.id;
+        let qty = setVal !== null ? setVal : parseInt(itemDiv.querySelector('.qty-input').value) + change;
+        if (qty < 1) qty = 1;
 
-            fetch(`{{ url('/cart/update') }}/${productId}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                body: JSON.stringify({ quantity: newQty })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    if (data.qty > 0) {
-                        row.querySelector(".item-qty").textContent = data.qty;
-                        row.querySelector(".item-subtotal").textContent = "₹" + data.subtotal;
-                    } else {
-                        row.remove();
-                    }
-                    cartTotal.textContent = data.total;
-                    updateCartCount(data.count);
+        fetch(`/cart/update/${id}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ qty })
+        })
+        .then(res => res.json())
+        .then(data => {
+            cartCountEl.textContent = data.itemCount;
+            renderCartItems(data.cart, data.totalPrice);
+        });
+    }
 
-                    if (parseInt(data.count) === 0) {
-                        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
-                    }
-                }
-            });
-        }
-    });
-
-    // Close drawer
-    document.querySelector(".popup-close").addEventListener("click", () => {
-        overlay.classList.remove("active");
-    });
-
-    // Update header cart count
-    function updateCartCount(count) {
-        if (cartCount) {
-            cartCount.textContent = count;
-        }
+    function removeCartItem(itemDiv) {
+        const id = itemDiv.dataset.id;
+        fetch(`/cart/remove/${id}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            cartCountEl.textContent = data.itemCount;
+            renderCartItems(data.cart, data.totalPrice);
+        });
     }
 });
+
 </script>
 
 

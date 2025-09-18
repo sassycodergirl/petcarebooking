@@ -15,116 +15,84 @@ class CartController extends Controller
     }
 
 
+    // Add product to cart
     public function add(Request $request, $id)
-{
-    $cart = session()->get('cart', []);
-    $qty = (int) $request->input('quantity', 1);
-
-    if (isset($cart[$id])) {
-        $cart[$id]['qty'] += $qty;
-    } else {
+    {
         $product = Product::findOrFail($id);
-        $cart[$id] = [
-            'name'  => $product->name,
-            'price' => $product->price,
-            'image' => $product->image,
-            'qty'   => $qty
-        ];
-    }
+        $cart = session()->get('cart', []);
 
-    session()->put('cart', $cart);
-
-    $total = collect($cart)->reduce(fn($c, $i) => $c + ($i['price'] * $i['qty']), 0);
-    $count = collect($cart)->sum('qty');
-
-    return response()->json([
-        'success' => true,
-        'total'   => $total,
-        'count'   => $count,
-        'cart'    => $cart
-    ]);
-}
-
-public function remove($id)
-{
-    $cart = session()->get('cart', []);
-    if (isset($cart[$id])) {
-        unset($cart[$id]);
-        session()->put('cart', $cart);
-    }
-
-    $total = collect($cart)->reduce(fn($c, $i) => $c + ($i['price'] * $i['qty']), 0);
-    $count = collect($cart)->sum('qty');
-
-    return response()->json([
-        'success' => true,
-        'total'   => $total,
-        'count'   => $count
-    ]);
-}
-
-public function update(Request $request, $id)
-{
-    $cart = session()->get('cart', []);
-    $qty = (int) $request->input('quantity', 1);
-
-    if (isset($cart[$id])) {
-        if ($qty > 0) {
-            $cart[$id]['qty'] = $qty;
+        if(isset($cart[$id])){
+            $cart[$id]['qty']++;
         } else {
-            unset($cart[$id]); // remove if 0
+            $cart[$id] = [
+                "name" => $product->name,
+                "price" => $product->price,
+                "image" => $product->image,
+                "qty" => 1
+            ];
         }
+
         session()->put('cart', $cart);
+
+        $itemCount = collect($cart)->sum(fn($item) => $item['qty']);
+        $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
+
+        return response()->json([
+            'cart' => $cart,
+            'itemCount' => $itemCount,
+            'totalPrice' => $totalPrice,
+        ]);
     }
 
-    $total = collect($cart)->reduce(fn($c, $i) => $c + ($i['price'] * $i['qty']), 0);
-    $count = collect($cart)->sum('qty');
+    // Fetch cart items
+    public function items()
+    {
+        $cart = session()->get('cart', []);
+        $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
 
-    return response()->json([
-        'success'  => true,
-        'id'       => $id,
-        'qty'      => $cart[$id]['qty'] ?? 0,
-        'subtotal' => isset($cart[$id]) ? $cart[$id]['price'] * $cart[$id]['qty'] : 0,
-        'total'    => $total,
-        'count'    => $count
-    ]);
-}
-
-public function items()
-{
-    $cart = session()->get('cart', []);
-    $total = collect($cart)->reduce(fn($c, $i) => $c + ($i['price'] * $i['qty']), 0);
-    $count = collect($cart)->sum('qty');
-
-    $html = '';
-    foreach ($cart as $id => $item) {
-        $html .= '
-            <div class="cart-item d-flex align-items-center justify-content-between mb-2" data-id="'.$id.'">
-                <div class="d-flex align-items-center">
-                    <img src="'.asset("public/".$item['image']).'" width="50" class="me-2">
-                    <div>
-                        <p class="m-0">'.$item['name'].'</p>
-                        <div class="d-flex align-items-center">
-                            <button class="qty-btn decrease" data-id="'.$id.'">-</button>
-                            <span class="mx-2 item-qty">'.$item['qty'].'</span>
-                            <button class="qty-btn increase" data-id="'.$id.'">+</button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <p class="m-0 item-subtotal">₹'.($item['price'] * $item['qty']).'</p>
-                    <button class="remove-from-cart btn btn-sm btn-danger" data-id="'.$id.'">Remove</button>
-                </div>
-            </div>
-        ';
+        return response()->json([
+            'cart' => $cart,
+            'totalPrice' => $totalPrice,
+        ]);
     }
 
-    return response()->json([
-        'html'  => $html,
-        'total' => $total,
-        'count' => $count
-    ]);
-}
+    // Update cart quantity
+    public function update(Request $request, $id)
+    {
+        $cart = session()->get('cart', []);
+        if(isset($cart[$id])){
+            $cart[$id]['qty'] = $request->qty;
+            session()->put('cart', $cart);
+        }
+
+        $itemCount = collect($cart)->sum(fn($item) => $item['qty']);
+        $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
+
+        return response()->json([
+            'cart' => $cart,
+            'itemCount' => $itemCount,
+            'totalPrice' => $totalPrice,
+        ]);
+    }
+
+    // Remove item from cart
+    public function remove(Request $request, $id)
+    {
+        $cart = session()->get('cart', []);
+        if(isset($cart[$id])){
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+        }
+
+        $itemCount = collect($cart)->sum(fn($item) => $item['qty']);
+        $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
+
+        return response()->json([
+            'cart' => $cart,
+            'itemCount' => $itemCount,
+            'totalPrice' => $totalPrice,
+        ]);
+    }
 
 
     
