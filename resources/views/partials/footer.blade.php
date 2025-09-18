@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const item = cart[id];
 
             cartItemsContainer.innerHTML += `
-            <div class="product-infos mb-4 w-100" data-id="${id}">
-                <div class="product-info mb-0 d-flex">
+            <div class="product-infos mb-4 " data-id="${id}">
+                <div class="product-info w-100 mb-0 d-flex">
                     <a href="#" class="product-img-pop me-3">
                         <img src="${item.image}" alt="${item.name}" width="60">
                     </a>
