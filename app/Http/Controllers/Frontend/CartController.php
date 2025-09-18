@@ -98,48 +98,25 @@ public function items()
 
     $html = '';
     foreach ($cart as $id => $item) {
-       $html .= '
-                <div class="product-infos mb-4 cart-item" data-id="'.$id.'">
-                    <div class="product-info mb-0 d-flex">
-                        <a href="#" class="product-img-pop">
-                            <img src="'.asset("public/".$item['image']).'" alt="'.$item['name'].'">
-                        </a>
-                        <div class="product-details-pop ms-2">
-                            <h4>'.$item['name'].'</h4>
-                            <div class="variant-data d-flex align-items-center">
-                                '.(!empty($item['size']) ? '<span class="me-2">Size: '.$item['size'].'</span>' : '').'
-                                '.(!empty($item['color']) ? '<span>Color: '.$item['color'].'</span>' : '').'
-                            </div>
-                            <p><strong>₹'.$item['price'].'</strong></p>
-                            <div class="pd-add-to-cart-wrap d-flex align-items-center">
-                                <button class="qty-minus" 
-                                    data-id="'.$id.'" 
-                                    data-size="'.($item['size'] ?? '').'" 
-                                    data-color="'.($item['color'] ?? '').'">-</button>
-                                
-                                <input type="text" value="'.$item['qty'].'" 
-                                    class="qty item-qty" 
-                                    data-id="'.$id.'" 
-                                    data-size="'.($item['size'] ?? '').'" 
-                                    data-color="'.($item['color'] ?? '').'" 
-                                    readonly />
-                                
-                                <button class="qty-plus" 
-                                    data-id="'.$id.'" 
-                                    data-size="'.($item['size'] ?? '').'" 
-                                    data-color="'.($item['color'] ?? '').'">+</button>
-                            </div>
+        $html .= '
+            <div class="cart-item d-flex align-items-center justify-content-between mb-2" data-id="'.$id.'">
+                <div class="d-flex align-items-center">
+                    <img src="'.asset("public/".$item['image']).'" width="50" class="me-2">
+                    <div>
+                        <p class="m-0">'.$item['name'].'</p>
+                        <div class="d-flex align-items-center">
+                            <button class="qty-btn decrease" data-id="'.$id.'">-</button>
+                            <span class="mx-2 item-qty">'.$item['qty'].'</span>
+                            <button class="qty-btn increase" data-id="'.$id.'">+</button>
                         </div>
                     </div>
-                    <div class="remove-icon">
-                        <button class="remove-item btn btn-sm btn-danger" 
-                            data-id="'.$id.'" 
-                            data-size="'.($item['size'] ?? '').'" 
-                            data-color="'.($item['color'] ?? '').'">Remove</button>
-                    </div>
                 </div>
-            ';
-
+                <div>
+                    <p class="m-0 item-subtotal">₹'.($item['price'] * $item['qty']).'</p>
+                    <button class="remove-from-cart btn btn-sm btn-danger" data-id="'.$id.'">Remove</button>
+                </div>
+            </div>
+        ';
     }
 
     return response()->json([
