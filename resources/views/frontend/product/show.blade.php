@@ -241,6 +241,17 @@ $(document).ready(function(){
         let colorName = variant?.color_name || null;
         let colorHex = variant?.color_hex || null;
 
+        // Log the variant choice before adding to cart
+            console.log('Add to Cart Payload:', {
+                product_id: productId,
+                variant_id: variantId,
+                size: selectedSize,
+                color_id: selectedColorId,
+                color_name: colorName,
+                color_hex: colorHex,
+                quantity: quantity
+            });
+
         fetch(`{{ url('/cart/add') }}/${productId}`, {
             method:'POST',
             headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
