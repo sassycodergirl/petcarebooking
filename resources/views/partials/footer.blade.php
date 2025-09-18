@@ -125,6 +125,15 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => { cartOverlay.style.display = 'none'; }, 300);
     });
 
+    // Close cart when clicking outside the drawer
+        cartOverlay.addEventListener('click', function(e) {
+            // If click is on the overlay itself (not inside the popup box)
+            if (e.target === cartOverlay) {
+                cartOverlay.classList.remove('active');
+                setTimeout(() => { cartOverlay.style.display = 'none'; }, 300);
+            }
+        });
+
     // Render cart items
     function renderCartItems(cart, totalPrice) {
         cartItemsContainer.innerHTML = '';
@@ -255,18 +264,13 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             cartCountEl.textContent = data.cart ? Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0) : 0;
         });
+
+
 });
 
 
 
-// Close cart when clicking outside the drawer
-cartOverlay.addEventListener('click', function(e) {
-    // If click is on the overlay itself (not inside the popup box)
-    if (e.target === cartOverlay) {
-        cartOverlay.classList.remove('active');
-        setTimeout(() => { cartOverlay.style.display = 'none'; }, 300);
-    }
-});
+
 </script>
 
 
