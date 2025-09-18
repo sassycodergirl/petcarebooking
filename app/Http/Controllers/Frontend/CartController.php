@@ -9,10 +9,10 @@ use App\Models\Product;
 class CartController extends Controller
 {
     // Show cart page
-    public function index()
-    {
-        return view('frontend.cart');
-    }
+    // public function index()
+    // {
+    //     return view('frontend.cart');
+    // }
 
 
     public function add(Request $request, $id)
