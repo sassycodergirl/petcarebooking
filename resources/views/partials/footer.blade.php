@@ -128,19 +128,25 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let id in cart) {
             const item = cart[id];
             cartItemsContainer.innerHTML += `
-            <div class="cart-item d-flex justify-content-between align-items-center mb-2" data-id="${id}">
-                <div class="d-flex align-items-center">
-                    <img src="${item.image}" alt="${item.name}" width="50" class="me-2">
-                    <span>${item.name}</span>
+           <div class="product-infos mb-4" data-id="${id}">
+            <div class="product-info mb-0 d-flex">
+                <a href="#" class="product-img-pop me-3">
+                    <img src="${item.image}" alt="${item.name}" width="60">
+                </a>
+                <div class="product-details-pop flex-grow-1">
+                    <h4>${item.name}</h4>
+                    <p><strong>₹${item.price}</strong></p>
+                    <div class="pd-add-to-cart-wrap d-flex align-items-center">
+                        <button class="qty-minus" data-id="${id}">-</button>
+                        <input type="text" value="${item.qty}" class="qty mx-2" data-id="${id}" readonly />
+                        <button class="qty-plus" data-id="${id}">+</button>
+                    </div>
                 </div>
-                <div class="d-flex align-items-center">
-                    <button class="qty-btn btn-decrease">-</button>
-                    <input type="number" class="qty-input" value="${item.qty}" min="1">
-                    <button class="qty-btn btn-increase">+</button>
-                    <button class="btn-remove ms-2">Remove</button>
+                <div class="remove-icon ms-3">
+                    <button class="remove-item" data-id="${id}">Remove</button>
                 </div>
-                <span class="ms-2">₹${(item.price * item.qty).toFixed(2)}</span>
-            </div>`;
+            </div>
+        </div>`;
         }
         cartTotalEl.textContent = totalPrice.toFixed(2);
         attachCartItemEvents();
