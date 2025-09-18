@@ -444,7 +444,163 @@ document.addEventListener('click', function(e) {
 
 
 
+<!--OTP Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4">
+         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <div class="row">
+          <div class="col-md-7">
+                    <div class="text-center">
+                             <a class="navbar-brand" href="/"><img src="{{asset('images/logo.png')}}" alt></a>
+                     </div>
+                     <div class="text-center mt-4">
+                        <h3 class="text-white mb-1 login-head">Welcome to Furry & Friends </h3>
+                        <h4 class="text-white login-subhead">Register to avail the best deals!</h4>
+                     </div>
+                     <div class="row d-none d-md-flex d-lg-flex mt-4">
+                        <div class="col-md-4">
+                            <div class="usp-card">
+                                <div class="icon-div">
+                                    <img class="img-fluid" src="{{asset('images/petcare.png')}}" alt="Trusted Daycare & Boarding">
+                                </div>
+                                <div class="usp-para">
+                                    <h4 class="usp-heading">Trusted Daycare & Boarding</h4>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="usp-card">
+                                <div class="icon-div">
+                                    <img class="img-fluid" src="{{asset('images/booking.png')}}" alt="Trusted Daycare & Boarding">
+                                </div>
+                                <div class="usp-para">
+                                    <h4 class="usp-heading">Easy Online Booking</h4>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="usp-card">
+                                <div class="icon-div">
+                                    <img class="img-fluid" src="{{asset('images/pet-event.png')}}" alt="Trusted Daycare & Boarding">
+                                </div>
+                                <div class="usp-para">
+                                    <h4 class="usp-heading">Pet Community & Events</h4>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+              </div>
+               <div class="col-md-5">
+                <div class="login-signup-form bg-white p-4">
+                    <h4 class="text-center mb-3">Login / Signup</h4>
 
+                    <!-- Phone Input -->
+                    <div id="phoneSection" class="text-center">
+                      <label class="form-label">Enter Mobile Number</label>
+                      <!-- <input type="text" id="phone" class="form-control mb-3" placeholder="+9198XXXXXXXX"> -->
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 36 36"><path fill="#138808" d="M0 27a4 4 0 0 0 4 4h28a4 4 0 0 0 4-4v-5H0z"/><path fill="#f93" d="M36 14V9a4 4 0 0 0-4-4H4a4 4 0 0 0-4 4v5z"/><path fill="#f7f7f7" d="M0 13.667h36v8.667H0z"/><circle cx="18" cy="18" r="4" fill="#000080"/><circle cx="18" cy="18" r="3.375" fill="#f7f7f7"/><path fill="#6666b3" d="m18.1 16.75l-.1.65l-.1-.65l.1-1.95zm-.928-1.841l.408 1.909l.265.602l-.072-.653zm-.772.32l.888 1.738l.412.513l-.238-.613zm-.663.508l1.308 1.45l.531.389l-.389-.531zm-.508.663l1.638 1.062l.613.238l-.513-.412zm-.32.772l1.858.601l.653.072l-.602-.265zM14.8 18l1.95.1l.65-.1l-.65-.1zm.109.828l1.909-.408l.602-.265l-.653.072zm.32.772l1.738-.888l.513-.412l-.613.238zm.508.663l1.45-1.308l.389-.531l-.531.389zm.663.508l1.062-1.638l.238-.613l-.412.513zm.772.32l.601-1.858l.072-.653l-.265.602zM18 21.2l.1-1.95l-.1-.65l-.1.65zm.828-.109l-.408-1.909l-.265-.602l.072.653zm.772-.32l-.888-1.738l-.412-.513l.238.613zm.663-.508l-1.308-1.45l-.531-.389l.389.531zm.508-.663l-1.638-1.062l-.613-.238l.513.412zm.32-.772l-1.858-.601l-.653-.072l.602.265zM21.2 18l-1.95-.1l-.65.1l.65.1zm-.109-.828l-1.909.408l-.602.265l.653-.072zm-.32-.772l-1.738.888l-.513.412l.613-.238zm-.508-.663l-1.45 1.308l-.389.531l.531-.389zm-.663-.508l-1.062 1.638l-.238.613l.412-.513zm-.772-.32l-.601 1.858l-.072.653l.265-.602z"/><g fill="#000080"><circle cx="17.56" cy="14.659" r=".2"/><circle cx="16.71" cy="14.887" r=".2"/><circle cx="15.948" cy="15.326" r=".2"/><circle cx="15.326" cy="15.948" r=".2"/><circle cx="14.887" cy="16.71" r=".2"/><circle cx="14.659" cy="17.56" r=".2"/><circle cx="14.659" cy="18.44" r=".2"/><circle cx="14.887" cy="19.29" r=".2"/><circle cx="15.326" cy="20.052" r=".2"/><circle cx="15.948" cy="20.674" r=".2"/><circle cx="16.71" cy="21.113" r=".2"/><circle cx="17.56" cy="21.341" r=".2"/><circle cx="18.44" cy="21.341" r=".2"/><circle cx="19.29" cy="21.113" r=".2"/><circle cx="20.052" cy="20.674" r=".2"/><circle cx="20.674" cy="20.052" r=".2"/><circle cx="21.113" cy="19.29" r=".2"/><circle cx="21.341" cy="18.44" r=".2"/><circle cx="21.341" cy="17.56" r=".2"/><circle cx="21.113" cy="16.71" r=".2"/><circle cx="20.674" cy="15.948" r=".2"/><circle cx="20.052" cy="15.326" r=".2"/><circle cx="19.29" cy="14.887" r=".2"/><circle cx="18.44" cy="14.659" r=".2"/><circle cx="18" cy="18" r=".9"/></g></svg> +91
+                        </span>
+                        <input type="text" id="phone" class="form-control" placeholder="Enter phone number" maxlength="10">
+                    </div>
+
+                      <button id="sendOtpBtn" class="btn btn-primary w-100">Send OTP</button>
+                    </div>
+
+                    <!-- OTP Input (hidden initially) -->
+                    <div id="otpSection" class="d-none">
+                      <label class="form-label">Enter OTP</label>
+                      <input type="text" id="otp" class="form-control mb-3" placeholder="Enter OTP">
+                      <button id="verifyOtpBtn" class="btn btn-success w-100">Verify & Login</button>
+                    </div>
+
+                    <div id="loginError" class="text-success text-center my-3"></div>
+                     <div class="text-center terms-para mt-5">
+                            <p>I accept that I have read & understood Furry & Friends <a href="#">Privacy Policy</a> and <a href="#">T&Cs.</a></p>
+                            <a href="{{ route('login') }}">Other Ways to Login</a>
+                     </div>
+                  </div>
+              </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!--OTP Modal -->
+
+
+<!--otp based login/register-->
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const sendOtpBtn = document.getElementById("sendOtpBtn");
+    const verifyOtpBtn = document.getElementById("verifyOtpBtn");
+    const phoneInput = document.getElementById("phone");
+    const otpInput = document.getElementById("otp");
+    const phoneSection = document.getElementById("phoneSection");
+    const otpSection = document.getElementById("otpSection");
+    const errorBox = document.getElementById("loginError");
+
+    // Send OTP
+    sendOtpBtn.addEventListener("click", function () {
+        const fullPhone = "+91" + phoneInput.value.trim();
+
+        fetch("{{ route('phone.login.send') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ phone: fullPhone })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                errorBox.innerText = data.message;
+                phoneSection.classList.add("d-none");
+                otpSection.classList.remove("d-none");
+            } else {
+                errorBox.innerText = data.message;
+            }
+        });
+    });
+
+    // Verify OTP
+    verifyOtpBtn.addEventListener("click", function () {
+        const fullPhone = "+91" + phoneInput.value.trim();
+
+        fetch("{{ route('phone.login.verify') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ phone: fullPhone, otp: otpInput.value })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                errorBox.innerText = "✅ " + data.message;
+                setTimeout(() => {
+                    let modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                    modal.hide();
+                    location.reload();
+                }, 1000);
+            } else {
+                errorBox.innerText = data.message;
+            }
+        });
+    });
+});
+
+</script>
+
+<!--otp based login/register-->
 
 </body>
 
