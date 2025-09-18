@@ -15,21 +15,37 @@ class CartController extends Controller
     }
 
 
-    // Add product to cart
+     // Add product (with optional variant) to cart
     public function add(Request $request, $id)
     {
         $product = Product::findOrFail($id);
         $cart = session()->get('cart', []);
 
-        if(isset($cart[$id])){
-            $cart[$id]['qty']++;
+        $variantId = $request->variant_id ?? null;
+        $size = $request->size ?? null;
+        $colorId = $request->color_id ?? null;
+        $colorName = $request->color_name ?? null;
+        $colorHex = $request->color_hex ?? null;
+        $quantity = $request->quantity ?? 1;
+
+        // Create a unique key for variant products
+        $key = $variantId ? $id . '-' . $variantId : $id;
+
+        // If item exists, increment quantity
+        if (isset($cart[$key])) {
+            $cart[$key]['qty'] += $quantity;
         } else {
-            $cart[$id] = [
-                "name" => $product->name,
-                "price" => $product->price,
-                // "image" => $product->image,
-                "image" => asset('public/' . $product->image), 
-                "qty" => 1
+            $cart[$key] = [
+                'product_id' => $id,
+                'variant_id' => $variantId,
+                'name' => $product->name,
+                'price' => $request->price ?? $product->price,
+                'image' => $request->image ?? asset('public/' . $product->image),
+                'qty' => $quantity,
+                'size' => $size,
+                'color_id' => $colorId,
+                'color_name' => $colorName,
+                'color_hex' => $colorHex,
             ];
         }
 
@@ -39,6 +55,7 @@ class CartController extends Controller
         $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
 
         return response()->json([
+            'success' => true,
             'cart' => $cart,
             'itemCount' => $itemCount,
             'totalPrice' => $totalPrice,
@@ -57,12 +74,12 @@ class CartController extends Controller
         ]);
     }
 
-    // Update cart quantity
-    public function update(Request $request, $id)
+    // Update quantity
+    public function update(Request $request, $key)
     {
         $cart = session()->get('cart', []);
-        if(isset($cart[$id])){
-            $cart[$id]['qty'] = $request->qty;
+        if(isset($cart[$key])){
+            $cart[$key]['qty'] = max(1, intval($request->qty));
             session()->put('cart', $cart);
         }
 
@@ -76,12 +93,12 @@ class CartController extends Controller
         ]);
     }
 
-    // Remove item from cart
-    public function remove(Request $request, $id)
+    // Remove item
+    public function remove(Request $request, $key)
     {
         $cart = session()->get('cart', []);
-        if(isset($cart[$id])){
-            unset($cart[$id]);
+        if(isset($cart[$key])){
+            unset($cart[$key]);
             session()->put('cart', $cart);
         }
 
@@ -94,7 +111,6 @@ class CartController extends Controller
             'totalPrice' => $totalPrice,
         ]);
     }
-
 
     
 

@@ -5,11 +5,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <!-- Product Gallery Slider -->
                     @php
                         $defaultImage = $product->image;
                         $galleryImages = $product->gallery;
 
+                        // If product gallery empty, try variant galleries
                         if ($galleryImages->isEmpty() && $product->variants->count()) {
                             foreach ($product->variants as $variant) {
                                 if ($variant->gallery->count()) {
@@ -19,6 +19,7 @@
                             }
                         }
 
+                        // If still empty, fallback to product image
                         if ($galleryImages->isEmpty()) {
                             $galleryImages = collect([(object)['image' => $defaultImage]]);
                         }
@@ -32,7 +33,6 @@
                                 </div>
                             @endforeach
                         </div>
-
                         <div class="gallery-main col-7 col-md-7">
                             @foreach($galleryImages as $image)
                                 <div class="main-slide">
@@ -53,7 +53,6 @@
                                 @php
                                     $sizes = $product->variants->pluck('size')->filter()->unique();
                                 @endphp
-
                                 @if($sizes->count())
                                     <div class="mb-2">
                                         <label class="form-label">Size:</label>
@@ -232,14 +231,14 @@ $(document).ready(function(){
         fetch(`{{ url('/cart/add') }}/${productId}`, {
             method:'POST',
             headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
-            body:JSON.stringify({quantity, variant_id:variantId, size:selectedSize, color_id:selectedColorId, color_hex:colorHex})
+            body:JSON.stringify({quantity, variant_id:variantId, size:selectedSize, color_id:selectedColorId, color_hex:colorHex, price:variant?.price, image:variant?.image})
         })
         .then(res=>res.json())
         .then(data=>{
             if(data.success){
                 $('.cd-button-cart-count').text(data.itemCount);
                 if(typeof renderCartItems==='function'){ renderCartItems(data.cart, data.totalPrice); }
-                $('.popup-overlay').addClass('active');
+                $('.popup-overlay').addClass('active').css('display','block');
             } else { alert(data.message || 'Something went wrong!'); }
         }).catch(err=>console.error(err));
     });

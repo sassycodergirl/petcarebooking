@@ -126,23 +126,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Close cart when clicking outside the drawer
-        cartOverlay.addEventListener('click', function(e) {
-            // If click is on the overlay itself (not inside the popup box)
-            if (e.target === cartOverlay) {
-                cartOverlay.classList.remove('active');
-                setTimeout(() => { cartOverlay.style.display = 'none'; }, 300);
-            }
-        });
+    cartOverlay.addEventListener('click', function(e) {
+        if (e.target === cartOverlay) {
+            cartOverlay.classList.remove('active');
+            setTimeout(() => { cartOverlay.style.display = 'none'; }, 300);
+        }
+    });
 
     // Render cart items
     function renderCartItems(cart, totalPrice) {
         cartItemsContainer.innerHTML = '';
 
-        for (let id in cart) {
-            const item = cart[id];
+        for (let key in cart) {
+            const item = cart[key];
+            let variantInfo = '';
+            if(item.size) variantInfo += `Size: ${item.size} `;
+            if(item.color_name) variantInfo += `Color: ${item.color_name}`;
 
             cartItemsContainer.innerHTML += `
-            <div class="product-infos mb-4 " data-id="${id}">
+            <div class="product-infos mb-4" data-key="${key}">
                 <div class="product-info w-100 mb-0 d-flex">
                     <a href="#" class="product-img-pop me-3">
                         <img src="${item.image}" alt="${item.name}" width="60">
@@ -150,14 +152,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="product-details-pop flex-grow-1">
                         <h4>${item.name}</h4>
                         <p><strong>₹${item.price}</strong></p>
+                        ${variantInfo ? `<p>${variantInfo}</p>` : ''}
                         <div class="pd-add-to-cart-wrap d-flex align-items-center">
-                            <button class="qty-minus" data-id="${id}">-</button>
-                            <input type="text" value="${item.qty}" class="qty mx-2" data-id="${id}" readonly />
-                            <button class="qty-plus" data-id="${id}">+</button>
+                            <button class="qty-minus" data-key="${key}">-</button>
+                            <input type="text" value="${item.qty}" class="qty mx-2" data-key="${key}" readonly />
+                            <button class="qty-plus" data-key="${key}">+</button>
                         </div>
                     </div>
                     <div class="remove-icon ms-3">
-                        <button class="remove-item" data-id="${id}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><path d="M5 5h14l-.5 17h-13z"/><path stroke="#d82b26" stroke-linecap="square" stroke-width="2" d="M5 5h14M5 5l.5 17h13L19 5M5 5H3m16 0h2M8.5 2h7v3h-7zm6.329 8.672L12 13.5m0 0l-2.828 2.828M12 13.5l-2.828-2.828M12 13.5l2.829 2.828"/></g></svg></button>
+                        <button class="remove-item" data-key="${key}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><path d="M5 5h14l-.5 17h-13z"/><path stroke="#d82b26" stroke-linecap="square" stroke-width="2" d="M5 5h14M5 5l.5 17h13L19 5M5 5H3m16 0h2M8.5 2h7v3h-7zm6.329 8.672L12 13.5m0 0l-2.828 2.828M12 13.5l-2.828-2.828M12 13.5l2.829 2.828"/></g></svg></button>
                     </div>
                 </div>
             </div>`;
@@ -170,15 +173,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Attach events for quantity and remove buttons
     function attachCartItemEvents() {
         cartItemsContainer.querySelectorAll('.qty-plus').forEach(btn => {
-            btn.onclick = () => updateQty(btn.dataset.id, 1);
+            btn.onclick = () => updateQty(btn.dataset.key, 1);
         });
-
         cartItemsContainer.querySelectorAll('.qty-minus').forEach(btn => {
-            btn.onclick = () => updateQty(btn.dataset.id, -1);
+            btn.onclick = () => updateQty(btn.dataset.key, -1);
         });
-
         cartItemsContainer.querySelectorAll('.remove-item').forEach(btn => {
-            btn.onclick = () => removeCartItem(btn.dataset.id);
+            btn.onclick = () => removeCartItem(btn.dataset.key);
         });
     }
 
@@ -186,7 +187,17 @@ document.addEventListener('DOMContentLoaded', function () {
     addToBagButtons.forEach(btn => {
         btn.addEventListener('click', function () {
             const id = this.dataset.id;
-            const quantity = 1;
+            const quantity = parseInt(document.querySelector('#product-qty').value) || 1;
+
+            // Collect selected variant info
+            const sizeInput = document.querySelector('input[name="variant_size"]:checked');
+            const colorInput = document.querySelector('input[name="variant_color"]:checked');
+
+            const variant_id = sizeInput?.dataset.variantId || null;
+            const size = sizeInput?.value || null;
+            const color_id = colorInput?.value || null;
+            const color_name = colorInput?.dataset.colorName || null;
+            const color_hex = colorInput?.dataset.colorHex || null;
 
             fetch(`{{ url('/cart/add') }}/${id}`, {
                 method: 'POST',
@@ -194,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-                body: JSON.stringify({ quantity })
+                body: JSON.stringify({ quantity, variant_id, size, color_id, color_name, color_hex })
             })
             .then(res => res.json())
             .then(data => {
@@ -208,13 +219,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Update quantity
-    function updateQty(id, change = 0, setVal = null) {
-        const itemDiv = cartItemsContainer.querySelector(`.product-infos[data-id="${id}"]`);
+    function updateQty(key, change = 0, setVal = null) {
+        const itemDiv = cartItemsContainer.querySelector(`.product-infos[data-key="${key}"]`);
         const input = itemDiv.querySelector('.qty');
         let qty = setVal !== null ? setVal : parseInt(input.value) + change;
         if (qty < 1) qty = 1;
 
-        fetch(`{{ url('/cart/update') }}/${id}`, {
+        fetch(`{{ url('/cart/update') }}/${key}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -230,12 +241,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Remove item
-    function removeCartItem(id) {
-        fetch(`{{ url('/cart/remove') }}/${id}`, {
+    function removeCartItem(key) {
+        fetch(`{{ url('/cart/remove') }}/${key}`, {
             method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
+            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
         })
         .then(res => res.json())
         .then(data => {
@@ -264,14 +273,9 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             cartCountEl.textContent = data.cart ? Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0) : 0;
         });
-
-
 });
-
-
-
-
 </script>
+
 
 
 
