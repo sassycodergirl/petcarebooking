@@ -259,7 +259,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+// Close cart when clicking outside the drawer
+cartOverlay.addEventListener('click', function(e) {
+    // If click is on the overlay itself (not inside the popup box)
+    if (e.target === cartOverlay) {
+        cartOverlay.classList.remove('active');
+        setTimeout(() => { cartOverlay.style.display = 'none'; }, 300);
+    }
+});
 </script>
 
 
