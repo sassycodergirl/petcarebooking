@@ -27,7 +27,8 @@ class CartController extends Controller
             $cart[$id] = [
                 "name" => $product->name,
                 "price" => $product->price,
-                "image" => $product->image,
+                // "image" => $product->image,
+                "image" => asset('public/' . $product->image), 
                 "qty" => 1
             ];
         }
