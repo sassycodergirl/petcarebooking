@@ -179,7 +179,7 @@ window.addEventListener("load", function () {
                                     @endphp
 
                                     <span class="cd-button-cart-count">{{ $itemCount }}</span>
-                                    <span class="cd-button-cart-total">₹{{ number_format($totalPrice, 2) }}</span>
+                                    <span class="cd-button-cart-total d-none">₹{{ number_format($totalPrice, 2) }}</span>
                                 </a>
                             </li>
 
