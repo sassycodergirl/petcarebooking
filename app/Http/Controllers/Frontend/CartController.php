@@ -14,8 +14,7 @@ class CartController extends Controller
         return view('frontend.cart');
     }
 
-
-     // Add product (with optional variant) to cart
+    // Add product (with optional variant) to cart
     public function add(Request $request, $id)
     {
         $product = Product::findOrFail($id);
@@ -28,14 +27,13 @@ class CartController extends Controller
         $colorHex = $request->color_hex ?? null;
         $quantity = $request->quantity ?? 1;
 
-        // Create a unique key for variant products
-        $key = $variantId ? $id . '-' . $variantId : $id;
+        // Create a unique key for variant products (product_id + variant_id)
+        $cartKey = $id . ($variantId ? '-' . $variantId : '');
 
-        // If item exists, increment quantity
-        if (isset($cart[$key])) {
-            $cart[$key]['qty'] += $quantity;
+        if(isset($cart[$cartKey])) {
+            $cart[$cartKey]['qty'] += $quantity;
         } else {
-            $cart[$key] = [
+            $cart[$cartKey] = [
                 'product_id' => $id,
                 'variant_id' => $variantId,
                 'name' => $product->name,
@@ -66,10 +64,27 @@ class CartController extends Controller
     public function items()
     {
         $cart = session()->get('cart', []);
+
+        $cartWithVariants = collect($cart)->map(function($item) {
+            return [
+                'id' => $item['product_id'],
+                'key' => $item['variant_id'] ? $item['product_id'].'-'.$item['variant_id'] : $item['product_id'],
+                'name' => $item['name'],
+                'price' => $item['price'],
+                'qty' => $item['qty'],
+                'image' => $item['image'],
+                'variant_id' => $item['variant_id'] ?? null,
+                'size' => $item['size'] ?? null,
+                'color_id' => $item['color_id'] ?? null,
+                'color_name' => $item['color_name'] ?? null,
+                'color_hex' => $item['color_hex'] ?? null,
+            ];
+        })->toArray();
+
         $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
 
         return response()->json([
-            'cart' => $cart,
+            'cart' => $cartWithVariants,
             'totalPrice' => $totalPrice,
         ]);
     }
@@ -78,7 +93,7 @@ class CartController extends Controller
     public function update(Request $request, $key)
     {
         $cart = session()->get('cart', []);
-        if(isset($cart[$key])){
+        if(isset($cart[$key])) {
             $cart[$key]['qty'] = max(1, intval($request->qty));
             session()->put('cart', $cart);
         }
@@ -97,7 +112,7 @@ class CartController extends Controller
     public function remove(Request $request, $key)
     {
         $cart = session()->get('cart', []);
-        if(isset($cart[$key])){
+        if(isset($cart[$key])) {
             unset($cart[$key]);
             session()->put('cart', $cart);
         }
@@ -111,9 +126,4 @@ class CartController extends Controller
             'totalPrice' => $totalPrice,
         ]);
     }
-
-    
-
-
-   
 }

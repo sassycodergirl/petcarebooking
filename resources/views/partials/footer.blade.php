@@ -119,15 +119,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const popupCloseBtn = document.querySelector('.popup-close');
     const headerCartBtn = document.querySelector('.cd-button.cart-btn');
 
-    if (!cartOverlay || !cartItemsContainer || !cartTotalEl || !cartCountEl) return;
+    if (!cartOverlay) return; // avoid errors if overlay not present
 
     // Close cart drawer
-    if (popupCloseBtn) {
-        popupCloseBtn.addEventListener('click', () => {
-            cartOverlay.classList.remove('active');
-            setTimeout(() => { cartOverlay.style.display = 'none'; }, 300);
-        });
-    }
+    popupCloseBtn?.addEventListener('click', () => {
+        cartOverlay.classList.remove('active');
+        setTimeout(() => { cartOverlay.style.display = 'none'; }, 300);
+    });
 
     // Close cart when clicking outside the drawer
     cartOverlay.addEventListener('click', function(e) {
@@ -141,25 +139,30 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderCartItems(cart, totalPrice) {
         cartItemsContainer.innerHTML = '';
 
-        for (let id in cart) {
-            const item = cart[id];
+        for (let key in cart) {
+            const item = cart[key];
+            const variantInfo = [];
+            if (item.size) variantInfo.push(`Size: ${item.size}`);
+            if (item.color_hex) variantInfo.push(`Color: <span style="background-color:${item.color_hex};display:inline-block;width:15px;height:15px;border-radius:50%;margin-left:5px;"></span>`);
+
             cartItemsContainer.innerHTML += `
-            <div class="product-infos mb-4" data-id="${id}">
+            <div class="product-infos mb-4" data-key="${key}">
                 <div class="product-info w-100 mb-0 d-flex">
                     <a href="#" class="product-img-pop me-3">
                         <img src="${item.image}" alt="${item.name}" width="60">
                     </a>
                     <div class="product-details-pop flex-grow-1">
                         <h4>${item.name}</h4>
+                        ${variantInfo.length ? `<p class="variant-info">${variantInfo.join(' | ')}</p>` : ''}
                         <p><strong>₹${item.price}</strong></p>
                         <div class="pd-add-to-cart-wrap d-flex align-items-center">
-                            <button class="qty-minus" data-id="${id}">-</button>
-                            <input type="text" value="${item.qty}" class="qty mx-2" data-id="${id}" readonly />
-                            <button class="qty-plus" data-id="${id}">+</button>
+                            <button class="qty-minus" data-key="${key}">-</button>
+                            <input type="text" value="${item.qty}" class="qty mx-2" data-key="${key}" readonly />
+                            <button class="qty-plus" data-key="${key}">+</button>
                         </div>
                     </div>
                     <div class="remove-icon ms-3">
-                        <button class="remove-item" data-id="${id}">X</button>
+                        <button class="remove-item" data-key="${key}">×</button>
                     </div>
                 </div>
             </div>`;
@@ -169,56 +172,30 @@ document.addEventListener('DOMContentLoaded', function () {
         attachCartItemEvents();
     }
 
+    // Attach events for quantity and remove buttons
     function attachCartItemEvents() {
         cartItemsContainer.querySelectorAll('.qty-plus').forEach(btn => {
-            btn.onclick = () => updateQty(btn.dataset.id, 1);
+            btn.onclick = () => updateQty(btn.dataset.key, 1);
         });
+
         cartItemsContainer.querySelectorAll('.qty-minus').forEach(btn => {
-            btn.onclick = () => updateQty(btn.dataset.id, -1);
+            btn.onclick = () => updateQty(btn.dataset.key, -1);
         });
+
         cartItemsContainer.querySelectorAll('.remove-item').forEach(btn => {
-            btn.onclick = () => removeCartItem(btn.dataset.id);
+            btn.onclick = () => removeCartItem(btn.dataset.key);
         });
     }
 
-    // Add to cart button
-    addToBagButtons.forEach(btn => {
-        btn.addEventListener('click', function () {
-            const id = this.dataset.id;
-
-            // Only try to read quantity if #product-qty exists
-            const qtyInput = document.querySelector('#product-qty');
-            const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
-
-            fetch(`{{ url('/cart/add') }}/${id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ quantity })
-            })
-            .then(res => res.json())
-            .then(data => {
-                cartCountEl.textContent = data.itemCount;
-                renderCartItems(data.cart, data.totalPrice);
-
-                cartOverlay.style.display = 'block';
-                setTimeout(() => { cartOverlay.classList.add('active'); }, 10);
-            });
-        });
-    });
-
     // Update quantity
-    function updateQty(id, change = 0, setVal = null) {
-        const itemDiv = cartItemsContainer.querySelector(`.product-infos[data-id="${id}"]`);
-        if (!itemDiv) return;
+    function updateQty(key, change = 0) {
+        const input = cartItemsContainer.querySelector(`.qty[data-key="${key}"]`);
+        if (!input) return;
 
-        const input = itemDiv.querySelector('.qty');
-        let qty = setVal !== null ? setVal : parseInt(input.value) + change;
+        let qty = parseInt(input.value) + change;
         if (qty < 1) qty = 1;
 
-        fetch(`{{ url('/cart/update') }}/${id}`, {
+        fetch(`{{ url('/cart/update') }}/${key}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -234,12 +211,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Remove item
-    function removeCartItem(id) {
-        fetch(`{{ url('/cart/remove') }}/${id}`, {
+    function removeCartItem(key) {
+        fetch(`{{ url('/cart/remove') }}/${key}`, {
             method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
+            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
         })
         .then(res => res.json())
         .then(data => {
@@ -248,30 +223,55 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Header cart click
-    if (headerCartBtn) {
-        headerCartBtn.addEventListener('click', function (e) {
-            e.preventDefault();
+    // Add to cart button
+    addToBagButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const productId = this.dataset.id;
+            const quantity = parseInt(document.querySelector('#product-qty')?.value) || 1;
+            const variantId = this.dataset.variantId || null;
+            const size = this.dataset.size || null;
+            const colorId = this.dataset.colorId || null;
+            const colorHex = this.dataset.colorHex || null;
+            const image = this.dataset.image;
 
-            fetch(`{{ url('/cart/items') }}`)
-                .then(res => res.json())
-                .then(data => {
-                    cartCountEl.textContent = data.cart ? Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0) : 0;
+            fetch(`{{ url('/cart/add') }}/${productId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                body: JSON.stringify({ quantity, variant_id: variantId, size, color_id: colorId, color_hex: colorHex, image })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    cartCountEl.textContent = data.itemCount;
                     renderCartItems(data.cart, data.totalPrice);
                     cartOverlay.style.display = 'block';
                     setTimeout(() => { cartOverlay.classList.add('active'); }, 10);
-                });
+                }
+            }).catch(err => console.error(err));
         });
-    }
+    });
 
-    // Initialize cart count
+    // Fetch cart on header cart click
+    headerCartBtn?.addEventListener('click', function (e) {
+        e.preventDefault();
+        fetch(`{{ url('/cart/items') }}`)
+            .then(res => res.json())
+            .then(data => {
+                cartCountEl.textContent = data.cart ? Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0) : 0;
+                renderCartItems(data.cart, data.totalPrice);
+                cartOverlay.style.display = 'block';
+                setTimeout(() => { cartOverlay.classList.add('active'); }, 10);
+            });
+    });
+
+    // Initialize cart count on page load
     fetch(`{{ url('/cart/items') }}`)
         .then(res => res.json())
         .then(data => {
             cartCountEl.textContent = data.cart ? Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0) : 0;
         });
-});
 
+});
 </script>
 
 

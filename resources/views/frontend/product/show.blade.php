@@ -213,8 +213,17 @@ $(document).ready(function(){
     updateColors(selectedSize);
     updateGallery(selectedSize, selectedColorId);
 
-    $('input[name="variant_size"]').on('change', function(){ selectedSize = $(this).val(); updateColors(selectedSize); updateGallery(selectedSize, selectedColorId); });
-    $('input[name="variant_color"]').on('change', function(){ if($(this).prop('disabled')) return; selectedColorId = parseInt($(this).val()); updateGallery(selectedSize, selectedColorId); });
+    $('input[name="variant_size"]').on('change', function(){
+        selectedSize = $(this).val();
+        updateColors(selectedSize);
+        updateGallery(selectedSize, selectedColorId);
+    });
+
+    $('input[name="variant_color"]').on('change', function(){
+        if($(this).prop('disabled')) return;
+        selectedColorId = parseInt($(this).val());
+        updateGallery(selectedSize, selectedColorId);
+    });
 
     // Add to cart
     $('.product-page-cart').on('click', function(e){
@@ -223,25 +232,41 @@ $(document).ready(function(){
         const quantity = parseInt($('#product-qty').val()) || 1;
 
         let variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
-                   || variantsData.find(v => v.size === selectedSize);
+                   || variantsData.find(v => v.size === selectedSize)
+                   || {};
 
         let variantId = variant?.id || null;
-        let colorHex = variant?.color_hex || '#ccc';
+        let price = variant?.price || $(this).data('price');
+        let image = variant?.image || $(this).data('image');
+        let colorName = variant?.color_name || null;
+        let colorHex = variant?.color_hex || null;
 
         fetch(`{{ url('/cart/add') }}/${productId}`, {
             method:'POST',
             headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
-            body:JSON.stringify({quantity, variant_id:variantId, size:selectedSize, color_id:selectedColorId, color_hex:colorHex, price:variant?.price, image:variant?.image})
+            body:JSON.stringify({
+                quantity,
+                variant_id: variantId,
+                size: selectedSize,
+                color_id: selectedColorId,
+                color_name: colorName,
+                color_hex: colorHex,
+                price,
+                image
+            })
         })
         .then(res=>res.json())
         .then(data=>{
             if(data.success){
                 $('.cd-button-cart-count').text(data.itemCount);
                 if(typeof renderCartItems==='function'){ renderCartItems(data.cart, data.totalPrice); }
-                $('.popup-overlay').addClass('active').css('display','block');
-            } else { alert(data.message || 'Something went wrong!'); }
+                $('.popup-overlay').addClass('active');
+            } else {
+                alert(data.message || 'Something went wrong!');
+            }
         }).catch(err=>console.error(err));
     });
 
 });
 </script>
+
