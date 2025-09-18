@@ -14,51 +14,7 @@ class CartController extends Controller
         return view('frontend.cart');
     }
 
-    // Add product (with optional variant) to cart
-    // public function add(Request $request, $id)
-    // {
-    //     $product = Product::findOrFail($id);
-    //     $cart = session()->get('cart', []);
 
-    //     $variantId = $request->variant_id ?? null;
-    //     $size = $request->size ?? null;
-    //     $colorId = $request->color_id ?? null;
-    //     $colorName = $request->color_name ?? null;
-    //     $colorHex = $request->color_hex ?? null;
-    //     $quantity = $request->quantity ?? 1;
-
-    //     // Create a unique key for variant products (product_id + variant_id)
-    //     $cartKey = $id . ($variantId ? '-' . $variantId : '');
-
-    //     if(isset($cart[$cartKey])) {
-    //         $cart[$cartKey]['qty'] += $quantity;
-    //     } else {
-    //         $cart[$cartKey] = [
-    //             'product_id' => $id,
-    //             'variant_id' => $variantId,
-    //             'name' => $product->name,
-    //             'price' => $request->price ?? $product->price,
-    //             'image' => $request->image ?? asset('public/' . $product->image),
-    //             'qty' => $quantity,
-    //             'size' => $size,
-    //             'color_id' => $colorId,
-    //             'color_name' => $colorName,
-    //             'color_hex' => $colorHex,
-    //         ];
-    //     }
-
-    //     session()->put('cart', $cart);
-
-    //     $itemCount = collect($cart)->sum(fn($item) => $item['qty']);
-    //     $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
-
-    //     return response()->json([
-    //         'success' => true,
-    //         'cart' => $cart,
-    //         'itemCount' => $itemCount,
-    //         'totalPrice' => $totalPrice,
-    //     ]);
-    // }
 
     // Add product (with optional variant) to cart
     public function add(Request $request, $id)
@@ -75,7 +31,12 @@ class CartController extends Controller
         $quantity = $request->quantity ?? 1;
 
         // Create a unique key: include variant only if it exists
-        $cartKey = $id . ($variantId ? '-' . $variantId : '');
+        $cartKey = $variantId ? $id . '-' . $variantId : $id;
+
+        // Remove base product if adding variant (prevents duplicate base item)
+        if ($variantId && isset($cart[$id])) {
+            unset($cart[$id]);
+        }
 
         // If item exists, increment quantity
         if (isset($cart[$cartKey])) {
@@ -109,6 +70,7 @@ class CartController extends Controller
             'totalPrice' => $totalPrice,
         ]);
     }
+
 
 
     // Fetch cart items
