@@ -187,7 +187,8 @@ document.addEventListener('DOMContentLoaded', function () {
     addToBagButtons.forEach(btn => {
         btn.addEventListener('click', function () {
             const id = this.dataset.id;
-            const quantity = parseInt(document.querySelector('#product-qty').value) || 1;
+            // const quantity = parseInt(document.querySelector('#product-qty').value) || 1;
+            const quantity = 1;
 
             // Collect selected variant info
             const sizeInput = document.querySelector('input[name="variant_size"]:checked');
