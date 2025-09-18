@@ -35,4 +35,10 @@ class Product extends Model
     {
         return $this->belongsToMany(\App\Models\Attribute::class, 'attribute_product');
     }
+
+    // Check if product has any variants
+    public function getHasVariantsAttribute()
+    {
+        return $this->variants()->exists();
+    }
 }

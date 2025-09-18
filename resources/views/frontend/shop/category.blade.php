@@ -137,13 +137,27 @@
                                         <div class="">
                                             <p class="card-text">₹{{ $product->price }}</p>
                                             <!-- <button class="add-to-bag cd-button" data-id="{{ $product->id }}"  data-name="{{ $product->name }}"  data-price="{{ $product->price }}" data-image="{{ asset('public/' . $product->image) }}"><img class="d-none d-md-block" src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart</button> -->
-                                             <button class="add-to-bag cd-button"
+                                             <!-- <button class="add-to-bag cd-button"
                                                     data-id="{{ $product->id }}"
                                                     data-name="{{ $product->name }}"
                                                     data-price="{{ $product->price }}"
                                                     data-image="{{ asset('public/' . $product->image) }}">
                                                     <img class="d-none d-md-block" src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart
-                                                </button>
+                                                </button> -->
+
+                                                @if($product->has_variants)
+                                                    <a href="{{ route('product.show', $product->slug) }}" class="cd-button choose-option">
+                                                        Choose Option
+                                                    </a>
+                                                @else
+                                                    <button class="add-to-bag cd-button"
+                                                            data-id="{{ $product->id }}"
+                                                            data-name="{{ $product->name }}"
+                                                            data-price="{{ $product->price }}"
+                                                            data-image="{{ asset('public/' . $product->image) }}">
+                                                        <img class="d-none d-md-block" src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart
+                                                    </button>
+                                                @endif
                                         </div>
                                         
                                     </div>
