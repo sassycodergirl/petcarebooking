@@ -242,7 +242,8 @@ $(document).ready(function(){
         swipe: false,
         arrows: false,
         infinite: true,
-        centerMode: true
+        centerMode: true,
+        initialSlide: 0 
     });
 
     galleryMain.slick({
@@ -251,7 +252,8 @@ $(document).ready(function(){
         // asNavFor: '.gallery-thumbs', // <-- 1. REMOVE THIS LINE
         arrows: true,
         fade: true,
-        infinite: false
+        infinite: false,
+        initialSlide: 0 
     });
 
     // 2. ADD THIS EVENT LISTENER
