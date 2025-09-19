@@ -257,7 +257,7 @@ $(document).ready(function(){
             method:'POST',
             headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
             body:JSON.stringify({
-                quantity,
+                qty: quantity,
                 variant_id: variantId,
                 size: selectedSize,
                 color_id: selectedColorId,
