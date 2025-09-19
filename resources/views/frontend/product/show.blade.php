@@ -226,58 +226,118 @@ $(document).ready(function(){
     });
 
     // Add to cart
-    $('.product-page-cart').on('click', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        const productId = $(this).data('id');
-        const quantity = parseInt($('#product-qty').val()) || 1;
+    // $('.product-page-cart').on('click', function(e){
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     const productId = $(this).data('id');
+    //     const quantity = parseInt($('#product-qty').val()) || 1;
 
-        let variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
-                   || variantsData.find(v => v.size === selectedSize)
-                   || {};
+    //     let variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
+    //                || variantsData.find(v => v.size === selectedSize)
+    //                || {};
 
-        let variantId = variant?.id || null;
-        let price = variant?.price || $(this).data('price');
-        let image = variant?.image || $(this).data('image');
-        let colorName = variant?.color_name || null;
-        let colorHex = variant?.color_hex || null;
+    //     let variantId = variant?.id || null;
+    //     let price = variant?.price || $(this).data('price');
+    //     let image = variant?.image || $(this).data('image');
+    //     let colorName = variant?.color_name || null;
+    //     let colorHex = variant?.color_hex || null;
 
-        // Log the variant choice before adding to cart
-            console.log('Add to Cart Payload:', {
-                product_id: productId,
-                variant_id: variantId,
-                size: selectedSize,
-                color_id: selectedColorId,
-                color_name: colorName,
-                color_hex: colorHex,
-                quantity: quantity
-            });
+    //     // Log the variant choice before adding to cart
+    //         console.log('Add to Cart Payload:', {
+    //             product_id: productId,
+    //             variant_id: variantId,
+    //             size: selectedSize,
+    //             color_id: selectedColorId,
+    //             color_name: colorName,
+    //             color_hex: colorHex,
+    //             qty: quantity,
+    //         });
 
-        fetch(`{{ url('/cart/add') }}/${productId}`, {
-            method:'POST',
-            headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
-            body:JSON.stringify({
-                qty: quantity,
-                variant_id: variantId,
-                size: selectedSize,
-                color_id: selectedColorId,
-                color_name: colorName,
-                color_hex: colorHex,
-                price,
-                image
-            })
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.success){
-                $('.cd-button-cart-count').text(data.itemCount);
-                if(typeof renderCartItems==='function'){ renderCartItems(data.cart, data.totalPrice); }
-                $('.popup-overlay').addClass('active');
-            } else {
-                alert(data.message || 'Something went wrong!');
+    //     fetch(`{{ url('/cart/add') }}/${productId}`, {
+    //         method:'POST',
+    //         // headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json',   //  add this
+    //             'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    //         },
+    //         body:JSON.stringify({
+    //             qty: quantity,
+    //             variant_id: variantId,
+    //             size: selectedSize,
+    //             color_id: selectedColorId,
+    //             color_name: colorName,
+    //             color_hex: colorHex,
+    //             price,
+    //             image
+    //         })
+    //     })
+    //     .then(res=>res.json())
+    //     .then(data=>{
+    //         if(data.success){
+    //             $('.cd-button-cart-count').text(data.itemCount);
+    //             if(typeof renderCartItems==='function'){ renderCartItems(data.cart, data.totalPrice); }
+    //             $('.popup-overlay').addClass('active');
+    //         } else {
+    //             alert(data.message || 'Something went wrong!');
+    //         }
+    //     }).catch(err=>console.error(err));
+    // });
+
+
+    // Add to cart – fixed
+$('.product-page-cart').on('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    const productId = $(this).data('id');
+    const quantity = parseInt($('#product-qty').val()) || 1;
+
+    // Find the selected variant from your variantsData array
+    let variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
+               || variantsData.find(v => v.size === selectedSize)
+               || variantsData.find(v => v.color_id === selectedColorId)
+               || {}; // fallback empty object if no match
+
+    // Prepare payload from variant (fallback to defaults)
+    let payload = {
+        qty: quantity,
+        variant_id: variant?.id || null,
+        size: variant?.size || null,
+        color_id: variant?.color_id || null,
+        color_name: variant?.color_name || null,
+        color_hex: variant?.color_hex || null,
+        price: variant?.price || $(this).data('price'),
+        image: variant?.image || $(this).data('image')
+    };
+
+    console.log('Add to Cart Payload:', payload);
+
+    fetch(`{{ url('/cart/add') }}/${productId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            $('.cd-button-cart-count').text(data.itemCount);
+            if(typeof renderCartItems === 'function'){
+                renderCartItems(data.cart, data.totalPrice);
             }
-        }).catch(err=>console.error(err));
-    });
+            $('.popup-overlay').css('display', 'block');
+            setTimeout(() => $('.popup-overlay').addClass('active'), 10);
+        } else {
+            alert(data.message || 'Something went wrong!');
+        }
+    })
+    .catch(err => console.error(err));
+});
+
 
 });
 </script>
