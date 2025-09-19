@@ -206,9 +206,22 @@ $(document).ready(function(){
             galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
         });
 
-        galleryThumbs.slick({ slidesToShow: 4, slidesToScroll: 1, asNavFor: '.gallery-main', focusOnSelect: true, vertical:true, swipe:false, arrows:false, infinite: variant.gallery.length > 4 });
-        // Reset thumbs to first slide
-        galleryThumbs.slick('slickGoTo', 0, true);
+        // galleryThumbs.slick({ slidesToShow: 4, slidesToScroll: 1, asNavFor: '.gallery-main', focusOnSelect: true, vertical:true, swipe:false, arrows:false, infinite: variant.gallery.length > 4 });
+        galleryThumbs.on('init', function(){
+                $(this).slick('slickGoTo', 0, true);
+            }).slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                asNavFor: '.gallery-main',
+                focusOnSelect: true,
+                vertical: true,
+                swipe: false,
+                arrows: false,
+                infinite: variant.gallery.length > 4
+            });
+
+       
+     
         galleryMain.slick({ slidesToShow:1, slidesToScroll:1, asNavFor:'.gallery-thumbs', arrows:true, fade:true, infinite:false });
     }
 
