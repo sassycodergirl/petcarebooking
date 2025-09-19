@@ -15,53 +15,7 @@ class CartController extends Controller
     }
 
     // Fetch cart items
-    // public function items()
-    // {
-    //     $cart = session()->get('cart', []);
-
-    //     $cartWithVariants = collect($cart)
-    //         ->filter(function ($item) {
-    //             $product = \App\Models\Product::find($item['product_id']);
-    //             if ($product && $product->variants()->exists() && empty($item['variant_id'])) {
-    //                 return false;
-    //             }
-    //             return true;
-    //         })
-    //         ->map(function ($item) {
-    //             return [
-    //                 'key'        => $item['variant_id'] ? $item['product_id'].'-'.$item['variant_id'] : $item['product_id'],
-    //                 'product_id' => $item['product_id'],
-    //                 'variant_id' => $item['variant_id'] ?? null,
-    //                 'name'       => $item['name'],
-    //                 'price'      => $item['price'],
-    //                 'qty'        => $item['qty'], // ✅ always qty
-    //                 'image'      => $item['image'],
-    //                 'size'       => $item['size'] ?? null,
-    //                 'color_id'   => $item['color_id'] ?? null,
-    //                 'color_name' => $item['color_name'] ?? null,
-    //                 'color_hex'  => $item['color_hex'] ?? null,
-    //             ];
-    //         })
-    //         ->values()
-    //         ->toArray();
-
-    //     // Clean rogue items
-    //     $cleanedCart = [];
-    //     foreach ($cartWithVariants as $item) {
-    //         $cleanedCart[$item['key']] = $item;
-    //     }
-    //     session()->put('cart', $cleanedCart);
-
-    //     $totalPrice = collect($cleanedCart)->reduce(
-    //         fn($sum, $item) => $sum + ($item['price'] * $item['qty']),
-    //         0
-    //     );
-
-    //     return response()->json([
-    //         'cart'       => $cartWithVariants,
-    //         'totalPrice' => $totalPrice,
-    //     ]);
-    // }
+  
 
     public function items()
     {
@@ -174,13 +128,31 @@ class CartController extends Controller
 
         // Get image for variant or fallback to product image
         $image = $product->image; // fallback
+        // if ($variantId) {
+        //     $variant = $product->variants()->find($variantId);
+        //     if ($variant) {
+        //         $firstGalleryImage = $variant->gallery->first()?->image ?? null;
+        //         $image = $firstGalleryImage 
+        //             ? asset('public/variant-gallery/' . $firstGalleryImage)
+        //             : ($variant->image ? asset('public/' . $variant->image) : asset('public/' . $product->image));
+        //     }
+        // } else {
+        //     $image = $request->image ?? asset('public/' . $product->image);
+        // }
+
         if ($variantId) {
             $variant = $product->variants()->find($variantId);
             if ($variant) {
                 $firstGalleryImage = $variant->gallery->first()?->image ?? null;
-                $image = $firstGalleryImage 
-                    ? asset('public/variant-gallery/' . $firstGalleryImage)
-                    : ($variant->image ? asset('public/' . $variant->image) : asset('public/' . $product->image));
+                if ($firstGalleryImage) {
+                    $image = str_contains($firstGalleryImage, 'variant-gallery/')
+                        ? asset('public/' . $firstGalleryImage)
+                        : asset('public/variant-gallery/' . $firstGalleryImage);
+                } elseif ($variant->image) {
+                    $image = asset('public/' . $variant->image);
+                } else {
+                    $image = asset('public/' . $product->image);
+                }
             }
         } else {
             $image = $request->image ?? asset('public/' . $product->image);
