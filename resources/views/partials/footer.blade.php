@@ -355,7 +355,6 @@ document.addEventListener('DOMContentLoaded', function () {
         cartOverlay.classList.remove('active');
         setTimeout(() => cartOverlay.style.display = 'none', 300);
     });
-
     cartOverlay.addEventListener('click', e => {
         if (e.target === cartOverlay) {
             cartOverlay.classList.remove('active');
@@ -366,6 +365,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Render cart items
     function renderCartItems(cart, totalPrice) {
         cartItemsContainer.innerHTML = '';
+
+        if (!Array.isArray(cart)) cart = Object.values(cart);
 
         cart.forEach(item => {
             let variantInfo = '';
@@ -411,15 +412,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Attach events
     function attachCartItemEvents() {
-        cartItemsContainer.querySelectorAll('.qty-plus').forEach(btn => {
-            btn.onclick = () => updateQty(btn.dataset.key, 1);
-        });
-        cartItemsContainer.querySelectorAll('.qty-minus').forEach(btn => {
-            btn.onclick = () => updateQty(btn.dataset.key, -1);
-        });
-        cartItemsContainer.querySelectorAll('.remove-item').forEach(btn => {
-            btn.onclick = () => removeCartItem(btn.dataset.key);
-        });
+        cartItemsContainer.querySelectorAll('.qty-plus').forEach(btn => btn.onclick = () => updateQty(btn.dataset.key, 1));
+        cartItemsContainer.querySelectorAll('.qty-minus').forEach(btn => btn.onclick = () => updateQty(btn.dataset.key, -1));
+        cartItemsContainer.querySelectorAll('.remove-item').forEach(btn => btn.onclick = () => removeCartItem(btn.dataset.key));
     }
 
     function updateQty(key, change) {
@@ -431,10 +426,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fetch(`{{ url('/cart/update') }}/${key}`, {
             method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
+            headers: { 'Content-Type': 'application/json','X-CSRF-TOKEN': '{{ csrf_token() }}' },
             body: JSON.stringify({ qty })
         }).then(res => res.json())
           .then(data => {
@@ -444,7 +436,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function removeCartItem(key) {
-         fetch(`{{ url('/cart/remove') }}/${key}`, {
+        fetch(`{{ url('/cart/remove') }}/${key}`, {
             method: 'POST',
             headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
         }).then(res => res.json())
@@ -468,10 +460,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             fetch(`{{ url('/cart/add') }}/${productId}`, {
                 method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
+                headers: { 'Content-Type': 'application/json','X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 body: JSON.stringify({
                     quantity,
                     variant_id: variantId,
@@ -493,10 +482,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Header cart click (keep intact)
+    // Header cart click
     headerCartBtn?.addEventListener('click', e => {
         e.preventDefault();
-         fetch(`{{ url('/cart/items') }}`)
+        fetch(`{{ url('/cart/items') }}`)
         .then(res => res.json())
         .then(data => {
             cartCountEl.textContent = Object.values(data.cart).reduce((sum, i) => sum + i.qty, 0);
@@ -514,6 +503,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+
 
 
 
