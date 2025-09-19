@@ -2485,6 +2485,7 @@ textarea::placeholder {
 	font-size: 15px;
 	display: flex;
     gap: 10px;
+	margin-bottom: 0;
 }
 
 .product-details-pop p del {
