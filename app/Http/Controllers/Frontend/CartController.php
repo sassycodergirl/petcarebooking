@@ -16,51 +16,177 @@ class CartController extends Controller
 
 
 // Fetch cart items
+// public function items()
+// {
+//     $cart = session()->get('cart', []);
+
+//     $cartWithVariants = collect($cart)->map(function($item) {
+//         return [
+//             'key' => $item['variant_id'] ? $item['product_id'].'-'.$item['variant_id'] : $item['product_id'],
+//             'product_id' => $item['product_id'],
+//             'variant_id' => $item['variant_id'] ?? null,
+//             'name' => $item['name'],
+//             'price' => $item['price'],
+//             'qty' => $item['qty'],
+//             'image' => $item['image'],
+//             'size' => $item['size'] ?? null,
+//             'color_id' => $item['color_id'] ?? null,
+//             'color_name' => $item['color_name'] ?? null,
+//             'color_hex' => $item['color_hex'] ?? null,
+//         ];
+//     })->values()->toArray(); // ✅ values() ensures numeric array
+
+//     $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
+
+//     return response()->json([
+//         'cart' => $cartWithVariants,
+//         'totalPrice' => $totalPrice,
+//     ]);
+// }
+
+// Fetch cart items
 public function items()
 {
     $cart = session()->get('cart', []);
 
-    $cartWithVariants = collect($cart)->map(function($item) {
-        return [
-            'key' => $item['variant_id'] ? $item['product_id'].'-'.$item['variant_id'] : $item['product_id'],
-            'product_id' => $item['product_id'],
-            'variant_id' => $item['variant_id'] ?? null,
-            'name' => $item['name'],
-            'price' => $item['price'],
-            'qty' => $item['qty'],
-            'image' => $item['image'],
-            'size' => $item['size'] ?? null,
-            'color_id' => $item['color_id'] ?? null,
-            'color_name' => $item['color_name'] ?? null,
-            'color_hex' => $item['color_hex'] ?? null,
-        ];
-    })->values()->toArray(); // ✅ values() ensures numeric array
+    $cartWithVariants = collect($cart)
+        ->filter(function ($item) {
+            // 🚨 If product has variants but variant_id is missing, drop it
+            $product = \App\Models\Product::find($item['product_id']);
+            if ($product && $product->variants()->exists() && empty($item['variant_id'])) {
+                return false;
+            }
+            return true;
+        })
+        ->map(function ($item) {
+            return [
+                'key'        => $item['variant_id'] ? $item['product_id'].'-'.$item['variant_id'] : $item['product_id'],
+                'product_id' => $item['product_id'],
+                'variant_id' => $item['variant_id'] ?? null,
+                'name'       => $item['name'],
+                'price'      => $item['price'],
+                'qty'        => $item['qty'],
+                'image'      => $item['image'],
+                'size'       => $item['size'] ?? null,
+                'color_id'   => $item['color_id'] ?? null,
+                'color_name' => $item['color_name'] ?? null,
+                'color_hex'  => $item['color_hex'] ?? null,
+            ];
+        })
+        ->values() // ✅ reset numeric array keys
+        ->toArray();
 
-    $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
+    // Re-save cleaned cart into session so rogue entries are removed permanently
+    $cleanedCart = [];
+    foreach ($cartWithVariants as $item) {
+        $cleanedCart[$item['key']] = $item;
+    }
+    session()->put('cart', $cleanedCart);
+
+    $totalPrice = collect($cleanedCart)->reduce(
+        fn($sum, $item) => $sum + ($item['price'] * $item['qty']),
+        0
+    );
 
     return response()->json([
-        'cart' => $cartWithVariants,
+        'cart'       => $cartWithVariants,
         'totalPrice' => $totalPrice,
     ]);
 }
 
+
 // Add to cart (with optional variant)
+// public function add(Request $request, $id)
+// {
+//     $product = Product::findOrFail($id);
+//     $cart = session()->get('cart', []);
+
+//     $variantId = $request->variant_id ?: null;
+//     $size = $request->size ?? null;
+//     $colorId = $request->color_id ?? null;
+//     $colorName = $request->color_name ?? null;
+//     $colorHex = $request->color_hex ?? null;
+//     $quantity = $request->quantity ?? 1;
+
+//     $cartKey = $variantId ? $id.'-'.$variantId : $id;
+
+//     if ($variantId && isset($cart[$id])) {
+//         unset($cart[$id]); // Remove base product if variant is added
+//     }
+
+//     if (isset($cart[$cartKey])) {
+//         $cart[$cartKey]['qty'] += $quantity;
+//     } else {
+//         $cart[$cartKey] = [
+//             'product_id' => $id,
+//             'variant_id' => $variantId,
+//             'key' => $cartKey,
+//             'name' => $product->name,
+//             'price' => $request->price ?? $product->price,
+//             'image' => $request->image ?? asset('public/' . $product->image),
+//             'qty' => $quantity,
+//             'size' => $size,
+//             'color_id' => $colorId,
+//             'color_name' => $colorName,
+//             'color_hex' => $colorHex,
+//         ];
+//     }
+
+//     session()->put('cart', $cart);
+
+//     $cartWithKeys = collect($cart)->map(function ($item) {
+//         return [
+//             'key' => $item['key'],
+//             'product_id' => $item['product_id'],
+//             'variant_id' => $item['variant_id'] ?? null,
+//             'name' => $item['name'],
+//             'price' => $item['price'],
+//             'qty' => $item['qty'],
+//             'image' => $item['image'],
+//             'size' => $item['size'] ?? null,
+//             'color_id' => $item['color_id'] ?? null,
+//             'color_name' => $item['color_name'] ?? null,
+//             'color_hex' => $item['color_hex'] ?? null,
+//         ];
+//     })->values()->toArray();
+
+//     $itemCount = collect($cart)->sum(fn($item) => $item['qty']);
+//     $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
+
+//     return response()->json([
+//         'success' => true,
+//         'cart' => $cartWithKeys,
+//         'itemCount' => $itemCount,
+//         'totalPrice' => $totalPrice,
+//     ]);
+// }
+
 public function add(Request $request, $id)
 {
     $product = Product::findOrFail($id);
     $cart = session()->get('cart', []);
 
     $variantId = $request->variant_id ?: null;
-    $size = $request->size ?? null;
-    $colorId = $request->color_id ?? null;
+    $size      = $request->size ?? null;
+    $colorId   = $request->color_id ?? null;
     $colorName = $request->color_name ?? null;
-    $colorHex = $request->color_hex ?? null;
-    $quantity = $request->quantity ?? 1;
+    $colorHex  = $request->color_hex ?? null;
+    $quantity  = $request->quantity ?? 1;
 
+    // 🚨 if product has variants, variant_id is mandatory
+    if ($product->variants()->exists() && !$variantId) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Please select a variant before adding to cart.'
+        ], 400);
+    }
+
+    // Always key with variant if present
     $cartKey = $variantId ? $id.'-'.$variantId : $id;
 
+    // Clean up: if base product was in cart, remove it when variant is added
     if ($variantId && isset($cart[$id])) {
-        unset($cart[$id]); // Remove base product if variant is added
+        unset($cart[$id]);
     }
 
     if (isset($cart[$cartKey])) {
@@ -69,15 +195,15 @@ public function add(Request $request, $id)
         $cart[$cartKey] = [
             'product_id' => $id,
             'variant_id' => $variantId,
-            'key' => $cartKey,
-            'name' => $product->name,
-            'price' => $request->price ?? $product->price,
-            'image' => $request->image ?? asset('public/' . $product->image),
-            'qty' => $quantity,
-            'size' => $size,
-            'color_id' => $colorId,
+            'key'        => $cartKey,
+            'name'       => $product->name,
+            'price'      => $request->price ?? $product->price,
+            'image'      => $request->image ?? asset('public/' . $product->image),
+            'qty'        => $quantity,
+            'size'       => $size,
+            'color_id'   => $colorId,
             'color_name' => $colorName,
-            'color_hex' => $colorHex,
+            'color_hex'  => $colorHex,
         ];
     }
 
@@ -85,30 +211,31 @@ public function add(Request $request, $id)
 
     $cartWithKeys = collect($cart)->map(function ($item) {
         return [
-            'key' => $item['key'],
+            'key'        => $item['key'],
             'product_id' => $item['product_id'],
             'variant_id' => $item['variant_id'] ?? null,
-            'name' => $item['name'],
-            'price' => $item['price'],
-            'qty' => $item['qty'],
-            'image' => $item['image'],
-            'size' => $item['size'] ?? null,
-            'color_id' => $item['color_id'] ?? null,
+            'name'       => $item['name'],
+            'price'      => $item['price'],
+            'qty'        => $item['qty'],
+            'image'      => $item['image'],
+            'size'       => $item['size'] ?? null,
+            'color_id'   => $item['color_id'] ?? null,
             'color_name' => $item['color_name'] ?? null,
-            'color_hex' => $item['color_hex'] ?? null,
+            'color_hex'  => $item['color_hex'] ?? null,
         ];
     })->values()->toArray();
 
-    $itemCount = collect($cart)->sum(fn($item) => $item['qty']);
+    $itemCount  = collect($cart)->sum(fn($item) => $item['qty']);
     $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
 
     return response()->json([
-        'success' => true,
-        'cart' => $cartWithKeys,
-        'itemCount' => $itemCount,
+        'success'    => true,
+        'cart'       => $cartWithKeys,
+        'itemCount'  => $itemCount,
         'totalPrice' => $totalPrice,
     ]);
 }
+
 
 // Update quantity
 public function update(Request $request, $key)
