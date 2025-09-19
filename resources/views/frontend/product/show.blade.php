@@ -234,7 +234,7 @@ $(document).ready(function(){
     });
 
     galleryThumbs.slick({
-        slidesToShow: 4,
+        slidesToShow:3,
         slidesToScroll: 1,
         asNavFor: '.gallery-main', // This stays, so thumbs control the main gallery
         focusOnSelect: true,
