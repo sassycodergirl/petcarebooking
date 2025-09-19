@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (item.size || item.color_name) {
                 let colorSpan = '';
                 if (item.color_hex) {
-                    colorSpan = `<span style="background-color:${item.color_hex};display:inline-block;width:15px;height:15px;border-radius:50%;margin-left:5px;"></span>`;
+                    colorSpan = `<span style="background-color:${item.color_hex};display:inline-block;width:20px;height:20px;"></span>`;
                 }
                 variantInfo = `<p class="variant-info">` +
                     (item.size ? `Size: ${item.size}` : '') +

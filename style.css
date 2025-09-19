@@ -2465,6 +2465,7 @@ textarea::placeholder {
 	border: 1px solid #D5A37A;
     border-radius: 14px;
 	padding: 10px;
+	background: antiquewhite;
 }
 
 .product-details-pop {
@@ -2482,7 +2483,8 @@ textarea::placeholder {
 	font-weight: 600;
 	color: #E26749;
 	font-size: 15px;
-	margin-bottom: 5px;
+	display: flex;
+    gap: 10px;
 }
 
 .product-details-pop p del {
