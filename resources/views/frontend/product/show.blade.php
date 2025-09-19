@@ -228,6 +228,7 @@ $(document).ready(function(){
     // Add to cart
     $('.product-page-cart').on('click', function(e){
         e.preventDefault();
+        e.stopPropagation();
         const productId = $(this).data('id');
         const quantity = parseInt($('#product-qty').val()) || 1;
 
