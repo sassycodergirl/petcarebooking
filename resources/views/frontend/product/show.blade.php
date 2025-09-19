@@ -206,20 +206,20 @@ $(document).ready(function(){
             galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
         });
 
-        // galleryThumbs.slick({ slidesToShow: 4, slidesToScroll: 1, asNavFor: '.gallery-main', focusOnSelect: true, vertical:true, swipe:false, arrows:false, infinite: variant.gallery.length > 4 });
+        galleryThumbs.slick({ slidesToShow: 4, slidesToScroll: 1, asNavFor: '.gallery-main', focusOnSelect: true, vertical:true, swipe:false, arrows:false, infinite: variant.gallery.length > 4 });
         // Initialize thumbs
-        galleryThumbs.one('init', function(){
-            $(this).slick('slickGoTo', 0, true); // safely go to first slide
-        }).slick({
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            asNavFor: '.gallery-main',
-            focusOnSelect: true,
-            vertical: true,
-            swipe: false,
-            arrows: false,
-            infinite: variant.gallery.length > 4
-        });
+        // galleryThumbs.one('init', function(){
+        //     $(this).slick('slickGoTo', 0, true); // safely go to first slide
+        // }).slick({
+        //     slidesToShow: 4,
+        //     slidesToScroll: 1,
+        //     asNavFor: '.gallery-main',
+        //     focusOnSelect: true,
+        //     vertical: true,
+        //     swipe: false,
+        //     arrows: false,
+        //     infinite: variant.gallery.length > 4
+        // });
 
        
      
