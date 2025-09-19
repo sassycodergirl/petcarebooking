@@ -447,79 +447,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Add to cart
-    // addToBagButtons.forEach(btn => {
-    //     btn.addEventListener('click', function () {
-    //         const productId = this.dataset.id;
-    //         const quantity = parseInt(document.querySelector('#product-qty')?.value) || 1;
-    //         const variantId = this.dataset.variantId || null;
-    //         const size = this.dataset.size || null;
-    //         const colorId = this.dataset.colorId || null;
-    //         const colorName = this.dataset.colorName || null;
-    //         const colorHex = this.dataset.colorHex || null;
-    //         const image = this.dataset.image;
-
-    //         fetch(`{{ url('/cart/add') }}/${productId}`, {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json','X-CSRF-TOKEN': '{{ csrf_token() }}' },
-    //             body: JSON.stringify({
-    //                 quantity,
-    //                 variant_id: variantId,
-    //                 size,
-    //                 color_id: colorId,
-    //                 color_name: colorName,
-    //                 color_hex: colorHex,
-    //                 image
-    //             })
-    //         }).then(res => res.json())
-    //           .then(data => {
-    //               if (data.success) {
-    //                   cartCountEl.textContent = data.itemCount;
-    //                   renderCartItems(data.cart, data.totalPrice);
-    //                   cartOverlay.style.display = 'block';
-    //                   setTimeout(() => cartOverlay.classList.add('active'), 10);
-    //               }
-    //           }).catch(err => console.error(err));
-    //     });
-    // });
-
     addToBagButtons.forEach(btn => {
-    btn.addEventListener('click', function () {
-        const productId = this.dataset.id;
-        const quantity = parseInt(document.querySelector('#product-qty')?.value) || 1;
-        const variantId = this.dataset.variantId || null;
-        const size = this.dataset.size || null;
-        const colorId = this.dataset.colorId || null;
-        const colorName = this.dataset.colorName || null;
-        const colorHex = this.dataset.colorHex || null;
-        const image = this.dataset.image;
+        btn.addEventListener('click', function () {
+            const productId = this.dataset.id;
+            const quantity = parseInt(document.querySelector('#product-qty')?.value) || 1;
+            const variantId = this.dataset.variantId || null;
+            const size = this.dataset.size || null;
+            const colorId = this.dataset.colorId || null;
+            const colorName = this.dataset.colorName || null;
+            const colorHex = this.dataset.colorHex || null;
+            const image = this.dataset.image;
 
-        fetch(`{{ url('/cart/add') }}/${productId}`, {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({
-                quantity,
-                variant_id: variantId,
-                size,
-                color_id: colorId,
-                color_name: colorName,
-                color_hex: colorHex,
-                image
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                // Instead of manually rendering drawer, trigger header cart click
-                 cartCountEl.textContent = data.itemCount;
-                headerCartBtn.click();
-            }
-        })
-        .catch(err => console.error(err));
+            fetch(`{{ url('/cart/add') }}/${productId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json','X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                body: JSON.stringify({
+                    quantity,
+                    variant_id: variantId,
+                    size,
+                    color_id: colorId,
+                    color_name: colorName,
+                    color_hex: colorHex,
+                    image
+                })
+            }).then(res => res.json())
+              .then(data => {
+                  if (data.success) {
+                      cartCountEl.textContent = data.itemCount;
+                      renderCartItems(data.cart, data.totalPrice);
+                      cartOverlay.style.display = 'block';
+                      setTimeout(() => cartOverlay.classList.add('active'), 10);
+                  }
+              }).catch(err => console.error(err));
+        });
     });
-});
 
 
     // Header cart click
