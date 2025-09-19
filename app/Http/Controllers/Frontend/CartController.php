@@ -171,7 +171,7 @@ public function add(Request $request, $id)
     $colorId   = $request->color_id ?? null;
     $colorName = $request->color_name ?? null;
     $colorHex  = $request->color_hex ?? null;
-    $quantity  = $request->quantity ?? 1;
+    $quantity = $request->input('qty') ?? $request->input('quantity') ?? 1;
 
     // 🚨 if product has variants, variant_id is mandatory
     if ($product->variants()->exists() && !$variantId) {
@@ -199,7 +199,7 @@ public function add(Request $request, $id)
             'name'       => $product->name,
             'price'      => $request->price ?? $product->price,
             'image'      => $request->image ?? asset('public/' . $product->image),
-            'qty'        => $quantity,
+            'qty' => $item['qty'] ?? $item['quantity'] ?? 1,
             'size'       => $size,
             'color_id'   => $colorId,
             'color_name' => $colorName,
@@ -246,8 +246,8 @@ public function update(Request $request, $key)
         session()->put('cart', $cart);
     }
 
-    $itemCount = collect($cart)->sum(fn($item) => $item['qty']);
-    $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
+    $itemCount = collect($cart)->sum(fn($item) => $item['qty'] ?? $item['quantity'] ?? 1);
+$totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * ($item['qty'] ?? $item['quantity'] ?? 1)), 0);
 
     return response()->json([
         'cart' => array_values($cart), // numeric array for JS
@@ -265,8 +265,8 @@ public function remove(Request $request, $key)
         session()->put('cart', $cart);
     }
 
-    $itemCount = collect($cart)->sum(fn($item) => $item['qty']);
-    $totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * $item['qty']), 0);
+    $itemCount = collect($cart)->sum(fn($item) => $item['qty'] ?? $item['quantity'] ?? 1);
+$totalPrice = collect($cart)->reduce(fn($sum, $item) => $sum + ($item['price'] * ($item['qty'] ?? $item['quantity'] ?? 1)), 0);
 
     return response()->json([
         'cart' => array_values($cart),
