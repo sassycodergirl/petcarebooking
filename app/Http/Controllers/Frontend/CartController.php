@@ -98,7 +98,8 @@ class CartController extends Controller
                 'key'        => $cartKey,
                 'name'       => $product->name,
                 'price'      => $request->price ?? $product->price,
-                'image'      => $request->image ?? asset('public/' . $product->image),
+                // 'image'      => $request->image ?? asset('public/' . $product->image),
+                'image'      => asset('public/' . $product->image),
                 'qty'        => $quantity, // ✅ fixed
                 'size'       => $size,
                 'color_id'   => $colorId,
