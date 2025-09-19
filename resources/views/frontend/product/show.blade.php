@@ -225,64 +225,7 @@ $(document).ready(function(){
         updateGallery(selectedSize, selectedColorId);
     });
 
-    // Add to cart
-    // $('.product-page-cart').on('click', function(e){
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     const productId = $(this).data('id');
-    //     const quantity = parseInt($('#product-qty').val()) || 1;
-
-    //     let variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
-    //                || variantsData.find(v => v.size === selectedSize)
-    //                || {};
-
-    //     let variantId = variant?.id || null;
-    //     let price = variant?.price || $(this).data('price');
-    //     let image = variant?.image || $(this).data('image');
-    //     let colorName = variant?.color_name || null;
-    //     let colorHex = variant?.color_hex || null;
-
-    //     // Log the variant choice before adding to cart
-    //         console.log('Add to Cart Payload:', {
-    //             product_id: productId,
-    //             variant_id: variantId,
-    //             size: selectedSize,
-    //             color_id: selectedColorId,
-    //             color_name: colorName,
-    //             color_hex: colorHex,
-    //             qty: quantity,
-    //         });
-
-    //     fetch(`{{ url('/cart/add') }}/${productId}`, {
-    //         method:'POST',
-    //         // headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json',   //  add this
-    //             'X-CSRF-TOKEN': '{{ csrf_token() }}'
-    //         },
-    //         body:JSON.stringify({
-    //             qty: quantity,
-    //             variant_id: variantId,
-    //             size: selectedSize,
-    //             color_id: selectedColorId,
-    //             color_name: colorName,
-    //             color_hex: colorHex,
-    //             price,
-    //             image
-    //         })
-    //     })
-    //     .then(res=>res.json())
-    //     .then(data=>{
-    //         if(data.success){
-    //             $('.cd-button-cart-count').text(data.itemCount);
-    //             if(typeof renderCartItems==='function'){ renderCartItems(data.cart, data.totalPrice); }
-    //             $('.popup-overlay').addClass('active');
-    //         } else {
-    //             alert(data.message || 'Something went wrong!');
-    //         }
-    //     }).catch(err=>console.error(err));
-    // });
+   
 
 
     // Add to cart – fixed

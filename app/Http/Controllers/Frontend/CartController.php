@@ -83,11 +83,27 @@ class CartController extends Controller
                 // If item has a variant, try to get first image from variant gallery
                 if (!empty($item['variant_id']) && $product && $product->variants()->exists()) {
                     $variant = $product->variants()->find($item['variant_id']);
-                    if ($variant) {
+                    // if ($variant) {
+                    //     $firstGalleryImage = $variant->gallery->first()?->image ?? null;
+                    //     $image = $firstGalleryImage 
+                    //         ? asset('public/variant-gallery/' . $firstGalleryImage)
+                    //         : ($variant->image ? asset('public/' . $variant->image) : asset('public/' . $product->image));
+                    // }
+                     if ($variant) {
                         $firstGalleryImage = $variant->gallery->first()?->image ?? null;
-                        $image = $firstGalleryImage 
-                            ? asset('public/variant-gallery/' . $firstGalleryImage)
-                            : ($variant->image ? asset('public/' . $variant->image) : asset('public/' . $product->image));
+
+                        if ($firstGalleryImage) {
+                            // Avoid double 'variant-gallery/'
+                            if (str_contains($firstGalleryImage, 'variant-gallery/')) {
+                                $image = asset('public/' . $firstGalleryImage);
+                            } else {
+                                $image = asset('public/variant-gallery/' . $firstGalleryImage);
+                            }
+                        } elseif ($variant->image) {
+                            $image = asset('public/' . $variant->image);
+                        } else {
+                            $image = asset('public/' . $product->image);
+                        }
                     }
                 } elseif ($product) {
                     // fallback to product image
