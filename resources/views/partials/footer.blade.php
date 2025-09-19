@@ -513,6 +513,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             if (data.success) {
                 // Instead of manually rendering drawer, trigger header cart click
+                 cartCountEl.textContent = data.itemCount;
                 headerCartBtn.click();
             }
         })
