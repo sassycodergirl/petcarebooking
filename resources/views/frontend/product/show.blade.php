@@ -241,7 +241,8 @@ $(document).ready(function(){
         vertical: true,
         swipe: false,
         arrows: false,
-        infinite: true
+        infinite: true,
+        centerMode: true
     });
 
     galleryMain.slick({
