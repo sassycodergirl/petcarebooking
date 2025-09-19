@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <p><strong>₹${item.price}</strong></p>
                         <div class="pd-add-to-cart-wrap d-flex align-items-center">
                             <button class="qty-minus" data-key="${item.key}">-</button>
-                            <input type="text" value="${item.qty}" class="qty mx-2" data-key="${item.key}" readonly>
+                            <input type="text" value="${item.qty}" class="qty" data-key="${item.key}" readonly>
                             <button class="qty-plus" data-key="${item.key}">+</button>
                         </div>
                     </div>
