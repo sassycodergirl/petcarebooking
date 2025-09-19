@@ -90,7 +90,7 @@
                                 <button class="qty-plus" data-id="{{ $product->id }}">+</button>
                             </div>
 
-                            <button class="add-to-bag cd-button product-page-cart"
+                            <button class="cd-button product-page-cart"
                                     data-id="{{ $product->id }}"
                                     data-name="{{ $product->name }}"
                                     data-price="{{ $product->price }}"
