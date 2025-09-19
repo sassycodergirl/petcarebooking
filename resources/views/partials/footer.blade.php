@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Render cart items
-    function renderCartItems(cart, totalPrice) {
+     window.renderCartItems = function(cart, totalPrice) {
 
         console.log('Cart container:', cartItemsContainer);
         console.log('Cart being rendered:', cart);

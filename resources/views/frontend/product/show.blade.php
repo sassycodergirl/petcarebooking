@@ -326,9 +326,10 @@ $('.product-page-cart').on('click', function(e){
     .then(data => {
         if(data.success){
             $('.cd-button-cart-count').text(data.itemCount);
-            if(typeof renderCartItems === 'function'){
-                renderCartItems(data.cart, data.totalPrice);
-            }
+            // if(typeof renderCartItems === 'function'){
+            //     renderCartItems(data.cart, data.totalPrice);
+            // }
+            window.renderCartItems(data.cart, data.totalPrice);
             $('.popup-overlay').css('display', 'block');
             setTimeout(() => $('.popup-overlay').addClass('active'), 10);
         } else {
