@@ -462,7 +462,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json','X-CSRF-TOKEN': '{{ csrf_token() }}' },
                 body: JSON.stringify({
-                    quantity,
+                    // quantity,
+                    qty: quantity,
                     variant_id: variantId,
                     size,
                     color_id: colorId,
