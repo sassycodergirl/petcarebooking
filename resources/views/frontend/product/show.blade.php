@@ -206,7 +206,7 @@ $(document).ready(function(){
             galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
         });
 
-        galleryThumbs.slick({ slidesToShow: 4, slidesToScroll: 1, asNavFor: '.gallery-main', focusOnSelect: true, vertical:true, swipe:false, arrows:true, infinite:false });
+        galleryThumbs.slick({ slidesToShow: 4, slidesToScroll: 1, asNavFor: '.gallery-main', focusOnSelect: true, vertical:true, swipe:false, arrows:false, infinite:true });
         galleryMain.slick({ slidesToShow:1, slidesToScroll:1, asNavFor:'.gallery-thumbs', arrows:true, fade:true, infinite:false });
     }
 
