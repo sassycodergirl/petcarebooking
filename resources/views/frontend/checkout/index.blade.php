@@ -91,7 +91,7 @@
  background-color:#fff;
  padding: 0 .2em;
  color:#000;
- font-weight:700;
+   font-size: 1em;
 }
 
         @media (min-width: 768px) {
