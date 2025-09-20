@@ -1109,7 +1109,7 @@ textarea::placeholder {
 	font-weight: 400;
 }
 
-.add-to-bag {
+.add-to-bag,.choose-option {
 	background: rgba(255, 150, 3, 0.2);
 	border: 1px solid #FF9603;
 	border-radius: 7px;
