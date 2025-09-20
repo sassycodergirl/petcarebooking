@@ -178,7 +178,6 @@
     display: flex;
     gap: 4px;
     align-items: center;
-    justify-content: end;
     flex-wrap: wrap;
 }
 .payment-icons span{
@@ -681,7 +680,7 @@
                       </div>
                     </div>
                     <div class="col-12 col-md-6 mt-3 mt-md-0">
-                      <div class="payment-icons">
+                      <div class="payment-icons justify-content-center justify-content-md-end">
                           <span><img src="https://www.vectorlogo.zone/logos/upi/upi-ar21.svg" alt="Razorpay" width="50"></span>
                           <span><svg width="2em" height="2em" viewBox="0 -86.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
                               <defs>
