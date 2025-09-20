@@ -71,7 +71,7 @@
 
 .input {
   font-family: var(--default-heading-font);
- border: solid 1.5px #dedede;
+ border: solid 1.5px #8b8b8b;
  border-radius: 8px !important;
  background: none;
  padding: 0.8rem;
@@ -109,7 +109,7 @@
 }
 /* Optional input - default when empty */
 .input.optional:placeholder-shown {
-  border: 1.5px solid #dedede;
+  border: 1.5px solid #8b8b8b;
 }
 
 .input.optional:placeholder-shown ~ .user-label {
@@ -151,6 +151,14 @@
 .paynow-btn{
       background: #000000;
       color:#fff;
+}
+
+.payment-header{
+  border: 1px solid #000;
+  border-bottom-right-radius: 1;
+  border-bottom-left-radius: 0;
+  border-top-right-radius:7px;
+  border-top-left-radius: 7px;
 }
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
@@ -559,24 +567,25 @@
                 <div class="input-group bg-lightgraay">
 
                   <!-- Razorpay Radio Option (Default Selected, Cannot Deselect) -->
-                <div class="row">
-                  <div class="col-6 col-md-6">
-                    <div class="d-flex g-2">
-                      <input type="radio" class="form-check-input" id="razorpay_express" name="payment_method" checked readonly onclick="return false;">
-                      <span for="razorpay_express" class="">
-                        Razorpay Express Checkout (UPI,Cards,Wallets,NetBanking) </span>
-                     </div>
-                  </div>
-                  <div class="col-6 col-md-6">
-                    <div class="payment-icons" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                        <img src="https://www.vectorlogo.zone/logos/upi/upi-ar21.svg" alt="Razorpay" width="50">
-                        <img src="https://cdn.razorpay.com/assets/visa.svg" alt="Visa" width="38">
-                        <img src="https://cdn.razorpay.com/assets/mastercard.svg" alt="MasterCard" width="38">
-                        <img src="https://cdn.razorpay.com/assets/upi.svg" alt="UPI" width="38">
+                <div class="payment-header">
+                  <div class="row">
+                    <div class="col-6 col-md-6">
+                      <div class="d-flex g-2">
+                        <input type="radio" class="form-check-input" id="razorpay_express" name="payment_method" checked readonly onclick="return false;">
+                        <span for="razorpay_express" class="">
+                          Razorpay Express Checkout (UPI,Cards,Wallets,NetBanking) </span>
                       </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                      <div class="payment-icons" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                          <img src="https://www.vectorlogo.zone/logos/upi/upi-ar21.svg" alt="Razorpay" width="50">
+                          <img src="https://cdn.razorpay.com/assets/visa.svg" alt="Visa" width="38">
+                          <img src="https://cdn.razorpay.com/assets/mastercard.svg" alt="MasterCard" width="38">
+                          <img src="https://cdn.razorpay.com/assets/upi.svg" alt="UPI" width="38">
+                        </div>
+                    </div>
                   </div>
-                </div>
-
+               </div>
                   <!-- Info Section Always Expanded -->
                   <div id="razorpay_express_info" class="payment-info text-center" style="height: auto; overflow: visible;">
                     <div class="mb-3">
