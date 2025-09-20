@@ -61,16 +61,13 @@
  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
  width: 100%;
 }
-.input::placeholder{
-  color:#000;
-  opacity: 1;
-}
+
 
 
 .user-label {
  position: absolute;
  left: 15px;
- color: #e8e8e8;
+ color: #000;
  pointer-events: none;
  transform: translateY(1rem);
  transition: 150ms cubic-bezier(0.4,0,0.2,1);
