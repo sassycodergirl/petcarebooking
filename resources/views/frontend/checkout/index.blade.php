@@ -645,7 +645,7 @@
 
                   <div class="col-12">
                     <div class="input-group">
-                      <input type="tel" class="input form-control" id="phone" name="billing_phone" autocomplete="off" placeholder=" " pattern="[0-9]{10}">
+                      <input type="tel" class="input form-control optional" id="phone" name="billing_phone" autocomplete="off" placeholder=" " pattern="[0-9]{10}">
                       <label class="user-label" for="billing_phone">Phone (optional)</label>
                       <div class="invalid-feedback">Please enter a valid Phone Number.</div>
                           <!-- Tooltip icon -->
