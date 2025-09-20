@@ -590,8 +590,9 @@
            
 
              
-              <div class="col-12 my-4">
-                 <h4 class="mb-3">Payment</h4>
+              <div class="col-12 mt-2 mb-4">
+                 <h4 class="mb-3">Select Payment Method</h4>
+                 <p>All transactions are secure and encrypted.</p>
                 <div class="bg-lightgraay">
 
                   <!-- Razorpay Radio Option (Default Selected, Cannot Deselect) -->
