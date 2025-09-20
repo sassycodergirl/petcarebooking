@@ -203,7 +203,20 @@
     background-color: #000000;
     border-color: #000000;
 }
-
+.address-list:first-child {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+.address-list:last-child {
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+.list-group-item{
+    border-radius: 7px;
+}
+.list-group-item+.list-group-item {
+    border-top-width: 1px;
+}
 .billing-choice:has(input[type="radio"]:checked) {
   background: #f5f5f5;
   border: 1px solid #000;
@@ -447,6 +460,7 @@
               <!-- Billing Choice -->
             <div class="col-12 my-4">
             <h4 class="mb-3">Billing address</h4>
+            <div class="address-list">
              <div class="billing-choice" data-target="billing_same">
                 <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_same" checked>
                 <span for="billing_same">Same as shipping address</span>
@@ -457,7 +471,7 @@
                 <span for="billing_different">Use a different billing address</span>
               </div>
             </div>
-
+          </div>
               <!-- Collapsible Billing Section -->
               <div id="billing_section" class="billing-section" style="overflow: hidden; max-height: 0; transition: max-height 0.4s ease;">
                 <div class="row g-3">
