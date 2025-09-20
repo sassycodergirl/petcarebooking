@@ -334,6 +334,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         checkoutTotalEl.textContent = totalPrice.toFixed(2);
 
+         // update badge with total quantity
+    const cartBadge = document.querySelector('.cart-count-badge');
+    if (cartBadge) {
+        let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+        cartBadge.textContent = totalQty;
+    }
+
         attachCartEvents();
     }
 
@@ -385,11 +392,7 @@ document.addEventListener('DOMContentLoaded', function () {
             renderCheckoutCart(data.cart, data.totalPrice);
         });
 
-        // Update checkout badge count
-      const cartBadge = document.querySelector('.cart-count-badge');
-      if (cartBadge) {
-          cartBadge.textContent = cart.length;
-      }
+    
 });
 </script>
 
