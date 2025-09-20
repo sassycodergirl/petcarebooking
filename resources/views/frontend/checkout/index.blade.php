@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Custom styles for this template -->
     <link href="form-validation.css" rel="stylesheet">
+     <link rel="stylesheet" href="{{asset('style.css')}}">
     <style>
         .header-checkout{
               border-bottom: 1px solid #dedede;
