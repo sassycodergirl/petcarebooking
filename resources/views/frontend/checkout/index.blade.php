@@ -546,57 +546,45 @@
 
            
 
-              <h4 class="mb-3">Payment</h4>
+             
+              <div class="col-12 my-4">
+                 <h4 class="mb-3">Payment</h4>
+                <div class="input-group">
 
-              <div class="my-3">
-                <div class="form-check">
-                  <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-                  <label class="form-check-label" for="credit">Credit card</label>
-                </div>
-                <div class="form-check">
-                  <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                  <label class="form-check-label" for="debit">Debit card</label>
-                </div>
-                <div class="form-check">
-                  <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-                  <label class="form-check-label" for="paypal">PayPal</label>
+                  <!-- Razorpay Radio Option (Default Selected, Cannot Deselect) -->
+                  <div class="form-check mb-2">
+                    <input type="radio" 
+                          class="input form-check-input" 
+                          id="razorpay_express" 
+                          name="payment_method" 
+                          checked
+                          readonly
+                          onclick="return false;">
+                    <label for="razorpay_express" class="user-label">
+                      Razorpay Express Checkout
+                    </label>
+                  </div>
+
+                  <!-- Info Section Always Expanded -->
+                  <div id="razorpay_express_info" class="payment-info" style="height: auto; overflow: visible;">
+                    <div class="payment-content">
+                      <p>
+                        After clicking “Pay now”, you will be redirected to Razorpay Express Checkout 
+                        to complete your purchase securely.
+                      </p>
+                      <div class="payment-icons" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <img src="https://www.vectorlogo.zone/logos/upi/upi-ar21.svg" alt="Razorpay" width="50">
+                        <img src="https://cdn.razorpay.com/assets/visa.svg" alt="Visa" width="38">
+                        <img src="https://cdn.razorpay.com/assets/mastercard.svg" alt="MasterCard" width="38">
+                        <img src="https://cdn.razorpay.com/assets/upi.svg" alt="UPI" width="38">
+                        
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 
-              <div class="row gy-3">
-                <div class="col-md-6">
-                  <label for="cc-name" class="form-label">Name on card</label>
-                  <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                  <small class="text-muted">Full name as displayed on card</small>
-                  <div class="invalid-feedback">
-                    Name on card is required
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <label for="cc-number" class="form-label">Credit card number</label>
-                  <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                  <div class="invalid-feedback">
-                    Credit card number is required
-                  </div>
-                </div>
-
-                <div class="col-md-3">
-                  <label for="cc-expiration" class="form-label">Expiration</label>
-                  <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                  <div class="invalid-feedback">
-                    Expiration date required
-                  </div>
-                </div>
-
-                <div class="col-md-3">
-                  <label for="cc-cvv" class="form-label">CVV</label>
-                  <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                  <div class="invalid-feedback">
-                    Security code required
-                  </div>
-                </div>
-              </div>
 
          
 
