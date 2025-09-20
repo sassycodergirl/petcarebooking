@@ -145,10 +145,13 @@
   box-shadow:none;
 }
 
-.payment-info{
-  background: antiquewhite;
+.bg-lightgraay{
+  background: #f5f5f5;
 }
-
+.paynow-btn{
+      background: #000000;
+      color:#fff;
+}
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
             font-size: 3.5rem;
@@ -553,7 +556,7 @@
              
               <div class="col-12 my-4">
                  <h4 class="mb-3">Payment</h4>
-                <div class="input-group">
+                <div class="input-group bg-lightgraay">
 
                   <!-- Razorpay Radio Option (Default Selected, Cannot Deselect) -->
                 <div class="row">
@@ -594,7 +597,7 @@
 
          
 
-              <button class="w-100 btn btn-primary btn-lg" type="submit">Pay Now</button>
+              <button class="w-100 btn btn-lg paynow-btn" type="submit">Pay Now</button>
             </form>
           </div>
         </div>
