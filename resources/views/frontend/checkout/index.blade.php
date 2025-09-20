@@ -574,7 +574,7 @@
              
               <div class="col-12 my-4">
                  <h4 class="mb-3">Payment</h4>
-                <div class="input-group bg-lightgraay">
+                <div class="bg-lightgraay">
 
                   <!-- Razorpay Radio Option (Default Selected, Cannot Deselect) -->
                 <div class="payment-header p-4">
@@ -597,7 +597,7 @@
                   </div>
                </div>
                   <!-- Info Section Always Expanded -->
-                  <div id="razorpay_express_info" class="payment-info text-center py-2" style="height: auto; overflow: visible;">
+                  <div id="razorpay_express_info" class="payment-info text-center py-2 m-auto" style="height: auto; overflow: visible;">
                     <div class="mb-3">
                       <img class="img-fluid" src="{{asset('images/secure-payment.png')}}" alt="secure-payment">
                     </div>
