@@ -52,7 +52,7 @@
 }
 
 .input {
- border: solid 1.5px #9e9e9e;
+ border: solid 1.5px #dedede;
  border-radius: 1rem;
  background: none;
  padding: 1rem;
@@ -77,9 +77,10 @@
 
 .input:focus ~ label, input:valid ~ label {
  transform: translateY(-50%) scale(0.8);
- background-color: #212121;
+ /* background-color: #212121; */
  padding: 0 .2em;
- color: #2196f3;
+ color:#000;
+ font-weight:700;
 }
 
         @media (min-width: 768px) {
