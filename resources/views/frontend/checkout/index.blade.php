@@ -46,6 +46,42 @@
           user-select: none;
         }
 
+        /* From Uiverse.io by alexruix */ 
+.input-group {
+ position: relative;
+}
+
+.input {
+ border: solid 1.5px #9e9e9e;
+ border-radius: 1rem;
+ background: none;
+ padding: 1rem;
+ font-size: 1rem;
+ color: #f5f5f5;
+ transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.user-label {
+ position: absolute;
+ left: 15px;
+ color: #e8e8e8;
+ pointer-events: none;
+ transform: translateY(1rem);
+ transition: 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.input:focus, input:valid {
+ outline: none;
+ border: 1.5px solid #1a73e8;
+}
+
+.input:focus ~ label, input:valid ~ label {
+ transform: translateY(-50%) scale(0.8);
+ background-color: #212121;
+ padding: 0 .2em;
+ color: #2196f3;
+}
+
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
             font-size: 3.5rem;
@@ -84,11 +120,18 @@
             <form class="needs-validation" novalidate>
               <div class="row g-3">
                 <div class="col-sm-6">
-                  <!-- <label for="firstName" class="form-label">First name</label> -->
+                  <!-- <label for="firstName" class="form-label">First name</label>
                   <input type="text" class="form-control" id="firstName" placeholder="First Name" value="" required>
                   <div class="invalid-feedback">
                     Valid first name is required.
+                  </div> -->
+
+                  <div class="input-group">
+                     <input type="text" class="input" id="firstName" name="firstName" autocomplete="off" placeholder="First Name" value="" required>
+                    <label class="user-label">First Name</label>
                   </div>
+
+
                 </div>
 
                 <div class="col-sm-6">
