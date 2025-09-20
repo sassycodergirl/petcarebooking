@@ -7,8 +7,7 @@
     <title>Checkout-Furry & Friends</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-    <!-- Custom styles for this template -->
-    <link href="form-validation.css" rel="stylesheet">
+
      
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
@@ -104,13 +103,12 @@
 
 .input.optional:focus ~ label,
 .input.optional:valid ~ label {
- position: absolute;
- left: 15px;
-  color: #7a7a7a;
+  transform: none;
+  background-color: transparent;
+  z-index: auto;
+  padding: 0;
+  color: #666; /* default label color */
   font-size: 1em;
- pointer-events: none;
- transform: translateY(1rem);
- transition: 150ms cubic-bezier(0.4,0,0.2,1);
 }
 .form-control{
   background:transparent;
