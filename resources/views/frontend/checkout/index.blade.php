@@ -378,14 +378,14 @@
               <!-- Billing Choice -->
             <div class="col-12 mb-3">
               <div class="billing-choice">
-                <label class="form-check">
-                  <input type="radio" class="input form-check-input" name="billing_address_selector" id="billing_same" checked>
-                  <span class="user-label">Same as shipping address</span>
+                <label>
+                  <input type="radio" class="form-check-input" name="billing_address_selector" id="billing_same" checked>
+                  <span class="">Same as shipping address</span>
                 </label>
 
-                <label class="form-check mt-2">
-                  <input type="radio" class="input form-check-input" name="billing_address_selector" id="billing_different">
-                  <span class="user-label">Use a different billing address</span>
+                <label class="mt-2">
+                  <input type="radio" class="form-check-input" name="billing_address_selector" id="billing_different">
+                  <span class="">Use a different billing address</span>
                 </label>
               </div>
             </div>
