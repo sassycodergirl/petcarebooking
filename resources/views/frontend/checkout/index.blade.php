@@ -30,9 +30,7 @@
           font-weight: 700;
           padding: 0;
       }
-      body{
-        font-family: var(--default-heading-font);
-      }
+     
         .header-checkout{
               border-bottom: 1px solid #dedede;
         }
@@ -49,12 +47,13 @@
           user-select: none;
         }
 
-        /* From Uiverse.io by alexruix */ 
+   
 .input-group {
  position: relative;
 }
 
 .input {
+  font-family: var(--default-heading-font);
  border: solid 1.5px #dedede;
  border-radius: 8px !important;
  background: none;
@@ -68,9 +67,12 @@
 
 
 .user-label {
+  font-family: var(--default-heading-font);
  position: absolute;
  left: 15px;
- color: #000;
+  color: #7a7a7a;
+  font-weight: 600;
+  font-size: 1em;
  pointer-events: none;
  transform: translateY(1rem);
  transition: 150ms cubic-bezier(0.4,0,0.2,1);
