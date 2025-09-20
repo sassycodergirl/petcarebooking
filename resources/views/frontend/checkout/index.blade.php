@@ -54,6 +54,20 @@
 .input-group {
  position: relative;
 }
+.input-group select.input {
+  appearance: none; /* remove default arrow for styling */
+  background: none;
+}
+
+.input-group select.input:focus ~ label,
+.input-group select.input:valid ~ label {
+  transform: translateY(-50%) scale(0.8);
+  background-color: #fff;
+  z-index: 9999;
+  padding: 0 .2em;
+  color: #000;
+  font-size: 1.2em;
+}
 
 .input {
   font-family: var(--default-heading-font);
@@ -254,7 +268,6 @@
 
        
 
-
                 <div class="col-md-4">
                   <div class="input-group">
                     <select class="input form-control" id="state" name="state" required>
@@ -334,6 +347,7 @@
                     </div>
                   </div>
                 </div>
+
 
 
 
