@@ -146,7 +146,7 @@
                                                 </button> -->
 
                                                 @if($product->has_variants)
-                                                    <a href="{{ route('product.show', $product->slug) }}" class="cd-button choose-option">
+                                                    <a href="{{ route('product.show', $product->slug) }}" class="choose-option">
                                                         Choose Option
                                                     </a>
                                                 @else
