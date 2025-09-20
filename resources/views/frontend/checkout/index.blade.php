@@ -151,8 +151,8 @@
             
                 <div class="col-12">
                     <div class="input-group">
-                      <input type="email" class="input form-control" id="email" name="email" autocomplete="off" placeholder="you@example.com">
-                      <label for="email" class="user-label">Email <span class="text-muted">(Optional)</span></label>
+                      <input type="email" class="input form-control" id="email" name="email" autocomplete="off">
+                      <label for="email" class="user-label">Email</label>
                       <div class="invalid-feedback">
                         Please enter a valid email address.
                       </div>
@@ -160,9 +160,9 @@
 
                     <div class="form-check mt-2">
                       <input type="checkbox" class="form-check-input" id="updates" name="updates">
-                      <label class="form-check-label" for="updates">
+                      <span class="form-check-label" for="updates">
                         Keep me updated with the order updates and offers via WhatsApp, SMS and Email
-                      </label>
+                      </span>
                     </div>
                   </div>
 
