@@ -24,11 +24,14 @@
             --bg-h1-color: #2E1A0F;
             --bg-orange: #FF9603;
           }
-          h1, .h1-heading, h2, h3, h4, h5, h6 {
+          h1, .h1-heading, h2, h3, h4, h5, h6{
           font-family: var(--default-heading-font);
           margin: 0 0 20px 0;
           font-weight: 700;
           padding: 0;
+      }
+      body{
+        font-family: var(--default-heading-font);
       }
         .header-checkout{
               border-bottom: 1px solid #dedede;
