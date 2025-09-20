@@ -89,9 +89,16 @@
 .input:focus ~ label, input:valid ~ label {
  transform: translateY(-50%) scale(0.8);
  background-color:#fff;
+ z-index: 9999;
  padding: 0 .2em;
  color:#000;
    font-size: 1.2em;
+}
+.form-control{
+  background:transparent;
+}
+.form-control:focus{
+  box-shadow:none;
 }
 
         @media (min-width: 768px) {
