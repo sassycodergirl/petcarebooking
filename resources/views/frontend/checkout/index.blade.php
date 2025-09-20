@@ -179,7 +179,7 @@
             </div>
 
             
-                <div class="col-12 mb-4">
+                <div class="col-12 mb-5">
                     <div class="input-group">
                       <input type="email" class="input form-control" id="email" name="email" autocomplete="off" required>
                       <label for="email" class="user-label">Email</label>
@@ -368,7 +368,7 @@
             
 
 
-              <hr class="my-4">
+           
 
               <!-- <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="same-address">
@@ -464,7 +464,7 @@
                 <label class="form-check-label" for="save-info">Save this information for next time</label>
               </div>
 
-              <hr class="my-4">
+           
 
               <h4 class="mb-3">Payment</h4>
 
@@ -518,7 +518,7 @@
                 </div>
               </div>
 
-              <hr class="my-4">
+         
 
               <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
             </form>
