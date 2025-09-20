@@ -33,7 +33,9 @@
       body{
         font-family: var(--default-heading-font);
       }
-     
+     .cart-count-badge{
+      font-weight:400;
+     }
         .header-checkout{
               border-bottom: 1px solid #dedede;
         }
