@@ -6319,7 +6319,7 @@ blockquote {
 }
 
 
-.product-gallery {
+/* .product-gallery {
     gap: 15px;
 }
 .gallery-thumbs {
@@ -6332,11 +6332,40 @@ blockquote {
     border: 2px solid transparent;
 }
 .gallery-thumbs .slick-current img {
+    border-color: #000; 
+}
+
+.gallery-main .main-slide img {
+    width: 100%;
+} */
+
+
+.product-gallery {
+    display: flex; /* Ensure it's a flex container */
+    gap: 15px;
+}
+
+.gallery-thumbs {
+    width: 80px;
+    flex-shrink: 0; /* Prevents the thumbnail column from shrinking */
+}
+
+.gallery-thumbs .thumb-slide img {
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+}
+
+.gallery-thumbs .slick-current img {
     border-color: #000; /* highlight selected thumbnail */
 }
-/* .gallery-main {
-    flex: 1;
-} */
+
+/* This is the key change */
+.gallery-main {
+    flex: 1; /* Allows this element to grow and fill the remaining space */
+}
+
 .gallery-main .main-slide img {
     width: 100%;
 }

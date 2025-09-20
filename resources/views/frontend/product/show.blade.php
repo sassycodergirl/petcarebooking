@@ -26,14 +26,14 @@
                     @endphp
 
                     <div class="product-gallery row">
-                        <div class="gallery-thumbs col-5 col-md-5">
+                        <div class="gallery-thumbs ">
                             @foreach($galleryImages as $image)
                                 <div class="thumb-slide">
                                     <img class="img-fluid" src="{{ asset('public/'. $image->image) }}" alt="{{ $product->name }}">
                                 </div>
                             @endforeach
                         </div>
-                        <div class="gallery-main col-7 col-md-7">
+                        <div class="gallery-main">
                             @foreach($galleryImages as $image)
                                 <div class="main-slide">
                                     <img class="img-fluid" src="{{ asset('public/'.$image->image) }}" alt="{{ $product->name }}">
