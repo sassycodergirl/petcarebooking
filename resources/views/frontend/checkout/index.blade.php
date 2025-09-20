@@ -9,8 +9,27 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Custom styles for this template -->
     <link href="form-validation.css" rel="stylesheet">
-     <link rel="stylesheet" href="{{asset('style.css')}}">
+     
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+    /* font-family: "Rubik", sans-serif; */
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+    /* font-family: "Nunito", sans-serif; */
+          :root {
+      --scroll-behavior: smooth;
+      --default-body-font: "Nunito", sans-serif;
+      --default-heading-font: "Rubik", sans-serif;
+      --bg-white: #ffffff;
+      --bg-text-color: #3B2519;
+      --bg-h1-color: #2E1A0F;
+      --bg-orange: #FF9603;
+    }
+    h1, .h1-heading, h2, h3, h4, h5, h6 {
+    font-family: var(--default-heading-font);
+    margin: 0 0 20px 0;
+    font-weight: 700;
+    padding: 0;
+}
         .header-checkout{
               border-bottom: 1px solid #dedede;
         }
