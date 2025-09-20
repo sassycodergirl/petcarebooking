@@ -25,7 +25,7 @@
                         }
                     @endphp
 
-                    <div class="product-gallery row">
+                    <div class="product-gallery">
                         <div class="gallery-thumbs ">
                             @foreach($galleryImages as $image)
                                 <div class="thumb-slide">
