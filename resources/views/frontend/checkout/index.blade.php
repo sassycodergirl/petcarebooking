@@ -580,7 +580,7 @@
                 <div class="payment-header p-4">
                   <div class="row">
                     <div class="col-6 col-md-6">
-                      <div class="d-flex g-2">
+                      <div class="d-flex gap-3">
                         <input type="radio" class="form-check-input" id="razorpay_express" name="payment_method" checked readonly onclick="return false;">
                         <span for="razorpay_express" class="">
                           Razorpay Express Checkout (UPI,Cards,Wallets,NetBanking) </span>
