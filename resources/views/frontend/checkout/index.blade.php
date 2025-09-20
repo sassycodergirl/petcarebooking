@@ -46,7 +46,7 @@
   <main>
     <div class="header-checkout text-center py-2 bg-white">
       <div class="container">
-      <div class="row">
+      <div class="row align-items-center">
         <div class="col-6 col-md-6 text-start">
           <a class="navbar-brand" href="{{ route('index') }}"><img src="{{asset('images/logo.png')}}" alt></a>
         </div>
