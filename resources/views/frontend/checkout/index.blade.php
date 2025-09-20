@@ -159,7 +159,7 @@
                     </div>
 
                     <div class="form-check mt-2">
-                      <input type="checkbox" class="form-check-input" id="updates" name="updates">
+                      <input type="checkbox" class="form-check-input" id="updates" name="updates" checked>
                       <span class="form-check-label" for="updates">
                         Keep me updated with the order updates and offers via WhatsApp, SMS and Email
                       </span>
