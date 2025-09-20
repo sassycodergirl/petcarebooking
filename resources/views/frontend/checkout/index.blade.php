@@ -197,17 +197,17 @@
 .billing-choice{
     padding: 15px;
     border: 1px solid #cbcbcb;
-    cursor:pointor;
+    cursor: pointer;
 }
 .form-check-input:checked {
     background-color: #000000;
     border-color: #000000;
 }
-.address-list:first-child {
+.billing-choice:first-child {
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 }
-.address-list:last-child {
+.billing-choice:last-child {
     border-bottom-right-radius: 7px;
     border-bottom-left-radius: 7px;
 }
@@ -694,7 +694,7 @@
               <span class="text-black">Your cart</span>
               <span class="badge bg-black rounded-pill cart-count-badge"></span>
             </h4>
-            <ul class="list-group mb-3 checkout-cart-items gap-4">
+            <ul class="list-group mb-3 checkout-cart-items gap-3">
             
               <!-- <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
