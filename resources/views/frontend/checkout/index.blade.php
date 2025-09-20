@@ -376,19 +376,19 @@
               </div> -->
 
               <!-- Billing Choice -->
-              <div class="col-12 mb-3">
-                <div class="input-group">
-                  <div class="form-check">
-                    <input type="radio" class="input form-check-input" id="billing_same" name="billing_address_selector" checked>
-                    <span for="billing_same" class="user-label">Same as shipping address</span>
-                  </div>
+            <div class="col-12 mb-3">
+              <div class="billing-choice">
+                <label class="form-check">
+                  <input type="radio" class="input form-check-input" name="billing_address_selector" id="billing_same" checked>
+                  <span class="user-label">Same as shipping address</span>
+                </label>
 
-                  <div class="form-check mt-2">
-                    <input type="radio" class="input form-check-input" id="billing_different" name="billing_address_selector">
-                    <span for="billing_different" class="user-label">Use a different billing address</span>
-                  </div>
-                </div>
+                <label class="form-check mt-2">
+                  <input type="radio" class="input form-check-input" name="billing_address_selector" id="billing_different">
+                  <span class="user-label">Use a different billing address</span>
+                </label>
               </div>
+            </div>
 
               <!-- Collapsible Billing Section -->
               <div id="billing_section" class="billing-section" style="overflow: hidden; max-height: 0; transition: max-height 0.4s ease;">
