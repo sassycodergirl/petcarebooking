@@ -446,12 +446,12 @@
               <!-- Billing Choice -->
             <div class="col-12 my-4">
             <h4 class="mb-3">Billing address</h4>
-             <div class="billing-choice">
+             <div class="billing-choice" data-target="billing_same">
                 <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_same" checked>
                 <span for="billing_same">Same as shipping address</span>
               </div>
 
-              <div class="billing-choice">
+              <div class="billing-choice" data-target="billing_different">
                 <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_different">
                 <span for="billing_different">Use a different billing address</span>
               </div>
@@ -907,8 +907,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
   billingSame.addEventListener('change', toggleBillingSection);
   billingDifferent.addEventListener('change', toggleBillingSection);
+
+
+
+
+  
+  document.querySelectorAll('.billing-choice').forEach(choice => {
+  choice.addEventListener('click', () => {
+    // Unselect all
+    document.querySelectorAll('.billing-choice').forEach(c => {
+      c.classList.remove('active');
+      c.querySelector('input[type="radio"]').checked = false;
+    });
+
+    // Select clicked one
+    choice.classList.add('active');
+    choice.querySelector('input[type="radio"]').checked = true;
+  });
+});
+
 });
 </script>
+
+
 
   </body>
 </html>
