@@ -680,7 +680,7 @@
             </ul>
 
             <li class="list-group-item d-flex justify-content-between">
-              <span>Total (INR)</span>
+              <span><strong>Total (INR)</strong></span>
               <strong>₹<span class="checkout-total"></span></strong>
             </li>
 
