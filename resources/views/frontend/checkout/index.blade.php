@@ -44,7 +44,7 @@
     
 
   <main>
-    <div class="header-checkout text-center py-2 bg-white">
+    <div class="header-checkout text-center py-3 bg-white">
       <div class="container">
       <div class="row align-items-center">
         <div class="col-6 col-md-6 text-start">
@@ -69,41 +69,9 @@
     </div>
     
     <div class="container">
-    <div class="row g-5">
-      <div class="col-md-5 col-lg-4 order-md-last">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-primary">Your cart</span>
-          <span class="badge bg-primary rounded-pill cart-count-badge"></span>
-        </h4>
-        <ul class="list-group mb-3 checkout-cart-items">
-         
-          <!-- <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Third item</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">$5</span>
-          </li> -->
-      
-          <!-- <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
-          </li> -->
-        </ul>
-
-        <li class="list-group-item d-flex justify-content-between">
-          <span>Total (INR)</span>
-          <strong>₹<span class="checkout-total"></span></strong>
-        </li>
-
-        <!-- <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </form> -->
-      </div>
-      <div class="col-md-7 col-lg-8">
+    <div class="row">
+  
+      <div class="col-md-6 col-lg-6 p-md-5 p-4">
         <h4 class="mb-3">Billing address</h4>
         <form class="needs-validation" novalidate>
           <div class="row g-3">
@@ -257,6 +225,41 @@
           <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
         </form>
       </div>
+
+      <div class="col-md-6 col-lg-6 order-md-last p-md-5 p-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Your cart</span>
+          <span class="badge bg-primary rounded-pill cart-count-badge"></span>
+        </h4>
+        <ul class="list-group mb-3 checkout-cart-items">
+         
+          <!-- <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Third item</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">$5</span>
+          </li> -->
+      
+          <!-- <li class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong>$20</strong>
+          </li> -->
+        </ul>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total (INR)</span>
+          <strong>₹<span class="checkout-total"></span></strong>
+        </li>
+
+        <!-- <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Promo code">
+            <button type="submit" class="btn btn-secondary">Redeem</button>
+          </div>
+        </form> -->
+      </div>
+
     </div>
     </div>
   </main>
