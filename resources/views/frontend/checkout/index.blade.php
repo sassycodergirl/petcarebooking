@@ -319,18 +319,20 @@
                   </div>
                 </div>
 
+                   <div class="col-12">
+                    <div class="input-group">
+                      <input type="tel" class="input form-control" id="phone" name="phone" autocomplete="off" 
+                            required pattern="[0-9]{10}" maxlength="10" >
+                      <label for="phone" class="user-label">Phone</label>
+                      <div class="invalid-feedback">
+                        Please enter a valid 10-digit phone number.
+                      </div>
+                    </div>
+                   </div>
+
               </div>
 
-               <div class="col-12">
-                <div class="input-group">
-                  <input type="tel" class="input form-control" id="phone" name="phone" autocomplete="off" 
-                        required pattern="[0-9]{10}" maxlength="10" placeholder="Phone">
-                  <label for="phone" class="user-label">Phone</label>
-                  <div class="invalid-feedback">
-                    Please enter a valid 10-digit phone number.
-                  </div>
-                </div>
-              </div>
+            
 
 
               <hr class="my-4">
