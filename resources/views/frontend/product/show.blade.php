@@ -211,20 +211,78 @@ $(document).ready(function(){
     //     galleryMain.slick({ slidesToShow:1, slidesToScroll:1, asNavFor:'.gallery-thumbs', arrows:true, fade:true, infinite:false });
     // }
 
+//     function updateGallery(size, colorId) {
+//     let variant = variantsData.find(v => v.size === size && v.color_id === colorId)
+//                     || variantsData.find(v => v.size === size)
+//                     || { gallery: [$('.add-to-bag').data('image')] };
+
+//     const galleryMain = $('.gallery-main');
+//     const galleryThumbs = $('.gallery-thumbs');
+
+//     if (galleryMain.hasClass('slick-initialized')) galleryMain.slick('unslick');
+//     if (galleryThumbs.hasClass('slick-initialized')) galleryThumbs.slick('unslick');
+    
+//     // Unbind the event to prevent multiple listeners from stacking up
+//     galleryMain.off('afterChange'); 
+
+//     galleryMain.empty();
+//     galleryThumbs.empty();
+
+//     variant.gallery.forEach(img => {
+//         galleryMain.append(`<div class="main-slide"><img src="${appUrl}/public/${img}" alt="Product"></div>`);
+//         galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
+//     });
+
+//     galleryThumbs.slick({
+//         slidesToShow:3,
+//         slidesToScroll: 1,
+//         asNavFor: '.gallery-main', // This stays, so thumbs control the main gallery
+//         focusOnSelect: true,
+//         vertical: true,
+//         swipe: false,
+//         arrows: false,
+//         infinite: true,
+//         centerMode: true,
+//         initialSlide: 0 
+//     });
+
+//     galleryMain.slick({
+//         slidesToShow: 1,
+//         slidesToScroll: 1,
+//         // asNavFor: '.gallery-thumbs', // <-- 1. REMOVE THIS LINE
+//         arrows: true,
+//         fade: true,
+//         infinite: false,
+//         initialSlide: 0 
+//     });
+
+//     // 2. ADD THIS EVENT LISTENER
+//     // This manually syncs the thumbnail when the main image changes
+//     galleryMain.on('afterChange', function(event, slick, currentSlide) {
+//         galleryThumbs.slick('slickGoTo', currentSlide);
+//     });
+// }  
+
     function updateGallery(size, colorId) {
     let variant = variantsData.find(v => v.size === size && v.color_id === colorId)
-                    || variantsData.find(v => v.size === size)
-                    || { gallery: [$('.add-to-bag').data('image')] };
+                  || variantsData.find(v => v.size === size)
+                  || { gallery: [$('.add-to-bag').data('image')] };
 
     const galleryMain = $('.gallery-main');
     const galleryThumbs = $('.gallery-thumbs');
 
-    if (galleryMain.hasClass('slick-initialized')) galleryMain.slick('unslick');
-    if (galleryThumbs.hasClass('slick-initialized')) galleryThumbs.slick('unslick');
+    // Destroy existing carousels if they exist
+    if (galleryMain.hasClass('slick-initialized')) {
+        galleryMain.slick('unslick');
+    }
+    if (galleryThumbs.hasClass('slick-initialized')) {
+        galleryThumbs.slick('unslick');
+    }
     
     // Unbind the event to prevent multiple listeners from stacking up
     galleryMain.off('afterChange'); 
 
+    // Rebuild the gallery HTML
     galleryMain.empty();
     galleryThumbs.empty();
 
@@ -233,34 +291,35 @@ $(document).ready(function(){
         galleryThumbs.append(`<div class="thumb-slide"><img src="${appUrl}/public/${img}" alt="Thumb"></div>`);
     });
 
-    galleryThumbs.slick({
-        slidesToShow:3,
-        slidesToScroll: 1,
-        asNavFor: '.gallery-main', // This stays, so thumbs control the main gallery
-        focusOnSelect: true,
-        vertical: true,
-        swipe: false,
-        arrows: false,
-        infinite: true,
-        centerMode: true,
-        initialSlide: 0 
-    });
+    // Defer the re-initialization to prevent race conditions
+    setTimeout(function() {
+        galleryThumbs.slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.gallery-main',
+            focusOnSelect: true,
+            vertical: true,
+            swipe: false,
+            arrows: false,
+            infinite: true,
+            centerMode: true,
+            initialSlide: 0 
+        });
 
-    galleryMain.slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        // asNavFor: '.gallery-thumbs', // <-- 1. REMOVE THIS LINE
-        arrows: true,
-        fade: true,
-        infinite: false,
-        initialSlide: 0 
-    });
+        galleryMain.slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true,
+            fade: true,
+            infinite: false,
+            initialSlide: 0 
+        });
 
-    // 2. ADD THIS EVENT LISTENER
-    // This manually syncs the thumbnail when the main image changes
-    galleryMain.on('afterChange', function(event, slick, currentSlide) {
-        galleryThumbs.slick('slickGoTo', currentSlide);
-    });
+        // Manually sync the thumbnail when the main image changes
+        galleryMain.on('afterChange', function(event, slick, currentSlide) {
+            galleryThumbs.slick('slickGoTo', currentSlide);
+        });
+    }, 0); // A timeout of 0ms is all that's needed
 }
 
     updateColors(selectedSize);
