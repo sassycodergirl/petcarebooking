@@ -172,7 +172,8 @@
 }
 
 #razorpay_express_info{
-  height: auto;overflow: visible;border: 1px solid #c1c1c1;
+  height: auto;overflow: visible;border: 1px solid #c1c1c1; border-top: none;border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
