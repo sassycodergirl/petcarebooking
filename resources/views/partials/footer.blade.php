@@ -159,17 +159,21 @@ document.addEventListener('DOMContentLoaded', function () {
         cartTotalEl.textContent = '0.00';
         if (checkoutBtn) {
             checkoutBtn.setAttribute('disabled', 'true');
-            checkoutBtn.classList.add('disabled'); // optional for styling
+            checkoutBtn.style.opacity = '0.5';
+            checkoutBtn.style.pointerEvents = 'none';
+            checkoutBtn.style.cursor = 'not-allowed';
         }
         return;
     }
 
     
     // when cart has items
-    if (checkoutBtn) {
-        checkoutBtn.removeAttribute('disabled');
-        checkoutBtn.classList.remove('disabled');
-    }
+if (checkoutBtn) {
+    checkoutBtn.removeAttribute('disabled');
+    checkoutBtn.style.opacity = '1';
+    checkoutBtn.style.pointerEvents = 'auto';
+    checkoutBtn.style.cursor = 'pointer';
+}
 
         cart.forEach(item => {
             let variantInfo = '';
