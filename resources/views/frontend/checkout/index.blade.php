@@ -207,7 +207,7 @@
 
                 <div class="col-12">
                    <div class="input-group">
-                     <input type="text" class="input form-control" id="address2" name="address-extra" autocomplete="off" value="">
+                     <input type="text" class="input form-control optional" id="address2" name="address-extra" autocomplete="off" value="">
                         <label class="user-label">Apartment, suite, etc. (optional)</label>
                     </div>
                 </div>
@@ -478,6 +478,12 @@
     // })()
 
     document.addEventListener('DOMContentLoaded', function() {
+
+        if (!input.classList.contains('optional') && input.value !== '') {
+      label.classList.add('floating');
+    } else {
+      label.classList.remove('floating');
+    }
     const phoneInput = document.getElementById('phone');
 
     phoneInput.addEventListener('input', function() {
