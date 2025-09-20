@@ -6363,7 +6363,9 @@ blockquote {
 
 /* This is the key change */
 .gallery-main {
-    flex: 1; /* Allows this element to grow and fill the remaining space */
+    flex: 1; 
+	min-width: 0;
+	overflow: hidden;
 }
 
 .gallery-main .main-slide img {
