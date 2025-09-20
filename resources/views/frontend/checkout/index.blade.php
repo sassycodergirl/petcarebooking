@@ -93,23 +93,37 @@
  color:#000;
    font-size: 1.2em;
 }
-
-/* Override for optional fields */
-.input.optional:focus,
-.input.optional:valid {
-  outline: none;
- border: solid 1.5px #dedede; /* or whatever default you want */
+/* Optional input - default when empty */
+.input.optional:placeholder-shown {
+  border: 1.5px solid #dedede;
 }
 
-.input.optional:focus ~ label,
-.input.optional:valid ~ label {
-  transform: none;
+.input.optional:placeholder-shown ~ .user-label {
+  transform: translateY(1rem);
   background-color: transparent;
   z-index: auto;
   padding: 0;
   color: #666; /* default label color */
   font-size: 1em;
 }
+
+/* Optional input - when focused or typed into */
+.input.optional:focus,
+.input.optional:not(:placeholder-shown) {
+  border: 2px solid #000;
+}
+
+.input.optional:focus ~ .user-label,
+.input.optional:not(:placeholder-shown) ~ .user-label {
+  transform: translateY(-50%) scale(0.8);
+  background-color: #fff;
+  z-index: 9999;
+  padding: 0 .2em;
+  color: #000;
+  font-size: 1.2em;
+}
+
+
 .form-control{
   background:transparent;
 }
@@ -223,7 +237,7 @@
 
                 <div class="col-12">
                    <div class="input-group">
-                     <input type="text" class="input form-control optional" id="address2" name="address-extra" autocomplete="off" value="">
+                     <input type="text" class="input form-control optional" id="address2" name="address-extra" autocomplete="off" value="" placeholder=" ">
                         <label class="user-label">Apartment, suite, etc. (optional)</label>
                     </div>
                 </div>
