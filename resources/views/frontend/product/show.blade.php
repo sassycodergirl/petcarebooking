@@ -49,7 +49,7 @@
                         <p class="h4">₹{{ $product->price }}</p>
 
                         @if($product->variants->count())
-                            <div class="product-variants mb-3">
+                            <div class="product-variants mb-5">
                                 @php
                                     $sizes = $product->variants->pluck('size')->filter()->unique();
                                 @endphp
