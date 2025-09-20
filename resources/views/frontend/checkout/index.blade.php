@@ -373,7 +373,7 @@
          
 
               <!-- Billing Choice -->
-            <div class="col-12 my-3">
+            <div class="col-12 my-5">
             <h4 class="mb-3">Billing address</h4>
               <div class="billing-choice">
                 <label>
@@ -418,7 +418,7 @@
 
                   <div class="col-12">
                     <div class="input-group">
-                      <input type="text" class="input form-control optional" id="billing_address2" name="billing_address2" autocomplete="off">
+                      <input type="text" class="input form-control optional" id="billing_address2" name="billing_address2" autocomplete="off" placeholder=" ">
                       <label class="user-label" for="billing_address2">Apartment, suite, etc. (optional)</label>
                     </div>
                   </div>
