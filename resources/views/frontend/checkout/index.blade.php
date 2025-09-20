@@ -188,6 +188,9 @@
   height: auto;overflow: visible;border: 1px solid #c1c1c1; border-top: none;border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
 }
+.price-point{
+  font-size:1.3em;
+}
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
             font-size: 3.5rem;
@@ -679,7 +682,7 @@
               </li> -->
             </ul>
 
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex justify-content-between price-point">
               <span><strong>Total (INR)</strong></span>
               <strong>₹<span class="checkout-total"></span></strong>
             </li>
