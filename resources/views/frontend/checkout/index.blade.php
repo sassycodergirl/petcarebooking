@@ -127,7 +127,7 @@
                   </div> -->
 
                   <div class="input-group">
-                     <input type="text" class="input" id="firstName" name="firstName" autocomplete="off" placeholder="First Name" value="" required>
+                     <input type="text" class="input" id="firstName" name="firstName" autocomplete="off" value="" required>
                     <label class="user-label">First Name</label>
                   </div>
 
