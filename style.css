@@ -2643,6 +2643,7 @@ textarea::placeholder {
 	border: none;
 	outline: none;
 	font-size: 18px;
+	height: 30px;
 	width: 35px;
 	color: var(--bg-text-color);
 	transition: all 0.3s ease-in-out;
@@ -2658,10 +2659,12 @@ textarea::placeholder {
 	width: 50px;
     background-color: var(--bg-orange);
     border: none;
-    height: 100%;
-    min-height: 29px;
-    border-radius: 0;
+    height: 30px;
+    /* min-height: 29px; */
+    border-radius: 0 !important;
     text-align: center;
+	padding: 0;
+
 }
 
 .pd-add-to-cart {
