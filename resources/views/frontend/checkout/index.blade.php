@@ -91,7 +91,7 @@
  background-color:#fff;
  padding: 0 .2em;
  color:#000;
-   font-size: 1em;
+   font-size: 1.2em;
 }
 
         @media (min-width: 768px) {
@@ -141,6 +141,10 @@
                   <div class="input-group">
                      <input type="text" class="input" id="firstName" name="firstName" autocomplete="off" value="" required>
                     <label class="user-label">First Name</label>
+                  </div>
+
+                   <div class="invalid-feedback">
+                    Valid first name is required.
                   </div>
 
 
