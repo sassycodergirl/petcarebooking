@@ -661,7 +661,7 @@
           <div class="summary-box">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
               <span class="text-black">Your cart</span>
-              <span class="badge  rounded-pill cart-count-badge"></span>
+              <span class="badge bg-black rounded-pill cart-count-badge"></span>
             </h4>
             <ul class="list-group mb-3 checkout-cart-items">
             
