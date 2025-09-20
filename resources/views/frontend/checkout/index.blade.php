@@ -252,8 +252,12 @@
   </head>
   <body>
     
-
-  <main>
+<!-- Loader -->
+<div id="checkout-loader" 
+     style="position: fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:9999;">
+    <img src="{{ asset('images/loader.gif') }}" alt="Loading..." width="60">
+</div>
+  <main style="display:none;">
     <div class="header-checkout text-center py-3 bg-white">
       <div class="container">
         <div class="row align-items-center">
@@ -752,25 +756,15 @@
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script>
-    // (function () {
-    //   'use strict'
-
-    //   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    //   var forms = document.querySelectorAll('.needs-validation')
-
-    //   // Loop over them and prevent submission
-    //   Array.prototype.slice.call(forms)
-    //     .forEach(function (form) {
-    //       form.addEventListener('submit', function (event) {
-    //         if (!form.checkValidity()) {
-    //           event.preventDefault()
-    //           event.stopPropagation()
-    //         }
-
-    //         form.classList.add('was-validated')
-    //       }, false)
-    //     })
-    // })()
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Wait until everything is ready
+    window.onload = function() {
+        document.getElementById("checkout-loader").style.display = "none";
+        document.getElementById("checkout-content").style.display = "block";
+    }
+});
+</script>
 
     document.addEventListener('DOMContentLoaded', function() {
 
