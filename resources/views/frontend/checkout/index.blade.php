@@ -315,22 +315,27 @@
                   }
 
                   const html = `
-                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                          <div class="me-3 flex-grow-1">
-                              <h6 class="my-0">${item.name}</h6>
-                              ${variantInfo}
-                              <div class="d-flex align-items-center mt-1">
-                                  <button class="btn btn-sm btn-outline-secondary qty-minus" data-key="${item.key}">-</button>
-                                  <input type="text" value="${item.qty}" class="form-control form-control-sm text-center mx-2 qty" data-key="${item.key}" style="width:60px;" readonly>
-                                  <button class="btn btn-sm btn-outline-secondary qty-plus" data-key="${item.key}">+</button>
-                              </div>
-                          </div>
-                          <div class="text-end">
-                              <span class="text-muted d-block">₹${(item.price * item.qty).toFixed(2)}</span>
-                              <button class="btn btn-sm btn-danger remove-item mt-1" data-key="${item.key}">×</button>
-                          </div>
-                      </li>
-                  `;
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-start me-3 flex-grow-1">
+                            <img src="${item.image}" alt="${item.name}" 
+                                class="me-3" style="width:60px; height:60px; object-fit:cover; border-radius:6px;">
+                            <div>
+                                <h6 class="my-0">${item.name}</h6>
+                                ${variantInfo}
+                                <div class="d-flex align-items-center mt-1">
+                                    <button class="btn btn-sm btn-outline-secondary qty-minus" data-key="${item.key}">-</button>
+                                    <input type="text" value="${item.qty}" class="form-control form-control-sm text-center mx-2 qty" data-key="${item.key}" style="width:60px;" readonly>
+                                    <button class="btn btn-sm btn-outline-secondary qty-plus" data-key="${item.key}">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <span class="text-muted d-block">₹${(item.price * item.qty).toFixed(2)}</span>
+                            <button class="btn btn-sm btn-danger remove-item mt-1" data-key="${item.key}">×</button>
+                        </div>
+                    </li>
+                `;
+
                   checkoutCartContainer.insertAdjacentHTML('beforeend', html);
               });
 
