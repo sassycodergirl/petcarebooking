@@ -916,7 +916,7 @@
     </script>
 
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function() {
   const billingSame = document.getElementById('billing_same');
   const billingDifferent = document.getElementById('billing_different');
@@ -938,7 +938,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   document.querySelectorAll('.billing-choice').forEach(choice => {
-  choice.addEventListener('click', () => {
+    choice.addEventListener('click', () => {
     // Unselect all
     document.querySelectorAll('.billing-choice').forEach(c => {
       c.classList.remove('active');
@@ -951,6 +951,47 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+});
+</script> -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const billingSame = document.getElementById('billing_same');
+  const billingDifferent = document.getElementById('billing_different');
+  const billingSection = document.getElementById('billing_section');
+
+  function toggleBillingSection() {
+    if (billingDifferent.checked) {
+      billingSection.style.maxHeight = billingSection.scrollHeight + "px";
+    } else {
+      billingSection.style.maxHeight = "0";
+    }
+  }
+
+  // Initial state
+  toggleBillingSection();
+
+  // Native radio change
+  billingSame.addEventListener('change', toggleBillingSection);
+  billingDifferent.addEventListener('change', toggleBillingSection);
+
+  // Custom div click
+  document.querySelectorAll('.billing-choice').forEach(choice => {
+    choice.addEventListener('click', () => {
+      // Unselect all
+      document.querySelectorAll('.billing-choice').forEach(c => {
+        c.classList.remove('active');
+        c.querySelector('input[type="radio"]').checked = false;
+      });
+
+      // Select clicked one
+      choice.classList.add('active');
+      const input = choice.querySelector('input[type="radio"]');
+      input.checked = true;
+
+      // 🔑 Call toggle after setting checked
+      toggleBillingSection();
+    });
+  });
 });
 </script>
 
