@@ -673,14 +673,14 @@
                   <!-- Razorpay Radio Option (Default Selected, Cannot Deselect) -->
                 <div class="payment-header p-4">
                   <div class="row">
-                    <div class="col-6 col-md-6">
+                    <div class="col-12 col-md-6">
                       <div class="d-flex gap-3">
                         <input type="radio" class="form-check-input" id="razorpay_express" name="payment_method" checked readonly onclick="return false;">
                         <span for="razorpay_express" class="">
                           Razorpay Express Checkout (UPI,Cards,Wallets,NetBanking) </span>
                       </div>
                     </div>
-                    <div class="col-6 col-md-6">
+                    <div class="col-12 col-md-6 mt-3 mt-md-0">
                       <div class="payment-icons">
                           <span><img src="https://www.vectorlogo.zone/logos/upi/upi-ar21.svg" alt="Razorpay" width="50"></span>
                           <span><svg width="2em" height="2em" viewBox="0 -86.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
