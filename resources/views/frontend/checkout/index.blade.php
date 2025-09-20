@@ -63,7 +63,7 @@
 }
 .input-group select.input {
   appearance: none; /* remove default arrow for styling */
-  background: none;
+  background: #fff;
 }
 
 .input-group select.input:focus ~ label,
@@ -227,6 +227,11 @@
 .billing-choice:has(input[type="radio"]:checked) {
   background: #f5f5f5;
   border: 1px solid #000;
+}
+.billing-section{
+    background: #f5f5f5;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 .secure-text{
       letter-spacing: 3px;
@@ -468,7 +473,7 @@
          
 
               <!-- Billing Choice -->
-            <div class="col-12 my-4">
+            <div class="col-12 mt-4">
             <h4 class="mb-3">Billing address</h4>
             <div class="address-list">
              <div class="billing-choice" data-target="billing_same">
@@ -483,7 +488,7 @@
             </div>
           </div>
               <!-- Collapsible Billing Section -->
-              <div id="billing_section" class="billing-section" style="overflow: hidden; max-height: 0; transition: max-height 0.4s ease;">
+              <div id="billing_section" class="billing-section p-4" style="overflow: hidden; max-height: 0; transition: max-height 0.4s ease;">
                 <div class="row g-3">
                   <div class="col-sm-6">
                     <div class="input-group">
