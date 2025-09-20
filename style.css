@@ -6346,6 +6346,10 @@ blockquote {
 		color: #fff;
 		border-radius: 30px;
 		text-transform: uppercase;
+		padding: 8px 25px;
+		font-size: 15px;
+		font-weight: 700;
+
 }
 .content-sec{
 	background-color: #fff;
