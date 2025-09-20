@@ -99,17 +99,18 @@
 .input.optional:focus,
 .input.optional:valid {
   outline: none;
-  border: 1px solid #ccc; /* or whatever default you want */
+ border: solid 1.5px #dedede; /* or whatever default you want */
 }
 
 .input.optional:focus ~ label,
 .input.optional:valid ~ label {
-  transform: none;
-  background-color: transparent;
-  z-index: auto;
-  padding: 0;
-  color: #666; /* default label color */
+ position: absolute;
+ left: 15px;
+  color: #7a7a7a;
   font-size: 1em;
+ pointer-events: none;
+ transform: translateY(1rem);
+ transition: 150ms cubic-bezier(0.4,0,0.2,1);
 }
 .form-control{
   background:transparent;
