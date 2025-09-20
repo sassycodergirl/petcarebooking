@@ -182,6 +182,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+        font-weight: 500;
 }
 #razorpay_express_info{
   height: auto;overflow: visible;border: 1px solid #c1c1c1; border-top: none;border-bottom-left-radius: 7px;
