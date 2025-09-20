@@ -164,6 +164,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    
+    // when cart has items
+    if (checkoutBtn) {
+        checkoutBtn.removeAttribute('disabled');
+        checkoutBtn.classList.remove('disabled');
+    }
+
         cart.forEach(item => {
             let variantInfo = '';
             if (item.size || item.color_name) {
