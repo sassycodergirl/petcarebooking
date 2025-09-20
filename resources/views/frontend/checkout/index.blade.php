@@ -146,9 +146,9 @@
 }
 
 
-.form-control{
+/* .form-control{
   background:transparent;
-}
+} */
 .form-control:focus{
   box-shadow:none;
 }
