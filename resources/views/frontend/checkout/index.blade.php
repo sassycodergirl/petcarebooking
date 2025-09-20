@@ -86,6 +86,7 @@
  color: #000;
  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
  width: 100%;
+ background: #fff;
 }
 
 
@@ -638,7 +639,7 @@
            
 
              
-              <div class="col-12 mt-2 mb-4">
+              <div class="col-12 mt-2 my-4">
                  <h4 class="mb-2">Payment Method</h4>
                  <p class="text-sub">All transactions are secure and encrypted.</p>
                 <div class="bg-lightgraay">
