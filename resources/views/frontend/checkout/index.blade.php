@@ -380,12 +380,12 @@
                 <div class="input-group">
                   <div class="form-check">
                     <input type="radio" class="input form-check-input" id="billing_same" name="billing_address_selector" checked>
-                    <label for="billing_same" class="user-label">Shipping address is the same as my billing address</label>
+                    <span for="billing_same" class="user-label">Same as shipping address</span>
                   </div>
 
                   <div class="form-check mt-2">
                     <input type="radio" class="input form-check-input" id="billing_different" name="billing_address_selector">
-                    <label for="billing_different" class="user-label">Use a different billing address</label>
+                    <span for="billing_different" class="user-label">Use a different billing address</span>
                   </div>
                 </div>
               </div>
