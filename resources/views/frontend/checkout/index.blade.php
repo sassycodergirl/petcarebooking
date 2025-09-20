@@ -639,7 +639,7 @@
            
 
              
-              <div class="col-12 mt-2 my-4">
+              <div class="col-12 my-4">
                  <h4 class="mb-2">Payment Method</h4>
                  <p class="text-sub">All transactions are secure and encrypted.</p>
                 <div class="bg-lightgraay">
