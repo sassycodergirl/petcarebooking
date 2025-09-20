@@ -552,18 +552,21 @@
                 <div class="input-group">
 
                   <!-- Razorpay Radio Option (Default Selected, Cannot Deselect) -->
-                  <div class="form-check mb-2">
-                    <input type="radio" 
-                          class="input form-check-input" 
-                          id="razorpay_express" 
-                          name="payment_method" 
-                          checked
-                          readonly
-                          onclick="return false;">
-                    <label for="razorpay_express" class="user-label">
-                      Razorpay Express Checkout
-                    </label>
+                <div class="row">
+                  <div class="col-6 col-md-6">
+                    <input type="radio" class="form-check-input" id="razorpay_express" name="payment_method" checked readonly onclick="return false;">
+                    <span for="razorpay_express" class="">
+                      Razorpay Express Checkout (UPI,Cards,Wallets,NetBanking) </span>
                   </div>
+                  <div class="col-6 col-md-6">
+                    <div class="payment-icons" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <img src="https://www.vectorlogo.zone/logos/upi/upi-ar21.svg" alt="Razorpay" width="50">
+                        <img src="https://cdn.razorpay.com/assets/visa.svg" alt="Visa" width="38">
+                        <img src="https://cdn.razorpay.com/assets/mastercard.svg" alt="MasterCard" width="38">
+                        <img src="https://cdn.razorpay.com/assets/upi.svg" alt="UPI" width="38">
+                      </div>
+                  </div>
+                </div>
 
                   <!-- Info Section Always Expanded -->
                   <div id="razorpay_express_info" class="payment-info" style="height: auto; overflow: visible;">
@@ -572,13 +575,7 @@
                         After clicking “Pay now”, you will be redirected to Razorpay Express Checkout 
                         to complete your purchase securely.
                       </p>
-                      <div class="payment-icons" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                        <img src="https://www.vectorlogo.zone/logos/upi/upi-ar21.svg" alt="Razorpay" width="50">
-                        <img src="https://cdn.razorpay.com/assets/visa.svg" alt="Visa" width="38">
-                        <img src="https://cdn.razorpay.com/assets/mastercard.svg" alt="MasterCard" width="38">
-                        <img src="https://cdn.razorpay.com/assets/upi.svg" alt="UPI" width="38">
-                        
-                      </div>
+                    
                     </div>
                   </div>
 
