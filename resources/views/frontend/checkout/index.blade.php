@@ -53,7 +53,7 @@
 
 .input {
  border: solid 1.5px #dedede;
- border-radius: 1rem;
+ border-radius: 8px !important;
  background: none;
  padding: 1rem;
  font-size: 1rem;
