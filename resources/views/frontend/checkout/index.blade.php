@@ -589,7 +589,7 @@
                     <div class="col-6 col-md-6">
                       <div class="payment-icons">
                           <span><img src="https://www.vectorlogo.zone/logos/upi/upi-ar21.svg" alt="Razorpay" width="50"></span>
-                          <span><svg width="2.5em" height="2.5em" viewBox="0 -86.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+                          <span><svg width="2em" height="2em" viewBox="0 -86.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
                               <defs>
                                   <linearGradient x1="45.9741966%" y1="-2.00617467%" x2="54.8768726%" y2="100%" id="linearGradient-1">
                                       <stop stop-color="#222357" offset="0%"></stop>
@@ -601,7 +601,7 @@
                               </g>
                           </svg>
                           </span>
-                          <span><svg width="2.5em" height="2.5em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <span><svg width="2em" height="2em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <g fill="none" fill-rule="evenodd">
                                 <circle cx="7" cy="12" r="7" fill="#EA001B"/>
                                 <circle cx="17" cy="12" r="7" fill="#FFA200" fill-opacity=".8"/>
