@@ -30,6 +30,10 @@
           font-weight: 700;
           padding: 0;
       }
+
+      body{
+        font-family: var(--default-heading-font);
+      }
      
         .header-checkout{
               border-bottom: 1px solid #dedede;
@@ -67,11 +71,10 @@
 
 
 .user-label {
-  font-family: var(--default-heading-font);
+
  position: absolute;
  left: 15px;
   color: #7a7a7a;
-  font-weight: 600;
   font-size: 1em;
  pointer-events: none;
  transform: translateY(1rem);
