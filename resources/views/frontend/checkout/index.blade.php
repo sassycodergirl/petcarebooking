@@ -370,9 +370,92 @@
 
               <hr class="my-4">
 
-              <div class="form-check">
+              <!-- <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="same-address">
                 <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+              </div> -->
+
+              <!-- Billing Choice -->
+              <div class="col-12 mb-3">
+                <div class="input-group">
+                  <div class="form-check">
+                    <input type="radio" class="input form-check-input" id="billing_same" name="billing_address_selector" checked>
+                    <label for="billing_same" class="user-label">Shipping address is the same as my billing address</label>
+                  </div>
+
+                  <div class="form-check mt-2">
+                    <input type="radio" class="input form-check-input" id="billing_different" name="billing_address_selector">
+                    <label for="billing_different" class="user-label">Use a different billing address</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Collapsible Billing Section -->
+              <div id="billing_section" class="billing-section" style="overflow: hidden; max-height: 0; transition: max-height 0.4s ease;">
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    <div class="input-group">
+                      <input type="text" class="input form-control" id="billing_firstName" name="billing_firstName" autocomplete="off" required>
+                      <label class="user-label" for="billing_firstName">First Name</label>
+                      <div class="invalid-feedback">Valid first name is required.</div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="input-group">
+                      <input type="text" class="input form-control" id="billing_lastName" name="billing_lastName" autocomplete="off" required>
+                      <label class="user-label" for="billing_lastName">Last Name</label>
+                      <div class="invalid-feedback">Valid last name is required.</div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-group">
+                      <input type="text" class="input form-control" id="billing_address1" name="billing_address1" autocomplete="off" required>
+                      <label class="user-label" for="billing_address1">Address</label>
+                      <div class="invalid-feedback">Please enter billing address.</div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-group">
+                      <input type="text" class="input form-control optional" id="billing_address2" name="billing_address2" autocomplete="off">
+                      <label class="user-label" for="billing_address2">Apartment, suite, etc. (optional)</label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <input type="text" class="input form-control" list="indian-states" id="billing_state" name="billing_state" autocomplete="off" required>
+                      <label class="user-label" for="billing_state">State</label>
+                      <div class="invalid-feedback">Please enter a valid state.</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <input type="text" class="input form-control" id="billing_city" name="billing_city" autocomplete="off" required>
+                      <label class="user-label" for="billing_city">City</label>
+                      <div class="invalid-feedback">Please enter a valid city.</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="input-group">
+                      <input type="text" class="input form-control" id="billing_zip" name="billing_zip" autocomplete="off" required>
+                      <label class="user-label" for="billing_zip">PIN Code</label>
+                      <div class="invalid-feedback">PIN code required.</div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-group">
+                      <input type="tel" class="input form-control" id="billing_phone" name="billing_phone" autocomplete="off" required pattern="[0-9]{10}">
+                      <label class="user-label" for="billing_phone">Phone</label>
+                      <div class="invalid-feedback">Please enter a valid Phone Number.</div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="form-check">
@@ -657,6 +740,26 @@
           
       });
     </script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const billingSame = document.getElementById('billing_same');
+  const billingDifferent = document.getElementById('billing_different');
+  const billingSection = document.getElementById('billing_section');
+
+  function toggleBillingSection() {
+    if (billingDifferent.checked) {
+      billingSection.style.maxHeight = billingSection.scrollHeight + "px";
+    } else {
+      billingSection.style.maxHeight = "0";
+    }
+  }
+
+  billingSame.addEventListener('change', toggleBillingSection);
+  billingDifferent.addEventListener('change', toggleBillingSection);
+});
+</script>
 
   </body>
 </html>
