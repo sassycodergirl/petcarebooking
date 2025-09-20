@@ -232,11 +232,13 @@
     background: #f5f5f5;
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
+    display: none;
 }
 .secure-text{
       letter-spacing: 3px;
           font-size: 12px;
 }
+
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
             font-size: 3.5rem;
@@ -488,7 +490,7 @@
             </div>
           </div>
               <!-- Collapsible Billing Section -->
-              <div id="billing_section" class="billing-section p-4" style="overflow: hidden; max-height: 0; transition: max-height 0.4s ease;">
+              <div id="billing_section" class="billing-section p-4">
                 <div class="row g-3">
                   <div class="col-sm-6">
                     <div class="input-group">
@@ -921,54 +923,17 @@
     </script>
 
 
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const billingSame = document.getElementById('billing_same');
-  const billingDifferent = document.getElementById('billing_different');
-  const billingSection = document.getElementById('billing_section');
-
-  function toggleBillingSection() {
-    if (billingDifferent.checked) {
-      billingSection.style.maxHeight = billingSection.scrollHeight + "px";
-    } else {
-      billingSection.style.maxHeight = "0";
-    }
-  }
-
-  billingSame.addEventListener('change', toggleBillingSection);
-  billingDifferent.addEventListener('change', toggleBillingSection);
-
-
-
-
-
-  document.querySelectorAll('.billing-choice').forEach(choice => {
-    choice.addEventListener('click', () => {
-    // Unselect all
-    document.querySelectorAll('.billing-choice').forEach(c => {
-      c.classList.remove('active');
-      c.querySelector('input[type="radio"]').checked = false;
-    });
-
-    // Select clicked one
-    choice.classList.add('active');
-    choice.querySelector('input[type="radio"]').checked = true;
-  });
-});
-
-});
-</script> -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const billingSame = document.getElementById('billing_same');
   const billingDifferent = document.getElementById('billing_different');
-  const billingSection = document.getElementById('billing_section');
+  const billingSection = $("#billing_section"); // jQuery element
 
   function toggleBillingSection() {
     if (billingDifferent.checked) {
-      billingSection.style.maxHeight = billingSection.scrollHeight + "px";
+      billingSection.stop().slideDown(300);
     } else {
-      billingSection.style.maxHeight = "0";
+      billingSection.stop().slideUp(300);
     }
   }
 
@@ -999,6 +964,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
 
 
 
