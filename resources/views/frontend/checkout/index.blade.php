@@ -382,7 +382,8 @@
                   <input type="radio" class="form-check-input" name="billing_address_selector" id="billing_same" checked>
                   <span class="">Same as shipping address</span>
                 </label>
-
+              </div>
+              <div class="billing-choice">
                 <label class="mt-2">
                   <input type="radio" class="form-check-input" name="billing_address_selector" id="billing_different">
                   <span class="">Use a different billing address</span>
