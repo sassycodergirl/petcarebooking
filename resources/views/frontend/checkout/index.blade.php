@@ -94,6 +94,23 @@
  color:#000;
    font-size: 1.2em;
 }
+
+/* Override for optional fields */
+.input.optional:focus,
+.input.optional:valid {
+  outline: none;
+  border: 1px solid #ccc; /* or whatever default you want */
+}
+
+.input.optional:focus ~ label,
+.input.optional:valid ~ label {
+  transform: none;
+  background-color: transparent;
+  z-index: auto;
+  padding: 0;
+  color: #666; /* default label color */
+  font-size: 1em;
+}
 .form-control{
   background:transparent;
 }
@@ -151,7 +168,7 @@
             
                 <div class="col-12">
                     <div class="input-group">
-                      <input type="email" class="input form-control" id="email" name="email" autocomplete="off">
+                      <input type="email" class="input form-control" id="email" name="email" autocomplete="off" required>
                       <label for="email" class="user-label">Email</label>
                       <div class="invalid-feedback">
                         Please enter a valid email address.
@@ -479,11 +496,8 @@
 
     document.addEventListener('DOMContentLoaded', function() {
 
-        if (!input.classList.contains('optional') && input.value !== '') {
-      label.classList.add('floating');
-    } else {
-      label.classList.remove('floating');
-    }
+    
+
     const phoneInput = document.getElementById('phone');
 
     phoneInput.addEventListener('input', function() {
