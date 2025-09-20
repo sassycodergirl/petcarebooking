@@ -54,7 +54,7 @@
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Your cart</span>
-          <span class="badge bg-primary rounded-pill">3</span>
+          <span class="badge bg-primary rounded-pill cart-count-badge">0</span>
         </h4>
         <ul class="list-group mb-3 checkout-cart-items">
          
@@ -384,6 +384,12 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             renderCheckoutCart(data.cart, data.totalPrice);
         });
+
+        // Update checkout badge count
+      const cartBadge = document.querySelector('.cart-count-badge');
+      if (cartBadge) {
+          cartBadge.textContent = cart.length;
+      }
 });
 </script>
 
