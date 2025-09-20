@@ -434,11 +434,84 @@
 
                   <div class="col-md-4">
                     <div class="input-group">
-                      <input type="text" class="input form-control" list="indian-states" id="billing_state" name="billing_state" autocomplete="off" required>
-                      <label class="user-label" for="billing_state">State</label>
-                      <div class="invalid-feedback">Please enter a valid state.</div>
+                      <select class="input form-control" id="billing_state" name="billing_state" required>
+                        <option value="" disabled selected></option> <!-- placeholder -->
+
+                        <!-- A -->
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+
+                        <!-- B -->
+                        <option value="Bihar">Bihar</option>
+
+                        <!-- C -->
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+
+                        <!-- D -->
+                        <option value="Delhi">Delhi</option>
+
+                        <!-- G -->
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+
+                        <!-- H -->
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+
+                        <!-- J -->
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+
+                        <!-- K -->
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+
+                        <!-- L -->
+                        <option value="Ladakh">Ladakh</option>
+
+                        <!-- M -->
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+
+                        <!-- N -->
+                        <option value="Nagaland">Nagaland</option>
+
+                        <!-- O -->
+                        <option value="Odisha">Odisha</option>
+
+                        <!-- P -->
+                        <option value="Punjab">Punjab</option>
+                        <option value="Puducherry">Puducherry</option>
+
+                        <!-- R -->
+                        <option value="Rajasthan">Rajasthan</option>
+
+                        <!-- S -->
+                        <option value="Sikkim">Sikkim</option>
+
+                        <!-- T -->
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+
+                        <!-- U -->
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+
+                        <!-- W -->
+                        <option value="West Bengal">West Bengal</option>
+                      </select>
+                      <label for="billing_state" class="user-label">State</label>
+                      <div class="invalid-feedback">
+                        Please provide a valid state.
+                      </div>
                     </div>
                   </div>
+
 
                   <div class="col-md-4">
                     <div class="input-group">
