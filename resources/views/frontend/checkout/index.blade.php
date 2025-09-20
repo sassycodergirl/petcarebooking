@@ -240,6 +240,23 @@
           font-size: 12px;
 }
 
+.tooltip-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  cursor: pointer;
+  background: #ddd;
+  color: #333;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 18px;
+}
+
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
             font-size: 3.5rem;
@@ -467,6 +484,10 @@
                       <div class="invalid-feedback">
                         Please enter a valid 10-digit phone number.
                       </div>
+                      <!-- Tooltip icon -->
+                      <span class="tooltip-icon" data-bs-toggle="tooltip" title="In case we need to contact you about your order">
+                        ?
+                      </span>
                     </div>
                    </div>
 
@@ -955,7 +976,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+})
+</script>
 
 
   </body>
