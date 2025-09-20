@@ -179,7 +179,7 @@
             </div>
 
             
-                <div class="col-12 mb-5">
+                <div class="col-12 mb-4">
                     <div class="input-group">
                       <input type="email" class="input form-control" id="email" name="email" autocomplete="off" required>
                       <label for="email" class="user-label">Email</label>
@@ -370,13 +370,11 @@
 
            
 
-              <!-- <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="same-address">
-                <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
-              </div> -->
+         
 
               <!-- Billing Choice -->
-            <div class="col-12 mb-3">
+            <div class="col-12 my-3">
+            <h4 class="mb-3">Billing address</h4>
               <div class="billing-choice">
                 <label>
                   <input type="radio" class="form-check-input" name="billing_address_selector" id="billing_same" checked>
@@ -459,10 +457,10 @@
                 </div>
               </div>
 
-              <div class="form-check">
+              <!-- <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="save-info">
                 <label class="form-check-label" for="save-info">Save this information for next time</label>
-              </div>
+              </div> -->
 
            
 
