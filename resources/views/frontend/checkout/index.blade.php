@@ -154,8 +154,11 @@
 .paynow-btn{
       background: #000000;
       color:#fff;
+      font-weight:600;
 }
-
+.paynow-btn:hover{
+   background: #ff9603;
+}
 .payment-header{
   border: 1px solid #000;
   border-bottom-right-radius: 0;
