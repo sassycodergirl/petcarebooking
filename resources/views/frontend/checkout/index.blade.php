@@ -59,6 +59,7 @@
  font-size: 1rem;
  color: #f5f5f5;
  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+ width: 100%;
 }
 
 .user-label {
@@ -77,7 +78,7 @@
 
 .input:focus ~ label, input:valid ~ label {
  transform: translateY(-50%) scale(0.8);
- /* background-color: #212121; */
+ background-color:#fff;
  padding: 0 .2em;
  color:#000;
  font-weight:700;
