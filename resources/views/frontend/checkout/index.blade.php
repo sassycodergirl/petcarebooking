@@ -257,7 +257,7 @@
      style="position: fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:9999;">
     <img src="{{ asset('images/loader.gif') }}" alt="Loading..." width="60">
 </div>
-  <main style="display:none;">
+  <main id="checkout-content" style="display:none;">
     <div class="header-checkout text-center py-3 bg-white">
       <div class="container">
         <div class="row align-items-center">
