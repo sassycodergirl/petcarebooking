@@ -44,10 +44,30 @@
     
 <div class="container">
   <main>
-    <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h2>Checkout form</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    <div class="header-checkout text-center">
+      <div class="row">
+        <div class="col-md-6">
+    
+             <a class="navbar-brand" href="{{ route('index') }}"><img src="{{asset('images/logo.png')}}" alt></a>
+          
+        </div>
+        <div class="col-md-6">
+          <div>
+                <a href="#" class="cd-button cart-btn">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512">
+                                      <circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round"
+                                          stroke-linejoin="round" stroke-width="32" />
+                                      <circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round"
+                                          stroke-linejoin="round" stroke-width="32" />
+                                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="32" d="M48 80h64l48 272h256" />
+                                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="32" d="M160 288h249.44a8 8 0 0 0 7.85-6.43l28.8-144a8 8 0 0 0-7.85-9.57H128" />
+                                  </svg>
+                              </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="row g-5">
