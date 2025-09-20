@@ -170,7 +170,11 @@
     justify-content: end;
     flex-wrap: wrap;
 }
-
+.payment-icons span{
+    background: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+}
 #razorpay_express_info{
   height: auto;overflow: visible;border: 1px solid #c1c1c1; border-top: none;border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
