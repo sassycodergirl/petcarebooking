@@ -45,6 +45,7 @@
 
   <main>
     <div class="header-checkout text-center py-2 bg-white">
+      <div class="container">
       <div class="row">
         <div class="col-6 col-md-6 text-start">
           <a class="navbar-brand" href="{{ route('index') }}"><img src="{{asset('images/logo.png')}}" alt></a>
@@ -65,7 +66,9 @@
         </div>
       </div>
     </div>
-
+    </div>
+    
+    <div class="container">
     <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -254,6 +257,7 @@
           <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
         </form>
       </div>
+    </div>
     </div>
   </main>
 
