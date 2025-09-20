@@ -17,7 +17,9 @@
     .container {
   max-width: 1140px;
 }
-
+.header-checkout{
+	    border-bottom: 1px solid #dedede;
+}
 </style>
 
     <style>
