@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 mt-5 mt-md-0">
+                <div class="col-12 col-md-6 mt-3 mt-md-0">
                     <div class="product-information content-sec p-3 p-md-5">
                         <h1 class="product-title">{{ $product->name }}</h1>
                         <p class="h4">₹{{ $product->price }}</p>
