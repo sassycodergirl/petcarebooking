@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
         cartItemsContainer.innerHTML = '';
 
         if (!Array.isArray(cart)) cart = Object.values(cart);
+         const checkoutBtn = document.querySelector('.btn-checkout');
 
          if (cart.length === 0) {
         cartItemsContainer.innerHTML = `
@@ -156,6 +157,10 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         `;
         cartTotalEl.textContent = '0.00';
+        if (checkoutBtn) {
+            checkoutBtn.setAttribute('disabled', 'true');
+            checkoutBtn.classList.add('disabled'); // optional for styling
+        }
         return;
     }
 
