@@ -149,6 +149,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!Array.isArray(cart)) cart = Object.values(cart);
 
+         if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+            <div class="empty-cart text-center py-5">
+                <p>Your cart is empty!.</p>
+            </div>
+        `;
+        cartTotalEl.textContent = '0.00';
+        return;
+    }
+
         cart.forEach(item => {
             let variantInfo = '';
             if (item.size || item.color_name) {
