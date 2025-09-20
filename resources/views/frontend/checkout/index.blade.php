@@ -666,7 +666,7 @@
               <span class="text-black">Your cart</span>
               <span class="badge bg-black rounded-pill cart-count-badge"></span>
             </h4>
-            <ul class="list-group mb-3 checkout-cart-items">
+            <ul class="list-group mb-3 checkout-cart-items gap-4">
             
               <!-- <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
