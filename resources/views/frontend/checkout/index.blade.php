@@ -42,14 +42,14 @@
   </head>
   <body class="bg-light">
     
-<div class="container">
+
   <main>
-    <div class="header-checkout text-center">
+    <div class="header-checkout text-center py-2 bg-white">
       <div class="row">
-        <div class="col-6 col-md-6">
+        <div class="col-6 col-md-6 text-start">
           <a class="navbar-brand" href="{{ route('index') }}"><img src="{{asset('images/logo.png')}}" alt></a>
         </div>
-        <div class="col-6 col-md-6">
+        <div class="col-6 col-md-6 text-end">
           <a href="#" class="cd-button cart-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512">
                 <circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round"
@@ -265,7 +265,7 @@
       <li class="list-inline-item"><a href="#">Support</a></li>
     </ul>
   </footer>
-</div>
+
 
 
     <script src="{{asset('js/jquery-min.js')}}"></script>
