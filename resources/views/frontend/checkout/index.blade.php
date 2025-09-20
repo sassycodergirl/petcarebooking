@@ -554,9 +554,11 @@
                   <!-- Razorpay Radio Option (Default Selected, Cannot Deselect) -->
                 <div class="row">
                   <div class="col-6 col-md-6">
-                    <input type="radio" class="form-check-input" id="razorpay_express" name="payment_method" checked readonly onclick="return false;">
-                    <span for="razorpay_express" class="">
-                      Razorpay Express Checkout (UPI,Cards,Wallets,NetBanking) </span>
+                    <div class="d-flex g-2">
+                      <input type="radio" class="form-check-input" id="razorpay_express" name="payment_method" checked readonly onclick="return false;">
+                      <span for="razorpay_express" class="">
+                        Razorpay Express Checkout (UPI,Cards,Wallets,NetBanking) </span>
+                     </div>
                   </div>
                   <div class="col-6 col-md-6">
                     <div class="payment-icons" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
