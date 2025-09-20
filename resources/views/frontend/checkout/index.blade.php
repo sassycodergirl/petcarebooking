@@ -36,6 +36,9 @@
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
+        .border-right{
+           border-right: 1px solid #dedede;
+        }
       }
     </style>
 
@@ -75,7 +78,7 @@
     <div class="container">
       <div class="row">
     
-        <div class="col-md-6 col-lg-6 p-md-5 p-4">
+        <div class="col-md-6 col-lg-6 p-md-5 p-4 border-right">
           <div class="form-div">
             <h4 class="mb-3">Billing address</h4>
             <form class="needs-validation" novalidate>
