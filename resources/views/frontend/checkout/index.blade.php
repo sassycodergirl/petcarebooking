@@ -139,31 +139,29 @@
             <form class="needs-validation" novalidate>
               <div class="row g-3">
                 <div class="col-sm-6">
-                  <!-- <label for="firstName" class="form-label">First name</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="First Name" value="" required>
-                  <div class="invalid-feedback">
-                    Valid first name is required.
-                  </div> -->
-
-                  <div class="input-group">
+                    <div class="input-group">
                      <input type="text" class="input form-control" id="firstName" name="firstName" autocomplete="off" value="" required>
-                    <label class="user-label">First Name</label>
+                        <label class="user-label">First Name</label>
                         <div class="invalid-feedback">
-                        Valid first name is required.
-                      </div>
-                  </div>
-
-                  
-
-
+                          Valid first name is required.
+                         </div>
+                    </div>
                 </div>
 
                 <div class="col-sm-6">
                   <!-- <label for="lastName" class="form-label">Last name</label> -->
-                  <input type="text" class="form-control" id="lastName" placeholder="Last Name" value="" required>
+                  <!-- <input type="text" class="form-control" id="lastName" placeholder="Last Name" value="" required>
                   <div class="invalid-feedback">
                     Valid last name is required.
-                  </div>
+                  </div> -->
+
+                    <div class="input-group">
+                     <input type="text" class="input form-control" id="lastName" name="lasttName" autocomplete="off" value="" required>
+                        <label class="user-label">Last Name</label>
+                        <div class="invalid-feedback">
+                          Valid last name is required.
+                         </div>
+                    </div>
                 </div>
 
 <!-- 
@@ -176,30 +174,43 @@
                 </div> -->
 
                 <div class="col-12">
-                  <label for="address" class="form-label">Address</label>
+                  <!-- <label for="address" class="form-label">Address</label>
                   <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
                   <div class="invalid-feedback">
                     Please enter your shipping address.
-                  </div>
+                  </div> -->
+
+                   <div class="input-group">
+                     <input type="text" class="input form-control" id="address" name="address" autocomplete="off" value="" required>
+                        <label class="user-label">Last Name</label>
+                        <div class="invalid-feedback">
+                           Please enter your shipping address.
+                         </div>
+                    </div>
+
+                  
                 </div>
 
                 <div class="col-12">
                   <!-- <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label> -->
-                  <input type="text" class="form-control" id="address2" placeholder="Apartment, suite, etc. (optional)">
-                </div>
-
-                <div class="col-md-5">
-                  <label for="country" class="form-label">City</label>
-                  <select class="form-select" id="city" required>
-                    <option value="">Choose...</option>
-                    <option>United States</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please select a valid country.
-                  </div>
+                  <!-- <input type="text" class="form-control" id="address2" placeholder="Apartment, suite, etc. (optional)"> -->
+                   <div class="input-group">
+                     <input type="text" class="input form-control" id="address2" name="address-extra" autocomplete="off" value="" required>
+                        <label class="user-label">Apartment, suite, etc. (optional)</label>
+                    </div>
                 </div>
 
                 <div class="col-md-4">
+                  <div class="input-group">
+                    <input type="text" class="input form-control"  id="city" name="city" autocomplete="off" required>
+                    <label for="city" class="user-label">City</label>
+                    <div class="invalid-feedback">
+                      Please enter a valid city.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="col-md-4">
                   <label for="state" class="form-label">State</label>
                   <select class="form-select" id="state" required>
                     <option value="">Choose...</option>
@@ -208,24 +219,119 @@
                   <div class="invalid-feedback">
                     Please provide a valid state.
                   </div>
+                </div> -->
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                      <input type="text" 
+                            class="input form-control" 
+                            id="state" 
+                            name="state" 
+                            list="indian-states" 
+                            autocomplete="off" 
+                            required>
+                      <label for="state" class="user-label">State</label>
+                      <div class="invalid-feedback">
+                        Please provide a valid state.
+                      </div>
+                    </div>
+
+                    <datalist id="indian-states">
+                        <!-- A -->
+                        <option value="Andhra Pradesh">
+                        <option value="Arunachal Pradesh">
+                        <option value="Assam">
+
+                        <!-- B -->
+                        <option value="Bihar">
+
+                        <!-- C -->
+                        <option value="Chhattisgarh">
+
+                        <!-- D -->
+                        <option value="Delhi">
+
+                        <!-- G -->
+                        <option value="Goa">
+                        <option value="Gujarat">
+
+                        <!-- H -->
+                        <option value="Haryana">
+                        <option value="Himachal Pradesh">
+
+                        <!-- J -->
+                        <option value="Jharkhand">
+                        <option value="Jammu and Kashmir">
+
+                        <!-- K -->
+                        <option value="Karnataka">
+                        <option value="Kerala">
+
+                        <!-- L -->
+                        <option value="Ladakh">
+
+                        <!-- M -->
+                        <option value="Madhya Pradesh">
+                        <option value="Maharashtra">
+                        <option value="Manipur">
+                        <option value="Meghalaya">
+                        <option value="Mizoram">
+
+                        <!-- N -->
+                        <option value="Nagaland">
+
+                        <!-- O -->
+                        <option value="Odisha">
+
+                        <!-- P -->
+                        <option value="Punjab">
+                        <option value="Puducherry">
+
+                        <!-- R -->
+                        <option value="Rajasthan">
+
+                        <!-- S -->
+                        <option value="Sikkim">
+
+                        <!-- T -->
+                        <option value="Tamil Nadu">
+                        <option value="Telangana">
+                        <option value="Tripura">
+
+                        <!-- U -->
+                        <option value="Uttar Pradesh">
+                        <option value="Uttarakhand">
+
+                        <!-- W -->
+                        <option value="West Bengal">
+                      </datalist>
+
+                  </div>
+
+
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <input type="text" class="input form-control" id="zip" name="zip" autocomplete="off" required>
+                    <label for="zip" class="user-label">PIN Code</label>
+                    <div class="invalid-feedback">
+                      PIN code required.
+                    </div>
+                  </div>
                 </div>
 
-                <div class="col-md-3">
-                  <label for="zip" class="form-label">PIN Code</label>
-                  <input type="text" class="form-control" id="zip" placeholder="" required>
+              </div>
+
+               <div class="col-12">
+                <div class="input-group">
+                  <input type="tel" class="input form-control" id="phone" name="phone" autocomplete="off" 
+                        required pattern="[0-9]{10}" maxlength="10" placeholder="Phone">
+                  <label for="phone" class="user-label">Phone</label>
                   <div class="invalid-feedback">
-                    PIN code required.
+                    Please enter a valid 10-digit phone number.
                   </div>
                 </div>
               </div>
 
-                <div class="col-12">
-                  <label for="phone" class="form-label">Phone</label>
-                  <input type="tel" class="form-control" id="phone" placeholder="Phone">
-                  <div class="invalid-feedback">
-                    Please enter a valid Phone Number for shipping updates.
-                  </div>
-                </div> 
 
               <hr class="my-4">
 
@@ -346,25 +452,51 @@
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script>
+    // (function () {
+    //   'use strict'
+
+    //   // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    //   var forms = document.querySelectorAll('.needs-validation')
+
+    //   // Loop over them and prevent submission
+    //   Array.prototype.slice.call(forms)
+    //     .forEach(function (form) {
+    //       form.addEventListener('submit', function (event) {
+    //         if (!form.checkValidity()) {
+    //           event.preventDefault()
+    //           event.stopPropagation()
+    //         }
+
+    //         form.classList.add('was-validated')
+    //       }, false)
+    //     })
+    // })()
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const phoneInput = document.getElementById('phone');
+
+    phoneInput.addEventListener('input', function() {
+        // Remove any non-digit character
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    // Existing Bootstrap validation
     (function () {
-      'use strict'
-
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.querySelectorAll('.needs-validation')
-
-      // Loop over them and prevent submission
-      Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-          form.addEventListener('submit', function (event) {
-            if (!form.checkValidity()) {
-              event.preventDefault()
-              event.stopPropagation()
-            }
-
-            form.classList.add('was-validated')
-          }, false)
-        })
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
     })()
+});
+
     </script>
 
     <script>
