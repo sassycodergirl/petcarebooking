@@ -257,7 +257,7 @@
      style="position: fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:9999;">
     <img src="{{ asset('images/loader.gif') }}" alt="Loading..." width="60">
 </div>
-  <main id="checkout-content" style="display:none;">
+  <main>
     <div class="header-checkout text-center py-3 bg-white">
       <div class="container">
         <div class="row align-items-center">
@@ -717,19 +717,6 @@
               <span class="badge bg-black rounded-pill cart-count-badge"></span>
             </h4>
             <ul class="list-group mb-3 checkout-cart-items gap-3">
-            
-              <!-- <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                  <h6 class="my-0">Third item</h6>
-                  <small class="text-muted">Brief description</small>
-                </div>
-                <span class="text-muted">$5</span>
-              </li> -->
-          
-              <!-- <li class="list-group-item d-flex justify-content-between">
-                <span>Total (USD)</span>
-                <strong>$20</strong>
-              </li> -->
             </ul>
 
             <li class="list-group-item d-flex justify-content-between price-point">
@@ -755,15 +742,7 @@
 
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          // Wait until everything is ready
-          window.onload = function() {
-              document.getElementById("checkout-loader").style.display = "none";
-              document.getElementById("checkout-content").style.display = "block";
-          }
-      });
-</script>
+
     <script>
     
 
@@ -801,6 +780,16 @@
       document.addEventListener('DOMContentLoaded', function () {
           const checkoutCartContainer = document.querySelector('.checkout-cart-items');
           const checkoutTotalEl = document.querySelector('.checkout-total');
+          const loader = document.getElementById('checkout-loader');
+
+          
+          function showLoader() {
+              loader.style.display = "flex";
+          }
+
+          function hideLoader() {
+              loader.style.display = "none";
+          }
 
           function renderCheckoutCart(cart, totalPrice) {
               checkoutCartContainer.innerHTML = '';
@@ -812,6 +801,7 @@
                       <li class="list-group-item text-center">Your cart is empty!</li>
                   `;
                   checkoutTotalEl.textContent = '0.00';
+                   hideLoader();
                   return;
               }
 
@@ -864,6 +854,7 @@
           }
 
               attachCartEvents();
+               hideLoader();
           }
 
           function attachCartEvents() {
@@ -879,6 +870,7 @@
           }
 
           function updateQty(key, change) {
+             showLoader();
               const input = checkoutCartContainer.querySelector(`.qty[data-key="${key}"]`);
               if (!input) return;
 
@@ -897,6 +889,7 @@
           }
 
           function removeCartItem(key) {
+            showLoader();
               fetch(`{{ url('/cart/remove') }}/${key}`, {
                   method: 'POST',
                   headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
@@ -908,6 +901,7 @@
           }
 
           // Load initial cart
+           showLoader();
           fetch(`{{ url('/cart/items') }}`)
               .then(res => res.json())
               .then(data => {
