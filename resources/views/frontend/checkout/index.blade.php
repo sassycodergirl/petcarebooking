@@ -3,55 +3,44 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-  
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Checkout</title>
-
-
-    
-
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/logo.png')}}">
+    <title>Checkout-Furry & Friends</title>
     <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-<style>
-
-
-.header-checkout{
-	    border-bottom: 1px solid #dedede;
-}
-
-.order-md-last{
-  background:#f5f5f5;
-}
-   
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-        .border-right{
-           border-right: 1px solid #dedede;
-        }
-      }
-    </style>
-
-    
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Custom styles for this template -->
     <link href="form-validation.css" rel="stylesheet">
+    <style>
+        .header-checkout{
+              border-bottom: 1px solid #dedede;
+        }
+
+        .order-md-last{
+          background:#f5f5f5;
+        }
+          
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+        }
+
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+          .border-right{
+            border-right: 1px solid #dedede;
+          }
+        }
+    </style>
   </head>
   <body>
     
 
   <main>
     <div class="header-checkout text-center py-3 bg-white">
-     
       <div class="container">
         <div class="row align-items-center">
           <div class="col-6 col-md-6 text-start">
