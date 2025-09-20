@@ -6371,7 +6371,12 @@ blockquote {
 .gallery-main .main-slide img {
     width: 100%;
 }
-
+.gallery-main .slick-next.slick-arrow {
+	right: 0;
+}
+.gallery-main .slick-prev.slick-arrow {
+	left: 0;
+}
 .product-page-cart{
 	    background-color: var(--bg-text-color);
 		color: #fff;
