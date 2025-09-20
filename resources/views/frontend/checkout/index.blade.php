@@ -448,12 +448,12 @@
             <h4 class="mb-3">Billing address</h4>
              <div class="billing-choice">
                 <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_same" checked>
-                <label for="billing_same">Same as shipping address</label>
+                <span for="billing_same">Same as shipping address</span>
               </div>
 
               <div class="billing-choice">
                 <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_different">
-                <label for="billing_different">Use a different billing address</label>
+                <span for="billing_different">Use a different billing address</span>
               </div>
             </div>
 
