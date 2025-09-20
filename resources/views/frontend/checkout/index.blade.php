@@ -155,10 +155,17 @@
 
 .payment-header{
   border: 1px solid #000;
-  border-bottom-right-radius: 1;
+  border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  border-top-right-radius:7px;
+  border-top-right-radius:7px !important;
   border-top-left-radius: 7px;
+}
+.payment-icons{
+  display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: end;
+    flex-wrap: wrap;
 }
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
@@ -577,7 +584,7 @@
                       </div>
                     </div>
                     <div class="col-6 col-md-6">
-                      <div class="payment-icons" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                      <div class="payment-icons">
                           <img src="https://www.vectorlogo.zone/logos/upi/upi-ar21.svg" alt="Razorpay" width="50">
                           <img src="https://cdn.razorpay.com/assets/visa.svg" alt="Visa" width="38">
                           <img src="https://cdn.razorpay.com/assets/mastercard.svg" alt="MasterCard" width="38">
