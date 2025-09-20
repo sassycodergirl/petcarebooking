@@ -71,7 +71,7 @@
 
 .input {
   font-family: var(--default-heading-font);
- border: solid 1.5px #8b8b8b;
+ border: solid 1.5px #cbcbcb;
  border-radius: 8px !important;
  background: none;
  padding: 0.8rem;
@@ -109,7 +109,7 @@
 }
 /* Optional input - default when empty */
 .input.optional:placeholder-shown {
-  border: 1.5px solid #8b8b8b;
+  border: 1.5px solid #cbcbcb;
 }
 
 .input.optional:placeholder-shown ~ .user-label {
@@ -188,8 +188,15 @@
   height: auto;overflow: visible;border: 1px solid #c1c1c1; border-top: none;border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
 }
+.text-sub{
+      color: slategray;
+}
 .price-point{
   font-size:1.3em;
+}
+.billing-choice{
+    padding: 15px;
+    border: 1px solid #cbcbcb;
 }
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
@@ -594,8 +601,8 @@
 
              
               <div class="col-12 mt-2 mb-4">
-                 <h4 class="mb-3">Select Payment Method</h4>
-                 <p>All transactions are secure and encrypted.</p>
+                 <h4 class="mb-2">Payment Method</h4>
+                 <p class="text-sub">All transactions are secure and encrypted.</p>
                 <div class="bg-lightgraay">
 
                   <!-- Razorpay Radio Option (Default Selected, Cannot Deselect) -->
@@ -790,7 +797,7 @@
 
                   const html = `
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-start me-3 flex-grow-1">
+                        <div class="d-flex align-items-center me-3 flex-grow-1">
                             <img src="${item.image}" alt="${item.name}" 
                                 class="me-3" style="width:60px; height:60px; object-fit:cover; border-radius:6px;">
                             <div>
