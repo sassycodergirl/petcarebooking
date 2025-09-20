@@ -139,12 +139,12 @@
             <form class="needs-validation" novalidate>
 
            
-            <div class="row">
+            <div class="row mb-3">
               <div class="col-6 col-md-6">
                  <h4 class="mb-3">Contact</h4>
               </div>
-              <div class="col-6 col-md-6">
-                <a href="javascript:void(0)">Sign In</a>
+              <div class="col-6 col-md-6 text-end">
+                <a href="javascript:void(0)" class="text-black">Sign In</a>
               </div>
             </div>
 
@@ -169,7 +169,7 @@
 
 
 
-            <h4 class="mb-3">Shipping & Delivery</h4>
+            <h4 class="my-3">Shipping & Delivery</h4>
               <div class="row g-3">
                 <div class="col-sm-6">
                     <div class="input-group">
