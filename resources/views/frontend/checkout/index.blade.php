@@ -148,6 +148,9 @@
 .bg-lightgraay{
   background: #f5f5f5;
 }
+.payment-info{
+      max-width: 350px;
+}
 .paynow-btn{
       background: #000000;
       color:#fff;
@@ -574,7 +577,7 @@
                 <div class="input-group bg-lightgraay">
 
                   <!-- Razorpay Radio Option (Default Selected, Cannot Deselect) -->
-                <div class="payment-header">
+                <div class="payment-header p-4">
                   <div class="row">
                     <div class="col-6 col-md-6">
                       <div class="d-flex g-2">
@@ -594,14 +597,13 @@
                   </div>
                </div>
                   <!-- Info Section Always Expanded -->
-                  <div id="razorpay_express_info" class="payment-info text-center" style="height: auto; overflow: visible;">
+                  <div id="razorpay_express_info" class="payment-info text-center py-2" style="height: auto; overflow: visible;">
                     <div class="mb-3">
                       <img class="img-fluid" src="{{asset('images/secure-payment.png')}}" alt="secure-payment">
                     </div>
                     <div class="payment-content">
                       <p>
-                        After clicking “Pay now”, you will be redirected to Razorpay Express Checkout 
-                        to complete your purchase securely.
+                        After clicking “Pay now”, you will be redirected to Razorpay Payments (UPI,Cards,Wallets,NetBanking) to complete your purchase securely.
                       </p>
                     
                     </div>
