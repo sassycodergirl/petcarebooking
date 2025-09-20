@@ -531,7 +531,7 @@
 
                   <div class="col-12">
                     <div class="input-group">
-                      <input type="tel" class="input form-control" id="billing_phone" name="billing_phone" autocomplete="off" required pattern="[0-9]{10}">
+                      <input type="tel" class="input form-control" id="phone" name="billing_phone" autocomplete="off" required pattern="[0-9]{10}">
                       <label class="user-label" for="billing_phone">Phone</label>
                       <div class="invalid-feedback">Please enter a valid Phone Number.</div>
                     </div>
