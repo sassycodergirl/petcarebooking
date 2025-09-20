@@ -170,6 +170,10 @@
     justify-content: end;
     flex-wrap: wrap;
 }
+
+#razorpay_express_info{
+  height: auto;overflow: visible;border: 1px solid #c1c1c1;
+}
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
             font-size: 3.5rem;
@@ -614,7 +618,7 @@
                   </div>
                </div>
                   <!-- Info Section Always Expanded -->
-                  <div id="razorpay_express_info" class="text-center py-2 " style="height: auto; overflow: visible;">
+                  <div id="razorpay_express_info" class="text-center py-2 ">
                     <div class="payment-info m-auto">
                     <div class="mb-3">
                       <img class="img-fluid" src="{{asset('images/secure-payment.png')}}" alt="secure-payment">
