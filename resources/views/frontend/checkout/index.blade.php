@@ -197,6 +197,7 @@
 .billing-choice{
     padding: 15px;
     border: 1px solid #cbcbcb;
+    cursor:pointor;
 }
 .form-check-input:checked {
     background-color: #000000;
@@ -911,7 +912,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-  
+
   document.querySelectorAll('.billing-choice').forEach(choice => {
   choice.addEventListener('click', () => {
     // Unselect all
