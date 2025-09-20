@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
          if (cart.length === 0) {
         cartItemsContainer.innerHTML = `
             <div class="empty-cart text-center py-5">
-                <p>Your cart is empty!.</p>
+                <p>Your cart is empty!</p>
             </div>
         `;
         cartTotalEl.textContent = '0.00';
