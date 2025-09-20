@@ -57,7 +57,7 @@
  background: none;
  padding: 1rem;
  font-size: 1.2rem;
- color: #f5f5f5;
+ color: #000;
  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
  width: 100%;
 }
