@@ -56,11 +56,16 @@
  border-radius: 8px !important;
  background: none;
  padding: 1rem;
- font-size: 1rem;
+ font-size: 1.2rem;
  color: #f5f5f5;
  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
  width: 100%;
 }
+.input::placeholder{
+  color:#000;
+  opacity: 1;
+}
+
 
 .user-label {
  position: absolute;
@@ -73,7 +78,7 @@
 
 .input:focus, input:valid {
  outline: none;
- border: 1.5px solid #1a73e8;
+ border: 2px solid #000;
 }
 
 .input:focus ~ label, input:valid ~ label {
