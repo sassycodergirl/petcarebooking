@@ -614,7 +614,8 @@
                   </div>
                </div>
                   <!-- Info Section Always Expanded -->
-                  <div id="razorpay_express_info" class="payment-info text-center py-2 m-auto" style="height: auto; overflow: visible;">
+                  <div id="razorpay_express_info" class="text-center py-2 " style="height: auto; overflow: visible;">
+                    <div class="payment-info m-auto">
                     <div class="mb-3">
                       <img class="img-fluid" src="{{asset('images/secure-payment.png')}}" alt="secure-payment">
                     </div>
@@ -625,7 +626,7 @@
                     
                     </div>
                   </div>
-
+                  </div>
                 </div>
               </div>
 
