@@ -373,7 +373,7 @@
          
 
               <!-- Billing Choice -->
-            <div class="col-12 my-5">
+            <div class="col-12 my-4">
             <h4 class="mb-3">Billing address</h4>
               <div class="billing-choice">
                 <label>
@@ -439,7 +439,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="input-group">
                       <input type="text" class="input form-control" id="billing_zip" name="billing_zip" autocomplete="off" required>
                       <label class="user-label" for="billing_zip">PIN Code</label>
