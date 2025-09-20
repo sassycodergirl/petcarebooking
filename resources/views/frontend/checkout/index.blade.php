@@ -756,15 +756,16 @@
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script>
-    <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Wait until everything is ready
-    window.onload = function() {
-        document.getElementById("checkout-loader").style.display = "none";
-        document.getElementById("checkout-content").style.display = "block";
-    }
-});
+      document.addEventListener("DOMContentLoaded", function() {
+          // Wait until everything is ready
+          window.onload = function() {
+              document.getElementById("checkout-loader").style.display = "none";
+              document.getElementById("checkout-content").style.display = "block";
+          }
+      });
 </script>
+    <script>
+    
 
     document.addEventListener('DOMContentLoaded', function() {
 
