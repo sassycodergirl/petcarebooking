@@ -149,7 +149,7 @@
   background: #f5f5f5;
 }
 .payment-info{
-      max-width: 350px;
+      max-width: 385px;
 }
 .paynow-btn{
       background: #000000;
@@ -618,7 +618,7 @@
                   </div>
                </div>
                   <!-- Info Section Always Expanded -->
-                  <div id="razorpay_express_info" class="text-center py-2 ">
+                  <div id="razorpay_express_info" class="text-center py-2 px-4">
                     <div class="payment-info m-auto">
                     <div class="mb-3">
                       <img class="img-fluid" src="{{asset('images/secure-payment.png')}}" alt="secure-payment">
