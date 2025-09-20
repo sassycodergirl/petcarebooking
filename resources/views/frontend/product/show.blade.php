@@ -189,6 +189,15 @@ $(document).ready(function(){
  
 
     function updateGallery(size, colorId) {
+
+    // Save the current scroll position
+    const scrollTop = $(window).scrollTop();
+
+    // Temporarily prevent scrolling by storing overflow and setting it to hidden
+    const originalOverflow = $('body').css('overflow');
+    $('body').css('overflow', 'hidden');
+
+
     let variant = variantsData.find(v => v.size === size && v.color_id === colorId)
                   || variantsData.find(v => v.size === size)
                   || { gallery: [$('.add-to-bag').data('image')] };
@@ -241,9 +250,19 @@ $(document).ready(function(){
         });
 
         // Manually sync the thumbnail when the main image changes
+        // galleryMain.on('afterChange', function(event, slick, currentSlide) {
+        //     galleryThumbs.slick('slickGoTo', currentSlide);
+        // });
         galleryMain.on('afterChange', function(event, slick, currentSlide) {
-            galleryThumbs.slick('slickGoTo', currentSlide);
+            if (galleryThumbs.hasClass('slick-initialized')) {
+                galleryThumbs.slick('slickGoTo', currentSlide);
+            }
         });
+
+        // Restore scroll position and overflow
+        $(window).scrollTop(scrollTop);
+        $('body').css('overflow', originalOverflow);
+        
     }, 0); // A timeout of 0ms is all that's needed
 }
 
