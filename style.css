@@ -6349,10 +6349,14 @@ blockquote {
 }
 
 .gallery-thumbs {
-    width: 80px;
+    width: 20%;
     flex-shrink: 0; /* Prevents the thumbnail column from shrinking */
 }
 
+
+.thumb-slide{
+	width: 100%;
+}
 .gallery-thumbs .thumb-slide img {
     width: 100%;
     cursor: pointer;
