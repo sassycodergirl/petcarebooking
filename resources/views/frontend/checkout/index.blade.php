@@ -16,20 +16,20 @@
     @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
     /* font-family: "Nunito", sans-serif; */
           :root {
-      --scroll-behavior: smooth;
-      --default-body-font: "Nunito", sans-serif;
-      --default-heading-font: "Rubik", sans-serif;
-      --bg-white: #ffffff;
-      --bg-text-color: #3B2519;
-      --bg-h1-color: #2E1A0F;
-      --bg-orange: #FF9603;
-    }
-    h1, .h1-heading, h2, h3, h4, h5, h6 {
-    font-family: var(--default-heading-font);
-    margin: 0 0 20px 0;
-    font-weight: 700;
-    padding: 0;
-}
+            --scroll-behavior: smooth;
+            --default-body-font: "Nunito", sans-serif;
+            --default-heading-font: "Rubik", sans-serif;
+            --bg-white: #ffffff;
+            --bg-text-color: #3B2519;
+            --bg-h1-color: #2E1A0F;
+            --bg-orange: #FF9603;
+          }
+          h1, .h1-heading, h2, h3, h4, h5, h6 {
+          font-family: var(--default-heading-font);
+          margin: 0 0 20px 0;
+          font-weight: 700;
+          padding: 0;
+      }
         .header-checkout{
               border-bottom: 1px solid #dedede;
         }
@@ -80,43 +80,33 @@
     
         <div class="col-md-6 col-lg-6 p-md-5 p-4 border-right">
           <div class="form-div">
-            <h4 class="mb-3">Billing address</h4>
+            <h4 class="mb-3">Shipping & Delivery</h4>
             <form class="needs-validation" novalidate>
               <div class="row g-3">
                 <div class="col-sm-6">
-                  <label for="firstName" class="form-label">First name</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                  <!-- <label for="firstName" class="form-label">First name</label> -->
+                  <input type="text" class="form-control" id="firstName" placeholder="First Name" value="" required>
                   <div class="invalid-feedback">
                     Valid first name is required.
                   </div>
                 </div>
 
                 <div class="col-sm-6">
-                  <label for="lastName" class="form-label">Last name</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <!-- <label for="lastName" class="form-label">Last name</label> -->
+                  <input type="text" class="form-control" id="lastName" placeholder="Last Name" value="" required>
                   <div class="invalid-feedback">
                     Valid last name is required.
                   </div>
                 </div>
 
-                <div class="col-12">
-                  <label for="username" class="form-label">Username</label>
-                  <div class="input-group has-validation">
-                    <span class="input-group-text">@</span>
-                    <input type="text" class="form-control" id="username" placeholder="Username" required>
-                  <div class="invalid-feedback">
-                      Your username is required.
-                    </div>
-                  </div>
-                </div>
-
+<!-- 
                 <div class="col-12">
                   <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
                   <input type="email" class="form-control" id="email" placeholder="you@example.com">
                   <div class="invalid-feedback">
                     Please enter a valid email address for shipping updates.
                   </div>
-                </div>
+                </div> -->
 
                 <div class="col-12">
                   <label for="address" class="form-label">Address</label>
@@ -127,13 +117,13 @@
                 </div>
 
                 <div class="col-12">
-                  <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
-                  <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                  <!-- <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label> -->
+                  <input type="text" class="form-control" id="address2" placeholder="Apartment, suite, etc. (optional)">
                 </div>
 
                 <div class="col-md-5">
-                  <label for="country" class="form-label">Country</label>
-                  <select class="form-select" id="country" required>
+                  <label for="country" class="form-label">City</label>
+                  <select class="form-select" id="city" required>
                     <option value="">Choose...</option>
                     <option>United States</option>
                   </select>
@@ -154,13 +144,21 @@
                 </div>
 
                 <div class="col-md-3">
-                  <label for="zip" class="form-label">Zip</label>
+                  <label for="zip" class="form-label">PIN Code</label>
                   <input type="text" class="form-control" id="zip" placeholder="" required>
                   <div class="invalid-feedback">
-                    Zip code required.
+                    PIN code required.
                   </div>
                 </div>
               </div>
+
+                <div class="col-12">
+                  <label for="phone" class="form-label">Phone</label>
+                  <input type="tel" class="form-control" id="phone" placeholder="Phone">
+                  <div class="invalid-feedback">
+                    Please enter a valid Phone Number for shipping updates.
+                  </div>
+                </div> 
 
               <hr class="my-4">
 
