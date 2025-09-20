@@ -14,9 +14,8 @@
     <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 <style>
-    .container {
-  max-width: 1140px;
-}
+
+
 .header-checkout{
 	    border-bottom: 1px solid #dedede;
 }
@@ -73,7 +72,7 @@
       </div>
     </div>
     
-    <div class="checkout-container">
+    <div class="container">
       <div class="row">
     
         <div class="col-md-6 col-lg-6 p-md-5 p-4">
