@@ -589,108 +589,26 @@
                     <div class="col-6 col-md-6">
                       <div class="payment-icons">
                           <span><img src="https://www.vectorlogo.zone/logos/upi/upi-ar21.svg" alt="Razorpay" width="50"></span>
-                          <span><svg height="2em" width="2em"
-                              xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
-                              xmlns:dc="http://purl.org/dc/elements/1.1/"
-                              xmlns:cc="http://creativecommons.org/ns#"
-                              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-                              xmlns:svg="http://www.w3.org/2000/svg"
-                              xmlns="http://www.w3.org/2000/svg"
-                              xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-                              xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                              version="1.1"
-                              id="Layer_1"
-                              x="0px"
-                              y="0px"
-                              width="800px"
-                              height="800px"
-                              viewBox="0 0 750 471"
-                              enable-background="new 0 0 750 471"
-                              xml:space="preserve"
-                              sodipodi:docname="visa.svg"
-                              inkscape:version="0.92.2 5c3e80d, 2017-08-06">
-
-                            <metadata
-                                id="metadata4882">
-
-                            <rdf:RDF>
-
-                            <cc:Work
-                                    rdf:about="">
-
-                            <dc:format>image/svg+xml</dc:format>
-
-                            <dc:type
-                                      rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-
-                            </cc:Work>
-
-                            </rdf:RDF>
-
-                            </metadata>
-
-                            <defs
-                                id="defs4880" />
-
-                            <sodipodi:namedview
-                                pagecolor="#ffffff"
-                                bordercolor="#666666"
-                                borderopacity="1"
-                                objecttolerance="10"
-                                gridtolerance="10"
-                                guidetolerance="10"
-                                inkscape:pageopacity="0"
-                                inkscape:pageshadow="2"
-                                inkscape:window-width="1428"
-                                inkscape:window-height="869"
-                                id="namedview4878"
-                                showgrid="false"
-                                inkscape:zoom="0.384"
-                                inkscape:cx="83.333333"
-                                inkscape:cy="235.5"
-                                inkscape:window-x="164"
-                                inkscape:window-y="478"
-                                inkscape:window-maximized="0"
-                                inkscape:current-layer="Layer_1" />
-
-                            <title
-                                id="title4867">Slice 1</title>
-
-                            <desc
-                                id="desc4869">Created with Sketch.</desc>
-
-                            <g
-                                id="visa"
-                                sketch:type="MSLayerGroup">
-
-                            <path
-                                  id="Shape"
-                                  sketch:type="MSShapeGroup"
-                                  fill="#0E4595"
-                                  d="M278.198,334.228l33.36-195.763h53.358l-33.384,195.763H278.198   L278.198,334.228z" />
-
-                            <path
-                                  id="path13"
-                                  sketch:type="MSShapeGroup"
-                                  fill="#0E4595"
-                                  d="M524.307,142.687c-10.57-3.966-27.135-8.222-47.822-8.222   c-52.725,0-89.863,26.551-90.18,64.604c-0.297,28.129,26.514,43.821,46.754,53.185c20.77,9.597,27.752,15.716,27.652,24.283   c-0.133,13.123-16.586,19.116-31.924,19.116c-21.355,0-32.701-2.967-50.225-10.274l-6.877-3.112l-7.488,43.823   c12.463,5.466,35.508,10.199,59.438,10.445c56.09,0,92.502-26.248,92.916-66.884c0.199-22.27-14.016-39.216-44.801-53.188   c-18.65-9.056-30.072-15.099-29.951-24.269c0-8.137,9.668-16.838,30.559-16.838c17.447-0.271,30.088,3.534,39.936,7.5l4.781,2.259   L524.307,142.687" />
-
-                            <path
-                                  id="Path"
-                                  sketch:type="MSShapeGroup"
-                                  fill="#0E4595"
-                                  d="M661.615,138.464h-41.23c-12.773,0-22.332,3.486-27.941,16.234   l-79.244,179.402h56.031c0,0,9.16-24.121,11.232-29.418c6.123,0,60.555,0.084,68.336,0.084c1.596,6.854,6.492,29.334,6.492,29.334   h49.512L661.615,138.464L661.615,138.464z M596.198,264.872c4.414-11.279,21.26-54.724,21.26-54.724   c-0.314,0.521,4.381-11.334,7.074-18.684l3.607,16.878c0,0,10.217,46.729,12.352,56.527h-44.293V264.872L596.198,264.872z" />
-
-                            <path
-                                  d="M 45.878906 138.46484 L 45.197266 142.53711 C 66.290228 147.64311 85.129273 155.0333 101.62305 164.22656 L 148.96875 333.91406 L 205.42383 333.85156 L 289.42773 138.46484 L 232.90234 138.46484 L 180.66406 271.96094 L 175.09961 244.83008 C 174.83893 243.99185 174.55554 243.15215 174.26562 242.31055 L 156.10547 154.99219 C 152.87647 142.59619 143.50892 138.89684 131.91992 138.46484 L 45.878906 138.46484 z "
-                                  id="path16"
-                                  style="fill:#0e4595;fill-opacity:1" />
-
-                            </g>
-
-                            </svg></span>
-                          <img src="https://cdn.razorpay.com/assets/mastercard.svg" alt="MasterCard" width="38">
-                          <img src="https://cdn.razorpay.com/assets/upi.svg" alt="UPI" width="38">
+                          <span><svg width="2.5em" height="2.5em" viewBox="0 -86.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+                              <defs>
+                                  <linearGradient x1="45.9741966%" y1="-2.00617467%" x2="54.8768726%" y2="100%" id="linearGradient-1">
+                                      <stop stop-color="#222357" offset="0%"></stop>
+                                      <stop stop-color="#254AA5" offset="100%"></stop>
+                                  </linearGradient>
+                              </defs>
+                              <g>
+                                  <path d="M132.397094,56.2397455 C132.251036,44.7242808 142.65954,38.2977599 150.500511,34.4772086 C158.556724,30.5567233 161.262627,28.0430004 161.231878,24.5376253 C161.17038,19.1719416 154.805357,16.804276 148.847757,16.7120293 C138.454628,16.5505975 132.412467,19.5178668 127.607952,21.7625368 L123.864273,4.24334875 C128.684163,2.02174043 137.609033,0.084559486 146.864453,-7.10542736e-15 C168.588553,-7.10542736e-15 182.802234,10.7236802 182.879107,27.3511501 C182.963666,48.4525854 153.69071,49.6210438 153.890577,59.05327 C153.959762,61.912918 156.688728,64.964747 162.669389,65.7411565 C165.628971,66.133205 173.800493,66.433007 183.0636,62.1665965 L186.699658,79.11693 C181.718335,80.931115 175.314876,82.6684285 167.343223,82.6684285 C146.895202,82.6684285 132.512402,71.798691 132.397094,56.2397455 M221.6381,81.2078555 C217.671491,81.2078555 214.327548,78.8940005 212.836226,75.342502 L181.802894,1.24533061 L203.511621,1.24533061 L207.831842,13.1835926 L234.360459,13.1835926 L236.866494,1.24533061 L256,1.24533061 L239.303345,81.2078555 L221.6381,81.2078555 M224.674554,59.6067505 L230.939643,29.5804456 L213.781755,29.5804456 L224.674554,59.6067505 M106.076031,81.2078555 L88.9642665,1.24533061 L109.650591,1.24533061 L126.754669,81.2078555 L106.076031,81.2078555 M75.473185,81.2078555 L53.941265,26.7822953 L45.2316377,73.059396 C44.2092367,78.2252115 40.1734431,81.2078555 35.6917903,81.2078555 L0.491982464,81.2078555 L0,78.886313 C7.22599245,77.318119 15.4359498,74.7890215 20.409585,72.083118 C23.4537265,70.4303645 24.322383,68.985166 25.3217224,65.0569935 L41.8185094,1.24533061 L63.68098,1.24533061 L97.1972855,81.2078555 L75.473185,81.2078555" fill="url(#linearGradient-1)" transform="translate(128.000000, 41.334214) scale(1, -1) translate(-128.000000, -41.334214) "></path>
+                              </g>
+                          </svg>
+                          </span>
+                          <span><svg width="2.5em" height="2.5em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <g fill="none" fill-rule="evenodd">
+                                <circle cx="7" cy="12" r="7" fill="#EA001B"/>
+                                <circle cx="17" cy="12" r="7" fill="#FFA200" fill-opacity=".8"/>
+                              </g>
+                            </svg>
+                          </span>
+                          <span>+10</span>
                         </div>
                     </div>
                   </div>
