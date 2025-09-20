@@ -198,6 +198,15 @@
     padding: 15px;
     border: 1px solid #cbcbcb;
 }
+.form-check-input:checked {
+    background-color: #000000;
+    border-color: #000000;
+}
+
+.billing-choice:has(input[type="radio"]:checked) {
+  background: #f5f5f5;
+  border: 1px solid #000;
+}
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
             font-size: 3.5rem;
@@ -437,17 +446,14 @@
               <!-- Billing Choice -->
             <div class="col-12 my-4">
             <h4 class="mb-3">Billing address</h4>
-              <div class="billing-choice">
-                <label>
-                  <input type="radio" class="form-check-input" name="billing_address_selector" id="billing_same" checked>
-                  <span class="">Same as shipping address</span>
-                </label>
+             <div class="billing-choice">
+                <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_same" checked>
+                <label for="billing_same">Same as shipping address</label>
               </div>
+
               <div class="billing-choice">
-                <label class="mt-2">
-                  <input type="radio" class="form-check-input" name="billing_address_selector" id="billing_different">
-                  <span class="">Use a different billing address</span>
-                </label>
+                <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_different">
+                <label for="billing_different">Use a different billing address</label>
               </div>
             </div>
 
