@@ -50,7 +50,12 @@
           user-select: none;
         }
 
-   
+   .right-scroll{
+    position: sticky;
+    top: 20px;
+    right: 0;
+    transition: all 0.3s ease-in-out;
+   }
 .input-group {
  position: relative;
 }
@@ -692,7 +697,7 @@
         </div>
 
         <div class="col-md-6 col-lg-6 order-md-last p-md-5 p-4">
-          <div class="summary-box">
+          <div class="summary-box right-scroll">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
               <span class="text-black">Your cart</span>
               <span class="badge bg-black rounded-pill cart-count-badge"></span>
