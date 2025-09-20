@@ -61,7 +61,7 @@
  border: solid 1.5px #dedede;
  border-radius: 8px !important;
  background: none;
- padding: 1rem;
+ padding: 0.8rem;
  font-size: 1.2rem;
  color: #000;
  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
@@ -139,13 +139,14 @@
                   </div> -->
 
                   <div class="input-group">
-                     <input type="text" class="input" id="firstName" name="firstName" autocomplete="off" value="" required>
+                     <input type="text" class="input form-control" id="firstName" name="firstName" autocomplete="off" value="" required>
                     <label class="user-label">First Name</label>
+                        <div class="invalid-feedback">
+                        Valid first name is required.
+                      </div>
                   </div>
 
-                   <div class="invalid-feedback">
-                    Valid first name is required.
-                  </div>
+                  
 
 
                 </div>
