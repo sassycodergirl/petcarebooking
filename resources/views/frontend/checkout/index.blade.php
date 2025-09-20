@@ -260,147 +260,143 @@
 
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
+    (function () {
+      'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-
-    </script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const checkoutCartContainer = document.querySelector('.checkout-cart-items');
-    const checkoutTotalEl = document.querySelector('.checkout-total');
-
-    function renderCheckoutCart(cart, totalPrice) {
-        checkoutCartContainer.innerHTML = '';
-
-        if (!Array.isArray(cart)) cart = Object.values(cart);
-
-        if (cart.length === 0) {
-            checkoutCartContainer.innerHTML = `
-                <li class="list-group-item text-center">Your cart is empty!</li>
-            `;
-            checkoutTotalEl.textContent = '0.00';
-            return;
-        }
-
-        cart.forEach(item => {
-            let variantInfo = '';
-            if (item.size || item.color_name) {
-                let colorSpan = '';
-                if (item.color_hex) {
-                    colorSpan = `<span style="background-color:${item.color_hex};display:inline-block;width:12px;height:12px;border-radius:50%;margin-left:5px;"></span>`;
-                }
-                variantInfo = `<small class="text-muted">` +
-                    (item.size ? `Size: ${item.size}` : '') +
-                    (item.size && item.color_name ? ' | ' : '') +
-                    (item.color_name ? `Color: ${item.color_name} ${colorSpan}` : '') +
-                    `</small>`;
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
             }
 
-            const html = `
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div class="me-3 flex-grow-1">
-                        <h6 class="my-0">${item.name}</h6>
-                        ${variantInfo}
-                        <div class="d-flex align-items-center mt-1">
-                            <button class="btn btn-sm btn-outline-secondary qty-minus" data-key="${item.key}">-</button>
-                            <input type="text" value="${item.qty}" class="form-control form-control-sm text-center mx-2 qty" data-key="${item.key}" style="width:60px;" readonly>
-                            <button class="btn btn-sm btn-outline-secondary qty-plus" data-key="${item.key}">+</button>
-                        </div>
-                    </div>
-                    <div class="text-end">
-                        <span class="text-muted d-block">₹${(item.price * item.qty).toFixed(2)}</span>
-                        <button class="btn btn-sm btn-danger remove-item mt-1" data-key="${item.key}">×</button>
-                    </div>
-                </li>
-            `;
-            checkoutCartContainer.insertAdjacentHTML('beforeend', html);
-        });
-
-        checkoutTotalEl.textContent = totalPrice.toFixed(2);
-
-         // update badge with total quantity
-    const cartBadge = document.querySelector('.cart-count-badge');
-    if (cartBadge) {
-        let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-        cartBadge.textContent = totalQty;
-    }
-
-        attachCartEvents();
-    }
-
-    function attachCartEvents() {
-        checkoutCartContainer.querySelectorAll('.qty-plus').forEach(btn => 
-            btn.onclick = () => updateQty(btn.dataset.key, 1)
-        );
-        checkoutCartContainer.querySelectorAll('.qty-minus').forEach(btn => 
-            btn.onclick = () => updateQty(btn.dataset.key, -1)
-        );
-        checkoutCartContainer.querySelectorAll('.remove-item').forEach(btn => 
-            btn.onclick = () => removeCartItem(btn.dataset.key)
-        );
-    }
-
-    function updateQty(key, change) {
-        const input = checkoutCartContainer.querySelector(`.qty[data-key="${key}"]`);
-        if (!input) return;
-
-        let qty = parseInt(input.value) + change;
-        if (qty < 1) qty = 1;
-
-        fetch(`{{ url('/cart/update') }}/${key}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json','X-CSRF-TOKEN': '{{ csrf_token() }}' },
-            body: JSON.stringify({ qty })
+            form.classList.add('was-validated')
+          }, false)
         })
-        .then(res => res.json())
-        .then(data => {
-            renderCheckoutCart(data.cart, data.totalPrice);
-        });
-    }
+    })()
+    </script>
 
-    function removeCartItem(key) {
-        fetch(`{{ url('/cart/remove') }}/${key}`, {
-            method: 'POST',
-            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
-        })
-        .then(res => res.json())
-        .then(data => {
-            renderCheckoutCart(data.cart, data.totalPrice);
-        });
-    }
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const checkoutCartContainer = document.querySelector('.checkout-cart-items');
+          const checkoutTotalEl = document.querySelector('.checkout-total');
 
-    // Load initial cart
-    fetch(`{{ url('/cart/items') }}`)
-        .then(res => res.json())
-        .then(data => {
-            renderCheckoutCart(data.cart, data.totalPrice);
-        });
+          function renderCheckoutCart(cart, totalPrice) {
+              checkoutCartContainer.innerHTML = '';
 
-    
-});
-</script>
+              if (!Array.isArray(cart)) cart = Object.values(cart);
+
+              if (cart.length === 0) {
+                  checkoutCartContainer.innerHTML = `
+                      <li class="list-group-item text-center">Your cart is empty!</li>
+                  `;
+                  checkoutTotalEl.textContent = '0.00';
+                  return;
+              }
+
+              cart.forEach(item => {
+                  let variantInfo = '';
+                  if (item.size || item.color_name) {
+                      let colorSpan = '';
+                      if (item.color_hex) {
+                          colorSpan = `<span style="background-color:${item.color_hex};display:inline-block;width:12px;height:12px;border-radius:50%;margin-left:5px;"></span>`;
+                      }
+                      variantInfo = `<small class="text-muted">` +
+                          (item.size ? `Size: ${item.size}` : '') +
+                          (item.size && item.color_name ? ' | ' : '') +
+                          (item.color_name ? `Color: ${item.color_name} ${colorSpan}` : '') +
+                          `</small>`;
+                  }
+
+                  const html = `
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <div class="me-3 flex-grow-1">
+                              <h6 class="my-0">${item.name}</h6>
+                              ${variantInfo}
+                              <div class="d-flex align-items-center mt-1">
+                                  <button class="btn btn-sm btn-outline-secondary qty-minus" data-key="${item.key}">-</button>
+                                  <input type="text" value="${item.qty}" class="form-control form-control-sm text-center mx-2 qty" data-key="${item.key}" style="width:60px;" readonly>
+                                  <button class="btn btn-sm btn-outline-secondary qty-plus" data-key="${item.key}">+</button>
+                              </div>
+                          </div>
+                          <div class="text-end">
+                              <span class="text-muted d-block">₹${(item.price * item.qty).toFixed(2)}</span>
+                              <button class="btn btn-sm btn-danger remove-item mt-1" data-key="${item.key}">×</button>
+                          </div>
+                      </li>
+                  `;
+                  checkoutCartContainer.insertAdjacentHTML('beforeend', html);
+              });
+
+              checkoutTotalEl.textContent = totalPrice.toFixed(2);
+
+              // update badge with total quantity
+          const cartBadge = document.querySelector('.cart-count-badge');
+          if (cartBadge) {
+              let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+              cartBadge.textContent = totalQty;
+          }
+
+              attachCartEvents();
+          }
+
+          function attachCartEvents() {
+              checkoutCartContainer.querySelectorAll('.qty-plus').forEach(btn => 
+                  btn.onclick = () => updateQty(btn.dataset.key, 1)
+              );
+              checkoutCartContainer.querySelectorAll('.qty-minus').forEach(btn => 
+                  btn.onclick = () => updateQty(btn.dataset.key, -1)
+              );
+              checkoutCartContainer.querySelectorAll('.remove-item').forEach(btn => 
+                  btn.onclick = () => removeCartItem(btn.dataset.key)
+              );
+          }
+
+          function updateQty(key, change) {
+              const input = checkoutCartContainer.querySelector(`.qty[data-key="${key}"]`);
+              if (!input) return;
+
+              let qty = parseInt(input.value) + change;
+              if (qty < 1) qty = 1;
+
+              fetch(`{{ url('/cart/update') }}/${key}`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json','X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                  body: JSON.stringify({ qty })
+              })
+              .then(res => res.json())
+              .then(data => {
+                  renderCheckoutCart(data.cart, data.totalPrice);
+              });
+          }
+
+          function removeCartItem(key) {
+              fetch(`{{ url('/cart/remove') }}/${key}`, {
+                  method: 'POST',
+                  headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' }
+              })
+              .then(res => res.json())
+              .then(data => {
+                  renderCheckoutCart(data.cart, data.totalPrice);
+              });
+          }
+
+          // Load initial cart
+          fetch(`{{ url('/cart/items') }}`)
+              .then(res => res.json())
+              .then(data => {
+                  renderCheckoutCart(data.cart, data.totalPrice);
+              });
+
+          
+      });
+    </script>
 
   </body>
 </html>
