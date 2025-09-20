@@ -54,7 +54,7 @@
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Your cart</span>
-          <span class="badge bg-primary rounded-pill cart-count-badge">0</span>
+          <span class="badge bg-primary rounded-pill cart-count-badge"></span>
         </h4>
         <ul class="list-group mb-3 checkout-cart-items">
          
@@ -74,7 +74,7 @@
 
         <li class="list-group-item d-flex justify-content-between">
           <span>Total (INR)</span>
-          <strong>₹<span class="checkout-total">0.00</span></strong>
+          <strong>₹<span class="checkout-total"></span></strong>
         </li>
 
         <!-- <form class="card p-2">
