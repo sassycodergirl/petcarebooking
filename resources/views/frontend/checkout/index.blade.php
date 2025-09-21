@@ -304,7 +304,7 @@
             
                 <div class="col-12 mb-4">
                     <div class="input-group">
-                      <input type="email" class="input form-control" id="email" name="email" value="{{ old('contact_email', auth()->user()->email) }}" autocomplete="off" required>
+                      <input type="email" class="input form-control" placeholder=" " id="email" name="email" value="{{ old('contact_email', auth()->user()->email) }}" autocomplete="off" required>
                       <label for="email" class="user-label">Email</label>
                       <div class="invalid-feedback">
                         Please enter a valid email address.
@@ -328,7 +328,7 @@
 
                   <div class="col-12 mb-4">
                     <div class="input-group">
-                          <input type="text" class="input form-control" id="country" name="country" autocomplete="off" value="India"  readonly>
+                          <input type="text" class="input form-control" placeholder=" " id="country" name="country" autocomplete="off" value="India"  readonly>
                           <label class="user-label">Country</label>
                           <div class="invalid-feedback"> Please enter your country</div>
                       </div>
@@ -336,7 +336,7 @@
                   <div class="row g-3">
                     <div class="col-sm-6">
                         <div class="input-group">
-                        <input type="text" class="input form-control" id="firstName" name="firstName" autocomplete="off" value="" required>
+                        <input type="text" class="input form-control" placeholder=" " id="firstName" name="firstName" autocomplete="off" value="" required>
                             <label class="user-label">First Name</label>
                             <div class="invalid-feedback">
                               Valid first name is required.
@@ -346,7 +346,7 @@
 
                 <div class="col-sm-6">
                     <div class="input-group">
-                     <input type="text" class="input form-control" id="lastName" name="lasttName" autocomplete="off" value="" required>
+                     <input type="text" class="input form-control" placeholder=" " id="lastName" name="lasttName" autocomplete="off" value="" required>
                         <label class="user-label">Last Name</label>
                         <div class="invalid-feedback">
                           Valid last name is required.
@@ -358,7 +358,7 @@
 
                 <div class="col-12">
                    <div class="input-group">
-                     <input type="text" class="input form-control" id="address" name="address_line1" autocomplete="off" value="{{ old('address_line1', $address->address_line1 ?? '') }}" required>
+                     <input type="text" class="input form-control" placeholder=" " id="address" name="address_line1" autocomplete="off" value="{{ old('address_line1', $address->address_line1 ?? '') }}" required>
                         <label class="user-label">Address</label>
                         <div class="invalid-feedback">
                            Please enter your shipping address.
@@ -370,14 +370,14 @@
 
                 <div class="col-12">
                    <div class="input-group">
-                     <input type="text" class="input form-control optional" id="address2" name="address_line2" autocomplete="off" value="{{ old('address_line2', $address->address_line2 ?? '') }}" placeholder=" ">
+                     <input type="text" class="input form-control optional"  id="address2" name="address_line2" autocomplete="off" value="{{ old('address_line2', $address->address_line2 ?? '') }}" placeholder=" ">
                         <label class="user-label">Apartment, suite, etc. (optional)</label>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input type="text" class="input form-control"  id="city" name="city" autocomplete="off" value="{{ old('city', $address->city ?? '') }}" required>
+                    <input type="text" class="input form-control" placeholder=" "  id="city" name="city" autocomplete="off" value="{{ old('city', $address->city ?? '') }}" required>
                     <label for="city" class="user-label">City</label>
                     <div class="invalid-feedback">
                       Please enter a valid city.
@@ -439,7 +439,7 @@
 
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input type="text" class="input form-control" id="zip" name="zip" autocomplete="off" value="{{ old('pincode', $address->pincode ?? '') }}" required>
+                    <input type="text" class="input form-control" placeholder=" " id="zip" name="zip" autocomplete="off" value="{{ old('pincode', $address->pincode ?? '') }}" required>
                     <label for="zip" class="user-label">PIN Code</label>
                     <div class="invalid-feedback">
                       PIN code required.
@@ -449,7 +449,7 @@
 
                    <div class="col-12">
                     <div class="input-group">
-                      <input type="tel" class="input form-control" id="phone" name="phone" autocomplete="off" 
+                      <input type="tel" class="input form-control" placeholder=" " id="phone" name="phone" autocomplete="off" 
                             required pattern="[0-9]{10}" maxlength="10"  value="{{ old('contact_phone', auth()->user()->phone) }}" >
                       <label for="phone" class="user-label">Phone</label>
                       <div class="invalid-feedback">
@@ -491,7 +491,7 @@
                 <div class="row g-3">
                   <div class="col-sm-6">
                     <div class="input-group">
-                      <input type="text" class="input form-control" id="billing_firstName" name="billing_firstName" autocomplete="off" required>
+                      <input type="text" class="input form-control" placeholder=" "  id="billing_firstName" name="billing_firstName" autocomplete="off" required>
                       <label class="user-label" for="billing_firstName">First Name</label>
                       <div class="invalid-feedback">Valid first name is required.</div>
                     </div>
@@ -499,7 +499,7 @@
 
                   <div class="col-sm-6">
                     <div class="input-group">
-                      <input type="text" class="input form-control" id="billing_lastName" name="billing_lastName" autocomplete="off" required>
+                      <input type="text" class="input form-control" placeholder=" " id="billing_lastName" name="billing_lastName" autocomplete="off" required>
                       <label class="user-label" for="billing_lastName">Last Name</label>
                       <div class="invalid-feedback">Valid last name is required.</div>
                     </div>
@@ -507,7 +507,7 @@
 
                   <div class="col-12">
                     <div class="input-group">
-                      <input type="text" class="input form-control" id="billing_address1" name="billing_address1" autocomplete="off" required>
+                      <input type="text" class="input form-control" placeholder=" " id="billing_address1" name="billing_address1" autocomplete="off" required>
                       <label class="user-label" for="billing_address1">Address</label>
                       <div class="invalid-feedback">Please enter billing address.</div>
                     </div>
@@ -522,7 +522,7 @@
 
                   <div class="col-md-4">
                     <div class="input-group">
-                      <select class="input form-control" id="billing_state" name="billing_state" required>
+                      <select class="input form-control" placeholder=" " id="billing_state" name="billing_state" required>
                         <option value="" disabled selected></option> <!-- placeholder -->
 
                         <!-- A -->
@@ -603,7 +603,7 @@
 
                   <div class="col-md-4">
                     <div class="input-group">
-                      <input type="text" class="input form-control" id="billing_city" name="billing_city" autocomplete="off" required>
+                      <input type="text" class="input form-control" placeholder=" " id="billing_city" name="billing_city" autocomplete="off" required>
                       <label class="user-label" for="billing_city">City</label>
                       <div class="invalid-feedback">Please enter a valid city.</div>
                     </div>
@@ -611,7 +611,7 @@
 
                   <div class="col-md-4">
                     <div class="input-group">
-                      <input type="text" class="input form-control" id="billing_zip" name="billing_zip" autocomplete="off" required>
+                      <input type="text" class="input form-control" placeholder=" " id="billing_zip" name="billing_zip" autocomplete="off" required>
                       <label class="user-label" for="billing_zip">PIN Code</label>
                       <div class="invalid-feedback">PIN code required.</div>
                     </div>
