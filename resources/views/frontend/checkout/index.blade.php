@@ -82,7 +82,7 @@
  border-radius: 8px !important;
  background: none;
  padding: 0.8rem;
- font-size: 1.2rem;
+ /* font-size: 1.2rem; */
  color: #000;
  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
  width: 100%;
