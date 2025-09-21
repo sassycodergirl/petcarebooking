@@ -501,6 +501,13 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutBtn.addEventListener("click", function (e) {
             @guest
                 e.preventDefault();
+                
+                 // close the cart overlay first
+                const cartOverlay = document.querySelector(".popup-overlay");
+                if (cartOverlay) {
+                    cartOverlay.style.display = "none";
+                }
+
                 // mark that checkout triggered login
                 sessionStorage.setItem("redirectToCheckout", "true");
 
