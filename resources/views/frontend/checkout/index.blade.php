@@ -707,6 +707,7 @@
             </form>
           </div>
         </div>
+         </div>
 
         <div class="col-md-6 col-lg-6 order-md-last p-md-5 p-4">
           <div class="summary-box right-scroll">
@@ -729,7 +730,7 @@
             </div>
           </form> -->
         </div>
-     </div>
+    
 
       </div>
     </div>
