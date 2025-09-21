@@ -148,12 +148,16 @@
 
 /* For all inputs with a value or focused */
 .input:focus,
-.input:not(:placeholder-shown) {
+select.input:focus,
+.input:not(:placeholder-shown),
+select.input:valid {
   border: 2px solid #000;
 }
 
 .input:focus ~ .user-label,
-.input:not(:placeholder-shown) ~ .user-label {
+.input:not(:placeholder-shown) ~ .user-label,
+select.input:focus ~ .user-label,
+select.input:valid ~ .user-label {
   transform: translateY(-50%) scale(0.8);
   background-color: #fff;
   z-index: 9999;
