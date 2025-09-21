@@ -6,7 +6,16 @@
     
     <div class="mb-3">
         <strong>Date:</strong> {{ $order->created_at->format('d M Y H:i') }}<br>
-        <strong>Status:</strong> {{ ucfirst($order->status) }}<br>
+        <strong>Status:</strong> 
+        @php
+            $statusClass = match($order->status) {
+                'paid' => 'badge bg-success',
+                'pending' => 'badge bg-warning text-dark',
+                'failed' => 'badge bg-danger',
+                default => 'badge bg-secondary',
+            };
+        @endphp
+        <span class="{{ $statusClass }}">{{ ucfirst($order->status) }}</span>
         <strong>Payment Method:</strong> {{ ucfirst($order->payment_method) }}<br>
         <strong>Total Amount:</strong> ₹{{ number_format($order->total_amount, 2) }}
     </div>

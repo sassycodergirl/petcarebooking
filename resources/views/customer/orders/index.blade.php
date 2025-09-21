@@ -22,7 +22,18 @@
                     <td>#{{ $order->id }}</td>
                     <td>{{ $order->created_at->format('d M Y H:i') }}</td>
                     <td>₹{{ number_format($order->total_amount, 2) }}</td>
-                    <td>{{ ucfirst($order->status) }}</td>
+                    <td>
+                        @php
+                            $statusClass = match($order->status) {
+                                'paid' => 'badge bg-success',
+                                'pending' => 'badge bg-warning text-dark',
+                                'failed' => 'badge bg-danger',
+                                default => 'badge bg-secondary',
+                            };
+                        @endphp
+                        <span class="{{ $statusClass }}">{{ ucfirst($order->status) }}</span>
+                    </td>
+
                     <td>{{ ucfirst($order->payment_method) }}</td>
                     <td>
                         <a href="{{ route('customer.orders.show', $order->id) }}" class="btn btn-sm btn-primary">
