@@ -188,12 +188,12 @@
               </li>
 
               <li class="nav-item  submenu">
-                <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                <a data-bs-toggle="collapse" href="#sidebarOrders">
                   <i class="fas fa-th-list"></i>
                   <p>Order Management</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="sidebarLayouts">
+                <div class="collapse" id="sidebarOrders">
                   <ul class="nav nav-collapse">
                     <li>
                       <a href="{{ route('admin.orders.index') }}">
