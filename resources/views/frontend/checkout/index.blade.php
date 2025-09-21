@@ -718,6 +718,8 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
                 </div>
               </div>
 
+              <div id="cart_hidden_inputs"></div>
+
 
          
 
@@ -810,6 +812,9 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
           function renderCheckoutCart(cart, totalPrice) {
               checkoutCartContainer.innerHTML = '';
 
+              const hiddenInputsContainer = document.getElementById('cart_hidden_inputs');
+              hiddenInputsContainer.innerHTML = ''; // clear previous inputs
+
               if (!Array.isArray(cart)) cart = Object.values(cart);
 
               if (cart.length === 0) {
@@ -858,6 +863,14 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
                 `;
 
                   checkoutCartContainer.insertAdjacentHTML('beforeend', html);
+
+                  // Generate hidden inputs for form submission
+                  hiddenInputsContainer.insertAdjacentHTML('beforeend', `
+                    <input type="hidden" name="cart[${index}][id]" value="${item.id}" data-key="${item.key}">
+                    <input type="hidden" name="cart[${index}][qty]" value="${item.qty}" data-key="${item.key}">
+                    <input type="hidden" name="cart[${index}][size]" value="${item.size ?? ''}" data-key="${item.key}">
+                    <input type="hidden" name="cart[${index}][color]" value="${item.color_name ?? ''}" data-key="${item.key}">
+                `);
               });
 
               checkoutTotalEl.textContent = totalPrice.toFixed(2);
@@ -885,24 +898,51 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
               );
           }
 
+          // function updateQty(key, change) {
+          //    showLoader();
+          //     const input = checkoutCartContainer.querySelector(`.qty[data-key="${key}"]`);
+          //     if (!input) return;
+
+          //     let qty = parseInt(input.value) + change;
+          //     if (qty < 1) qty = 1;
+
+          //     fetch(`{{ url('/cart/update') }}/${key}`, {
+          //         method: 'POST',
+          //         headers: { 'Content-Type': 'application/json','X-CSRF-TOKEN': '{{ csrf_token() }}' },
+          //         body: JSON.stringify({ qty })
+          //     })
+          //     .then(res => res.json())
+          //     .then(data => {
+          //         renderCheckoutCart(data.cart, data.totalPrice);
+          //     });
+          // }
+
           function updateQty(key, change) {
-             showLoader();
-              const input = checkoutCartContainer.querySelector(`.qty[data-key="${key}"]`);
-              if (!input) return;
+            showLoader();
+            const input = checkoutCartContainer.querySelector(`.qty[data-key="${key}"]`);
+            if (!input) return;
 
-              let qty = parseInt(input.value) + change;
-              if (qty < 1) qty = 1;
+            let qty = parseInt(input.value) + change;
+            if (qty < 1) qty = 1;
 
-              fetch(`{{ url('/cart/update') }}/${key}`, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json','X-CSRF-TOKEN': '{{ csrf_token() }}' },
-                  body: JSON.stringify({ qty })
-              })
-              .then(res => res.json())
-              .then(data => {
-                  renderCheckoutCart(data.cart, data.totalPrice);
-              });
-          }
+            fetch(`{{ url('/cart/update') }}/${key}`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' 
+                },
+                body: JSON.stringify({ qty })
+            })
+            .then(res => res.json())
+            .then(data => {
+                renderCheckoutCart(data.cart, data.totalPrice);
+
+                // Update hidden inputs directly (live)
+                const hiddenInput = document.querySelector(`#cart_hidden_inputs input[name^="cart"][data-key="${key}"][name$="[qty]"]`);
+                if (hiddenInput) hiddenInput.value = qty;
+            });
+        }
+
 
           function removeCartItem(key) {
             showLoader();
