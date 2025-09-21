@@ -167,10 +167,10 @@ Route::get('/cart/items', [CartController::class, 'items'])->name('cart.items');
 Route::get('/products/{slug}', [ShopProductController::class, 'show'])->name('product.show');
 
 
- Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
 // Checkout (auth only)
 Route::middleware(['auth'])->group(function () {
-   
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout/place-order', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/order/success/{id}', fn($id) => view('frontend.checkout.success', ['orderId' => $id]))->name('order.success');
 });
