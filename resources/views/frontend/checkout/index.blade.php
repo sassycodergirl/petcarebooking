@@ -866,7 +866,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
 
                   // Generate hidden inputs for form submission
                   hiddenInputsContainer.insertAdjacentHTML('beforeend', `
-                  <input type="hidden" name="cart[${index}][id]" value="${item.id}" data-key="${item.key}">
+                  <input type="hidden" name="cart[${index}][id]" value="${item.product_id}" data-key="${item.key}">
                   <input type="hidden" name="cart[${index}][qty]" value="${item.qty}" data-key="${item.key}">
                   <input type="hidden" name="cart[${index}][size]" value="${item.size ?? ''}" data-key="${item.key}">
                   <input type="hidden" name="cart[${index}][color]" value="${item.color_name ?? ''}" data-key="${item.key}">
