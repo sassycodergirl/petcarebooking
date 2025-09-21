@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductVariantGalleryController;
 use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\BookingManagementController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\ShopProductController;
 use App\Http\Controllers\Frontend\CartController;
@@ -108,6 +109,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/{booking}/complete', [BookingManagementController::class, 'complete'])->name('complete'); // Mark complete
        
     });
+
+    //orders
+     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+     Route::get('/orders/{id}', [AdminOrderController::class, 'show'])->name('orders.show');
 
 });
 

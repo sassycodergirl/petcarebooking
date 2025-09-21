@@ -186,6 +186,38 @@
                   </ul>
                 </div>
               </li>
+
+              <li class="nav-item  submenu">
+                <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                  <i class="fas fa-th-list"></i>
+                  <p>Order Management</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="sidebarLayouts">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="{{ route('admin.orders.index') }}">
+                        <span class="sub-item">All Orders</span>
+                      </a>
+                    </li>
+                    <!-- <li>
+                      <a href="{{ route('admin.products.create') }}">
+                        <span class="sub-item">Add New Product</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ route('admin.categories.index') }}">
+                        <span class="sub-item">Product Category</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ route('admin.products.settings') }}">
+                        <span class="sub-item">Product Setting</span>
+                      </a>
+                    </li> -->
+                  </ul>
+                </div>
+              </li>
           
              
               <li class="nav-item">
@@ -194,10 +226,10 @@
                   <p>Logout</p>
                   <span class="badge badge-secondary">1</span>
                 </a> -->
-<form method="POST" action="{{ route('logout') }}" style="display: inline;">
-    @csrf
-    <button type="submit" class="logout-btn">Logout</button>
-</form>
+              <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                  @csrf
+                  <button type="submit" class="logout-btn">Logout</button>
+              </form>
               </li>
             
             </ul>
