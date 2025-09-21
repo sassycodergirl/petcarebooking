@@ -760,17 +760,14 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
 
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
- <script>
-    // Safely parse cart and default to empty array
-    window.cartItems = @json($cart ?? []) || [];
-    window.cartItems = Array.isArray(window.cartItems) ? window.cartItems : [];
-
+   <script>
+    // Make sure $cart exists and is an array
+    window.cartItems = @json($cart ?? []);
     window.cartTotalQty = window.cartItems.reduce((sum, item) => sum + (item.qty || 0), 0);
 
     console.log('Cart Items:', window.cartItems);
     console.log('Total Quantity:', window.cartTotalQty);
 </script>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
