@@ -298,15 +298,13 @@
               <div class="col-6 col-md-6">
                  <h4 class="mb-3">Contact</h4>
               </div>
-              <div class="col-6 col-md-6 text-end">
-                <a href="javascript:void(0)" class="text-black">Sign In</a>
-              </div>
+      
             </div>
 
             
                 <div class="col-12 mb-4">
                     <div class="input-group">
-                      <input type="email" class="input form-control" id="email" name="email" autocomplete="off" required>
+                      <input type="email" class="input form-control" id="email" name="email" value="{{ old('contact_email', auth()->user()->email) }}" autocomplete="off" required>
                       <label for="email" class="user-label">Email</label>
                       <div class="invalid-feedback">
                         Please enter a valid email address.
@@ -324,17 +322,17 @@
 
 
 
-            <h4 class="mb-3">Shipping & Delivery</h4>
-              <div class="row g-3">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                     <input type="text" class="input form-control" id="firstName" name="firstName" autocomplete="off" value="" required>
-                        <label class="user-label">First Name</label>
-                        <div class="invalid-feedback">
-                          Valid first name is required.
-                         </div>
+                  <h4 class="mb-3">Shipping & Delivery</h4>
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                        <input type="text" class="input form-control" id="firstName" name="firstName" autocomplete="off" value="" required>
+                            <label class="user-label">First Name</label>
+                            <div class="invalid-feedback">
+                              Valid first name is required.
+                            </div>
+                        </div>
                     </div>
-                </div>
 
                 <div class="col-sm-6">
                     <div class="input-group">
@@ -350,8 +348,8 @@
 
                 <div class="col-12">
                    <div class="input-group">
-                     <input type="text" class="input form-control" id="address" name="address" autocomplete="off" value="" required>
-                        <label class="user-label">Last Name</label>
+                     <input type="text" class="input form-control" id="address" name="address" autocomplete="off" value="{{ old('residential_address', auth()->user()->residential_address) }}" required>
+                        <label class="user-label">Address</label>
                         <div class="invalid-feedback">
                            Please enter your shipping address.
                          </div>
@@ -475,7 +473,7 @@
                    <div class="col-12">
                     <div class="input-group">
                       <input type="tel" class="input form-control" id="phone" name="phone" autocomplete="off" 
-                            required pattern="[0-9]{10}" maxlength="10" >
+                            required pattern="[0-9]{10}" maxlength="10"  value="{{ old('contact_phone', auth()->user()->phone) }}" >
                       <label for="phone" class="user-label">Phone</label>
                       <div class="invalid-feedback">
                         Please enter a valid 10-digit phone number.
@@ -497,20 +495,20 @@
          
 
               <!-- Billing Choice -->
-            <div class="col-12 mt-4">
-            <h4 class="mb-3">Billing address</h4>
-            <div class="address-list">
-             <div class="billing-choice" data-target="billing_same">
-                <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_same" checked>
-                <span for="billing_same">Same as shipping address</span>
-              </div>
+              <div class="col-12 mt-4">
+                <h4 class="mb-3">Billing address</h4>
+                <div class="address-list">
+                <div class="billing-choice" data-target="billing_same">
+                    <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_same" checked>
+                    <span for="billing_same">Same as shipping address</span>
+                  </div>
 
-              <div class="billing-choice" data-target="billing_different">
-                <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_different">
-                <span for="billing_different">Use a different billing address</span>
-              </div>
-            </div>
-          </div>
+                  <div class="billing-choice" data-target="billing_different">
+                    <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_different">
+                    <span for="billing_different">Use a different billing address</span>
+                  </div>
+                </div>
+             </div>
               <!-- Collapsible Billing Section -->
               <div id="billing_section" class="billing-section p-4">
                 <div class="row g-3">
