@@ -287,7 +287,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
     
 <!-- Loader -->
 <div id="checkout-loader" 
-     style="position: fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:99999999999;">
+     style="position: fixed; top:0; left:0; width:100%; height:100%; background:rgb(255 255 255 / 60%); display:flex; justify-content:center; align-items:center; z-index:99999999999;">
     <img src="{{ asset('images/loader.gif') }}" alt="Loading..." width="60">
 </div>
   <main>
@@ -877,11 +877,11 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
               checkoutTotalEl.textContent = totalPrice.toFixed(2);
 
               // update badge with total quantity
-          const cartBadge = document.querySelector('.cart-count-badge');
-          if (cartBadge) {
-              let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-              cartBadge.textContent = totalQty;
-          }
+            const cartBadge = document.querySelector('.cart-count-badge');
+            if (cartBadge) {
+                let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+                cartBadge.textContent = totalQty;
+            }
 
               attachCartEvents();
                hideLoader();
