@@ -8,7 +8,18 @@
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     Welcome {{ Auth::check() ? Auth::user()->name : 'Guest' }}
-                    <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                                    @php
+                    $petQuotes = [
+                        "A happy pet makes a happy home! 🐾",
+                        "Dogs leave paw prints on our hearts. ❤️",
+                        "Cats rule the house, but dogs rule the heart! 🐶🐱",
+                        "Every pet deserves love, care, and treats! 🍖",
+                        "Pets are not just animals, they are family. 🐕🐈"
+                    ];
+                    $randomPetQuote = $petQuotes[array_rand($petQuotes)];
+                @endphp
+
+                <h6 class="font-weight-normal mt-3 mb-0">{!! $randomPetQuote !!}</h6>
                   </div>
                   <!-- <div class="col-12 col-xl-4">
                     <div class="justify-content-end d-flex">
