@@ -725,7 +725,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
             </form>
           </div>
         </div>
-        
+        </div>
         <div class="col-md-6 col-lg-6 order-md-last p-md-5 p-4">
           <div class="summary-box right-scroll">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
