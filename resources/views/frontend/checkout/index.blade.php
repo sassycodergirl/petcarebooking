@@ -311,7 +311,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
         <div class="col-md-6 col-lg-6 p-md-5 p-4 border-right">
           <div class="form-div">
             
-            <form class="needs-validation" novalidate>
+          <form class="needs-validation" novalidate>
 
            
             <div class="row">
