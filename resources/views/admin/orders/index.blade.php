@@ -34,7 +34,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" class="text-center">No orders found.</td>
+                    <td colspan="8" class="text-center">No orders found.</td>
                 </tr>
             @endforelse
         </tbody>
