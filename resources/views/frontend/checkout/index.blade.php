@@ -470,7 +470,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
                    <div class="col-12">
                     <div class="input-group">
                       <input type="tel" class="input form-control" placeholder=" " id="phone" name="phone" autocomplete="off" 
-                            required pattern="[0-9]{10}" maxlength="10"  value="{{ old('contact_phone', auth()->user()->phone) }}" >
+                            required pattern="[0-9]{10}" maxlength="10"  value="{{ old('phone', $phone) }}" >
                       <label for="phone" class="user-label">Phone</label>
                       <div class="invalid-feedback">
                         Please enter a valid 10-digit phone number.
@@ -637,18 +637,18 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
                     </div>
                   </div>
 
-                  <div class="col-12">
+                  <!-- <div class="col-12">
                     <div class="input-group">
                       <input type="tel" class="input form-control optional" id="phone" name="billing_phone" autocomplete="off" placeholder=" " pattern="[0-9]{10}">
                       <label class="user-label" for="billing_phone">Phone (optional)</label>
                       <div class="invalid-feedback">Please enter a valid Phone Number.</div>
-                          <!-- Tooltip icon -->
+                        
                         <span class="tooltip-icon" data-bs-toggle="tooltip" title="In case we need to contact you about your order">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 12 12"><path fill="#7a7a7a" d="M5.82 3c-.328 0-.61.15-.74.508c-.094.26-.299.492-.575.492s-.5-.172-.5-.498c0-.825.946-1.5 1.82-1.5c1.19 0 2.04 1.12 1.76 2.26a1.83 1.83 0 0 1-.48.849l-.448.448a.5.5 0 0 0-.146.354v.586a.5.5 0 0 1-1 0v-.586c0-.398.158-.779.439-1.06l.448-.448a.82.82 0 0 0-.572-1.404zm.93 5.75a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0"/><path fill="#7a7a7a" fill-rule="evenodd" d="M12 6c0 3.31-2.69 6-6 6S0 9.31 0 6s2.69-6 6-6s6 2.69 6 6m-1 0c0 2.76-2.24 5-5 5S1 8.76 1 6s2.24-5 5-5s5 2.24 5 5" clip-rule="evenodd"/></svg>
                         </span>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </div> -->
               </div>
 
               <!-- <div class="form-check">
@@ -762,33 +762,33 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
     <script>
     
 
-    document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
 
-    
+        
 
-    const phoneInput = document.getElementById('phone');
+        const phoneInput = document.getElementById('phone');
 
-    phoneInput.addEventListener('input', function() {
-        // Remove any non-digit character
-        this.value = this.value.replace(/\D/g, '');
+        phoneInput.addEventListener('input', function() {
+            // Remove any non-digit character
+            this.value = this.value.replace(/\D/g, '');
+        });
+
+        // Existing Bootstrap validation
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
     });
-
-    // Existing Bootstrap validation
-    (function () {
-        'use strict'
-        var forms = document.querySelectorAll('.needs-validation')
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-});
 
     </script>
 

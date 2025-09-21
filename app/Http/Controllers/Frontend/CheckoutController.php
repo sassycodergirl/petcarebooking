@@ -29,12 +29,15 @@ class CheckoutController extends Controller
             ->where('is_default', 1)
             ->first();
 
+
         // Fallback: if no default address, get latest
         if (!$address) {
             $address = $user?->addresses()->latest()->first();
         }
+        // Remove '+91' from phone if present
+         $phone = $user?->phone ? str_replace('+91', '', $user->phone) : null;
 
-        return view('frontend.checkout.index', compact('cart', 'subtotal', 'shipping', 'total', 'user', 'address'));
+        return view('frontend.checkout.index', compact('cart', 'subtotal', 'shipping', 'total', 'user', 'address', 'phone'));
     }
 
     public function store(Request $request)
