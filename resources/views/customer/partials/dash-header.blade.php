@@ -62,10 +62,10 @@
                       <i class="ti-info-alt mx-0"></i>
                     </div>
                   </div>
-                  <div class="preview-item-content">
+                  <!-- <div class="preview-item-content">
                     <h6 class="preview-subject font-weight-normal">Application Error</h6>
                     <p class="font-weight-light small-text mb-0 text-muted"> Just now </p>
-                  </div>
+                  </div> -->
                 </a>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
