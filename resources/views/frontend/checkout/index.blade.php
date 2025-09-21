@@ -366,7 +366,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
 
                 <div class="col-sm-6">
                     <div class="input-group">
-                     <input type="text" class="input form-control" placeholder=" " id="lastName" name="lasttName" autocomplete="off" value="{{ old('last_name', $last_name) }}" required>
+                     <input type="text" class="input form-control" placeholder=" " id="lastName" name="lastName" autocomplete="off" value="{{ old('last_name', $last_name) }}" required>
                         <label class="user-label">Last Name</label>
                         <div class="invalid-feedback">
                           Valid last name is required.
@@ -496,12 +496,12 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
                 <h4 class="mb-3">Billing address</h4>
                 <div class="address-list">
                 <div class="billing-choice" data-target="billing_same">
-                    <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_same" checked>
+                    <input type="radio" class="form-check-input me-3" name="same_as_shipping" id="billing_same" value="1" checked>
                     <span for="billing_same">Same as shipping address</span>
                   </div>
 
                   <div class="billing-choice" data-target="billing_different">
-                    <input type="radio" class="form-check-input me-3" name="billing_address_selector" id="billing_different">
+                    <input type="radio" class="form-check-input me-3" name="same_as_shipping" id="billing_different" value="0">
                     <span for="billing_different">Use a different billing address</span>
                   </div>
                 </div>
@@ -1031,39 +1031,45 @@ document.addEventListener('DOMContentLoaded', function () {
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 $(document).ready(function () {
+    let isProcessing = false;
+
     $("#checkoutForm").on("submit", function (e) {
         e.preventDefault();
+        if (isProcessing) return;
 
-        // Disable button
+        isProcessing = true;
         let submitBtn = $(this).find('button[type="submit"]');
         submitBtn.prop("disabled", true).text("Processing...");
 
-        // Gather form data
-        let formData = $(this).serialize();
+        let formDataObj = $(this).serializeArray();
+        formDataObj.push({
+            name: 'cart',
+            value: JSON.stringify(window.cartItems)
+        });
 
         $.ajax({
-            url: "/create-order",  // Laravel route for creating Razorpay order
+            url: "{{ route('order.place') }}", // dynamically using route
             type: "POST",
-            data: formData,
+            data: formDataObj,
             headers: { "X-CSRF-TOKEN": "{{ csrf_token() }}" },
             success: function (response) {
                 if (!response.order_id) {
                     alert("Failed to create order. Try again.");
                     submitBtn.prop("disabled", false).text("Place Order");
+                    isProcessing = false;
                     return;
                 }
 
                 let options = {
                     key: "{{ config('services.razorpay.key') }}",
-                    amount: response.amount, // in paise
+                    amount: response.amount,
                     currency: "INR",
                     name: "Your Store Name",
                     description: "Order Payment",
                     order_id: response.order_id,
                     handler: function (paymentResponse) {
-                        // send payment success details to server
                         $.ajax({
-                            url: "/payment-success",
+                            url: "{{ route('order.verify') }}", // dynamically using route
                             type: "POST",
                             data: {
                                 _token: "{{ csrf_token() }}",
@@ -1072,12 +1078,28 @@ $(document).ready(function () {
                                 razorpay_signature: paymentResponse.razorpay_signature,
                             },
                             success: function (res) {
-                                window.location.href = "/order-success";
+                                if (res.redirect) {
+                                    window.location.href = res.redirect; // dynamic redirect from backend
+                                } else {
+                                    alert("Payment successful, but redirect failed.");
+                                    submitBtn.prop("disabled", false).text("Place Order");
+                                    isProcessing = false;
+                                }
                             },
-                            error: function () {
-                                window.location.href = "/payment-failed";
+                            error: function (err) {
+                                let redirectUrl = (err.responseJSON && err.responseJSON.redirect) 
+                                    ? err.responseJSON.redirect 
+                                    : "{{ route('order.failed', ['id' => '']) }}";
+                                window.location.href = redirectUrl;
                             }
                         });
+                    },
+                    modal: {
+                        escape: true,
+                        ondismiss: function () {
+                            submitBtn.prop("disabled", false).text("Place Order");
+                            isProcessing = false;
+                        }
                     },
                     prefill: {
                         email: $("#email").val(),
@@ -1089,15 +1111,17 @@ $(document).ready(function () {
 
                 let rzp = new Razorpay(options);
                 rzp.open();
-                submitBtn.prop("disabled", false).text("Place Order");
             },
             error: function () {
-                alert("Something went wrong. Try again.");
+                alert("Something went wrong while creating order. Please try again.");
                 submitBtn.prop("disabled", false).text("Place Order");
+                isProcessing = false;
             }
         });
     });
 });
+
+
 </script>
 
   </body>
