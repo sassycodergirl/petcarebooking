@@ -332,7 +332,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
                     </div>
 
                     <div class="form-check mt-4">
-                      <input type="checkbox" class="form-check-input" id="updates" name="updates" value="1"
+                      <input type="checkbox" class="form-check-input" id="updates" name="marketing_opt_in" value="1"
            {{ old('marketing_opt_in', $user->marketing_opt_in ?? true) ? 'checked' : '' }}>
                       <span class="form-check-label" for="updates">
                         Keep me updated with the order updates and offers via WhatsApp, SMS and Email

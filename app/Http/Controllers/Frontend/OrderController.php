@@ -32,6 +32,7 @@ class OrderController extends Controller
             'pincode' => 'required|string',
             'phone' => 'required|string',
             'same_as_shipping' => 'nullable|boolean',
+            'marketing_opt_in' => 'nullable|boolean', // optional
             // Billing fields optional if same as shipping
             'billing_firstName' => 'nullable|string',
             'billing_lastName' => 'nullable|string',
@@ -53,6 +54,15 @@ class OrderController extends Controller
         DB::beginTransaction();
 
         try {
+            // ✅ Step 1a: Update logged-in user
+            if (Auth::check()) {
+                $user = Auth::user();
+                $user->update([
+                    'email' => $data['email'],
+                    'marketing_opt_in' => $data['marketing_opt_in'] ?? $user->marketing_opt_in,
+                ]);
+            }
+
             // ✅ Step 2: Create order
             $order = Order::create([
                 'user_id' => Auth::id(),
@@ -144,6 +154,7 @@ class OrderController extends Controller
                 'amount' => $razorpayOrder['amount'],
                 'razorpay_key' => env('RAZORPAY_KEY'),
             ]);
+
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Order Placement Failed: ' . $e->getMessage());
@@ -155,6 +166,7 @@ class OrderController extends Controller
             ], 500);
         }
     }
+
 
     /**
      * Verify Razorpay payment

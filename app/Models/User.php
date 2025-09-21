@@ -28,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'alt_contact',            // added
         'residential_address',    // added
         'aadhar',                 // added
+        'marketing_opt_in',
     ];
 
     /**

@@ -14,6 +14,7 @@ class Order extends Model
         'total_amount',
         'payment_method',
         'payment_id',
+        'paid_at',
         //'marketing_opt_in', // optional
         //'email',            // optional
     ];
