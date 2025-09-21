@@ -215,6 +215,11 @@ class OrderController extends Controller
                 'redirect' => route('order.success', $order->id),
             ]);
         } catch (\Exception $e) {
+             // ❌ Payment failed: mark order as failed
+                $order = Order::where('payment_id', $request->razorpay_order_id)->first();
+                if ($order && $order->status !== 'failed') {
+                    $order->update(['status' => 'failed']);
+                }
             Log::error('Razorpay Verification Failed: ' . $e->getMessage());
 
             return response()->json([

@@ -111,8 +111,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 
     //orders
-     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
-     Route::get('/orders/{id}', [AdminOrderController::class, 'show'])->name('orders.show');
+      // Admin Orders
+    Route::prefix('admin-furry-cms')->group(function () {
+        Route::get('/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+        Route::get('/orders/{id}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
+        Route::post('/orders/{id}/status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
+    });
 
 });
 
