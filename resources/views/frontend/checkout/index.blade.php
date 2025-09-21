@@ -760,14 +760,12 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
 
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-
     <script>
+        window.cartItems = @json(session('cart', []));
+    </script>
     
-
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
-
-        
-
         const phoneInput = document.getElementById('phone');
 
         phoneInput.addEventListener('input', function() {
