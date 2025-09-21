@@ -313,7 +313,7 @@
                     </form>
                   </ul>
                 </li>
-                <li class="nav-item topbar-icon dropdown hidden-caret">
+                <!-- <li class="nav-item topbar-icon dropdown hidden-caret">
                   <a
                     class="nav-link dropdown-toggle"
                     href="#"
@@ -559,7 +559,7 @@
                       </div>
                     </div>
                   </div>
-                </li>
+                </li> -->
 
                 <li class="nav-item topbar-user dropdown hidden-caret">
                   <a
@@ -568,21 +568,21 @@
                     href="#"
                     aria-expanded="false"
                   >
-                    <div class="avatar-sm">
+                    <!-- <div class="avatar-sm">
                       <img
                         src="{{ asset('admin/assets/img/profile.jpg') }}"
                         alt="..."
                         class="avatar-img rounded-circle"
                       />
-                    </div>
+                    </div> -->
                     <span class="profile-username">
                       <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Hizrian</span>
+                      <span class="fw-bold">Admin</span>
                     </span>
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
                     <div class="dropdown-user-scroll scrollbar-outer">
-                      <li>
+                      <!-- <li>
                         <div class="user-box">
                           <div class="avatar-lg">
                             <img
@@ -601,14 +601,14 @@
                             >
                           </div>
                         </div>
-                      </li>
+                      </li> -->
                       <li>
-                        <div class="dropdown-divider"></div>
+                        <!-- <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">My Profile</a>
                         <a class="dropdown-item" href="#">My Balance</a>
                         <a class="dropdown-item" href="#">Inbox</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Account Setting</a>
+                        <a class="dropdown-item" href="#">Account Setting</a> -->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Logout</a>
                       </li>
