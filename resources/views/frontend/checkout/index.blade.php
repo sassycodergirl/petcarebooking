@@ -637,7 +637,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
                     </div>
                   </div>
 
-                  <!-- <div class="col-12">
+                  <div class="col-12 d-none">
                     <div class="input-group">
                       <input type="tel" class="input form-control optional" id="phone" name="billing_phone" autocomplete="off" placeholder=" " pattern="[0-9]{10}">
                       <label class="user-label" for="billing_phone">Phone (optional)</label>
@@ -648,7 +648,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
                         </span>
                       </div>
                     </div>
-                  </div> -->
+                  </div>
               </div>
 
               <!-- <div class="form-check">
@@ -725,7 +725,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
             </form>
           </div>
         </div>
-        </div>
+        
         <div class="col-md-6 col-lg-6 order-md-last p-md-5 p-4">
           <div class="summary-box right-scroll">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
