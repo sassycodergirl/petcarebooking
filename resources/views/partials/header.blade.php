@@ -187,21 +187,25 @@ window.addEventListener("load", function () {
                             @if(Auth::check())
                                 @if(Auth::user()->is_admin) 
                                     <a href="{{ route('admin.dashboard') }}">
-                                        <img src="{{ asset('images/user.svg') }}" alt="Admin">
+                                       
                                         Dashboard
                                     </a>
                                 @else
                                     <a href="{{ route('customer.dashboard') }}">
-                                        <img src="{{ asset('images/user.svg') }}" alt="User">
+                                       
                                         Dashboard
                                     </a>
                                 @endif
                             @else
-                                <img src="{{ asset('images/user.svg') }}" alt="Login"
+                            <button class="btn btn-primary" role="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#loginModal"
+                                    style="cursor: pointer;">Login/Signup</button>
+                                <!-- <img src="{{ asset('images/user.svg') }}" alt="Login"
                                     role="button"
                                     data-bs-toggle="modal"
                                     data-bs-target="#loginModal"
-                                    style="cursor: pointer;">
+                                    style="cursor: pointer;"> -->
                             @endif
                         </li>
 

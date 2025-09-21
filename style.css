@@ -532,10 +532,10 @@ textarea::placeholder {
 	transition: all 0.3s ease-in-out;
 }
 
-.hdr-rgt-icons ul li a:hover {
+/* .hdr-rgt-icons ul li a:hover {
 	border-radius: 0 6px 0 6px;
 	border-color: var(--bg-orange);
-}
+} */
 
 .hdr-rgt-icons ul li a:hover img {
 	transform: scale(0.9);
