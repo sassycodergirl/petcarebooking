@@ -22,7 +22,8 @@
                 <tr>
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->user?->name ?? 'Guest' }}</td>
-                    <td>{{ $order->email }}</td>
+                    <td>{{ $order->user->email ?? $order->email ?? null }}</td>
+                    <td>{{ $order->user->phone ?? $order->phone ?? null }}</td>
                     <td>₹{{ number_format($order->total_amount, 2) }}</td>
                     <td>{{ ucfirst($order->status) }}</td>
                     <td>{{ $order->created_at->format('d M Y H:i') }}</td>
