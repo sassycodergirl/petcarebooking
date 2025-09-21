@@ -464,7 +464,22 @@ if (checkoutBtn) {
                 setTimeout(() => {
                     let modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
                     modal.hide();
-                    location.reload();
+                    // location.reload();
+
+                    //test
+                     // If user originally clicked checkout, redirect them there
+                     if (sessionStorage.getItem("redirectToCheckout")) {
+                            // redirect to checkout if login came from checkout flow
+                            sessionStorage.removeItem("redirectToCheckout");
+                            window.location.href = "{{ route('checkout.index') }}";
+                        } else {
+                            // normal login flow
+                            location.reload();
+                        }
+                    //test
+
+
+
                 }, 1000);
             } else {
                 errorBox.innerText = data.message;
@@ -476,6 +491,30 @@ if (checkoutBtn) {
 </script>
 
 <!--otp based login/register-->
+
+<!--checout must need user to login-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const checkoutBtn = document.querySelector(".btn-checkout");
+
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", function (e) {
+            @guest
+                e.preventDefault();
+                // mark that checkout triggered login
+                sessionStorage.setItem("redirectToCheckout", "true");
+
+                // open OTP login modal
+                let modal = new bootstrap.Modal(document.getElementById('loginModal'));
+                modal.show();
+            @endguest
+        });
+    }
+});
+
+</script>
+<!--checout must need user to login-->
+
 
 </body>
 
