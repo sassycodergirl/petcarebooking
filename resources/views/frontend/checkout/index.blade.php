@@ -146,6 +146,22 @@
 }
 
 
+/* For all inputs with a value or focused */
+.input:focus,
+.input:not(:placeholder-shown) {
+  border: 2px solid #000;
+}
+
+.input:focus ~ .user-label,
+.input:not(:placeholder-shown) ~ .user-label {
+  transform: translateY(-50%) scale(0.8);
+  background-color: #fff;
+  z-index: 9999;
+  padding: 0 .2em;
+  color: #000;
+  font-size: 1.2em;
+}
+
 /* .form-control{
   background:transparent;
 } */
@@ -389,7 +405,7 @@
 
                 <div class="col-md-4">
                   <div class="input-group">
-                    <select class="input form-control" id="state" name="state" required>
+                    <select class="input form-control" placeholder=" " id="state" name="state" required>
                         <option value="" disabled {{ empty($address->state) ? 'selected' : '' }}></option> <!-- placeholder -->
 
                         <option value="Andhra Pradesh" {{ (old('state', $address->state ?? '') == 'Andhra Pradesh') ? 'selected' : '' }}>Andhra Pradesh</option>
