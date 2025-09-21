@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\Pet;
 use App\Models\Slot;
 use App\Models\User;
+use App\Models\Address;
 use App\Models\PetSlotReservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,17 @@ class BookingController extends Controller
                 'alt_contact'         => $validated['owner']['alt_contact'] ?? null,
                 'residential_address' => $validated['owner']['address'],
             ]);
+
+            // Update or create default Home address
+            $user->addresses()->updateOrCreate(
+                ['type' => 'Home'], 
+                [
+                    'name'          => $validated['owner']['name'],
+                    'address_line1' => $validated['owner']['address_line1'],
+                    'country'       => 'India',
+                    'is_default'    => 1,
+                ]
+            );
 
             // 3. Handle Aadhar upload
             if ($request->hasFile('owner.aadhar')) {
