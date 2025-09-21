@@ -16,6 +16,7 @@ use App\Http\Controllers\Customer\DashboardController;
 use App\Http\Controllers\Customer\ProfileController;
 use App\Http\Controllers\Customer\PetController;
 use App\Http\Controllers\Customer\AddressController;
+use App\Http\Controllers\Customer\OrderController as CustomerOrderController;
 use App\Http\Controllers\Auth\PhoneAuthController;
 use App\Http\Controllers\Customer\BookingController as CustomerBookingController;
 use Illuminate\Support\Facades\Auth;
@@ -139,6 +140,13 @@ Route::middleware(['auth'])->prefix('customer')->name('customer.')->group(functi
     //booking
      Route::get('/bookings/upcoming', [CustomerBookingController::class, 'upcoming'])->name('bookings.upcoming');
      Route::get('/bookings/past', [CustomerBookingController::class, 'past'])->name('bookings.past');
+
+
+     // List all orders
+    Route::get('/orders', [CustomerOrderController::class, 'index'])->name('orders.index');
+
+    // Show single order details
+    Route::get('/orders/{id}', [CustomerOrderController::class, 'show'])->name('orders.show');
 });
 
 // -----------------------------
