@@ -150,20 +150,20 @@
 .input:focus,
 select.input:focus,
 .input:not(:placeholder-shown),
-select.input:not([value=""]) {
-  border: 2px solid #000;
+select.input:valid { /* <-- Changed :not([value=""]) to :valid */
+  border: 2px solid #000;
 }
 
 .input:focus ~ .user-label,
 .input:not(:placeholder-shown) ~ .user-label,
 select.input:focus ~ .user-label,
-select.input:not([value=""]) ~ .user-label {
-  transform: translateY(-50%) scale(0.8);
-  background-color: #fff;
-  z-index: 9999;
-  padding: 0 .2em;
-  color: #000;
-  font-size: 1.2em;
+select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
+  transform: translateY(-50%) scale(0.8);
+  background-color: #fff;
+  z-index: 9999;
+  padding: 0 .2em;
+  color: #000;
+  font-size: 1.2em;
 }
 
 /* .form-control{
