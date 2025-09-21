@@ -54,7 +54,7 @@ class BookingController extends Controller
                 ['type' => 'Home'], 
                 [
                     'name'          => $validated['owner']['name'],
-                    'address_line1' => $validated['owner']['address_line1'],
+                    'address_line1' => $validated['owner']['address'],
                     'country'       => 'India',
                     'is_default'    => 1,
                 ]
