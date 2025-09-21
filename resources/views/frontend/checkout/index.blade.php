@@ -267,7 +267,7 @@
     
 <!-- Loader -->
 <div id="checkout-loader" 
-     style="position: fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:9999;">
+     style="position: fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; justify-content:center; align-items:center; z-index:99999999999;">
     <img src="{{ asset('images/loader.gif') }}" alt="Loading..." width="60">
 </div>
   <main>
@@ -705,8 +705,7 @@
             </form>
           </div>
         </div>
-         </div>
-
+        
         <div class="col-md-6 col-lg-6 order-md-last p-md-5 p-4">
           <div class="summary-box right-scroll">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
