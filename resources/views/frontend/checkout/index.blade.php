@@ -760,19 +760,17 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
 
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-  <script>
-    // cartItems is an object
-    window.cartItems = @json($cart ?? {});
+<script>
+    // Force PHP associative array → JS array
+    window.cartItems = <?php echo json_encode(array_values($cart ?? []), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES); ?>;
 
-    // Convert object values to array
-    const cartArray = Object.values(window.cartItems);
+    // Now reduce works directly
+    window.cartTotalQty = window.cartItems.reduce((sum, item) => sum + (parseInt(item.qty) || 0), 0);
 
-    // Now you can use reduce safely
-    const cartTotalQty = cartArray.reduce((sum, item) => sum + (item.qty || 0), 0);
-
-    console.log('Cart Items Array:', cartArray);
-    console.log('Total Quantity:', cartTotalQty);
+    console.log('Cart Items:', window.cartItems);
+    console.log('Total Quantity:', window.cartTotalQty);
 </script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
