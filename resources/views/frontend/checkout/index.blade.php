@@ -150,14 +150,14 @@
 .input:focus,
 select.input:focus,
 .input:not(:placeholder-shown),
-select.input:valid {
+select.input:not([value=""]) {
   border: 2px solid #000;
 }
 
 .input:focus ~ .user-label,
 .input:not(:placeholder-shown) ~ .user-label,
 select.input:focus ~ .user-label,
-select.input:valid ~ .user-label {
+select.input:not([value=""]) ~ .user-label {
   transform: translateY(-50%) scale(0.8);
   background-color: #fff;
   z-index: 9999;
@@ -409,8 +409,8 @@ select.input:valid ~ .user-label {
 
                 <div class="col-md-4">
                   <div class="input-group">
-                    <select class="input form-control" placeholder=" " id="state" name="state" required>
-                        <option value="" disabled {{ empty($address->state) ? 'selected' : '' }}></option> <!-- placeholder -->
+                    <select class="input form-control"  id="state" name="state" required>
+                        <option value="" disabled hidden {{ empty($address->state) ? 'selected' : '' }}></option> 
 
                         <option value="Andhra Pradesh" {{ (old('state', $address->state ?? '') == 'Andhra Pradesh') ? 'selected' : '' }}>Andhra Pradesh</option>
                         <option value="Arunachal Pradesh" {{ (old('state', $address->state ?? '') == 'Arunachal Pradesh') ? 'selected' : '' }}>Arunachal Pradesh</option>
@@ -542,8 +542,8 @@ select.input:valid ~ .user-label {
 
                   <div class="col-md-4">
                     <div class="input-group">
-                      <select class="input form-control" placeholder=" " id="billing_state" name="billing_state" required>
-                        <option value="" disabled selected></option> <!-- placeholder -->
+                      <select class="input form-control" id="billing_state" name="billing_state" required>
+                        <option value="" disabled selected hidden></option> <!-- placeholder -->
 
                         <!-- A -->
                         <option value="Andhra Pradesh">Andhra Pradesh</option>
