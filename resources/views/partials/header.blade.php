@@ -183,25 +183,6 @@ window.addEventListener("load", function () {
                               </a>
                           </li>
 
-
-
-
-                            <!-- <li><a href="#" class="cd-button cart-btn"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M160 288h249.44a8 8 0 0 0 7.85-6.43l28.8-144a8 8 0 0 0-7.85-9.57H128"/></svg><span class="cd-button-cart-count">{{ session('cart') ? array_sum(array_column(session('cart'), 'quantity')) : 0 }}</span></a></li> -->
-                            <!-- <li><a href="{{ route('login') }}"><img src="{{asset('images/user.svg')}}" alt=""></a></li> -->
-                            <!-- <li>
-                              @if(Auth::check())
-                                  <a href="{{ route('dashboard') }}">
-                                      <img src="{{ asset('images/user.svg') }}" alt="User">
-                                      Dashboard
-                                  </a>
-                              @else
-                                   <img src="{{ asset('images/user.svg') }}" alt="Login"
-                                    role="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#loginModal"
-                                    style="cursor: pointer;">
-                              @endif
-                          </li> -->
                           <li>
                             @if(Auth::check())
                                 @if(Auth::user()->is_admin) 
