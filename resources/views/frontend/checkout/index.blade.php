@@ -326,15 +326,13 @@
                   <h4 class="mb-3">Shipping & Delivery</h4>
 
 
-                  <div class="col-12">
-                   <div class="input-group">
-                     <input type="text" class="input form-control" id="country" name="country" autocomplete="off" value="India"  disabled>
-                        <label class="user-label">Country</label>
-                        <div class="invalid-feedback">
-                           Please enter your country
-                         </div>
-                    </div>
-
+                  <div class="col-12 mb-4">
+                    <div class="input-group">
+                          <input type="text" class="input form-control" id="country" name="country" autocomplete="off" value="India"  readonly>
+                          <label class="user-label">Country</label>
+                          <div class="invalid-feedback"> Please enter your country</div>
+                      </div>
+                  </div>
                   <div class="row g-3">
                     <div class="col-sm-6">
                         <div class="input-group">
