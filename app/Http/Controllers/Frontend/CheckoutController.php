@@ -22,7 +22,19 @@ class CheckoutController extends Controller
         $shipping = 0;
         $total    = $subtotal + $shipping;
 
-        return view('frontend.checkout.index', compact('cart', 'subtotal', 'shipping', 'total'));
+         $user = auth()->user();
+
+        // Get default address for logged-in user
+        $address = $user?->addresses()
+            ->where('is_default', 1)
+            ->first();
+
+        // Fallback: if no default address, get latest
+        if (!$address) {
+            $address = $user?->addresses()->latest()->first();
+        }
+
+        return view('frontend.checkout.index', compact('cart', 'subtotal', 'shipping', 'total', 'user', 'address'));
     }
 
     public function store(Request $request)

@@ -312,7 +312,8 @@
                     </div>
 
                     <div class="form-check mt-4">
-                      <input type="checkbox" class="form-check-input" id="updates" name="updates" checked>
+                      <input type="checkbox" class="form-check-input" id="updates" name="updates" value="1"
+           {{ old('marketing_opt_in', $user->marketing_opt_in ?? true) ? 'checked' : '' }}>
                       <span class="form-check-label" for="updates">
                         Keep me updated with the order updates and offers via WhatsApp, SMS and Email
                       </span>
@@ -323,6 +324,17 @@
 
 
                   <h4 class="mb-3">Shipping & Delivery</h4>
+
+
+                  <div class="col-12">
+                   <div class="input-group">
+                     <input type="text" class="input form-control" id="country" name="country" autocomplete="off" value="India"  disabled>
+                        <label class="user-label">Country</label>
+                        <div class="invalid-feedback">
+                           Please enter your country
+                         </div>
+                    </div>
+
                   <div class="row g-3">
                     <div class="col-sm-6">
                         <div class="input-group">
@@ -348,7 +360,7 @@
 
                 <div class="col-12">
                    <div class="input-group">
-                     <input type="text" class="input form-control" id="address" name="address" autocomplete="off" value="{{ old('residential_address', auth()->user()->residential_address) }}" required>
+                     <input type="text" class="input form-control" id="address" name="address_line1" autocomplete="off" value="{{ old('address_line1', $address->address_line1 ?? '') }}" required>
                         <label class="user-label">Address</label>
                         <div class="invalid-feedback">
                            Please enter your shipping address.
@@ -360,14 +372,14 @@
 
                 <div class="col-12">
                    <div class="input-group">
-                     <input type="text" class="input form-control optional" id="address2" name="address-extra" autocomplete="off" value="" placeholder=" ">
+                     <input type="text" class="input form-control optional" id="address2" name="address_line2" autocomplete="off" value="{{ old('address_line2', $address->address_line2 ?? '') }}" placeholder=" ">
                         <label class="user-label">Apartment, suite, etc. (optional)</label>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input type="text" class="input form-control"  id="city" name="city" autocomplete="off" required>
+                    <input type="text" class="input form-control"  id="city" name="city" autocomplete="off" value="{{ old('city', $address->city ?? '') }}" required>
                     <label for="city" class="user-label">City</label>
                     <div class="invalid-feedback">
                       Please enter a valid city.
@@ -380,76 +392,43 @@
                 <div class="col-md-4">
                   <div class="input-group">
                     <select class="input form-control" id="state" name="state" required>
-                      <option value="" disabled selected></option> <!-- placeholder -->
-                      
-                      <!-- A -->
-                      <option value="Andhra Pradesh">Andhra Pradesh</option>
-                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                      <option value="Assam">Assam</option>
+                        <option value="" disabled {{ empty($address->state) ? 'selected' : '' }}></option> <!-- placeholder -->
 
-                      <!-- B -->
-                      <option value="Bihar">Bihar</option>
+                        <option value="Andhra Pradesh" {{ (old('state', $address->state ?? '') == 'Andhra Pradesh') ? 'selected' : '' }}>Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh" {{ (old('state', $address->state ?? '') == 'Arunachal Pradesh') ? 'selected' : '' }}>Arunachal Pradesh</option>
+                        <option value="Assam" {{ (old('state', $address->state ?? '') == 'Assam') ? 'selected' : '' }}>Assam</option>
 
-                      <!-- C -->
-                      <option value="Chhattisgarh">Chhattisgarh</option>
-
-                      <!-- D -->
-                      <option value="Delhi">Delhi</option>
-
-                      <!-- G -->
-                      <option value="Goa">Goa</option>
-                      <option value="Gujarat">Gujarat</option>
-
-                      <!-- H -->
-                      <option value="Haryana">Haryana</option>
-                      <option value="Himachal Pradesh">Himachal Pradesh</option>
-
-                      <!-- J -->
-                      <option value="Jharkhand">Jharkhand</option>
-                      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-
-                      <!-- K -->
-                      <option value="Karnataka">Karnataka</option>
-                      <option value="Kerala">Kerala</option>
-
-                      <!-- L -->
-                      <option value="Ladakh">Ladakh</option>
-
-                      <!-- M -->
-                      <option value="Madhya Pradesh">Madhya Pradesh</option>
-                      <option value="Maharashtra">Maharashtra</option>
-                      <option value="Manipur">Manipur</option>
-                      <option value="Meghalaya">Meghalaya</option>
-                      <option value="Mizoram">Mizoram</option>
-
-                      <!-- N -->
-                      <option value="Nagaland">Nagaland</option>
-
-                      <!-- O -->
-                      <option value="Odisha">Odisha</option>
-
-                      <!-- P -->
-                      <option value="Punjab">Punjab</option>
-                      <option value="Puducherry">Puducherry</option>
-
-                      <!-- R -->
-                      <option value="Rajasthan">Rajasthan</option>
-
-                      <!-- S -->
-                      <option value="Sikkim">Sikkim</option>
-
-                      <!-- T -->
-                      <option value="Tamil Nadu">Tamil Nadu</option>
-                      <option value="Telangana">Telangana</option>
-                      <option value="Tripura">Tripura</option>
-
-                      <!-- U -->
-                      <option value="Uttar Pradesh">Uttar Pradesh</option>
-                      <option value="Uttarakhand">Uttarakhand</option>
-
-                      <!-- W -->
-                      <option value="West Bengal">West Bengal</option>
+                        <option value="Bihar" {{ (old('state', $address->state ?? '') == 'Bihar') ? 'selected' : '' }}>Bihar</option>
+                        <option value="Chhattisgarh" {{ (old('state', $address->state ?? '') == 'Chhattisgarh') ? 'selected' : '' }}>Chhattisgarh</option>
+                        <option value="Delhi" {{ (old('state', $address->state ?? '') == 'Delhi') ? 'selected' : '' }}>Delhi</option>
+                        <option value="Goa" {{ (old('state', $address->state ?? '') == 'Goa') ? 'selected' : '' }}>Goa</option>
+                        <option value="Gujarat" {{ (old('state', $address->state ?? '') == 'Gujarat') ? 'selected' : '' }}>Gujarat</option>
+                        <option value="Haryana" {{ (old('state', $address->state ?? '') == 'Haryana') ? 'selected' : '' }}>Haryana</option>
+                        <option value="Himachal Pradesh" {{ (old('state', $address->state ?? '') == 'Himachal Pradesh') ? 'selected' : '' }}>Himachal Pradesh</option>
+                        <option value="Jharkhand" {{ (old('state', $address->state ?? '') == 'Jharkhand') ? 'selected' : '' }}>Jharkhand</option>
+                        <option value="Jammu and Kashmir" {{ (old('state', $address->state ?? '') == 'Jammu and Kashmir') ? 'selected' : '' }}>Jammu and Kashmir</option>
+                        <option value="Karnataka" {{ (old('state', $address->state ?? '') == 'Karnataka') ? 'selected' : '' }}>Karnataka</option>
+                        <option value="Kerala" {{ (old('state', $address->state ?? '') == 'Kerala') ? 'selected' : '' }}>Kerala</option>
+                        <option value="Ladakh" {{ (old('state', $address->state ?? '') == 'Ladakh') ? 'selected' : '' }}>Ladakh</option>
+                        <option value="Madhya Pradesh" {{ (old('state', $address->state ?? '') == 'Madhya Pradesh') ? 'selected' : '' }}>Madhya Pradesh</option>
+                        <option value="Maharashtra" {{ (old('state', $address->state ?? '') == 'Maharashtra') ? 'selected' : '' }}>Maharashtra</option>
+                        <option value="Manipur" {{ (old('state', $address->state ?? '') == 'Manipur') ? 'selected' : '' }}>Manipur</option>
+                        <option value="Meghalaya" {{ (old('state', $address->state ?? '') == 'Meghalaya') ? 'selected' : '' }}>Meghalaya</option>
+                        <option value="Mizoram" {{ (old('state', $address->state ?? '') == 'Mizoram') ? 'selected' : '' }}>Mizoram</option>
+                        <option value="Nagaland" {{ (old('state', $address->state ?? '') == 'Nagaland') ? 'selected' : '' }}>Nagaland</option>
+                        <option value="Odisha" {{ (old('state', $address->state ?? '') == 'Odisha') ? 'selected' : '' }}>Odisha</option>
+                        <option value="Punjab" {{ (old('state', $address->state ?? '') == 'Punjab') ? 'selected' : '' }}>Punjab</option>
+                        <option value="Puducherry" {{ (old('state', $address->state ?? '') == 'Puducherry') ? 'selected' : '' }}>Puducherry</option>
+                        <option value="Rajasthan" {{ (old('state', $address->state ?? '') == 'Rajasthan') ? 'selected' : '' }}>Rajasthan</option>
+                        <option value="Sikkim" {{ (old('state', $address->state ?? '') == 'Sikkim') ? 'selected' : '' }}>Sikkim</option>
+                        <option value="Tamil Nadu" {{ (old('state', $address->state ?? '') == 'Tamil Nadu') ? 'selected' : '' }}>Tamil Nadu</option>
+                        <option value="Telangana" {{ (old('state', $address->state ?? '') == 'Telangana') ? 'selected' : '' }}>Telangana</option>
+                        <option value="Tripura" {{ (old('state', $address->state ?? '') == 'Tripura') ? 'selected' : '' }}>Tripura</option>
+                        <option value="Uttar Pradesh" {{ (old('state', $address->state ?? '') == 'Uttar Pradesh') ? 'selected' : '' }}>Uttar Pradesh</option>
+                        <option value="Uttarakhand" {{ (old('state', $address->state ?? '') == 'Uttarakhand') ? 'selected' : '' }}>Uttarakhand</option>
+                        <option value="West Bengal" {{ (old('state', $address->state ?? '') == 'West Bengal') ? 'selected' : '' }}>West Bengal</option>
                     </select>
+
                     <label for="state" class="user-label">State</label>
                     <div class="invalid-feedback">
                       Please provide a valid state.
@@ -462,7 +441,7 @@
 
                 <div class="col-md-4">
                   <div class="input-group">
-                    <input type="text" class="input form-control" id="zip" name="zip" autocomplete="off" required>
+                    <input type="text" class="input form-control" id="zip" name="zip" autocomplete="off" value="{{ old('pincode', $address->pincode ?? '') }}" required>
                     <label for="zip" class="user-label">PIN Code</label>
                     <div class="invalid-feedback">
                       PIN code required.
