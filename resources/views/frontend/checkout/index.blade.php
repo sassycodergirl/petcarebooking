@@ -760,13 +760,18 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
 
     <script src="{{asset('js/jquery-min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-   <script>
-    // Make sure $cart exists and is an array
-    window.cartItems = @json($cart ?? []);
-    // window.cartTotalQty = window.cartItems.reduce((sum, item) => sum + (item.qty || 0), 0);
+  <script>
+    // cartItems is an object
+    window.cartItems = @json($cart ?? {});
 
-    console.log('Cart Items:', window.cartItems);
-    // console.log('Total Quantity:', window.cartTotalQty);
+    // Convert object values to array
+    const cartArray = Object.values(window.cartItems);
+
+    // Now you can use reduce safely
+    const cartTotalQty = cartArray.reduce((sum, item) => sum + (item.qty || 0), 0);
+
+    console.log('Cart Items Array:', cartArray);
+    console.log('Total Quantity:', cartTotalQty);
 </script>
 
     <script>
