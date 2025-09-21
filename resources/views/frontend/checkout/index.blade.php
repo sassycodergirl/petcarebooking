@@ -348,7 +348,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
 
                   <div class="col-12 mb-4">
                     <div class="input-group">
-                          <input type="text" class="input form-control" placeholder=" " id="country" name="country" autocomplete="off" value="India"  readonly>
+                          <input type="text" class="input form-control optional" placeholder=" " id="country" name="country" autocomplete="off" value="India"  readonly>
                           <label class="user-label">Country</label>
                           <div class="invalid-feedback"> Please enter your country</div>
                       </div>
