@@ -11,6 +11,7 @@
                 <th>ID</th>
                 <th>Customer</th>
                 <th>Email</th>
+                <th>Phone</th>
                 <th>Total Amount</th>
                 <th>Status</th>
                 <th>Placed At</th>
