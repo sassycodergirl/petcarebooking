@@ -189,8 +189,8 @@
               </a>
               <div class="collapse" id="charts">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="#">My Orders</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="#">Order Details</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ route('customer.orders.index') }}">My Orders</a></li>
+                 
                 </ul>
               </div>
             </li>
