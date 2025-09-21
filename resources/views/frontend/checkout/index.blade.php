@@ -311,7 +311,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
         <div class="col-md-6 col-lg-6 p-md-5 p-4 border-right">
           <div class="form-div">
             
-          <form class="needs-validation" novalidate>
+          <form id="checkoutForm" class="needs-validation" novalidate>
 
            
             <div class="row">
@@ -1027,6 +1027,78 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 </script>
 
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+$(document).ready(function () {
+    $("#checkoutForm").on("submit", function (e) {
+        e.preventDefault();
+
+        // Disable button
+        let submitBtn = $(this).find('button[type="submit"]');
+        submitBtn.prop("disabled", true).text("Processing...");
+
+        // Gather form data
+        let formData = $(this).serialize();
+
+        $.ajax({
+            url: "/create-order",  // Laravel route for creating Razorpay order
+            type: "POST",
+            data: formData,
+            headers: { "X-CSRF-TOKEN": "{{ csrf_token() }}" },
+            success: function (response) {
+                if (!response.order_id) {
+                    alert("Failed to create order. Try again.");
+                    submitBtn.prop("disabled", false).text("Place Order");
+                    return;
+                }
+
+                let options = {
+                    key: "{{ config('services.razorpay.key') }}",
+                    amount: response.amount, // in paise
+                    currency: "INR",
+                    name: "Your Store Name",
+                    description: "Order Payment",
+                    order_id: response.order_id,
+                    handler: function (paymentResponse) {
+                        // send payment success details to server
+                        $.ajax({
+                            url: "/payment-success",
+                            type: "POST",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                razorpay_payment_id: paymentResponse.razorpay_payment_id,
+                                razorpay_order_id: paymentResponse.razorpay_order_id,
+                                razorpay_signature: paymentResponse.razorpay_signature,
+                            },
+                            success: function (res) {
+                                window.location.href = "/order-success";
+                            },
+                            error: function () {
+                                window.location.href = "/payment-failed";
+                            }
+                        });
+                    },
+                    prefill: {
+                        email: $("#email").val(),
+                        contact: $("#phone").val(),
+                        name: $("#firstName").val() + " " + $("#lastName").val(),
+                    },
+                    theme: { color: "#3399cc" }
+                };
+
+                let rzp = new Razorpay(options);
+                rzp.open();
+                submitBtn.prop("disabled", false).text("Place Order");
+            },
+            error: function () {
+                alert("Something went wrong. Try again.");
+                submitBtn.prop("disabled", false).text("Place Order");
+            }
+        });
+    });
+});
+</script>
 
   </body>
 </html>

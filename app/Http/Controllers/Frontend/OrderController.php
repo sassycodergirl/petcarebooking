@@ -4,35 +4,34 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\OrderAddress;
-use App\Models\OrderItem;
+use Razorpay\Api\Api;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
-    public function placeOrder(Request $request)
+     public function place(Request $request)
     {
+        // ✅ Step 1: Validate request
         $request->validate([
             'email' => 'required|email',
             'cart' => 'required|array|min:1',
-            'payment_method' => 'nullable|string',
-            'marketing_opt_in' => 'nullable|boolean',
             'firstName' => 'required|string',
-            'lasttName' => 'required|string',
-            'address_line1' => 'required|string',
+            'lastName' => 'required|string',
+            'address' => 'required|string',
             'city' => 'required|string',
             'state' => 'required|string',
-            'zip' => 'required|string',
+            'pincode' => 'required|string',
             'phone' => 'required|string',
-            // billing fields optional if same as shipping
+            // Billing fields optional if same as shipping
             'billing_firstName' => 'nullable|string',
             'billing_lastName' => 'nullable|string',
-            'billing_address1' => 'nullable|string',
+            'billing_address' => 'nullable|string',
             'billing_city' => 'nullable|string',
             'billing_state' => 'nullable|string',
-            'billing_zip' => 'nullable|string',
+            'billing_pincode' => 'nullable|string',
+            'billing_phone' => 'nullable|string',
         ]);
 
         $data = $request->all();
@@ -40,88 +39,167 @@ class OrderController extends Controller
         DB::beginTransaction();
 
         try {
-            // Create the order
+            // ✅ Step 2: Create order in DB
             $order = Order::create([
                 'user_id' => Auth::id(),
                 'email' => $data['email'],
-                'total_price' => collect($data['cart'])->sum(fn($item) => $item['qty'] * $item['price']),
-                'payment_method' => $data['payment_method'] ?? 'razorpay',
-                'payment_id' => $data['razorpay_payment_id'] ?? null,
-                'status' => 'paid', // mark as paid since Razorpay is success
-                'marketing_opt_in' => $data['marketing_opt_in'] ?? 0,
+                'total_price' => collect($data['cart'])->sum(fn($i) => $i['qty'] * $i['price']),
+                'payment_method' => 'razorpay',
+                'status' => 'pending',
             ]);
 
-            // Shipping address
+            // ✅ Step 3: Save shipping address
             OrderAddress::create([
                 'order_id' => $order->id,
                 'type' => 'shipping',
-                'name' => $data['firstName'] . ' ' . $data['lasttName'],
+                'name' => $data['firstName'] . ' ' . $data['lastName'],
                 'phone' => $data['phone'],
-                'address_line1' => $data['address_line1'],
+                'address_line1' => $data['address'],
                 'address_line2' => $data['address_line2'] ?? null,
                 'city' => $data['city'],
                 'state' => $data['state'],
-                'pincode' => $data['zip'],
-                'country' => $data['country'] ?? 'India',
+                'pincode' => $data['pincode'],
+                'country' => 'India',
             ]);
 
-            // Billing address
-            if ($request->input('billing_address_selector') === 'billing_different') {
+            // ✅ Step 4: Save billing address
+            if (empty($data['same_as_shipping'])) {
                 OrderAddress::create([
                     'order_id' => $order->id,
                     'type' => 'billing',
                     'name' => $data['billing_firstName'] . ' ' . $data['billing_lastName'],
                     'phone' => $data['billing_phone'] ?? $data['phone'],
-                    'address_line1' => $data['billing_address1'],
-                    'address_line2' => $data['billing_address2'] ?? null,
+                    'address_line1' => $data['billing_address'],
+                    'address_line2' => $data['address_line2'] ?? null,
                     'city' => $data['billing_city'],
                     'state' => $data['billing_state'],
-                    'pincode' => $data['billing_zip'],
+                    'pincode' => $data['billing_pincode'],
                     'country' => 'India',
                 ]);
             } else {
+                // fallback: same as shipping
                 OrderAddress::create([
                     'order_id' => $order->id,
                     'type' => 'billing',
-                    'name' => $data['firstName'] . ' ' . $data['lasttName'],
+                    'name' => $data['firstName'] . ' ' . $data['lastName'],
                     'phone' => $data['phone'],
-                    'address_line1' => $data['address_line1'],
-                    'address_line2' => $data['address_line2'] ?? null,
+                    'address_line1' => $data['address'],
+                    'address_line2' => $data['billing_address2'] ?? null,
                     'city' => $data['city'],
                     'state' => $data['state'],
-                    'pincode' => $data['zip'],
-                    'country' => $data['country'] ?? 'India',
+                    'pincode' => $data['pincode'],
+                    'country' => 'India',
                 ]);
             }
 
-            // Order items
+            // ✅ Step 5: Save order items
             foreach ($data['cart'] as $item) {
                 OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $item['id'],
                     'variant_id' => $item['variant_id'] ?? null,
-                    'name' => $item['name'],
-                    'price' => $item['price'],
-                    'qty' => $item['qty'],
+                    'product_name' => $item['name'],
+                    'product_price' => $item['price'],
+                    'quantity' => $item['qty'],
                     'total_price' => $item['qty'] * $item['price'],
+                    'size' => $item['size'] ?? null,
+                    'color' => $item['color'] ?? null,
                 ]);
             }
+
+            // ✅ Step 6: Create Razorpay Order
+            $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+            $razorpayOrder = $api->order->create([
+                'receipt' => $order->id,
+                'amount' => $order->total_price * 100, // in paise
+                'currency' => 'INR',
+            ]);
+
+            // Save razorpay_order_id
+            $order->update(['payment_id' => $razorpayOrder['id']]);
 
             DB::commit();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Order placed successfully',
-                'order_id' => $order->id,
+                'order_id' => $razorpayOrder['id'],
+                'amount' => $razorpayOrder['amount'],
+                'razorpay_key' => env('RAZORPAY_KEY'),
             ]);
-
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Order Placement Failed: ' . $e->getMessage());
+
             return response()->json([
                 'success' => false,
                 'message' => 'Something went wrong while placing the order.',
                 'error' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function verify(Request $request)
+{
+    $request->validate([
+        'razorpay_order_id'   => 'required|string',
+        'razorpay_payment_id' => 'required|string',
+        'razorpay_signature'  => 'required|string',
+    ]);
+
+    try {
+        $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+
+        $attributes = [
+            'razorpay_order_id'   => $request->razorpay_order_id,
+            'razorpay_payment_id' => $request->razorpay_payment_id,
+            'razorpay_signature'  => $request->razorpay_signature,
+        ];
+
+        // ✅ Step 1: Verify signature
+        $api->utility->verifyPaymentSignature($attributes);
+
+        // ✅ Step 2: Fetch the order
+        $order = Order::where('payment_id', $request->razorpay_order_id)->first();
+
+        if (!$order) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Order not found for this payment!',
+            ], 404);
+        }
+
+        // ✅ Step 3: Update order as paid
+        $order->update([
+            'status'       => 'paid',
+            'payment_id'   => $request->razorpay_payment_id, // overwrite with actual payment ID
+            'paid_at'      => now(),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Payment verified successfully',
+            'redirect' => route('order.success', $order->id),
+        ]);
+    } catch (\Exception $e) {
+        Log::error('Razorpay Verification Failed: ' . $e->getMessage());
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Payment verification failed!',
+            'error'   => $e->getMessage(),
+            'redirect' => route('order.failed', ['id' => $request->razorpay_order_id]),
+        ], 500);
+    }
+}
+
+
+    public function success($id)
+    {
+        return view('frontend.order.success', ['orderId' => $id]);
+    }
+
+    public function failed($id = null)
+    {
+        return view('frontend.order.failed', ['orderId' => $id]);
     }
 }

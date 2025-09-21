@@ -12,6 +12,10 @@ class Order extends Model
         'user_id',
         'status',
         'total_amount',
+        'payment_method',
+        'payment_id',
+        //'marketing_opt_in', // optional
+        //'email',            // optional
     ];
 
     // An order belongs to a user
@@ -26,8 +30,21 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-        public function address()
+    // An order has many addresses (shipping + billing)
+    public function addresses()
     {
-        return $this->hasOne(OrderAddress::class);
+        return $this->hasMany(OrderAddress::class);
+    }
+
+    // Shipping address
+    public function shippingAddress()
+    {
+        return $this->hasOne(OrderAddress::class)->where('type', 'shipping');
+    }
+
+    // Billing address
+    public function billingAddress()
+    {
+        return $this->hasOne(OrderAddress::class)->where('type', 'billing');
     }
 }
