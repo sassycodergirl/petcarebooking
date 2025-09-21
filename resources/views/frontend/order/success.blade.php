@@ -1,8 +1,5 @@
-@extends('layouts.app')
 
-@section('title', 'Order Success')
 
-@section('content')
 <div class="container py-5 text-center">
     <div class="card shadow-lg p-5 rounded">
         <h1 class="text-success mb-4">🎉 Thank You for Your Order!</h1>
@@ -25,4 +22,4 @@
 
     </div>
 </div>
-@endsection
+

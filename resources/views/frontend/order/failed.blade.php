@@ -1,8 +1,6 @@
-@extends('layouts.app')
 
-@section('title', 'Order Failed')
 
-@section('content')
+
 <div class="container py-5">
     <div class="text-center">
         <div class="mb-4">
@@ -25,4 +23,4 @@
         </div>
     </div>
 </div>
-@endsection
+
