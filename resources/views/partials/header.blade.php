@@ -183,31 +183,21 @@ window.addEventListener("load", function () {
                               </a>
                           </li>
 
-                          <li>
+                        <li>
                             @if(Auth::check())
-                                @if(Auth::user()->is_admin) 
-                                    <a href="{{ route('admin.dashboard') }}">
-                                       
-                                        Dashboard
-                                    </a>
-                                @else
-                                    <a href="{{ route('customer.dashboard') }}">
-                                       
-                                        Dashboard
-                                    </a>
-                                @endif
+                                <a href="{{ Auth::user()->is_admin ? route('admin.dashboard') : route('customer.dashboard') }}" class="btn btn-primary">
+                                    Dashboard
+                                </a>
                             @else
-                            <button class="btn btn-primary" role="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#loginModal"
-                                    style="cursor: pointer;">Login/Signup</button>
-                                <!-- <img src="{{ asset('images/user.svg') }}" alt="Login"
-                                    role="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#loginModal"
-                                    style="cursor: pointer;"> -->
+                                <button class="btn btn-primary" role="button"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#loginModal"
+                                        style="cursor: pointer;">
+                                    Login/Signup
+                                </button>
                             @endif
                         </li>
+
 
                           </ul>
                     </div>
