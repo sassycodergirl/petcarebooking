@@ -197,7 +197,7 @@ textarea::placeholder {
 .cmn-btn {
 	position: relative;
 	display: inline-block;
-	padding: 9px 15px;
+	padding: 10px 20px;
 	background-color: var(--bg-orange);
 	border-radius: 8px;
 	overflow: hidden;
@@ -544,7 +544,7 @@ textarea::placeholder {
 .hdr-rgt {
 	display: flex;
 	align-items: center;
-	gap: 30px;
+	gap: 15px;
 }
 .login-head-btn{
 	cursor: pointer;
