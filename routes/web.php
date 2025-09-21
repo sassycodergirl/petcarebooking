@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\ShopProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Customer\DashboardController;
 use App\Http\Controllers\Customer\ProfileController;
@@ -170,9 +171,17 @@ Route::get('/products/{slug}', [ShopProductController::class, 'show'])->name('pr
 
 // Checkout (auth only)
 Route::middleware(['auth'])->group(function () {
+    // Checkout page
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-    Route::post('/checkout/place-order', [CheckoutController::class, 'store'])->name('checkout.store');
-    Route::get('/order/success/{id}', fn($id) => view('frontend.checkout.success', ['orderId' => $id]))->name('order.success');
+   // Place order (creates order + Razorpay order)
+    Route::post('/order/place', [OrderController::class, 'place'])->name('order.place');
+
+    // Verify Razorpay payment
+    Route::post('/order/verify', [OrderController::class, 'verify'])->name('order.verify');
+
+    // Success & failure pages
+    Route::get('/order/success/{id}', [OrderController::class, 'success'])->name('order.success');
+    Route::get('/order/failed/{id?}', [OrderController::class, 'failed'])->name('order.failed');
 });
 
 
