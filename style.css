@@ -544,9 +544,15 @@ textarea::placeholder {
 .hdr-rgt {
 	display: flex;
 	align-items: center;
-	gap: 65px;
+	gap: 30px;
 }
-
+.login-head-btn{
+	cursor: pointer;
+	background: #ffffff59;
+    color: orange;
+    border: 2px solid orange;
+    font-weight: 600;
+}
 .navbar-expand-lg .navbar-collapse {
 	padding-right: 65px;
 }
