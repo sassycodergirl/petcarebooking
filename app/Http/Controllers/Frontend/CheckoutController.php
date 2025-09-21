@@ -37,7 +37,15 @@ class CheckoutController extends Controller
         // Remove '+91' from phone if present
          $phone = $user?->phone ? str_replace('+91', '', $user->phone) : null;
 
-        return view('frontend.checkout.index', compact('cart', 'subtotal', 'shipping', 'total', 'user', 'address', 'phone'));
+         // Split name into first_name and last_name
+        $first_name = $last_name = '';
+        if ($user?->name) {
+            $nameParts = explode(' ', $user->name, 2); // Split into max 2 parts
+            $first_name = $nameParts[0];
+            $last_name  = $nameParts[1] ?? ''; // If only one word, last_name stays empty
+        }
+
+        return view('frontend.checkout.index', compact('cart', 'subtotal', 'shipping', 'total', 'user', 'address', 'phone','first_name', 'last_name'));
     }
 
     public function store(Request $request)

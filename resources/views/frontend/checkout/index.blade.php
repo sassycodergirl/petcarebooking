@@ -356,7 +356,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
                   <div class="row g-3">
                     <div class="col-sm-6">
                         <div class="input-group">
-                        <input type="text" class="input form-control" placeholder=" " id="firstName" name="firstName" autocomplete="off" value="" required>
+                        <input type="text" class="input form-control" placeholder=" " id="firstName" name="firstName" autocomplete="off" value="{{ old('first_name', $first_name) }}" required>
                             <label class="user-label">First Name</label>
                             <div class="invalid-feedback">
                               Valid first name is required.
@@ -366,7 +366,7 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
 
                 <div class="col-sm-6">
                     <div class="input-group">
-                     <input type="text" class="input form-control" placeholder=" " id="lastName" name="lasttName" autocomplete="off" value="" required>
+                     <input type="text" class="input form-control" placeholder=" " id="lastName" name="lasttName" autocomplete="off" value="{{ old('last_name', $last_name) }}" required>
                         <label class="user-label">Last Name</label>
                         <div class="invalid-feedback">
                           Valid last name is required.
