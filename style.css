@@ -510,7 +510,7 @@ textarea::placeholder {
 
 .hdr-rgt-icons ul li a {
 	display: flex;
-	width: 35px;
+	/* width: 35px; */
 	height: 35px;
 	align-items: center;
 	justify-content: center;
