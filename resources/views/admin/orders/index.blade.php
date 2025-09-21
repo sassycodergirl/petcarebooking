@@ -4,7 +4,7 @@
 
 <div class="container">
     <h1 class="mb-4">Orders</h1>
-
+<div class="table-responsive">
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -39,7 +39,7 @@
             @endforelse
         </tbody>
     </table>
-
+</div>
     {{ $orders->links() }}
 </div>
 
