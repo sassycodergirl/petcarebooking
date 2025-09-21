@@ -763,10 +763,10 @@ select.input:valid ~ .user-label { /* <-- Changed :not([value=""]) to :valid */
    <script>
     // Make sure $cart exists and is an array
     window.cartItems = @json($cart ?? []);
-    window.cartTotalQty = window.cartItems.reduce((sum, item) => sum + (item.qty || 0), 0);
+    // window.cartTotalQty = window.cartItems.reduce((sum, item) => sum + (item.qty || 0), 0);
 
     console.log('Cart Items:', window.cartItems);
-    console.log('Total Quantity:', window.cartTotalQty);
+    // console.log('Total Quantity:', window.cartTotalQty);
 </script>
 
     <script>
