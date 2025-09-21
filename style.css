@@ -197,14 +197,14 @@ textarea::placeholder {
 .cmn-btn {
 	position: relative;
 	display: inline-block;
-	padding: 16px 32px;
+	padding: 9px 15px;
 	background-color: var(--bg-orange);
 	border-radius: 8px;
 	overflow: hidden;
 	color: #fff;
 	text-decoration: none;
 	font-weight: 600;
-	font-size: 20px;
+	font-size: 16px;
 	font-weight: 600;
 }
 
