@@ -3621,7 +3621,7 @@ blockquote {
 
 .accordion-body p {
 	color: #151515b3;
-    font-size: 16px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 400;
     line-height: 1.5;
@@ -3631,13 +3631,16 @@ blockquote {
     line-height: 18px;
     font-weight: 600;
 }
+.accordion-body ul{
+	    padding-left: 2em;
+}
 .accordion-body li {
     color: #151515b3;
-    font-size: 16px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 400;
-    line-height: 1.5;
-	list-style:circle;
+    line-height: 1.9;
+	list-style:disc;
 }
 .accordion-button:not(.collapsed) {
 	background-color: transparent;
