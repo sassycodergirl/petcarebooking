@@ -1,4 +1,5 @@
 @include('admin.partials.dash-header')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <div class="container">
      <div class="dash-content">
         <h1>Add Product</h1>
@@ -182,13 +183,29 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 <script>
-    tinymce.init({
-        // ✅ This selector now targets the ID we just added
-        selector: 'textarea#product-description-editor',
-        plugins: 'code table lists link image',
-        toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | link | image'
+    $(document).ready(function() {
+        $('#summernote-editor').summernote({
+            height: 300, // Set the editor height
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['fullscreen', 'codeview']]
+            ]
+        });
+
+        $('#ingredients').summernote({
+            height: 150, // A smaller height for this field
+            toolbar: [
+                // A simpler toolbar for ingredients
+                ['font', ['bold', 'italic', 'underline']],
+                ['para', ['ul', 'ol']]
+            ]
+        });
     });
 </script>

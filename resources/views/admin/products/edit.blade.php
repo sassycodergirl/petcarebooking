@@ -256,7 +256,7 @@
 </div>
 
 @include('admin.partials.dash-footer')
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const categorySelect = document.getElementById('category_id');
@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#summernote-editor').summernote({
@@ -290,5 +290,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 ['view', ['fullscreen', 'codeview']]
             ]
         });
+
+        $('#ingredients').summernote({
+            height: 150, // A smaller height for this field
+            toolbar: [
+                // A simpler toolbar for ingredients
+                ['font', ['bold', 'italic', 'underline']],
+                ['para', ['ul', 'ol']]
+            ]
+        });
+
+
     });
 </script>
