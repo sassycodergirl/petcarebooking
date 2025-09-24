@@ -6303,13 +6303,13 @@ blockquote {
 
 .selectgroup-button {
     display: block;
-    border: 1px solid rgba(0, 40, 100, .12);
+    border: 1px solid rgb(0 0 0);
     text-align: center;
     /* padding: .375rem 1rem; */
     position: relative;
     cursor: pointer;
     border-radius: 3px;
-    color: #9aa0ac;
+    color: #000;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -6835,17 +6835,20 @@ background-color: #ffe000;
     position: relative;
     opacity: 0.6;
     cursor: not-allowed;
+	overflow: hidden;
+	border: 1px solid #d9d9d9 !important;
+    color: #e8e8e8 !important;
 }
 
 .selectgroup-item.out-of-stock .selectgroup-button::after {
     content: "";
     position: absolute;
     top: 50%;
-    left: 10%;
-    right: 10%;
+    left: -11%;
+    right: -13%;
     height: 2px;
-    background: red;
-    transform: rotate(-15deg);
+    background: #bfbfbf;
+    transform: rotate(330deg);
 }
 
 /*added by sudipa*/
