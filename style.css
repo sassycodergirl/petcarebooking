@@ -6296,7 +6296,7 @@ blockquote {
     border:2px solid #000;
     z-index: 1;
     color: #000;
-    background: rgba(21, 114, 232, .15);
+    /* background: rgba(21, 114, 232, .15); */
 }
 
 
