@@ -211,15 +211,25 @@ $(document).ready(function(){
     const appUrl = "{{ url('') }}";
     const variantsData = @json($variantsData);
 
+   
+       // --- START: MODIFIED CODE ---
     // Find the first variant that is in stock. Fall back to the very first variant if none are in stock.
     const initialVariant = variantsData.find(v => v.stock_quantity > 0) || variantsData[0];
-    let selectedSize = variantsData[0]?.size || null;
-    let selectedColorId = variantsData.find(v => v.size === selectedSize)?.color_id || null;
+
+    // Get the size and color from that initial variant
+    let selectedSize = initialVariant?.size || null;
+    let selectedColorId = initialVariant?.color_id || null;
     let productQty = 1;
+    // --- END: MODIFIED CODE ---
+
 
     $('#product-qty').val(productQty);
 
-
+    // Set the initial checked state for the first valid variant's size and color
+    if (initialVariant) {
+        $('input[name="variant_size"][value="' + selectedSize + '"]').prop('checked', true);
+        $('input[name="variant_color"][value="' + selectedColorId + '"]').prop('checked', true);
+    }
 
     // Quantity buttons
     $('.qty-plus').on('click', () => { productQty++; $('#product-qty').val(productQty); });
