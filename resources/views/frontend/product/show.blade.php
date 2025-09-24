@@ -108,7 +108,7 @@
 @include('partials.footer')
 
 @php
-    // Get the main product gallery once to use as a fallback
+   
     $productGallery = $product->gallery;
 
     $variantsData = $product->variants->map(function($variant) use ($productGallery) {
@@ -252,7 +252,60 @@ $(document).ready(function(){
     });
     
     // Add to cart logic ...
-    $('.product-page-cart').on('click', function(e) { /* your existing fetch call */ });
+    // $('.product-page-cart').on('click', function(e) { /* your existing fetch call */ });
+        // Add to cart – fixed
+    $('.product-page-cart').on('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        const productId = $(this).data('id');
+        const quantity = parseInt($('#product-qty').val()) || 1;
+
+        // Find the selected variant from your variantsData array
+        let variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
+                || variantsData.find(v => v.size === selectedSize)
+                || variantsData.find(v => v.color_id === selectedColorId)
+                || {}; // fallback empty object if no match
+
+        // Prepare payload from variant (fallback to defaults)
+        let payload = {
+            qty: quantity,
+            variant_id: variant?.id || null,
+            size: variant?.size || null,
+            color_id: variant?.color_id || null,
+            color_name: variant?.color_name || null,
+            color_hex: variant?.color_hex || null,
+            price: variant?.price || $(this).data('price'),
+            image: variant?.image || $(this).data('image')
+        };
+
+        console.log('Add to Cart Payload:', payload);
+
+        fetch(`{{ url('/cart/add') }}/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                $('.cd-button-cart-count').text(data.itemCount);
+                // if(typeof renderCartItems === 'function'){
+                //     renderCartItems(data.cart, data.totalPrice);
+                // }
+                window.renderCartItems(data.cart, data.totalPrice);
+                $('.popup-overlay').css('display', 'block');
+                setTimeout(() => $('.popup-overlay').addClass('active'), 10);
+            } else {
+                alert(data.message || 'Something went wrong!');
+            }
+        })
+        .catch(err => console.error(err));
+    });
 
     // Out of stock alert
     $('input[name="variant_size"], input[name="variant_color"]').on('change', function(){
