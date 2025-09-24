@@ -28,11 +28,11 @@ class ShopProductController extends Controller
             'category',
             // Sort the main product gallery by ID (oldest first)
             'gallery' => function ($query) {
-                $query->orderBy('id', 'asc');
+                $query->orderBy('id', 'desc');
             },
             // Load and sort the gallery for EACH variant by ID
             'variants.gallery' => function ($query) {
-                $query->orderBy('id', 'asc');
+                $query->orderBy('id', 'desc');
             }
         ])
         ->where('slug', $slug)
