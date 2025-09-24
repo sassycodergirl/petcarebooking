@@ -1740,6 +1740,7 @@ textarea::placeholder {
 .new-product .product-card-col {
 	border: 1px solid #FFE9CE;
 	background-color: var(--bg-white);
+	overflow: hidden;
 }
 
 .new-pd-left-img {
