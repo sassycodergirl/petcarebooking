@@ -58,8 +58,11 @@
                                         <label class="form-label">Size:</label>
                                         <div class="selectgroup selectgroup-pills">
                                             @foreach($sizes as $size)
-                                                <label class="selectgroup-item">
-                                                    <input type="radio" name="variant_size" value="{{ $size }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }}>
+                                            @php
+                                                $hasStock = $product->variants->where('size', $size)->sum('stock_quantity') > 0;
+                                            @endphp
+                                                <label class="selectgroup-item {{ !$hasStock ? 'disabled' : '' }}">
+                                                    <input type="radio" name="variant_size" value="{{ $size }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }} {{ !$hasStock ? 'disabled' : '' }}>
                                                     <span class="selectgroup-button">{{ $size }}</span>
                                                 </label>
                                             @endforeach
@@ -68,12 +71,15 @@
                                 @endif
 
                                 @if($product->variants->pluck('color')->filter()->count())
+                                @php
+                                    $hasStock = $product->variants->where('color_id', $color->id)->sum('stock_quantity') > 0;
+                                @endphp
                                     <div class="mb-2">
                                         <label class="form-label">Colors:</label>
-                                        <div class="selectgroup selectgroup-pills color-pills">
+                                        <div class="selectgroup selectgroup-pills color-pills {{ !$hasStock ? 'disabled' : '' }}">
                                             @foreach($product->variants->pluck('color')->filter()->unique('id') as $color)
                                                 <label class="selectgroup-item">
-                                                    <input type="radio" name="variant_color" value="{{ $color->id }}" class="selectgroup-input variant-select" {{ $loop->first ? 'checked' : '' }}>
+                                                    <input type="radio" name="variant_color" value="{{ $color->id }}" class="selectgroup-input variant-select" {{ $loop->first ? 'checked' : '' }} {{ !$hasStock ? 'disabled' : '' }}>
                                                     <span class="selectgroup-button" style="background-color: {{ $color->hex_code ?? '#ccc' }}; color: #fff;"></span>
                                                 </label>
                                             @endforeach
@@ -165,6 +171,7 @@ $variantsData = $product->variants->map(function($variant) {
         'gallery' => $variant->gallery->pluck('image')->toArray() ?: [$variant->image ?? $variant->product->image],
         'price' => $variant->price,
         'image' => $variant->image ?? $variant->product->image,
+        'stock_quantity' => $variant->stock_quantity,
     ];
 })->toArray();
 @endphp
@@ -352,6 +359,24 @@ $('.product-page-cart').on('click', function(e){
     .catch(err => console.error(err));
 });
 
+
+});
+</script>
+
+
+<script>
+$(document).ready(function(){
+    $('input[name="variant_size"], input[name="variant_color"]').on('change', function(){
+        let variant = variantsData.find(v => 
+            v.size === selectedSize && v.color_id === selectedColorId
+        );
+
+        if (variant && variant.stock_quantity <= 0) {
+            alert('This variant is out of stock!');
+            $(this).prop('checked', false);
+            return false;
+        }
+    });
 
 });
 </script>
