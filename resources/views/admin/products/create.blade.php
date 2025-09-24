@@ -74,12 +74,13 @@
                         <input type="file" name="image" class="form-control" id="image" accept="image/*">
                     </div>
                 </div> -->
-
-                <div class="main-product-image-wrapper">
+                <div class="col-12 col-md-6">
                     <label for="image" class="form-label">Product Image</label>
-                    <input type="file" name="image" id="main-product-image-input" class="form-control" accept="image/*">
-                    <img src="" class="main-product-image mt-2" style="display:none; max-width:150px;">
-                    <button type="button" class="btn btn-sm btn-danger remove-main-product-image" style="display:none;">Remove</button>
+                    <div class="main-product-image-wrapper">
+                        <input type="file" name="image" id="main-product-image-input" class="form-control" accept="image/*">
+                        <img src="" class="main-product-image mt-2" style="display:none; max-width:150px;">
+                        <button type="button" class="btn btn-sm btn-danger remove-main-product-image" style="display:none;">Remove</button>
+                    </div>
                 </div>
 
                 <div class="col-12 col-md-12">
