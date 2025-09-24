@@ -137,7 +137,7 @@
             <div class="mb-3">
                 <h4>Product Description</h4>
                 <!-- <textarea name="description" class="form-control" id="description" rows="10">{{ old('description') }}</textarea> -->
-                <textarea name="description" id="product-description-editor" class="form-control" rows="10">
+                <textarea name="description" id="summernote-editor" class="form-control" rows="10">
                     {{ old('description', $product->description ?? '') }}
                 </textarea>
             </div>

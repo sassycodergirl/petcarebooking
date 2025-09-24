@@ -1,4 +1,5 @@
 @include('admin.partials.dash-header')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 
 <div class="container">
   <div class="dash-content">
@@ -235,7 +236,7 @@
         <div class="mb-3">
             <h4>Product Description</h4>
             <!-- <textarea name="description" class="form-control" rows="4">{{ old('description', $product->description) }}</textarea> -->
-             <textarea name="description" id="product-description-editor" class="form-control" rows="10">
+             <textarea name="description" id="summernote-editor" class="form-control" rows="10">
                 {{ old('description', $product->description ?? '') }}
             </textarea>
         </div>
@@ -255,7 +256,7 @@
 </div>
 
 @include('admin.partials.dash-footer')
-
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const categorySelect = document.getElementById('category_id');
@@ -275,13 +276,19 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
-    tinymce.init({
-        // ✅ This selector now targets the ID we just added
-        selector: 'textarea#product-description-editor',
-        plugins: 'code table lists link image',
-        toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | link | image'
+    $(document).ready(function() {
+        $('#summernote-editor').summernote({
+            height: 300, // Set the editor height
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['fullscreen', 'codeview']]
+            ]
+        });
     });
 </script>
