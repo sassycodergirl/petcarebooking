@@ -1076,7 +1076,7 @@ textarea::placeholder {
 	margin: 0 -15px;
 }
 
-.product-card {product-card-col
+.product-card {
 	padding: 0 15px;
 }
 
@@ -1098,15 +1098,15 @@ textarea::placeholder {
 .product-card-col h3,
 .product-card-col h3 a {
 	font-size: 18px;
-	font-weight: 600;
+	font-weight: 500;
 	margin-bottom: 10px;
 }
 
 .product-card-col p {
 	font-family: var(--default-heading-font);
 	font-weight: 500;
-    color: #E26749;
-    font-size: 17px;
+	color: #E26749;
+	font-size: 17px;
 	margin-bottom: 13px;
 }
 
@@ -1740,7 +1740,6 @@ textarea::placeholder {
 .new-product .product-card-col {
 	border: 1px solid #FFE9CE;
 	background-color: var(--bg-white);
-	overflow: hidden;
 }
 
 .new-pd-left-img {
