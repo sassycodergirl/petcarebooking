@@ -15,7 +15,7 @@
         <img src="{{ asset('images/community-banner.png') }}" class="events-banner-img community-banner" alt="">
  </section>
  <section>
-    <div class="container py-5">
+    <div class="container inner-new-page py-5">
          <h1 class="mb-4">Privacy Policy</h1>
         <p>While most of the products available on the website www.furryfriendsco.in (“Platform”) can be returned, subject to the terms of this cancellation, return, exchange, and refund policy, please check the details of the product, before placing an order, to check if the product is eligible for a return or not.</p>
 

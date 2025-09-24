@@ -17,7 +17,7 @@
 
     <section>
         <div class="container">
-            <div class="container py-5 terms-conditions">
+            <div class="container inner-new-page py-5 terms-conditions">
     <h1 class="mb-4">Terms &amp; Conditions</h1>
 
     <h2>1. General</h2>

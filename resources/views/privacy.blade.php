@@ -15,7 +15,7 @@
     </section>
 
 
-    <div class="container py-5 privacy-policy">
+    <div class="container inner-new-page py-5 privacy-policy">
     <h1 class="mb-4">Privacy Policy</h1>
 
     <p>

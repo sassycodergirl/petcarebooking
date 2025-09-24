@@ -6811,5 +6811,10 @@ background-color: #ffe000;
   opacity: 1;                 /* fully visible */
 }
 
-
+.inner-new-page h1{
+	    font-size: 30px;
+}
+.inner-new-page h2{
+	font-size: 22px;
+}
 /*added by sudipa*/
