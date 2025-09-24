@@ -1076,12 +1076,12 @@ textarea::placeholder {
 	margin: 0 -15px;
 }
 
-.product-card {
+.product-card {product-card-col
 	padding: 0 15px;
 }
 
 .product-card-img {
-	display: flex;
+	/* display: flex; */
 	justify-content: center;
 	align-items: center;
 	padding: 19px 0;
@@ -1104,15 +1104,19 @@ textarea::placeholder {
 
 .product-card-col p {
 	font-family: var(--default-heading-font);
-	font-weight: 600;
-	color: #E26749;
-	font-size: 22px;
+	font-weight: 500;
+    color: #E26749;
+    font-size: 17px;
 	margin-bottom: 13px;
 }
 
 .product-card-col p del {
 	color: var(--bg-text-color);
 	font-weight: 400;
+}
+
+.product-card-col .card-body{
+	    padding: 13px;
 }
 
 .add-to-bag,.choose-option {
@@ -1736,6 +1740,7 @@ textarea::placeholder {
 .new-product .product-card-col {
 	border: 1px solid #FFE9CE;
 	background-color: var(--bg-white);
+	overflow: hidden;
 }
 
 .new-pd-left-img {
