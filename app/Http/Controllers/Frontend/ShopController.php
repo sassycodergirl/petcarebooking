@@ -35,6 +35,15 @@ class ShopController extends Controller
             $query = Product::where('category_id', $category->id)->latest();
         }
 
+
+          // Eager load variant data efficiently for price ranges.
+        // This adds `variants_count`, `variants_min_price`, and `variants_max_price`
+        // to each product object without extra database queries.
+        $query->withCount('variants')
+              ->withMin('variants', 'price')
+              ->withMax('variants', 'price')
+              ->latest(); // Apply ordering at the end
+
         // AJAX filter request
         if ($request->ajax()) {
             $attributes = $request->input('attributes'); // get the input safely
