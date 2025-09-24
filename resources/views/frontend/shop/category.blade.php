@@ -123,7 +123,7 @@
                     <div class="row">
                         @foreach($products as $product)
                             <div class="col-6 col-md-3 mb-4 new-product pb-0">
-                                <div class="product-card-col h-100 shadow-sm p-2 p-md-4">
+                                <div class="product-card-col h-100 shadow-sm">
                                     @if($product->image)
                                     <a href="{{ route('product.show', $product->slug) }}" class="product-card-img p-0">
                                     <div class="product-img h-100">
