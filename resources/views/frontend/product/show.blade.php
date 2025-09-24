@@ -111,19 +111,30 @@
                                 Add to Cart
                             </button> -->
 
-                            @if($product->stock_quantity <= 0 || !$product->status)
-                             
-                                <button class="btn btn-secondary" disabled>Out of Stock</button>
-                            @else
+                           @php
+                          
+                            $hasVariants = $product->variants->count() > 0;
+
+                            if ($hasVariants) {
                                
-                                <button class="cd-button product-page-cart"
-                                        data-id="{{ $product->id }}"
-                                        data-name="{{ $product->name }}"
-                                        data-price="{{ $product->price }}"
-                                        data-image="{{ asset($product->image) }}">
-                                   Add to Cart
-                                </button>
-                            @endif
+                                $inStock = $product->variants->sum('stock_quantity') > 0;
+                            } else {
+                                
+                                $inStock = $product->stock_quantity > 0 && $product->status;
+                            }
+                        @endphp
+
+                        @if(!$inStock)
+                            <button class="btn btn-secondary" disabled>Out of Stock</button>
+                        @else
+                            <button class="cd-button product-page-cart"
+                                    data-id="{{ $product->id }}"
+                                    data-name="{{ $product->name }}"
+                                    data-price="{{ $product->price }}"
+                                    data-image="{{ asset($product->image) }}">
+                                Add to Cart
+                            </button>
+                        @endif
                         </div>
                     </div>
 
