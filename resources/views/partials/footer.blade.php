@@ -54,11 +54,11 @@
                         </div>
                         <div class="col-lg-2 col-md-6">
                             <div class="footer-col footer-col-link">
-                                <div class="footer-hd-sm">Legal</div>
+                                <div class="footer-hd-sm">Other Links</div>
                                 <ul>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                    <li><a href="#">Refund Policy</a></li>
+                                    <li><a href="{{ route('privacy') }}">Privacy Policy</a></li>
+                                    <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
+                                    <li><a href="{{ route('refund') }}">Refund Policy</a></li>
                                     <li><a href="#">Site Map</a></li>
                                 </ul>
                             </div>
@@ -396,7 +396,7 @@ if (checkoutBtn) {
 
                     <div id="loginError" class="text-success text-center my-3"></div>
                      <div class="text-center terms-para mt-5">
-                            <p>I accept that I have read & understood Furry & Friends <a href="#">Privacy Policy</a> and <a href="#">T&Cs.</a></p>
+                            <p>I accept that I have read & understood Furry & Friends <a href="{{ route('privacy') }}">Privacy Policy</a> and <a href="{{ route('terms') }}">T&Cs.</a></p>
                             <a href="{{ route('login') }}">Other Ways to Login</a>
                      </div>
                   </div>
