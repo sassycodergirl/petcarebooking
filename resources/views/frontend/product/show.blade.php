@@ -104,7 +104,7 @@
 
     <!--product meta-->
     <div class="product-info-section">
-         <div class="product-meta mt-5 content-sec p-3 p-md-5">
+         <div class="product-meta content-sec p-3 p-md-5">
             <div class="accordion" id="productAccordion">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingDescription">
