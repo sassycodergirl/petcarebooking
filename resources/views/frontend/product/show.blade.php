@@ -57,12 +57,16 @@
                                     <div class="mb-2">
                                         <label class="form-label">Size:</label>
                                         <div class="selectgroup selectgroup-pills">
-                                            @foreach($sizes as $size)
-                                            @php
-                                                $hasStock = $product->variants->where('size', $size)->sum('stock_quantity') > 0;
-                                            @endphp
-                                                <label class="selectgroup-item {{ !$hasStock ? 'disabled' : '' }}">
-                                                    <input type="radio" name="variant_size" value="{{ $size }}" class="selectgroup-input"  {{ !$hasStock ? 'disabled' : '' }}>
+                                           @foreach($sizes as $size)
+                                                @php
+                                                    $hasStock = $product->variants->where('size', $size)->sum('stock_quantity') > 0;
+                                                @endphp
+                                                <label class="selectgroup-item {{ !$hasStock ? 'disabled out-of-stock' : '' }}">
+                                                    <input type="radio"
+                                                        name="variant_size"
+                                                        value="{{ $size }}"
+                                                        class="selectgroup-input"
+                                                        {{ !$hasStock ? 'disabled' : '' }}>
                                                     <span class="selectgroup-button">{{ $size }}</span>
                                                 </label>
                                             @endforeach
@@ -78,7 +82,7 @@
                                             @php
                                                 $hasStock = $product->variants->where('color_id', $color->id)->sum('stock_quantity') > 0;
                                             @endphp
-                                            <label class="selectgroup-item {{ !$hasStock ? 'disabled' : '' }}">
+                                            <label class="selectgroup-item {{ !$hasStock ? 'disabled out-of-stock' : '' }}">
                                                 <input type="radio"
                                                     name="variant_color"
                                                     value="{{ $color->id }}"
@@ -86,9 +90,11 @@
                                                     {{ $loop->first ? 'checked' : '' }}
                                                     {{ !$hasStock ? 'disabled' : '' }}>
                                                 <span class="selectgroup-button"
-                                                    style="background-color: {{ $color->hex_code ?? '#ccc' }}; color: #fff;"></span>
+                                                    style="background-color: {{ $color->hex_code ?? '#ccc' }}; color: #fff;">
+                                                </span>
                                             </label>
                                         @endforeach
+
                                     </div>
                                 </div>
                             @endif

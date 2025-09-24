@@ -6829,4 +6829,23 @@ background-color: #ffe000;
     font-weight: bold;
     border-radius: 4px;
 }
+
+
+.selectgroup-item.out-of-stock .selectgroup-button {
+    position: relative;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.selectgroup-item.out-of-stock .selectgroup-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: red;
+    transform: rotate(-15deg);
+}
+
 /*added by sudipa*/
