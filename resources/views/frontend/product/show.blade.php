@@ -62,7 +62,7 @@
                                                 $hasStock = $product->variants->where('size', $size)->sum('stock_quantity') > 0;
                                             @endphp
                                                 <label class="selectgroup-item {{ !$hasStock ? 'disabled' : '' }}">
-                                                    <input type="radio" name="variant_size" value="{{ $size }}" class="selectgroup-input" {{ $loop->first ? 'checked' : '' }} {{ !$hasStock ? 'disabled' : '' }}>
+                                                    <input type="radio" name="variant_size" value="{{ $size }}" class="selectgroup-input"  {{ !$hasStock ? 'disabled' : '' }}>
                                                     <span class="selectgroup-button">{{ $size }}</span>
                                                 </label>
                                             @endforeach
