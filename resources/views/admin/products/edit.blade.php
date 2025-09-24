@@ -234,7 +234,10 @@
         
         <div class="mb-3">
             <h4>Product Description</h4>
-            <textarea name="description" class="form-control" rows="4">{{ old('description', $product->description) }}</textarea>
+            <!-- <textarea name="description" class="form-control" rows="4">{{ old('description', $product->description) }}</textarea> -->
+             <textarea name="description" id="product-description-editor" class="form-control" rows="10">
+                {{ old('description', $product->description ?? '') }}
+            </textarea>
         </div>
 
        <div class="form-group" id="ingredients-group" style="display: none;">
@@ -269,4 +272,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run on page load
     toggleIngredients();
 });
+</script>
+
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        // ✅ This selector now targets the ID we just added
+        selector: 'textarea#product-description-editor',
+        plugins: 'code table lists link image',
+        toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | link | image'
+    });
 </script>
