@@ -90,13 +90,27 @@
                                 <button class="qty-plus" data-id="{{ $product->id }}">+</button>
                             </div>
 
-                            <button class="cd-button product-page-cart"
+                            <!-- <button class="cd-button product-page-cart"
                                     data-id="{{ $product->id }}"
                                     data-name="{{ $product->name }}"
                                     data-price="{{ $product->price }}"
                                     data-image="{{ asset($product->image) }}">
                                 Add to Cart
-                            </button>
+                            </button> -->
+
+                            @if($product->stock_quantity <= 0 || !$product->status)
+                             
+                                <button class="btn btn-secondary" disabled>Out of Stock</button>
+                            @else
+                               
+                                <button class="cd-button product-page-cart"
+                                        data-id="{{ $product->id }}"
+                                        data-name="{{ $product->name }}"
+                                        data-price="{{ $product->price }}"
+                                        data-image="{{ asset($product->image) }}">
+                                   Add to Cart
+                                </button>
+                            @endif
                         </div>
                     </div>
 
