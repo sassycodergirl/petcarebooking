@@ -138,8 +138,16 @@
                                     <div class="card-body text-center">
                                         <h3><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
                                         <div class="">
-                                            <p class="card-text">₹{{ $product->price }}</p>
-                                           
+                                            <!-- <p class="card-text">₹{{ $product->price }}</p> -->
+                                            <p class="card-text">
+                                                @if ($product->variants_count > 0 && $product->variants_min_price !== null)
+                                                    {{-- Product has variants, show the lowest price --}}
+                                                    From ₹{{ number_format($product->variants_min_price) }}
+                                                @else
+                                                    {{-- Product has no variants, show base price --}}
+                                                    ₹{{ number_format($product->price) }}
+                                                @endif
+                                            </p>
 
                                                 <!-- @if($product->has_variants)
                                                     <a href="{{ route('product.show', $product->slug) }}" class="choose-option">
