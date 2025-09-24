@@ -46,7 +46,8 @@
                 <div class="col-12 col-md-6 mt-3 mt-md-0">
                     <div class="product-information content-sec p-3 p-md-5">
                         <h1 class="product-title">{{ $product->name }}</h1>
-                        <p class="h4">₹{{ $product->price }}</p>
+                        <!-- <p class="h4">₹{{ $product->price }}</p> -->
+                        <p class="h4" id="product-price">₹{{ $product->price }}</p>
 
                         @if($product->variants->count())
                             <div class="product-variants mb-5">
@@ -250,6 +251,17 @@ $(document).ready(function(){
     let variant = variantsData.find(v => v.size === size && v.color_id === colorId)
                   || variantsData.find(v => v.size === size)
                   || { gallery: [$('.add-to-bag').data('image')] };
+
+       // --- START: ADD THIS CODE ---
+    // Update the price on the page
+    const basePrice = {{ $product->price }}; // Get base price from Blade
+    if (variant && variant.price) {
+        $('#product-price').text('₹' + variant.price);
+    } else {
+        // Fallback to the main product price if no variant is matched
+        $('#product-price').text('₹' + basePrice);
+    }
+    // --- END: ADD THIS CODE ---
 
     const galleryMain = $('.gallery-main');
     const galleryThumbs = $('.gallery-thumbs');
