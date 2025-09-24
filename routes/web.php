@@ -168,6 +168,10 @@ Route::get('/contact-us', fn() => view('contact'))->name('contact');
 Route::get('/blog', fn() => view('blog'))->name('blog');
 Route::get('/booking-portal', fn() => view('booking'))->name('booking');
 
+Route::get('/terms-and-conditions', fn() => view('terms'))->name('terms');
+Route::get('/privacy-policy', fn() => view('privacy'))->name('privacy');
+Route::get('/refund-policy', fn() => view('refund'))->name('refund');
+
 // -----------------------------
 // Public Shop
 // -----------------------------
@@ -217,3 +221,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/user/pets', [BookingController::class, 'getUserPets'])->middleware('auth');
+
+
+
+
