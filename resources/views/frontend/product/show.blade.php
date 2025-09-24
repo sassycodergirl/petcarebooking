@@ -96,40 +96,45 @@
                         </div>
                     </div>
 
-                     <div class="product-meta mt-5 content-sec p-3 p-md-5">
-                        <div class="accordion" id="productAccordion">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingDescription">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription" aria-expanded="true" aria-controls="collapseDescription">
-                                        Product Description
-                                    </button>
-                                </h2>
-                                <div id="collapseDescription" class="accordion-collapse collapse" aria-labelledby="headingDescription" data-bs-parent="#productAccordion">
-                                    <div class="accordion-body">
-                                        {!! $product->description ?? 'No description available.' !!}
-                                    </div>
-                                </div>
-                            </div>
-
-                            @if($product->category->is_food && $product->ingredients)
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingIngredients">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIngredients" aria-expanded="false" aria-controls="collapseIngredients">
-                                            Ingredients
-                                        </button>
-                                    </h2>
-                                    <div id="collapseIngredients" class="accordion-collapse collapse" aria-labelledby="headingIngredients" data-bs-parent="#productAccordion">
-                                        <div class="accordion-body">
-                                            {!! $product->ingredients !!}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
+    </div>
+
+    <!--product meta-->
+    <div class="product-info-section">
+         <div class="product-meta mt-5 content-sec p-3 p-md-5">
+            <div class="accordion" id="productAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingDescription">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription" aria-expanded="true" aria-controls="collapseDescription">
+                            Product Description
+                        </button>
+                    </h2>
+                    <div id="collapseDescription" class="accordion-collapse collapse" aria-labelledby="headingDescription" data-bs-parent="#productAccordion">
+                        <div class="accordion-body">
+                            {!! $product->description ?? 'No description available.' !!}
+                        </div>
+                    </div>
+                </div>
+
+                @if($product->category->is_food && $product->ingredients)
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingIngredients">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIngredients" aria-expanded="false" aria-controls="collapseIngredients">
+                                Ingredients
+                            </button>
+                        </h2>
+                        <div id="collapseIngredients" class="accordion-collapse collapse" aria-labelledby="headingIngredients" data-bs-parent="#productAccordion">
+                            <div class="accordion-body">
+                                {!! $product->ingredients !!}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </div>
+          </div>                
     </div>
 </section>
 
