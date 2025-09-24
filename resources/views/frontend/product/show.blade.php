@@ -70,22 +70,29 @@
                                     </div>
                                 @endif
 
-                                @if($product->variants->pluck('color')->filter()->count())
-                                @php
-                                    $hasStock = $product->variants->where('color_id', $color->id)->sum('stock_quantity') > 0;
-                                @endphp
-                                    <div class="mb-2">
-                                        <label class="form-label">Colors:</label>
-                                        <div class="selectgroup selectgroup-pills color-pills {{ !$hasStock ? 'disabled' : '' }}">
-                                            @foreach($product->variants->pluck('color')->filter()->unique('id') as $color)
-                                                <label class="selectgroup-item">
-                                                    <input type="radio" name="variant_color" value="{{ $color->id }}" class="selectgroup-input variant-select" {{ $loop->first ? 'checked' : '' }} {{ !$hasStock ? 'disabled' : '' }}>
-                                                    <span class="selectgroup-button" style="background-color: {{ $color->hex_code ?? '#ccc' }}; color: #fff;"></span>
-                                                </label>
-                                            @endforeach
-                                        </div>
+                              @if($product->variants->pluck('color')->filter()->count())
+                                <div class="mb-2">
+                                    <label class="form-label">Colors:</label>
+                                    <div class="selectgroup selectgroup-pills color-pills">
+                                        @foreach($product->variants->pluck('color')->filter()->unique('id') as $color)
+                                            @php
+                                                $hasStock = $product->variants->where('color_id', $color->id)->sum('stock_quantity') > 0;
+                                            @endphp
+                                            <label class="selectgroup-item {{ !$hasStock ? 'disabled' : '' }}">
+                                                <input type="radio"
+                                                    name="variant_color"
+                                                    value="{{ $color->id }}"
+                                                    class="selectgroup-input variant-select"
+                                                    {{ $loop->first ? 'checked' : '' }}
+                                                    {{ !$hasStock ? 'disabled' : '' }}>
+                                                <span class="selectgroup-button"
+                                                    style="background-color: {{ $color->hex_code ?? '#ccc' }}; color: #fff;"></span>
+                                            </label>
+                                        @endforeach
                                     </div>
-                                @endif
+                                </div>
+                            @endif
+
                             </div>
                         @endif
 
