@@ -84,11 +84,23 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-12">
+                <!-- <div class="col-12 col-md-12">
                     <div class="mb-3">
                         <label for="gallery" class="form-label">Product Gallery</label>
                         <input type="file" name="gallery[]" class="form-control" accept="image/*" multiple>
                         <small class="form-text text-muted">You can upload multiple images.</small>
+                    </div>
+                </div> -->
+
+                <div class="col-12 col-md-12">
+                    <div class="mb-3">
+                        <label for="product-gallery-input" class="form-label">Product Gallery</label>
+                        
+                        <input type="file" name="gallery[]" id="product-gallery-input" class="form-control" accept="image/*" multiple>
+                        
+                        <small class="form-text text-muted">You can upload multiple images.</small>
+
+                        <div id="product-gallery-preview" class="d-flex flex-wrap mt-2"></div>
                     </div>
                 </div>
 
