@@ -29,10 +29,10 @@ class ShopController extends Controller
         // Determine base query
         if ($subcategories->count() > 0) {
             // If parent, get all products under child categories
-            $query = Product::whereIn('category_id', $subcategories->pluck('id'))->where('stock_quantity', '>', 0)->latest();
+            $query = Product::whereIn('category_id', $subcategories->pluck('id'))->latest();
         } else {
             // If no children, get products in this category
-            $query = Product::where('category_id', $category->id)->where('stock_quantity', '>', 0)->latest();
+            $query = Product::where('category_id', $category->id)->latest();
         }
 
         // AJAX filter request
