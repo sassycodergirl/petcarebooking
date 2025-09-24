@@ -217,6 +217,12 @@ $(document).ready(function(){
 
     $('#product-qty').val(productQty);
 
+    // --- START: ADD THESE TWO LINES ---
+    // Set the initial checked state for the first variant's size and color
+    $('input[name="variant_size"][value="' + selectedSize + '"]').prop('checked', true);
+    $('input[name="variant_color"][value="' + selectedColorId + '"]').prop('checked', true);
+    // --- END: ADD THESE TWO LINES ---
+
     // Quantity buttons
     $('.qty-plus').on('click', () => { productQty++; $('#product-qty').val(productQty); });
     $('.qty-minus').on('click', () => { if(productQty>1) productQty--; $('#product-qty').val(productQty); });
