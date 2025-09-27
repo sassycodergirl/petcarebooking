@@ -6351,8 +6351,11 @@ blockquote {
 }
 
 .selectgroup-pills .selectgroup-button{
-	width: 50px;
-    height: 30px;
+	width: 65px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /* .product-gallery {
     gap: 15px;
