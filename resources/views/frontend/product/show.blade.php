@@ -5,27 +5,10 @@
         <div class="container-fluid px-md-5">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    @php
-                        // This block sets the initial display before JavaScript takes over.
-                        $initialGallery = $product->gallery;
-                        if ($initialGallery->isEmpty()) {
-                            $firstVariantWithGallery = $product->variants->firstWhere(fn($v) => $v->gallery->isNotEmpty());
-                            if ($firstVariantWithGallery) {
-                                $initialGallery = $firstVariantWithGallery->gallery;
-                            }
-                        }
-                        if ($initialGallery->isEmpty()) {
-                            $initialGallery = collect([(object)['image' => $product->image]]);
-                        }
-                    @endphp
-
                     <div class="product-gallery">
-                        <div class="gallery-thumbs">
-                            {{-- This will be populated by JavaScript --}}
-                        </div>
-                        <div class="gallery-main">
-                            {{-- This will be populated by JavaScript --}}
-                        </div>
+                        {{-- The gallery is now built by JS to handle all cases --}}
+                        <div class="gallery-thumbs"></div>
+                        <div class="gallery-main"></div>
                     </div>
                 </div>
 
@@ -79,10 +62,13 @@
                             </div>
 
                             @php
-                                $totalStock = $product->variants->sum('stock_quantity') > 0 || $product->stock_quantity > 0;
+                                $hasVariants = $product->variants->count() > 0;
+                                $inStock = $hasVariants 
+                                    ? $product->variants->sum('stock_quantity') > 0
+                                    : ($product->stock_quantity > 0 && $product->status);
                             @endphp
 
-                            @if(!$totalStock)
+                            @if(!$inStock)
                                 <button class="btn btn-secondary" disabled>Out of Stock</button>
                             @else
                                 <button class="cd-button product-page-cart"
@@ -95,14 +81,11 @@
                             @endif
                         </div>
                     </div>
-
-                    
                 </div>
             </div>
         </div>
     </div>
 
-    <!--product meta-->
     <div class="product-info-section container">
          <div class="product-meta content-sec p-3 p-md-5">
             <div class="accordion" id="productAccordion">
@@ -134,25 +117,20 @@
                     </div>
                 @endif
             </div>
-          </div>                
+          </div>                  
     </div>
 </section>
 
 @include('partials.footer')
 
 @php
-   
     $productGallery = $product->gallery;
-
     $variantsData = $product->variants->map(function($variant) use ($productGallery) {
-        
         $finalGallery = $variant->gallery;
         if ($finalGallery->isEmpty() && $productGallery->isNotEmpty()) {
             $finalGallery = $productGallery;
         }
-
         $galleryImages = $finalGallery->pluck('image')->toArray() ?: [$variant->image ?? $variant->product->image];
-        
         $color = $variant->color;
         return [
             'id' => $variant->id,
@@ -166,14 +144,21 @@
             'stock_quantity' => $variant->stock_quantity,
         ];
     })->toArray();
+
+    // ✅ NEW: Prepare a default gallery for products without variants
+    $defaultGalleryData = $product->gallery->isNotEmpty()
+        ? $product->gallery->pluck('image')->toArray()
+        : ($product->image ? [$product->image] : []);
+
 @endphp
 
 <script>
 $(document).ready(function(){
     const appUrl = "{{ url('') }}";
     const variantsData = @json($variantsData);
+    // ✅ NEW: Pass the default gallery to JavaScript
+    const defaultGallery = @json($defaultGalleryData);
 
-    // ✅ UPDATE: Selects the first IN-STOCK variant by default
     const initialVariant = variantsData.find(v => v.stock_quantity > 0) || variantsData[0];
     let selectedSize = initialVariant?.size || null;
     let selectedColorId = initialVariant?.color_id || null;
@@ -189,8 +174,9 @@ $(document).ready(function(){
     $('.qty-plus').on('click', () => { productQty++; $('#product-qty').val(productQty); });
     $('.qty-minus').on('click', () => { if(productQty > 1) productQty--; $('#product-qty').val(productQty); });
 
-    // ✅ UPDATE: Smarter function to disable out-of-stock colors for a selected size
     function updateColors(size){
+        if (variantsData.length === 0) return; // No variants, nothing to update
+
         const availableColors = variantsData.filter(v => v.size === size && v.stock_quantity > 0).map(v => v.color_id);
         let firstAvailableColor = null;
 
@@ -210,19 +196,28 @@ $(document).ready(function(){
             selectedColorId = firstAvailableColor;
             $('input[name="variant_color"][value="' + selectedColorId + '"]').prop('checked', true);
         } else {
-            // If no colors are available for this size, uncheck all
             $('input[name="variant_color"]:checked').prop('checked', false);
             selectedColorId = null;
         }
     }
 
+    // ✅ MODIFIED: This function now handles products with AND without variants
     function updateGallery(size, colorId) {
         const scrollTop = $(window).scrollTop();
         $('body').css('overflow', 'hidden');
 
-        let variant = variantsData.find(v => v.size === size && v.color_id === colorId) || {};
+        let variant;
+        let images = [];
 
-        // ✅ UPDATE: Updates the price display when a variant is selected
+        if (variantsData.length > 0) {
+            // Product WITH variants
+            variant = variantsData.find(v => v.size === size && v.color_id === colorId);
+            images = variant?.gallery || [];
+        } else {
+            // Product WITHOUT variants
+            images = defaultGallery;
+        }
+        
         const basePrice = {{ $product->price }};
         if (variant && variant.price) {
             $('#product-price').text('₹' + new Intl.NumberFormat().format(variant.price));
@@ -239,32 +234,34 @@ $(document).ready(function(){
         galleryMain.off('afterChange').empty();
         galleryThumbs.empty();
         
-        const images = variant.gallery || [];
         images.forEach(img => {
+            if(!img) return; // Skip if image path is null/empty
             const fullUrl = `${appUrl}/public/${img}`;
             galleryMain.append(`<div class="main-slide"><img src="${fullUrl}" alt="{{ $product->name }}"></div>`);
             galleryThumbs.append(`<div class="thumb-slide"><img src="${fullUrl}" alt="Thumbnail"></div>`);
         });
 
-        // ✅ UPDATE: Hides thumbnail slider if there's only one image
         if (images.length > 1) {
             galleryThumbs.show();
-            setTimeout(function() {
-                galleryThumbs.slick({
-                    slidesToShow: 3, asNavFor: '.gallery-main', focusOnSelect: true,
-                    vertical: true, swipe: false, arrows: false, infinite: true, centerMode: true,
-                });
-                galleryMain.slick({
-                    slidesToShow: 1, arrows: true, fade: true, asNavFor: '.gallery-thumbs'
-                });
-                $('body').css('overflow', '');
-                $(window).scrollTop(scrollTop);
-            }, 0);
+            galleryMain.slick({
+                slidesToShow: 1, arrows: true, fade: true, asNavFor: '.gallery-thumbs'
+            });
+            galleryThumbs.slick({
+                slidesToShow: 3, asNavFor: '.gallery-main', focusOnSelect: true,
+                vertical: true, swipe: false, arrows: false, infinite: true, centerMode: true,
+            });
         } else {
             galleryThumbs.hide();
+             galleryMain.slick({ // Still initialize main slider for consistency
+                slidesToShow: 1, arrows: true, fade: true
+            });
+        }
+        
+        // Restore scroll position after a tiny delay to let SlickJS render
+        setTimeout(() => {
             $('body').css('overflow', '');
             $(window).scrollTop(scrollTop);
-        }
+        }, 50);
     }
 
     // Initial page load calls
@@ -285,22 +282,18 @@ $(document).ready(function(){
     });
     
     // Add to cart logic ...
-    // $('.product-page-cart').on('click', function(e) { /* your existing fetch call */ });
-        // Add to cart – fixed
     $('.product-page-cart').on('click', function(e){
         e.preventDefault();
         e.stopPropagation();
 
         const productId = $(this).data('id');
         const quantity = parseInt($('#product-qty').val()) || 1;
+        
+        let variant;
+        if(variantsData.length > 0){
+             variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId) || {};
+        }
 
-        // Find the selected variant from your variantsData array
-        let variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId)
-                || variantsData.find(v => v.size === selectedSize)
-                || variantsData.find(v => v.color_id === selectedColorId)
-                || {}; // fallback empty object if no match
-
-        // Prepare payload from variant (fallback to defaults)
         let payload = {
             qty: quantity,
             variant_id: variant?.id || null,
@@ -311,8 +304,6 @@ $(document).ready(function(){
             price: variant?.price || $(this).data('price'),
             image: variant?.image || $(this).data('image')
         };
-
-        console.log('Add to Cart Payload:', payload);
 
         fetch(`{{ url('/cart/add') }}/${productId}`, {
             method: 'POST',
@@ -327,10 +318,9 @@ $(document).ready(function(){
         .then(data => {
             if(data.success){
                 $('.cd-button-cart-count').text(data.itemCount);
-                // if(typeof renderCartItems === 'function'){
-                //     renderCartItems(data.cart, data.totalPrice);
-                // }
-                window.renderCartItems(data.cart, data.totalPrice);
+                if(window.renderCartItems) {
+                    window.renderCartItems(data.cart, data.totalPrice);
+                }
                 $('.popup-overlay').css('display', 'block');
                 setTimeout(() => $('.popup-overlay').addClass('active'), 10);
             } else {
@@ -338,14 +328,6 @@ $(document).ready(function(){
             }
         })
         .catch(err => console.error(err));
-    });
-
-    // Out of stock alert
-    $('input[name="variant_size"], input[name="variant_color"]').on('change', function(){
-        let variant = variantsData.find(v => v.size === selectedSize && v.color_id === selectedColorId);
-        if (variant && variant.stock_quantity <= 0) {
-            alert('This combination is out of stock!');
-        }
     });
 });
 </script>
