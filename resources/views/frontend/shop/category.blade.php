@@ -128,7 +128,7 @@
                                     <a href="{{ route('product.show', $product->slug) }}" class="product-card-img p-0">
                                     <div class="product-img h-100">
 
-                                        <img src="{{'public/' . $product->image }}" class="img-fluid h-100" alt="{{ $product->name }}">
+                                        <img src="{{$product->image }}" class="img-fluid h-100" alt="{{ $product->name }}">
                                         @if($product->stock_quantity <= 0 || !$product->status)
                                             <div class="out-of-stock-banner">Out of Stock</div>
                                         @endif
