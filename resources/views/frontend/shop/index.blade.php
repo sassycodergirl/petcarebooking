@@ -31,8 +31,17 @@
                             </li>
                             @foreach($categories as $parent)
                                 <li>
-                                    <a class="nav-link" data-bs-toggle="pill" href="#cat-{{ $parent->id }}" role="tab">
+                                    <!-- <a class="nav-link" data-bs-toggle="pill" href="#cat-{{ $parent->id }}" role="tab">
                                         {{ $parent->name }}
+                                    </a> -->
+                                    <a class="nav-link d-flex align-items-center" data-bs-toggle="pill" href="#cat-{{ $parent->id }}" role="tab">
+                                        @if($parent->image)
+                                            <img src="{{ asset('public/' .$parent->image) }}" 
+                                                alt="{{ $parent->name }}" 
+                                                class="me-2" 
+                                                style="width: 30px; height: 30px; object-fit: cover; border-radius: 5px;">
+                                        @endif
+                                        <span>{{ $parent->name }}</span>
                                     </a>
                                 </li>
                             @endforeach

@@ -2312,10 +2312,10 @@ textarea::placeholder {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background: rgba(254, 182, 91, 0.3);
-	border: 1px solid var(--bg-orange);
+	/* background: rgba(254, 182, 91, 0.3); */
+	border: 1px solid lightgray;
 	padding: 12px 16px;
-	border-radius: 6px;
+	border-radius: 0 !important;
 	color: var(--bg-text-color);
 	font-weight: 400;
 	text-decoration: none;
@@ -6273,7 +6273,8 @@ blockquote {
 }
 
 .prdct-col-menu-wrap .nav-pills .nav-link.active{
-	 background-color: var(--bg-orange) !important;
+	 background-color: #ff960333 !important;
+	 color: #000 !important;
 }
 
 .product-title{
