@@ -6354,6 +6354,9 @@ blockquote {
         font-size: 14px;
         font-weight: 400;
     }
+	.sticky-product-cat{
+		padding: 0;
+	}
 }
 
 

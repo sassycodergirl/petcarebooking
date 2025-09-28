@@ -13,10 +13,10 @@
 </section>
 
 <section class="product-section py-4">
-    <div class="container-fluid px-4 px-md-5">
+    <div class="container-fluid  px-md-5">
         <div class="row">
             <!-- LEFT SIDEBAR - PARENT CATEGORIES AS TABS -->
-            <div class="col-4 col-md-3 col-lg-3 prdct-col-menu sticky-product-cat">
+            <div class="col-3 col-md-3 col-lg-3 prdct-col-menu sticky-product-cat ">
                 <div class="prdct-col-menu-wrap">
                     <h1>Collection List</h1>
                     <div class="prdct-list ">
@@ -50,7 +50,7 @@
             </div>
 
             <!-- RIGHT CONTENT - TAB PANES -->
-            <div class="col-8 col-md-9 col-lg-9 prdct-col-list">
+            <div class="col-9 col-md-9 col-lg-9 prdct-col-list">
                 <div class="tab-content" id="categoryTabsContent">
 
                     {{-- ALL TAB (shows all subcategories from all parents) --}}
