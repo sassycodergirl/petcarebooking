@@ -1123,7 +1123,7 @@ textarea::placeholder {
 @media only screen and (min-width: 991px) {
 	.product-card-col h3,
 	.product-card-col h3 a {
-		font-size: 18px;
+		font-size: 17px;
 	
 	}
 	.product-card-img img {
@@ -2277,6 +2277,7 @@ font-weight: 500;
 
 .prdct-col-list .product-card-col {
 	border: 1px solid #FFE9CE;
+	height: 100%;
 
 }
 
