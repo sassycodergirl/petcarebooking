@@ -6358,7 +6358,7 @@ blockquote {
     scrollbar-color: var(--bg-orange) #e0e0e0; /* thumb color | track color */
 }
 
-.prdct-col-menu-wrap .nav-pills .nav-link.active{
+.prdct-col-menu-wrap .nav-pills .nav-link.active,.prdct-list .active a{
 	 background-color: #ff960333 !important;
 	 color: #000 !important;
 }
