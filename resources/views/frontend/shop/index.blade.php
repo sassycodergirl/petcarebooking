@@ -71,7 +71,7 @@
                         </div>
                     </div>
 
-                    {{-- INDIVIDUAL PARENT CATEGORY TABS --}}
+                    <!-- {{-- INDIVIDUAL PARENT CATEGORY TABS --}}
                     @foreach($categories as $parent)
                         <div class="tab-pane fade" id="cat-{{ $parent->id }}" role="tabpanel">
                             <div class="row">
@@ -95,6 +95,58 @@
                                 @empty
                                     <p>No subcategories under {{ $parent->name }}.</p>
                                 @endforelse
+                            </div>
+                        </div>
+                    @endforeach -->
+
+                    {{-- INDIVIDUAL PARENT CATEGORY TABS --}}
+                    @foreach($categories as $parent)
+                        <div class="tab-pane fade" id="cat-{{ $parent->id }}" role="tabpanel">
+                            <div class="row">
+
+                                {{-- First, check if there are any subcategories (children) --}}
+                                @if($parent->children->isNotEmpty())
+                                    @foreach($parent->children as $subcategory)
+                                        <div class="col-6 col-md-4 col-lg-4 col-sm-6">
+                                            <div class="product-card-col">
+                                                {{-- Display SUBCATEGORY card --}}
+                                                <a href="{{ route('shop.category', $subcategory->slug) }}" class="product-card-img">
+                                                    @if($subcategory->image)
+                                                        <img src="{{ asset($subcategory->image) }}" alt="{{ $subcategory->name }}">
+                                                    @else
+                                                        <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
+                                                    @endif
+                                                </a>
+                                                <h3><a href="{{ route('shop.category', $subcategory->slug) }}">{{ $subcategory->name }}</a></h3>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                
+                                {{-- If no children, THEN check if there are any products --}}
+                                @elseif($parent->products->isNotEmpty())
+                                    @foreach($parent->products as $product)
+                                        <div class="col-6 col-md-4 col-lg-4 col-sm-6">
+                                            <div class="product-card-col">
+                                                {{-- Display PRODUCT card (note the different route and variables) --}}
+                                                <a href="{{ route('shop.product', $product->slug) }}" class="product-card-img">
+                                                    @if($product->image)
+                                                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                                                    @else
+                                                        <img src="{{ asset('images/default-product.png') }}" alt="{{ $product->name }}">
+                                                    @endif
+                                                </a>
+                                                <h3><a href="{{ route('shop.product', $product->slug) }}">{{ $product->name }}</a></h3>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                {{-- If there are no children AND no products, show a message --}}
+                                @else
+                                    <div class="col-12">
+                                        <p>No items found in {{ $parent->name }}.</p>
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                     @endforeach
