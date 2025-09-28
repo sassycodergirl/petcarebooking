@@ -76,7 +76,7 @@
                     <li class="cat-pill cat-pill-top {{ request()->url() == route('shop.category', $category->parent->slug) ? 'active' : '' }}">
                         <a href="{{ route('shop.category', $category->parent->slug) }}" class="{{ request()->url() == route('shop.category', $category->parent->slug) ? 'text-white' : '' }}">
                         @if($category->parent->image)
-                            <img src="{{ asset($category->parent->image) }}" alt="" class="me-2" style="width: 25px; height: 25px; object-fit: cover; border-radius: 4px;">
+                            <img src="{{ asset('public/' .$category->parent->image) }}" alt="" class="me-2" style="width: 25px; height: 25px; object-fit: cover; border-radius: 4px;">
                         @endif  
                         <div> All {{ $category->parent->name }}</div>
                         </a>
@@ -89,7 +89,7 @@
                         <li class="cat-pill text-black {{ $sibling->id === $category->id ? 'active' : '' }}">
                             <a href="{{ route('shop.category', $sibling->slug) }}" class="{{ $sibling->id === $category->id ? 'text-white' : '' }}">
                                 @if($sibling->image)
-                                    <img src="{{ asset($sibling->image) }}" alt="" class="me-2" style="width: 25px; height: 25px; object-fit: cover; border-radius: 4px;">
+                                    <img src="{{ asset('public/' .$sibling->image) }}" alt="" class="me-2" style="width: 25px; height: 25px; object-fit: cover; border-radius: 4px;">
                                 @endif    
                                 <div>{{ $sibling->name }}</div>
                             </a>
@@ -100,7 +100,7 @@
                     <li class="cat-pill at-pill-top text-black {{ request()->url() == route('shop.category', $category->slug) ? 'active' : '' }}">
                         <a href="{{ route('shop.category', $category->slug) }}" class="{{ request()->url() == route('shop.category', $category->slug) ? 'text-white' : '' }}">
                             @if($category->image)
-                                <img src="{{ asset($category->image) }}" alt="" class="me-2" style="width: 25px; height: 25px; object-fit: cover; border-radius: 4px;">
+                                <img src="{{ asset('public/' .$category->image) }}" alt="" class="me-2" style="width: 25px; height: 25px; object-fit: cover; border-radius: 4px;">
                             @endif
                             <div>All {{ $category->name }}</div>
                         </a>
@@ -109,7 +109,7 @@
                         <li class="cat-pill text-black {{ request()->url() == route('shop.category', $subcategory->slug) ? 'active' : '' }}">
                             <a href="{{ route('shop.category', $subcategory->slug) }}" class="{{ request()->url() == route('shop.category', $subcategory->slug) ? 'text-white' : '' }}">
                                 @if($subcategory->image)
-                                    <img src="{{ asset($subcategory->image) }}" alt="" class="me-2" style="width: 25px; height: 25px; object-fit: cover; border-radius: 4px;">
+                                    <img src="{{ asset('public/' .$subcategory->image) }}" alt="" class="me-2" style="width: 25px; height: 25px; object-fit: cover; border-radius: 4px;">
                                 @endif
                                 <div> {{ $subcategory->name }}</div>
                             </a>
