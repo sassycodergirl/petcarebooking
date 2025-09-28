@@ -2333,7 +2333,7 @@ textarea::placeholder {
 }
 .prdct-list a {
 	display: flex;
-	justify-content: space-between;
+	justify-content: start;
 	align-items: center;
 	/* background: rgba(254, 182, 91, 0.3); */
 	border: 1px solid lightgray;
