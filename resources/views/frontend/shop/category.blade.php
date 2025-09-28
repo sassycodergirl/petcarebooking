@@ -74,7 +74,7 @@
                 {{-- Always show parent category as first item --}}
                 @if($category->parent)
                     <li class=" {{ request()->url() == route('shop.category', $category->parent->slug) ? 'active' : '' }}">
-                        <a href="{{ route('shop.category', $category->parent->slug) }}" class="cat-pill cat-pill-top {{ request()->url() == route('shop.category', $category->parent->slug) ? 'text-white' : '' }}">
+                        <a href="{{ route('shop.category', $category->parent->slug) }}" class="cat-pill cat-pill-top {{ request()->url() == route('shop.category', $category->parent->slug) ? 'text-black' : '' }}">
                         @if($category->parent->image)
                             <img src="{{ asset('public/' .$category->parent->image) }}" alt="" class="me-2" >
                         @endif  
@@ -87,7 +87,7 @@
                     {{-- If this is a child category, show all siblings sorted by name --}}
                     @foreach($category->parent->children->sortBy('name') as $sibling)
                         <li class= "{{ $sibling->id === $category->id ? 'active' : '' }}">
-                            <a href="{{ route('shop.category', $sibling->slug) }}" class="cat-pill text-black {{ $sibling->id === $category->id ? 'text-white' : '' }}">
+                            <a href="{{ route('shop.category', $sibling->slug) }}" class="cat-pill text-black {{ $sibling->id === $category->id ? 'text-black' : '' }}">
                                 @if($sibling->image)
                                     <img src="{{ asset('public/' .$sibling->image) }}" alt="" class="me-2">
                                 @endif    
@@ -98,7 +98,7 @@
                 @elseif($subcategories->count())
                     {{-- If this is a parent category, show "All" + subcategories sorted by name --}}
                     <li class=" {{ request()->url() == route('shop.category', $category->slug) ? 'active' : '' }}">
-                        <a href="{{ route('shop.category', $category->slug) }}" class="cat-pill at-pill-top text-black {{ request()->url() == route('shop.category', $category->slug) ? 'text-white' : '' }}">
+                        <a href="{{ route('shop.category', $category->slug) }}" class="cat-pill at-pill-top text-black {{ request()->url() == route('shop.category', $category->slug) ? 'text-black' : '' }}">
                             @if($category->image)
                                 <img src="{{ asset('public/' .$category->image) }}" alt="" class="me-2" >
                             @endif
@@ -107,7 +107,7 @@
                     </li>
                     @foreach($subcategories->sortBy('name') as $subcategory)
                         <li class="{{ request()->url() == route('shop.category', $subcategory->slug) ? 'active' : '' }}">
-                            <a href="{{ route('shop.category', $subcategory->slug) }}" class="cat-pill text-black  {{ request()->url() == route('shop.category', $subcategory->slug) ? 'text-white' : '' }}">
+                            <a href="{{ route('shop.category', $subcategory->slug) }}" class="cat-pill text-black  {{ request()->url() == route('shop.category', $subcategory->slug) ? 'text-black' : '' }}">
                                 @if($subcategory->image)
                                     <img src="{{ asset('public/' .$subcategory->image) }}" alt="" class="me-2">
                                 @endif
