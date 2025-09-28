@@ -2304,10 +2304,26 @@ textarea::placeholder {
 	margin: 0;
 }
 
-.prdct-list li {
+/* .prdct-list li {
 	margin-bottom: 8px;
+} */
+.cat-pill{
+	    height: 70px;
+    display: flex
+;
+    align-items: center;
+    border-bottom: 1px solid #DFDFDF;
+    padding: 10px 10px 10px 16px;
+    margin: 0;
+    gap: 20px;
+    cursor: pointer;
+    background: unset;
+    width: 100%;
+    border-radius: 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0px;
 }
-
 .prdct-list a {
 	display: flex;
 	justify-content: space-between;
