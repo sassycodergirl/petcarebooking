@@ -23,18 +23,7 @@
             @endforeach
         </ol>
     </nav>
-    <div class="js-product-banner">
-        <div class="product-banner-col">
-            <div class="product-banner-image">
-                <img src="{{ asset('images/product-banner.jpg') }}" alt="">
-            </div>
-        </div>
-        <div class="product-banner-col">
-            <div class="product-banner-image">
-                <img src="{{ asset('images/product-banner.jpg') }}" alt="">
-            </div>
-        </div>
-    </div>
+   
 </section>
 
 <div class="container-fluid py-5 px-md-5">
