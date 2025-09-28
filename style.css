@@ -1764,7 +1764,7 @@ textarea::placeholder {
 	border: 1px solid #FFE9CE;
 	background-color: var(--bg-white);
 	overflow: hidden;
-	position: relative;
+	
 }
 
 .new-pd-left-img {
@@ -2287,6 +2287,7 @@ font-weight: 500;
 .prdct-col-list .product-card-col {
 	border: 1px solid #FFE9CE;
 	height: 100%;
+	position: relative;
 
 }
 
