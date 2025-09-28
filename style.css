@@ -2214,12 +2214,12 @@ textarea::placeholder {
 .search-form-wrap .cmn-btn:hover {
 	background-color: var(--bg-text-color);
 }
-.breadcrumb-item li a{
+.breadcrumb-item a{
 	color: #818181;
     font-weight: 400;
     font-size: medium;
 }
-.breadcrumb-item li.active{
+.breadcrumb-item.active{
 color: #000;
 }
 .product-banner-image {
