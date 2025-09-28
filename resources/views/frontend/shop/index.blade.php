@@ -80,6 +80,7 @@
                                                 <a href="{{ route('shop.category', $subcategory->slug) }}">
                                                     {{ $subcategory->name }}
                                                 </a>
+                                                <a href="#">Explore Now</a>
                                             </h3>
                                         </div>
                                     </div>
@@ -134,7 +135,7 @@
                                                         <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                     @endif
                                                 </a>
-                                                <h3><a href="{{ route('shop.category', $subcategory->slug) }}">{{ $subcategory->name }}</a></h3>
+                                                <h3><a href="{{ route('shop.category', $subcategory->slug) }}">{{ $subcategory->name }}</a><a href="#">Explore Now</a></h3>
                                             </div>
                                         </div>
                                     @endforeach
