@@ -51,7 +51,7 @@
             
             @if($category->image)
                 <div class="mt-2">
-                    <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" width="100">
+                    <img src="{{ asset('public/' .$category->image) }}" alt="{{ $category->name }}" width="100">
                 </div>
             @endif
         </div>

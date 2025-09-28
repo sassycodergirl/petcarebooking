@@ -27,7 +27,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>
                         @if($category->image)
-                            <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" width="60">
+                            <img src="{{ asset('public/' .$category->image) }}" alt="{{ $category->name }}" width="60">
                         @else
                             <span>No Image</span>
                         @endif
