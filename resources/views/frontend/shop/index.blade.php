@@ -38,8 +38,7 @@
                                         @if($parent->image)
                                             <img src="{{ asset('public/' .$parent->image) }}" 
                                                 alt="{{ $parent->name }}" 
-                                                class="me-2" 
-                                                style="width: 30px; height: 30px; object-fit: cover; border-radius: 5px;">
+                                                class="me-2 cat-img-pill">
                                         @endif
                                         <span>{{ $parent->name }}</span>
                                     </a>
