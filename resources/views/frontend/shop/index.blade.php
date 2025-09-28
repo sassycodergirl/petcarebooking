@@ -128,14 +128,14 @@
                                         <div class="col-6 col-md-4 col-lg-4 col-sm-6">
                                             <div class="product-card-col">
                                                 {{-- Display PRODUCT card (note the different route and variables) --}}
-                                                <a href="{{ route('shop.product', $product->slug) }}" class="product-card-img">
+                                                <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
                                                     @if($product->image)
                                                         <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
                                                     @else
                                                         <img src="{{ asset('images/default-product.png') }}" alt="{{ $product->name }}">
                                                     @endif
                                                 </a>
-                                                <h3><a href="{{ route('shop.product', $product->slug) }}">{{ $product->name }}</a></h3>
+                                                <h3><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
                                             </div>
                                         </div>
                                     @endforeach
