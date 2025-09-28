@@ -3,7 +3,7 @@
 
 
 <section class="banner inner-banner container-fluid px-md-5">
-      <nav aria-label="breadcrumb" class="mb-4">
+      <nav aria-label="breadcrumb" class="my-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">collections</li>
@@ -12,7 +12,7 @@
    
 </section>
 
-<section class="product-section">
+<section class="product-section py-5">
     <div class="container-fluid px-4 px-md-5">
         <div class="row">
             <!-- LEFT SIDEBAR - PARENT CATEGORIES AS TABS -->
