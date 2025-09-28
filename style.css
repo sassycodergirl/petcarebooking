@@ -1129,7 +1129,7 @@ textarea::placeholder {
 }
 @media only screen and (min-width: 991px) {
 
-	.product-card-col h3 .p-name {
+	.product-card-col  .p-name {
 		font-size: 17px;
 	
 	}
