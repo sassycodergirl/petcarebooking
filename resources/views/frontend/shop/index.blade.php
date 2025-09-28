@@ -13,7 +13,7 @@
     <div class="js-product-banner">
         <div class="product-banner-col">
             <div class="product-banner-image">
-                <img src="{{ asset('images/product-banner.jpg') }}" alt="">
+                <img src="{{ asset('images/shop.webp') }}" alt="">
             </div>
         </div>
        
