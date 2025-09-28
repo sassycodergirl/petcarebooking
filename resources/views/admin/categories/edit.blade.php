@@ -43,7 +43,18 @@
                 <label class="form-check-label" for="is_food">
                     Is Food Item?
                 </label>
-            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Category Image</label>
+            <input type="file" name="image" id="image" class="form-control">
+            
+            @if($category->image)
+                <div class="mt-2">
+                    <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" width="100">
+                </div>
+            @endif
+        </div>
 
         <div class="mb-3">
             <label for="parent_id" class="form-label">Parent Category</label>

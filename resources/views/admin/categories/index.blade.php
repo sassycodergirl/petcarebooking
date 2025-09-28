@@ -14,6 +14,7 @@
            <thead class="table-light">
                 <tr>
                     <th>ID</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Slug</th>
                     <th>Parent Category</th>
@@ -24,6 +25,13 @@
                 @forelse ($categories as $category)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                    <td>
+                        @if($category->image)
+                            <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" width="60">
+                        @else
+                            <span>No Image</span>
+                        @endif
+                    </td>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->slug }}</td>
                     <td>{{ $category->parent ? $category->parent->name : '—' }}</td>

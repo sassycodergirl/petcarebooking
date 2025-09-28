@@ -52,6 +52,11 @@
             </div>
 
             <div class="mb-3">
+                <label for="image" class="form-label">Category Image</label>
+                <input type="file" name="image" id="image" class="form-control">
+            </div>
+
+            <div class="mb-3">
                 <label for="parent_id" class="form-label">Parent Category</label>
                 <select name="parent_id" id="parent_id" class="form-select">
                     <option value="">None (Top Level)</option>
