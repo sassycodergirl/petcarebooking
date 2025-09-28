@@ -1128,8 +1128,8 @@ textarea::placeholder {
 	    padding: 13px;
 }
 @media only screen and (min-width: 991px) {
-	.product-card-col h3,
-	.product-card-col h3 a {
+
+	.product-card-col h3 .p-name {
 		font-size: 17px;
 	
 	}
