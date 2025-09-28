@@ -49,11 +49,13 @@
             <label for="image" class="form-label">Category Image</label>
             <input type="file" name="image" id="image" class="form-control">
             
-            @if($category->image)
-                <div class="mt-2">
-                    <img src="{{ asset('public/' .$category->image) }}" alt="{{ $category->name }}" width="100">
-                </div>
-            @endif
+          
+            <div class="mt-2">
+                <img id="image-preview" 
+                    src="{{ $category->image ? asset('public/' .$category->image) : '#' }}" 
+                    alt="Image Preview" 
+                    style="max-width: 200px; height: auto; {{ $category->image ? 'display: block;' : 'display: none;' }}">
+            </div>
         </div>
 
         <div class="mb-3">
@@ -108,3 +110,23 @@
 </div>
 </div>
 @include('admin.partials.dash-footer')
+<script>
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('image-preview');
+
+    imageInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                // Update the src of the img tag and ensure it is visible
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+</script>

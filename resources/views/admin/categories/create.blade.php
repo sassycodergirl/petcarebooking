@@ -51,10 +51,15 @@
                 </label>
             </div>
 
-            <div class="mb-3">
-                <label for="image" class="form-label">Category Image</label>
-                <input type="file" name="image" id="image" class="form-control">
+           <div class="mb-3">
+            <label for="image" class="form-label">Category Image</label>
+            <input type="file" name="image" id="image" class="form-control" accept="image/*">
+
+            <div class="mt-2">
+                <img id="image-preview" src="#" alt="Image Preview" 
+                    style="display: none; max-width: 200px; height: auto;">
             </div>
+        </div>
 
             <div class="mb-3">
                 <label for="parent_id" class="form-label">Parent Category</label>
@@ -83,3 +88,34 @@
     </div>
 </div>
 @include('admin.partials.dash-footer')
+<script>
+    // Get the elements
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('image-preview');
+
+    // Listen for the 'change' event on the file input
+    imageInput.addEventListener('change', function(event) {
+        // Get the selected file
+        const file = event.target.files[0];
+
+        // Check if a file is selected
+        if (file) {
+            // Create a new FileReader object
+            const reader = new FileReader();
+
+            // Set the function to run when the file is loaded
+            reader.onload = function(e) {
+                // Update the 'src' of the <img> tag and make it visible
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+
+            // Read the file as a Data URL
+            reader.readAsDataURL(file);
+        } else {
+            // Hide the preview if no file is selected
+            imagePreview.style.display = 'none';
+            imagePreview.src = '#';
+        }
+    });
+</script>
