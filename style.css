@@ -1113,6 +1113,9 @@ textarea::placeholder {
 	width: 100%;
    
 }
+.explore-btn:hover{
+	background: #7380fe;
+}
 .product-card-col p {
 	font-family: var(--default-heading-font);
 	font-weight: 500;
