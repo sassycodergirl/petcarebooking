@@ -1107,8 +1107,9 @@ textarea::placeholder {
 	background: #ff9603;
     color: #fff;
     font-weight: 500;
-    padding: 8px 25px;
+    padding: 3px 15px;
 	margin-top: 10px;
+	width: 100%;
    
 }
 .product-card-col p {
@@ -1128,7 +1129,10 @@ textarea::placeholder {
 	    padding: 13px;
 }
 @media only screen and (min-width: 991px) {
-
+	.explore-btn{
+		padding: 8px 25px;
+		width: unset;
+	}
 	.product-card-col  .p-name {
 		font-size: 17px;
 	
