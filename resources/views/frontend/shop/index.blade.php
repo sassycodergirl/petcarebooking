@@ -80,7 +80,9 @@
                                                 <a href="{{ route('shop.category', $subcategory->slug) }}">
                                                     {{ $subcategory->name }}
                                                 </a>
-                                                <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">Explore Now</a>
+                                                 <div>
+                                                    <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View</a>
+                                                </div>
                                             </h3>
                                         </div>
                                     </div>
@@ -136,7 +138,9 @@
                                                     @endif
                                                 </a>
                                                 <h3><a href="{{ route('shop.category', $subcategory->slug) }}">{{ $subcategory->name }}</a>
-                                                <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">Explore Now</a>
+                                                <div>
+                                                    <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View</a>
+                                                </div>
                                             </h3>
                                             </div>
                                         </div>
