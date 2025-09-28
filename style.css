@@ -2351,11 +2351,11 @@ textarea::placeholder {
 		justify-content: center;
 	}
 }
-.prdct-list a:hover,
-.prdct-list li.active a {
+
+/* .prdct-list li.active a {
 	background-color: #FEB65B;
-	/* background-image: url(images/arrow-act.svg); */
-}
+
+} */
 
 .prdct-list a span {
 	font-size: 18px;
