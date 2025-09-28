@@ -2,7 +2,7 @@
 
 
 
-<section class="banner inner-banner container-fluid px-md-5">
+<section class="banner inner-banner container-fluid px-4 px-md-5">
       <nav aria-label="breadcrumb" class="my-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
