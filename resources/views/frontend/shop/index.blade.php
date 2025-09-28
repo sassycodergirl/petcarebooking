@@ -26,7 +26,7 @@
                                    <img src="{{ asset('images/all.webp') }}" 
                                                 alt="" 
                                                 class="me-2 cat-img-pill"> 
-                                 <span>All</span>
+                                 <div>All</div>
                                 </a>
                             </li>
                             @foreach($categories as $parent)
@@ -40,7 +40,7 @@
                                                 alt="{{ $parent->name }}" 
                                                 class="me-2 cat-img-pill">
                                         @endif
-                                        <span>{{ $parent->name }}</span>
+                                        <div>{{ $parent->name }}</div>
                                     </a>
                                 </li>
                             @endforeach
