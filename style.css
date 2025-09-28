@@ -1091,8 +1091,8 @@ textarea::placeholder {
 
 .product-card-img img {
 	width: 100%;
-	/* height: 100%; */
-	height: 235px;
+	height: 100%;
+
 	object-fit: cover;
 }
 
@@ -1119,7 +1119,15 @@ textarea::placeholder {
 .product-card-col .card-body{
 	    padding: 13px;
 }
-
+@media only screen and (min-width: 991px) {
+	.product-card-img img {
+		width: 100%;
+		/* height: 100%; */
+		height: 235px;
+		object-fit: cover;
+	}
+       
+    }
 .add-to-bag,.choose-option {
 	background: rgba(255, 150, 3, 0.2);
 	border: 1px solid #FF9603;
