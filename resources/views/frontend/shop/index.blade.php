@@ -25,7 +25,7 @@
                     <div class="prdct-list ">
                         <ul class="nav flex-column nav-pills" id="categoryTabs" role="tablist">
                             <li>
-                                <a class="nav-link active" data-bs-toggle="pill" href="#all" role="tab">
+                                <a class="nav-link active cat-pill" data-bs-toggle="pill" href="#all" role="tab">
                                     All
                                 </a>
                             </li>

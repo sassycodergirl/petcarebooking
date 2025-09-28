@@ -2322,6 +2322,8 @@ textarea::placeholder {
     border-top: 0;
     border-left: 1px solid #DFDFDF;
     border-right: 1px solid #DFDFDF;
+	    text-transform: uppercase;
+		border-radius: 0 !important;
 }
 .cat-pill:hover{
 	color: #000;
