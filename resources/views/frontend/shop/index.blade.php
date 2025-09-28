@@ -76,14 +76,14 @@
                                                     <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                 @endif
                                             </a>
-                                            <h3 class="p-3">
-                                                <a href="{{ route('shop.category', $subcategory->slug) }}">
+                                            <div class="p-3">
+                                                <a class="p-name" href="{{ route('shop.category', $subcategory->slug) }}">
                                                     {{ $subcategory->name }}
                                                 </a>
                                                  <div>
                                                     <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View</a>
                                                 </div>
-                                            </h3>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -137,11 +137,12 @@
                                                         <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                     @endif
                                                 </a>
-                                                <h3><a href="{{ route('shop.category', $subcategory->slug) }}">{{ $subcategory->name }}</a>
                                                 <div>
-                                                    <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View</a>
+                                                    <a class="p-name" href="{{ route('shop.category', $subcategory->slug) }}">{{ $subcategory->name }}</a>
+                                                    <div>
+                                                        <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View</a>
+                                                    </div>
                                                 </div>
-                                            </h3>
                                             </div>
                                         </div>
                                     @endforeach
@@ -159,7 +160,7 @@
                                                         <img src="{{ asset('images/default-product.png') }}" alt="{{ $product->name }}">
                                                     @endif
                                                 </a>
-                                                <h3><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+                                                <div><a class="p-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
                                             </div>
                                         </div>
                                     @endforeach
