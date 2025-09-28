@@ -67,7 +67,7 @@
                                                     <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                 @endif
                                             </a>
-                                            <h3>
+                                            <h3 class="p-3">
                                                 <a href="{{ route('shop.category', $subcategory->slug) }}">
                                                     {{ $subcategory->name }}
                                                 </a>

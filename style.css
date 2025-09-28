@@ -1068,7 +1068,7 @@ textarea::placeholder {
 	background-color: var(--bg-white);
 	border-radius: 12px;
 	padding: 0 12px 12px;
-	text-align: center;
+	/* text-align: center; */
 	overflow: hidden;
 }
 
