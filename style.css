@@ -1108,8 +1108,7 @@ textarea::placeholder {
     color: #fff;
     font-weight: 500;
     padding: 8px 25px;
-	position: absolute;
-    bottom: 15px;
+	
    
 }
 .product-card-col p {
