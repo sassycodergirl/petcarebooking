@@ -1131,7 +1131,7 @@ textarea::placeholder {
 @media only screen and (min-width: 991px) {
 	.explore-btn{
 		padding: 8px 25px;
-		width: unset;
+		
 	}
 	.product-card-col  .p-name {
 		font-size: 17px;
