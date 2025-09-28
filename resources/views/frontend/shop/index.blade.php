@@ -54,7 +54,7 @@
                                         <div class="product-card-col">
                                             <a href="{{ route('shop.category', $subcategory->slug) }}" class="product-card-img">
                                                 @if($subcategory->image)
-                                                    <img src="{{ asset('storage/' . $subcategory->image) }}" alt="{{ $subcategory->name }}">
+                                                    <img src="{{ asset('public/' . $subcategory->image) }}" alt="{{ $subcategory->name }}">
                                                 @else
                                                     <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                 @endif
@@ -80,7 +80,7 @@
                                         <div class="product-card-col">
                                             <a href="{{ route('shop.category', $subcategory->slug) }}" class="product-card-img">
                                                 @if($subcategory->image)
-                                                    <img src="{{ asset('storage/' . $subcategory->image) }}" alt="{{ $subcategory->name }}">
+                                                    <img src="{{ asset('public/' . $subcategory->image) }}" alt="{{ $subcategory->name }}">
                                                 @else
                                                     <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                 @endif
