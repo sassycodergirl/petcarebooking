@@ -1108,7 +1108,9 @@ textarea::placeholder {
     color: #fff;
     font-weight: 500;
     padding: 8px 25px;
-    margin-top: 10px;
+	position: absolute;
+    bottom: 15px;
+   
 }
 .product-card-col p {
 	font-family: var(--default-heading-font);
@@ -1762,6 +1764,7 @@ textarea::placeholder {
 	border: 1px solid #FFE9CE;
 	background-color: var(--bg-white);
 	overflow: hidden;
+	position: relative;
 }
 
 .new-pd-left-img {
