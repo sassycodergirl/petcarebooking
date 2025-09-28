@@ -2320,8 +2320,8 @@ textarea::placeholder {
     width: 100%;
     border-radius: 0;
     border-top: 0;
-    border-left: 0;
-    border-right: 0px;
+    border-left: 1px solid #DFDFDF;
+    border-right: 1px solid #DFDFDF;
 }
 .cat-pill:hover{
 	color: #000;
@@ -2331,11 +2331,11 @@ textarea::placeholder {
     height: 50px;
 	border-radius: 50%;
 }
-.prdct-list a {
+/* .prdct-list a {
 	display: flex;
 	justify-content: start;
 	align-items: center;
-	/* background: rgba(254, 182, 91, 0.3); */
+
 	border: 1px solid lightgray;
 	padding: 12px 16px;
 	border-radius: 0 !important;
@@ -2348,7 +2348,7 @@ textarea::placeholder {
 	background-position: calc(100% - 14px);
 	font-size: 16px;
 	text-transform: uppercase;
-}
+} */
 @media (max-width: 575px) {
 	.prdct-list a {
 		justify-content: center;
@@ -2361,7 +2361,7 @@ textarea::placeholder {
 } */
 
 .prdct-list a span {
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .prdct-col-menu-wrap h1 {
