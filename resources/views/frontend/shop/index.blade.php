@@ -112,7 +112,7 @@
                                                 {{-- Display SUBCATEGORY card --}}
                                                 <a href="{{ route('shop.category', $subcategory->slug) }}" class="product-card-img">
                                                     @if($subcategory->image)
-                                                        <img src="{{ asset($subcategory->image) }}" alt="{{ $subcategory->name }}">
+                                                        <img src="{{ asset('public/' . $subcategory->image) }}" alt="{{ $subcategory->name }}">
                                                     @else
                                                         <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                     @endif
@@ -130,7 +130,7 @@
                                                 {{-- Display PRODUCT card (note the different route and variables) --}}
                                                 <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
                                                     @if($product->image)
-                                                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                                                        <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}">
                                                     @else
                                                         <img src="{{ asset('images/default-product.png') }}" alt="{{ $product->name }}">
                                                     @endif
