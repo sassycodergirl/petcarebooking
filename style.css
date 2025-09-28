@@ -4242,10 +4242,10 @@ blockquote {
 		width: 30%;
 	}
 
-	.product-card-col h3,
+	/* .product-card-col h3,
 	.product-card-col h3 a {
 		font-size: 15px;
-	}
+	} */
 
 	.product-card-img {
 		height: 170px;
