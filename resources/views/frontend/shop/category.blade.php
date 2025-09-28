@@ -11,7 +11,7 @@
 <section class="banner inner-banner container-fluid px-md-5">
       <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
             @foreach($breadcrumbs as $crumb)
                 @if($loop->last)
                     <li class="breadcrumb-item active" aria-current="page">{{ $crumb->name }}</li>
