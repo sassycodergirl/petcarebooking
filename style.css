@@ -1097,8 +1097,8 @@ textarea::placeholder {
 	object-fit: cover;
 }
 
-.product-card-col h3,
-.product-card-col h3 a {
+.product-card-col .p-name,
+.product-card-col h3 .p-name {
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 1.4;
