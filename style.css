@@ -2214,7 +2214,14 @@ textarea::placeholder {
 .search-form-wrap .cmn-btn:hover {
 	background-color: var(--bg-text-color);
 }
-
+.breadcrumb-item li a{
+	color: #818181;
+    font-weight: 400;
+    font-size: medium;
+}
+.breadcrumb-item li.active{
+color: #000;
+}
 .product-banner-image {
 	position: relative;
 	padding-top: 31%;
