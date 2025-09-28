@@ -49,18 +49,17 @@ class CategoryController extends Controller
             'slug'        => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
             'description' => $request->description,
             'parent_id'   => $request->parent_id,
-            'is_food'     => $request->has('is_food'), // This returns true or false
+            'is_food'     => $request->has('is_food'),
         ];
 
-        // Handle the file upload and add the path to the data array
+        // Handle the file upload with hashName() and new path
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $fileName = time() . '.' . $file->extension();
-            $file->move(public_path('uploads/categories'), $fileName);
-            $data['image'] = 'uploads/categories/' . $fileName;
+            $fileName = $file->hashName(); // Use hashName for a unique, random name
+            $file->move(public_path('product-category'), $fileName); // Use the new path
+            $data['image'] = 'product-category/' . $fileName;
         }
 
-        // Create the Category using the prepared data array
         Category::create($data);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
@@ -99,42 +98,48 @@ class CategoryController extends Controller
    
 
     public function update(Request $request, Category $category)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
-            'slug' => 'nullable|string|max:255|unique:categories,slug,' . $category->id,
-            'description' => 'nullable|string',
-            'parent_id' => 'nullable|exists:categories,id',
-            'is_food' => 'sometimes',
-            'image' => 'nullable|image|max:2048', // Add image validation
-        ]);
+{
+    $request->validate([
+        'name'        => 'required|string|max:255|unique:categories,name,' . $category->id,
+        'slug'        => 'nullable|string|max:255|unique:categories,slug,' . $category->id,
+        'description' => 'nullable|string',
+        'parent_id'   => 'nullable|exists:categories,id',
+        'is_food'     => 'sometimes',
+        'image'       => 'nullable|image|max:2048',
+    ]);
 
-        $data = $request->all();
-        $data['slug'] = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
-        $data['is_food'] = $request->has('is_food');
+    // Prepare the data to be updated
+    $data = [
+        'name'        => $request->name,
+        'slug'        => $request->slug ? Str::slug($request->slug) : Str::slug($request->name),
+        'description' => $request->description,
+        'parent_id'   => $request->parent_id,
+        'is_food'     => $request->has('is_food'),
+    ];
 
-        if ($request->hasFile('image')) {
-            // Delete the old image if it exists
-            if ($category->image && File::exists(public_path($category->image))) {
-                File::delete(public_path($category->image));
-            }
-
-            $fileName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('uploads/categories'), $fileName);
-            $data['image'] = 'uploads/categories/' . $fileName;
+    if ($request->hasFile('image')) {
+        // Delete the old image if it exists
+        if ($category->image && File::exists(public_path($category->image))) {
+            File::delete(public_path($category->image));
         }
 
-        $category->update($data);
-
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+        $file = $request->file('image');
+        $fileName = $file->hashName(); // Use hashName for a unique, random name
+        $file->move(public_path('product-category'), $fileName); // Use the new path
+        $data['image'] = 'product-category/' . $fileName;
     }
+
+    $category->update($data);
+
+    return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+}
 
     /**
      * Remove the specified resource from storage.
      */
      public function destroy(Category $category)
     {
-        // Delete the image file from storage
+        // Delete the image file from the public path if it exists
         if ($category->image && File::exists(public_path($category->image))) {
             File::delete(public_path($category->image));
         }
