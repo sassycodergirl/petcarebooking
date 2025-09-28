@@ -59,7 +59,7 @@
                             @foreach($categories as $parent)
                                 @foreach($parent->children as $subcategory)
                                     <div class="col-6 col-md-4 col-lg-3 col-sm-6">
-                                        <div class="product-card-col">
+                                        <div class="product-card-col p-0">
                                             <a href="{{ route('shop.category', $subcategory->slug) }}" class="product-card-img">
                                                 @if($subcategory->image)
                                                     <img src="{{ asset('public/' . $subcategory->image) }}" alt="{{ $subcategory->name }}">
