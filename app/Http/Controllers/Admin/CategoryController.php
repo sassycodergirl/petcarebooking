@@ -40,7 +40,7 @@ class CategoryController extends Controller
             'description' => 'nullable|string',
             'parent_id'   => 'nullable|exists:categories,id',
             'is_food'     => 'sometimes',
-            'image'       => 'nullable|image|mimes:jpeg,png,webp,jpg,gif,svg|max:2048',
+            'image'       => 'nullable|file|mimes:jpeg,png,webp,jpg,gif,svg|max:2048',
         ]);
 
         // Prepare all data in an array
@@ -106,7 +106,7 @@ class CategoryController extends Controller
             'description' => 'nullable|string',
             'parent_id' => 'nullable|exists:categories,id',
             'is_food' => 'sometimes',
-            'image' => 'nullable|image|mimes:jpeg,webp,png,jpg,gif,svg|max:2048', // Add image validation
+            'image' => 'nullable|file|mimes:jpeg,webp,png,jpg,gif,svg|max:2048', // Add image validation
         ]);
 
         $data = $request->all();
