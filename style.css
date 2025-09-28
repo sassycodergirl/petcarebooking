@@ -2221,6 +2221,7 @@ textarea::placeholder {
 }
 .breadcrumb-item.active{
 color: #000;
+font-weight: 500;
 }
 .product-banner-image {
 	position: relative;
