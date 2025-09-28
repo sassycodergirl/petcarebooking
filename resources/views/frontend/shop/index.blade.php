@@ -58,7 +58,7 @@
                         <div class="row">
                             @foreach($categories as $parent)
                                 @foreach($parent->children as $subcategory)
-                                    <div class="col-6 col-md-4 col-lg-3 col-sm-6">
+                                    <div class="col-6 col-md-4 col-lg-3 col-sm-6 p-2">
                                         <div class="product-card-col p-0">
                                             <a href="{{ route('shop.category', $subcategory->slug) }}" class="product-card-img">
                                                 @if($subcategory->image)
@@ -115,7 +115,7 @@
                                 {{-- First, check if there are any subcategories (children) --}}
                                 @if($parent->children->isNotEmpty())
                                     @foreach($parent->children as $subcategory)
-                                        <div class="col-6 col-md-4 col-lg-4 col-sm-6">
+                                        <div class="col-6 col-md-4 col-lg-4 col-sm-6 p-2">
                                             <div class="product-card-col">
                                                 {{-- Display SUBCATEGORY card --}}
                                                 <a href="{{ route('shop.category', $subcategory->slug) }}" class="product-card-img">
