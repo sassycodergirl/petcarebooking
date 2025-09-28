@@ -1115,6 +1115,7 @@ textarea::placeholder {
 }
 .explore-btn:hover{
 	background: #7380fe;
+	color: #fff;
 }
 .product-card-col p {
 	font-family: var(--default-heading-font);
