@@ -25,8 +25,11 @@
                     <div class="prdct-list ">
                         <ul class="nav flex-column nav-pills" id="categoryTabs" role="tablist">
                             <li>
-                                <a class="nav-link active cat-pill" data-bs-toggle="pill" href="#all" role="tab">
-                                    All
+                                <a class="nav-link active cat-pill cat-pill-top" data-bs-toggle="pill" href="#all" role="tab">
+                                   <img src="{{ asset('images/all.webp') }}" 
+                                                alt="{{ $parent->name }}" 
+                                                class="me-2 cat-img-pill"> 
+                                 <span>All</span>
                                 </a>
                             </li>
                             @foreach($categories as $parent)

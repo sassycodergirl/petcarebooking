@@ -2325,6 +2325,9 @@ textarea::placeholder {
 	    text-transform: uppercase;
 		border-radius: 0 !important;
 }
+.cat-pill-top{
+	border-top:  1px solid #DFDFDF !important;
+}
 .cat-pill:hover{
 	color: #000;
 }
