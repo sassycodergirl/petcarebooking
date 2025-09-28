@@ -115,7 +115,7 @@ a {
 	font-family: var(--default-heading-font);
 	color: var(--bg-text-color);
 	font-weight: 500;
-	font-size: 18px;
+	font-size: 15px;
 	text-decoration: none;
 	outline: none;
 	-webkit-transition: all 0.4s ease;
