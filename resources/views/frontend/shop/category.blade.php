@@ -75,7 +75,10 @@
                 @if($category->parent)
                     <li class="cat-pill cat-pill-top {{ request()->url() == route('shop.category', $category->parent->slug) ? 'active' : '' }}">
                         <a href="{{ route('shop.category', $category->parent->slug) }}" class="{{ request()->url() == route('shop.category', $category->parent->slug) ? 'text-white' : '' }}">
-                            All {{ $category->parent->name }}
+                          <img src="{{ asset('public/' .$parent->image) }}" 
+                                                alt="{{ $parent->name }}" 
+                                                class="me-2 cat-img-pill">
+                         All {{ $category->parent->name }}
                         </a>
                     </li>
                 @endif
