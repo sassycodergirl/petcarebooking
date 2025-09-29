@@ -79,7 +79,7 @@
             <div class="col-lg-6">
                 <div class="js-banner-img"> <div class="banner-img">
                         <div class="banner-main">
-                            <img src="{{ asset('images/banner-img.png') }}" alt="">
+                            <img src="{{ asset('images/banner-img.webp') }}" alt="">
                         </div>
                         <img src="{{ asset('images/food-one.png') }}" class="food-one" alt="">
                         <img src="{{ asset('images/food-two.png') }}" class="food-two" alt="">
@@ -88,7 +88,7 @@
 
                     <div class="banner-img">
                         <div class="banner-main">
-                            <img src="{{ asset('images/banner-img-2.png') }}" alt="">
+                            <img src="{{ asset('images/treats-banner.webp') }}" alt="">
                         </div>
                         <img src="{{ asset('images/food-one-2.png') }}" class="food-one" alt="">
                         <img src="{{ asset('images/food-two-2.png') }}" class="food-two" alt="">
