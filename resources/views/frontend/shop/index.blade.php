@@ -31,7 +31,7 @@
                     <div class="prdct-list ">
                         <ul class="nav flex-column nav-pills" id="categoryTabs" role="tablist">
                             <li>
-                                <a class="nav-link active cat-pill cat-pill-top" data-bs-toggle="pill" href="#all" role="tab">
+                                <a class="nav-link active cat-pill cat-pill-top text-black" data-bs-toggle="pill" href="#all" role="tab">
                                    <img src="{{ asset('images/all.webp') }}" 
                                                 alt="" 
                                                 class="me-2 cat-img-pill"> 
