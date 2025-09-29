@@ -742,10 +742,10 @@ textarea::placeholder {
     }
 
     /* Hide large decorative images that won't fit on smaller screens */
-    .banner-img-rgt,
+    /* .banner-img-rgt,
     .banner-lft-top-ovr {
         display: none;
-    }
+    } */
 }
 
 /* Additional adjustments for mobile phones (up to 767px) */
