@@ -9,17 +9,16 @@
                             <h1>Because They Deserve the Best.</h1>
                             <p>Premium Day care, Pet Food, Training Tips & A Loving Community - All in One Place.</p>
                             <div class="banner-cont-button">
-                                <a href="/booking-portal" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
-                                <a href="/community" class="cmn-btn-border" data-content="Join The Community"><span>Join The
-                                        Community</span></a>
+                                <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                                <a href="{{ route('shop.index') }}" class="cmn-btn-border" data-content="Join The Community"><span>Shop For Pets</span></a>
                             </div>
                         </div>
                         <div class="banner-cont">
                             <div class="h1-heading">Because They Deserve the Best.</div>
                             <p>Premium Day care, Pet Food, Training Tips & A Loving Community - All in One Place.</p>
                             <div class="banner-cont-button">
-                                <a href="/booking-portal" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
-                                <a href="/community" class="cmn-btn-border" data-content="Join The Community"><span>Join The
+                                <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                                <a href="{{ route('community') }}" class="cmn-btn-border" data-content="Join The Community"><span>Join The
                                         Community</span></a>
                             </div>
                         </div>
@@ -67,7 +66,7 @@
                                 welcoming and vibrant space where pet parents can find everything they need to care for
                                 their furry companions while feeling understood and supported by a passionate community
                                 that shares their love and devotion.</p>
-                            <a href="#" class="cmn-btn" data-content="Read More"><span>Read More</span></a>
+                            <a href="{{ route('about') }}" class="cmn-btn" data-content="Read More"><span>Read More</span></a>
                         </div>
                     </div>
                 </div>
@@ -574,7 +573,8 @@
                             <p>At Furry Friends, we combine professional expertise with genuine love for animals. Pet
                                 parents trust us because we go the extra mile to ensure their companions feel safe,
                                 happy, and cared for. And pets? They love coming back—tails wagging, hearts full.</p>
-                            <a href="#" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                            <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                           
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -650,7 +650,7 @@
                 </div>
             </div>
             <div class="text-center btm-wrapp">
-                <a href="#" class="cmn-btn" data-content="Explore Community"><span>Explore Community</span></a>
+                <a href="{{ route('community') }}" class="cmn-btn" data-content="Explore Community"><span>Explore Community</span></a>
             </div>
         </div>
         <img src="{{ asset('images/community-card-ov.png') }}" class="community-card-ov" alt="">
@@ -823,7 +823,7 @@
                 </div>
             </div>
             <div class="text-center btm-wrapp">
-                <a href="#" class="cmn-btn" data-content="Explore Events"><span>Explore Events</span></a>
+                <a href="{{ route('events') }}" class="cmn-btn" data-content="Explore Events"><span>Explore Events</span></a>
             </div>
         </div>
         <img src="{{ asset('images/event-ov-lft.png') }}" class="event-ov-lft" alt="">
@@ -1017,7 +1017,7 @@
                 </div>
             </div>
             <div class="text-center btm-wrapp">
-                <a href="#" class="cmn-btn" data-content="View All Blogs"><span>View All Blogs</span></a>
+                <a href="{{ route('blog') }}" class="cmn-btn" data-content="View All Blogs"><span>View All Blogs</span></a>
             </div>
         </div>
         <img src="{{ asset('images/blog-rgt-ovr.png') }}" class="blog-rgt-ovr" alt="">
