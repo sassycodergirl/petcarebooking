@@ -1,6 +1,6 @@
  @include('partials.header')
 
-    <section class="banner">
+    <!-- <section class="banner">
         <div class="container">
             <div class="row banner-row">
                 <div class="col-lg-6">
@@ -10,7 +10,7 @@
                             <p>Daycare and boarding with care, comfort, and endless playtime.</p>
                             <div class="banner-cont-button">
                                 <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book a Slot</span></a>
-                               
+                              
                             </div>
                         </div>
                         <div class="banner-cont">
@@ -18,10 +18,17 @@
                             <p>From tasty treats to everyday essentials, shop trusted products for happy pets.</p>
                             <div class="banner-cont-button">
                                 <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Book Day Care"><span>Shop Now</span></a>
-                               
+                              
                             </div>
                         </div>
-                     
+                        <div class="banner-cont">
+                            <div class="h1-heading">Because They Deserve the Best.</div>
+                            <p>Premium Day care, Pet Food, Training Tips & A Loving Community - All in One Place.</p>
+                            <div class="banner-cont-button">
+                                <a href="/booking-portal" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -38,7 +45,71 @@
         </div>
         <img src="{{ asset('images/banner-img-rgt.png') }}" class="banner-img-rgt" alt="">
         <img src="{{ asset('images/banner-lft-top-ovr.png') }}" class="banner-lft-top-ovr" alt="">
-    </section>
+    </section> -->
+
+
+    <section class="banner">
+    <div class="container">
+        <div class="row banner-row">
+            <div class="col-lg-6">
+                <div class="js-banner-cont">
+                    <div class="banner-cont">
+                        <h1>Safe & Fun Stays for Your Pets</h1>
+                        <p>Daycare and boarding with care, comfort, and endless playtime.</p>
+                        <div class="banner-cont-button">
+                            <a href="{{ route('booking') }}" class="cmn-btn"><span>Book a Slot</span></a>
+                        </div>
+                    </div>
+                    <div class="banner-cont">
+                        <h1>Everything Your Pet Loves</h1>
+                        <p>From tasty treats to everyday essentials, shop trusted products for happy pets.</p>
+                        <div class="banner-cont-button">
+                            <a href="{{ route('shop.index') }}" class="cmn-btn"><span>Shop Now</span></a>
+                        </div>
+                    </div>
+                    <div class="banner-cont">
+                        <h1>Because They Deserve the Best.</h1>
+                        <p>Premium Day care, Pet Food, Training Tips & A Loving Community - All in One Place.</p>
+                        <div class="banner-cont-button">
+                            <a href="/booking-portal" class="cmn-btn"><span>Book Day Care</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="js-banner-img"> <div class="banner-img">
+                        <div class="banner-main">
+                            <img src="{{ asset('images/banner-img-1.png') }}" alt="">
+                        </div>
+                        <img src="{{ asset('images/food-one-1.png') }}" class="food-one" alt="">
+                        <img src="{{ asset('images/food-two-1.png') }}" class="food-two" alt="">
+                        <img src="{{ asset('images/food-three-1.png') }}" class="food-three" alt="">
+                    </div>
+
+                    <div class="banner-img">
+                        <div class="banner-main">
+                            <img src="{{ asset('images/banner-img-2.png') }}" alt="">
+                        </div>
+                        <img src="{{ asset('images/food-one-2.png') }}" class="food-one" alt="">
+                        <img src="{{ asset('images/food-two-2.png') }}" class="food-two" alt="">
+                        <img src="{{ asset('images/food-three-2.png') }}" class="food-three" alt="">
+                    </div>
+
+                    <div class="banner-img">
+                        <div class="banner-main">
+                            <img src="{{ asset('images/banner-img-3.png') }}" alt="">
+                        </div>
+                        <img src="{{ asset('images/food-one-3.png') }}" class="food-one" alt="">
+                        <img src="{{ asset('images/food-two-3.png') }}" class="food-two" alt="">
+                        <img src="{{ asset('images/food-three-3.png') }}" class="food-three" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="{{ asset('images/banner-img-rgt.png') }}" class="banner-img-rgt" alt="">
+    <img src="{{ asset('images/banner-lft-top-ovr.png') }}" class="banner-lft-top-ovr" alt="">
+</section>
 
     <section class="about">
         <div class="container">

@@ -39,13 +39,35 @@ jQuery(document).ready(function ($) {
     $('body,html').toggleClass("open-nav");
   });
   // Navbar end
+  // $('.js-banner-cont').slick({
+  //   dots: true,
+  //   arrows: false,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   autoplaySpeed: 2000,
+  // });
+
+  // Initialize the text slider
   $('.js-banner-cont').slick({
-    dots: true,
-    arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false,
+    dots: true,
+    fade: true, // Use a fade effect
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
+    asNavFor: '.js-banner-img' // Link to the image slider
+  });
+  
+  // Initialize the image slider
+  $('.js-banner-img').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    asNavFor: '.js-banner-cont', // Link to the text slider
+    dots: false, // Navigation is handled by the other slider
+    arrows: false,
+    fade: true
   });
   // tab with slider
 
