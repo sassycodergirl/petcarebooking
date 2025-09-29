@@ -182,14 +182,14 @@
                                 </div>
                                 <div class="store-details">
                                     <div class="store-title">
-                                        <a href="#">Heads Up For Tails Pet Supply Store | DLF Galleria Market</a>
+                                        <a href="#">Furry Friends & Co| Kharghar</a>
                                     </div>
                                     <div class="store-address">
-                                        Furry friends & Co shop no 31, plot no 267 Om harmony sector 10, Kharghar,410210
+                                        Furry friends & Co, Shop No. 31, Om Harmony, Dog Walking Street, Anushaktinagar, Sector 10, Kharghar, Navi Mumbai, Maharashtra 410210
                                     </div>
-                                    <div class="store-distance">5.29 kms from your Location</div>
+                                    <div class="store-distance">090761 20593</div>
                                     <div class="store-timings">Open Everyday : <span class="timing-hours">8:00am to
-                                            22:00pm</span></div>
+                                            10:00pm</span></div>
                                     <div class="store-rating">
                                         <span class="reviews-number">4.7</span>
                                         <ul>
@@ -203,10 +203,10 @@
                                         <span class="reviews-txt">225 Reviews</span>
                                     </div>
                                     <div class="store-actions">
-                                        <button class="btn-book">Book Slot</button>
-                                        <button class="btn-call"><img src="{{ asset('images/coll-icon.svg') }}" alt=""></button>
-                                        <button class="btn-location"><img src="{{ asset('images/send-icon.svg') }}" alt=""></button>
-                                        <button class="btn-direction"><img src="{{ asset('images/right-arrow.svg') }}" alt=""></button>
+                                        <a href="{{ route('booking') }}" class="btn-book">Book Slot</a>
+                                        <a href="9076120593" class="btn-call"><img src="{{ asset('images/coll-icon.svg') }}" alt=""></a>
+                                        <a href="" class="btn-location"><img src="{{ asset('images/send-icon.svg') }}" alt=""></a>
+                                        <a class="btn-direction"><img src="{{ asset('images/right-arrow.svg') }}" alt=""></a>
                                     </div>
                                 </div>
                             </div>

@@ -19,10 +19,9 @@
                                     <img src="{{asset('images/logo.png')}}" alt="">
                                 </a>
                                 <ul>
-                                    <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.facebook.com/p/Furry-Friends-Co-India-61566700072720/"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                    <li><a href="https://www.instagram.com/furryfriendsco.india/?hl=en"><i class="fa-brands fa-instagram"></i></a></li>
+                             
                                 </ul>
                             </div>
                         </div>
