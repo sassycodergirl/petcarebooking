@@ -1,51 +1,6 @@
  @include('partials.header')
 
-    <!-- <section class="banner">
-        <div class="container">
-            <div class="row banner-row">
-                <div class="col-lg-6">
-                    <div class="js-banner-cont">
-                        <div class="banner-cont">
-                            <h1>Safe & Fun Stays for Your Pets</h1>
-                            <p>Daycare and boarding with care, comfort, and endless playtime.</p>
-                            <div class="banner-cont-button">
-                                <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book a Slot</span></a>
-                              
-                            </div>
-                        </div>
-                        <div class="banner-cont">
-                            <div class="h1-heading">Everything Your Pet Loves</div>
-                            <p>From tasty treats to everyday essentials, shop trusted products for happy pets.</p>
-                            <div class="banner-cont-button">
-                                <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Book Day Care"><span>Shop Now</span></a>
-                              
-                            </div>
-                        </div>
-                        <div class="banner-cont">
-                            <div class="h1-heading">Because They Deserve the Best.</div>
-                            <p>Premium Day care, Pet Food, Training Tips & A Loving Community - All in One Place.</p>
-                            <div class="banner-cont-button">
-                                <a href="/booking-portal" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="banner-img">
-                        <div class="banner-main">
-                            <img src="{{ asset('images/banner-img.png') }}" alt="">
-                        </div>
-                        <img src="{{ asset('images/food-one.png') }}" class="food-one" alt="">
-                        <img src="{{ asset('images/food-two.png') }}" class="food-two" alt="">
-                        <img src="{{ asset('images/food-three.png') }}" class="food-three" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <img src="{{ asset('images/banner-img-rgt.png') }}" class="banner-img-rgt" alt="">
-        <img src="{{ asset('images/banner-lft-top-ovr.png') }}" class="banner-lft-top-ovr" alt="">
-    </section> -->
+
 
 
     <section class="banner">
@@ -90,25 +45,21 @@
                         <div class="banner-main">
                             <img src="{{ asset('images/treats-banner.webp') }}" alt="">
                         </div>
-                        <img src="{{ asset('images/food-one-2.png') }}" class="food-one" alt="">
-                        <img src="{{ asset('images/food-two-2.png') }}" class="food-two" alt="">
-                        <img src="{{ asset('images/food-three-2.png') }}" class="food-three" alt="">
+                        
                     </div>
 
                     <div class="banner-img">
                         <div class="banner-main">
                             <img src="{{ asset('images/banner-img-3.png') }}" alt="">
                         </div>
-                        <img src="{{ asset('images/food-one-3.png') }}" class="food-one" alt="">
-                        <img src="{{ asset('images/food-two-3.png') }}" class="food-two" alt="">
-                        <img src="{{ asset('images/food-three-3.png') }}" class="food-three" alt="">
+                       
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <img src="{{ asset('images/banner-img-rgt.png') }}" class="banner-img-rgt" alt="">
-    <img src="{{ asset('images/banner-lft-top-ovr.png') }}" class="banner-lft-top-ovr" alt="">
+    <img src="{{ asset('images/banner-img-rgt.webp') }}" class="banner-img-rgt" alt="">
+    <img src="{{ asset('images/banner-lft-top-ovr.webp') }}" class="banner-lft-top-ovr" alt="">
 </section>
 
     <section class="about">
