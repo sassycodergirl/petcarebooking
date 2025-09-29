@@ -10,8 +10,7 @@
                             <p>Daycare and boarding with care, comfort, and endless playtime.</p>
                             <div class="banner-cont-button">
                                 <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book a Slot</span></a>
-                                <a href="{{ route('community') }}" class="cmn-btn-border" data-content="Join The Community"><span>Join The
-                                        Community</span></a>
+                               
                             </div>
                         </div>
                         <div class="banner-cont">
@@ -19,7 +18,7 @@
                             <p>From tasty treats to everyday essentials, shop trusted products for happy pets.</p>
                             <div class="banner-cont-button">
                                 <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Book Day Care"><span>Shop Now</span></a>
-                                <a href="{{ route('events') }}" class="cmn-btn-border" data-content="Join The Community"><span>Our Events</span></a>
+                               
                             </div>
                         </div>
                      
