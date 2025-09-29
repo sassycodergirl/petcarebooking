@@ -55,7 +55,7 @@ jQuery(document).ready(function ($) {
     arrows: false,
     dots: true,
     fade: true, // Use a fade effect
-    autoplay: true,
+    autoplay:false,
     autoplaySpeed: 3000,
     asNavFor: '.js-banner-img' // Link to the image slider
   });
