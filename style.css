@@ -674,9 +674,9 @@ textarea::placeholder {
 	pointer-events: none;
 	user-select: none;
 }
-.third-banner{
+/* .third-banner{
 	scale: 1.2;
-}
+} */
 /* =================================== */
 /* Responsive Banner Styles           */
 /* =================================== */
@@ -693,9 +693,7 @@ textarea::placeholder {
         /* flex-direction: column-reverse; */
         text-align: center;
     }
-	.third-banner{
-		scale: 1.1;
-	}
+	
 
     .banner-cont h1 {
         font-size: 2.5rem; /* Adjust heading size */
