@@ -22,15 +22,7 @@
                                 <a href="{{ route('events') }}" class="cmn-btn-border" data-content="Join The Community"><span>Our Events</span></a>
                             </div>
                         </div>
-                        <div class="banner-cont">
-                            <div class="h1-heading">Because They Deserve the Best.</div>
-                            <p>Premium Day care, Pet Food, Training Tips & A Loving Community - All in One Place.</p>
-                            <div class="banner-cont-button">
-                                <a href="/booking-portal" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
-                                <a href="/community" class="cmn-btn-border" data-content="Join The Community"><span>Join The
-                                        Community</span></a>
-                            </div>
-                        </div>
+                     
                     </div>
                 </div>
                 <div class="col-lg-6">
