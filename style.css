@@ -623,8 +623,8 @@ textarea::placeholder {
 }
 
 .banner-img {
-	max-width: 511px;
-	margin-left: auto;
+	/* max-width: 511px;
+	margin-left: auto; */
 	position: relative;
 }
 
