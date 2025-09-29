@@ -1966,7 +1966,7 @@ textarea::placeholder {
 
 .footer-hd {
 	font-weight: 700;
-	font-size: 50px;
+	font-size: 33px;
 	color: var(--bg-white);
 	font-family: var(--default-heading-font);
 }
@@ -2129,7 +2129,7 @@ textarea::placeholder {
 
 .footer-copy-rgt p {
 	color: var(--bg-white);
-	font-size: 20px;
+	font-size: 13px;
 }
 
 .footer-copy-rgt p a {
@@ -2851,7 +2851,7 @@ font-weight: 500;
 .inner-bn-all h1 {
 	text-align: center;
 	color: var(--bg-white);
-	font-size: 50px;
+	font-size: 40px;
 }
 
 .community-banner {

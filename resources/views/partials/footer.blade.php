@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="footer-copy-rgt">
-                    <p>© <a href="/">Furry Friends & co</a> <span id="current-year"></span> - all right and reserved.</p>
+                    <p>© <a href="/">Furry Friends & co</a>-<span id="current-year"></span> all rights reserved.</p>
                 </div>
             </div>
         </div>
