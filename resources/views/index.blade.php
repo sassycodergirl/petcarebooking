@@ -16,17 +16,17 @@
                         </div>
                     </div>
                     <div class="banner-cont">
-                        <h1>Everything Your Pet Loves</h1>
-                        <p>From tasty treats to everyday essentials, shop trusted products for happy pets.</p>
+                        <h1>asty Bites, Happy Tails</h1>
+                        <p>Healthy, delicious, and tail-wag approved—treats your pets will always love.</p>
                         <div class="banner-cont-button">
-                            <a href="{{ route('shop.index') }}" class="cmn-btn"><span>Shop Now</span></a>
+                            <a href="{{ route('shop.index') }}" class="cmn-btn"><span>Shop Treats</span></a>
                         </div>
                     </div>
                     <div class="banner-cont">
-                        <h1>Because They Deserve the Best.</h1>
-                        <p>Premium Day care, Pet Food, Training Tips & A Loving Community - All in One Place.</p>
+                        <h1>Dress Up Every Moment</h1>
+                        <p>From festive traditions to everyday outings, explore premium pet clothing that blends comfort with fashion.</p>
                         <div class="banner-cont-button">
-                            <a href="/booking-portal" class="cmn-btn"><span>Book Day Care</span></a>
+                            <a href="/booking-portal" class="cmn-btn"><span>Shop the Collection</span></a>
                         </div>
                     </div>
                 </div>
