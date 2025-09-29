@@ -630,6 +630,8 @@ textarea::placeholder {
 
 .banner-main {
 	width: 100%;
+	display: flex;
+    justify-content: center;
 }
 
 .banner-row {
@@ -662,7 +664,7 @@ textarea::placeholder {
 .food-two {
 	position: absolute;
 	bottom: 2%;
-	left: -7%;
+	left: 0%;
 }
 
 .food-three {
