@@ -128,7 +128,7 @@
                                 @if($parent->children->isNotEmpty())
                                     @foreach($parent->children as $subcategory)
                                         <div class="col-6 col-md-4 col-lg-4 col-sm-6 p-2">
-                                            <div class="product-card-col">
+                                            <div class="product-card-col p-0">
                                                 {{-- Display SUBCATEGORY card --}}
                                                 <a href="{{ route('shop.category', $subcategory->slug) }}" class="product-card-img">
                                                     @if($subcategory->image)
