@@ -30,12 +30,10 @@
                             <div class="footer-col footer-col-addtess">
                                 <div class="footer-hd-sm">Contact us</div>
                                 <ul>
-                                    <li><span><i class="fa-solid fa-location-dot"></i></span> Villa 57, Al Thanya
-                                        RoadUmm Suquiem 2United Arab Emirates</li>
-                                    <li><span><i class="fa-solid fa-phone"></i></span> <a href="tel:001234567890">+00
-                                            1234567890</a></li>
+                                    <li><span><i class="fa-solid fa-location-dot"></i></span> Furry friends & Co shop no 31, plot no 267 Om harmony sector 10, Kharghar,410210</li>
+                                    <li><span><i class="fa-solid fa-phone"></i></span> <a href="tel:001234567890">9076120593</a></li>
                                     <li><span><i class="fa-solid fa-envelope"></i></span> <a
-                                            href="mailto:support@furryfriends@gmail.com">support@furryfriends@gmail.com</a>
+                                            href="mailto:support@furryfriends@gmail.com">info@furryfriendsco.in</a>
                                     </li>
                                 </ul>
                             </div>
@@ -45,6 +43,7 @@
                                 <div class="footer-hd-sm">Quick Links</div>
                                 <ul>
                                     <li><a href="{{ route('index') }}">Home</a></li>
+                                    <li><a href="{{ route('about') }}">About Us</a></li>
                                     <li><a href="{{ route('login') }}">Login / Signup</a></li>
                                     <li><a href="{{ route('blog') }}">Blog</a></li>
                                     <li><a href="{{ route('contact') }}#faqs">FAQs</a></li>
@@ -66,7 +65,7 @@
                     </div>
                 </div>
                 <div class="footer-copy-rgt">
-                    <p>© <a href="/">Furry Friends & co</a> 2025 - all right and reserved.</p>
+                    <p>© <a href="/">Furry Friends & co</a> <span id="current-year"></span> - all right and reserved.</p>
                 </div>
             </div>
         </div>
@@ -110,9 +109,11 @@
 
 
 
-
-
-
+<!-- current year calculation-->
+<script>
+document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
+<!-- current year calculation-->
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
