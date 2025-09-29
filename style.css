@@ -742,10 +742,10 @@ textarea::placeholder {
     }
 
     /* Hide large decorative images that won't fit on smaller screens */
-    /* .banner-img-rgt,
+  
     .banner-lft-top-ovr {
         display: none;
-    } */
+    }
 }
 
 /* Additional adjustments for mobile phones (up to 767px) */
@@ -5298,10 +5298,10 @@ blockquote {
 		gap: 3px;
 	}
 
-	.banner-lft-top-ovr,
+	/* .banner-lft-top-ovr,
 	.banner-img-rgt {
 		width: 50%;
-	}
+	} */
 
 	.abt-lft-top {
 		max-width: unset;
@@ -5538,15 +5538,19 @@ blockquote {
 
 	.food-one {
 		max-width: 65px;
+		    top: 15%;
+    	left: 21%;
 	}
 
 	.food-two {
 		max-width: 80px;
+		bottom: -6%;
+    	left: 15%;
 	}
 
 	.food-three {
 		max-width: 80px;
-		right: -9px;
+		right: 19%;
 	}
 
 	.about {
