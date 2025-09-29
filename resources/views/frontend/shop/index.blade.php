@@ -81,7 +81,7 @@
                                                     {{ $subcategory->name }}
                                                 </a>
                                                  <div>
-                                                    <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View Product</a>
+                                                    <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View Products</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,7 +140,7 @@
                                                 <div>
                                                     <a class="p-name" href="{{ route('shop.category', $subcategory->slug) }}">{{ $subcategory->name }}</a>
                                                     <div>
-                                                        <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View Product</a>
+                                                        <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View Products</a>
                                                     </div>
                                                 </div>
                                             </div>
