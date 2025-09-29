@@ -143,9 +143,8 @@
         <div class="container">
             <div class="locate-wrap">
                 <div class="locate-heading">
-                    <h2>Located</h2>
-                    <p>Find the closest Heads Up For Tails store and spa near you for premium pet products, expert
-                        grooming, and a whole lot of pampering. Because your pet deserves nothing but the best.</p>
+                    <h2>Step Into Furry Friends & Co</h2>
+                    <p>Furry Friends & Co is more than just a pet store—it’s a destination of love, care, and quality. Explore our range of premium products, enjoy professional grooming services, and let your pets experience the comfort and joy they truly deserve.</p>
                     <!-- <div class="locate-filter">
                         <div class="row">
                             <div class="col-md-4">
