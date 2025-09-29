@@ -143,10 +143,10 @@
         <div class="container">
             <div class="locate-wrap">
                 <div class="locate-heading">
-                    <h2>Locate Nearest HUFT Pet Store & Spa</h2>
+                    <h2>Located</h2>
                     <p>Find the closest Heads Up For Tails store and spa near you for premium pet products, expert
                         grooming, and a whole lot of pampering. Because your pet deserves nothing but the best.</p>
-                    <div class="locate-filter">
+                    <!-- <div class="locate-filter">
                         <div class="row">
                             <div class="col-md-4">
                                 <select>
@@ -170,11 +170,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="locate-cd-wrap">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="store-card">
                                 <div class="store-image">
                                     <a href="#">
@@ -212,7 +212,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="store-card">
                                 <div class="store-image">
                                     <a href="#">
@@ -249,7 +249,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
