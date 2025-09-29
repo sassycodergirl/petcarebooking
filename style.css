@@ -5056,9 +5056,9 @@ blockquote {
 		width: 50%;
 	}
 
-	.banner-row {
+	/* .banner-row {
 		--bs-gutter-y: 40px;
-	}
+	} */
 
 	.banner-row .col-lg-6:first-child {
 		order: 2;
@@ -6198,7 +6198,7 @@ blockquote {
         width: 40px;
         height: 40px;
 		font-size: 14px;
-		        margin-bottom: 4px;
+		margin-bottom: 4px;
 	}
 
 	    .step-container .step span::after {
