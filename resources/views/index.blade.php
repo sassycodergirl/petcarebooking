@@ -50,7 +50,7 @@
 
                     <div class="banner-img">
                         <div class="banner-main">
-                            <img src="{{ asset('images/fashion.webp') }}" alt="">
+                            <img src="{{ asset('images/fashion.webp') }}" class="third-banner" alt="">
                         </div>
                        
                     </div>
