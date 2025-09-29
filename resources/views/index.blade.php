@@ -81,9 +81,9 @@
                         <div class="banner-main">
                             <img src="{{ asset('images/banner-img.png') }}" alt="">
                         </div>
-                        <img src="{{ asset('images/food-one-1.png') }}" class="food-one" alt="">
-                        <img src="{{ asset('images/food-two-1.png') }}" class="food-two" alt="">
-                        <img src="{{ asset('images/food-three-1.png') }}" class="food-three" alt="">
+                        <img src="{{ asset('images/food-one.png') }}" class="food-one" alt="">
+                        <img src="{{ asset('images/food-two.png') }}" class="food-two" alt="">
+                        <img src="{{ asset('images/food-three.png') }}" class="food-three" alt="">
                     </div>
 
                     <div class="banner-img">
