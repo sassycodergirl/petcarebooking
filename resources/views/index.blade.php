@@ -36,9 +36,9 @@
                         <div class="banner-main">
                             <img src="{{ asset('images/banner-img.webp') }}" alt="">
                         </div>
-                        <img src="{{ asset('images/food-one.png') }}" class="food-one" alt="">
-                        <img src="{{ asset('images/food-two.png') }}" class="food-two" alt="">
-                        <img src="{{ asset('images/food-three.png') }}" class="food-three" alt="">
+                        <img src="{{ asset('images/food-one.webp') }}" class="food-one" alt="">
+                        <img src="{{ asset('images/food-two.webp') }}" class="food-two" alt="">
+                        <img src="{{ asset('images/food-three.webp') }}" class="food-three" alt="">
                     </div>
 
                     <div class="banner-img">
