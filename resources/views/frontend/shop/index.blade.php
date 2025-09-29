@@ -151,7 +151,7 @@
                                 @elseif($parent->products->isNotEmpty())
                                     @foreach($parent->products as $product)
                                         <div class="col-6 col-md-3 col-lg-3 col-sm-6">
-                                            <div class="product-card-col">
+                                            <div class="product-card-col p-0">
                                                 {{-- Display PRODUCT card (note the different route and variables) --}}
                                                 <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
                                                     @if($product->image)
@@ -160,7 +160,12 @@
                                                         <img src="{{ asset('images/default-product.png') }}" alt="{{ $product->name }}">
                                                     @endif
                                                 </a>
-                                                <div><a class="p-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+                                                <div class="p-3">
+                                                    <a class="p-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a>
+                                                    <div>
+                                                        <a href="{{ route('product.show', $product->slug) }}" class="btn explore-btn">Choose Option</a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     @endforeach
