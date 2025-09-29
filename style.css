@@ -674,6 +674,7 @@ textarea::placeholder {
 	pointer-events: none;
 	user-select: none;
 }
+
 /* =================================== */
 /* Responsive Banner Styles           */
 /* =================================== */
@@ -687,7 +688,7 @@ textarea::placeholder {
 
     .banner-row {
         /* This stacks the columns and reverses them, putting the image on top */
-        /* flex-direction: column-reverse; */
+        flex-direction: column-reverse;
         text-align: center;
     }
 
@@ -724,9 +725,20 @@ textarea::placeholder {
         max-width: 100%;
     }
 
-    .banner-main img {
-        max-width: 450px; /* Control image size */
+    /* --- FIXED SLIDER HEIGHT --- */
+    .banner-main {
+        /* Control the container, not just the image */
+        max-width: 450px; 
         width: 100%;
+        margin: 0 auto; /* Center the container */
+        aspect-ratio: 4 / 3; /* Force a 4:3 aspect ratio, adjust if needed */
+    }
+
+    .banner-main img {
+        /* Make the image fill the container without stretching */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     /* Hide large decorative images that won't fit on smaller screens */
@@ -751,11 +763,20 @@ textarea::placeholder {
         font-size: 1rem; /* Further reduce font size for phones */
     }
 
-    /* Hide the small floating food images on mobile for a cleaner look */
+    /* --- FURTHER MOBILE FIXES --- */
+    .banner-main {
+        /* You can change the aspect ratio for mobile, square often looks good */
+        aspect-ratio: 1 / 1; 
+        max-width: 350px;
+    }
+
+    /* Hide the small floating food images for a cleaner look */
     /* .food-one, .food-two, .food-three {
         display: none;
     } */
 }
+
+
 .about-row {
 	align-items: center;
 }
