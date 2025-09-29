@@ -146,7 +146,7 @@ window.addEventListener("load", function () {
                     <ul class="navbar-nav ms-auto">
                         <li class="current-menu-item"><a href="{{ route('index') }}">Home</a></li>
                         <li><a href="{{ route('shop.index') }}">Shop For Pets</a></li>
-                        <li><a href="{{ route('community') }}">Community</a></li>
+                        <li><a href="{{ route('community') }}">Our Community</a></li>
                         <li><a href="{{ route('events') }}">Events</a></li>
                         <li><a href="{{ route('booking') }}">Book Boarding</a></li>
                     </ul>
