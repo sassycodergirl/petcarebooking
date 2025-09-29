@@ -710,7 +710,7 @@ textarea::placeholder {
 
     .js-banner-cont {
         padding-bottom: 60px; /* Adjust space for dots */
-        margin-top: 40px;
+       
     }
     
     .js-banner-cont .slick-dots {
@@ -738,7 +738,7 @@ textarea::placeholder {
         /* Make the image fill the container without stretching */
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     /* Hide large decorative images that won't fit on smaller screens */
@@ -766,8 +766,9 @@ textarea::placeholder {
     /* --- FURTHER MOBILE FIXES --- */
     .banner-main {
         /* You can change the aspect ratio for mobile, square often looks good */
-        aspect-ratio: 1 / 1; 
-        max-width: 350px;
+        /* aspect-ratio: 1 / 1; 
+        max-width: 350px; */
+		height: 200px;
     }
 
     /* Hide the small floating food images for a cleaner look */
