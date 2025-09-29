@@ -6191,7 +6191,9 @@ blockquote {
 		margin-top: -40px;
 		z-index: 1;
 	}
-
+	.banner-img-rgt{
+		width: 100%;
+	}
 	.step-container .step span {
         width: 40px;
         height: 40px;
