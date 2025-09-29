@@ -674,7 +674,88 @@ textarea::placeholder {
 	pointer-events: none;
 	user-select: none;
 }
+/* =================================== */
+/* Responsive Banner Styles           */
+/* =================================== */
 
+/* Styles for tablets and smaller devices (up to 991px) */
+@media (max-width: 991.98px) {
+    .banner {
+        padding: 100px 0 50px;
+        overflow-x: hidden; /* Prevents horizontal scroll */
+    }
+
+    .banner-row {
+        /* This stacks the columns and reverses them, putting the image on top */
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .banner-cont h1 {
+        font-size: 2.5rem; /* Adjust heading size */
+    }
+
+    .banner-cont p {
+        font-size: 1.25rem; /* Adjust paragraph size */
+        max-width: 600px; /* Improve readability */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .banner-cont-button {
+        justify-content: center; /* Center the button */
+        margin-top: 30px;
+    }
+
+    .js-banner-cont {
+        padding-bottom: 60px; /* Adjust space for dots */
+        margin-top: 40px;
+    }
+    
+    .js-banner-cont .slick-dots {
+        /* Center the slider dots below the text */
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+    }
+
+    .banner-img {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .banner-main img {
+        max-width: 450px; /* Control image size */
+        width: 100%;
+    }
+
+    /* Hide large decorative images that won't fit on smaller screens */
+    .banner-img-rgt,
+    .banner-lft-top-ovr {
+        display: none;
+    }
+}
+
+/* Additional adjustments for mobile phones (up to 767px) */
+@media (max-width: 767.98px) {
+    .banner {
+        padding: 80px 0 40px;
+    }
+    
+    .banner-cont h1 {
+        font-size: 2rem; /* Further reduce font size for phones */
+        line-height: 1.3;
+    }
+
+    .banner-cont p {
+        font-size: 1rem; /* Further reduce font size for phones */
+    }
+
+    /* Hide the small floating food images on mobile for a cleaner look */
+    /* .food-one, .food-two, .food-three {
+        display: none;
+    } */
+}
 .about-row {
 	align-items: center;
 }
