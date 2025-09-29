@@ -674,6 +674,9 @@ textarea::placeholder {
 	pointer-events: none;
 	user-select: none;
 }
+.lg-banner{
+	scale: 1.2;
+}
 /* .third-banner{
 	scale: 1.2;
 } */
