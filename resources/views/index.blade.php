@@ -127,9 +127,10 @@
                         <div class="col-md-12">
                             <div class="store-card">
                                 <div class="store-image">
-                                    <a href="#">
-                                        <img src="{{ asset('images/store-image1.jpg') }}" alt="Heads Up For Tails Store">
-                                    </a>
+                                    
+                                        <img src="{{ asset('images/store1.webp') }}" alt="Heads Up For Tails Store">
+                                        <img src="{{ asset('images/store2.webp') }}" alt="Heads Up For Tails Store">
+                                    
                                 </div>
                                 <div class="store-details">
                                     <div class="store-title">
