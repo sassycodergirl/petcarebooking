@@ -50,7 +50,8 @@
 
                     <div class="banner-img">
                         <div class="banner-main">
-                            <img src="{{ asset('images/fashion-mob.webp') }}" class="third-banner" alt="">
+                            <img src="{{ asset('images/fashion.webp') }}" class="d-none d-md-block d-lg-block" alt="">
+                            <img src="{{ asset('images/fashion-mob.webp') }}" class="d-block d-md-none d-lg-none" alt="">
                         </div>
                        
                     </div>
