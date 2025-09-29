@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="banner-cont">
-                        <h1>asty Bites, Happy Tails</h1>
+                        <h1>Tasty Bites, Happy Tails</h1>
                         <p>Healthy, delicious, and tail-wag approved—treats your pets will always love.</p>
                         <div class="banner-cont-button">
                             <a href="{{ route('shop.index') }}" class="cmn-btn"><span>Shop Treats</span></a>
@@ -43,14 +43,14 @@
 
                     <div class="banner-img">
                         <div class="banner-main">
-                            <img src="{{ asset('images/treats-banner.webp') }}" alt="">
+                            <img src="{{ asset('images/treats.webp') }}" alt="">
                         </div>
                         
                     </div>
 
                     <div class="banner-img">
                         <div class="banner-main">
-                            <img src="{{ asset('images/banner-img-3.png') }}" alt="">
+                            <img src="{{ asset('images/fashion.webp') }}" alt="">
                         </div>
                        
                     </div>
