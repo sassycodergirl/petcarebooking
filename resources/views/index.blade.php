@@ -185,11 +185,11 @@
                                         <a href="#">Heads Up For Tails Pet Supply Store | DLF Galleria Market</a>
                                     </div>
                                     <div class="store-address">
-                                        SG-87, Ground Floor DLF, Galleria Market, DLF Phase IV, Gurugram, Haryana
+                                        Furry friends & Co shop no 31, plot no 267 Om harmony sector 10, Kharghar,410210
                                     </div>
                                     <div class="store-distance">5.29 kms from your Location</div>
-                                    <div class="store-timings">Open Everyday : <span class="timing-hours">9:30 to
-                                            22:30</span></div>
+                                    <div class="store-timings">Open Everyday : <span class="timing-hours">8:00am to
+                                            22:00pm</span></div>
                                     <div class="store-rating">
                                         <span class="reviews-number">4.7</span>
                                         <ul>
