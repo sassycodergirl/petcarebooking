@@ -688,7 +688,7 @@ textarea::placeholder {
 
     .banner-row {
         /* This stacks the columns and reverses them, putting the image on top */
-        flex-direction: column-reverse;
+        /* flex-direction: column-reverse; */
         text-align: center;
     }
 
