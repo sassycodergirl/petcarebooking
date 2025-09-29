@@ -3,7 +3,7 @@
 
 
 
-    <section class="banner">
+<section class="banner">
     <div class="container">
         <div class="row banner-row">
             <div class="col-lg-6">
