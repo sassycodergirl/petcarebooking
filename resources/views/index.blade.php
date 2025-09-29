@@ -6,20 +6,20 @@
                 <div class="col-lg-6">
                     <div class="js-banner-cont">
                         <div class="banner-cont">
-                            <h1>Because They Deserve the Best.</h1>
-                            <p>Premium Day care, Pet Food, Training Tips & A Loving Community - All in One Place.</p>
+                            <h1>Safe & Fun Stays for Your Pets</h1>
+                            <p>Daycare and boarding with care, comfort, and endless playtime.</p>
                             <div class="banner-cont-button">
-                                <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
-                                <a href="{{ route('shop.index') }}" class="cmn-btn-border" data-content="Join The Community"><span>Shop For Pets</span></a>
+                                <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book a Slot</span></a>
+                                <a href="{{ route('community') }}" class="cmn-btn-border" data-content="Join The Community"><span>Join The
+                                        Community</span></a>
                             </div>
                         </div>
                         <div class="banner-cont">
-                            <div class="h1-heading">Because They Deserve the Best.</div>
-                            <p>Premium Day care, Pet Food, Training Tips & A Loving Community - All in One Place.</p>
+                            <div class="h1-heading">Everything Your Pet Loves</div>
+                            <p>From tasty treats to everyday essentials, shop trusted products for happy pets.</p>
                             <div class="banner-cont-button">
-                                <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
-                                <a href="{{ route('community') }}" class="cmn-btn-border" data-content="Join The Community"><span>Join The
-                                        Community</span></a>
+                                <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Book Day Care"><span>Shop Now</span></a>
+                                <a href="{{ route('events') }}" class="cmn-btn-border" data-content="Join The Community"><span>Our Events</span></a>
                             </div>
                         </div>
                         <div class="banner-cont">

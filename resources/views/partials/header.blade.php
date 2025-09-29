@@ -148,10 +148,10 @@ window.addEventListener("load", function () {
                         <li><a href="{{ route('shop.index') }}">Shop For Pets</a></li>
                         <li><a href="{{ route('community') }}">Our Community</a></li>
                         <li><a href="{{ route('events') }}">Events</a></li>
-                        <li><a href="{{ route('booking') }}">Book Boarding</a></li>
+                        <!-- <li><a href="{{ route('booking') }}">Book Boarding</a></li> -->
                     </ul>
                     <div class="hdr-rgt-button hdr-rgt-button-none">
-                        <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                        <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book a Slot</span></a>
                     </div>
                 </div>
                 <div class="hdr-rgt">
