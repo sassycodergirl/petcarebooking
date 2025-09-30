@@ -9,7 +9,7 @@
             <div class="col-lg-6">
                 <div class="js-banner-cont">
                     <div class="banner-cont">
-                        <h1>Safe & Fun Stays <br>Where Pets Feel at Home</h1>
+                        <h1>Safe & Fun Stays Where Pets Feel at Home</h1>
                         <p>Daycare and boarding with care, comfort, and endless playtime.</p>
                         <div class="banner-cont-button">
                             <a href="{{ route('booking') }}" class="cmn-btn"><span>Book a Slot</span></a>
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="banner-cont">
-                        <h1>Festive Flairs & Western Wears <br>For Your Furry Friends</h1>
+                        <h1>Festive Flairs & Western Wears For Your Furry Friends</h1>
                         <p>From festive traditions to everyday outings, explore premium pet clothing that blends comfort with fashion.</p>
                         <div class="banner-cont-button">
                             <a href="/booking-portal" class="cmn-btn"><span>Shop the Collection</span></a>
