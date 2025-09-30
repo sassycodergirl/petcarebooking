@@ -718,7 +718,7 @@
             <div class="events-grid">
                 <div class="row events-row">
                     <div class="col-lg-6">
-                        <div class="store-card">
+                        <div class="store-card-2">
                             <div class="store-image">
                                 <a href="#">
                                     <img src="{{ asset('images/event-img1.jpg') }}" alt="Heads Up For Tails Store">
@@ -741,7 +741,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="store-card">
+                        <div class="store-card-2">
                             <div class="store-image">
                                 <a href="#">
                                     <img src="{{ asset('images/event-img2.png') }}" alt="Heads Up For Tails Store">
@@ -764,7 +764,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="store-card">
+                        <div class="store-card-2">
                             <div class="store-image">
                                 <a href="#">
                                     <img src="{{ asset('images/event-img3.jpg') }}" alt="Heads Up For Tails Store">
@@ -787,7 +787,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="store-card">
+                        <div class="store-card-2">
                             <div class="store-image">
                                 <a href="#">
                                     <img src="{{ asset('images/event-img4.jpg') }}" alt="Heads Up For Tails Store">
