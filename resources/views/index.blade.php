@@ -146,7 +146,7 @@
                         <div class="col-md-6">
                             <div class="store-details">
                                     <div class="store-title">
-                                        <a href="#">Furry Friends & Co| Kharghar</a>
+                                        <a href="#">Furry Friends & Co | Kharghar</a>
                                     </div>
                                     <hr>
                                     <div class="store-address">
@@ -169,9 +169,9 @@
                                     </div>
                                     <div class="store-actions">
                                         <a href="{{ route('booking') }}" class="btn-book">Book Slot</a>
-                                        <a href="9076120593" class="btn-call"><img src="{{ asset('images/coll-icon.svg') }}" alt=""></a>
-                                        <a href="" class="btn-location"><img src="{{ asset('images/send-icon.svg') }}" alt=""></a>
-                                        <a class="btn-direction"><img src="{{ asset('images/right-arrow.svg') }}" alt=""></a>
+                                        <a href="09076120593" class="btn-call"><img src="{{ asset('images/coll-icon.svg') }}" alt=""></a>
+                                        <a href="https://maps.app.goo.gl/nygEasieLDHnhQcV6" class="btn-location"><img src="{{ asset('images/send-icon.svg') }}" alt=""></a>
+                                      
                                     </div>
                                 </div>
                         </div>

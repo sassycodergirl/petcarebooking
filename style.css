@@ -926,7 +926,7 @@ textarea::placeholder {
 
 .store-address {
 	position: relative;
-	font-size: 14px;
+	font-size: 17px;
 	padding-left: 30px;
 	font-family: var(--default-body-font);
 	margin-bottom: 12px;
@@ -946,7 +946,7 @@ textarea::placeholder {
 
 .store-distance {
 	position: relative;
-	font-size: 14px;
+	font-size: 17px;
 	padding-left: 30px;
 	font-family: var(--default-body-font);
 	margin-bottom: 12px;
@@ -988,7 +988,7 @@ textarea::placeholder {
 
 .store-timings {
 	position: relative;
-	font-size: 14px;
+	font-size: 17px;
 	padding-left: 30px;
 	font-family: var(--default-body-font);
 	margin-bottom: 12px;
@@ -1015,7 +1015,7 @@ textarea::placeholder {
 .store-rating {
 	display: flex;
 	flex-wrap: wrap;
-	font-size: 14px;
+	font-size: 17px;
 	gap: 8px;
 }
 
