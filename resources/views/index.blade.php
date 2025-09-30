@@ -95,7 +95,7 @@
         <div class="container">
             <div class="locate-wrap">
                 <div class="locate-heading">
-                    <h2>Step Into Furry Friends & Co</h2>
+                    <h2>Step Into Furry Friends & Co Store</h2>
                     <p>Furry Friends & Co is more than just a pet store—it’s a destination of love, care, and quality. Explore our range of premium products, enjoy professional grooming services, and let your pets experience the comfort and joy they truly deserve.</p>
                     <!-- <div class="locate-filter">
                         <div class="row">
