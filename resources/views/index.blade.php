@@ -12,21 +12,21 @@
                         <h1>Safe & Fun Stays Where Pets Feel at Home</h1>
                         <p>Daycare and boarding with care, comfort, and endless playtime.</p>
                         <div class="banner-cont-button">
-                            <a href="{{ route('booking') }}" class="cmn-btn"><span>Book a Slot</span></a>
+                            <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book a Slot"><span>Book a Slot</span></a>
                         </div>
                     </div>
                     <div class="banner-cont">
                         <h1>Tasty Bites, Happy Tails, Love in Every Bite</h1>
                         <p>Healthy, delicious, and tail-wag approved—treats your pets will always love.</p>
                         <div class="banner-cont-button">
-                            <a href="{{ route('shop.index') }}" class="cmn-btn"><span>Shop Treats</span></a>
+                            <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Shop Treats"><span>Shop Treats</span></a>
                         </div>
                     </div>
                     <div class="banner-cont">
                         <h1>Festive Flairs & Western Wears For Your Furry Friends</h1>
                         <p>From festive traditions to everyday outings, explore premium pet clothing that blends comfort with fashion.</p>
                         <div class="banner-cont-button">
-                            <a href="/booking-portal" class="cmn-btn"><span>Shop the Collection</span></a>
+                            <a href="/booking-portal" class="cmn-btn" data-content="Shop the Collection"><span>Shop the Collection</span></a>
                         </div>
                     </div>
                 </div>
