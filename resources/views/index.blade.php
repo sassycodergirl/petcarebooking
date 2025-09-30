@@ -69,7 +69,7 @@
                 <div class="row about-row">
                     <div class="col-lg-6">
                         <div class="about-cont-img">
-                            <img src="{{asset('images/about-img.png')}}" alt="">
+                            <img src="{{asset('images/about-img.webp')}}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6">
