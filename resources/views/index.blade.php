@@ -9,7 +9,7 @@
             <div class="col-lg-6">
                 <div class="js-banner-cont">
                     <div class="banner-cont">
-                        <h1>Safe & Fun Stays for Your Pets</h1>
+                        <h1>Safe & Fun Stays <br>for Your Pets</h1>
                         <p>Daycare and boarding with care, comfort, and endless playtime.</p>
                         <div class="banner-cont-button">
                             <a href="{{ route('booking') }}" class="cmn-btn"><span>Book a Slot</span></a>
