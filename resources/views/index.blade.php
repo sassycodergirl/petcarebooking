@@ -124,7 +124,7 @@
                     </div> -->
                 </div>
                 <div class="locate-cd-wrap">
-                    <div class="row store-card">
+                    <div class="row store-card p-4">
                         <div class="col-md-3">
                              <div class="store-image">
                                     
@@ -148,6 +148,7 @@
                                     <div class="store-title">
                                         <a href="#">Furry Friends & Co| Kharghar</a>
                                     </div>
+                                    <hr>
                                     <div class="store-address">
                                         Furry friends & Co, Shop No. 31, Om Harmony, Dog Walking Street, Anushaktinagar, Sector 10, Kharghar, Navi Mumbai, Maharashtra 410210
                                     </div>
@@ -175,83 +176,7 @@
                                 </div>
                         </div>
 
-                        <!-- <div class="col-md-12">
-                            <div class="store-card">
-                                <div class="store-image">
-                                    
-                                        <img src="{{ asset('images/store1.webp') }}" alt="Heads Up For Tails Store">
-                                        <img src="{{ asset('images/store2.webp') }}" alt="Heads Up For Tails Store">
-                                    
-                                </div>
-                                <div class="store-details">
-                                    <div class="store-title">
-                                        <a href="#">Furry Friends & Co| Kharghar</a>
-                                    </div>
-                                    <div class="store-address">
-                                        Furry friends & Co, Shop No. 31, Om Harmony, Dog Walking Street, Anushaktinagar, Sector 10, Kharghar, Navi Mumbai, Maharashtra 410210
-                                    </div>
-                                    <div class="store-distance">090761 20593</div>
-                                    <div class="store-timings">Open Everyday : <span class="timing-hours">8:00am to
-                                            10:00pm</span></div>
-                                    <div class="store-rating">
-                                        <span class="reviews-number">4.7</span>
-                                        <ul>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                        </ul>
-                                        <span class="reviews-txt">225 Reviews</span>
-                                    </div>
-                                    <div class="store-actions">
-                                        <a href="{{ route('booking') }}" class="btn-book">Book Slot</a>
-                                        <a href="9076120593" class="btn-call"><img src="{{ asset('images/coll-icon.svg') }}" alt=""></a>
-                                        <a href="" class="btn-location"><img src="{{ asset('images/send-icon.svg') }}" alt=""></a>
-                                        <a class="btn-direction"><img src="{{ asset('images/right-arrow.svg') }}" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- <div class="col-md-6">
-                            <div class="store-card">
-                                <div class="store-image">
-                                    <a href="#">
-                                        <img src="{{ asset('images/store-image2.jpg') }}" alt="Heads Up For Tails Store">
-                                    </a>
-                                </div>
-                                <div class="store-details">
-                                    <div class="store-title">
-                                        <a href="#">Heads Up For Tails Pet Supply Store | DLF Galleria Market</a>
-                                    </div>
-                                    <div class="store-address">
-                                        SG-87, Ground Floor DLF, Galleria Market, DLF Phase IV, Gurugram, Haryana
-                                    </div>
-                                    <div class="store-distance">5.29 kms from your Location</div>
-                                    <div class="store-timings">Open Everyday : <span class="timing-hours">9:30 to
-                                            22:30</span></div>
-                                    <div class="store-rating">
-                                        <span class="reviews-number">4.7</span>
-                                        <ul>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                            <li><i class="fa-solid fa-star"></i></li>
-                                        </ul>
-                                        <span class="reviews-txt">225 Reviews</span>
-                                    </div>
-                                    <div class="store-actions">
-                                        <button class="btn-book">Book Slot</button>
-                                        <button class="btn-call"><img src="{{ asset('images/coll-icon.svg') }}" alt=""></button>
-                                        <button class="btn-location"><img src="{{ asset('images/send-icon.svg') }}" alt=""></button>
-                                        <button class="btn-direction"><img src="{{ asset('images/right-arrow.svg') }}" alt=""></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+                      
                     </div>
                 </div>
             </div>
