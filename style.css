@@ -904,6 +904,7 @@ textarea::placeholder {
 .store-card-2 {
 	display: flex;
 	gap: 13px;
+	padding: 15px;
 }
 
 .store-image {
