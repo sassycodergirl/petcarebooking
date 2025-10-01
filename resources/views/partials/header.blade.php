@@ -130,7 +130,7 @@ window.addEventListener("load", function () {
 
     <header class="main-head pt-0">
       <div class="mob-header d-block d-md-none d-lg-none">
-        <span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 22H2V11l10-9l10 9z"/><path d="M7.713 12.289c0 .22-.4.665-.4.665s-.398-.445-.398-.665a.4.4 0 1 1 .798 0ZM12 13.544l-3.032 2.205v.276a3.032 3.032 0 0 0 6.064 0v-.276zm-1.393-3.736c0 .22-.399.665-.399.665s-.399-.445-.399-.665a.4.4 0 1 1 .798 0Zm5.68 2.481c0 .22.4.665.4.665s.398-.445.398-.665a.399.399 0 1 0-.798 0Zm-2.894-2.481c0 .22.399.665.399.665s.399-.445.399-.665a.399.399 0 1 0-.798 0Z"/></g></svg></span>Book Daycare / Boarding 
+        <span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M11.9 8.4c1.3 0 2.1-1.9 2.1-3.1c0-1-.5-2.2-1.5-2.2c-1.3 0-2.1 1.9-2.1 3.1c0 1 .5 2.2 1.5 2.2m-3.8 0c1 0 1.5-1.2 1.5-2.2C9.6 4.9 8.8 3 7.5 3C6.5 3 6 4.2 6 5.2c-.1 1.3.7 3.2 2.1 3.2m7.4-1c-1.3 0-2.2 1.8-2.2 3.1c0 .9.4 1.8 1.3 1.8c1.3 0 2.2-1.8 2.2-3.1c0-.9-.5-1.8-1.3-1.8m-8.7 3.1c0-1.3-1-3.1-2.2-3.1c-.9 0-1.3.9-1.3 1.8c0 1.3 1 3.1 2.2 3.1c.9 0 1.3-.9 1.3-1.8m3.2-.2c-2 0-4.7 3.2-4.7 5.4c0 1 .7 1.3 1.5 1.3c1.2 0 2.1-.8 3.2-.8c1 0 1.9.8 3 .8c.8 0 1.7-.2 1.7-1.3c0-2.2-2.7-5.4-4.7-5.4"/></svg></span>Book Daycare / Boarding 
       </div>
         <div class="container pt-3 pt-md-0">
           
