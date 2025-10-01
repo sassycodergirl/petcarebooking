@@ -126,12 +126,14 @@ window.addEventListener("load", function () {
   </div>
 </div>
 
-<section class="mob-header d-block d-md-none d-lg-none">
-Book Daycare / Boarding 
-</section>
+
 
     <header class="main-head">
+      <div class="mob-header d-block d-md-none d-lg-none">
+        Book Daycare / Boarding 
+      </div>
         <div class="container">
+          
             <nav class="navbar navbar-expand-lg">
                 <a class="navbar-brand" href="{{ route('index') }}"><img src="{{asset('images/logo.png')}}" alt></a>
                 <button class="navbar-toggler navbar-toggler-main" type="button" data-bs-toggle="collapse"
