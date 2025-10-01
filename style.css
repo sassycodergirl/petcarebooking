@@ -667,6 +667,9 @@ textarea::placeholder {
 	font-weight: bold;
 	background: var(--bg-orange);
 	border-radius: 15px;
+	padding: 1px 8px;
+    margin-left: 6px;
+    font-size: 12px;
 }
 
 .mega-menu .menu-column ul {
