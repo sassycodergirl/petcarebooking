@@ -311,7 +311,7 @@ window.addEventListener("load", function () {
             <div class="container">
                  
                 <div class="search-form-wrap footer-form">
-                 
+                    <span class="btn-closes d-none d-md-block"><i class="fa-solid fa-xmark"></i></span></li>
                     <input type="text" placeholder="Search Product...">
                     <button type="submit" class="cmn-btn"><img src="{{asset('images/search.svg')}}" alt=""></button>
                 </div>
