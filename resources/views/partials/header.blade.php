@@ -166,36 +166,34 @@ window.addEventListener("load", function () {
                                     <div class="row">
                                         <div class="col-lg-3 col-md-6">
                                             <div class="menu-column">
-                                                <h4>For Dogs</h4>
+                                                <h4>Crochet & Accessories</h4>
                                                 <ul>
-                                                    <li><a href="#">Dog Food</a></li>
-                                                    <li><a href="#">Treats & Chews</a></li>
-                                                    <li><a href="#">Toys</a></li>
-                                                    <li><a href="#">Beds & Furniture</a></li>
-                                                    <li><a href="#">Grooming Supplies</a></li>
+                                                    <li><a href="#">Bandana</a></li>
+                                                    <li><a href="#">Collar</a></li>
+                                                    <li><a href="#">Gifting and Collectables</a></li>
+                                                    <li><a href="#">Cotton Bandana</a></li>
+                                                    <li><a href="#">Cotton Bow</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-md-6">
                                             <div class="menu-column">
-                                                <h4>For Cats</h4>
+                                                <h4>Clothing For Dogs</h4>
                                                 <ul>
-                                                    <li><a href="#">Cat Food</a></li>
-                                                    <li><a href="#">Litter & Accessories</a></li>
-                                                    <li><a href="#">Toys & Scratchers</a></li>
-                                                    <li><a href="#">Trees & Condos</a></li>
-                                                    <li><a href="#">Health & Wellness</a></li>
+                                                    <li><a href="#">Traditional Collection</a></li>
+                                                    <li><a href="#">Western Collection</a></li>
+                                                  
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-md-6">
                                             <div class="menu-column">
-                                                <h4>Small Pets</h4>
+                                                <h4>Treats</h4>
                                                 <ul>
-                                                    <li><a href="#">Bird Supplies</a></li>
-                                                    <li><a href="#">Fish & Aquatic Pets</a></li>
-                                                    <li><a href="#">Reptile Supplies</a></li>
-                                                    <li><a href="#">Small Animal Food</a></li>
+                                                    <li><a href="#">APPLE & OATS TREATS</a></li>
+                                                    <li><a href="#">CHICKEN & OATS TREATS</a></li>
+                                                    <li><a href="#">CHICKEN JERKY</a></li>
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
