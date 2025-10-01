@@ -76,7 +76,7 @@
                                                     <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                 @endif
                                             </a>
-                                            <div class="text-center">
+                                            <div class="text-center pt-2">
                                                 <a class="p-name" href="{{ route('shop.category', $subcategory->slug) }}">
                                                     {{ $subcategory->name }}
                                                 </a>
@@ -111,7 +111,7 @@
                                                         <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                     @endif
                                                 </a>
-                                                <div class="text-center">
+                                                <div class="text-center pt-2">
                                                     <a class="p-name" href="{{ route('shop.category', $subcategory->slug) }}">{{ $subcategory->name }}</a>
                                                     <!-- <div>
                                                         <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View Products</a>
