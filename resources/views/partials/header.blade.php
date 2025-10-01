@@ -196,9 +196,9 @@ window.addEventListener("load", function () {
                                        
                                         <div class="col-lg-4 col-md-6">
                                             <div class="menu-column promo-column">
-                                                <img src="{{ asset('images/festive.webp') }}" alt="Special Offer on Pet Food">
-                                                <p>Get 20% off on all new arrivals this week!</p>
-                                                <a href="#" class="cmn-btn">Shop Now</a>
+                                                <a href="{{ route('shop.category', 'traditional-collection-for-dogs') }}">
+                                                 <img src="{{ asset('images/festive.webp') }}" alt="Special Offer on Pet Food">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
