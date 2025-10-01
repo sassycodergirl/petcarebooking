@@ -5225,7 +5225,7 @@ blockquote {
 		width: 40px;
 		order: 2;
 		height: 40px;
-		background-color: var(--bg-orange);
+		/* background-color: var(--bg-orange); */
 		padding: 0;
 		border-radius: 2px;
 		outline: none !important;
@@ -5238,9 +5238,9 @@ blockquote {
 	.stick,
 	.stick:after,
 	.stick:before {
-		width: 24px;
+		width: 33px;
 		height: 2px;
-		background: var(--bg-white);
+		background:#000000;
 		position: absolute;
 		left: 8px;
 		top: 19px;
@@ -5751,7 +5751,7 @@ blockquote {
 	}
 
 	.stick {
-		left: 5px;
+		left:-14px;
 		top: 14px;
 	}
 
