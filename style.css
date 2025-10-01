@@ -464,16 +464,17 @@ textarea::placeholder {
     top: 0;
     left: 0;
     right: 0;
+	margin: 0 auto;
     padding: 20px 0;
     width: 100%;
     z-index: 999;
 }
 
-.main-head .container {
+/* .main-head .container {
     max-width: 1378px;
-    /* KEY CHANGE: Make the container a positioning context for the mega menu */
+   
     position: relative;
-}
+} */
 
 .navbar-expand-lg {
     padding: 0;
@@ -4361,11 +4362,7 @@ blockquote {
 		}
     }
 
-@media(min-width: 1170px) {
-	.container {
-		max-width: 1194px;
-	}
-}
+
 
 @media (max-width: 1440px) {
 	.banner-img-rgt {
@@ -5125,9 +5122,7 @@ blockquote {
 		overflow: hidden;
 	}
 
-	.main-head .container {
-		max-width: 720px;
-	}
+
 
 	.navbar {
 		padding: 0;
