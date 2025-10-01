@@ -169,7 +169,7 @@
                                     </div>
                                     <div class="store-actions">
                                         <a href="{{ route('booking') }}" class="btn-book">Book Slot</a>
-                                        <a href="09076120593" class="btn-call"><img src="{{ asset('images/coll-icon.svg') }}" alt=""></a>
+                                        <a href="tel:09076120593" class="btn-call"><img src="{{ asset('images/coll-icon.svg') }}" alt=""></a>
                                         <a href="https://maps.app.goo.gl/nygEasieLDHnhQcV6" class="btn-location"><img src="{{ asset('images/send-icon.svg') }}" alt=""></a>
                                       
                                     </div>
