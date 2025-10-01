@@ -270,7 +270,7 @@ window.addEventListener("load", function () {
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="cd-button cart-btn">
+                        <a href="#" class="cd-button ">
                             <i class="fa-solid fa-bag-shopping"></i>
                             <span>Cart</span>
                             @php
@@ -296,7 +296,7 @@ window.addEventListener("load", function () {
                     <li>
                         <a href="{{ route('booking') }}" class="cta-button">
                             <i class="fa-solid fa-calendar-plus"></i>
-                            <span>Book Care</span>
+                            <span>Book Slot/span>
                         </a>
                     </li>
                 </ul>
