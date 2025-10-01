@@ -1079,9 +1079,16 @@ textarea::placeholder {
 }
 
 .store-card-2 {
-	display: flex;
+	display: block;
 	gap: 13px;
 	padding: 15px;
+}
+
+@media only screen and (min-width: 991px) {
+	.store-card-2 {
+	display: flex;
+	
+}
 }
 
 .store-image {
