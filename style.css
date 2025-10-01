@@ -594,9 +594,9 @@ textarea::placeholder {
         position: static; /* Override relative positioning */
     }
     
-    .navbar-nav .has-megamenu > a {
+    /* .navbar-nav .has-megamenu > a {
         flex-grow: 1;
-    }
+    } */
 
     /* Show and style the toggle button on mobile */
     .megamenu-toggle {
