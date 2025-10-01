@@ -690,6 +690,9 @@ textarea::placeholder {
     display: flex;
     align-items: center; /* Vertically aligns the image and text */
     padding: 8px 5px; /* Adjust padding as needed */
+	font-size: 17px;
+    color: #000;
+    font-weight: 400;
 }
 
 /* 2. Style the new images */
