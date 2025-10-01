@@ -183,7 +183,7 @@ window.addEventListener("load", function () {
                                                 <ul>
                                                     <li><a href="{{ route('shop.category', 'traditional-collection-for-dogs') }}"><img src="{{ asset('images/traditional.webp') }}" class="menu-item-image" alt="Traditional Collection"> Traditional Collections</a></li>
                                                     <li><a href="{{ route('shop.category', 'western-collection') }}"><img src="{{ asset('images/western.webp') }}" class="menu-item-image" alt="Western Collection"> Western Collections</a></li>
-                                                    <li><a href="{{ route('shop.category', 'dog-clothing') }}"><img src="{{ asset('images/western.webp') }}" class="menu-item-image" alt="Western Collection"> All Dogs Clothing</a></li>
+                                                    <li><a href="{{ route('shop.category', 'dog-clothing') }}"><img src="{{ asset('images/all-cloth.webp') }}" class="menu-item-image" alt="Western Collection"> All Dogs Clothing</a></li>
 
                                                 </ul>
                                             </div>
