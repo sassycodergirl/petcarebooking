@@ -270,6 +270,12 @@ window.addEventListener("load", function () {
                         </a>
                     </li>
                     <li>
+                        <a href="#" class="category-panel-trigger">
+                            <i class="fa-solid fa-shapes"></i>
+                            <span>Categories</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="#" class="cd-button ">
                             <i class="fa-solid fa-bag-shopping"></i>
                             <span>Cart</span>
