@@ -2539,29 +2539,7 @@ textarea::placeholder {
 	color: var(--bg-orange);
 }
 
-.scroll-btn {
-	position: fixed;
-	bottom: 46px;
-	right: 40px;
-	width: 50px;
-	height: 50px;
-	outline: none;
-	background-color: var(--bg-orange);
-	border: none;
-	border-radius: 50%;
-	padding: 5px;
-	font-size: 18px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 999;
-	transition: opacity 0.3s ease;
-}
 
-.scroll-btn:hover {
-	opacity: 0.8;
-}
 
 .footer-lft {
 	position: absolute;
@@ -4850,16 +4828,6 @@ blockquote {
 		justify-content: center;
 	}
 
-	.scroll-btn {
-		bottom: 20px;
-		right: 20px;
-		width: 50px;
-		height: 50px;
-	}
-
-	.scroll-btn img {
-		max-width: 17px;
-	}
 
 	.footer-copy-rgt p {
 		font-size: 16px;
@@ -6538,16 +6506,7 @@ blockquote {
 		padding: 50px 0 0;
 	}
 
-	.scroll-btn {
-		bottom: 60px;
-		right: 12px;
-		width: 30px;
-		height: 30px;
-	}
 
-	.scroll-btn img {
-		max-width: 12px;
-	}
 
 	.btn-closes {
 		top: 5px;
