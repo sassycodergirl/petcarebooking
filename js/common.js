@@ -144,12 +144,45 @@ jQuery(document).ready(function ($) {
     }, 1000);
   });
 
-$('.btn-opens, .btn-closes').click(function() {
-  $('.btn-opens').toggleClass('open', this.classList.contains('btn-opens'));
-  $('.btn-closes').toggleClass('open-btn-active', this.classList.contains('btn-opens'));
-  $('.search-form').stop(true, true).slideToggle(this.classList.contains('btn-opens'));
-});
+// $('.btn-opens, .btn-closes').click(function() {
+//   $('.btn-opens').toggleClass('open', this.classList.contains('btn-opens'));
+//   $('.btn-closes').toggleClass('open-btn-active', this.classList.contains('btn-opens'));
+//   $('.search-form').stop(true, true).slideToggle(this.classList.contains('btn-opens'));
+// });
+$(document).ready(function() {
 
+    // Your existing code to open/close with buttons
+    $('.btn-opens, .btn-closes').on('click', function(event) {
+        // Stop the click from bubbling up to the document
+        event.stopPropagation(); 
+        
+        // Toggle the form and buttons
+        $('.search-form').stop(true, true).slideToggle();
+        $('.btn-opens').toggleClass('open');
+        $('.btn-closes').toggleClass('open-btn-active');
+    });
+
+    // New code: Listen for clicks on the entire page
+    $(document).on('click', function(event) {
+        
+        // Only run this logic on mobile (adjust 992 to your mobile breakpoint)
+        if ($(window).width() < 992) {
+            
+            // Check if the search form is visible AND if the click was outside
+            // of both the form AND the button that opens it.
+            if ($('.search-form').is(':visible') && 
+                $(event.target).closest('.search-form').length === 0 &&
+                $(event.target).closest('.btn-opens').length === 0) {
+
+                // If so, run the "close" actions
+                $('.search-form').stop(true, true).slideUp();
+                $('.btn-opens').removeClass('open');
+                $('.btn-closes').removeClass('open-btn-active');
+            }
+        }
+    });
+
+});
   
 $('.product-slider').slick({
   dots: false,

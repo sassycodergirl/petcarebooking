@@ -2601,7 +2601,7 @@ textarea::placeholder {
 	position: absolute;
 	top: 3px;
 	background-color: #ff9603;
-	left: 6px;
+	right: -5%;
 	padding: 1px;
 	border-radius: 50%;
 	font-size: 14px;
@@ -2624,7 +2624,7 @@ textarea::placeholder {
 }
 
 .btn-opens.open {
-	opacity: 0;
+	opacity: 1;
 	pointer-events: none;
 	user-select: none;
 }
