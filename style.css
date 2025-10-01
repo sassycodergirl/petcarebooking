@@ -935,7 +935,7 @@ textarea::placeholder {
 	font-size: 17px;
 	padding-left: 30px;
 	font-family: var(--default-body-font);
-	margin-bottom: 12px;
+	margin-bottom: 20px;
 }
 
 .store-address::after {
@@ -955,7 +955,7 @@ textarea::placeholder {
 	font-size: 17px;
 	padding-left: 30px;
 	font-family: var(--default-body-font);
-	margin-bottom: 12px;
+	margin-bottom: 20px;
 }
 
 .store-distance::after {
@@ -976,7 +976,7 @@ textarea::placeholder {
 	font-size: 14px;
 	padding-left: 30px;
 	font-family: var(--default-body-font);
-	margin-bottom: 12px;
+	margin-bottom: 20px;
 }
 
 .store-date::after {
@@ -997,7 +997,7 @@ textarea::placeholder {
 	font-size: 17px;
 	padding-left: 30px;
 	font-family: var(--default-body-font);
-	margin-bottom: 12px;
+	margin-bottom: 20px;
 }
 
 .store-timings span {
