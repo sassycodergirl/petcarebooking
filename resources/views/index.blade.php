@@ -124,7 +124,7 @@
                     </div> -->
                 </div>
                 <div class="locate-cd-wrap">
-                    <div class="row store-card p-2 p-md-4">
+                    <div class="row store-card p-2 p-md-4 m-0">
                         <div class="col-6 col-md-3">
                              <div class="store-image">
                                     
