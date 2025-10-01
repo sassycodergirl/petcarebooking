@@ -206,6 +206,7 @@ textarea::placeholder {
 	font-weight: 600;
 	font-size: 16px;
 	font-weight: 600;
+	    background: #ff9603;
 }
 
 .cmn-btn span {
@@ -3420,7 +3421,7 @@ font-weight: 500;
 }
 
 button.cmn-btn {
-	    background: #ff9603;
+	
 	border: none;
 	outline: none;
 }
