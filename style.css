@@ -293,6 +293,9 @@ textarea::placeholder {
        .cmn-btn {
 		    font-size: 23px;
 	   }
+	   .hdr-rgt-button .cmn-btn{
+		font-size:20px;
+	   }
     }
 
 
@@ -517,10 +520,14 @@ textarea::placeholder {
 /* ========================================== */
 
 /* Hide the mobile toggle button on desktop */
-.megamenu-toggle {
+/* .megamenu-toggle {
     display: none;
+} */
+@media only screen and (min-width: 991px) {
+	.megamenu-toggle {
+		    font-size: 25px;
+	}
 }
-
 /* The mega menu dropdown container */
 .mega-menu {
     background: #fff;
