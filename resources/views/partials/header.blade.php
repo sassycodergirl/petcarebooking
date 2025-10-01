@@ -197,7 +197,7 @@ window.addEventListener("load", function () {
                                             </div>
                                         </div>
                                        
-                                        <div class="col-lg-4 col-md-6">
+                                        <div class="col-lg-4 col-md-6 d-none d-md-block">
                                             <div class="menu-column promo-column">
                                                 <a href="{{ route('shop.category', 'traditional-collection-for-dogs') }}">
                                                  <img src="{{ asset('images/festive.webp') }}" alt="Special Offer on Pet Food">
