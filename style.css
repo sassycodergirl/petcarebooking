@@ -697,8 +697,8 @@ textarea::placeholder {
 
 /* 2. Style the new images */
 .menu-item-image {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     margin-right: 12px; /* Adds space between the image and text */
     border-radius: 4px; /* Slightly rounded corners */
     object-fit: cover; /* Ensures images fill the space without distortion */
