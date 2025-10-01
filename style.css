@@ -1502,7 +1502,8 @@ textarea::placeholder {
 
 .product-card-col .p-name,
 .product-card-col h3 .p-name {
-	font-size: 12px;
+	font-size: 14px;
+	text-align: center;
 	font-weight: 400;
 	line-height: 1.4;
 }
@@ -1542,7 +1543,8 @@ textarea::placeholder {
 		
 	}
 	.product-card-col  .p-name {
-		font-size: 16px;
+		font-size: 18px;
+		text-align: center;
 	
 	}
 	.product-card-img img {
