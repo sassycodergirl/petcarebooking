@@ -150,7 +150,7 @@
                                 {{-- If no children, THEN check if there are any products --}}
                                 @elseif($parent->products->isNotEmpty())
                                     @foreach($parent->products as $product)
-                                        <div class="col-6 col-md-4 col-lg-4 col-sm-6">
+                                        <div class="col-6 col-md-3 col-lg-3 col-sm-6">
                                             <div class="product-card-col p-0">
                                                 {{-- Display PRODUCT card (note the different route and variables) --}}
                                                 <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
