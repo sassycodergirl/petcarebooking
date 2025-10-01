@@ -151,34 +151,29 @@ jQuery(document).ready(function ($) {
 // });
 $(document).ready(function() {
 
-    // Your existing code to open/close with buttons
+    // Handles opening/closing with the buttons
     $('.btn-opens, .btn-closes').on('click', function(event) {
-        // Stop the click from bubbling up to the document
+        // Prevents the click from bubbling up to the document
         event.stopPropagation(); 
         
-        // Toggle the form and buttons
+        // Toggles the form and button states
         $('.search-form').stop(true, true).slideToggle();
         $('.btn-opens').toggleClass('open');
         $('.btn-closes').toggleClass('open-btn-active');
     });
 
-    // New code: Listen for clicks on the entire page
+    // Listens for clicks on the entire page to close the form
     $(document).on('click', function(event) {
         
-        // Only run this logic on mobile (adjust 992 to your mobile breakpoint)
-        if ($(window).width() < 992) {
-            
-            // Check if the search form is visible AND if the click was outside
-            // of both the form AND the button that opens it.
-            if ($('.search-form').is(':visible') && 
-                $(event.target).closest('.search-form').length === 0 &&
-                $(event.target).closest('.btn-opens').length === 0) {
+        // Check if the search form is visible AND if the click was outside of it
+        if ($('.search-form').is(':visible') && 
+            $(event.target).closest('.search-form').length === 0 &&
+            $(event.target).closest('.btn-opens').length === 0) {
 
-                // If so, run the "close" actions
-                $('.search-form').stop(true, true).slideUp();
-                $('.btn-opens').removeClass('open');
-                $('.btn-closes').removeClass('open-btn-active');
-            }
+            // If true, close the form and reset the buttons
+            $('.search-form').stop(true, true).slideUp();
+            $('.btn-opens').removeClass('open');
+            $('.btn-closes').removeClass('open-btn-active');
         }
     });
 
