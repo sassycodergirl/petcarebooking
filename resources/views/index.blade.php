@@ -124,8 +124,8 @@
                     </div> -->
                 </div>
                 <div class="locate-cd-wrap">
-                    <div class="row store-card p-4">
-                        <div class="col-md-3">
+                    <div class="row store-card p-2 p-md-4">
+                        <div class="col-6 col-md-3">
                              <div class="store-image">
                                     
                                         <img src="{{ asset('images/store1.webp') }}" alt="Heads Up For Tails Store">
@@ -134,7 +134,7 @@
                                 </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-3">
                              <div class="store-image">
                                     
                                       
