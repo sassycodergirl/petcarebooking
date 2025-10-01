@@ -8,21 +8,21 @@
         <div class="row banner-row">
             <div class="col-lg-6">
                 <div class="js-banner-cont">
-                    <div class="banner-cont">
-                        <h1 class="mb-2 mb-md-3">Safe & Fun Stays Where Pets Feel at Home</h1>
+                    <div class="banner-cont p-3 p-md-0">
+                        <h1 class="mb-2 mb-md-3 ">Safe & Fun Stays Where Pets Feel at Home</h1>
                         <p>Daycare and boarding with care, comfort, and endless playtime.</p>
                         <div class="banner-cont-button">
                             <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book a Slot"><span>Book a Slot</span></a>
                         </div>
                     </div>
-                    <div class="banner-cont">
+                    <div class="banner-cont p-3 p-md-0">
                         <h1 class="mb-2 mb-md-3">Tasty Bites, Happy Tails, Love in Every Bite</h1>
                         <p>Healthy, delicious, and tail-wag approved—treats your pets will always love.</p>
                         <div class="banner-cont-button">
                             <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Shop Treats"><span>Shop Treats</span></a>
                         </div>
                     </div>
-                    <div class="banner-cont">
+                    <div class="banner-cont p-3 p-md-0">
                         <h1 class="mb-2 mb-md-3">Festive Flairs & Western Wears For Your Furry Friends</h1>
                         <p>From festive traditions to everyday outings, explore premium pet clothing that blends comfort with fashion.</p>
                         <div class="banner-cont-button">
