@@ -168,11 +168,12 @@ window.addEventListener("load", function () {
                                             <div class="menu-column">
                                                 <h4>Crochet & Accessories</h4>
                                                 <ul>
-                                                    <li><a href="#"><img src="{{ asset('images/crochet-bandana.webp') }}" class="menu-item-image" alt="Bandana">Crochet Bandanas</a></li>
-                                                    <li><a href="#"><img src="{{ asset('images/collars.webp') }}" class="menu-item-image" alt="Collar"> Collars</a></li>
-                                                    <li><a href="#"><img src="{{ asset('images/gifting.webp') }}" class="menu-item-image" alt="Gifting"> Gifting and Collectables</a></li>
-                                                    <li><a href="#"><img src="{{ asset('images/cotton-bandana.webp') }}" class="menu-item-image" alt="Cotton Bandana"> Cotton Bandanas</a></li>
-                                                    <li><a href="#"><img src="{{ asset('images/cotton-bows.webp') }}" class="menu-item-image" alt="Cotton Bow"> Cotton Bows</a></li>
+                                                    <li><a href="{{ route('shop.category', 'bandana-design') }}"><img src="{{ asset('images/crochet-bandana.webp') }}" class="menu-item-image" alt="Bandana">Crochet Bandanas</a></li>
+                                                    <li><a href="{{ route('shop.category', 'collar-design') }}"><img src="{{ asset('images/collars.webp') }}" class="menu-item-image" alt="Collar"> Collars</a></li>
+                                                    <li><a href="{{ route('shop.category', 'gifting-and-collectables-options') }}"><img src="{{ asset('images/gifting.webp') }}" class="menu-item-image" alt="Gifting"> Gifting and Collectables</a></li>
+                                                    <li><a href="{{ route('shop.category', 'cotton-bandana-designs') }}"><img src="{{ asset('images/cotton-bandana.webp') }}" class="menu-item-image" alt="Cotton Bandana"> Cotton Bandanas</a></li>
+                                                    <li><a href="{{ route('shop.category', 'cotton-bow-designs') }}"><img src="{{ asset('images/cotton-bows.webp') }}" class="menu-item-image" alt="Cotton Bow"> Cotton Bows</a></li>
+                                                    <li><a href="{{ route('shop.category', 'crochet-accessories') }}"><img src="{{ asset('images/all-crochets.webp') }}" class="menu-item-image" alt="Western Collection"> All Crochet & Accessories</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -180,15 +181,17 @@ window.addEventListener("load", function () {
                                             <div class="menu-column">
                                                 <h4>Clothing For Dogs</h4>
                                                 <ul>
-                                                    <li><a href="#"><img src="{{ asset('images/traditional.webp') }}" class="menu-item-image" alt="Traditional Collection"> Traditional Collections</a></li>
-                                                    <li><a href="#"><img src="{{ asset('images/western.webp') }}" class="menu-item-image" alt="Western Collection"> Western Collections</a></li>
+                                                    <li><a href="{{ route('shop.category', 'traditional-collection-for-dogs') }}"><img src="{{ asset('images/traditional.webp') }}" class="menu-item-image" alt="Traditional Collection"> Traditional Collections</a></li>
+                                                    <li><a href="{{ route('shop.category', 'western-collection') }}"><img src="{{ asset('images/western.webp') }}" class="menu-item-image" alt="Western Collection"> Western Collections</a></li>
+                                                    <li><a href="{{ route('shop.category', 'dog-clothing') }}"><img src="{{ asset('images/western.webp') }}" class="menu-item-image" alt="Western Collection"> All Dogs Clothing</a></li>
+
                                                 </ul>
                                             </div>
 
                                             <div class="menu-column mt-md-4">
                                                 <h4>Treats</h4>
                                                 <ul>
-                                                    <li><a href="#"><img src="{{ asset('images/treats-new.webp') }}" class="menu-item-image" alt="Apple & Oats Treats"> All Dog Treats</a></li>
+                                                    <li><a href="{{ route('shop.category', 'treats') }}"><img src="{{ asset('images/treats-new.webp') }}" class="menu-item-image" alt="Apple & Oats Treats"> All Dog Treats</a></li>
                                                    
                                                 </ul>
                                             </div>
