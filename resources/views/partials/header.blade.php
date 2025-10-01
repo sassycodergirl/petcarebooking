@@ -189,7 +189,7 @@ window.addEventListener("load", function () {
                                             </div>
 
                                             <div class="menu-column mt-md-4">
-                                                <h4>Treats</h4>
+                                                <h4>Treats <span class="highlight">#1 Treats</span></h4>
                                                 <ul>
                                                     <li><a href="{{ route('shop.category', 'treats') }}"><img src="{{ asset('images/treats-new.webp') }}" class="menu-item-image" alt="Apple & Oats Treats"> All Dog Treats</a></li>
                                                    

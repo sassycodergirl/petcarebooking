@@ -654,11 +654,19 @@ textarea::placeholder {
 }
 
 /* Styling for each column inside the mega menu */
+
 .mega-menu .menu-column h4 {
     font-size: 18px;
     margin-bottom: 15px;
     color: #333;
     font-weight: bold;
+	position: relative;
+}
+.highlight{
+	color: #fff;
+	font-weight: bold;
+	background: var(--bg-orange);
+	border-radius: 15px;
 }
 
 .mega-menu .menu-column ul {
