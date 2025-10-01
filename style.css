@@ -588,8 +588,9 @@ textarea::placeholder {
 }
 
 .navbar-nav li {
-    /* position: relative; */
+    position: relative;
     list-style: none;
+	z-index: 9999;
 }
 
 .navbar-nav > li {
@@ -657,6 +658,7 @@ textarea::placeholder {
     height: 100px; /* Adjust size as needed */
     background: linear-gradient(183deg, #ffffffb3 49.87%, #d9e6ffb3 86.19%), #fff;
     pointer-events: none; /* Allows clicks to pass through */
+
 }
 
 /* Show the mega menu on hover (desktop) */
