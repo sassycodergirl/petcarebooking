@@ -185,7 +185,7 @@ window.addEventListener("load", function () {
                                                 </ul>
                                             </div>
 
-                                            <div class="menu-column">
+                                            <div class="menu-column mt-md-4">
                                                 <h4>Treats</h4>
                                                 <ul>
                                                     <li><a href="#"><img src="https://placehold.co/40x40/F0D4D4/693B3B" class="menu-item-image" alt="Apple & Oats Treats"> All Dog Treats</a></li>
@@ -193,16 +193,7 @@ window.addEventListener("load", function () {
                                                 </ul>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-lg-3 col-md-6">
-                                            <div class="menu-column">
-                                                <h4>Treats</h4>
-                                                <ul>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/F0D4D4/693B3B" class="menu-item-image" alt="Apple & Oats Treats"> APPLE & OATS TREATS</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/F0D4D4/693B3B" class="menu-item-image" alt="Chicken & Oats Treats"> CHICKEN & OATS TREATS</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/F0D4D4/693B3B" class="menu-item-image" alt="Chicken Jerky"> CHICKEN JERKY</a></li>
-                                                </ul>
-                                            </div>
-                                        </div> -->
+                                       
                                         <div class="col-lg-4 col-md-6">
                                             <div class="menu-column promo-column">
                                                 <img src="https://placehold.co/400x250/EFE3D4/69543B?text=Special+Offer!" alt="Special Offer on Pet Food">
