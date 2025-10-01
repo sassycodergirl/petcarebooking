@@ -196,7 +196,7 @@ window.addEventListener("load", function () {
                                        
                                         <div class="col-lg-4 col-md-6">
                                             <div class="menu-column promo-column">
-                                                <img src="https://placehold.co/400x250/EFE3D4/69543B?text=Special+Offer!" alt="Special Offer on Pet Food">
+                                                <img src="{{ asset('images/festive.webp') }}" alt="Special Offer on Pet Food">
                                                 <p>Get 20% off on all new arrivals this week!</p>
                                                 <a href="#" class="cmn-btn">Shop Now</a>
                                             </div>
