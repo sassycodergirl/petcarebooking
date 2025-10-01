@@ -484,3 +484,27 @@ $(document).ready(function(){
 //     updateSteps();
 // });
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Find all mega menu toggle buttons
+    const megaMenuToggles = document.querySelectorAll('.megamenu-toggle');
+
+    megaMenuToggles.forEach(toggle => {
+        toggle.addEventListener('click', function (event) {
+            // Prevent the default link behavior if any
+            event.preventDefault();
+            
+            // Get the parent '.has-megamenu' element
+            const parentLi = this.parentElement;
+
+            // Toggle the 'open' class on the parent
+            parentLi.classList.toggle('open');
+            
+            // Change the text of the toggle button
+            if (parentLi.classList.contains('open')) {
+                this.textContent = '−'; // Minus sign
+            } else {
+                this.textContent = '+';
+            }
+        });
+    });
+});

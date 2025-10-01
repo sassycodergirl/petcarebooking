@@ -143,12 +143,71 @@ window.addEventListener("load", function () {
                         <!-- <span class="navbar-toggler-icon"></span> -->
                         <span class="stick"></span>
                     </button>
-                    <ul class="navbar-nav ms-auto">
+                    <!-- <ul class="navbar-nav ms-auto">
                         <li class="current-menu-item"><a href="{{ route('index') }}">Home</a></li>
                         <li><a href="{{ route('shop.index') }}">Shop For Pets</a></li>
                         <li><a href="{{ route('community') }}">Our Community</a></li>
                         <li><a href="{{ route('events') }}">Events</a></li>
-                        <!-- <li><a href="{{ route('booking') }}">Book Boarding</a></li> -->
+                        
+                    </ul> -->
+
+                      <ul class="navbar-nav ms-auto">
+                        <li class="current-menu-item"><a href="{{ route('index') }}">Home</a></li>
+
+                        <li class="nav-item has-megamenu">
+                            <a href="{{ route('shop.index') }}">Shop For Pets</a>
+                            <span class="megamenu-toggle">+</span> 
+                            <div class="mega-menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="menu-column">
+                                                <h4>For Dogs</h4>
+                                                <ul>
+                                                    <li><a href="#">Dog Food</a></li>
+                                                    <li><a href="#">Treats & Chews</a></li>
+                                                    <li><a href="#">Toys</a></li>
+                                                    <li><a href="#">Beds & Furniture</a></li>
+                                                    <li><a href="#">Grooming Supplies</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="menu-column">
+                                                <h4>For Cats</h4>
+                                                <ul>
+                                                    <li><a href="#">Cat Food</a></li>
+                                                    <li><a href="#">Litter & Accessories</a></li>
+                                                    <li><a href="#">Toys & Scratchers</a></li>
+                                                    <li><a href="#">Trees & Condos</a></li>
+                                                    <li><a href="#">Health & Wellness</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="menu-column">
+                                                <h4>Small Pets</h4>
+                                                <ul>
+                                                    <li><a href="#">Bird Supplies</a></li>
+                                                    <li><a href="#">Fish & Aquatic Pets</a></li>
+                                                    <li><a href="#">Reptile Supplies</a></li>
+                                                    <li><a href="#">Small Animal Food</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="menu-column promo-column">
+                                              <img src="https://placehold.co/400x250/EFE3D4/69543B?text=Special+Offer!" alt="Special Offer on Pet Food">
+                                              <p>Get 20% off on all new arrivals this week!</p>
+                                              <a href="#" class="cmn-btn">Shop Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="{{ route('community') }}">Our Community</a></li>
+                        <li><a href="{{ route('events') }}">Events</a></li>
                     </ul>
                     <div class="hdr-rgt-button hdr-rgt-button-none">
                         <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book a Slot</span></a>

@@ -294,6 +294,146 @@ textarea::placeholder {
 		    font-size: 23px;
 	   }
     }
+
+/* =================================== */
+/* Mega Menu Styles                    */
+/* =================================== */
+
+/* Main container for the mega menu list item */
+.navbar-nav .has-megamenu {
+    position: relative; /* Required for positioning the mega menu */
+}
+
+/* Hide the mobile toggle button on desktop */
+.megamenu-toggle {
+    display: none;
+}
+
+/* The mega menu dropdown container */
+.mega-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 30px 15px;
+    border-top: 3px solid var(--bg-orange, #f08e28); /* Use your theme color */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Show the mega menu on hover (desktop) */
+.navbar-nav .has-megamenu:hover > .mega-menu {
+    display: block;
+}
+
+/* Styling for each column inside the mega menu */
+.mega-menu .menu-column h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.mega-menu .menu-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mega-menu .menu-column ul li a {
+    display: block;
+    padding: 8px 0;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mega-menu .menu-column ul li a:hover {
+    color: var(--bg-orange, #f08e28); /* Use your theme color */
+}
+
+/* Special styling for the promo column */
+.promo-column img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+.promo-column p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.promo-column .cmn-btn { /* Style your button if needed */
+    width: 100%;
+    text-align: center;
+}
+
+
+/* =================================== */
+/* Responsive Styles (for mobile)      */
+/* =================================== */
+
+/* Adjustments for screens smaller than 992px (typical mobile/tablet breakpoint) */
+@media (max-width: 991.98px) {
+    /* Make the parent li a flex container to align link and toggle */
+    .navbar-nav .has-megamenu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .navbar-nav .has-megamenu > a {
+        flex-grow: 1; /* Allow the link to take up available space */
+    }
+
+    /* Show and style the toggle button on mobile */
+    .megamenu-toggle {
+        display: inline-block;
+        padding: 0 15px;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #333;
+    }
+    
+    /* Change position from absolute to static for mobile */
+    .mega-menu {
+        position: static;
+        width: 100%;
+        border-top: none;
+        box-shadow: none;
+        padding: 15px 0;
+        /* The JS will toggle display between none and block */
+    }
+
+    /* Disable the hover effect on mobile */
+    .navbar-nav .has-megamenu:hover > .mega-menu {
+        display: none;
+    }
+    
+    /* When 'open', the JS will show the menu */
+    .navbar-nav .has-megamenu.open > .mega-menu {
+        display: block;
+    }
+    
+    /* Change toggle content when open */
+    .navbar-nav .has-megamenu.open .megamenu-toggle {
+        content: '-'; /* This will be handled by JS for better compatibility */
+    }
+
+    .mega-menu .row > div {
+        margin-bottom: 20px; /* Add space between stacked columns */
+    }
+
+    .promo-column {
+        text-align: center;
+    }
+}
+
 /* navbar*/
 
 .main-head {
