@@ -270,7 +270,7 @@ window.addEventListener("load", function () {
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="category-panel-trigger">
+                        <a href="{{ route('shop.index') }}" class="category-panel-trigger">
                             <i class="fa-solid fa-shapes"></i>
                             <span>Categories</span>
                         </a>
