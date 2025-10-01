@@ -128,11 +128,11 @@ window.addEventListener("load", function () {
 
 
 
-    <header class="main-head">
+    <header class="main-head ">
       <div class="mob-header d-block d-md-none d-lg-none">
         Book Daycare / Boarding 
       </div>
-        <div class="container">
+        <div class="container pt-3 pt-md-0">
           
             <nav class="navbar navbar-expand-lg">
                 <a class="navbar-brand" href="{{ route('index') }}"><img src="{{asset('images/logo.png')}}" alt></a>
