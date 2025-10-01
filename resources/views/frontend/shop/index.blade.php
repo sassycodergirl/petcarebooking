@@ -76,7 +76,7 @@
                                                     <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                 @endif
                                             </a>
-                                            <div class="p-3">
+                                            <div class="text-center">
                                                 <a class="p-name" href="{{ route('shop.category', $subcategory->slug) }}">
                                                     {{ $subcategory->name }}
                                                 </a>
@@ -137,7 +137,7 @@
                                                         <img src="{{ asset('images/default-category.png') }}" alt="{{ $subcategory->name }}">
                                                     @endif
                                                 </a>
-                                                <div class="p-3">
+                                                <div class="text-center">
                                                     <a class="p-name" href="{{ route('shop.category', $subcategory->slug) }}">{{ $subcategory->name }}</a>
                                                     <!-- <div>
                                                         <a href="{{ route('shop.category', $subcategory->slug) }}" class="btn explore-btn">View Products</a>
@@ -160,7 +160,7 @@
                                                         <img src="{{ asset('images/default-product.png') }}" alt="{{ $product->name }}">
                                                     @endif
                                                 </a>
-                                                <div class="p-3">
+                                                <div class="p-2 p-md-3 text-center">
                                                     <a class="p-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a>
                                                     <div>
                                                         <a href="{{ route('product.show', $product->slug) }}" class="btn explore-btn">Choose Option</a>
