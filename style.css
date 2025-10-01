@@ -711,6 +711,8 @@ textarea::placeholder {
 .promo-column img {
     max-width: 100%;
     margin-bottom: 15px;
+	z-index: 9999;
+	position: relative;
 }
 /* --- Mega Menu Item Styling --- */
 
