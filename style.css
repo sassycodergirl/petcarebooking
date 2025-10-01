@@ -703,6 +703,10 @@ textarea::placeholder {
     border-radius: 4px; /* Slightly rounded corners */
     object-fit: cover; /* Ensures images fill the space without distortion */
     flex-shrink: 0; /* Prevents the image from shrinking if the text is long */
+	border-radius: 50%;
+    border: 1px dashed #dd9025;
+    padding: 5px;
+
 }
 /* =================================== */
 /* Responsive Styles (for mobile)      */
