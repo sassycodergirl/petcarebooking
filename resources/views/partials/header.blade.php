@@ -262,6 +262,47 @@ window.addEventListener("load", function () {
                     </div>
                 </div>
             </nav>
+
+            <nav class="mobile-bottom-actions">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" class="btn-opens">
+                            <i class="fa-solid fa-search"></i>
+                            <span>Search</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="cd-button cart-btn">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span>Cart</span>
+                            @php
+                                $cart = session('cart', []);
+                                $itemCount = collect($cart)->sum(fn ($item) => $item['qty'] ?? 0);
+                            @endphp
+                            <span class="cart-count-bubble">{{ $itemCount }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        @if(Auth::check())
+                            <a href="{{ Auth::user()->is_admin ? route('admin.dashboard') : route('customer.dashboard') }}">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Account</span>
+                            </a>
+                        @else
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Login</span>
+                            </a>
+                        @endif
+                    </li>
+                    <li>
+                        <a href="{{ route('booking') }}" class="cta-button">
+                            <i class="fa-solid fa-calendar-plus"></i>
+                            <span>Book Care</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <button class="navbar-toggler" id="navoverlay" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
