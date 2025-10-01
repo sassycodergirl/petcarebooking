@@ -588,13 +588,17 @@ textarea::placeholder {
 }
 
 .navbar-nav li {
-    position: relative;
+    /* position: relative; */
     list-style: none;
-	z-index: 9999;
+	
 }
 
 .navbar-nav > li {
     margin: 0 15px;
+}
+.menu-column li{
+	position: relative;
+	z-index: 9999;
 }
 
 .navbar-nav > li > a {
