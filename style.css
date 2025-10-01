@@ -5651,19 +5651,9 @@ blockquote {
 		display: none;
 	}
 
-	.hdr-rgt-button-none {
-		display: block;
-		position: absolute;
-		padding: 0 10px 5px;
-		bottom: 0;
-		left: 0;
-		right: 0;
-	}
+	
 
-	.hdr-rgt-button-none .cmn-btn {
-		width: 100%;
-		text-align: center;
-	}
+	
 
 	.navbar-toggler {
 		width: 30px;
