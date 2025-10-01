@@ -164,28 +164,36 @@ window.addEventListener("load", function () {
                            <div class="mega-menu">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-6">
+                                        <div class="col-lg-4 col-md-6">
                                             <div class="menu-column">
                                                 <h4>Crochet & Accessories</h4>
                                                 <ul>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Bandana"> Bandana</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Collar"> Collar</a></li>
+                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Bandana">Crochet Bandanas</a></li>
+                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Collar"> Collars</a></li>
                                                     <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Gifting"> Gifting and Collectables</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Cotton Bandana"> Cotton Bandana</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Cotton Bow"> Cotton Bow</a></li>
+                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Cotton Bandana"> Cotton Bandanas</a></li>
+                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Cotton Bow"> Cotton Bows</a></li>
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-6">
+                                        <div class="col-lg-4 col-md-6">
                                             <div class="menu-column">
                                                 <h4>Clothing For Dogs</h4>
                                                 <ul>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/D4E4EF/3B5E69" class="menu-item-image" alt="Traditional Collection"> Traditional Collection</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/D4E4EF/3B5E69" class="menu-item-image" alt="Western Collection"> Western Collection</a></li>
+                                                    <li><a href="#"><img src="https://placehold.co/40x40/D4E4EF/3B5E69" class="menu-item-image" alt="Traditional Collection"> Traditional Collections</a></li>
+                                                    <li><a href="#"><img src="https://placehold.co/40x40/D4E4EF/3B5E69" class="menu-item-image" alt="Western Collection"> Western Collections</a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="menu-column">
+                                                <h4>Treats</h4>
+                                                <ul>
+                                                    <li><a href="#"><img src="https://placehold.co/40x40/F0D4D4/693B3B" class="menu-item-image" alt="Apple & Oats Treats"> All Dog Treats</a></li>
+                                                   
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-6">
+                                        <!-- <div class="col-lg-3 col-md-6">
                                             <div class="menu-column">
                                                 <h4>Treats</h4>
                                                 <ul>
@@ -194,8 +202,8 @@ window.addEventListener("load", function () {
                                                     <li><a href="#"><img src="https://placehold.co/40x40/F0D4D4/693B3B" class="menu-item-image" alt="Chicken Jerky"> CHICKEN JERKY</a></li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6">
+                                        </div> -->
+                                        <div class="col-lg-4 col-md-6">
                                             <div class="menu-column promo-column">
                                                 <img src="https://placehold.co/400x250/EFE3D4/69543B?text=Special+Offer!" alt="Special Offer on Pet Food">
                                                 <p>Get 20% off on all new arrivals this week!</p>
