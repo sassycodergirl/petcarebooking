@@ -488,7 +488,7 @@ textarea::placeholder {
 }
 
 .navbar-nav li {
-    position: relative;
+    /* position: relative; */
     list-style: none;
 }
 
