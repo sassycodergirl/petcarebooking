@@ -591,7 +591,7 @@ textarea::placeholder {
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        position: static; /* Override relative positioning */
+        position: relative; 
     }
     
     /* .navbar-nav .has-megamenu > a {
@@ -605,6 +605,9 @@ textarea::placeholder {
         font-size: 24px;
         font-weight: bold;
         cursor: pointer;
+		position: absolute;
+        right: 0;
+        top: 0;
     }
     
     /* On mobile, the mega menu should be part of the flow */
