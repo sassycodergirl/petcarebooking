@@ -126,6 +126,10 @@ window.addEventListener("load", function () {
   </div>
 </div>
 
+<section class="mob-header d-block d-md-none d-lg-none">
+Book Daycare / Boarding 
+</section>
+
     <header class="main-head">
         <div class="container">
             <nav class="navbar navbar-expand-lg">

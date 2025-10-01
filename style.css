@@ -462,6 +462,11 @@ textarea::placeholder {
 /* =================================== */
 /* Base Header & Navbar Styles (Your Code) */
 /* =================================== */
+.mob-header{
+	background: #000;
+	color: #fff;
+	font-size: 18px;
+}
 .main-head {
     position: absolute;
     top: 0;
