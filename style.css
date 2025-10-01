@@ -544,8 +544,8 @@ textarea::placeholder {
 
     /* Main Call-to-Action button styling */
     .mobile-bottom-actions .cta-button {
-        background-color: var(--bg-orange, #f08e28);
-        color: white;
+        background-color: #3f1f0a;
+        color: #ffffff;
         /* Make the CTA button slightly taller if desired */
         padding-top: 10px;
         padding-bottom: 10px;
