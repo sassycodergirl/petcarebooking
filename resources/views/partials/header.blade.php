@@ -296,7 +296,7 @@ window.addEventListener("load", function () {
                     <li>
                         <a href="{{ route('booking') }}" class="cta-button">
                             <i class="fa-solid fa-calendar-plus"></i>
-                            <span>Book Slot/span>
+                            <span>Book Slot</span>
                         </a>
                     </li>
                 </ul>
