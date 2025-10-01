@@ -168,11 +168,11 @@ window.addEventListener("load", function () {
                                             <div class="menu-column">
                                                 <h4>Crochet & Accessories</h4>
                                                 <ul>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Bandana">Crochet Bandanas</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Collar"> Collars</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Gifting"> Gifting and Collectables</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Cotton Bandana"> Cotton Bandanas</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/EFE3D4/69543B" class="menu-item-image" alt="Cotton Bow"> Cotton Bows</a></li>
+                                                    <li><a href="#"><img src="{{ asset('images/crochet-bandana.webp') }}" class="menu-item-image" alt="Bandana">Crochet Bandanas</a></li>
+                                                    <li><a href="#"><img src="{{ asset('images/collars.webp') }}" class="menu-item-image" alt="Collar"> Collars</a></li>
+                                                    <li><a href="#"><img src="{{ asset('images/gifting.webp') }}" class="menu-item-image" alt="Gifting"> Gifting and Collectables</a></li>
+                                                    <li><a href="#"><img src="{{ asset('images/cotton-bandana.webp') }}" class="menu-item-image" alt="Cotton Bandana"> Cotton Bandanas</a></li>
+                                                    <li><a href="#"><img src="{{ asset('images/cotton-bows.webp') }}" class="menu-item-image" alt="Cotton Bow"> Cotton Bows</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -180,15 +180,15 @@ window.addEventListener("load", function () {
                                             <div class="menu-column">
                                                 <h4>Clothing For Dogs</h4>
                                                 <ul>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/D4E4EF/3B5E69" class="menu-item-image" alt="Traditional Collection"> Traditional Collections</a></li>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/D4E4EF/3B5E69" class="menu-item-image" alt="Western Collection"> Western Collections</a></li>
+                                                    <li><a href="#"><img src="{{ asset('images/traditional.webp') }}" class="menu-item-image" alt="Traditional Collection"> Traditional Collections</a></li>
+                                                    <li><a href="#"><img src="{{ asset('images/western.webp') }}" class="menu-item-image" alt="Western Collection"> Western Collections</a></li>
                                                 </ul>
                                             </div>
 
                                             <div class="menu-column mt-md-4">
                                                 <h4>Treats</h4>
                                                 <ul>
-                                                    <li><a href="#"><img src="https://placehold.co/40x40/F0D4D4/693B3B" class="menu-item-image" alt="Apple & Oats Treats"> All Dog Treats</a></li>
+                                                    <li><a href="#"><img src="{{ asset('images/treats-new.webp') }}" class="menu-item-image" alt="Apple & Oats Treats"> All Dog Treats</a></li>
                                                    
                                                 </ul>
                                             </div>
