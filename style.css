@@ -558,13 +558,6 @@ textarea::placeholder {
 }
 
 
-.mob-header {
-    background:#403cc7;
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-    padding: 5px 0;
-}
 .main-head {
     position: absolute;
     top: 0;
