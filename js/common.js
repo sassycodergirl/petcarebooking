@@ -484,27 +484,64 @@ $(document).ready(function(){
 //     updateSteps();
 // });
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Find all mega menu toggle buttons
-    const megaMenuToggles = document.querySelectorAll('.megamenu-toggle');
+// document.addEventListener('DOMContentLoaded', function () {
+//     // Find all mega menu toggle buttons
+//     const megaMenuToggles = document.querySelectorAll('.megamenu-toggle');
 
-    megaMenuToggles.forEach(toggle => {
-        toggle.addEventListener('click', function (event) {
-            // Prevent the default link behavior if any
+//     megaMenuToggles.forEach(toggle => {
+//         toggle.addEventListener('click', function (event) {
+//             // Prevent the default link behavior if any
+//             event.preventDefault();
+            
+//             // Get the parent '.has-megamenu' element
+//             const parentLi = this.parentElement;
+
+//             // Toggle the 'open' class on the parent
+//             parentLi.classList.toggle('open');
+            
+//             // Change the text of the toggle button
+//             if (parentLi.classList.contains('open')) {
+//                 this.textContent = '−'; // Minus sign
+//             } else {
+//                 this.textContent = '+';
+//             }
+//         });
+//     });
+// });
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Find all list items that have a mega menu
+    const megaMenuItems = document.querySelectorAll('.navbar-nav .has-megamenu');
+
+    megaMenuItems.forEach(item => {
+        // Find the main link and the toggle button within each item
+        const link = item.querySelector('a');
+        const toggle = item.querySelector('.megamenu-toggle');
+
+        // This function will handle the opening/closing logic
+        const toggleMenu = function (event) {
+            // Prevent the link from trying to navigate anywhere
             event.preventDefault();
             
-            // Get the parent '.has-megamenu' element
-            const parentLi = this.parentElement;
-
-            // Toggle the 'open' class on the parent
-            parentLi.classList.toggle('open');
+            // Toggle the 'open' class on the parent <li>
+            item.classList.toggle('open');
             
-            // Change the text of the toggle button
-            if (parentLi.classList.contains('open')) {
-                this.textContent = '−'; // Minus sign
+            // Update the text of the toggle button
+            if (item.classList.contains('open')) {
+                toggle.textContent = '−'; // Minus sign
             } else {
-                this.textContent = '+';
+                toggle.textContent = '+';
             }
-        });
+        };
+
+        // Attach the click event to BOTH the link and the toggle button
+        if (link) {
+            link.addEventListener('click', toggleMenu);
+        }
+        if (toggle) {
+            toggle.addEventListener('click', toggleMenu);
+        }
     });
 });

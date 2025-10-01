@@ -155,7 +155,7 @@ window.addEventListener("load", function () {
                         <li class="current-menu-item"><a href="{{ route('index') }}">Home</a></li>
 
                         <li class="nav-item has-megamenu">
-                            <a href="{{ route('shop.index') }}">Shop For Pets</a>
+                            <a href="javascript:void(0)">Shop For Pets</a>
                             <span class="megamenu-toggle">+</span> 
                             <div class="mega-menu">
                                 <div class="container">
