@@ -167,7 +167,7 @@
                                         </ul>
                                         <span class="reviews-txt">225 Reviews</span>
                                     </div>
-                                    <div class="store-actions">
+                                    <div class="store-actions justify-content-center justify-content-md-start">
                                         <a href="{{ route('booking') }}" class="btn-book">Book Slot</a>
                                         <a href="tel:09076120593" class="btn-call"><img src="{{ asset('images/coll-icon.svg') }}" alt=""></a>
                                         <a href="https://maps.app.goo.gl/nygEasieLDHnhQcV6" class="btn-location"><img src="{{ asset('images/send-icon.svg') }}" alt=""></a>
