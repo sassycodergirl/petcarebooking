@@ -306,10 +306,12 @@ window.addEventListener("load", function () {
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation"></button>
 
-        <div class="search-form">
+        <div class="search-form position-relative">
+             <span class="btn-closes"><i class="fa-solid fa-xmark"></i></span></li>
             <div class="container">
+                
                 <div class="search-form-wrap footer-form">
-                     <span class="btn-closes"><i class="fa-solid fa-xmark"></i></span></li>
+                    
                     <input type="text" placeholder="Search Product...">
                     <button type="submit" class="cmn-btn"><img src="{{asset('images/search.svg')}}" alt=""></button>
                 </div>
