@@ -600,7 +600,7 @@
                 <div class="col-md-7 mt-4 mt-md-0">
                     <div class="product-hd">
                         <h2>From the House of FFC</h2>
-                        <p>Hurry, before they're gone</p>
+                        <p>Exclusive Deals Like Never Before</p>
                     </div>
                      <div class="category-slider-section tab-content mt-4" id="myTabContent">
                         <div class="tab-pane fade show active" id="all">
