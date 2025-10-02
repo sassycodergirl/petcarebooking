@@ -215,12 +215,12 @@
                    <div class="product-slider"> 
                         @if($categories->isNotEmpty())
                             @foreach($categories as $category)
-                                <div class="product-card">
+                                <div class="category-card">
                                     {{-- The entire card is a link to the category page --}}
-                                    <a href="{{ route('shop.category', $category->slug) }}" class="product-card-link">
-                                        <div class="product-card-col">
+                                    <a href="{{ route('shop.category', $category->slug) }}" class="category-card-link">
+                                        <div class="category-card-col">
                                             {{-- Category Image --}}
-                                            <div class="product-card-img">
+                                            <div class="category-card-img">
                                                 @if($category->image)
                                                     <img src="{{ asset('public/' . $category->image) }}" alt="{{ $category->name }}">
                                                 @else

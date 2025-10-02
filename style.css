@@ -1604,6 +1604,26 @@ textarea::placeholder {
 .product-card-col .card-body{
 	    padding: 13px;
 }
+
+.category-card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block; /* Make the whole area clickable */
+        text-align: center;
+    }
+    .category-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .category-card-img img {
+        border-radius: 50%; /* Makes category images circular, which looks nice */
+        width: 180px;  /* Adjust as needed */
+        height: 180px; /* Adjust as needed */
+        object-fit: cover;
+    }
 @media only screen and (min-width: 991px) {
 	.product-hd p{
 		font-size: 30px;
