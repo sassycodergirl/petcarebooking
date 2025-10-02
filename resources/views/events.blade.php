@@ -25,7 +25,7 @@
             <div class="events-grid">
                 <div class="row events-row">
                     <div class="col-lg-6">
-                        <div class="store-card">
+                        <div class="store-card-2">
                             <div class="store-image">
                                 <a href="#">
                                     <img src="{{ asset('images/event-img1.jpg') }}" alt="Heads Up For Tails Store">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="store-card">
+                        <div class="store-card-2">
                             <div class="store-image">
                                 <a href="#">
                                     <img src="{{ asset('images/event-img2.png') }}" alt="Heads Up For Tails Store">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="store-card">
+                        <div class="store-card-2">
                             <div class="store-image">
                                 <a href="#">
                                     <img src="{{ asset('images/event-img3.jpg') }}" alt="Heads Up For Tails Store">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="store-card">
+                        <div class="store-card-2">
                             <div class="store-image">
                                 <a href="#">
                                     <img src="{{ asset('images/event-img4.jpg') }}" alt="Heads Up For Tails Store">
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="store-card">
+                        <div class="store-card-2">
                             <div class="store-image">
                                 <a href="#">
                                     <img src="{{ asset('images/event-img2.png') }}" alt="Heads Up For Tails Store">
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="store-card">
+                        <div class="store-card-2">
                             <div class="store-image">
                                 <a href="#">
                                     <img src="{{ asset('images/event-img1.jpg') }}" alt="Heads Up For Tails Store">
@@ -183,8 +183,8 @@
                                 personalized care while you're away—because they deserve the best, even when you're
                                 busy.</p>
                             <div class="banner-cont-button">
-                                <a href="#" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
-                                <a href="#" class="cmn-btn-border" data-content="Join The Community"><span>Join The
+                                <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                                <a href="{{ route('community') }}" class="cmn-btn-border" data-content="Join The Community"><span>Join The
                                         Community</span></a>
                             </div>
                         </div>
