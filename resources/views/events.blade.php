@@ -164,9 +164,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center btm-wrapp">
-                <a href="#" class="cmn-btn" data-content="Explore Events"><span>Explore Events</span></a>
-            </div>
+           
         </div>
         <img src="{{ asset('images/event-ov-lft.png') }}" class="event-ov-lft" alt="">
         <img src="{{ asset('images/event-ov-rgt.png') }}" class="event-ov-rgt" alt="">
