@@ -141,7 +141,16 @@
                                             <div class="out-of-stock-banner">Out of Stock</div>
                                         @endif
                                     </div>
-                                    
+                                          {{-- ADD THIS BLOCK for Veg/Non-Veg Icon --}}
+                                                <div class="food-type-wrapper">
+                                                    @if($product->category->is_food)
+                                                        @if($product->attributes->contains('slug', 'veg'))
+                                                            <img src="{{ asset('images/veg.webp') }}" alt="Veg" title="Vegetarian" class="food-type-icon">
+                                                        @else
+                                                            <img src="{{ asset('images/non_veg.webp') }}" alt="Non-Veg" title="Non-Vegetarian" class="food-type-icon">
+                                                        @endif
+                                                    @endif
+                                                </div>
                                                
                                     </a>
                                     @endif
