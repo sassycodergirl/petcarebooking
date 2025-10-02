@@ -92,7 +92,7 @@
                         <div class="container">
                             <div class="row text-center">
 
-                                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                                <div class="col-6 col-md-4 mb-4 mb-md-0">
                                     <div class="usp-item">
                                         <img src="{{ asset('images/icons/quality-badge.svg') }}" alt="100% Authentic" class="usp-icon">
                                         <h5 class="mt-3">100% Authentic</h5>
@@ -100,7 +100,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                                <div class="col-6 col-md-4 mb-4 mb-md-0">
                                     <div class="usp-item">
                                         <img src="{{ asset('images/icons/pet-love.svg') }}" alt="Made with Love" class="usp-icon">
                                         <h5 class="mt-3">For the Love of Pets</h5>
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-3">
+                                <div class="col-6 col-md-4">
                                     <div class="usp-item">
                                         <img src="{{ asset('images/icons/fast-shipping.svg') }}" alt="Fast Shipping" class="usp-icon">
                                         <h5 class="mt-3">Fast Shipping</h5>
@@ -116,19 +116,13 @@
                                     </div>
                                 </div>
 
-                                <div class="col-6 col-md-3">
-                                    <div class="usp-item">
-                                        <img src="{{ asset('images/icons/made-in-india.svg') }}" alt="Proudly Indian" class="usp-icon">
-                                        <h5 class="mt-3">Proudly Indian</h5>
-                                        <p class="text-muted">Supporting local craftsmanship and quality with every purchase.</p>
-                                    </div>
-                                </div>
+                                
 
                             </div>
                         </div>
                     </section>
 
-                    
+
                 </div>
             </div>
         </div>
