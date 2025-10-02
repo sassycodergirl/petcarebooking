@@ -1604,7 +1604,9 @@ textarea::placeholder {
 .product-card-col .card-body{
 	    padding: 13px;
 }
-
+.top-categories img{
+	    border-radius: 15px;
+}
 .category-card-link {
         text-decoration: none;
         color: inherit;
