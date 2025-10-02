@@ -590,12 +590,12 @@
     <section class="dog-treats">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <div class="img-div">
                         <img class="img-fluid w-100" src="{{ asset('images/dog-treats-banner.webp') }}">
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-7">
                      <div class="category-slider-section tab-content mt-4" id="myTabContent">
                         <div class="tab-pane fade show active" id="all">
                             <div class="product-slider">
