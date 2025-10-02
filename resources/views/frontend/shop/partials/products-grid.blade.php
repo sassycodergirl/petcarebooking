@@ -65,7 +65,21 @@
                                 ₹{{ number_format($product->price) }}
                             @endif
                         </p>
-                        {{-- Add your button logic here --}}
+                        @if($product->stock_quantity <= 0 || !$product->status)
+                                                        <button class="btn btn-secondary" disabled>Out of Stock</button>
+                                                    @elseif($product->has_variants)
+                                                        <a href="{{ route('product.show', $product->slug) }}" class="choose-option">
+                                                            Choose Option
+                                                        </a>
+                                                    @else
+                                                        <button class="add-to-bag cd-button"
+                                                                data-id="{{ $product->id }}"
+                                                                data-name="{{ $product->name }}"
+                                                                data-price="{{ $product->price }}"
+                                                                data-image="{{ asset('public/' . $product->image) }}">
+                                                            <img class="d-none d-md-block" src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart
+                                                        </button>
+                                                    @endif
                     </div>
                 </div>
             </div>
