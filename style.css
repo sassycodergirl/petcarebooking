@@ -1701,7 +1701,7 @@ textarea::placeholder {
 }
 
 .slick-next.slick-arrow {
-	right: -56px;
+	right: 5%;
 	background-image: url(images/slid-arrow-rgt.svg);
 }
 
@@ -1730,7 +1730,7 @@ textarea::placeholder {
 }
 
 .slick-prev.slick-arrow {
-	left: -56px;
+	left: 5%;
 	background-image: url(images/slid-arrow-lf.svg);
 }
 

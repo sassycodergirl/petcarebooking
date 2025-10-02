@@ -533,11 +533,12 @@
                 <h2>Trending Festive Collection</h2>
                 <p>Hurry, before they're gone</p>
             </div>
+        </div>
 
 
             <div class="category-slider-section tab-content mt-4" id="myTabContent">
                 <div class="tab-pane fade show active" id="all">
-                 <div class="product-slider">
+                    <div class="product-slider">
                     {{-- First, check if the $categoryProducts variable exists and is not empty --}}
                     @if(isset($categoryProducts) && $categoryProducts->isNotEmpty())
 
@@ -577,11 +578,9 @@
                             <p>No products found in this collection yet.</p>
                         </div>
                     @endif
-                </div>
-            <div class="text-center btm-wrapp">
-                <a href="#" class="cmn-btn" data-content="View All Products"><span>View All Products</span></a>
             </div>
-        </div>
+           
+       
        
     </section>
 
