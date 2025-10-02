@@ -620,7 +620,7 @@
                                                     @if($product->attributes->contains('slug', 'veg'))
                                                         <img src="{{ asset('images/veg.webp') }}" alt="Veg" title="Vegetarian" class="food-type-icon">
                                                     @else
-                                                        <img src="{{ asset('images/non-veg.webp') }}" alt="Non-Veg" title="Non-Vegetarian" class="food-type-icon">
+                                                        <img src="{{ asset('images/non_veg.webp') }}" alt="Non-Veg" title="Non-Vegetarian" class="food-type-icon">
                                                     @endif
                                                 @endif
                                             </div>

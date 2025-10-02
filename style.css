@@ -7486,9 +7486,9 @@ font-weight: 600;
 
 .food-type-icon {
     width: 24px;
-    height: 24px;
+    height: 24px !important;
     background: #fff;
-    border-radius: 50%;
+    border-radius:0 !important;
     padding: 2px;
 }
 @media only screen and (min-width: 991px) {
