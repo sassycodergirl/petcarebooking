@@ -537,14 +537,13 @@
 
             <div class="category-slider-section tab-content mt-4" id="myTabContent">
                 <div class="tab-pane fade show active" id="all">
-                  <div class="product-slider">
-                    {{-- Check if we found any products in that category --}}
-                    @if($traditionalProducts->isNotEmpty())
-                        {{-- Loop through the products instead of categories --}}
-                        @foreach($traditionalProducts as $product)
+                 <div class="product-slider">
+                    {{-- First, check if the $categoryProducts variable exists and is not empty --}}
+                    @if(isset($categoryProducts) && $categoryProducts->isNotEmpty())
+
+                        @foreach($categoryProducts as $product)
                             <div class="product-card">
                                 <div class="product-card-col">
-                                    {{-- Link to the product's detail page --}}
                                     <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
                                         @if($product->image)
                                             <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}">
@@ -553,10 +552,8 @@
                                         @endif
                                     </a>
 
-                                    {{-- Product Name --}}
                                     <h3><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
 
-                                    {{-- Product Price with sale price logic --}}
                                     <p>
                                         @if($product->sale_price && $product->sale_price < $product->regular_price)
                                             <del>₹{{ number_format($product->regular_price, 2) }}</del>
@@ -566,14 +563,15 @@
                                         @endif
                                     </p>
 
-                                    {{-- Button to view the product --}}
                                     <a href="{{ route('product.show', $product->slug) }}" class="add-to-bag cd-button">
                                         <img src="{{ asset('images/bag-icon.svg') }}" alt=""> View Product
                                     </a>
                                 </div>
                             </div>
                         @endforeach
+
                     @else
+                        {{-- This message will show if the category is not found or has no products --}}
                         <div class="col-12 text-center">
                             <p>No products found in this collection yet.</p>
                         </div>
