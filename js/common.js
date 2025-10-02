@@ -219,7 +219,7 @@ $('.treats-slider').slick({
   dots: false,
   arrows: true,
   speed: 300,
-  slidesToShow: 3,
+  slidesToShow: 2,
   slidesToScroll: 1,
   autoplay: false,
   autoplaySpeed: 2000,
