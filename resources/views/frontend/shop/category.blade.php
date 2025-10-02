@@ -126,7 +126,7 @@
         <div class="col-9 col-md-9">
            
             <div id="productsGrid">
-                @include('frontend.shop.partials.product-grid', ['products' => $products])
+                @include('frontend.shop.partials.products-grid', ['products' => $products])
             </div>
            
         </div>
