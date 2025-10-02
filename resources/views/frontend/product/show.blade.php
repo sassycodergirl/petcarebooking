@@ -87,7 +87,7 @@
     </div>
 
     <div class="product-info-section container">
-         <div class="product-meta content-sec p-3 p-md-5">
+         <div class="product-metas content-sec p-3 p-md-5">
             <div class="accordion" id="productAccordion">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingDescription">
