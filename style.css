@@ -7516,8 +7516,12 @@ font-weight: 600;
 
 
 	.usp-section {
-    border-top: 1px solid #e9ecef;
-    border-bottom: 1px solid #e9ecef;
+    background: #d8f7f4;
+    /* background: #f0fffe; */
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: rgb(100 100 111 / 9%) 0px 7px 29px 0px;
+    border: 1px solid #9dddeb;
 }
 
 .usp-icon {
