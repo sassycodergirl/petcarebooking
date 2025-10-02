@@ -600,7 +600,7 @@
                 <div class="col-md-7 mt-4 mt-md-0">
                     <div class="product-hd">
                         <h2>From the House of FFC</h2>
-                        <p>Exclusive Deals Like Never Before</p>
+                        <p>Care crafted with love, backed by science</p>
                     </div>
                      <div class="category-slider-section tab-content mt-4" id="myTabContent">
                         <div class="tab-pane fade show active" id="all">
@@ -703,6 +703,66 @@
                 </div>
             </div>
         </div>
+    </section>
+
+
+      <section class="product-sec py-5">
+        <div class="container">
+            <div class="product-hd px-2 px-md-0">
+                <h2>We picked your pet’s Wishlist</h2>
+                <p>So you don’t have to!</p>
+            </div>
+        </div>
+
+
+            <div class="category-slider-section tab-content mt-4" id="myTabContent">
+                <div class="tab-pane fade show active" id="all">
+                    <div class="product-slider">
+                    @if(isset($bandanaProducts) && $bandanaProducts->isNotEmpty())
+                        @foreach($bandanaProducts as $product)
+                            <div class="product-card">
+                                <div class="product-card-col featured-card p-0">
+                                    <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
+                                        <div class="hw_sales_label">
+                                           <p class="sales_label_card" style="">Trending</p>                  
+                                        </div>
+                                        @if($product->image)
+                                            <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}">
+                                        @else
+                                            <img src="{{ asset('images/default-product.png') }}" alt="Default product image">
+                                        @endif
+                                    </a>
+                                    <h2 class="brand-name mt-2">Furry Friends & Co</h2>
+                                    <h3><a class="feat-product-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+                                    <hr>
+                                    <div class="product-meta">
+                                        <div class="feat-product-price">
+                                            @if($product->sale_price && $product->sale_price < $product->regular_price)
+                                                <del>₹{{ number_format($product->regular_price, 2) }}</del>
+                                                <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
+                                            @else
+                                                <strong>₹{{ number_format($product->price, 2) }}</strong>
+                                            @endif
+                                        </div>
+
+                                        <a href="{{ route('product.show', $product->slug) }}" class="view-btn">
+                                            View
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    @else
+                        {{-- This message will show if the category is not found or has no products --}}
+                        <div class="col-12 text-center">
+                            <p>No products found in this collection yet.</p>
+                        </div>
+                    @endif
+            </div>
+           
+       
+       
     </section>
 
     <section class="why-choose-section">

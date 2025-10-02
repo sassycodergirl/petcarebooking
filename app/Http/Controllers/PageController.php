@@ -30,6 +30,20 @@ class PageController extends Controller
             $viewData['treatsProducts'] = $treatsCategory->products()->latest()->take(8)->get();
         }
 
+
+        // --- NEW: Get Products for the THIRD Slider (Bandanas) ---
+        $bandanaCategorySlugs = ['bandana-design', 'cotton-bandana-designs'];
+        $bandanaCategories = Category::whereIn('slug', $bandanaCategorySlugs)->with('products')->get();
+        if ($bandanaCategories->isNotEmpty()) {
+            $viewData['bandanaProducts'] = $bandanaCategories
+                ->pluck('products')
+                ->flatten()
+                ->sortByDesc('created_at')
+                ->take(8);
+        }
+
+        
+
         // --- Pass all data to the view ---
         return view('index', $viewData);
     }
