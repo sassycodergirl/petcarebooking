@@ -86,14 +86,14 @@
                             @endif
                         </div>
 
-                        <section class="usp-section container-fluid bg-light py-5">
+                        <section class="usp-section container-fluid bg-light py-3">
                         <div class="container">
                             <div class="row text-center">
 
                                 <div class="col-6 col-md-4 mb-4 mb-md-0">
                                     <div class="usp-item">
                                         <img src="{{ asset('images/high-quality.webp') }}" alt="100% Authentic" class="usp-icon">
-                                        <h5 class="mt-3">100% Best Quality</h5>
+                                        <h5 class="mt-3 mb-2">100% Best Quality</h5>
                                         <p class="text-muted">Guaranteed genuine and high-quality products for your pet.</p>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                 <div class="col-6 col-md-4 mb-4 mb-md-0">
                                     <div class="usp-item">
                                         <img src="{{ asset('images/pawprint.webp') }}" alt="Made with Love" class="usp-icon">
-                                        <h5 class="mt-3">For the Love of Pets</h5>
+                                        <h5 class="mt-3 mb-2">For the Love of Pets</h5>
                                         <p class="text-muted">Every item is chosen with the happiness of your furry friend in mind.</p>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                                 <div class="col-6 col-md-4">
                                     <div class="usp-item">
                                         <img src="{{ asset('images/fast-delivery.webp') }}" alt="Fast Shipping" class="usp-icon">
-                                        <h5 class="mt-3">Fast Shipping</h5>
+                                        <h5 class="mt-3 mb-2">Fast Shipping</h5>
                                         <p class="text-muted">Delivering joy to your doorstep across India, quickly and safely.</p>
                                     </div>
                                 </div>
