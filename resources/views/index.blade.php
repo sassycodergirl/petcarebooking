@@ -589,7 +589,7 @@
     </section>
 
 
-    <section class="dog-treats">
+    <section class="dog-treats py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
