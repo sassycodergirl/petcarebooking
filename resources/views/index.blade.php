@@ -91,6 +91,7 @@
         <img src="{{ asset('images/abt-rgt-btm.png') }}" class="abt-lft-bottom" alt="">
     </section>
 
+
     <section class="locate-sec py-2 py-md-5">
         <div class="container">
             <div class="locate-wrap">
@@ -232,6 +233,11 @@
     </section>
 
 
+    <section>
+        <div class="container">
+            <img class="img-fluid" src="{{ asset('images/t-shirt.webp') }}">
+        </div>
+    </section>
 
     <section class="product-sec">
         <div class="container">
