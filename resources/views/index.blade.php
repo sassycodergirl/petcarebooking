@@ -837,8 +837,7 @@
                                 <span>₹80</span>
                             </div>
                             <div class="trial-pack-button">
-                                <a href="{{ route('product.show', 'apple-oats-treats') }}" class="add-to-bag-sm"><span><img src="{{ asset('images/bag-icon.svg') }}" alt=""></span>
-                                    Shop</a>
+                                <a href="{{ route('product.show', 'apple-oats-treats') }}" class="add-to-bag-sm">View</a>
                             </div>
                         </div>
                     </div>
