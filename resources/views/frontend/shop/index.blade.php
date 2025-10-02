@@ -136,6 +136,15 @@
                                                 </a>
                                                 <div class="p-2 p-md-3 text-center">
                                                     <a class="p-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a>
+                                                    <p class="card-text">
+                                                        @if ($product->variants_count > 0 && $product->variants_min_price !== null)
+                                                            {{-- Product has variants, show the lowest price --}}
+                                                            From ₹{{ number_format($product->variants_min_price) }}
+                                                        @else
+                                                            {{-- Product has no variants, show base price --}}
+                                                            ₹{{ number_format($product->price) }}
+                                                        @endif
+                                                    </p>
                                                     <div>
                                                         <a href="{{ route('product.show', $product->slug) }}" class="btn explore-btn">Choose Option</a>
                                                     </div>
