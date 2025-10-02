@@ -597,7 +597,7 @@
                         <img class="img-fluid w-100" src="{{ asset('images/dog-treats-banner.webp') }}">
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-7 mt-4 mt-md-0">
                     <div class="product-hd">
                         <h2>Deals Like Never Before</h2>
                         <p>Hurry, before they're gone</p>
