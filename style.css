@@ -7498,6 +7498,9 @@ font-weight: 600;
 dos
 }
 } */
+ .featured-card img {
+		        height: 220px;
+	}
 @media only screen and (min-width: 991px) {
     .featured-card img {
 		        height: 275px;
