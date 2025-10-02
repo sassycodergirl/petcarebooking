@@ -565,7 +565,7 @@
                                             @if($product->variants_count > 0 && $product->variants_min_price !== null)
 
                                                 {{-- If YES, show "Starting from" the lowest variant price --}}
-                                                <strong>Starting from ₹{{ number_format($product->variants_min_price, 2) }}</strong>
+                                                <strong><span>Starting from</span> ₹{{ number_format($product->variants_min_price, 2) }}</strong>
 
                                             @else
 
@@ -656,7 +656,7 @@
                                                     @if($product->variants_count > 0 && $product->variants_min_price !== null)
 
                                                         {{-- If YES, show "Starting from" the lowest variant price --}}
-                                                        <strong>Starting from ₹{{ number_format($product->variants_min_price, 2) }}</strong>
+                                                        <strong><span>Starting from</span> ₹{{ number_format($product->variants_min_price, 2) }}</strong>
 
                                                     @else
 
@@ -769,7 +769,7 @@
                                             @if($product->variants_count > 0 && $product->variants_min_price !== null)
 
                                                 {{-- If YES, show "Starting from" the lowest variant price --}}
-                                                <strong>Starting from ₹{{ number_format($product->variants_min_price, 2) }}</strong>
+                                                <strong><span>Starting from</span> ₹{{ number_format($product->variants_min_price, 2) }}</strong>
 
                                             @else
 
@@ -833,12 +833,12 @@
                         </div>
                         <div class="trial-pack-btm">
                             <div class="trial-pack-pricing">
-                                <span><s>₹750</s></span>
-                                <span>₹420</span>
+                                <span>Starting from</span>
+                                <span>₹80</span>
                             </div>
                             <div class="trial-pack-button">
-                                <a href="#" class="add-to-bag-sm"><span><img src="{{ asset('images/bag-icon.svg') }}" alt=""></span>
-                                    Add to Bag</a>
+                                <a href="{{ route('product.show', 'apple-oats-treats') }}" class="add-to-bag-sm"><span><img src="{{ asset('images/bag-icon.svg') }}" alt=""></span>
+                                    Shop</a>
                             </div>
                         </div>
                     </div>
