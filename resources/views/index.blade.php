@@ -210,79 +210,37 @@
                     </li> -->
                 </ul>
             </div>
-            <div class="tab-content mt-4" id="myTabContent">
+            <div class="category-slider-section tab-content mt-4" id="myTabContent">
                 <div class="tab-pane fade show active" id="all">
-                    <div class="product-slider">
-                        <div class="product-card">
-                            <div class="product-card-col">
-                                <a href="#" class="product-card-img">
-                                    <img src="{{ asset('images/pd1.png') }}" alt="">
-                                </a>
-                                <h3><a href="#">Grain-Free Chicken</a></h3>
-                                <p><del>₹180</del> ₹120</p>
-                                <button class="add-to-bag cd-button"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card-col">
-                                <a href="#" class="product-card-img">
-                                    <img src="{{ asset('images/pd2.png') }}" alt="">
-                                </a>
-                                <h3><a href="#">Chicken Gravy</a></h3>
-                                <p><del>₹180</del> ₹120</p>
-                                <button class="add-to-bag cd-button"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card-col">
-                                <a href="#" class="product-card-img">
-                                    <img src="{{ asset('images/pd3.png') }}" alt="">
-                                </a>
-                                <h3><a href="#">Dry Food For Adult Cat</a></h3>
-                                <p><del>₹180</del> ₹120</p>
-                                <button class="add-to-bag cd-button"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card-col">
-                                <a href="#" class="product-card-img">
-                                    <img src="{{ asset('images/pd4.png') }}" alt="">
-                                </a>
-                                <h3><a href="#">Spikey Sprinter Chew</a></h3>
-                                <p><del>₹180</del> ₹120</p>
-                                <button class="add-to-bag cd-button"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card-col">
-                                <div class="product-card-img">
-                                    <img src="{{ asset('images/pd3.png') }}" alt="">
+                   <div class="product-slider"> 
+                        @if($categories->isNotEmpty())
+                            @foreach($categories as $category)
+                                <div class="product-card">
+                                    {{-- The entire card is a link to the category page --}}
+                                    <a href="{{ route('shop.category', $category->slug) }}" class="product-card-link">
+                                        <div class="product-card-col">
+                                            {{-- Category Image --}}
+                                            <div class="product-card-img">
+                                                @if($category->image)
+                                                    <img src="{{ asset('public/' . $category->image) }}" alt="{{ $category->name }}">
+                                                @else
+                                                    <img src="{{ asset('images/default-category.png') }}" alt="Default category image">
+                                                @endif
+                                            </div>
+
+                                            {{-- Category Name --}}
+                                            <h3 class="mt-3">{{ $category->name }}</h3>
+
+                                            {{-- Note: Price has been removed as it doesn't apply to categories --}}
+                                        </div>
+                                    </a>
                                 </div>
-                                <h3><a href="#">Grain-Free Chicken</a></h3>
-                                <p><del>₹180</del> ₹120</p>
-                                <button class="add-to-bag cd-button"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
+                            @endforeach
+                        @else
+                            <div class="col-12 text-center">
+                                <p>No categories found.</p>
                             </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card-col">
-                                <a href="#" class="product-card-img">
-                                    <img src="{{ asset('images/pd2.png') }}" alt="">
-                                </a>
-                                <h3><a href="#">Chicken Gravy</a></h3>
-                                <p><del>₹180</del> ₹120</p>
-                                <button class="add-to-bag cd-button"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card-col">
-                                <div class="product-card-img">
-                                    <img src="{{ asset('images/pd3.png') }}" alt="">
-                                </div>
-                                <h3><a href="#">Grain-Free Chicken</a></h3>
-                                <p><del>₹180</del> ₹120</p>
-                                <button class="add-to-bag"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 <!-- <div class="tab-pane fade" id="dog-food">
