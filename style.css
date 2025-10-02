@@ -7468,5 +7468,9 @@ font-weight: 600;
     background: rgba(16, 143, 85, 0.20);
     color: #108F55;
     padding: 6px 12px;
+	top: 0;
+}
+.featured-card img{
+	margin-top: 40px;
 }
 /*added by sudipa*/

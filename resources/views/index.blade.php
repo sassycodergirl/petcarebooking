@@ -544,7 +544,7 @@
 
                         @foreach($categoryProducts as $product)
                             <div class="product-card">
-                                <div class="product-card-col p-0">
+                                <div class="product-card-col featured-card p-0">
                                     <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
                                         <div class="hw_sales_label">
                                            <p class="sales_label_card" style="">Steal the Deal</p>                  
