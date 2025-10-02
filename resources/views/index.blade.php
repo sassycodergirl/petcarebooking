@@ -210,7 +210,7 @@
                 </ul>
             </div>
             <div class="tab-content mt-4" id="myTabContent">
-                <div class="tab-pane fade show active" id="all">
+                <!-- <div class="tab-pane fade show active" id="all">
                     <div class="product-slider">
                         <div class="product-card">
                             <div class="product-card-col">
@@ -283,7 +283,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="tab-pane fade" id="dog-food">
                     <div class="product-slider">
 
