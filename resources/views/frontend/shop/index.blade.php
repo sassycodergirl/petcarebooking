@@ -127,7 +127,7 @@
                                         <div class="col-6 col-md-3 col-lg-3 col-sm-6">
                                             <div class="product-card-col p-0">
                                                 {{-- Display PRODUCT card (note the different route and variables) --}}
-                                                <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
+                                                <a href="{{ route('product.show', $product->slug) }}" class="product-card-img position-relative">
                                                     @if($product->image)
                                                         <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}">
                                                     @else

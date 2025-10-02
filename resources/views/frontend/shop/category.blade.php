@@ -133,7 +133,7 @@
                             <div class="col-6 col-md-3 mb-4 new-product pb-0">
                                 <div class="product-card-col p-0 shadow-sm">
                                     @if($product->image)
-                                    <a href="{{ route('product.show', $product->slug) }}" class="product-card-img p-0">
+                                    <a href="{{ route('product.show', $product->slug) }}" class="product-card-img p-0 position-relative">
                                     <div class="product-img h-100">
 
                                         <img src="{{$product->image }}" class="img-fluid h-100" alt="{{ $product->name }}">
