@@ -193,12 +193,38 @@
                 <div class="col-md-4">
                     <div>
                         <a>
-                            <img class="img-fluid" src="{{ asset('images/traditional-collection.webp') }}" alt="">
+                            <img class="img-fluid" src="{{ asset('images/traditional-cats.webp') }}" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4"></div>
-                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div>
+                        <a>
+                            <img class="img-fluid" src="{{ asset('images/treats-cat.webp') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <a>
+                            <img class="img-fluid" src="{{ asset('images/bows-cat.webp') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <a>
+                            <img class="img-fluid" src="{{ asset('images/bandana-cat.webp') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <a>
+                            <img class="img-fluid" src="{{ asset('images/access-cat.webp') }}" alt="">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
