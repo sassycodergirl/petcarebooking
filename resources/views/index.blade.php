@@ -19,14 +19,14 @@
                         <h1 class="mb-2 mb-md-3">Tasty Bites, Happy Tails, Love in Every Bite</h1>
                         <p>Healthy, delicious, and tail-wag approved—treats your pets will always love.</p>
                         <div class="banner-cont-button">
-                            <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Shop Treats"><span>Shop Treats</span></a>
+                            <a href="{{ route('shop.category', 'treats') }}" class="cmn-btn" data-content="Shop Treats"><span>Shop Treats</span></a>
                         </div>
                     </div>
                     <div class="banner-cont p-3 p-md-0">
                         <h1 class="mb-2 mb-md-3">Festive Flairs & Western Wears For Your Furry Friends</h1>
                         <p>From festive traditions to everyday outings, explore premium pet clothing that blends comfort with fashion.</p>
                         <div class="banner-cont-button">
-                            <a href="/booking-portal" class="cmn-btn" data-content="Shop the Collection"><span>Shop the Collection</span></a>
+                            <a href="{{ route('shop.category', 'dog-clothing') }}" class="cmn-btn" data-content="Shop the Collection"><span>Shop the Collection</span></a>
                         </div>
                     </div>
                 </div>
@@ -201,21 +201,21 @@
                     </div>
                     <div class="col-6 col-md-4 mt-2 mt-md-4 px-1 px-md-2">
                         <div>
-                            <a>
+                            <a href="{{ route('shop.category', 'treats') }}">
                                 <img class="img-fluid" src="{{ asset('images/treats-cat.webp') }}" alt="">
                             </a>
                         </div>
                     </div>
                     <div class="col-6 col-md-4 mt-2 mt-md-4 px-1 px-md-2">
                         <div>
-                            <a>
+                            <a href="{{ route('shop.category', 'cotton-bow-designs') }}">
                                 <img class="img-fluid" src="{{ asset('images/bows-cat.webp') }}" alt="">
                             </a>
                         </div>
                     </div>
                     <div class="col-6 col-md-6 mt-2 mt-md-4 px-1 px-md-2">
                         <div>
-                            <a>
+                            <a href="{{ route('shop.category', 'bandana-design') }}">
                                 <img class="img-fluid d-none d-md-block d-lg-block" src="{{ asset('images/bandana-cat.webp') }}" alt="">
                                 <img class="img-fluid d-block d-md-none d-lg-none" src="{{ asset('images/bandana-mob.webp') }}" alt="">
                                 
@@ -224,7 +224,7 @@
                     </div>
                     <div class="col-12 col-md-6 mt-2 mt-md-4 px-1 px-md-2">
                         <div>
-                            <a>
+                            <a href="{{ route('shop.category', 'crochet-accessories') }}">
                                 <img class="img-fluid" src="{{ asset('images/access-cat.webp') }}" alt="">
                             </a>
                         </div>
@@ -237,7 +237,9 @@
 
     <section class="bg-wrap ">
         <div class="container">
-            <img class="img-fluid w-100" src="{{ asset('images/t-shirt-cat.webp') }}">
+            <a href="{{ route('shop.category', 'western-collection') }}">
+                <img class="img-fluid w-100" src="{{ asset('images/t-shirt-cat.webp') }}">
+            </a>
         </div>
     </section>
 
@@ -832,12 +834,12 @@
                             </ul>
                         </div>
                         <div class="trial-pack-btm">
-                            <div class="trial-pack-pricing">
+                            <div class="trial-pack-pricing align-items-center">
                                 <label>Starting from</label>
                                 <span>₹80</span>
                             </div>
                             <div class="trial-pack-button">
-                                <a href="{{ route('product.show', 'apple-oats-treats') }}" class="add-to-bag-sm">View</a>
+                                <a href="{{ route('product.show', 'apple-oats-treats') }}" class="add-to-bag-sm">View Product</a>
                             </div>
                         </div>
                     </div>
@@ -861,7 +863,7 @@
                             <p>At Furry Friends, we combine professional expertise with genuine love for animals. Pet
                                 parents trust us because we go the extra mile to ensure their companions feel safe,
                                 happy, and cared for. And pets? They love coming back—tails wagging, hearts full.</p>
-                            <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                            <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
                            
                         </div>
                     </div>
