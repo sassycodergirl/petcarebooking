@@ -34,7 +34,7 @@
                                 <h2>Care Beyond Routine, Love Beyond Words</h2>
                                 <p>At Furry Friends and Co., we believe that pets are family. Our mission is to create a welcoming and vibrant space where pet parents can find everything they need to care for their furry companions while feeling understood and supported by a passionate community that shares their love and devotion.</p>
                                 <p>To be the go-to destination for pet parents, where their bond with their pets is celebrated and nurtured, and to foster a community that views pets as integral members of the family.</p>
-                                <a href="#" class="cmn-btn" data-content="Book Day Care" tabindex="-1"><span>Book Day Care</span></a>
+                                <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care" tabindex="-1"><span>Book Day Care</span></a>
                             </div>
                         </div>
                         </div>
@@ -263,8 +263,8 @@
                                 personalized care while you're away—because they deserve the best, even when you're
                                 busy.</p>
                             <div class="banner-cont-button">
-                                <a href="#" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
-                                <a href="#" class="cmn-btn-border" data-content="Join The Community"><span>Join The
+                                <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                                <a href="{{ route('community') }}" class="cmn-btn-border" data-content="Join The Community"><span>Join The
                                         Community</span></a>
                             </div>
                         </div>
