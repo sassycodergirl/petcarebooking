@@ -3217,7 +3217,7 @@ font-weight: 500;
 	border: none;
 	outline: none;
 	font-size: 18px;
-	height: 30px;
+	/* height: 30px; */
 	width: 35px;
 	color: var(--bg-text-color);
 	transition: all 0.3s ease-in-out;
