@@ -3208,6 +3208,7 @@ font-weight: 500;
 .pd-add-to-cart-wrap {
 	width: 120px;
 	display: flex;
+	    justify-content: center;
 	border: 1px solid var(--bg-orange);
 	    border-radius: 30px;
 	overflow: hidden;
