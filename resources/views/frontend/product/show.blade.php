@@ -163,6 +163,37 @@
             </div>
           </div>                  
     </div>
+
+    <section class="daycare-card">
+        <div class="container">
+            <div class="daycare-card-wrap">
+                <div class="row">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="daycare-card-cont">
+                            <h2>Book Our Daycare - A Safe, Loving Space for Your Pet</h2>
+                            <p>Leave your furry friend in trusted hands. Our daycare offers comfort, play, and
+                                personalized care while you're away—because they deserve the best, even when you're
+                                busy.</p>
+                            <div class="banner-cont-button">
+                                <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                                <a href="{{ route('community') }}" class="cmn-btn-border" data-content="Join The Community"><span>Join The
+                                        Community</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6">
+                        <div class="daycare-card-img">
+                            <div class="daycare-card-img-main">
+                                <img src="{{ asset('images/daycare-dg-ct.png') }}" alt="Dog and Cat Together">
+                            </div>
+                            <img src="{{ asset('images/daycare-dg-ct-ovr.png') }}" class="daycare-dg-ct-ovr" alt="Overlay">
+                        </div>
+                    </div>
+                </div>
+                <img src="{{ asset('images/daycare-dg-ct-ovr-two.png') }}" class="daycare-dg-ct-ovr-two" alt="">
+            </div>
+        </div>
+    </section>
 </section>
 
 @include('partials.footer')
