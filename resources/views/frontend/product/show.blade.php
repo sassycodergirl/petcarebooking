@@ -91,11 +91,11 @@
             <div class="accordion" id="productAccordion">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingDescription">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription" aria-expanded="true" aria-controls="collapseDescription">
+                        <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription" aria-expanded="true" aria-controls="collapseDescription">
                             Product Description
                         </button>
                     </h2>
-                    <div id="collapseDescription" class="accordion-collapse collapse" aria-labelledby="headingDescription" data-bs-parent="#productAccordion">
+                    <div id="collapseDescription" class="accordion-collapse collapse show" aria-labelledby="headingDescription" data-bs-parent="#productAccordion">
                         <div class="accordion-body">
                             {!! $product->description ?? 'No description available.' !!}
                         </div>
