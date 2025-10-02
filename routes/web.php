@@ -20,6 +20,7 @@ use App\Http\Controllers\Customer\AddressController;
 use App\Http\Controllers\Customer\OrderController as CustomerOrderController;
 use App\Http\Controllers\Auth\PhoneAuthController;
 use App\Http\Controllers\Customer\BookingController as CustomerBookingController;
+use App\Http\Controllers\PageController; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -49,9 +50,11 @@ Route::middleware('guest')->group(function () {
 // -----------------------------
 // Public Pages
 // -----------------------------
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
+
+Route::get('/', [PageController::class, 'index'])->name('index');
 
 // if you want to keep default login/register (email+password), uncomment below
 Auth::routes();
