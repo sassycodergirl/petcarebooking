@@ -7479,7 +7479,7 @@ font-weight: 600;
 
 .food-type-wrapper {
     position: absolute;
-    top: 10px;
+    bottom: 10px;
     right: 10px;
     z-index: 5;
 }
@@ -7487,9 +7487,9 @@ font-weight: 600;
 .food-type-icon {
     width: 24px;
     height: 24px !important;
-    background: #fff;
+    /* background: #fff; */
     border-radius:0 !important;
-    padding: 2px;
+    /* padding: 2px; */
 }
 @media only screen and (min-width: 991px) {
     .featured-card img {
