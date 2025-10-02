@@ -596,6 +596,10 @@
                     </div>
                 </div>
                 <div class="col-md-7">
+                    <div class="product-hd">
+                        <h2>Deals Like Never Before</h2>
+                        <p>Hurry, before they're gone</p>
+                    </div>
                      <div class="category-slider-section tab-content mt-4" id="myTabContent">
                         <div class="tab-pane fade show active" id="all">
                             <div class="treats-slider">
