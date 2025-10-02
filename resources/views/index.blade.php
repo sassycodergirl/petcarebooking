@@ -194,7 +194,7 @@
                 <div class="row">
                     <div class="col-6 col-md-4 mt-2 mt-md-4 px-1 px-md-2">
                         <div>
-                            <a>
+                            <a href="{{ route('shop.category', 'traditional-collection-for-dogs') }}">
                                 <img class="img-fluid" src="{{ asset('images/traditional-cats.webp') }}" alt="">
                             </a>
                         </div>
