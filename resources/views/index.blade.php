@@ -768,7 +768,7 @@
 
      <section class="trial-sec py-5">
         <div class="container py-5">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="trial-img">
                         <div class="trial-img-main">
