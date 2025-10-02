@@ -205,7 +205,7 @@ $('.product-slider').slick({
     {
       breakpoint: 575,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
         slidesToScroll: 1
       }
     }
@@ -241,7 +241,7 @@ $('.treats-slider').slick({
     {
       breakpoint: 575,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
         slidesToScroll: 1
       }
     }
