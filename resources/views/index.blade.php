@@ -724,7 +724,7 @@
                                 <div class="product-card-col featured-card p-0">
                                     <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
                                         <div class="hw_sales_label">
-                                           <p class="sales_label_card" style="">Trending</p>                  
+                                           <p class="sales_label_card" style="">New Arrival</p>                  
                                         </div>
                                         @if($product->image)
                                             <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}">
