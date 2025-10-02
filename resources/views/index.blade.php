@@ -592,7 +592,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="img-div">
-                        <img class="img-fluid" src="{{ asset('public/' . $product->image) }}">
+                        <img class="img-fluid w-100" src="{{ asset('images/dog-treats-banner.webp') }}">
                     </div>
                 </div>
                 <div class="col-md-9">
