@@ -2132,12 +2132,15 @@ textarea::placeholder {
 .trial-img {
 	position: relative;
 	z-index: 1;
+	    text-align: center;
 }
 
 .trial-img-overlay {
 	position: absolute;
-	top: -37px;
-	left: -40px;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
 	width: 450px;
 	height: 450px;
 	background: radial-gradient(167.39% 72.78% at 82.33% 91.33%, rgba(255, 241, 217, 0) 0%, #FFC261 100%)
@@ -2151,7 +2154,7 @@ textarea::placeholder {
 }
 
 .trial-sec {
-	padding: 135px 0 145px;
+
 	position: relative;
 	background-color: #FFF1D9;
 	z-index: 1;
@@ -2230,10 +2233,10 @@ textarea::placeholder {
 	gap: 40px;
 }
 
-.trial-col-left {
+/* .trial-col-left {
 	max-width: 500px;
 	margin-left: auto;
-}
+} */
 
 .pd-rgt-img {
 	position: absolute;
