@@ -7469,7 +7469,7 @@ font-weight: 600;
     color: #486055;
     padding: 3px 12px;
     margin-bottom: 0;
-    bottom: 0;
+    top: 0;
 }
 .featured-card img{
 	margin-top: 40px;
