@@ -709,8 +709,8 @@
       <section class="product-sec py-5">
         <div class="container">
             <div class="product-hd px-2 px-md-0">
-                <h2>We picked your pet’s Wishlist</h2>
-                <p>So you don’t have to!</p>
+                <h2>Tied with Love, Worn with Pride.❤️</h2>
+                <p>We picked your pet’s Wishlist. So you don’t have to!</p>
             </div>
         </div>
 
