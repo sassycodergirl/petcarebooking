@@ -190,35 +190,35 @@
                 <p>Everything your pet needs, in a few clicks!</p>
             </div>
             <div class="row">
-                <div class="col-6 col-md-4 mt-4">
+                <div class="col-6 col-md-4 mt-2 mt-md-4">
                     <div>
                         <a>
                             <img class="img-fluid" src="{{ asset('images/traditional-cats.webp') }}" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 mt-4">
+                <div class="col-6 col-md-4 mt-2 mt-md-4">
                     <div>
                         <a>
                             <img class="img-fluid" src="{{ asset('images/treats-cat.webp') }}" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 mt-4">
+                <div class="col-6 col-md-4 mt-2 mt-md-4">
                     <div>
                         <a>
                             <img class="img-fluid" src="{{ asset('images/bows-cat.webp') }}" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-6 col-md-6 mt-4">
+                <div class="col-6 col-md-6 mt-2 mt-md-4">
                     <div>
                         <a>
                             <img class="img-fluid" src="{{ asset('images/bandana-cat.webp') }}" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-6 col-md-6 mt-4">
+                <div class="col-12 col-md-6 mt-2 mt-md-4">
                     <div>
                         <a>
                             <img class="img-fluid" src="{{ asset('images/access-cat.webp') }}" alt="">
