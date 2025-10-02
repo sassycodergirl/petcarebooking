@@ -7423,10 +7423,11 @@ background-color: #ffe000;
 	color: var(--bg-orange);
 	font-size: 20px;
     font-weight: 600;
+	margin-bottom: 5px;
 }
 .feat-product-name{
 	font-size: 20px;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 5px;
 }
 .feat-product-name:hover{

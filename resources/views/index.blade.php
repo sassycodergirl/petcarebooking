@@ -544,7 +544,7 @@
 
                         @foreach($categoryProducts as $product)
                             <div class="product-card">
-                                <div class="product-card-col">
+                                <div class="product-card-col p-0">
                                     <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
                                         @if($product->image)
                                             <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}">
@@ -552,8 +552,9 @@
                                             <img src="{{ asset('images/default-product.png') }}" alt="Default product image">
                                         @endif
                                     </a>
-                                    <h2 class="brand-name">Furry Friends & Co</h2>
+                                    <h2 class="brand-name mt-2">Furry Friends & Co</h2>
                                     <h3><a class="feat-product-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+                                    <hr>
                                     <div class="product-meta">
                                         <div class="feat-product-price">
                                             @if($product->sale_price && $product->sale_price < $product->regular_price)
