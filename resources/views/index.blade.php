@@ -235,7 +235,7 @@
 
     <section>
         <div class="container">
-            <img class="img-fluid" src="{{ asset('images/t-shirt.webp') }}">
+            <img class="img-fluid" src="{{ asset('images/t-shirt-cat.webp') }}">
         </div>
     </section>
 
