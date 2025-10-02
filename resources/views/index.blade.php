@@ -189,9 +189,9 @@
                 <h2>Our Best Selling Products</h2>
 
                 <ul class="product-tabs nav justify-content-center" id="productTabs">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <button class="tab-btn nav-link active" data-filter="all">All</button>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item">
                         <button class="tab-btn nav-link" data-filter="dog-food">Dog Food</button>
                     </li>
@@ -210,7 +210,7 @@
                 </ul>
             </div>
             <div class="tab-content mt-4" id="myTabContent">
-                <!-- <div class="tab-pane fade show active" id="all">
+                <div class="tab-pane fade show active" id="all">
                     <div class="product-slider">
                         <div class="product-card">
                             <div class="product-card-col">
@@ -283,7 +283,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <!-- <div class="tab-pane fade" id="dog-food">
                     <div class="product-slider">
 
