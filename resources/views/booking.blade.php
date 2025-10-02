@@ -367,9 +367,7 @@
                     </ul>
                 </div>
 
-                <div class="facilities-features-btn">
-                    <a href="#" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
-                </div>
+                
 
             </div>
         </div>
