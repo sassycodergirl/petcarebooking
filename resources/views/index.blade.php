@@ -239,7 +239,7 @@
         </div>
     </section>
 
-    <section class="product-sec">
+    <section class="product-sec d-none">
         <div class="container">
             <div class="product-hd">
                 <h2>Top Categories</h2>
@@ -298,7 +298,7 @@
                             </div>
                         @endif
                     </div>
-                </div>
+                    </div>
                 <!-- <div class="tab-pane fade" id="dog-food">
                     <div class="product-slider">
 
@@ -516,6 +516,69 @@
                     </div>
                 </div> -->
             </div>
+            <div class="text-center btm-wrapp">
+                <a href="#" class="cmn-btn" data-content="View All Products"><span>View All Products</span></a>
+            </div>
+        </div>
+        <img src="{{ asset('images/prd-top-ov.png') }}" class="prd-top-ov" alt="">
+        <img src="{{ asset('images/prd-bot-ov.png') }}" class="prd-bottom-ov" alt="">
+        <img src="{{ asset('images/dog-stp-lf-img.png') }}" class="dog-stp-lf-img" alt="">
+        <img src="{{ asset('images/dog-stp-rgt-img.png') }}" class="dog-stp-rgt-img" alt="">
+    </section>
+
+
+     <section class="product-sec">
+        <div class="container">
+            <div class="product-hd">
+                <h2>Trending Festive Collection</h2>
+                <p>Hurry, before they're gone</p>
+            </div>
+
+
+            <div class="category-slider-section tab-content mt-4" id="myTabContent">
+                <div class="tab-pane fade show active" id="all">
+                  <div class="product-slider">
+                    {{-- Check if we found any products in that category --}}
+                    @if($traditionalProducts->isNotEmpty())
+                        {{-- Loop through the products instead of categories --}}
+                        @foreach($traditionalProducts as $product)
+                            <div class="product-card">
+                                <div class="product-card-col">
+                                    {{-- Link to the product's detail page --}}
+                                    <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
+                                        @if($product->image)
+                                            <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}">
+                                        @else
+                                            <img src="{{ asset('images/default-product.png') }}" alt="Default product image">
+                                        @endif
+                                    </a>
+
+                                    {{-- Product Name --}}
+                                    <h3><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+
+                                    {{-- Product Price with sale price logic --}}
+                                    <p>
+                                        @if($product->sale_price && $product->sale_price < $product->regular_price)
+                                            <del>₹{{ number_format($product->regular_price, 2) }}</del>
+                                            <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
+                                        @else
+                                            <strong>₹{{ number_format($product->price, 2) }}</strong>
+                                        @endif
+                                    </p>
+
+                                    {{-- Button to view the product --}}
+                                    <a href="{{ route('product.show', $product->slug) }}" class="add-to-bag cd-button">
+                                        <img src="{{ asset('images/bag-icon.svg') }}" alt=""> View Product
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="col-12 text-center">
+                            <p>No products found in this collection yet.</p>
+                        </div>
+                    @endif
+                </div>
             <div class="text-center btm-wrapp">
                 <a href="#" class="cmn-btn" data-content="View All Products"><span>View All Products</span></a>
             </div>

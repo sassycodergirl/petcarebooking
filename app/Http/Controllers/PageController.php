@@ -18,6 +18,25 @@ class PageController extends Controller
         $categories = Category::whereNull('parent_id')->get();
 
         // Return the index view and pass the categories to it
-        return view('index', compact('categories'));
+         // --- NEW LOGIC TO GET TRADITIONAL COLLECTION PRODUCTS ---
+
+        $traditionalProducts = new Collection(); // Initialize an empty collection
+
+        // 1. Find the specific category by its slug
+        $traditionalCategory = Category::where('slug', 'traditional-collection-for-dogs')->first();
+
+        // 2. If the category exists, get its products (e.g., the 8 most recent)
+        if ($traditionalCategory) {
+            $traditionalProducts = $traditionalCategory->products()->latest()->take(8)->get();
+        }
+
+        // --- END NEW LOGIC ---
+
+
+        // 3. Pass all variables to the view
+        return view('index', [
+            'categories' => $categories,
+            'traditionalProducts' => $traditionalProducts
+        ]);
     }
 }
