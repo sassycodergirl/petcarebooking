@@ -603,7 +603,7 @@
                                 @foreach($treatsProducts as $product)
                                     <div class="product-card">
                                         <div class="product-card-col featured-card p-0">
-                                            <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
+                                            <a href="{{ route('product.show', $product->slug) }}" class="product-card-img position-relative">
                                                 <div class="hw_sales_label">
                                                     <p class="sales_label_card" style="">Steal the Deal</p>
                                                 </div>
@@ -612,18 +612,20 @@
                                                 @else
                                                     <img src="{{ asset('images/default-product.png') }}" alt="Default product image">
                                                 @endif
+
+                                                {{-- ADD THIS BLOCK for Veg/Non-Veg Icon --}}
+                                                <div class="food-type-wrapper">
+                                                    @if($product->category->is_food)
+                                                        @if($product->attributes->contains('slug', 'veg'))
+                                                            <img src="{{ asset('images/veg.webp') }}" alt="Veg" title="Vegetarian" class="food-type-icon">
+                                                        @else
+                                                            <img src="{{ asset('images/non_veg.webp') }}" alt="Non-Veg" title="Non-Vegetarian" class="food-type-icon">
+                                                        @endif
+                                                    @endif
+                                                </div>
                                             </a>
                                             
-                                            {{-- ADD THIS BLOCK for Veg/Non-Veg Icon --}}
-                                            <div class="food-type-wrapper">
-                                                @if($product->category->is_food)
-                                                    @if($product->attributes->contains('slug', 'veg'))
-                                                        <img src="{{ asset('images/veg.webp') }}" alt="Veg" title="Vegetarian" class="food-type-icon">
-                                                    @else
-                                                        <img src="{{ asset('images/non_veg.webp') }}" alt="Non-Veg" title="Non-Vegetarian" class="food-type-icon">
-                                                    @endif
-                                                @endif
-                                            </div>
+                                            
 
                                             <h2 class="brand-name mt-2">Furry Friends & Co</h2>
                                             <h3><a class="feat-product-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
