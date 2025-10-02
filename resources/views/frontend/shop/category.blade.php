@@ -141,6 +141,8 @@
                                             <div class="out-of-stock-banner">Out of Stock</div>
                                         @endif
                                     </div>
+                                    
+                                               
                                     </a>
                                     @endif
                                     <div class="card-body text-center">
