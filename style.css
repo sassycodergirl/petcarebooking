@@ -7555,6 +7555,12 @@ font-weight: 600;
 	.feat-product-price {
 		font-size: 19px;
 	}
+	.feat-product-price span{
+		font-size: 15px;
+		width: 100%;
+		display: block;
+		color: #28ab70;
+	}
 	.view-btn{
 		   min-height: 38px;
     		min-width: 98px;
