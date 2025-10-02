@@ -546,6 +546,9 @@
                             <div class="product-card">
                                 <div class="product-card-col p-0">
                                     <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
+                                        <div class="hw_sales_label">
+                                           <p class="sales_label_card" style="">Steal the Deal</p>                  
+                                        </div>
                                         @if($product->image)
                                             <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}">
                                         @else

@@ -7444,7 +7444,6 @@ background-color: #ffe000;
     line-height: 20px;
     font-weight: 400;
     color: #fff;
-    
     text-transform: capitalize;
     text-align: center;
     display: inline-flex;
@@ -7454,6 +7453,9 @@ background-color: #ffe000;
     min-width: 98px;
     border-radius: 4px;
 }
+.view-btn:hover{
+	color: #fff;
+}
 .feat-product-price{
 font-family:var(--default-body-font);
 color: #424242;
@@ -7461,5 +7463,10 @@ font-size: 19px;
 font-style: normal;
 font-weight: 600;
 }
-
+.hw_sales_label .sales_label_card {
+    position: absolute;
+    background: rgba(16, 143, 85, 0.20);
+    color: #108F55;
+    padding: 6px 12px;
+}
 /*added by sudipa*/
