@@ -233,7 +233,7 @@
     </section>
 
 
-    <section class="bg-wrap">
+    <section class="bg-wrap ">
         <div class="container">
             <img class="img-fluid w-100" src="{{ asset('images/t-shirt-cat.webp') }}">
         </div>
@@ -527,7 +527,7 @@
     </section>
 
 
-     <section class="product-sec">
+     <section class="product-sec py-5">
         <div class="container">
             <div class="product-hd">
                 <h2>Trending Festive Collection</h2>
@@ -581,10 +581,7 @@
                 <a href="#" class="cmn-btn" data-content="View All Products"><span>View All Products</span></a>
             </div>
         </div>
-        <img src="{{ asset('images/prd-top-ov.png') }}" class="prd-top-ov" alt="">
-        <img src="{{ asset('images/prd-bot-ov.png') }}" class="prd-bottom-ov" alt="">
-        <img src="{{ asset('images/dog-stp-lf-img.png') }}" class="dog-stp-lf-img" alt="">
-        <img src="{{ asset('images/dog-stp-rgt-img.png') }}" class="dog-stp-rgt-img" alt="">
+       
     </section>
 
     <section class="counter-section">

@@ -1468,8 +1468,6 @@ textarea::placeholder {
 
 /* product */
 .product-sec {
-	padding: 125px 0 139px;
-	background-color: #FFF1D9;
 	position: relative;
 	z-index: 1;
 }
