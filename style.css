@@ -7421,13 +7421,41 @@ background-color: #ffe000;
 }
 .brand-name{
 	color: var(--bg-orange);
+	font-size: 20px;
+    font-weight: 600;
 }
 .feat-product-name{
-	font-size: 18px;
+	font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 .product-meta{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
+.view-btn{
+    background: #ff6d1f;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #fff;
+    
+    text-transform: capitalize;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    min-width: 98px;
+    border-radius: 4px;
+}
+.feat-product-price{
+font-family:var(--default-body-font);
+color: #424242;
+font-size: 19px;
+font-style: normal;
+font-weight: 600;
+}
+
 /*added by sudipa*/
