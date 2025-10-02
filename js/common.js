@@ -103,7 +103,7 @@ jQuery(document).ready(function ($) {
   $('.js-product-slider').slick({
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 2000,
     responsive: [
       {
