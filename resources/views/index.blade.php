@@ -184,9 +184,9 @@
         </div>
     </section>
 
-    <section class="top-categories pb-5">
+    <section class="top-categories py-5">
         <div class="container">
-            <div class="product-hd">
+            <div class="product-hd ">
                 <h2>Top Categories</h2>
                 <p>Everything your pet needs, in a few clicks!</p>
             </div>
