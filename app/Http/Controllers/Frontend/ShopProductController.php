@@ -26,6 +26,7 @@ class ShopProductController extends Controller
         $product = Product::with([
             'variants.color', 
             'category',
+            'attributes',
             // Sort the main product gallery by ID (oldest first)
             'gallery' => function ($query) {
                 $query->orderBy('id', 'desc');

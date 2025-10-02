@@ -605,7 +605,7 @@
                                         <div class="product-card-col featured-card p-0">
                                             <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
                                                 <div class="hw_sales_label">
-                                                <p class="sales_label_card" style="">Steal the Deal</p>                  
+                                                    <p class="sales_label_card" style="">Steal the Deal</p>
                                                 </div>
                                                 @if($product->image)
                                                     <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}">
@@ -613,6 +613,18 @@
                                                     <img src="{{ asset('images/default-product.png') }}" alt="Default product image">
                                                 @endif
                                             </a>
+                                            
+                                            {{-- ADD THIS BLOCK for Veg/Non-Veg Icon --}}
+                                            <div class="food-type-wrapper">
+                                                @if($product->category->is_food)
+                                                    @if($product->attributes->contains('slug', 'veg'))
+                                                        <img src="{{ asset('images/veg-icon.svg') }}" alt="Veg" title="Vegetarian" class="food-type-icon">
+                                                    @else
+                                                        <img src="{{ asset('images/non-veg-icon.svg') }}" alt="Non-Veg" title="Non-Vegetarian" class="food-type-icon">
+                                                    @endif
+                                                @endif
+                                            </div>
+
                                             <h2 class="brand-name mt-2">Furry Friends & Co</h2>
                                             <h3><a class="feat-product-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
                                             <hr>
@@ -625,7 +637,6 @@
                                                         <strong>₹{{ number_format($product->price, 2) }}</strong>
                                                     @endif
                                                 </div>
-
                                                 <a href="{{ route('product.show', $product->slug) }}" class="view-btn">
                                                     View
                                                 </a>
