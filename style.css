@@ -7533,6 +7533,9 @@ font-weight: 600;
     font-size: 0.9rem;
     line-height: 1.5;
 }
+.product-price{
+	font-size: 20px;
+}
 @media only screen and (min-width: 991px) {
     .featured-card img {
 		        height: 275px;
@@ -7548,6 +7551,11 @@ font-weight: 600;
 	.view-btn{
 		   min-height: 38px;
     		min-width: 98px;
+	}
+	.product-price{
+	font-size: 40px;
+    font-weight: bold;
+    color: #ff8f00;
 	}
 	
 }

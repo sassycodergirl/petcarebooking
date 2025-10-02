@@ -20,7 +20,7 @@
                        
 
                         @if($product->variants->count())
-                            <div class="product-variants mb-5">
+                            <div class="product-variants mb-3">
                                 @php
                                     $sizes = $product->variants->pluck('size')->filter()->unique();
                                     $colorVariants = $product->variants->map(fn($v) => $v->color)->filter()->unique('id');
