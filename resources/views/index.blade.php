@@ -192,7 +192,7 @@
                     <li class="nav-item">
                         <button class="tab-btn nav-link active" data-filter="all">All</button>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <button class="tab-btn nav-link" data-filter="dog-food">Dog Food</button>
                     </li>
                     <li class="nav-item">
@@ -206,7 +206,7 @@
                     </li>
                     <li class="nav-item">
                         <button class="tab-btn nav-link" data-filter="bone-broth">Bone Broth Dog</button>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="tab-content mt-4" id="myTabContent">
@@ -284,7 +284,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="dog-food">
+                <!-- <div class="tab-pane fade" id="dog-food">
                     <div class="product-slider">
 
                         <div class="product-card">
@@ -499,7 +499,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="text-center btm-wrapp">
                 <a href="#" class="cmn-btn" data-content="View All Products"><span>View All Products</span></a>
