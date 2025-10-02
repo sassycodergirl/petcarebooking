@@ -113,7 +113,7 @@ class ShopController extends Controller
 
     // Handle AJAX requests
     if ($request->ajax()) {
-        return view('frontend.shop.partials.product-grid', compact('products'))->render();
+        return view('frontend.shop.partials.products-grid', compact('products'))->render();
     }
 
     // Handle normal page loads
