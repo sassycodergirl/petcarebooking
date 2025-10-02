@@ -3217,7 +3217,7 @@ font-weight: 500;
 .pd-add-to-cart-wrap button {
 	border: none;
 	outline: none;
-	font-size: 18px;
+	font-size: 27px;
 	/* height: 30px; */
 	width: 35px;
 	color: var(--bg-text-color);
@@ -6204,7 +6204,7 @@ blockquote {
 
 	.pd-add-to-cart-wrap button {
 		width: 30%;
-		font-size: 14px;
+		font-size: 27px;
 	}
 
 	.pd-add-to-cart-wrap input {
