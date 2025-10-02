@@ -1618,12 +1618,12 @@ textarea::placeholder {
         transform: translateY(-5px);
         box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     }
-    .category-card-img img {
-        border-radius: 50%; /* Makes category images circular, which looks nice */
-        width: 180px;  /* Adjust as needed */
-        height: 180px; /* Adjust as needed */
+    /* .category-card-img img {
+        border-radius: 50%;
+        width: 180px; 
+        height: 180px; 
         object-fit: cover;
-    }
+    } */
 @media only screen and (min-width: 991px) {
 	.product-hd p{
 		font-size: 30px;

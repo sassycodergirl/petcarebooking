@@ -183,6 +183,28 @@
         </div>
     </section>
 
+    <section class="top-categories">
+        <div class="container">
+            <div class="product-hd">
+                <h2>Top Categories</h2>
+                <p>Everything your pet needs, in a few clicks!</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <a>
+                            <img class="img-fluid" src="{{ asset('images/traditional-collection.webp') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </section>
+
+
+
     <section class="product-sec">
         <div class="container">
             <div class="product-hd">
