@@ -185,8 +185,9 @@
 
     <section class="product-sec">
         <div class="container">
-            <div class="product-hd text-center">
-                <h2>Our Best Selling Products</h2>
+            <div class="product-hd">
+                <h2>Top Categories</h2>
+                <p>Everything your pet needs, in a few clicks!</p>
 
                 <ul class="product-tabs nav justify-content-center" id="productTabs">
                     <!-- <li class="nav-item">
