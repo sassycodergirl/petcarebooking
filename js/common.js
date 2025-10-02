@@ -185,7 +185,7 @@ $('.product-slider').slick({
   speed: 300,
   slidesToShow: 4,
   slidesToScroll: 1,
-  autoplay: true,
+  autoplay: false,
   autoplaySpeed: 2000,
   responsive: [
     {
