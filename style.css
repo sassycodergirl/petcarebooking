@@ -7429,6 +7429,9 @@ background-color: #ffe000;
     font-weight: 600;
     margin-bottom: 5px;
 }
+.feat-product-name:hover{
+	color: #000;
+}
 .product-meta{
 	display: flex;
 	justify-content: space-between;
