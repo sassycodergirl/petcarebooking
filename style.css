@@ -7511,6 +7511,28 @@ font-weight: 600;
 	border: 1px solid #80808042;
 
 	}
+
+
+	.usp-section {
+    border-top: 1px solid #e9ecef;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.usp-icon {
+    width: 60px;
+    height: 60px;
+    opacity: 0.8;
+}
+
+.usp-item h5 {
+    font-weight: 600;
+    color: #333;
+}
+
+.usp-item p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
 @media only screen and (min-width: 991px) {
     .featured-card img {
 		        height: 275px;

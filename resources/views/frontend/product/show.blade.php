@@ -14,9 +14,10 @@
 
                 <div class="col-12 col-md-6 mt-3 mt-md-0">
                     <div class="product-information content-sec p-3 p-md-5">
+                        <h2 class="brand-name">Furry Friends & Co</h2>
                         <h1 class="product-title">{{ $product->name }}</h1>
                         
-                        <p class="h4" id="product-price">₹{{ number_format($product->price) }}</p>
+                       
 
                         @if($product->variants->count())
                             <div class="product-variants mb-5">
@@ -54,6 +55,10 @@
                             </div>
                         @endif
 
+                         <p class="h4" id="product-price">₹{{ number_format($product->price) }}</p>
+
+                         <hr>
+
                         <div class="d-flex gap-3 align-items-center">
                             <div class="pd-add-to-cart-wrap product-page">
                                 <button class="qty-minus" data-id="{{ $product->id }}">-</button>
@@ -81,6 +86,49 @@
                             @endif
                         </div>
                     </div>
+
+
+                    <section class="usp-section container-fluid bg-light py-5">
+                        <div class="container">
+                            <div class="row text-center">
+
+                                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                                    <div class="usp-item">
+                                        <img src="{{ asset('images/icons/quality-badge.svg') }}" alt="100% Authentic" class="usp-icon">
+                                        <h5 class="mt-3">100% Authentic</h5>
+                                        <p class="text-muted">Guaranteed genuine and high-quality products for your pet.</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-md-3 mb-4 mb-md-0">
+                                    <div class="usp-item">
+                                        <img src="{{ asset('images/icons/pet-love.svg') }}" alt="Made with Love" class="usp-icon">
+                                        <h5 class="mt-3">For the Love of Pets</h5>
+                                        <p class="text-muted">Every item is chosen with the happiness of your furry friend in mind.</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-md-3">
+                                    <div class="usp-item">
+                                        <img src="{{ asset('images/icons/fast-shipping.svg') }}" alt="Fast Shipping" class="usp-icon">
+                                        <h5 class="mt-3">Fast Shipping</h5>
+                                        <p class="text-muted">Delivering joy to your doorstep across India, quickly and safely.</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-md-3">
+                                    <div class="usp-item">
+                                        <img src="{{ asset('images/icons/made-in-india.svg') }}" alt="Proudly Indian" class="usp-icon">
+                                        <h5 class="mt-3">Proudly Indian</h5>
+                                        <p class="text-muted">Supporting local craftsmanship and quality with every purchase.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+
+                    
                 </div>
             </div>
         </div>
