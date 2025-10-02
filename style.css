@@ -7465,7 +7465,7 @@ font-weight: 600;
 }
 .hw_sales_label .sales_label_card {
     position: absolute;
-   	background: rgba(16, 143, 85, 0.20);
+   	    background: rgb(11 255 144 / 64%);
     color: #108F55;
     padding: 3px 12px;
     margin-bottom: 0;

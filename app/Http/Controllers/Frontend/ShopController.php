@@ -42,8 +42,11 @@ class ShopController extends Controller
         // to each product object without extra database queries.
         $query->withCount('variants')
               ->withMin('variants', 'price')
-              ->withMax('variants', 'price')
-              ->latest(); // Apply ordering at the end
+              ->withMax('variants', 'price');
+            //   ->latest(); // Apply ordering at the end
+
+        $query->with('attributes'); 
+        $query->latest();
 
         // AJAX filter request
         if ($request->ajax()) {
