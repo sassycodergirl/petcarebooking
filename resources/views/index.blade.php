@@ -560,14 +560,27 @@
                                     <hr>
                                     <div class="product-meta">
                                         <div class="feat-product-price">
-                                            @if($product->sale_price && $product->sale_price < $product->regular_price)
-                                                <del>₹{{ number_format($product->regular_price, 2) }}</del>
-                                                <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
+                                            
+                                            {{-- Check if the product has variants --}}
+                                            @if($product->variants_count > 0 && $product->variants_min_price !== null)
+
+                                                {{-- If YES, show "Starting from" the lowest variant price --}}
+                                                <strong>Starting from ₹{{ number_format($product->variants_min_price, 2) }}</strong>
+
                                             @else
-                                                <strong>₹{{ number_format($product->price, 2) }}</strong>
+
+                                                {{-- If NO, show the standard price (with a sale price if applicable) --}}
+                                                @if($product->sale_price && $product->sale_price < $product->regular_price)
+                                                    <del>₹{{ number_format($product->regular_price, 2) }}</del>
+                                                    <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
+                                                @else
+                                                    <strong>₹{{ number_format($product->price, 2) }}</strong>
+                                                @endif
                                             @endif
+                                            
                                         </div>
 
+                                        {{-- The "View" button works perfectly for both cases --}}
                                         <a href="{{ route('product.show', $product->slug) }}" class="view-btn">
                                             View
                                         </a>
@@ -638,13 +651,27 @@
                                             <hr>
                                             <div class="product-meta">
                                                 <div class="feat-product-price">
-                                                    @if($product->sale_price && $product->sale_price < $product->regular_price)
-                                                        <del>₹{{ number_format($product->regular_price, 2) }}</del>
-                                                        <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
+                                                    
+                                                    {{-- Check if the product has variants --}}
+                                                    @if($product->variants_count > 0 && $product->variants_min_price !== null)
+
+                                                        {{-- If YES, show "Starting from" the lowest variant price --}}
+                                                        <strong>Starting from ₹{{ number_format($product->variants_min_price, 2) }}</strong>
+
                                                     @else
-                                                        <strong>₹{{ number_format($product->price, 2) }}</strong>
+
+                                                        {{-- If NO, show the standard price (with a sale price if applicable) --}}
+                                                        @if($product->sale_price && $product->sale_price < $product->regular_price)
+                                                            <del>₹{{ number_format($product->regular_price, 2) }}</del>
+                                                            <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
+                                                        @else
+                                                            <strong>₹{{ number_format($product->price, 2) }}</strong>
+                                                        @endif
                                                     @endif
+                                                    
                                                 </div>
+
+                                                {{-- The "View" button works perfectly for both cases --}}
                                                 <a href="{{ route('product.show', $product->slug) }}" class="view-btn">
                                                     View
                                                 </a>
@@ -737,14 +764,27 @@
                                     <hr>
                                     <div class="product-meta">
                                         <div class="feat-product-price">
-                                            @if($product->sale_price && $product->sale_price < $product->regular_price)
-                                                <del>₹{{ number_format($product->regular_price, 2) }}</del>
-                                                <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
+                                            
+                                            {{-- Check if the product has variants --}}
+                                            @if($product->variants_count > 0 && $product->variants_min_price !== null)
+
+                                                {{-- If YES, show "Starting from" the lowest variant price --}}
+                                                <strong>Starting from ₹{{ number_format($product->variants_min_price, 2) }}</strong>
+
                                             @else
-                                                <strong>₹{{ number_format($product->price, 2) }}</strong>
+
+                                                {{-- If NO, show the standard price (with a sale price if applicable) --}}
+                                                @if($product->sale_price && $product->sale_price < $product->regular_price)
+                                                    <del>₹{{ number_format($product->regular_price, 2) }}</del>
+                                                    <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
+                                                @else
+                                                    <strong>₹{{ number_format($product->price, 2) }}</strong>
+                                                @endif
                                             @endif
+                                            
                                         </div>
 
+                                        {{-- The "View" button works perfectly for both cases --}}
                                         <a href="{{ route('product.show', $product->slug) }}" class="view-btn">
                                             View
                                         </a>
