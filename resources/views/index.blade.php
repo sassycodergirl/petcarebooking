@@ -235,7 +235,7 @@
     </section>
 
 
-    <section class="bg-wrap ">
+    <section class="bg-wrap mt-0 mt-md-3">
         <div class="container">
             <a href="{{ route('shop.category', 'western-collection') }}">
                 <img class="img-fluid w-100" src="{{ asset('images/t-shirt-cat.webp') }}">
