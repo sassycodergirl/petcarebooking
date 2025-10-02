@@ -7465,10 +7465,11 @@ font-weight: 600;
 }
 .hw_sales_label .sales_label_card {
     position: absolute;
-    background: rgba(16, 143, 85, 0.20);
-    color: #108F55;
-    padding: 6px 12px;
-	top: 0;
+    background: rgb(8 239 134 / 37%);
+    color: #486055;
+    padding: 3px 12px;
+    margin-bottom: 0;
+    bottom: 0;
 }
 .featured-card img{
 	margin-top: 40px;
