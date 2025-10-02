@@ -142,7 +142,7 @@
                                                             From ₹{{ number_format($product->variants_min_price) }}
                                                         @else
                                                             {{-- Product has no variants, show base price --}}
-                                                            ₹{{ number_format($product->price) }}
+                                                            From ₹{{ number_format($product->price) }}
                                                         @endif
                                                     </p>
                                                     <div>
