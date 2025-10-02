@@ -598,7 +598,7 @@
                 <div class="col-md-7">
                      <div class="category-slider-section tab-content mt-4" id="myTabContent">
                         <div class="tab-pane fade show active" id="all">
-                            <div class="product-slider">
+                            <div class="treats-slider">
                             @if(isset($treatsProducts) && $treatsProducts->isNotEmpty())
                                 @foreach($treatsProducts as $product)
                                     <div class="product-card">
