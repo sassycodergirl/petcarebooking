@@ -795,6 +795,52 @@
     </section>
 
 
+     <section class="trial-sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="trial-img">
+                        <div class="trial-img-main">
+                            <img src="{{ asset('images/hot-selling-trans.webp') }}" alt="">
+                        </div>
+                        <div class="trial-img-overlay"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="trial-col-left">
+                        <span class="why-subtitle">Why Choose Us?</span>
+                        <h2>Trial Pack</h2>
+                        <p>Try each of our meat-based meal to find out which ones your dog likes the best!</p>
+                        <div class="prd-list">
+                            <ul>
+                                <li>1 Wholesome Chicken Chow 250g</li>
+                                <li>1 Grain-Free Chicken Chow 200g</li>
+                                <li>1 Wholesome Mutton Nom Nom 250g</li>
+                                <li>1 Wholesome Mutton Nom Nom 250g</li>
+                                <li>1 Wholesome Mutton Nom Nom 250g</li>
+                            </ul>
+                        </div>
+                        <div class="trial-pack-btm">
+                            <div class="trial-pack-pricing">
+                                <span><s>₹750</s></span>
+                                <span>₹420</span>
+                            </div>
+                            <div class="trial-pack-button">
+                                <a href="#" class="add-to-bag-sm"><span><img src="{{ asset('images/bag-icon.svg') }}" alt=""></span>
+                                    Add to Bag</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="{{ asset('images/prd-top-ov.png') }}" class="prd-top-ov" alt="">
+        <img src="{{ asset('images/prd-bot-ov.png') }}" class="prd-bottom-ov" alt="">
+        <img src="{{ asset('images/pd-lft-img.png') }}" class="pd-lft-img" alt="">
+        <img src="{{ asset('images/pd-rgt-img.png') }}" class="pd-rgt-img" alt="">
+    </section>
+
+
     <section class="community-section">
         <div class="container">
             <div class="cmn-heading text-center">
@@ -1034,135 +1080,9 @@
     </section>
 
 
-    <section class="trial-sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="trial-img">
-                        <div class="trial-img-main">
-                            <img src="{{ asset('images/trial-img.png') }}" alt="">
-                        </div>
-                        <div class="trial-img-overlay"></div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="trial-col-left">
-                        <span class="why-subtitle">Why Choose Us?</span>
-                        <h2>Trial Pack</h2>
-                        <p>Try each of our meat-based meal to find out which ones your dog likes the best!</p>
-                        <div class="prd-list">
-                            <ul>
-                                <li>1 Wholesome Chicken Chow 250g</li>
-                                <li>1 Grain-Free Chicken Chow 200g</li>
-                                <li>1 Wholesome Mutton Nom Nom 250g</li>
-                                <li>1 Wholesome Mutton Nom Nom 250g</li>
-                                <li>1 Wholesome Mutton Nom Nom 250g</li>
-                            </ul>
-                        </div>
-                        <div class="trial-pack-btm">
-                            <div class="trial-pack-pricing">
-                                <span><s>₹750</s></span>
-                                <span>₹420</span>
-                            </div>
-                            <div class="trial-pack-button">
-                                <a href="#" class="add-to-bag-sm"><span><img src="{{ asset('images/bag-icon.svg') }}" alt=""></span>
-                                    Add to Bag</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <img src="{{ asset('images/prd-top-ov.png') }}" class="prd-top-ov" alt="">
-        <img src="{{ asset('images/prd-bot-ov.png') }}" class="prd-bottom-ov" alt="">
-        <img src="{{ asset('images/pd-lft-img.png') }}" class="pd-lft-img" alt="">
-        <img src="{{ asset('images/pd-rgt-img.png') }}" class="pd-rgt-img" alt="">
-    </section>
+   
 
-    <section class="new-product product-sec">
-        <div class="container">
-            <div class="product-hd text-center">
-                <h2>New Arrival Products</h2>
-            </div>
-            <div class="js-product-slider">
-                <div class="product-card">
-                    <div class="product-card-col">
-                        <a href="#" class="product-card-img">
-                            <img src="{{ asset('images/pd1.png') }}" alt="">
-                        </a>
-                        <h3><a href="#">Grain-Free Chicken</a></h3>
-                        <p><del>₹180</del> ₹120</p>
-                        <button class="add-to-bag"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-card-col">
-                        <a href="#" class="product-card-img">
-                            <img src="{{ asset('images/pd2.png') }}" alt="">
-                        </a>
-                        <h3><a href="#">Chicken Gravy</a></h3>
-                        <p><del>₹180</del> ₹120</p>
-                        <button class="add-to-bag"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-card-col">
-                        <a href="#" class="product-card-img">
-                            <img src="{{ asset('images/pd3.png') }}" alt="">
-                        </a>
-                        <h3><a href="#">Dry Food For Adult Cat</a></h3>
-                        <p><del>₹180</del> ₹120</p>
-                        <button class="add-to-bag"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-card-col">
-                        <a href="#" class="product-card-img">
-                            <img src="{{ asset('images/pd4.png') }}" alt="">
-                        </a>
-                        <h3><a href="#">Spikey Sprinter Chew</a></h3>
-                        <p><del>₹180</del> ₹120</p>
-                        <button class="add-to-bag"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-card-col">
-                        <div class="product-card-img">
-                            <img src="{{ asset('images/pd3.png') }}" alt="">
-                        </div>
-                        <h3><a href="#">Grain-Free Chicken</a></h3>
-                        <p><del>₹180</del> ₹120</p>
-                        <button class="add-to-bag"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-card-col">
-                        <a href="#" class="product-card-img">
-                            <img src="{{ asset('images/pd2.png') }}" alt="">
-                        </a>
-                        <h3><a href="#">Chicken Gravy</a></h3>
-                        <p><del>₹180</del> ₹120</p>
-                        <button class="add-to-bag"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-card-col">
-                        <div class="product-card-img">
-                            <img src="{{ asset('images/pd3.png') }}" alt="">
-                        </div>
-                        <h3><a href="#">Grain-Free Chicken</a></h3>
-                        <p><del>₹180</del> ₹120</p>
-                        <button class="add-to-bag"><img src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Bag</button>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center btm-wrapp">
-                <a href="#" class="cmn-btn" data-content="View All Products"><span>View All Products</span></a>
-            </div>
-        </div>
-        <img src="{{ asset('images/prd-top-ov.png') }}" class="prd-top-ov" alt="">
-        <img src="{{ asset('images/new-pd-left-img.png') }}" class="new-pd-left-img" alt="">
-    </section>
+    
 
     <section class="blog-sec">
         <div class="container">
