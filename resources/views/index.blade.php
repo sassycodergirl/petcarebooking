@@ -618,9 +618,9 @@
                                             <div class="food-type-wrapper">
                                                 @if($product->category->is_food)
                                                     @if($product->attributes->contains('slug', 'veg'))
-                                                        <img src="{{ asset('images/veg-icon.svg') }}" alt="Veg" title="Vegetarian" class="food-type-icon">
+                                                        <img src="{{ asset('images/veg.webp') }}" alt="Veg" title="Vegetarian" class="food-type-icon">
                                                     @else
-                                                        <img src="{{ asset('images/non-veg-icon.svg') }}" alt="Non-Veg" title="Non-Vegetarian" class="food-type-icon">
+                                                        <img src="{{ asset('images/non-veg.webp') }}" alt="Non-Veg" title="Non-Vegetarian" class="food-type-icon">
                                                     @endif
                                                 @endif
                                             </div>
