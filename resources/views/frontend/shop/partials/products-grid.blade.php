@@ -41,7 +41,7 @@
             <div class="col-6 col-md-3 mb-4 new-product pb-0">
                 <div class="product-card-col p-0 shadow-sm h-100">
                     <a href="{{ route('product.show', $product->slug) }}" class="product-card-img p-0 position-relative">
-                        <div class="product-img h-100">
+                        <div class="product-img">
                             <img src="{{ asset('public/' . $product->image) }}" class="img-fluid h-100" alt="{{ $product->name }}">
                         </div>
                         
