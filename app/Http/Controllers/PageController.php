@@ -18,15 +18,19 @@ class PageController extends Controller
             'categories' => Category::whereNull('parent_id')->get()
         ];
 
-        // 1. Find the specific category by its slug
-        $category = Category::where('slug', 'traditional-collection-for-dogs')->first();
-
-        // 2. If the category was found, get its products and add to our data
-        if ($category) {
-            $viewData['categoryProducts'] = $category->products()->latest()->take(8)->get();
+        // --- Get Products for the FIRST Slider (Traditional Collection) ---
+        $traditionalCategory = Category::where('slug', 'traditional-collection-for-dogs')->first();
+        if ($traditionalCategory) {
+            $viewData['traditionalProducts'] = $traditionalCategory->products()->latest()->take(8)->get();
         }
 
-        // 3. Pass all data to the view
+        // --- Get Products for the SECOND Slider (Treats) ---
+        $treatsCategory = Category::where('slug', 'treats')->first(); // Assuming 'treats' is the slug
+        if ($treatsCategory) {
+            $viewData['treatsProducts'] = $treatsCategory->products()->latest()->take(8)->get();
+        }
+
+        // --- Pass all data to the view ---
         return view('index', $viewData);
     }
 }

@@ -539,10 +539,8 @@
             <div class="category-slider-section tab-content mt-4" id="myTabContent">
                 <div class="tab-pane fade show active" id="all">
                     <div class="product-slider">
-                    {{-- First, check if the $categoryProducts variable exists and is not empty --}}
-                    @if(isset($categoryProducts) && $categoryProducts->isNotEmpty())
-
-                        @foreach($categoryProducts as $product)
+                   @if(isset($traditionalProducts) && $traditionalProducts->isNotEmpty())
+                        @foreach($traditionalProducts as $product)
                             <div class="product-card">
                                 <div class="product-card-col featured-card p-0">
                                     <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
@@ -586,6 +584,66 @@
            
        
        
+    </section>
+
+
+    <section class="dog-treats">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="img-div">
+                        <img class="img-fluid" src="{{ asset('public/' . $product->image) }}">
+                    </div>
+                </div>
+                <div class="col-md-9">
+                     <div class="category-slider-section tab-content mt-4" id="myTabContent">
+                        <div class="tab-pane fade show active" id="all">
+                            <div class="product-slider">
+                            @if(isset($treatsProducts) && $treatsProducts->isNotEmpty())
+                                @foreach($treatsProducts as $product)
+                                    <div class="product-card">
+                                        <div class="product-card-col featured-card p-0">
+                                            <a href="{{ route('product.show', $product->slug) }}" class="product-card-img">
+                                                <div class="hw_sales_label">
+                                                <p class="sales_label_card" style="">Trending</p>                  
+                                                </div>
+                                                @if($product->image)
+                                                    <img src="{{ asset('public/' . $product->image) }}" alt="{{ $product->name }}">
+                                                @else
+                                                    <img src="{{ asset('images/default-product.png') }}" alt="Default product image">
+                                                @endif
+                                            </a>
+                                            <h2 class="brand-name mt-2">Furry Friends & Co</h2>
+                                            <h3><a class="feat-product-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+                                            <hr>
+                                            <div class="product-meta">
+                                                <div class="feat-product-price">
+                                                    @if($product->sale_price && $product->sale_price < $product->regular_price)
+                                                        <del>₹{{ number_format($product->regular_price, 2) }}</del>
+                                                        <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
+                                                    @else
+                                                        <strong>₹{{ number_format($product->price, 2) }}</strong>
+                                                    @endif
+                                                </div>
+
+                                                <a href="{{ route('product.show', $product->slug) }}" class="view-btn">
+                                                    View
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                            @else
+                                {{-- This message will show if the category is not found or has no products --}}
+                                <div class="col-12 text-center">
+                                    <p>No products found in this collection yet.</p>
+                                </div>
+                            @endif
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="counter-section">
