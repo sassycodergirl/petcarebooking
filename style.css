@@ -2179,7 +2179,7 @@ textarea::placeholder {
 .prd-list ul li {
 	position: relative;
 	font-weight: 600;
-	font-size: 22px;
+	font-size:18px;
 	font-family: var(--default-body-font);
 	margin-bottom: 16px;
 	color: var(--bg-text-color);
