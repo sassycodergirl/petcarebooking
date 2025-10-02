@@ -254,7 +254,7 @@ window.addEventListener("load", function () {
                           </ul>
                     </div>
                     <div class="hdr-rgt-button">
-                        <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Day Care"><span>Book a Slot</span></a>
+                        <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book a Slot"><span>Book a Slot</span></a>
                     </div>
                 </div>
             </nav>
