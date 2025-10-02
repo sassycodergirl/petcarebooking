@@ -7421,12 +7421,13 @@ background-color: #ffe000;
 }
 .brand-name{
 	color: var(--bg-orange);
-	font-size: 20px;
+	font-size: 14px;
     font-weight: 600;
 	margin-bottom: 5px;
+
 }
 .feat-product-name{
-	font-size: 20px;
+	font-size: 14px;
     font-weight: 400;
     margin-bottom: 5px;
 }
@@ -7449,8 +7450,8 @@ background-color: #ffe000;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 38px;
-    min-width: 98px;
+    min-height: 35px;
+    min-width: 62px;
     border-radius: 4px;
 }
 .view-btn:hover{
@@ -7459,7 +7460,7 @@ background-color: #ffe000;
 .feat-product-price{
 font-family:var(--default-body-font);
 color: #424242;
-font-size: 19px;
+font-size: 16px;
 font-style: normal;
 font-weight: 600;
 }
@@ -7471,6 +7472,7 @@ font-weight: 600;
     margin-bottom: 0;
     top: 0;
 	border-radius: 12px 0 0;
+	    font-size: 12px;
 }
 
 .featured-card {
@@ -7491,9 +7493,27 @@ font-weight: 600;
     border-radius:0 !important;
     /* padding: 2px; */
 }
+/* @media only screen and (max-width: 767px) {
+.slick-arrow {
+dos
+}
+} */
 @media only screen and (min-width: 991px) {
     .featured-card img {
 		        height: 275px;
 	}
+
+	.brand-name,.feat-product-name {
+		font-size: 20px;
+	}
+
+	.feat-product-price {
+		font-size: 19px;
+	}
+	.view-btn{
+		   min-height: 38px;
+    		min-width: 98px;
+	}
+	
 }
 /*added by sudipa*/
