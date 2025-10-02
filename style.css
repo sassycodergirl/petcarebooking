@@ -7418,5 +7418,7 @@ background-color: #ffe000;
     background: #bfbfbf;
     transform: rotate(330deg);
 }
-
+.bg-wrap img{
+	border-radius: 15px;
+}
 /*added by sudipa*/

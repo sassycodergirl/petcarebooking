@@ -233,7 +233,7 @@
     </section>
 
 
-    <section>
+    <section class="bg-wrap">
         <div class="container">
             <img class="img-fluid w-100" src="{{ asset('images/t-shirt-cat.webp') }}">
         </div>
