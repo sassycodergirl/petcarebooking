@@ -110,7 +110,7 @@ class ShopController extends Controller
 
     // Use pagination for performance
     // $products = $query->paginate(16);
-    $products = $query;
+    $products = $query->get();
 
     // Handle AJAX requests
     if ($request->ajax()) {
