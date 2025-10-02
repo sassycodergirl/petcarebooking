@@ -183,7 +183,7 @@ $('.product-slider').slick({
   dots: false,
   arrows: true,
   speed: 300,
-  slidesToShow: 4,
+  slidesToShow: 5,
   slidesToScroll: 1,
   autoplay: false,
   autoplaySpeed: 2000,
