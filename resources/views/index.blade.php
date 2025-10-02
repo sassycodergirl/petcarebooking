@@ -808,16 +808,16 @@
                 </div>
                 <div class="col-md-6">
                     <div class="trial-col-left">
-                        <span class="why-subtitle">Why Choose Us?</span>
-                        <h2>Trial Pack</h2>
-                        <p>Try each of our meat-based meal to find out which ones your dog likes the best!</p>
+                        <span class="why-subtitle">Perfect for training, rewarding, or just because!</span>
+                        <h2>APPLE & OATS TREATS</h2>
+                        <p>Wholesome Crunch, Fruity Goodness</p>
                         <div class="prd-list">
                             <ul>
-                                <li>1 Wholesome Chicken Chow 250g</li>
-                                <li>1 Grain-Free Chicken Chow 200g</li>
-                                <li>1 Wholesome Mutton Nom Nom 250g</li>
-                                <li>1 Wholesome Mutton Nom Nom 250g</li>
-                                <li>1 Wholesome Mutton Nom Nom 250g</li>
+                                <li>Supports Digestion – High in fiber to promote a healthy tummy.</li>
+                                <li>Natural Sweetness – Apples add vitamins and antioxidants without added sugar.</li>
+                                <li>Energy Boost – Oats provide slow-releasing energy to keep pups active.</li>
+                                <li>Heart-Healthy – Nutrients that support overall wellness and vitality.</li>
+                                <li>Guilt-Free Snacking – Wholesome, nutritious, and tasty in every bite.</li>
                             </ul>
                         </div>
                         <div class="trial-pack-btm">
