@@ -214,7 +214,9 @@
                 <div class="col-6 col-md-6 mt-2 mt-md-4">
                     <div>
                         <a>
-                            <img class="img-fluid" src="{{ asset('images/bandana-cat.webp') }}" alt="">
+                            <img class="img-fluid d-none d-md-block d-lg-block" src="{{ asset('images/bandana-cat.webp') }}" alt="">
+                            <img class="img-fluid d-block d-md-none d-lg-none" src="{{ asset('images/bandana-mob.webp') }}" alt="">
+                            
                         </a>
                     </div>
                 </div>
