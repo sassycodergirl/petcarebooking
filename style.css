@@ -1195,7 +1195,7 @@ textarea::placeholder {
 }
 
 .locate-sec {
-	padding: 0 0 80px;
+	
 	position: relative;
 	z-index: 2;
 }
