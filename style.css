@@ -7419,4 +7419,15 @@ background-color: #ffe000;
 .bg-wrap img{
 	border-radius: 15px;
 }
+.brand-name{
+	color: var(--bg-orange);
+}
+.feat-product-name{
+	font-size: 18px;
+}
+.product-meta{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
 /*added by sudipa*/

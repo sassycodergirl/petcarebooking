@@ -551,21 +551,22 @@
                                             <img src="{{ asset('images/default-product.png') }}" alt="Default product image">
                                         @endif
                                     </a>
+                                    <h2 class="brand-name">Furry Friends & Co</h2>
+                                    <h3><a class="feat-product-name" href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
+                                    <div class="product-meta">
+                                        <div class="feat-product-price">
+                                            @if($product->sale_price && $product->sale_price < $product->regular_price)
+                                                <del>₹{{ number_format($product->regular_price, 2) }}</del>
+                                                <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
+                                            @else
+                                                <strong>₹{{ number_format($product->price, 2) }}</strong>
+                                            @endif
+                                        </div>
 
-                                    <h3><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
-
-                                    <p>
-                                        @if($product->sale_price && $product->sale_price < $product->regular_price)
-                                            <del>₹{{ number_format($product->regular_price, 2) }}</del>
-                                            <strong>₹{{ number_format($product->sale_price, 2) }}</strong>
-                                        @else
-                                            <strong>₹{{ number_format($product->price, 2) }}</strong>
-                                        @endif
-                                    </p>
-
-                                    <a href="{{ route('product.show', $product->slug) }}" class="add-to-bag cd-button">
-                                        <img src="{{ asset('images/bag-icon.svg') }}" alt=""> View Product
-                                    </a>
+                                        <a href="{{ route('product.show', $product->slug) }}" class="view-btn">
+                                            View
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
