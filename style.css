@@ -4883,7 +4883,11 @@ blockquote {
 		left: 8px;
 		width: 1px;
 	}
-
+.trial-pack-pricing{
+	    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 	.trial-pack-pricing span {
 		font-size: 26px;
 	}

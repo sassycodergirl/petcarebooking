@@ -833,7 +833,7 @@
                         </div>
                         <div class="trial-pack-btm">
                             <div class="trial-pack-pricing">
-                                <span>Starting from</span>
+                                <label>Starting from</label>
                                 <span>₹80</span>
                             </div>
                             <div class="trial-pack-button">
