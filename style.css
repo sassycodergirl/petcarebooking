@@ -1526,6 +1526,10 @@ textarea::placeholder {
 	margin-bottom: 50px;
 }
 
+.product-hd p{
+	font-size: 20px;
+}
+
 .product-card-col {
 	background-color: var(--bg-white);
 	/* border-radius: 12px; */
@@ -1601,6 +1605,10 @@ textarea::placeholder {
 	    padding: 13px;
 }
 @media only screen and (min-width: 991px) {
+	.product-hd p{
+		font-size: 30px;
+	}
+
 	.explore-btn{
 		font-size: 15px;
 		
