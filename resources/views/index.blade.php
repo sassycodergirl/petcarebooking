@@ -765,35 +765,6 @@
        
     </section>
 
-    <section class="why-choose-section">
-        <div class="container">
-            <div class="why-choose-wrapper">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="why-choose-content">
-                            <span class="why-subtitle">Why Choose Us?</span>
-                            <h2>Trusted by Parents,<br> Loved by Pets</h2>
-                            <p>At Furry Friends, we combine professional expertise with genuine love for animals. Pet
-                                parents trust us because we go the extra mile to ensure their companions feel safe,
-                                happy, and cared for. And pets? They love coming back—tails wagging, hearts full.</p>
-                            <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
-                           
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="why-choose-image-wrap">
-                            <div class="why-choose-image">
-                                <img src="{{ asset('images/dog-cat.png') }}" alt="Dog and Cat">
-                            </div>
-                            <img src="{{ asset('images/dog-cat-ov.png') }}" class="dog-cat-ov" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <img src="{{ asset('images/dog-lft-ovr.png') }}" class="dog-lft-ovr" alt="">
-    </section>
-
 
      <section class="trial-sec">
         <div class="container">
@@ -839,6 +810,38 @@
         <img src="{{ asset('images/pd-lft-img.png') }}" class="pd-lft-img" alt="">
         <img src="{{ asset('images/pd-rgt-img.png') }}" class="pd-rgt-img" alt="">
     </section>
+
+    <section class="why-choose-section">
+        <div class="container">
+            <div class="why-choose-wrapper">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="why-choose-content">
+                            <span class="why-subtitle">Why Choose Us?</span>
+                            <h2>Trusted by Parents,<br> Loved by Pets</h2>
+                            <p>At Furry Friends, we combine professional expertise with genuine love for animals. Pet
+                                parents trust us because we go the extra mile to ensure their companions feel safe,
+                                happy, and cared for. And pets? They love coming back—tails wagging, hearts full.</p>
+                            <a href="{{ route('shop.index') }}" class="cmn-btn" data-content="Book Day Care"><span>Book Day Care</span></a>
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="why-choose-image-wrap">
+                            <div class="why-choose-image">
+                                <img src="{{ asset('images/dog-cat.png') }}" alt="Dog and Cat">
+                            </div>
+                            <img src="{{ asset('images/dog-cat-ov.png') }}" class="dog-cat-ov" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="{{ asset('images/dog-lft-ovr.png') }}" class="dog-lft-ovr" alt="">
+    </section>
+
+
+    
 
 
     <section class="community-section">
