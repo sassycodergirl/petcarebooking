@@ -125,91 +125,10 @@
         <!-- Products list -->
         <div class="col-9 col-md-9">
            
-
             <div id="productsGrid">
-                @if($products->count())
-                    <div class="row">
-                        @foreach($products as $product)
-                            <div class="col-6 col-md-3 mb-4 new-product pb-0">
-                                <div class="product-card-col p-0 shadow-sm">
-                                    @if($product->image)
-                                    <a href="{{ route('product.show', $product->slug) }}" class="product-card-img p-0 position-relative">
-                                    <div class="product-img h-100">
-
-                                        <img src="{{$product->image }}" class="img-fluid h-100" alt="{{ $product->name }}">
-                                        @if($product->stock_quantity <= 0 || !$product->status)
-                                            <div class="out-of-stock-banner">Out of Stock</div>
-                                        @endif
-                                    </div>
-                                          {{-- ADD THIS BLOCK for Veg/Non-Veg Icon --}}
-                                                <div class="food-type-wrapper">
-                                                    @if($product->category->is_food)
-                                                        @if($product->attributes->contains('slug', 'veg'))
-                                                            <img src="{{ asset('images/veg.webp') }}" alt="Veg" title="Vegetarian" class="food-type-icon">
-                                                        @else
-                                                            <img src="{{ asset('images/non_veg.webp') }}" alt="Non-Veg" title="Non-Vegetarian" class="food-type-icon">
-                                                        @endif
-                                                    @endif
-                                                </div>
-                                               
-                                    </a>
-                                    @endif
-                                    <div class="card-body text-center">
-                                        <h2 class="brand-name mt-2">Furry Friends & Co</h2>
-                                        <h3><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h3>
-                                        <div class="">
-                                            <!-- <p class="card-text">₹{{ $product->price }}</p> -->
-                                            <p class="card-text">
-                                                @if ($product->variants_count > 0 && $product->variants_min_price !== null)
-                                                    {{-- Product has variants, show the lowest price --}}
-                                                    From ₹{{ number_format($product->variants_min_price) }}
-                                                @else
-                                                    {{-- Product has no variants, show base price --}}
-                                                    ₹{{ number_format($product->price) }}
-                                                @endif
-                                            </p>
-
-                                                <!-- @if($product->has_variants)
-                                                    <a href="{{ route('product.show', $product->slug) }}" class="choose-option">
-                                                        Choose Option
-                                                    </a>
-                                                @else
-                                                    <button class="add-to-bag cd-button"
-                                                            data-id="{{ $product->id }}"
-                                                            data-name="{{ $product->name }}"
-                                                            data-price="{{ $product->price }}"
-                                                            data-image="{{ asset('public/' . $product->image) }}">
-                                                        <img class="d-none d-md-block" src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart
-                                                    </button>
-                                                @endif -->
-                                                   @if($product->stock_quantity <= 0 || !$product->status)
-                                                        <button class="btn btn-secondary" disabled>Out of Stock</button>
-                                                    @elseif($product->has_variants)
-                                                        <a href="{{ route('product.show', $product->slug) }}" class="choose-option">
-                                                            Choose Option
-                                                        </a>
-                                                    @else
-                                                        <button class="add-to-bag cd-button"
-                                                                data-id="{{ $product->id }}"
-                                                                data-name="{{ $product->name }}"
-                                                                data-price="{{ $product->price }}"
-                                                                data-image="{{ asset('public/' . $product->image) }}">
-                                                            <img class="d-none d-md-block" src="{{ asset('images/bag-icon.svg') }}" alt=""> Add to Cart
-                                                        </button>
-                                                    @endif
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                 
-                @else
-                    <p>No products available in this category.</p>
-                @endif
+                @include('frontend.shop.partials.product-grid', ['products' => $products])
             </div>
+           
         </div>
     </div>
 </div>
