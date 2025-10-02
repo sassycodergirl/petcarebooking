@@ -7493,13 +7493,11 @@ font-weight: 600;
     border-radius:0 !important;
     /* padding: 2px; */
 }
-/* @media only screen and (max-width: 767px) {
-.slick-arrow {
-dos
-}
-} */
+
  .featured-card img {
-		        height: 220px;
+	height: 220px;
+	border: 1px solid #80808042;
+
 	}
 @media only screen and (min-width: 991px) {
     .featured-card img {
