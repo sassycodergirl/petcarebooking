@@ -85,10 +85,8 @@
                                 </button>
                             @endif
                         </div>
-                    </div>
 
-
-                    <section class="usp-section container-fluid bg-light py-5">
+                        <section class="usp-section container-fluid bg-light py-5">
                         <div class="container">
                             <div class="row text-center">
 
@@ -121,6 +119,10 @@
                             </div>
                         </div>
                     </section>
+                    </div>
+
+
+                    
 
 
                 </div>
