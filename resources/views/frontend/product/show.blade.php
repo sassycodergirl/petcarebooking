@@ -86,7 +86,7 @@
                             @endif
                         </div>
 
-                        <section class="usp-section container-fluid bg-light py-3">
+                        <section class="usp-section container-fluid  py-3">
                         <div class="container">
                             <div class="row text-center">
 
