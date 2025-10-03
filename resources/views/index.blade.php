@@ -1029,16 +1029,16 @@
                     </a>
                 </div>
                 <div class="gallery-col">
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" data-fancybox="gallery"
+                    <a href="{{ asset('images/review-video3.mp4') }}" data-fancybox="gallery"
                         class="testimonial-card">
-                        <img src="{{ asset('images/tstimg-3.jpg') }}" class="tstimg-ov" alt="">
+                        <img src="{{ asset('images/review-3.webp') }}" class="tstimg-ov" alt="">
                         <span class="play-button"><img src="{{ asset('images/play-btn.svg') }}" alt=""></span>
                     </a>
                 </div>
                 <div class="gallery-col">
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" data-fancybox="gallery"
+                    <a href="{{ asset('images/review-video4.mp4') }}" data-fancybox="gallery"
                         class="testimonial-card">
-                        <img src="{{ asset('images/tstimg-4.png') }}" class="tstimg-ov" alt="">
+                        <img src="{{ asset('images/review-4.webp') }}" class="tstimg-ov" alt="">
                         <span class="play-button"><img src="{{ asset('images/play-btn.svg') }}" alt=""></span>
                     </a>
                 </div>
