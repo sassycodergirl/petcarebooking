@@ -118,22 +118,7 @@
                                 <div class="tagline">Easy Stay Booking</div>
                                 <h2>Your Pet's Home Away From Home</h2>
                                 <p>Whether you're away for the day or on vacation, our safe and fun daycare and boarding services provide the perfect environment for your pet. Our trained staff ensures they get all the love, play, and attention they deserve.</p>
-                                  <!-- <div class="facilities-features">
-                                    <ul>
-                                        <li>live camera access</li>
-                                        <li>Food based on habits</li>
-                                        <li>Unlimited walking time</li>
-                                        <li>All time Ac service</li>
-                                        <li>Unlimited play time in play area</li>
-                                        <li>No restriction to staying inside kennel</li>
-                                        <li>Pampering session</li>
-                                        <li>Socialising session</li>
-                                        <li>Anxiety relief therapy</li>
-                                        <li>Any time video call service</li>
-                                        <li>Plenty of videos & pictures to capture memories</li>
-                                        <li>Second Home like atmosphere</li>
-                                    </ul>
-                                </div> -->
+                               
 
                                 <div class="facilities">
                                     <ul>
@@ -150,8 +135,10 @@
                         </div>
                         </div>
                         <img src="{{ asset('images/abt-img-ovr.png') }}" class="abt-img-ovr" alt="">
-             </div>       
+             </div>  
+
         </div>
+        <a href="{{ route('about') }}" class="cmn-btn" data-content="Read More"><span>Book Slot for Stay</span></a>
     </section>
 
 
