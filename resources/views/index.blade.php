@@ -101,11 +101,11 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="abt-lft-col m-0">
-                                <div class="abt-lft-col-img-1">
+                                <div class="abt-lft-col-img-1 position-relative">
                                     <!-- <img src="{{ asset('images/intro1.webp') }}" alt=""> -->
-                                     <a href="{{ asset('images/intro-video.webp') }}" data-fancybox="gallery" class="testimonial-card" tabindex="0">
-                                        <img src="{{ asset('images/intro1.webp') }}" class="tstimg-ov" alt="">
-                                        <span class="play-button"><img src="https://coderbeans.shop/furry-and-friends/images/play-btn.svg" alt=""></span>
+                                     <a href="{{ asset('images/intro-video.webp') }}" data-fancybox="gallery" class="" tabindex="0">
+                                        <img src="{{ asset('images/intro1.webp') }}" class="" alt="">
+                                        <span class="play-button intro-btn"><img src="https://coderbeans.shop/furry-and-friends/images/play-btn.svg" alt=""></span>
                                     </a>
                                 </div>
                                 <div class="abt-lft-col-img-2">
