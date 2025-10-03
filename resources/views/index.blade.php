@@ -103,8 +103,8 @@
                             <div class="abt-lft-col m-0">
                                 <div class="abt-lft-col-img-1">
                                     <!-- <img src="{{ asset('images/intro1.webp') }}" alt=""> -->
-                                     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" data-fancybox="gallery" class="testimonial-card" tabindex="0">
-                                        <img src="https://coderbeans.shop/furry-and-friends/images/tstimg-1.jpg" class="tstimg-ov" alt="">
+                                     <a href="{{ asset('images/intro-video.webp') }}" data-fancybox="gallery" class="testimonial-card" tabindex="0">
+                                        <img src="{{ asset('images/intro1.webp') }}" class="tstimg-ov" alt="">
                                         <span class="play-button"><img src="https://coderbeans.shop/furry-and-friends/images/play-btn.svg" alt=""></span>
                                     </a>
                                 </div>
