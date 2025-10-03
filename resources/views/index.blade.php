@@ -111,6 +111,8 @@
                                 <div class="abt-lft-col-img-2">
                                     <img src="{{ asset('images/intro2.webp') }}" alt="">
 
+                                     <img class="mt-3" src="{{ asset('images/intro3.webp') }}" alt="">
+
                                    
                                 </div>
                                
