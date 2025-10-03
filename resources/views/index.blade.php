@@ -1052,6 +1052,13 @@
                     </div>
                     <div class="col-lg-9 col-md-9 col-12">
                            <div class="image-slider review-google">
+                                    
+                                    <div class="p-3">
+                                        <img src="{{ asset('images/google-8.webp') }}" alt="Placeholder Image 4" style="width:100%;">
+                                    </div>
+                                    <div class="p-3">
+                                        <img src="{{ asset('images/google-9.webp') }}" alt="Placeholder Image 4" style="width:100%;">
+                                    </div>
                                     <div class="p-3">
                                         <img src="{{ asset('images/google-1.png') }}" alt="Placeholder Image 1" style="width:100%;">
                                     </div>
@@ -1072,12 +1079,6 @@
                                     </div>
                                     <div class="p-3">
                                         <img src="{{ asset('images/google-7.webp') }}" alt="Placeholder Image 4" style="width:100%;">
-                                    </div>
-                                    <div class="p-3">
-                                        <img src="{{ asset('images/google-8.webp') }}" alt="Placeholder Image 4" style="width:100%;">
-                                    </div>
-                                    <div class="p-3">
-                                        <img src="{{ asset('images/google-9.webp') }}" alt="Placeholder Image 4" style="width:100%;">
                                     </div>
 
                                 </div>

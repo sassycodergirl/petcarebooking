@@ -2043,8 +2043,11 @@ textarea::placeholder {
 	max-width: 960px;
 	margin: 50px auto 0;
 }
-
-.review-card {
+.review-card  img{
+	background-color: var(--bg-white);
+	padding: 10px;
+}
+/* .review-card {
 	height: 100%;
 	border-radius: 20px;
 	background-color: var(--bg-white);
@@ -2053,7 +2056,7 @@ textarea::placeholder {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
+} */
 
 .tst-rgt-top {
 	position: absolute;
