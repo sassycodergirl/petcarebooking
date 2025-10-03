@@ -141,7 +141,7 @@
                                     <img src="{{ asset('images/intro1.webp') }}" alt="">
                                 </div>
                                 <div class="abt-lft-col-img-2">
-                                    <img src="{{ asset('images/intro1.webp') }}" alt="">
+                                    <img src="{{ asset('images/intro2.webp') }}" alt="">
                                 </div>
                                 <div class="abt-lft-col-img-2">
                                     <img src="{{ asset('images/intro3.webp') }}" alt="">
@@ -153,8 +153,8 @@
                         </div>
                         <div class= "col-lg-6">
                             <div class="community-rgt-col">
-                                <div class="tagline">Your Pet's Home Away From Home</div>
-                                <h2>Care Beyond Routine, Love Beyond Words</h2>
+                                <div class="tagline">Easy Stay Booking</div>
+                                <h2>Your Pet's Home Away From Home</h2>
                                 <p>Whether you're away for the day or on vacation, our safe and fun daycare and boarding services provide the perfect environment for your pet. Our trained staff ensures they get all the love, play, and attention they deserve.</p>
                                 
                         </div>
