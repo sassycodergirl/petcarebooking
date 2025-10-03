@@ -103,8 +103,8 @@
                             <div class="abt-lft-col m-0">
                                 <div class="abt-lft-col-img-1 position-relative">
                                     <!-- <img src="{{ asset('images/intro1.webp') }}" alt=""> -->
-                                     <a href="{{ asset('images/intro-video.webp') }}" data-fancybox="gallery" class="" tabindex="0">
-                                        <img src="{{ asset('images/intro1.webp') }}" class="" alt="">
+                                     <a href="{{ asset('images/intro-video.mp4') }}" data-fancybox="gallery" class="" tabindex="0">
+                                        <img src="{{ asset('images/intro-video.webp') }}" class="" alt="">
                                         <span class="play-button intro-btn"><img src="https://coderbeans.shop/furry-and-friends/images/play-btn.svg" alt=""></span>
                                     </a>
                                 </div>
