@@ -100,8 +100,8 @@
              <div class="abt-wrapp">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
-                            <div class="abt-lft-col m-0">
-                                <div class="abt-lft-col-img-1 position-relative">
+                            <div class="abt-lft-col m-0 align-items-center">
+                                <div class="abt-lft-col-img-1 mt-0 position-relative">
                                     <!-- <img src="{{ asset('images/intro1.webp') }}" alt=""> -->
                                      <a href="{{ asset('images/intro-video.mp4') }}" data-fancybox="gallery" class="" tabindex="0">
                                         <img src="{{ asset('images/intro-video.webp') }}" class="" alt="">
@@ -111,7 +111,7 @@
                                 <div class="abt-lft-col-img-2">
                                     <img src="{{ asset('images/intro2.webp') }}" alt="">
 
-                                     <img class="mt-3" src="{{ asset('images/intro3-new.webp') }}" alt="" style="height:200px;object-fit:cover;">
+                                     <img class="mt-3" src="{{ asset('images/intro3-new.webp') }}" alt="" style="height:210px;object-fit:cover;">
 
                                    
                                 </div>
