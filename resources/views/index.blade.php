@@ -1044,7 +1044,7 @@
                 </div>
             </div>
             <div class="review-card-wraps">
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3 col-12 ">
                         <div class="review-card">
                             <a href="https://www.google.com/search?q=Furry+Friends+%26+Co+Kharghar&oq=furr&gs_lcrp=EgZjaHJvbWUqCAgCEEUYJxg7MgYIABBFGDwyBggBEEUYPDIICAIQRRgnGDsyBggDEEUYOTIOCAQQRRgnGDsYgAQYigUyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgyOTUxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#lrd=0x3be7c3583dc84875:0xbaa9af77903130ba,1,,,,">
