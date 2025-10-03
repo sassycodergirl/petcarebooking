@@ -1043,23 +1043,46 @@
                     </a>
                 </div>
             </div>
-            <div class="review-card-wrap">
+            <div class="review-card-wraps">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-3 col-md-3 col-12 ">
                         <div class="review-card">
                             <img src="{{ asset('images/rev-1.png') }}" alt="">
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="review-card">
-                            <img src="{{ asset('images/rev-2.png') }}" alt="">
-                        </div>
+                    <div class="col-lg-9 col-md-9 col-12">
+                           <div class="image-slider review-google">
+                                    <div>
+                                        <img src="{{ asset('images/google-1.webp') }}" alt="Placeholder Image 1" style="width:100%;">
+                                    </div>
+                                    <div>
+                                        <img src="{{ asset('images/google-2.webp') }}" alt="Placeholder Image 2" style="width:100%;">
+                                    </div>
+                                    <div>
+                                        <img src="{{ asset('images/google-3.webp') }}" alt="Placeholder Image 3" style="width:100%;">
+                                    </div>
+                                    <div>
+                                        <img src="{{ asset('images/google-4.webp') }}" alt="Placeholder Image 4" style="width:100%;">
+                                    </div>
+                                    <div>
+                                        <img src="{{ asset('images/google-5.webp') }}" alt="Placeholder Image 4" style="width:100%;">
+                                    </div>
+                                    <div>
+                                        <img src="{{ asset('images/google-6.webp') }}" alt="Placeholder Image 4" style="width:100%;">
+                                    </div>
+                                    <div>
+                                        <img src="{{ asset('images/google-7.webp') }}" alt="Placeholder Image 4" style="width:100%;">
+                                    </div>
+                                    <div>
+                                        <img src="{{ asset('images/google-8.webp') }}" alt="Placeholder Image 4" style="width:100%;">
+                                    </div>
+                                    <div>
+                                        <img src="{{ asset('images/google-9.webp') }}" alt="Placeholder Image 4" style="width:100%;">
+                                    </div>
+
+                                </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="review-card">
-                            <img src="{{ asset('images/rev-3.png') }}" alt="">
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
