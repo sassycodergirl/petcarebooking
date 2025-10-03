@@ -1024,7 +1024,7 @@
                 <div class="gallery-col">
                     <a href="{{ asset('images/review2-video.mp4') }}" data-fancybox="gallery"
                         class="testimonial-card">
-                        <img src="{{ asset('images/review2.webp') }}" class="tstimg-ov" alt="">
+                        <img src="{{ asset('images/review2.jpg') }}" class="tstimg-ov" alt="">
                         <span class="play-button"><img src="{{ asset('images/play-btn.svg') }}" alt=""></span>
                     </a>
                 </div>
