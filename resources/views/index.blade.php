@@ -12,7 +12,7 @@
                         <h1 class="mb-2 mb-md-3 ">Safe & Fun Stays Where Pets Feel at Home</h1>
                         <p>Daycare and boarding with care, comfort, and endless playtime.</p>
                         <div class="banner-cont-button">
-                            <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book a Slot"><span>Book a Slot</span></a>
+                            <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Slot for Stay"><span>Book Slot for Stay</span></a>
                         </div>
                     </div>
                     <div class="banner-cont p-3 p-md-0">
@@ -138,8 +138,8 @@
              </div>  
 
         </div>
-        <div class="text-center">
-             <a href="{{ route('booking') }}" class="cmn-btn" data-content="Read More"><span>Book Slot for Stay</span></a>
+        <div class="text-center mt-3">
+             <a href="{{ route('booking') }}" class="cmn-btn" data-content="Book Slot for Stay"><span>Book Slot for Stay</span></a>
         </div>
     </section>
 
@@ -221,7 +221,7 @@
                                         <span class="reviews-txt">225 Reviews</span>
                                     </div>
                                     <div class="store-actions justify-content-center justify-content-md-start">
-                                        <a href="{{ route('booking') }}" class="btn-book">Book Slot</a>
+                                        <a href="{{ route('booking') }}" class="btn-book">Book Slot for Stay</a>
                                         <a href="tel:09076120593" class="btn-call"><img src="{{ asset('images/coll-icon.svg') }}" alt=""></a>
                                         <a href="https://maps.app.goo.gl/nygEasieLDHnhQcV6" class="btn-location"><img src="{{ asset('images/send-icon.svg') }}" alt=""></a>
                                       
