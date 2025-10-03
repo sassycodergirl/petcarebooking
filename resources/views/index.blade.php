@@ -99,24 +99,19 @@
         <div class="container social-container">
              <div class="abt-wrapp">
                     <div class="row">
-                        <div class="col-lg-5">
-                            <div class="row">
-                                <div class="col-6 col-md-6">
-                                    <img class="img-fluid" src="{{ asset('images/intro1.webp') }}" alt="">
+                        <div class="col-lg-6">
+                            <div class="abt-lft-col">
+                                <div class="abt-lft-col-img-1">
+                                    <img src="{{ asset('images/intro1.webp') }}" alt="">
                                 </div>
-                                <div class="col-6 col-md-6">
-                                    <img class="img-fluid" src="{{ asset('images/intro2.webp') }}" alt="">
+                                <div class="abt-lft-col-img-2">
+                                    <img src="{{ asset('images/intro2.webp') }}" alt="">
                                 </div>
-                                <div class="col-6 col-md-6">
-                                    <img class="img-fluid" src="{{ asset('images/intro3.webp') }}" alt="">
-                                </div>
-                                <div class="col-6 col-md-6">
-                                    <img class="img-fluid" src="{{ asset('images/intro4.webp') }}" alt="">
-                                </div>
+                               
                             </div>
                         </div>
-                        <div class= "col-lg-7">
-                            <div>
+                        <div class= "col-lg-6">
+                            <div class="community-rgt-col">
                                 <div class="tagline">Easy Stay Booking</div>
                                 <h2>Your Pet's Home Away From Home</h2>
                                 <p>Whether you're away for the day or on vacation, our safe and fun daycare and boarding services provide the perfect environment for your pet. Our trained staff ensures they get all the love, play, and attention they deserve.</p>
