@@ -1015,16 +1015,16 @@
             </div>
             <div class="js-testimonial-gallery">
                 <div class="gallery-col">
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" data-fancybox="gallery"
+                    <a href="{{ asset('images/review1-video.mp4') }}" data-fancybox="gallery"
                         class="testimonial-card">
-                        <img src="{{ asset('images/tstimg-1.jpg') }}" class="tstimg-ov" alt="">
+                        <img src="{{ asset('images/intro3-new.webp') }}" class="tstimg-ov" alt="">
                         <span class="play-button"><img src="{{ asset('images/play-btn.svg') }}" alt=""></span>
                     </a>
                 </div>
                 <div class="gallery-col">
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" data-fancybox="gallery"
+                    <a href="{{ asset('images/review2-video.mp4') }}" data-fancybox="gallery"
                         class="testimonial-card">
-                        <img src="{{ asset('images/tstimg-2.jpg') }}" class="tstimg-ov" alt="">
+                        <img src="{{ asset('images/review2.webp') }}" class="tstimg-ov" alt="">
                         <span class="play-button"><img src="{{ asset('images/play-btn.svg') }}" alt=""></span>
                     </a>
                 </div>
