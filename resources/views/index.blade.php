@@ -1277,7 +1277,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="follow-wap">
+                <a href="https://www.instagram.com/furryfriendsco.india/?hl=en" class="follow-wap">
                     <img src="{{ asset('images/Instagram.svg') }}" alt="">
                     <p>Follow us on Instagram</p>
                     <span><i class="fa-solid fa-plus"></i> Follow</span>
