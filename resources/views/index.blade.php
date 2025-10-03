@@ -100,14 +100,14 @@
              <div class="abt-wrapp">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="abt-lft-col">
+                            <div class="abt-lft-col m-0">
                                 <div class="abt-lft-col-img-1">
                                     <img src="{{ asset('images/intro1.webp') }}" alt="">
                                 </div>
                                 <div class="abt-lft-col-img-2">
                                     <img src="{{ asset('images/intro2.webp') }}" alt="">
 
-                                    <img class="mt-4" src="{{ asset('images/intro3.webp') }}" alt="">
+                                   
                                 </div>
                                
                                
