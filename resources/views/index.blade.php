@@ -1087,6 +1087,9 @@
                     </div>
                     
                 </div>
+                <div class="text-center">
+                    <a href="https://www.google.com/search?q=Furry+Friends+%26+Co+Kharghar&oq=furr&gs_lcrp=EgZjaHJvbWUqCAgCEEUYJxg7MgYIABBFGDwyBggBEEUYPDIICAIQRRgnGDsyBggDEEUYOTIOCAQQRRgnGDsYgAQYigUyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgyOTUxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#lrd=0x3be7c3583dc84875:0xbaa9af77903130ba,1,,,," class="cmn-btn" data-content="Read All Google Review"><span>Read All Google Review</span></a>
+                </div>
             </div>
         </div>
         <img src="{{ asset('images/prd-top-ov.png') }}" class="prd-top-ov" alt="">
