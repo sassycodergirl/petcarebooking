@@ -91,9 +91,7 @@
         <img src="{{ asset('images/abt-rgt-btm.png') }}" class="abt-lft-bottom" alt="">
     </section>
 
-    {{-- ================================================== --}}
-{{-- =        DAYCARE & BOARDING CTA SECTION          = --}}
-{{-- ================================================== --}}
+
 <section class="booking-cta-section py-5">
     <div class="container">
         <div class="row align-items-center">
@@ -131,6 +129,40 @@
         </div>
     </div>
 </section>
+
+
+  <section class="community-sec">
+        <div class="container social-container">
+             <div class="abt-wrapp">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="abt-lft-col">
+                                <div class="abt-lft-col-img-1">
+                                    <img src="{{ asset('images/intro1.webp') }}" alt="">
+                                </div>
+                                <div class="abt-lft-col-img-2">
+                                    <img src="{{ asset('images/intro1.webp') }}" alt="">
+                                </div>
+                                <div class="abt-lft-col-img-2">
+                                    <img src="{{ asset('images/intro3.webp') }}" alt="">
+                                </div>
+                                <div class="abt-lft-col-img-2">
+                                    <img src="{{ asset('images/intro4.webp') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class= "col-lg-6">
+                            <div class="community-rgt-col">
+                                <div class="tagline">Your Pet's Home Away From Home</div>
+                                <h2>Care Beyond Routine, Love Beyond Words</h2>
+                                <p>Whether you're away for the day or on vacation, our safe and fun daycare and boarding services provide the perfect environment for your pet. Our trained staff ensures they get all the love, play, and attention they deserve.</p>
+                                
+                        </div>
+                        </div>
+                        <img src="{{ asset('images/abt-img-ovr.png') }}" class="abt-img-ovr" alt="">
+             </div>       
+        </div>
+    </section>
 
 
     <section class="locate-sec py-2 py-md-5">
