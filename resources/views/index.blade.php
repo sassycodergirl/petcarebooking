@@ -138,7 +138,9 @@
              </div>  
 
         </div>
-        <a href="{{ route('booking') }}" class="cmn-btn" data-content="Read More"><span>Book Slot for Stay</span></a>
+        <div class="text-center">
+             <a href="{{ route('booking') }}" class="cmn-btn" data-content="Read More"><span>Book Slot for Stay</span></a>
+        </div>
     </section>
 
 
