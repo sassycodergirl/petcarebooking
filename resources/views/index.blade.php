@@ -99,7 +99,7 @@
         <div class="container social-container">
              <div class="abt-wrapp">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-7">
                             <div class="row">
                                 <div class="col-6 col-md-6">
                                     <img class="img-fluid" src="{{ asset('images/intro1.webp') }}" alt="">
@@ -115,8 +115,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class= "col-lg-6">
-                            <div class="community-rgt-col">
+                        <div class= "col-lg-5">
+                            <div>
                                 <div class="tagline">Easy Stay Booking</div>
                                 <h2>Your Pet's Home Away From Home</h2>
                                 <p>Whether you're away for the day or on vacation, our safe and fun daycare and boarding services provide the perfect environment for your pet. Our trained staff ensures they get all the love, play, and attention they deserve.</p>
