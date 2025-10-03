@@ -98,7 +98,7 @@
   <section class="community-sec">
         <div class="container social-container">
              <div class="abt-wrapp">
-                    <div class="row">
+                    <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="abt-lft-col m-0">
                                 <div class="abt-lft-col-img-1">
