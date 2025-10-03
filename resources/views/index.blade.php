@@ -137,14 +137,14 @@
 
                                 <div class="facilities">
                                     <ul>
-                                        <li><span></span>live camera access</li>
-                                        <li><span></span>Food based on habits</li>
-                                        <li>Unlimited walking time</li>
-                                        <li>Unlimited play time in play area</li>
-                                        <li>No restriction to staying inside kennel</li>
-                                        <li>Pampering session</li>
-                                        <li>Socialising session</li>
-                                        <li>Second Home like atmosphere</li>
+                                        <li><span><img class="img-fluid" src="{{ asset('images/cctv-camera.webp') }}"></span>live camera access</li>
+                                        <li><span><img class="img-fluid" src="{{ asset('images/pet-bowl.webp') }}"></span>Food based on habits</li>
+                                        <li><span><img class="img-fluid" src="{{ asset('images/walking.webp') }}"></span>Unlimited walking time</li>
+                                        <li><span><img class="img-fluid" src="{{ asset('images/dog.webp') }}"></span>Unlimited play time in play area</li>
+                                        <li><span><img class="img-fluid" src="{{ asset('images/lets-play.webp') }}"></span>No restriction to staying inside kennel</li>
+                                        <li><span><img class="img-fluid" src="{{ asset('images/bathing.webp') }}"></span>Pampering session</li>
+                                        <li><span><img class="img-fluid" src="{{ asset('images/dog (1).webp') }}"></span>Socialising session</li>
+                                        <li><span><img class="img-fluid" src="{{ asset('images/play-with-pet.webp') }}"></span>Second Home like atmosphere</li>
                                     </ul>
                                 </div>
                         </div>
