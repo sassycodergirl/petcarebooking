@@ -45,12 +45,17 @@ strong {
 
 p {
 	margin: 0 0 20px 0;
+	    font-size: 16px
 }
 
 p:last-child {
 	margin-bottom: 0;
 }
-
+@media only screen and (min-width: 991px) {
+	p{
+		    font-size: 20px;
+	}
+}
 h1,
 .h1-heading,
 h2,
