@@ -92,43 +92,7 @@
     </section>
 
 
-<section class="booking-cta-section py-5">
-    <div class="container">
-        <div class="row align-items-center">
 
-            <div class="col-md-6">
-                <div class="cta-image">
-                    <img src="{{ asset('images/pet-daycare-banner.jpg') }}" class="img-fluid rounded shadow" alt="Happy dog at a pet daycare">
-                </div>
-            </div>
-
-            <div class="col-md-6 mt-4 mt-md-0">
-                <div class="cta-content">
-                    <h2 class="display-5 fw-bold">Your Pet's Home Away From Home</h2>
-                    <p class="lead text-muted mt-3">
-                        Whether you're away for the day or on vacation, our safe and fun daycare and boarding services provide the perfect environment for your pet. Our trained staff ensures they get all the love, play, and attention they deserve.
-                    </p>
-                    <ul class="list-unstyled mt-4">
-                        <li class="d-flex align-items-center mb-2">
-                            <img src="{{ asset('images/icons/check-circle.svg') }}" class="cta-icon me-2" alt="Checkmark">
-                            Safe & Secure Environment
-                        </li>
-                        <li class="d-flex align-items-center mb-2">
-                            <img src="{{ asset('images/icons/check-circle.svg') }}" class="cta-icon me-2" alt="Checkmark">
-                            Trained & Loving Staff
-                        </li>
-                        <li class="d-flex align-items-center">
-                            <img src="{{ asset('images/icons/check-circle.svg') }}" class="cta-icon me-2" alt="Checkmark">
-                            Easy Online Slot Booking
-                        </li>
-                    </ul>
-                    <a href="#" class="btn btn-primary btn-lg mt-4">Book a Slot Now</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
 
 
   <section class="community-sec">
@@ -136,18 +100,18 @@
              <div class="abt-wrapp">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="abt-lft-col">
-                                <div class="abt-lft-col-img-1">
-                                    <img src="{{ asset('images/intro1.webp') }}" alt="">
+                            <div class="row">
+                                <div class="col-6 col-md-6">
+                                    <img class="img-fluid" src="{{ asset('images/intro1.webp') }}" alt="">
                                 </div>
-                                <div class="abt-lft-col-img-2">
-                                    <img src="{{ asset('images/intro2.webp') }}" alt="">
+                                <div class="col-6 col-md-6">
+                                    <img class="img-fluid" src="{{ asset('images/intro2.webp') }}" alt="">
                                 </div>
-                                <div class="abt-lft-col-img-2">
-                                    <img src="{{ asset('images/intro3.webp') }}" alt="">
+                                <div class="col-6 col-md-6">
+                                    <img class="img-fluid" src="{{ asset('images/intro3.webp') }}" alt="">
                                 </div>
-                                <div class="abt-lft-col-img-2">
-                                    <img src="{{ asset('images/intro4.webp') }}" alt="">
+                                <div class="col-6 col-md-6">
+                                    <img class="img-fluid" src="{{ asset('images/intro4.webp') }}" alt="">
                                 </div>
                             </div>
                         </div>
