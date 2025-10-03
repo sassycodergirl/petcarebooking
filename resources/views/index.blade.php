@@ -95,7 +95,7 @@
 
 
 
-  <section class="community-sec">
+  <section class="community-sec py-5">
         <div class="container social-container">
              <div class="abt-wrapp">
                     <div class="row align-items-center">
