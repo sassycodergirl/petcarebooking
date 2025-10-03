@@ -137,7 +137,7 @@
 
                                 <div class="facilities">
                                     <ul>
-                                        <li><span><img class="img-fluid" src="{{ asset('images/cctv-camera.webp') }}"></span>live camera access</li>
+                                        <li><span><img class="img-fluid" src="{{ asset('images/cctv-camera.webp') }}"></span>Live camera access</li>
                                         <li><span><img class="img-fluid" src="{{ asset('images/pet-bowl.webp') }}"></span>Food based on habits</li>
                                         <li><span><img class="img-fluid" src="{{ asset('images/walking.webp') }}"></span>Unlimited walking time</li>
                                         <li><span><img class="img-fluid" src="{{ asset('images/dog.webp') }}"></span>Unlimited play time in play area</li>

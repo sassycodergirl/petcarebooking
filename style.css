@@ -7548,8 +7548,13 @@ font-weight: 600;
 #product-price{
 	font-size: 20px;
 }
-
-
+.facilities ul{
+	columns: 1;
+}
+.facilities ul li{
+	display: flex;
+    gap: 10px;
+}
 @media only screen and (min-width: 991px) {
     .featured-card img {
 		        height: 275px;
@@ -7577,6 +7582,11 @@ font-weight: 600;
     font-weight: bold;
     color: #ff8f00;
 	}
+
+	.facilities ul{
+	columns: 2;
+}
+
 	
 }
 /*added by sudipa*/
