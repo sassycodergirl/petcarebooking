@@ -7543,6 +7543,19 @@ font-weight: 600;
 #product-price{
 	font-size: 20px;
 }
+
+.booking-cta-section {
+    background-color: #f8f9fa; /* A light grey background to stand out */
+}
+
+.cta-content h2 {
+    color: #333;
+}
+
+.cta-icon {
+    width: 24px;
+    height: 24px;
+}
 @media only screen and (min-width: 991px) {
     .featured-card img {
 		        height: 275px;
